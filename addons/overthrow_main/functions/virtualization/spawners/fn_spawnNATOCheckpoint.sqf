@@ -22,7 +22,7 @@ private _vehtype = selectRandom OT_vehTypes_civ;
 
 private _roadscon = roadsConnectedto _road;
 //private _dir = [_road, _roadscon select 0] call BIS_fnc_DirTo;
-_dir = _road getDir _roadscon select 0;
+_dir = _road getDir (_roadscon select 0);
 if(isNil "_dir") then {_dir = 90};
 
 private _vehs = [_start,_dir,OT_tpl_checkpoint] call BIS_fnc_objectsMapper;
