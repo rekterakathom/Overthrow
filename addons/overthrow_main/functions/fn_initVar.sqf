@@ -176,9 +176,9 @@ OT_item_DefaultBlueprints = [];
 OT_itemCategoryDefinitions = [
     ["General",["ACE_fieldDressing","Banana","Map","ToolKit","Compass","ACE_EarPlugs","Watch","Radio","Compass","ACE_Spraypaint","Altimiter","MapTools","Binocular"]],
     ["Pharmacy",["Dressing","Bandage","morphine","adenosine","atropine","ACE_EarPlugs","epinephrine","bodyBag","quikclot","salineIV","bloodIV","plasmaIV","personalAidKit","surgicalKit","tourniquet","splint"]],
-    ["Electronics",["Rangefinder","Cellphone","Radio","Watch","GPS","monitor","DAGR","_dagr","Battery","ATragMX","ACE_Flashlight","I_UavTerminal","ACE_Kestrel4500"]],
+    ["Electronics",["Rangefinder","Cellphone","Radio","Watch","GPS","monitor","DAGR","_dagr","Battery","ATragMX","ACE_Flashlight","I_UavTerminal"]],
     ["Hardware",["Tool","CableTie","ACE_Spraypaint","wirecutter","ACE_rope"]],
-    ["Surplus",["Rangefinder","Binocular","Compass","RangeCard","RangeTable","defusalKit","SpottingScope","ACE_Vector","ACE_Yardage","ACE_Kestrel4500"]]
+    ["Surplus",["Rangefinder","Binocular","Compass","RangeCard","RangeTable","defusalKit","SpottingScope","ACE_Vector","ACE_Yardage"]]
 ];
 
 OT_items = [];
@@ -321,7 +321,7 @@ private _allVehs = "
     &&
 	{ (getArray ( _x >> ""threat"" ) select 0) < 0.5}
 	&&
-    { (toLowerANSI getText ( _x >> ""vehicleClass"" ) isEqualTo ""car"") || (toLowerANSI getText ( _x >> ""vehicleClass"" ) isEqualTo ""support"")}
+    { (toLower getText ( _x >> ""vehicleClass"" ) isEqualTo ""car"") || (toLower getText ( _x >> ""vehicleClass"" ) isEqualTo ""support"")}
 	&&
     { (getText ( _x >> ""faction"" ) isEqualTo ""CIV_F"") or
      (getText ( _x >> ""faction"" ) isEqualTo ""IND_F"")})
@@ -978,7 +978,7 @@ OT_Buildables = [
 	["Workshop",1000,[
 		["Land_Cargo_House_V4_F",[0,0,0],0,1,0,[],"","",true,false],
 		["Land_ClutterCutter_large_F",[0,0,0],0,1,0,[],"","",true,false],
-		["Box_NATO_AmmoVeh_F",[-2.91,-3.2,0],90,1,0,[],"","",true,false],
+		["Box_NATO_AmmoVeh_F",[-2.91,-2.008,0],90,1,0,[],"","",true,false],
 		["Land_WeldingTrolley_01_F",[-3.53163,1.73366,0],87.0816,1,0,[],"","",true,false],
 		["Land_ToolTrolley_02_F",[-3.47775,3.5155,0],331.186,1,0,[],"","",true,false]
 	],"OT_fnc_initWorkshop",true,"Attach weapons to vehicles"],
@@ -996,13 +996,14 @@ OT_Buildables = [
 		OT_allBuyableBuildings pushback ((_tpl select 0) select 0);
 	}else{
 		[OT_allBuyableBuildings,(_x select 2)] call BIS_fnc_arrayPushStack;
+		//OT_allBuyableBuildings pushBack (_x select 2);
 	}
 }foreach(OT_Buildables);
 
 //Items you can place
 OT_Placeables = [
 	["Sandbags",20,["Land_BagFence_Short_F","Land_BagFence_Round_F","Land_BagFence_Long_F","Land_BagFence_End_F","Land_BagFence_Corner_F","Land_BagFence_01_long_green_F","Land_BagFence_01_short_green_F","Land_BagFence_01_round_green_F","Land_BagFence_01_corner_green_F","Land_BagFence_01_end_green_F"],[0,3,0.8],"Bags filled with lots of sand. Apparently this can stop bullets or something?"],
-	["Camo Nets",40,["Land_MedicalTent_01_white_generic_open_F","Land_MedicalTent_01_NATO_generic_open_F","Land_TentHangar_V1_F","CamoNet_INDP_open_F","CamoNet_INDP_F","CamoNet_ghex_F","CamoNet_ghex_open_F","CamoNet_ghex_big_F"],[0,7,2],"Large && terribly flimsy structures that may or may not obscure your forces from airborne units."],
+	["Camo Nets",40,["Land_MedicalTent_01_white_generic_open_F","Land_MedicalTent_01_MTP_open","Land_TentHangar_V1_F","CamoNet_INDP_open_F","CamoNet_INDP_F","CamoNet_ghex_F","CamoNet_ghex_open_F","CamoNet_ghex_big_F"],[0,7,2],"Large && terribly flimsy structures that may or may not obscure your forces from airborne units."],
 	["Barriers",60,["Land_HBarrier_1_F","Land_HBarrier_3_F","Land_HBarrier_5_F","Land_HBarrier_Big_F","Land_HBarrierWall_corner_F","Land_HBarrier_01_line_5_green_F","Land_HBarrier_01_line_3_green_F","Land_HBarrier_01_line_1_green_F"],[0,4,1.2],"Really big sandbags, basically."],
 	["Map",30,[OT_item_Map],[0,2,1.2],"Use these to save your game, change options or check town info."],
 	["Safe",50,[OT_item_Safe],[0,2,0.5],"Store && retrieve money"],
