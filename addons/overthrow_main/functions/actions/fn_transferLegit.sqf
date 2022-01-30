@@ -60,7 +60,7 @@ _doTransfer = {
 				};
 			};
 			if(_full) exitWith {};
-		}foreach((allVariables warehouse) select {((toLower _x select [0,5]) isEqualTo "item_")});
+		}foreach((allVariables warehouse) select {((toLowerANSI _x select [0,5]) isEqualTo "item_")});
 	}else{
 		{
 			private _count = 0;

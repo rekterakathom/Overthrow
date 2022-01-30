@@ -8,7 +8,7 @@ _y = _size select 1;
 
 _ret = "";
 
-switch (tolower(markershape _this)) do {
+switch (toLowerANSI(markershape _this)) do {
   case "rectangle": {
     if (_x isEqualTo _y) then {
       _ret = "SQUARE";

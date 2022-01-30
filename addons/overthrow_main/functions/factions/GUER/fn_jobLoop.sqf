@@ -13,7 +13,7 @@ if !(job_system_counter < 12) then {
 
         private _activeJobs = spawner getVariable ["OT_activeJobIds",[]];
         if((count _activeJobs) > 30) exitWith {};
-        switch (toLower _target) do {
+        switch (toLowerANSI _target) do {
           case "global": {
             private _id = _name;
             if((random 100) < _chance) then {

@@ -14,7 +14,7 @@ _SearchTerm = ctrlText 1700;
 _numitems = 0;
 {
 	_cls = _x;
-	if(tolower(_cls) find _SearchTerm > -1) then {
+	if(toLowerANSI(_cls) find _SearchTerm > -1) then {
 
 		if(_cls isKindOf ["Default",configFile >> "CfgWeapons"]) then {
 			_cls = [_x] call BIS_fnc_baseWeapon;

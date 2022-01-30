@@ -45,7 +45,7 @@ private _server = (allVariables server select {
 		false
 	} else {
 
-		_x = toLower _x;
+		_x = toLowerANSI _x;
 		!(_x in ["startuptype","recruits","squads"])
 		&& {(_x select [0,11]) != "resgarrison"}
 		&& {(_x select [0,9]) != "seencache"}
@@ -70,7 +70,7 @@ if !(_quiet) then {
 	"Step 2/11 - Saving buildings" remoteExecCall ["OT_fnc_notifyAndLog",0,false];
 };
 
-private _prefixFilter = { !((toLower _x select [0,4]) in ["ace_","cba_","bis_","____"]) };
+private _prefixFilter = { !((toLowerANSI _x select [0,4]) in ["ace_","cba_","bis_","____"]) };
 
 private _poses = (allVariables buildingpositions select _prefixFilter) apply {
 	[_x,buildingpositions getVariable _x]
@@ -178,7 +178,7 @@ if !(_quiet) then {
 };
 
 private _warehouse = [2]; //First element is save version
-_warehouse append ((allVariables warehouse) select {((toLower _x select [0,5]) isEqualTo "item_")} apply {
+_warehouse append ((allVariables warehouse) select {((toLowerANSI _x select [0,5]) isEqualTo "item_")} apply {
 	warehouse getVariable _x
 });
 _data pushback ["warehouse",_warehouse];
@@ -233,7 +233,7 @@ if !(_quiet) then {
 private _getGroupSoldiers = {
 	(units _this select {
 		private _veh = vehicle _x;
-		alive _x && { _veh isEqualTo _x || {(someAmmo _veh && toLower typeOf _veh in ["i_hmg_01_high_f","i_gmg_01_high_f"])} }
+		alive _x && { _veh isEqualTo _x || {(someAmmo _veh && toLowerANSI typeOf _veh in ["i_hmg_01_high_f","i_gmg_01_high_f"])} }
 	}) apply {
 		if(vehicle _x isEqualTo _x) then {
 			[typeof _x,getUnitLoadout _x];

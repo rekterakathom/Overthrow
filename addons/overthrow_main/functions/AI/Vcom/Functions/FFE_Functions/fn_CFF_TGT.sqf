@@ -50,7 +50,7 @@ foreach _enemies;
 	if ! ((vehicle _CL) == _CL) then 
 	{
 		_veh = vehicle _CL;
-		if ((toLower (typeOf _veh)) in RydFFE_AllArty) then {_artFactor = 10} else {_vehFactor = 500 + (rating _veh)};
+		if ((toLowerANSI (typeOf _veh)) in RydFFE_AllArty) then {_artFactor = 10} else {_vehFactor = 500 + (rating _veh)};
 	};
 
 	_nearImp = (getPosATL _CL) nearEntities [["CAManBase","AllVehicles","Strategic","WarfareBBaseStructure","Fortress"],100];
@@ -65,7 +65,7 @@ foreach _enemies;
 			if ! (_x == _vh) then 
 			{
 				_crowdFactor = _crowdFactor + 0.2;
-				if ((toLower (typeOf _vh)) in RydFFE_AllArty) then 
+				if ((toLowerANSI (typeOf _vh)) in RydFFE_AllArty) then 
 				{
 					_crowdFactor = _crowdFactor + 0.2
 				}

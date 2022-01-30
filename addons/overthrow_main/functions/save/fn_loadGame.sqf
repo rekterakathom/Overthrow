@@ -18,7 +18,7 @@ private _cc = 0;
 	if(_key == "server") then {
 		{
 			_x params ["_subkey","_subval"];
-			if(!(toLower (_subkey select [0,4]) in ["cba_","bis_"])) then {
+			if(!(toLowerANSI (_subkey select [0,4]) in ["cba_","bis_"])) then {
 				server setVariable [_subkey,_subval,true];
 			};
 		}foreach(_val);
@@ -42,7 +42,7 @@ private _hasList_buildableHouses = false;
 	if(_key == "players") then {
 		{
 			_x params ["_subkey","_subval"];
-			if(!(toLower (_subkey select [0,4]) in ["ace_","cba_","bis_"]) && {(_subkey select [0,9]) != "seencache"}) then {
+			if(!(toLowerANSI (_subkey select [0,4]) in ["ace_","cba_","bis_"]) && {(_subkey select [0,9]) != "seencache"}) then {
 				//v0.7.8.3 : Clears extraneous tutorial done entries
 				if(_subval isEqualType []) then {
 					{
@@ -64,7 +64,7 @@ private _hasList_buildableHouses = false;
 	if(_key == "civilians") then {
 		{
 			_x params ["_subkey",["_subval",""]];
-			if!(toLower (_subkey select [0,4]) in ["ace_","cba_","bis_"]) then {
+			if!(toLowerANSI (_subkey select [0,4]) in ["ace_","cba_","bis_"]) then {
 				OT_civilians setVariable [_subkey,_subval,true];
 			};
 		}foreach(_val);
@@ -73,7 +73,7 @@ private _hasList_buildableHouses = false;
 	if(_key == "buildingpositions") then {
 		{
 			_x params ["_subkey","_subval"];
-			if!(toLower (_subkey select [0,4]) in ["ace_","cba_","bis_"]) then {
+			if!(toLowerANSI (_subkey select [0,4]) in ["ace_","cba_","bis_"]) then {
 				buildingpositions setVariable [_subkey,_subval,true];
 			};
 		}foreach(_val);
@@ -128,7 +128,7 @@ private _hasList_buildableHouses = false;
 							};
 						};
 					};
-				}foreach(_val select {!(((toLower (_x#0)) select [0,4]) in ["cba_","bis_"])});
+				}foreach(_val select {!(((toLowerANSI (_x#0)) select [0,4]) in ["cba_","bis_"])});
 			};
 		};
 		_set = false;
@@ -370,7 +370,7 @@ private _hasList_buildableHouses = false;
 	};
 
 	if(_set && !(isNil "_val")) then {
-		if!(toLower (_key select [0,4]) in ["ace_","cba_","bis_"]) then {
+		if!(toLowerANSI (_key select [0,4]) in ["ace_","cba_","bis_"]) then {
 			// server setvariable [_key,_val,true];
 			diag_log format["Dangling key value pair found: %1 - %2", _key, _val];
 		};

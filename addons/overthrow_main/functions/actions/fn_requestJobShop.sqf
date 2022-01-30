@@ -14,7 +14,7 @@ private _expiry = 0;
     _jobcode = _code;
     _expiry = _expires;
     call {
-        if((toLower _target) isEqualTo "shop") exitWith {
+        if((toLowerANSI _target) isEqualTo "shop") exitWith {
             //get the town we're in
             private _nearest = (getpos player) call OT_fnc_nearestTown;
             private _loc = server getVariable _nearest;

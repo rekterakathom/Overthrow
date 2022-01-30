@@ -695,7 +695,7 @@ SA_Is_Supported_Cargo = {
 		{
 			if(_vehicle isKindOf (_x select 0)) then {
 				if(_cargo isKindOf (_x select 2)) then {
-					if( (toUpper (_x select 1)) isEqualTo "CAN_TOW" ) then {
+					if( (toUpperANSI (_x select 1)) isEqualTo "CAN_TOW" ) then {
 						_canTow = true;
 					} else {
 						_canTow = false;

@@ -29,7 +29,7 @@ private _allAmmo = 0;
 				{
 					_checked set [(count _checked),_vh];
 					
-					_tp = toLower (typeOf _vh);
+					_tp = toLowerANSI (typeOf _vh);
 					
 					switch (true) do
 					{

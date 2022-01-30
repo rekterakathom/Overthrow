@@ -149,11 +149,11 @@ if (_bad) exitWith {-1};
 							{
 								if (_ammo in (getArtilleryAmmo [_vh])) then
 								{																				
-									if (((toLower (typeOf _vh)) in ["uss_iowa_turret_c","uss_iowa_turret_b","uss_iowa_turret_a"]) or {RydFFE_IowaMode}) then
+									if (((toLowerANSI (typeOf _vh)) in ["uss_iowa_turret_c","uss_iowa_turret_b","uss_iowa_turret_a"]) or {RydFFE_IowaMode}) then
 									{
 										{
 											_gun = vehicle _x;
-											if ! ((toLower (typeOf _gun)) isEqualTo "uss_iowa_battleship") then
+											if ! ((toLowerANSI (typeOf _gun)) isEqualTo "uss_iowa_battleship") then
 											{
 												_gun doArtilleryFire [_pos, _ammo,(_vh getVariable ["RydFFE_ShotsToFire",1])]
 											}

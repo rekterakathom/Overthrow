@@ -8,7 +8,7 @@ params ["_allArty"];
 	if ! (_vh getVariable ["RydFFE_CheckedOut",false]) then
 	{
 		_vh setVariable ["RydFFE_CheckedOut",true];
-		_typeVh = toLower (typeOf _vh);
+		_typeVh = toLowerANSI (typeOf _vh);
 		
 		if ! (_typeVh in _allArty) then	
 		{
@@ -29,7 +29,7 @@ params ["_allArty"];
 					_ammoC = configfile >> "CfgAmmo" >> _ammo;
 					
 					_actHit = getNumber (_ammoC >> "indirectHitRange");
-					_subM = toLower (getText (_ammoC >> "submunitionAmmo"));
+					_subM = toLowerANSI (getText (_ammoC >> "submunitionAmmo"));
 					
 					if (_actHit <= 10) then
 					{
@@ -61,8 +61,8 @@ params ["_allArty"];
 					
 					_hit = getNumber (_ammoC >> "indirectHit");
 					_lc = _ammoC >> "lightColor";
-					_sim = toLower (getText (_ammoC >> "simulation"));
-					_subM = toLower (getText (_ammoC >> "submunitionAmmo"));
+					_sim = toLowerANSI (getText (_ammoC >> "simulation"));
+					_subM = toLowerANSI (getText (_ammoC >> "submunitionAmmo"));
 					
 					if (_hit <= 10) then
 					{

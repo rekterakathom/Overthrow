@@ -123,7 +123,7 @@ _friends = [];
 				{
 
 					if (
-						(toLower (typeOf (vehicle _x))) in RydFFE_allArty &&
+						(toLowerANSI (typeOf (vehicle _x))) in RydFFE_allArty &&
 						{!(_gp in _artyGroups)}
 					)
 					exitWith
@@ -140,7 +140,7 @@ _friends = [];
 			};
 
 			_isCiv = false;
-			if ((toLower (faction (leader _gp))) in _civF) then {_isCiv = true};
+			if ((toLowerANSI (faction (leader _gp))) in _civF) then {_isCiv = true};
 
 			if (!_isCiv && {!(isNull _gp)} && {(alive (leader _gp))}) then
 			{
@@ -154,7 +154,7 @@ _friends = [];
 					if ((side _gp) in _fSides && {!(_gp in _friends)}) then
 					{
 						_friends pushBack _gp;
-						if ((toLower (typeOf (leader _x))) in RydFFE_FOClass && {(count RydFFE_FO) > 0} && {!(_gp in RydFFE_FO)}) then
+						if ((toLowerANSI (typeOf (leader _x))) in RydFFE_FOClass && {(count RydFFE_FO) > 0} && {!(_gp in RydFFE_FO)}) then
 						{
 							RydFFE_FO pushBack _gp;
 						}
@@ -178,7 +178,7 @@ _friends = [];
 				{
 					if
 					(
-						!((toLower (faction (leader _x))) in _civF) &&
+						!((toLowerANSI (faction (leader _x))) in _civF) &&
 						{(count RydFFE_FO) == 0 || (_x in RydFFE_FO)} &&
 						{(_x knowsAbout _eVeh) >= 0.05} &&
 						{!(_eVeh in _knEnemies)}

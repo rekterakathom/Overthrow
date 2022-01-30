@@ -411,7 +411,7 @@ publicVariable "OT_nextNATOTurn";
 
 						{
 							_x params ["_ty","_p"];
-							if(((toUpper _ty) isEqualTo "FOB") && {(_p distance _pos) < 3000} && _p call OT_fnc_inSpawnDistance) then {
+							if(((toUpperANSI _ty) isEqualTo "FOB") && {(_p distance _pos) < 3000} && _p call OT_fnc_inSpawnDistance) then {
 								_targets pushback _p;
 							};
 						}foreach(_knownTargets);

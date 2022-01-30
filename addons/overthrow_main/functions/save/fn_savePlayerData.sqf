@@ -27,7 +27,7 @@ private _data = [];
 		_data pushback [_x,_v];
 	};
 }foreach(allVariables _player select {
-	_x = toLower _x;
+	_x = toLowerANSI _x;
 	!(_x in ["ot_loaded", "morale", "player_uid", "hiding", "randomValue", "saved3deninventory", "babe_em_vars"])
 	&& { !((_x select [0,4]) in ["ace_", "cba_", "bis_", "aur_"]) }
 	&& { !((_x select [0,3]) in ["sa_", "ar_"]) }
