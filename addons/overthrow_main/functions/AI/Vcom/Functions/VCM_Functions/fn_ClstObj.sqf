@@ -32,7 +32,7 @@ switch (TypeName _object) do
 };
 
 private _distanceArray = [];
-if (typeName _list isEqualTo "SCALAR") then {systemChat format ["_script: %1",_script];};
+if (_list isEqualType 1) then {systemChat format ["_script: %1",_script];};
 private _newObjectDistance = 0;
 {
 	if !(isNil "_x") then

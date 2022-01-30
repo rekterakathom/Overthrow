@@ -27,7 +27,7 @@ if(isNil {templates getVariable _type}) then {
 			__LINE__
 		] call CBA_fnc_error;
 	};
-	if !(typename _template isEqualTo "ARRAY") exitWith {};
+	if !(_template isEqualType []) exitWith {};
 	{
 		_x set [8,true];
 	}forEach(_template);

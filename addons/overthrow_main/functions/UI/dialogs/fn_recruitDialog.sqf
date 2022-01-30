@@ -1,5 +1,5 @@
 private _b = player call OT_fnc_nearestRealEstate;
-if(typename _b != "ARRAY") exitWith {};
+if !(_b isEqualType []) exitWith {};
 private _building = (_b select 0);
 if(damage _building isEqualTo 1) exitWith {"Must repair before you can recruit" call OT_fnc_notifyMinor};
 

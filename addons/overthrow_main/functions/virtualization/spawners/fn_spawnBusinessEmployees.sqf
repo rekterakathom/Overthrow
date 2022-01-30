@@ -22,7 +22,7 @@ spawner setVariable [format["employees%1",_name],_group,false];
 
 private _dest = [_pos,[0,100]] call SHK_pos_fnc_pos;
 private _bdg = [_pos,["Building"]] call OT_fnc_getRandomBuilding;
-if(typename _bdg != "BOOL") then { _dest = getpos(_bdg)};
+if !(_bdg isEqualType true) then { _dest = getpos(_bdg)};
 
 private _wp = _group addWaypoint [_dest,0];
 private _start = _dest;
@@ -33,7 +33,7 @@ _wp setWaypointTimeout [0, 4, 8];
 
 _dest = [_pos,[0,100]] call SHK_pos_fnc_pos;
 _bdg = [_start,["Building"]] call OT_fnc_getRandomBuilding;
-if(typename _bdg != "BOOL") then { _dest = getpos(_bdg)};
+if !(_bdg isEqualType true) then { _dest = getpos(_bdg)};
 
 _wp = _group addWaypoint [_dest,0];
 _wp setWaypointType "MOVE";

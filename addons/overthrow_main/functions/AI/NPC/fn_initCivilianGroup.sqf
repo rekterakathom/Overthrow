@@ -2,7 +2,7 @@ private _g = _this;
 
 private _start = getPosATL ((units _g) select 0);
 if(isNil "_start") exitWith {};
-if(typename _start isEqualTo "BOOL") exitWith {};
+if(_start isEqualType true) exitWith {};
 
 _g setVariable ["VCM_Disable",true,true];
 

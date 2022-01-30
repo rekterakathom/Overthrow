@@ -255,7 +255,7 @@ if(_progress > 0) then {
 			if(count (units _x) > 0) then {
 				_lead = (units _x) select 0;
 				private _g = (_lead getVariable ["garrison",""]);
-				if(typename _g != "STRING") then {_g = "HQ"};
+				if !(_g isEqualType "") then {_g = "HQ"};
 				if(_g isEqualTo "HQ") then {
 					if((vehicle _lead) != _lead) then {
 						[vehicle _lead] call OT_fnc_cleanup;

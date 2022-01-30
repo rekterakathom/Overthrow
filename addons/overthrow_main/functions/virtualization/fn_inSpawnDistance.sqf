@@ -1,4 +1,4 @@
-if(typename _this == "GROUP") exitWith {false};
+if(_this isEqualType grpNull) exitWith {false};
 (
 	{
 		(alive _x || (_x getVariable ["player_uid",false]) isEqualType "")

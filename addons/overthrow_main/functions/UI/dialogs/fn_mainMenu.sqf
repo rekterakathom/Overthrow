@@ -68,7 +68,7 @@ sleep 0.3;
 _b = player call OT_fnc_nearestRealEstate;
 _buildingTxt = "";
 
-if(typename _b isEqualTo "ARRAY") then {
+if(_b isEqualType []) then {
 	_building = _b select 0;
 	_price = _b select 1;
 	_sell = _b select 2;

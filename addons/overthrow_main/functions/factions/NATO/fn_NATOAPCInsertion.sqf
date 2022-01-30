@@ -43,7 +43,7 @@ _allunits = (units _tgroup);
 sleep 1;
 
 {
-	if(typename _tgroup isEqualTo "GROUP") then {
+	if(_tgroup isEqualType grpNull) then {
 		_x moveInCargo _veh;
 	};
 	[_x] joinSilent _group1;
@@ -62,7 +62,7 @@ spawner setVariable ["NATOattackforce",(spawner getVariable ["NATOattackforce",[
 
 sleep 15;
 
-if((typename _tgroup) isEqualTo "GROUP") then {
+if(_tgroup isEqualType grpNull) then {
 	_veh setdamage 0;
 	_dir = _attackpos getDir _frompos;
 	_roads = _ao nearRoads 150;
@@ -95,7 +95,7 @@ _wp setWaypointType "SAD";
 _wp setWaypointBehaviour "COMBAT";
 _wp setWaypointSpeed "FULL";
 
-if((typename _tgroup) isEqualTo "GROUP") then {
+if(_tgroup isEqualType grpNull) then {
 
 	[_veh,_tgroup,_frompos] spawn {
 		//Ejects crew from vehicles when they take damage or stay relatively still for too long (you know, like when they ram a tree for 4 hours)

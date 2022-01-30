@@ -45,13 +45,13 @@ if(_dead > 150) then {
 };
 
 {
-	if (typename _x isEqualTo "GROUP") then {
+	if (_x isEqualType grpNull) then {
 		{
 			deleteVehicle _x;
 		}foreach(units _x);
 		deleteGroup _x;
 	};
-	if (typename _x isEqualTo "OBJECT") then {
+	if (_x isEqualType objNull) then {
 		deleteVehicle _x;
 	};
 }foreach(spawner getVariable ["_noid_",[]]);
@@ -421,7 +421,7 @@ if ((date select 4) != _lastmin) then {
 
 	{
 		_x params ["_owner","_name","_unit","_rank"];
-		if(typename _unit isEqualTo "OBJECT") then {
+		if(_unit isEqualType objNull) then {
 			_xp = _unit getVariable ["OT_xp",0];
 			_player = spawner getvariable [_owner,objNULL];
 			if(_rank == "PRIVATE" && _xp > (OT_rankXP select 0)) then {

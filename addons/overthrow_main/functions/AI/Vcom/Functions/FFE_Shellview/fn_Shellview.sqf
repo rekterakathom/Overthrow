@@ -71,7 +71,7 @@ while {RydFFE_ShellView} do
 				{
 				if ! (isNull _x) then
 					{
-					if ((typeName _x) == "OBJECT") then
+					if ((_x isEqualType objNull) then
 						{
 						if ! (_x isKindOf "AllVehicles") then
 							{

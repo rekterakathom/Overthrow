@@ -175,7 +175,7 @@ if(isMultiplayer || _startup == "LOAD") then {
 		_type = _x select 5;
 		_xp = _x select 6;
 		if(_owner isEqualTo (getplayeruid player)) then {
-			if(typename _civ isEqualTo "ARRAY") then {
+			if(_civ isEqualType []) then {
 				_pos = _civ findEmptyPosition [5,20,_type];
 				_civ =  group player createUnit [_type,_pos,[],0,"NONE"];
 				[_civ,getplayeruid player] call OT_fnc_setOwner;
@@ -215,7 +215,7 @@ if(isMultiplayer || _startup == "LOAD") then {
 	{
 		_x params ["_owner","_cls","_group","_units"];
 		if(_owner isEqualTo (getplayeruid player)) then {
-			if(typename _group != "GROUP") then {
+			if !(_group isEqualType grpNull) then {
 				_name = _cls;
 				if(count _x > 4) then {
 					_name = _x select 4;

@@ -6,7 +6,7 @@ private _objects = [];
 
 private _b = player call OT_fnc_nearestRealEstate;
 private _iswarehouse = false;
-if(typename _b isEqualTo "ARRAY") then {
+if(_b isEqualType []) then {
 	private _building = _b select 0;
 	if((typeof _building) isEqualTo OT_warehouse && _building call OT_fnc_hasOwner) then {
 		_iswarehouse = true;

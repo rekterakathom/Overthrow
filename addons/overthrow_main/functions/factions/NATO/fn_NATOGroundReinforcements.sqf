@@ -66,7 +66,7 @@ sleep 1;
 _tgroup deleteGroupWhenEmpty true;
 
 {
-	if(typename _tgroup isEqualTo "GROUP") then {
+	if(_tgroup isEqualType grpNull) then {
 		_x moveInCargo _veh;
 	};
 	[_x] joinSilent _group1;
@@ -111,7 +111,7 @@ if(_byair && _tgroup isEqualType grpNull) then {
 	_wp setWaypointStatements ["true","(vehicle this) AnimateDoor ['Door_rear_source', 0, false];"];
 	_wp setWaypointTimeout [20,20,20];
 }else{
-	if(typename _tgroup isEqualTo "GROUP") then {
+	if(_tgroup isEqualType grpNull) then {
 		_veh setdamage 0;
 		_dir = [_attackpos,_frompos] call BIS_fnc_dirTo;
 		_roads = _ao nearRoads 150;
@@ -147,7 +147,7 @@ _wp setWaypointType "SAD";
 _wp setWaypointBehaviour "COMBAT";
 _wp setWaypointSpeed "FULL";
 
-if(typename _tgroup isEqualTo "GROUP") then {
+if(_tgroup isEqualType grpNull) then {
 
 	[_veh,_tgroup,_frompos,_byair] spawn {
 		//Ejects crew from vehicles when they take damage or stay relatively still for too long (you know, like when they ram a tree for 4 hours)

@@ -3,7 +3,7 @@ disableSerialization;
 
 _b = player call OT_fnc_nearestRealEstate;
 _name = "Base";
-if(typename _b isEqualTo "ARRAY") then {
+if(_b isEqualType []) then {
 	if(typeof (_b select 0) isEqualTo OT_flag_IND) then {
         _name = "";
         {

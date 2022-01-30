@@ -70,13 +70,13 @@ if(_version < OT_economyVersion) then {
         _x params ["_cls","_name","_side"];
         if(_side != 1) then {
             _reppos = server getVariable [format["factionrep%1",_cls],false];
-            if(typename _reppos != "ARRAY") then {
+            if !(_reppos isEqualType []) then {
                 _town = selectRandom OT_allTowns;
                 if(_cls isEqualTo OT_spawnFaction) then {_town = server getvariable "spawntown"};
                 _posTown = server getVariable _town;
                 _building = [_posTown,OT_allHouses] call OT_fnc_getRandomBuilding;
                 _pos = _posTown;
-                if(typename _building != "BOOL") then {
+                if !(_building isEqualType true) then {
             		_pos = (_building call BIS_fnc_buildingPositions) call BIS_fnc_selectRandom;
             		[_building,"system"] call OT_fnc_setOwner;
                     if(isNil "_pos") then {

@@ -16,7 +16,7 @@ private _veh = (vehicle player);
 private	_iswarehouse = false;
 if(_veh isEqualTo player) then {
 	_b = OT_warehouseTarget call OT_fnc_nearestRealEstate;
-	if(typename _b isEqualTo "ARRAY") then {
+	if(_b isEqualType []) then {
 		_building = _b select 0;
 		if((typeof _building) == OT_warehouse && _building call OT_fnc_hasOwner) then {
 			_iswarehouse = true;

@@ -12,7 +12,7 @@ _groups = [];
 _gundealerpos = server getVariable format["gundealer%1",_town];
 if(isNil "_gundealerpos") then {
 	_building = [_posTown,OT_gunDealerHouses] call OT_fnc_getRandomBuilding;
-	if(typename _building != "BOOL") then {
+	if !(_building isEqualType true) then {
 		_gundealerpos = (_building call BIS_fnc_buildingPositions) call BIS_fnc_selectRandom;
 		[_building,"system"] call OT_fnc_setOwner;
 	}else{

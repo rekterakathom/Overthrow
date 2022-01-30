@@ -2,7 +2,7 @@ private _b = player call OT_fnc_nearestRealEstate;
 private _handled = false;
 private _type = "buy";
 private _isfactory = false;
-if(typename _b isEqualTo "ARRAY") then {
+if(_b isEqualType []) then {
 	private _building = (_b select 0);
 	if !(_building call OT_fnc_hasOwner) then {
 		_handled = true;

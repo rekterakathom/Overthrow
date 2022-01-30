@@ -11,10 +11,10 @@ _road = if (count _this > 4) then {_this select 4} else {[0,200]};
 _empty = if (count _this > 5) then {_this select 5} else {[]};
 
 // Object instead of position array given
-if (typename _org isEqualTo "OBJECT") then {_org = getpos _org};
+if (_org isEqualType objNull) then {_org = getpos _org};
 
 // Distance given as an array of min && max. Pick a random between them.
-if (typename _dst isEqualTo "ARRAY") then {
+if (_dst isEqualType []) then {
   private ["_min","_max"];
   _min = _dst select 0;
   _max = _dst select 1;
@@ -22,7 +22,7 @@ if (typename _dst isEqualTo "ARRAY") then {
 };
 
 // Direction given as an array of min && max. Pick a random dir between them.
-if (typename _dir isEqualTo "ARRAY") then {
+if (_dir isEqualType []) then {
   private ["_min","_max","_ang"];
   _min = _dir select 0;
   _max = _dir select 1;
@@ -38,7 +38,7 @@ if (typename _dir isEqualTo "ARRAY") then {
 _pos = [_org,_dst,_dir] call SHK_pos_fnc_getPos;
 
 // Water position
-if (typeName _water isEqualTo "SCALAR") then {
+if (_water isEqualType 1) then {
   switch _water do {
     case 0: { // Water not allowed
       if (surfaceIsWater _pos) then {
@@ -152,7 +152,7 @@ switch (typename _empty) do {
     if (count _empty > 0) then {
       _dst = _empty select 0;
       _veh = _empty select 1;
-      if (typename _veh isEqualTo typename objNull) then { _veh = typeof _veh };
+      if (_veh isEqualType objNull) then { _veh = typeof _veh };
     };
   };
 }; 

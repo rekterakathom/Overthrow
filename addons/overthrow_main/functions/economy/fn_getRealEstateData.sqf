@@ -1,6 +1,6 @@
 private _town = "";
 private _type = "";
-if(typename _this isEqualTo "ARRAY") then {
+if(_this isEqualType []) then {
 	_type = _this select 0;
 	_town = _this select 1;
 }else{
