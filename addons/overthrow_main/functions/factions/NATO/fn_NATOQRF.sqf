@@ -158,22 +158,22 @@ private _seaAO = [];
 //Sea?
 
 _pos call {
-	private _p = [_this,500,0] call BIS_fnc_relPos;
+	private _p = _this getPos [500,0];
 	if(surfaceIsWater _p) exitWith {
 		_isCoastal = true;
 		_seaAO = _p;
 	};
-	_p = [_this,500,90] call BIS_fnc_relPos;
+	_p = _this getPos [500,90];
 	if(surfaceIsWater _p) exitWith {
 		_isCoastal = true;
 		_seaAO = _p;
 	};
-	_p = [_this,500,180] call BIS_fnc_relPos;
+	_p = _this getPos [500,180];
 	if(surfaceIsWater _p) exitWith {
 		_isCoastal = true;
 		_seaAO = _p;
 	};
-	_p = [_this,500,270] call BIS_fnc_relPos;
+	_p = _this getPos [500,270];
 	if(surfaceIsWater _p) exitWith {
 		_isCoastal = true;
 		_seaAO = _p;

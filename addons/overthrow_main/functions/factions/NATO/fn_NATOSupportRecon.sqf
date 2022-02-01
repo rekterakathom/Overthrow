@@ -38,13 +38,13 @@ if(_isAir) then {
 
 	//Determine direction to attack from (preferrably away from water)
 	_attackdir = random 360;
-	if(surfaceIsWater ([_posTarget,150,_attackDir] call BIS_fnc_relPos)) then {
+	if(surfaceIsWater (_posTarget getPos [150,_attackDir])) then {
 		_attackdir = _attackdir + 180;
 		if(_attackdir > 359) then {_attackdir = _attackdir - 359};
-		if(surfaceIsWater ([_posTarget,150,_attackDir] call BIS_fnc_relPos)) then {
+		if(surfaceIsWater (_posTarget getPos [150,_attackDir])) then {
 			_attackdir = _attackdir + 90;
 			if(_attackdir > 359) then {_attackdir = _attackdir - 359};
-			if(surfaceIsWater ([_posTarget,150,_attackDir] call BIS_fnc_relPos)) then {
+			if(surfaceIsWater (_posTarget getPos [150,_attackDir])) then {
 				_attackdir = _attackdir + 180;
 				if(_attackdir > 359) then {_attackdir = _attackdir - 359};
 			};

@@ -491,7 +491,7 @@ if (_canBuyBoats) then {
 							clearItemCargoGlobal _veh;
 
 							private _dir = 0;
-							while {!(surfaceIsWater ([_pos,800,_dir] call BIS_fnc_relPos)) && _dir < 360} do {
+							while {!(surfaceIsWater (_pos getPos [800,_dir])) && _dir < 360} do {
 								_dir = _dir + 45;
 							};
 

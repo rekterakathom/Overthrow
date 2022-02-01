@@ -43,7 +43,7 @@ if ([_topos,_fromregion] call OT_fnc_regionIsConnected) then {
     		_x setVariable ["garrison","HQ",false];
     	}foreach(crew _veh);
         _driver assignAsCommander _veh;
-        _convoypos = [_convoypos,20,_dir+180] call BIS_fnc_relPos;
+        _convoyPos = _convoyPos getPos [20,_dir+180];
         {
             _x addCuratorEditableObjects [[_veh]];
         }foreach(allCurators);
@@ -72,7 +72,7 @@ if ([_topos,_fromregion] call OT_fnc_regionIsConnected) then {
         _driver setRank "COLONEL";
         if(isNull _track) then {_track = _driver};
 
-        _convoypos = [_convoypos,20,_dir] call BIS_fnc_relPos;
+        _convoyPos = _convoyPos getPos [20,_dir];
 
     	sleep 0.3;
         _x set [2,"CONVOY"];
@@ -98,7 +98,7 @@ if ([_topos,_fromregion] call OT_fnc_regionIsConnected) then {
         		_x setVariable ["garrison","HQ",false];
         	}foreach(crew _veh);
             _driver assignAsCommander _veh;
-            _convoypos = [_convoypos,20,-_dir] call BIS_fnc_relPos;
+            _convoyPos = _convoyPos getPos [20,-_dir];
             _count = _count + 1;
             sleep 0.3;
         };

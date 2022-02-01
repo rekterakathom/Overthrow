@@ -106,7 +106,7 @@ if(_version < OT_economyVersion) then {
 {
     _stability = server getVariable format["stability%1",_x];
     _posTown = server getVariable _x;
-    _pos = [_posTown,40,-90] call BIS_fnc_relPos;
+    _pos = _posTown getPos [40, -90];
     _mSize = 250;
 
     if(_x in OT_Capitals) then {
