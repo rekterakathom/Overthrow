@@ -103,7 +103,7 @@ buildOnMouseMove = {
 		modeTarget setDir buildRotation;
 
 		if(modeMode == 0) then {
-			if(surfaceIsWater modeValue || (modeTarget distance modeCenter > modeMax) || ({!(_x isKindOf "Man") && (typeof _x != OT_flag_IND) && !(_x isEqualTo modeTarget) && !(_x isEqualTo modeVisual)} count(nearestObjects [modeTarget,[],10]) > 0)) then {
+			if(surfaceIsWater modeValue || (modeTarget distance modeCenter > modeMax) || ({!(_x isKindOf "CAManBase") && (typeof _x != OT_flag_IND) && !(_x isEqualTo modeTarget) && !(_x isEqualTo modeVisual)} count(nearestObjects [modeTarget,[],10]) > 0)) then {
 				if (canBuildHere) then {
 					canBuildHere = false;
 					modeVisual setObjectTexture [0,'#(argb,8,8,3)color(1,0,0,0.5)'];
