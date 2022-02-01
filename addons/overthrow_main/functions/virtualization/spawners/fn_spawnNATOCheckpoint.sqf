@@ -18,7 +18,7 @@ _start = getPos _road;
 
 if((count _start) isEqualTo 0 || _start#1 isEqualTo 0) exitWith {diag_log format["Overthrow: WARNING: Couldnt find road for %1 %2",_name,_start];[]};
 
-private _vehtype = OT_vehTypes_civ call BIS_Fnc_selectRandom;
+private _vehtype = selectRandom OT_vehTypes_civ;
 
 private _roadscon = roadsConnectedto _road;
 private _dir = [_road, _roadscon select 0] call BIS_fnc_DirTo;
@@ -64,7 +64,7 @@ _count = _count + 1;
 sleep 0.3;
 while {_count < _numNATO} do {
 	_start = [_start,2,_dir-180] call BIS_fnc_relPos;
-	_civ = _group createUnit [OT_NATO_Units_LevelTwo call BIS_fnc_selectRandom, _start, [],0, "NONE"];
+	_civ = _group createUnit [selectRandom OT_NATO_Units_LevelTwo, _start, [],0, "NONE"];
 	_civ setVariable ["garrison",_name,false];
 	_soldiers pushBack _civ;
 	_civ setRank "CAPTAIN";

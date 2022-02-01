@@ -33,9 +33,9 @@ while {(_count < _numVeh) && (_loops < 50)} do {
 		_pos = getPos _road;
 		_vehtype = "";
 		if(_pop > 600) then {
-			_vehtype = (OT_vehTypes_civ - OT_vehTypes_civignore) call BIS_Fnc_selectRandom;
+			_vehtype = selectRandom (OT_vehTypes_civ - OT_vehTypes_civignore);
 		}else{
-			_vehtype = [OT_vehTypes_civ,OT_vehWeights_civ] call BIS_Fnc_selectRandomWeighted;
+			_vehtype = OT_vehTypes_civ selectRandomWeighted OT_vehWeights_civ;
 		};
 		if !(_vehtype in OT_vehTypes_civignore) then {
 			_dirveh = 0;
@@ -73,7 +73,7 @@ while {(_count < _numVeh) && (_loops < 50)} do {
 						if(isNil "_region") then {
 							_moveto = _posVeh call OT_fnc_getRandomRoadPosition;
 						}else{
-							_dest = (server getVariable format["towns_%1",_region]) call BIS_fnc_selectRandom;
+							_dest = selectRandom (server getVariable format["towns_%1",_region]);
 							_moveto = _dest call OT_fnc_getRandomRoadPosition;
 						};
 

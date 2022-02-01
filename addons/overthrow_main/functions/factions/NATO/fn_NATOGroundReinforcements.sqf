@@ -4,7 +4,7 @@ private _vehtype = OT_NATO_Vehicle_Transport_Light;
 if(_byair) then {
 	_vehtype = OT_NATO_Vehicle_AirTransport select 0;
 };
-private _squadtype = OT_NATO_GroundForces call BIS_fnc_SelectRandom;
+private _squadtype = selectRandom OT_NATO_GroundForces;
 private _spawnpos = _frompos;
 private _group1 = createGroup west;
 _group1 deleteGroupWhenEmpty true;

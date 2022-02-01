@@ -77,7 +77,7 @@ if(_version < OT_economyVersion) then {
                 _building = [_posTown,OT_allHouses] call OT_fnc_getRandomBuilding;
                 _pos = _posTown;
                 if !(_building isEqualType true) then {
-            		_pos = (_building call BIS_fnc_buildingPositions) call BIS_fnc_selectRandom;
+            		_pos = selectRandom (_building call BIS_fnc_buildingPositions);
             		[_building,"system"] call OT_fnc_setOwner;
                     if(isNil "_pos") then {
                         _pos = [[[getpos _building,20]]] call BIS_fnc_randomPos;

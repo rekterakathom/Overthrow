@@ -96,7 +96,7 @@ sleep 2;
 
 if(_popControl > 1000 && _strength > 1000 && (count _air) > 0) then {
 	//Send more CAS
-	private _from = _air call BIS_fnc_selectRandom;
+	private _from = selectRandom _air;
 	_obpos = _from select 0;
 	_name = _from select 1;
 	[_obpos,_pos,120] spawn OT_fnc_NATOAirSupport;

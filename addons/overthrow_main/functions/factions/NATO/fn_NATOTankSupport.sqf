@@ -8,7 +8,7 @@ private _count = 0;
 private _group = creategroup blufor;
 
 while {_count < _num} do {
-	private _vehtype = OT_NATO_Vehicles_TankSupport call BIS_fnc_SelectRandom;
+	private _vehtype = selectRandom OT_NATO_Vehicles_TankSupport;
 
 	private _dir = [_frompos,_attackpos] call BIS_fnc_dirTo;
 	private _pos = _frompos findEmptyPosition [15,100,_vehtype];
