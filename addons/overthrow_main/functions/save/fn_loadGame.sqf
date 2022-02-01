@@ -142,7 +142,7 @@ private _hasList_buildableHouses = false;
 				//Backwards-compatability map upgrade for old saves
 				_type = OT_item_Map;
 			};
-			if !(_type isKindOf "Man") then {
+			if !(_type isKindOf "CAManBase") then {
 				_pos = ((_x select 1)#0);
 				_simulation = ((_x select 1)#1);
 				_posFormat = (_x select 1) param [2, 0];		// Assume format 0 by default (posATL)

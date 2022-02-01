@@ -27,7 +27,7 @@ if(_this isEqualType []) then {
 private _allCargo = {
 	private _target = _this;
 	private _myitems = [];
-	if(_target isKindOf "Man") then {
+	if(_target isKindOf "CAManBase") then {
 		_myitems = ((items _target) - (weapons _target)) + (magazines _target);
 		{
 			{

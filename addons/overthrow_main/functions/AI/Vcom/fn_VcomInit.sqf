@@ -40,7 +40,7 @@ VCOM_MINEARRAY = [];
 	["vcom_init","_counter%10 isEqualTo 0","
 		if (Vcm_ActivateAI) then {
 			{
-				if (local _x && {simulationEnabled (leader _x)} && {!(isplayer (leader _x))} && {(leader _x) isKindOf ""Man""}) then {
+				if (local _x && {simulationEnabled (leader _x)} && {!(isplayer (leader _x))} && {(leader _x) isKindOf ""CAManBase""}) then {
 					private _Grp = _x;
 					if !(_Grp in VcmAI_ActiveList) then {
 						if !(((units _Grp) findIf {alive _x}) isEqualTo -1) then {

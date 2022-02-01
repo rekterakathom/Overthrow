@@ -221,14 +221,14 @@ if ((date select 4) != _lastmin) then {
 			_townpos = server getvariable _x;
 			if !(_town in _abandoned) then {
 				if(_townpos call OT_fnc_inSpawnDistance) then {
-					private _numcops = {side _x isEqualTo west} count (_townpos nearObjects ["CAManBase",600]);
+					private _numcops = {side _x isEqualTo west} count (_townpos nearEntities ["CAManBase",600]);
 					if(_numcops isEqualTo 0) then {
 						[_town,-1] call OT_fnc_stability;
 					};
 				};
 			}else{
 				_stabchange = 0;
-				private _numcops = {side _x isEqualTo west} count (_townpos nearObjects ["CAManBase",600]);
+				private _numcops = {side _x isEqualTo west} count (_townpos nearEntities ["CAManBase",600]);
 				if(_numcops > 0) then {
 					_stabchange = _stabchange - _numcops;
 				};

@@ -72,8 +72,8 @@ publicVariable "OT_nextNATOTurn";
 				if !(_name in _abandoned) then {
 					if(_pos call OT_fnc_inSpawnDistance) then {
 						_numgarrison = server getVariable [format["garrison%1"],0];
-						_nummil = {side _x isEqualTo west} count (_pos nearObjects ["CAManBase",500]);
-						_numres = {side _x isEqualTo resistance || captive _x} count (_pos nearObjects ["CAManBase",100]);
+						_nummil = {side _x isEqualTo west} count (_pos nearEntities ["CAManBase",500]);
+						_numres = {side _x isEqualTo resistance || captive _x} count (_pos nearEntities ["CAManBase",100]);
 						if(_numgarrison < 4 && _nummil < _numres) then {
 							_countered = true;
 							private _m = 1;
@@ -212,8 +212,8 @@ publicVariable "OT_nextNATOTurn";
 			_name = _x select 1;
 			if !(_name in _abandoned) then {
 				if(_pos call OT_fnc_inSpawnDistance) then {
-					_nummil = {side _x isEqualTo west} count (_pos nearObjects ["CAManBase",300]);
-					_numres = {side _x isEqualTo resistance || captive _x} count (_pos nearObjects ["CAManBase",100]);
+					_nummil = {side _x isEqualTo west} count (_pos nearEntities ["CAManBase",300]);
+					_numres = {side _x isEqualTo resistance || captive _x} count (_pos nearEntities ["CAManBase",100]);
 					if(_nummil < _numres) then {
 						_abandoned pushback _name;
 						server setVariable ["NATOabandoned",_abandoned,true];
@@ -233,8 +233,8 @@ publicVariable "OT_nextNATOTurn";
 		_clearedFOBs = [];
 		{
 			_x params ["_pos","_garrison"];
-			_nummil = {side _x isEqualTo west} count (_pos nearObjects ["CAManBase",300]);
-			_numres = {side _x isEqualTo resistance || captive _x} count (_pos nearObjects ["CAManBase",50]);
+			_nummil = {side _x isEqualTo west} count (_pos nearEntities ["CAManBase",300]);
+			_numres = {side _x isEqualTo resistance || captive _x} count (_pos nearEntities ["CAManBase",50]);
 			if(_nummil isEqualTo 0 && {_numres > 0}) then {
 				_clearedFOBs pushback _x;
 				"Cleared NATO FOB" remoteExec ["OT_fnc_notifyMinor",0,false];
@@ -332,8 +332,8 @@ publicVariable "OT_nextNATOTurn";
 				_population = server getVariable format ["population%1",_town];
 				if(_town != _lastcounter) then {
 					if(_pos call OT_fnc_inSpawnDistance) then {
-						_nummil = {side _x isEqualTo west} count (_pos nearObjects ["CAManBase",300]);
-						_numres = {side _x isEqualTo resistance || captive _x} count (_pos nearObjects ["CAManBase",200]);
+						_nummil = {side _x isEqualTo west} count (_pos nearEntities ["CAManBase",300]);
+						_numres = {side _x isEqualTo resistance || captive _x} count (_pos nearEntities ["CAManBase",200]);
 						if(_nummil < 3 && {_numres > 0}) then {
 							if((time - _lastAttack) > 1200 && {(_town in _abandoned)} && {(_resources > _population)} && {(random 100) > _chance}) then {
 								//Counter a town

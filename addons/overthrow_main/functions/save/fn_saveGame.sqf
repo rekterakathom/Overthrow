@@ -104,7 +104,7 @@ private _cfgVeh = configFile >> "CfgVehicles";
 private _tocheck = ((allMissionObjects "Static") + vehicles) select {
 	(alive _x)
 	&& {(typeof _x != OT_flag_IND)}
-	&& {!(typeOf _x isKindOf ["Man", _cfgVeh])}
+	&& {!(typeOf _x isKindOf ["CAManBase", _cfgVeh])}
 	&& {(_x call OT_fnc_hasOwner) or (_x getVariable ["OT_forceSaveUnowned", false])}
 	&& {(_x getVariable["OT_garrison",false]) isEqualTo false}
 };

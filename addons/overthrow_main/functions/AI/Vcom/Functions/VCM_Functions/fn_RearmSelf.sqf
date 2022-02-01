@@ -30,10 +30,10 @@ private _magLimit = VCM_AIMagLimit;
 	//If unit has less than the wanted limit, then make the unit find ammo!
 	if (_magCount < _magLimit) then {
 		//Find closest men!
-		_potRearm = _x nearEntities [["WeaponHolderSimulated", "Man", "Air", "Car", "Motorcycle", "Tank"], 50];
+		_potRearm = _x nearEntities [["WeaponHolderSimulated", "CAManBase", "Air", "Car", "Motorcycle", "Tank"], 50];
 		_potRearm = _potRearm - [_x];
 		{
-			if (alive _x && {_x isKindOf "Man"}) then 
+			if (alive _x && {_x isKindOf "CAManBase"}) then 
 			{
 				_potRearm = _potRearm - [_x];
 			};
@@ -46,7 +46,7 @@ private _magLimit = VCM_AIMagLimit;
 				_mags = [];
 				_unit = _x;
 				
-				if (_unit isKindOf "Man") then {
+				if (_unit isKindOf "CAManBase") then {
 					_mags = magazines _unit;
 				}
 				else

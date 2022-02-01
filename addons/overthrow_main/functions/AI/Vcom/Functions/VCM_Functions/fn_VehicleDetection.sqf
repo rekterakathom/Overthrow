@@ -50,7 +50,7 @@
 
 	{
 		
-		if !(_x getVariable ["VCM_AVOID", false] || {_x isKindOf "man"} || {_x isKindOf "Helper_Base_F"} || {_x isKindOf "Logic"}) then 
+		if !(_x getVariable ["VCM_AVOID", false] || {_x isKindOf "CAManBase"} || {_x isKindOf "Helper_Base_F"} || {_x isKindOf "Logic"}) then 
 		{
 			// Vcom ignore this object until loop complete
 			_x setVariable ["VCM_AVOID", true];
@@ -127,7 +127,7 @@
 	
 	
 	//Avoid units.
-	private _Livingobstacles = _predictPos nearObjects ["MAN", 25];
+	private _Livingobstacles = _predictPos nearEntities ["CAManBase", 25];
 	private _Unit = _x;
 	_LivingObstacles deleteAt (_Livingobstacles findIf {_x isEqualTo _Unit}); 
 	

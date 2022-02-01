@@ -88,7 +88,7 @@ private _target = _sorted select 0;
 				if !((_x distance _t > 100) || (alive _x)) then {
 					_deadguys pushback _x;
 				};
-			}foreach(entities "Man");
+			}foreach(entities "CAManBase");
 			if(count _deadguys isEqualTo 0) exitWith {_unit globalchat "All done!"};
             _unit globalchat format["%1 bodies to loot",count _deadguys];
 			_sorted = [_deadguys,[],{_x distance _t},"ASCEND"] call BIS_fnc_SortBy;

@@ -57,7 +57,7 @@ if(OT_interactingWith getVariable ["factionrep",false] && ((_cls isKindOf "Land"
 		closeDialog 0;
 	};
 };
-if(_cls isKindOf "Man") exitWith {
+if(_cls isKindOf "CAManBase") exitWith {
 	[_cls,getpos player,group player] call OT_fnc_recruitSoldier;
 };
 if(_cls in OT_allSquads) exitWith {

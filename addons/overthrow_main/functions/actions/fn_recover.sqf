@@ -52,7 +52,7 @@ private _count_bodies = 0;
         _count_bodies = _count_bodies + 1;
         deleteVehicle _x;
     };
-}foreach(entities "Man");
+}foreach(entities "CAManBase");
 
 if(isPlayer _user) then {
     _veh enableSimulation true;

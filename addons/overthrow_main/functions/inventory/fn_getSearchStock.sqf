@@ -5,7 +5,7 @@ _done = [];
 
 _myitems = [];
 
-if(_this isKindOf "Man") then {
+if(_this isKindOf "CAManBase") then {
 	_myitems = (items _this) + (magazines _this);
 }else{
 	_myitems = (itemCargo _this) + (weaponCargo _this) + (magazineCargo _this) + (backpackCargo _this);
