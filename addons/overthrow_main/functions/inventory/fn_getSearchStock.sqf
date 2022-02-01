@@ -10,7 +10,7 @@ if(_this isKindOf "Man") then {
 }else{
 	_myitems = (itemCargo _this) + (weaponCargo _this) + (magazineCargo _this) + (backpackCargo _this);
 	{
-		_myitems = [_myitems,(items _this) + (magazines _this)] call BIS_fnc_arrayPushStack;
+		_myitems = _myitems append ((items _this) + (magazines _this));
 	}foreach(units _this);		
 };
 if !(isNil "_myitems") then {

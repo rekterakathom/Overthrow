@@ -153,13 +153,13 @@ if(_version < OT_economyVersion) then {
     };
 
 	_shops = server getVariable [format["activeshopsin%1",_x],[]];
-	[_allActiveShops,_shops] call BIS_fnc_arrayPushStack;
+	_allActiveShops append _shops;
 
 	_carshops = server getVariable [format["activecarshopsin%1",_x],[]];
-	[_allActiveCarShops,_carshops] call BIS_fnc_arrayPushStack;
+	_allActiveCarShops append _carshops;
 
 	_piers = server getVariable [format["activepiersin%1",_x],[]];
-	[_allActivePiers,_piers] call BIS_fnc_arrayPushStack;
+	_allActivePiers append _piers;
     sleep 0.3;
 }foreach(OT_allTowns);
 
