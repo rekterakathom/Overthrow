@@ -43,7 +43,7 @@ if !(isNil "_from") then {
     }foreach(crew _veh);
     sleep 1;
 
-    private _dir = [_targetpos,_frompos] call BIS_fnc_dirTo;
+    private _dir = (_targetpos getDir _frompos);
     private _attackpos = [_targetpos,[100,400],_dir] call SHK_pos_fnc_pos;
 
     _wp = _group addWaypoint [_attackpos,50];

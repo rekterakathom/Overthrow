@@ -79,7 +79,7 @@ switch (_wayPointType) do {
 		}; 
     case "Retreat": 
 		{
-			private _MovePosition = [_nearestEnemy,(_nearestEnemy distance2D _leader),([_nearestEnemy, _leader] call BIS_fnc_dirTo)] call BIS_fnc_relPos;
+			private _MovePosition = _nearestEnemy getPos [(_nearestEnemy distance2D _leader),(_nearestEnemy getDir _leader)];
 			private _finalP = [[[_MovePosition, 50]],["water"]] call BIS_fnc_randomPos;
 			_finalP set [2,0];
 			private _waypoint0 = _grp addwaypoint [_finalP,0];

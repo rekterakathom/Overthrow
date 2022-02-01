@@ -38,7 +38,7 @@ if !(_pos isEqualType []) then {
 	if(count _pos == 0) then {
 		_pos = [_frompos,0,75,false,[0,0],[120,_vehtype]] call SHK_pos_fnc_pos;
 	};
-	_dir = [_frompos,_ao] call BIS_fnc_dirTo;
+	_dir = (_frompos getDir _ao);
 };
 _pos set [2,0];
 _veh = _vehtype createVehicle _pos;
@@ -113,7 +113,7 @@ if(_byair && _tgroup isEqualType grpNull) then {
 }else{
 	if(_tgroup isEqualType grpNull) then {
 		_veh setdamage 0;
-		_dir = [_attackpos,_frompos] call BIS_fnc_dirTo;
+		_dir = (_attackpos getDir _frompos);
 		_roads = _ao nearRoads 150;
 		private _dropos = _ao;
 

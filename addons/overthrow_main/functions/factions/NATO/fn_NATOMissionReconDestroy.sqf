@@ -32,7 +32,7 @@ _group = [_start, WEST, (configFile >> "CfgGroups" >> "West" >> OT_faction_NATO 
 
 sleep 0.5;
 
-_dir = [_start,_posTarget] call BIS_fnc_dirTo;
+_dir = (_start getDir _posTarget);
 
 if(_isAir) then {
 	_attackpos = [_posTarget,[0,150]] call SHK_pos_fnc_pos;
