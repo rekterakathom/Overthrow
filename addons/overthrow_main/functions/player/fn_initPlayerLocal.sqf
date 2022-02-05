@@ -33,7 +33,7 @@ OT_centerPos = getArray (configFile >> "CfgWorlds" >> worldName >> "centerPositi
 if(isMultiplayer && (!isServer)) then {
 	// this is all done on server too, no need to execute them again
 	call OT_fnc_initBaseVar;
-	call compile preprocessFileLineNumbers "initVar.sqf";
+	call compileScript ["initVar.sqf", false];
 	call OT_fnc_initVar;
 	[] spawn OT_fnc_jobSystem;
 	addMissionEventHandler ["EntityKilled",OT_fnc_deathHandler];

@@ -39,15 +39,15 @@ OT_localMissions = [];
 {
 	_name = configName _x;
 	_script = getText (_x >> "script");
-	_code = compileFinal preprocessFileLineNumbers _script;
+	_code = compileScript [_script, true];
 	OT_missions pushback _code;
 }foreach("true" configClasses ( configFile >> "CfgOverthrowMissions" ));
 
 OT_tutorialMissions = [];
-OT_tutorialMissions pushback (compileFinal preprocessFileLineNumbers "\overthrow_main\missions\tutorial\tut_NATO.sqf");
+OT_tutorialMissions pushback (compileScript ["\overthrow_main\missions\tutorial\tut_NATO.sqf", true]);
 //OT_tutorialMissions pushback (compileFinal preprocessFileLineNumbers "\overthrow_main\missions\tutorial\tut_CRIM.sqf");
-OT_tutorialMissions pushback (compileFinal preprocessFileLineNumbers "\overthrow_main\missions\tutorial\tut_Drugs.sqf");
-OT_tutorialMissions pushback (compileFinal preprocessFileLineNumbers "\overthrow_main\missions\tutorial\tut_Economy.sqf");
+OT_tutorialMissions pushback (compileScript ["\overthrow_main\missions\tutorial\tut_Drugs.sqf", true]);
+OT_tutorialMissions pushback (compileScript ["\overthrow_main\missions\tutorial\tut_Economy.sqf", true]);
 
 OT_NATO_HQ_garrisonPos = [];
 OT_NATO_HQ_garrisonDir = 0;
@@ -55,12 +55,12 @@ OT_NATO_HQ_garrisonDir = 0;
 OT_QRFstart = nil;
 
 // Load mission data
-call compile preprocessFileLineNumbers "data\names.sqf";
-call compile preprocessFileLineNumbers "data\towns.sqf";
-call compile preprocessFileLineNumbers "data\airports.sqf";
-call compile preprocessFileLineNumbers "data\objectives.sqf";
-call compile preprocessFileLineNumbers "data\economy.sqf";
-call compile preprocessFileLineNumbers "data\comms.sqf";
+call compileScript ["data\names.sqf", false];
+call compileScript ["data\towns.sqf", false];
+call compileScript ["data\airports.sqf", false];
+call compileScript ["data\objectives.sqf", false];
+call compileScript ["data\economy.sqf", false];
+call compileScript ["data\comms.sqf", false];
 
 //Identity
 OT_faces_local = [];
@@ -306,14 +306,14 @@ OT_carShops = _allCarShops apply {configName _x};
 //First, load the hardcoded prices from data/prices.sqf
 if(isServer) then {
 	OT_loadedPrices = [];
-	call compile preprocessFileLineNumbers "\overthrow_main\data\prices.sqf";
+	call compileScript ["\overthrow_main\data\prices.sqf", false];
 	{
 		OT_loadedPrices pushback (_x select 0);
 		cost setVariable[_x select 0,_x select 1, true];
 	}forEach(OT_priceData);
 	OT_priceData = []; //free memory
 
-	call compile preprocessFileLineNumbers "\overthrow_main\data\gangnames.sqf";
+	call compileScript ["\overthrow_main\data\gangnames.sqf", false];
 };
 
 private _allVehs = "

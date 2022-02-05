@@ -36,7 +36,7 @@ publicVariable "OT_civilians";
 OT_centerPos = getArray (configFile >> "CfgWorlds" >> worldName >> "centerPosition");
 
 call OT_fnc_initBaseVar;
-call compile preprocessFileLineNumbers "initVar.sqf";
+call compileScript ["initVar.sqf", false];
 call OT_fnc_initVar;
 
 if(isServer) then {
@@ -46,7 +46,7 @@ if(isServer) then {
     call OT_fnc_initVirtualization;
 };
 
-OT_tpl_checkpoint = [] call compileFinal preProcessFileLineNumbers "data\templates\NATOcheckpoint.sqf";
+OT_tpl_checkpoint = [] call compileScript ["data\templates\NATOcheckpoint.sqf", true];
 
 //Advanced towing script, credits to Duda http://www.armaholic.com/page.php?id=30575
 [] spawn OT_fnc_advancedTowingInit;
