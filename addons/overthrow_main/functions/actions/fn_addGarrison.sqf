@@ -10,7 +10,7 @@ if((_pos distance _p) > 250) then {
 };
 
 if(
-    (({side _x isEqualTo west || side _x isEqualTo east} count (_pos nearEntities 50)) > 0)
+    ((_pos nearEntities 50) findIf {side _x isEqualTo west || side _x isEqualTo east} != -1)
     &&
     _charge
 ) exitWith {

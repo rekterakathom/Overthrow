@@ -106,7 +106,7 @@ _friends = [];
 		};
 	} foreach _sides;
 
-	if (({((side _x) == _side)} count AllGroups) > 0) then
+	if (AllGroups findIf {(side _x) == _side} != -1) then
 	{
 
 		_artyGroups = [];

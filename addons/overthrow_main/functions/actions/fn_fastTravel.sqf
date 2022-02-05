@@ -31,7 +31,7 @@ if((vehicle player) != player) then {
 
 	if(_hasdrugs && _ftrules > 0) exitWith {hint "You cannot fast travel while carrying drugs";_exit=true};
 	if (driver (vehicle player) != player)  exitWith {hint "You are not the driver of this vehicle";_exit=true};
-	if({!captive _x && alive _x} count (crew vehicle player) != 0)  exitWith {hint "There are wanted people in this vehicle";_exit=true};
+	if((crew vehicle player) findIf {!captive _x && alive _x} != -1)  exitWith {hint "There are wanted people in this vehicle";_exit=true};
 	if(_ftrules > 1 && ((typeOf(vehicle player)) in (OT_allVehicleThreats + OT_allHeliThreats + OT_allPlaneThreats)))  exitWith {hint "You cannot fast travel in an offensive vehicle";_exit=true};
 };
 if(_exit) exitWith {};

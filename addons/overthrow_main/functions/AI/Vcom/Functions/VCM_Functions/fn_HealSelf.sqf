@@ -14,7 +14,7 @@
 
 private "_rtrn";
 
-if (alive _this && {"FirstAidKit" in items _this} && {{_x > 0.25} count (getAllHitPointsDamage _this select 2) != 0}) then 
+if (alive _this && {"FirstAidKit" in items _this} && {(getAllHitPointsDamage _this select 2) findIf {_x > 0.25}  != -1}) then 
 {
 	_this action ["HealSoldierSelf", _this];
 	if VCM_DEBUG then {systemChat format ["VCOM: %1 healing self", _this]};

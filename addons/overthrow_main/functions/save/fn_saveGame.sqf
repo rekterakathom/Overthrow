@@ -213,7 +213,7 @@ private _squads = ((server getVariable ["squads",[]]) select {
 	_x params ["_owner","_cls","_group"];
 	_group isEqualType grpNull
 	&& { count units _group > 0 }
-	&& { ({alive _x} count units _group) > 0 }
+	&& { (units _group) findIf {alive _x} != -1 }
 }) apply {
 	_x params ["_owner","_cls","_group"];
 	_units = [];

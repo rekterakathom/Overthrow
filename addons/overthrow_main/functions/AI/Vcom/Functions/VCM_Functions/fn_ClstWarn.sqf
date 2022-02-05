@@ -60,8 +60,7 @@ _array2 = _array2 - VCM_ARTYLST;
 
 	private _EnemyCount = count _array2;
 	private _RespondCount = 0;
-	private _aliveCount = {alive _x} count (units _grp);
-	if (_aliveCount > 0) then
+	if ((units _grp) findIf {alive _x} != -1) then
 	{
 
 		{

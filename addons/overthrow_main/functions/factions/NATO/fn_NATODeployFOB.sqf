@@ -12,7 +12,7 @@ _near = false;
 (units _group) allowGetIn false;
 
 sleep 10;
-if(({alive _x} count (units _group)) isEqualTo 0) exitWith {};
+if ((units _group) findIf {alive _x} == -1) exitWith {};
 
 if(!isNull _veh) then {deleteVehicle _veh};
 

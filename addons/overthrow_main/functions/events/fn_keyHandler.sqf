@@ -215,7 +215,7 @@ if(!dialog) then {
 			if(hcShownBar && count (hcSelected player) > 0) exitWith {
 				createDialog "OT_dialog_squad";
 			};
-			if(!hcShownBar && ({!isplayer _x} count (groupSelectedUnits player) > 0)) exitWith {
+			if(!hcShownBar && ((groupSelectedUnits player) findIf {!isplayer _x} != -1)) exitWith {
 				{
 					if(isPlayer _x) then {
 						player groupSelectUnit [_x,false];

@@ -396,8 +396,7 @@ player addEventHandler ["GetInMan",{
 				["play", _veh] call BIS_fnc_carAlarm;
 				[(getpos player) call OT_fnc_nearestTown,-5,"Stolen vehicle",player] call OT_fnc_support;
 				//does anyone hear the alarm?
-				_nummil = {side _x isEqualTo west} count (_veh nearEntities ["CAManBase",200]);
-				if(_nummil > 0) then {
+				if((_veh nearEntities ["CAManBase",200]) findIf {side _x isEqualTo west} != -1) then {
 					player setCaptive false;
 					[player] call OT_fnc_revealToNATO;
 				};

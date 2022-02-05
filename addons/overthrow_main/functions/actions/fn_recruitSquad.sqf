@@ -4,7 +4,7 @@ params ["_cls","_pos"];
 
 private _cc = player getVariable ["OT_squadcount",0];
 
-if(({side _x isEqualTo west || side _x isEqualTo east} count (_pos nearEntities 50)) > 0) exitWith {
+if ((_pos nearEntities 50) findIf {side _x isEqualTo west || side _x isEqualTo east} != -1) exitWith {
 	"You cannot recruit squads with enemies nearby" call OT_fnc_notifyMinor;
 };
 
