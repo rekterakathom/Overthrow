@@ -60,7 +60,7 @@ _locationPos2 = locationPosition _nearestVillage;
 
 if ((_locationPos2 distance _unit) < 500) exitWith 
 {
-	if ((vehicle _unit) != _unit) then
+	if (!isNull objectParent _unit) then
 	{
 		_group setFormation "COLUMN"; 
 	}
@@ -80,7 +80,7 @@ _locationPos4 = locationPosition _nearestHill;
 
 if ((_locationPos4 distance _unit) < 500) exitWith 
 {
-	if ((vehicle _unit) != _unit) then
+	if (!isNull objectParent _unit) then
 	{
 		_group setFormation "LINE";
 	}
@@ -100,7 +100,7 @@ _locationPos3 = locationPosition _nearestLocal;
 
 if ((_locationPos3 distance _unit) < 300) exitWith 
 {
-	if ((vehicle _unit) != _unit) then
+	if (!isNull objectParent _unit) then
 	{
 		_group setFormation "COLUMN"; 
 	}

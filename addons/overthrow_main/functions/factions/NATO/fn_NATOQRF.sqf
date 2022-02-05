@@ -257,8 +257,8 @@ if(_progress > 0) then {
 				private _g = (_lead getVariable ["garrison",""]);
 				if !(_g isEqualType "") then {_g = "HQ"};
 				if(_g isEqualTo "HQ") then {
-					if((vehicle _lead) != _lead) then {
-						[vehicle _lead] call OT_fnc_cleanup;
+					if(!isNull objectParent _lead) then {
+						[objectParent _lead] call OT_fnc_cleanup;
 					}else{
 						if((getpos _lead) call OT_fnc_inSpawnDistance) then {
 							{

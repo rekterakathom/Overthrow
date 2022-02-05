@@ -84,8 +84,8 @@ while {!(isNil "_group") && count (units _group) > 0} do {\
 					if(isPlayer _x) then {
 						_searching pushback _x;
 						[_leader, {_this globalchat "Please wait... personal items will be stored in your vehicle"}] remoteExec ["call", _x, false];
-						if(vehicle _x != _x) then {
-							_v = vehicle _x;
+						if(!isNull objectParent _x) then {
+							_v = objectParent _x;
 							_v setVelocity [0,0,0];
 							{
 								[_x,_v,true] call OT_fnc_dumpStuff;
@@ -97,12 +97,12 @@ while {!(isNil "_group") && count (units _group) > 0} do {\
 						_msg = "Search complete, be on your way";
 						_items = [];
 						_unit = _x;
-						if(vehicle _x != _x) then {
-							_v = vehicle _x;
+						if(!isNull objectParent _x) then {
+							_v = objectParent _x;
 							_v setVelocity [0,0,0];
 						};
 
-						_items = (vehicle _x) call OT_fnc_unitStock;
+						_items = (objectParent _x) call OT_fnc_unitStock;
 
 						{
 							_cls = _x select 0;
@@ -111,7 +111,7 @@ while {!(isNil "_group") && count (units _group) > 0} do {\
 							};
 							if(_cls in OT_illegalItems) then {
 								_count = _x select 1;
-								if(vehicle _unit != _unit) then {
+								if(!isNull objectParent _unit) then {
 									[_unit,_cls,_count] call CBA_fnc_removeItemCargo;
 								}else{
 									for "_i" from 1 to _count do {

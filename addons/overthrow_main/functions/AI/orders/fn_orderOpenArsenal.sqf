@@ -27,7 +27,7 @@ if(!_iswarehouse) then {
     _unit globalchat "Opening Arsenal (Warehouse)";
 };
 
-if(vehicle _unit != _target && (_unit distance _target) > 10) then {
+if(!isNull objectParent _target && (_unit distance _target) > 10) then {
 	_unit doMove position _target;
 	waitUntil {sleep 1;!alive _unit || (_unit distance _target < 10)};
 };

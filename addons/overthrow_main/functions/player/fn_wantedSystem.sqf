@@ -76,7 +76,7 @@ if((isPlayer _unit) && isNil "OT_ACEunconsciousChangedEHId") then {
 		{
 			if (
 				!isPlayer _x
-				&& { (vehicle _x isEqualTo _x) }
+				&& { (isNull objectParent _x) }
 				&& { ((side _x isEqualTo resistance) || captive _x) }
 				&& { !(_unit isEqualTo _x) }
 				&& { _havepi || {("ACE_epinephrine" in (items _x))} }

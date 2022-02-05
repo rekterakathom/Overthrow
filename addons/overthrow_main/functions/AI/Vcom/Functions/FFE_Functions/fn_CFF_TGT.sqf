@@ -47,9 +47,9 @@ foreach _enemies;
 	_veh = ObjNull;
 
 	if ! (isNull (assignedVehicle _CL)) then {_veh = assignedVehicle _CL};
-	if ! ((vehicle _CL) == _CL) then 
+	if (!isNull objectParent _CL) then 
 	{
-		_veh = vehicle _CL;
+		_veh = objectParent _CL;
 		if ((toLowerANSI (typeOf _veh)) in RydFFE_AllArty) then {_artFactor = 10} else {_vehFactor = 500 + (rating _veh)};
 	};
 

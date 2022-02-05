@@ -6,8 +6,8 @@ private _myunits = groupSelectedUnits player;
 } forEach (groupSelectedUnits player);
 
 _myunits params ["_tt"];
-if(vehicle _tt != _tt) then {
-	_sorted = [vehicle _tt];
+if(!isNull objectParent _tt) then {
+	_sorted = [objectParent _tt];
 }else{
 	private _objects = _tt nearEntities [["Car","ReammoBox_F","Air","Ship"],20];
 	if(count _objects isEqualTo 0) exitWith {
@@ -34,8 +34,8 @@ private _target = _sorted select 0;
 		_unit setBehaviour "SAFE";
 		[[_unit,""],"switchMove",TRUE,FALSE] spawn BIS_fnc_MP;
 
-		if((vehicle _unit) != _unit) then {
-			_car = (vehicle _unit);
+		if(!isNull objectParent _unit) then {
+			_car = (objectParent _unit);
 			doGetOut _unit;
 			_wasincar = true;
 		};

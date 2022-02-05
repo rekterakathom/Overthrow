@@ -235,10 +235,10 @@ call {
 };
 if((_killer call OT_fnc_unitSeen) || (_standingChange < -9)) then {
 	[_killer,false] remoteExecCall ["setCaptive",_killer];
-	if(vehicle _killer != _killer) then {
+	if(!isNull objectParent _killer) then {
 		{
 			[_x,false] remoteExecCall ["setCaptive",_x];
-		}foreach(units vehicle _killer);
+		}foreach(units objectParent _killer);
 	};
 };
 if(isPlayer _killer) then {

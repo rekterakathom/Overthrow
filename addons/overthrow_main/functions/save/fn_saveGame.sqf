@@ -235,10 +235,10 @@ private _getGroupSoldiers = {
 		private _veh = vehicle _x;
 		alive _x && { _veh isEqualTo _x || {(someAmmo _veh && toLowerANSI typeOf _veh in ["i_hmg_01_high_f","i_gmg_01_high_f"])} }
 	}) apply {
-		if(vehicle _x isEqualTo _x) then {
+		if(isNull objectParent _x) then {
 			[typeof _x,getUnitLoadout _x];
 		}else{
-			if(typeof vehicle _x == "I_HMG_01_high_F") then {["HMG",[]]} else {["GMG",[]]};
+			if(typeof objectParent _x == "I_HMG_01_high_F") then {["HMG",[]]} else {["GMG",[]]};
 		};
 	};
 };

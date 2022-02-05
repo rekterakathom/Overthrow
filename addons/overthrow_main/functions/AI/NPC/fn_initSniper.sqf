@@ -19,7 +19,7 @@ _unit setVariable ["NOAI",true,false];
 _unit addEventHandler ["HandleDamage", {
 	params ["_me","","","_src"];
 	if(captive _src) then {
-		if((vehicle _src) != _src || (_src call OT_fnc_unitSeenNATO)) then {
+		if(!isNull objectParent _src || (_src call OT_fnc_unitSeenNATO)) then {
 			_src setCaptive false;
 		};
 	};

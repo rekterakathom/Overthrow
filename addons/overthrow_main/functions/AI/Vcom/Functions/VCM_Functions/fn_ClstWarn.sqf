@@ -88,10 +88,10 @@ _array2 = _array2 - VCM_ARTYLST;
 								if VCM_DEBUG then {systemChat format ["VCOM: %1 moving to support %2", _x, _unit]};
 								_x setbehaviour "AWARE";
 								(group _x) setVariable ["VCM_MOVE2SUP",true];
-								if (!(vehicle _x isEqualTo _x)) then
+								if (!isNull objectParent _x)) then
 								{
-									_RespondCount = _RespondCount + count (crew (vehicle _x));
-									private _Driver = (driver (vehicle _x));
+									_RespondCount = _RespondCount + count (crew (objectParent _x));
+									private _Driver = (driver (objectParent _x));
 									//systemchat format ["_RespondCountDRIVER %1 GROUP: %2",[_EnemyCount,_RespondCount],(group _x)];
 									_waypoint2 = (group _Driver) addwaypoint[_trgtPos,15,150];
 									_waypoint2 setwaypointtype "MOVE";

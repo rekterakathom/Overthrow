@@ -11,7 +11,7 @@ _unit addEventHandler ["HandleDamage", {
 	_me = _this select 0;
 	_src = _this select 3;
 	if(captive _src) then {
-		if((vehicle _src) != _src || (_src call OT_fnc_unitSeenNATO)) then {
+		if(!isNull objectParent _src || (_src call OT_fnc_unitSeenNATO)) then {
 			_src setCaptive false;
 		};
 	};
