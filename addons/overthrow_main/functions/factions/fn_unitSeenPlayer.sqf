@@ -1,4 +1,4 @@
-if (!isNull objectParent) then {_this = objectParent _this};
+if (!isNull objectParent _this) then {_this = objectParent _this};
 
 private _cache = _this getVariable "SeenCachePlayer";
 if (isNil "_cache" || {time > (_cache select 1)}) then {

@@ -655,7 +655,7 @@ if (_canSellDrugs) then {
 								private _drugSell = _this select 0;
 								[
 									round(
-										([player call OT_fnc_nearestTown;,_drugSell] call OT_fnc_getDrugPrice)*1.2
+										([player call OT_fnc_nearestTown, _drugSell] call OT_fnc_getDrugPrice)*1.2
 									)
 								] call OT_fnc_money;
 								player removeItem _drugSell;

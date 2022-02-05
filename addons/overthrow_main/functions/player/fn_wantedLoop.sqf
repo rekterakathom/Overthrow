@@ -134,7 +134,7 @@ if !(captive _unit) then {
 					"NATO has seen the static weapon" call OT_fnc_notifyMinor;
 				};
 			};
-			if(!isNull objectParent _unit) && { _unit call OT_fnc_illegalInCar }) exitWith {
+			if ((!isNull objectParent _unit) && { _unit call OT_fnc_illegalInCar }) exitWith {
 				//Set the whole car wanted
 				_unit setcaptive false;
 				{

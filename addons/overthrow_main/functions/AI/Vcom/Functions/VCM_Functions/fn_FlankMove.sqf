@@ -43,11 +43,11 @@ while {(count (waypoints _grp)) > 1} do
 switch (_wayPointType) do {
     case "Assault": 
 		{
-			private _waypoint0 = _grp addwaypoint [(ASLtoAGL (getPosASL _nearestEnemy),0];
+			private _waypoint0 = _grp addwaypoint [ASLtoAGL (getPosASL _nearestEnemy),0];
 			_waypoint0 setwaypointtype "MOVE";
 			_waypoint0 setWaypointSpeed "FULL";
 			_grp setCurrentWaypoint [_grp,(_waypoint0 select 1)];			
-			private _waypoint0 = _grp addwaypoint [(ASLtoAGL (getPosASL _nearestEnemy),0];
+			private _waypoint0 = _grp addwaypoint [ASLtoAGL (getPosASL _nearestEnemy),0];
 			_waypoint0 setwaypointtype "MOVE";			
 			_waypoint0 setWaypointSpeed "FULL";
 		};
@@ -92,7 +92,7 @@ switch (_wayPointType) do {
 		}; 
     case "Flank": 
 		{
-			private _myEnemyPos = ASLtoAGL (getPosASL _nearestEnemy;
+			private _myEnemyPos = ASLtoAGL (getPosASL _nearestEnemy);
 			private _dist = ((random 100) + 100);
 			private _dir = random 360;
 			private _positions = [(_myEnemyPos select 0) + (sin _dir) * _dist, (_myEnemyPos select 1) + (cos _dir) * _dist, 0];
@@ -111,10 +111,10 @@ switch (_wayPointType) do {
 		}; 
     case "FlankL": 
 		{
-			private _myEnemyPos = ASLtoAGL (getPosASL _nearestEnemy;
+			private _myEnemyPos = ASLtoAGL (getPosASL _nearestEnemy);
 			private _dist = ((random 100) + 100);
 			private _dir = random 360;
-			private _leaderPos = ASLtoAGL (getPosASL _leader;
+			private _leaderPos = ASLtoAGL (getPosASL _leader);
 			private _positions = [(_myEnemyPos select 0) + (sin _dir) * _dist, (_myEnemyPos select 1) + (cos _dir) * _dist, 0];
 			private _positionsL = [(_leaderPos select 0) + (sin _dir) * _dist, (_leaderPos select 1) + (cos _dir) * _dist, 0];
 			private _myPlaces = selectBestPlaces [_myEnemyPos, 250,"((6*hills + 2*forest + 4*houses + 2*meadow) - sea + (2*trees)) - (1000*deadbody)", 100, 5];

@@ -71,17 +71,16 @@ while {RydFFE_ShellView} do
 				{
 				if ! (isNull _x) then
 					{
-					if ((_x isEqualType objNull) then
+					if (_x isEqualType objNull) then
 						{
 						if ! (_x isKindOf "AllVehicles") then
 							{
-							_shells set [(count _shells),_x]
-							}
-						}
-					}
-				}
-			}
-		foreach _shellsA;
+							_shells set [(count _shells),_x];
+							};
+						};
+					};
+				};
+			} foreach _shellsA;
 
 		_shellMarks = [];
 

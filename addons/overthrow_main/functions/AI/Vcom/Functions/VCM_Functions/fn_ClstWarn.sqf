@@ -88,7 +88,7 @@ _array2 = _array2 - VCM_ARTYLST;
 								if VCM_DEBUG then {systemChat format ["VCOM: %1 moving to support %2", _x, _unit]};
 								_x setbehaviour "AWARE";
 								(group _x) setVariable ["VCM_MOVE2SUP",true];
-								if (!isNull objectParent _x)) then
+								if (!isNull objectParent _x) then
 								{
 									_RespondCount = _RespondCount + count (crew (objectParent _x));
 									private _Driver = (driver (objectParent _x));

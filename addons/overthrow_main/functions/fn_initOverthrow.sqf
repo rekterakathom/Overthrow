@@ -125,7 +125,7 @@ OT_tpl_checkpoint = [] call compileScript ["data\templates\NATOcheckpoint.sqf", 
 			}forEach(alldeadmen);
 			if(_totalcivs < 50) exitWith {};
 			{
-				if (side group _x isEqualTo civilian && {!(isPlayer _x)} && {!(_x getVariable [""shopcheck"",false])} && { ({side _x isEqualTo civilian} count (_x nearEntities [""CAManBase"",150]) > round(150*OT_spawnCivPercentage) } ) then {
+				if (side group _x isEqualTo civilian && {!(isPlayer _x)} && {!(_x getVariable [""shopcheck"",false])} && { ({side _x isEqualTo civilian} count (_x nearEntities [""CAManBase"",150])) > round(150*OT_spawnCivPercentage) } ) then {
 					private _group = group _x;
 					private _unit = _x;
 					deleteVehicle _unit;

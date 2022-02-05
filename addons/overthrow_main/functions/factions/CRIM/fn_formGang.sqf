@@ -28,7 +28,7 @@ if((count _possible) > 0) then {
         private _veh = createVehicle ["Campfire_burning_F",_home,[],0,"CAN_COLLIDE"];
 
         private _spawnid = spawner getvariable [format["townspawnid%1",_town],-1];
-        private _groups = spawner getvariable [_spawnid,[]];
+        private _groups = spawner getvariable [str _spawnid,[]];
         _groups pushback _veh;
 
         _numtents = 2 + round(random 3);

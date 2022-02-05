@@ -1,6 +1,6 @@
 params ["_mortar","_mortargroup"];
 
-while {sleep 5+(random 5); ("8Rnd_82mm_Mo_shells" in getArtilleryAmmo[_mortar]) && (alive _mortar) && ((units _mortargroup) findIf {alive _x} != -1} do {
+while {sleep 5+(random 5); ("8Rnd_82mm_Mo_shells" in getArtilleryAmmo[_mortar]) && (alive _mortar) && ((units _mortargroup) findIf {alive _x} != -1)} do {
     private _attacking = server getVariable ["NATOattacking",""];
     private _mortarpos = position _mortar;
 
