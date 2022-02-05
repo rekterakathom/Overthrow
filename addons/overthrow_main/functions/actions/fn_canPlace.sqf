@@ -5,7 +5,7 @@ _isbase = false;
 _canplace = true;
 
 if(_typecls != "Base") then {
-	private _ob = (getpos player) call OT_fnc_nearestLocation;
+	private _ob = player call OT_fnc_nearestLocation;
 	if((_ob select 1) isEqualTo "Business") then {
 		_obpos = (_ob select 2) select 0;
 		_obname = (_ob select 0);

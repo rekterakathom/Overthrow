@@ -2,7 +2,7 @@ private _category = ((nearestBuilding player) getVariable ["OT_shopCategory","Ge
 
 player setVariable ["OT_shopTarget","Vehicle",false];
 
-private _town = (getpos player) call OT_fnc_nearestTown;
+private _town = player call OT_fnc_nearestTown;
 private _standing = [_town] call OT_fnc_support;
 if(_category isEqualTo "Clothing") exitWith {
     createDialog "OT_dialog_buy";

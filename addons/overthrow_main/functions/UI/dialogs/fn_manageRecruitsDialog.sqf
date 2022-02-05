@@ -30,7 +30,7 @@ recruitSelected = {
 		<t align='left' size='0.7'>Location: %2</t><br/>
 		<t align='left' size='0.7'>Rank: %3</t><br/>
 		<t align='left' size='0.7'>XP: %4/%5</t>
-	",name _recruit,(getpos _recruit) call BIS_fnc_locationDescription,rank _recruit,_recruit getVariable ["OT_xp",0],OT_rankXP select (rankId _recruit)];
+	",name _recruit,_recruit call BIS_fnc_locationDescription,rank _recruit,_recruit getVariable ["OT_xp",0],OT_rankXP select (rankId _recruit)];
 };
 
 dismissRecruit = {

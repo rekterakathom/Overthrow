@@ -4,7 +4,7 @@ private _items = OT_vehicles;
 
 player setVariable ["OT_shopTarget","Self"];
 
-private _ob = (getpos player) call OT_fnc_nearestObjective;
+private _ob = player call OT_fnc_nearestObjective;
 _ob params ["_obpos","_obname"];
 if((_obpos distance player) < 250) then {
 	if(_obname in (server getVariable ["NATOabandoned",[]])) then {

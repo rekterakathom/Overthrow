@@ -1,4 +1,4 @@
-private _town = (getpos player) call OT_fnc_nearestTown;
+private _town = player call OT_fnc_nearestTown;
 private _standing = [_town] call OT_fnc_support;
 
 if(_standing < 10 && count (player nearObjects [OT_refugeeCamp,50]) isEqualTo 0) exitWith {

@@ -20,7 +20,7 @@ params ["_unitToRearm","_rearmLocation"];
 private _time = time;
 while {(_unitToRearm distance _rearmLocation) > 8 && {(_unitToRearm distance _rearmLocation) < 50} && {_time + 60 > time}} do
 {
-	_unitToRearm domove (getpos _rearmLocation);
+	_unitToRearm domove ASLtoAGL (getPosASL _rearmLocation);
 	sleep 4;
 };
 

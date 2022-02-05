@@ -11,7 +11,7 @@ if(_b isEqualType []) then {
         }foreach(server getVariable ["bases",[]]);
     };
 }else{
-    _ob = (position player) call OT_fnc_nearestObjective;
+    _ob = player call OT_fnc_nearestObjective;
 	_name = _ob select 1;
 };
 

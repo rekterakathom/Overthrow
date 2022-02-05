@@ -26,7 +26,7 @@ _grp setVariable ["VCM_RQSTHELP",true];
 
 [{(_this#0) setVariable ["VCM_RQSTHELP",false];}, [_grp], 300] call CBA_fnc_waitAndExecute;
 
-private _trgtPos = getpos _killer;
+private _trgtPos = ASLtoAGL (getPosASL _killer);
 
 //If this gets attached to a player, then exit before doing anything
 if (isPlayer _unit) exitWith {};

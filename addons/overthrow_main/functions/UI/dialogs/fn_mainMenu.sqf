@@ -13,7 +13,7 @@ if(!OT_adminMode && _ft > 1) then {
 disableSerialization;
 private _buildingtextctrl = (findDisplay 8001) displayCtrl 1102;
 
-private _town = (getposATL player) call OT_fnc_nearestTown;
+private _town = player call OT_fnc_nearestTown;
 
 private _weather = "Clear";
 if(overcast > 0.4) then {
@@ -327,7 +327,7 @@ if(_b isEqualType []) then {
 };
 private _areaText = "";
 _areatxtctrl = (findDisplay 8001) displayCtrl 1101;
-private _ob = (getpos player) call OT_fnc_nearestObjective;
+private _ob = player call OT_fnc_nearestObjective;
 _ob params ["_obpos","_obname"];
 if(_obpos distance player < 250) then {
 	if(_obname in (server getVariable ["NATOabandoned",[]])) then {
@@ -346,7 +346,7 @@ if(_obpos distance player < 250) then {
 		ctrlEnable [1621,false];
 	};
 }else{
-	private _ob = (getpos player) call OT_fnc_nearestLocation;
+	private _ob = player call OT_fnc_nearestLocation;
 	if((_ob select 1) isEqualTo "Business") then {
 		_obpos = (_ob select 2) select 0;
 		_obname = (_ob select 0);
@@ -379,7 +379,7 @@ if(_obpos distance player < 250) then {
 			};
 		};
 	}else{
-		if((getpos player) distance OT_factoryPos < 150) then {
+		if(player distance OT_factoryPos < 150) then {
 			_obname = "Factory";
 			if(_obname in (server getVariable ["GEURowned",[]])) then {
 				_areaText = format["

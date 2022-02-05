@@ -32,7 +32,7 @@ private _wPos = waypointPosition [_grp, (currentWaypoint _grp)];
 private _dir = _wPos;
 if (_wPos isEqualTo [0,0,0]) then
 {
-	_wPos = (getpos _leader);
+	_wPos = (ASLtoAGL (getPosASL _leader));
 	_dir = _nearestEnemy;
 };
 

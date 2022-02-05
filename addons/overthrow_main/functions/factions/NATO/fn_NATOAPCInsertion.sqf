@@ -68,7 +68,7 @@ if(_tgroup isEqualType grpNull) then {
 	_roads = _ao nearRoads 150;
 	private _dropos = _ao;
 	if(count _roads > 0) then {
-		_dropos = getpos(_roads select (count _roads - 1));
+		_dropos = ASLtoAGL (getPosASL (_roads select (count _roads - 1)));
 	};
 	_move = _tgroup addWaypoint [_dropos,0];
 	_move setWaypointBehaviour "CARELESS";
@@ -112,7 +112,7 @@ if(_tgroup isEqualType grpNull) then {
 				//Vehicle damaged (and on the ground)
 				_eject = true;
 			};
-			if((getpos _veh) distance _lastpos < 0.5) then {
+			if(_veh distance _lastpos < 0.5) then {
 				_stillfor = _stillfor + 10;
 				if(_stillfor > 60) then {
 					//what are you doing? gtfo

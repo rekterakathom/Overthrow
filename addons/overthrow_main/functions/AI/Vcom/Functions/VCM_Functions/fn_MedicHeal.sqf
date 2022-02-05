@@ -24,7 +24,7 @@ _medic setVariable ["VCM_MBUSY", true, false];
 
 while {!(isNull _unit) && {alive _unit && damage _unit != 0} && {isNull objectParent _unit} && {!(isNull _medic)} && {alive _medic} && {_medic distance2D _unit > 2}} do
 {
-	_medic doMove getPos _unit;
+	_medic doMove ASLtoAGL (getPosASL _unit);
 	sleep 2;
 };
 

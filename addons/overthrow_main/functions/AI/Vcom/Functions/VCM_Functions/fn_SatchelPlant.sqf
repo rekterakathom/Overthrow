@@ -50,7 +50,7 @@ if ((_unit distance _point) < 200) then
 			_unit disableAI "CHECKVISIBLE";
 			_unit disableAI "COVER";
 			_unit disableAI "AUTOCOMBAT";
-			doStop _unit; _unit doMove (getPos _nBuilding);
+			doStop _unit; _unit doMove (ASLtoAGL (getPosASL _nBuilding));
 			
 			private _truth = true;
 			while {_truth} do 
@@ -65,10 +65,10 @@ if ((_unit distance _point) < 200) then
 			[_unit,"AinvPknlMstpSnonWnonDnon_Putdown_AmovPknlMstpSnonWnonDnon"] remoteExec ["Vcm_PMN",0];
 			 _unit action ["SetTimer", _unit, _mine];
 			
-			private _plantPosition = getpos _mine;
+			private _plantPosition = ASLtoAGL (getPosASL _mine);
 			private _notSafe = true;
 			private _unitSide = (side _unit);
-			_unit doMove (getpos (leader _Group));
+			_unit doMove (ASLtoAGL (getPosASL (leader _Group)));
 			_unit enableAI "TARGET";
 			_unit enableAI "AUTOTARGET";
 			_unit enableAI "CHECKVISIBLE";

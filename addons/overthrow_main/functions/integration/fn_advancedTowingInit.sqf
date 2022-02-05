@@ -764,7 +764,7 @@ SA_Find_Nearby_Tow_Vehicles = {
 	private ["_nearVehicles","_nearVehiclesWithTowRopes","_vehicle","_ends","_end1","_end2"];
 	_nearVehicles = [];
 	{
-		_nearVehicles append  (position player nearObjects [_x, 30]);
+		_nearVehicles append  (player nearObjects [_x, 30]);
 	} forEach (missionNamespace getVariable ["SA_TOW_SUPPORTED_VEHICLES_OVERRIDE",SA_TOW_SUPPORTED_VEHICLES]);
 	_nearVehiclesWithTowRopes = [];
 	{
@@ -774,7 +774,7 @@ SA_Find_Nearby_Tow_Vehicles = {
 			if(count _ends isEqualTo 2) then {
 				_end1 = _ends select 0;
 				_end2 = _ends select 1;
-				if(((position player) distance _end1) < 5 || ((position player) distance _end2) < 5 ) then {
+				if((player distance _end1) < 5 || (player distance _end2) < 5 ) then {
 					_nearVehiclesWithTowRopes pushBack _vehicle;
 				}
 			};

@@ -1,5 +1,5 @@
 if !(captive player) exitWith {"You cannot build while wanted" call OT_fnc_notifyMinor};
-_base = (getpos player) call OT_fnc_nearestBase;
+_base = player call OT_fnc_nearestBase;
 _closest = "";
 _isbase = false;
 _isobj = false;
@@ -16,10 +16,10 @@ if !(isNil "_base") then {
 };
 
 if(!_isBase) then {
-	_obj = (getpos player) call OT_fnc_nearestObjectiveNoComms;
+	_obj = player call OT_fnc_nearestObjectiveNoComms;
 	_objpos = _obj select 0;
 
-	_town = (getpos player) call OT_fnc_nearestTown;
+	_town = player call OT_fnc_nearestTown;
 	_townpos = server getVariable _town;
 
 	_closest = _town;
@@ -54,7 +54,7 @@ openMap false;
 _playerpos = (getpos player);
 
 _campos = [(_playerpos select 0)+35,(_playerpos select 1)+35,(_playerpos select 2)+70];
-_start = [position player select 0, position player select 1, 2];
+_start = [_playerpos select 0, _playerpos select 1, 2];
 buildcam = "camera" camCreate _start;
 
 buildFocus = createVehicle ["Sign_Sphere10cm_F", _start getPos [1000,getDir player], [], 0, "NONE"];

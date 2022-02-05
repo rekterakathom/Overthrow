@@ -26,7 +26,7 @@ if (isNil "_sort") then {private _sort = true};
 
 private _rng = (_range/2);
 private _array1 = [];
-private _centerPos = (getpos _obj);
+private _centerPos = (ASLtoAGL (getPosASL _obj));
 private _startingPos = [(_centerPos select 0) - _rng,(_centerPos select 1) - _rng,(_centerPos select 2)];
 private _endingPos = [(_centerPos select 0) + _rng,(_centerPos select 1) + _rng,(_centerPos select 2)];
 private _starterArray = [];

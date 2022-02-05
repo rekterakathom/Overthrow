@@ -14,7 +14,7 @@ private _s = [
 
 player setVariable ["OT_shopTarget","Vehicle",false];
 
-_town = (getpos player) call OT_fnc_nearestTown;
+_town = player call OT_fnc_nearestTown;
 private _standing = [_town] call OT_fnc_support;
 
 createDialog "OT_dialog_buy";

@@ -20,7 +20,7 @@ private _items = [];
 if((count _items) isEqualTo 0) exitWith {hint "Cannot edit loadout, no items in warehouse"};
 
 //spawn a virtual dude
-private _start = (getpos player) findEmptyPosition [5,40,_cls];
+private _start = (getPosATL player) findEmptyPosition [5,40,_cls];
 private _civ = (group player) createUnit [_cls, _start, [],0, "NONE"];
 _civ disableAI "MOVE";
 _civ disableAI "AUTOTARGET";

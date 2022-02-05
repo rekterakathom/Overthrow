@@ -11,7 +11,7 @@ if(_money < _price) exitWith {format ["You need $%1",_price] call OT_fnc_notifyM
 playSound "3DEN_notificationDefault";
 [-_price] call OT_fnc_money;
 
-private _pos = [[[getPos player,30]]] call BIS_fnc_randomPos;
+private _pos = [[[getPosATL player,30]]] call BIS_fnc_randomPos;
 private _civ = (group player) createUnit [OT_civType_local, _pos, [],0, "NONE"];
 _civ setBehaviour "SAFE";
 [_civ,call OT_fnc_randomLocalIdentity] call OT_fnc_applyIdentity;

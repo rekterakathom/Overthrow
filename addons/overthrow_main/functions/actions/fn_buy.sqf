@@ -1,7 +1,7 @@
 private _idx = lbCurSel 1500;
 private _cls = lbData [1500,_idx];
 
-private _town = (getPos player) call OT_fnc_nearestTown;
+private _town = player call OT_fnc_nearestTown;
 private _standing = [_town] call OT_fnc_support;
 
 private _price = lbValue [1500,_idx];
@@ -29,7 +29,7 @@ if(!isNil "_civ" && _civ getVariable ["factionrep",false] && !((_cls isKindOf "L
 };
 
 if(_cls == "Set_HMG") exitWith {
-	private _pos = (getpos player) findEmptyPosition [5,100,"C_Quadbike_01_F"];
+	private _pos = (getPosATL player) findEmptyPosition [5,100,"C_Quadbike_01_F"];
 	if (count _pos == 0) exitWith {"Not enough space, please clear an area nearby" call OT_fnc_notifyMinor};
 
 	[-_price] call OT_fnc_money;
@@ -58,13 +58,13 @@ if(OT_interactingWith getVariable ["factionrep",false] && ((_cls isKindOf "Land"
 	};
 };
 if(_cls isKindOf "CAManBase") exitWith {
-	[_cls,getpos player,group player] call OT_fnc_recruitSoldier;
+	[_cls,getPosATL player,group player] call OT_fnc_recruitSoldier;
 };
 if(_cls in OT_allSquads) exitWith {
-	[_cls,getpos player] call OT_fnc_recruitSquad;
+	[_cls,getPosATL player] call OT_fnc_recruitSquad;
 };
 if(_cls == OT_item_UAV) exitWith {
-	private _pos = (getpos player) findEmptyPosition [5,100,_cls];
+	private _pos = (getPosATL player) findEmptyPosition [5,100,_cls];
 	if (count _pos == 0) exitWith {"Not enough space, please clear an area nearby" call OT_fnc_notifyMinor};
 
 	[-_price] call OT_fnc_money;
@@ -94,7 +94,7 @@ if(_cls == OT_item_UAV) exitWith {
 	hint "To use a UAV, scroll your mouse wheel to 'Open UAV Terminal' then right click your green quadcopter on the ground and 'Connect terminal to UAV'";
 };
 if(_cls in OT_allVehicles) exitWith {
-	private _pos = (getpos player) findEmptyPosition [5,100,_cls];
+	private _pos = (getPosATL player) findEmptyPosition [5,100,_cls];
 	if (count _pos == 0) exitWith {"Not enough space, please clear an area nearby" call OT_fnc_notifyMinor};
 
 	[-_price] call OT_fnc_money;
@@ -115,7 +115,7 @@ if(_cls in OT_allVehicles) exitWith {
 	playSound "3DEN_notificationDefault";
 };
 if(_cls isKindOf "Ship") exitWith {
-	private _pos = (getpos player) findEmptyPosition [5,100,_cls];
+	private _pos = (getPosATL player) findEmptyPosition [5,100,_cls];
 	if (count _pos == 0) exitWith {"Not enough space, please clear an area nearby" call OT_fnc_notifyMinor};
 
 	[-_price] call OT_fnc_money;
@@ -172,7 +172,7 @@ if(
 		if(!isNil "_owner") then {
 			if(_owner == getplayerUID player) exitWith {_box = _x};
 		};
-	}foreach(nearestObjects [getpos player, [OT_item_Storage],1200]);
+	}foreach(nearestObjects [player, [OT_item_Storage],1200]);
 
 	// @todo probably add to box if possible
 	player addWeaponGlobal _cls;

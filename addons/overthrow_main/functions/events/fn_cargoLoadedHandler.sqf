@@ -1,6 +1,6 @@
 _item = _this select 0;
 _veh = _this select 1;
-_pos = getpos _veh;
+_pos = getPosATL _veh;
 
 _illegal = _item getVariable ["ace_illegalCargo",false];
 

@@ -30,7 +30,7 @@ if (player isIRLaserOn currentWeapon player) then
 		private _dirPlayer = getdir Player;
 		if !(_enemies isEqualTo []) then
 		{
-			private _startPos = (getpos player);
+			private _startPos = (ASLtoAGL (getPosASL player));
 			private _toalDist = _startPos distance2D _finalPos;
 			private _chunks = round (_toalDist/100);
 			private _chunkN = 0;

@@ -137,7 +137,7 @@
 		private _hlpObj = "Steel_Plate_S_F" createVehicleLocal [0,0,0];
 		_hlpObj setDamage 1;
 		_hlpObj setVariable ["VCM_AVOID", true];
-		_hlpObj setPos (getpos _NearestUnit);
+		_hlpObj setPosASL (getPosASL _NearestUnit);
 		_hlpObj setObjectTextureGlobal [0, ""];
 		_hlpObj spawn {sleep 2; deletevehicle _this};
 	};

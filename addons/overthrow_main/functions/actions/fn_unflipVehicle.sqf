@@ -17,7 +17,7 @@ params [
 
 if (isNull _vehicle) exitWith {false};
 
-private _upsideDown = (vectorUp _vehicle vectorDotProduct surfaceNormal getPos _vehicle) < -0.80;
+private _upsideDown = (vectorUp _vehicle vectorDotProduct surfaceNormal getPosASL _vehicle) < -0.80;
 private _bank = _vehicle call BIS_fnc_getPitchBank select 1;
 
 private _flipLeft = _bank >= 0;

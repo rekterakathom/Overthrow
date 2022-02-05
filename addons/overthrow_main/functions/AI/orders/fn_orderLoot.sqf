@@ -49,7 +49,7 @@ private _target = _sorted select 0;
         	_istruck = (_t isKindOf "Truck_F") || (_t isKindOf "ReammoBox_F");
         };
 
-		_unit doMove getpos _t;
+		_unit doMove ASLtoAGL (getPosASL _t);
 
 		_timeout = time + 30;
 		waitUntil {sleep 1; (!alive _unit) || (isNull _t) || (_unit distance _t < 10) || (_timeOut < time) || (unitReady _unit)};
@@ -98,7 +98,7 @@ private _target = _sorted select 0;
 			_deadguy setVariable ["OT_looted",true,true];
 			_deadguy setvariable ["OT_lootedAt",time,true];
 
-			_unit doMove getpos _deadguy;
+			_unit doMove ASLtoAGL (getPosASL _deadguy);
 			[_unit,1] call OT_fnc_experience;
 
 			waitUntil {sleep 1; (!alive _unit) || (isNull _t) || (_unit distance2D _deadguy < 12) || (_timeOut < time)};
@@ -108,7 +108,7 @@ private _target = _sorted select 0;
 			sleep 2;
             _deadguy remoteExecCall ["deleteVehicle",_deadguy];
 			_timeout = time + 30;
-			_unit doMove getpos _t;
+			_unit doMove ASLtoAGL (getPosASL _t);
 			waitUntil {sleep 1; (!alive _unit) || (isNull _t) || (_unit distance _t < 12) || (_timeOut < time)};
 			if((!alive _unit) || (_timeOut < time)) exitWith {};
 

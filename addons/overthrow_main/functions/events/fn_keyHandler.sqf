@@ -56,7 +56,7 @@ if(!dialog) then {
 					], 0, 0.2, 20, 1, 0, 2] call OT_fnc_dynamicText;
 
 					sleep 20;
-					_gundealer = spawner getVariable format["gundealer%1",(getpos player) call OT_fnc_nearestTown];
+					_gundealer = spawner getVariable format["gundealer%1",player call OT_fnc_nearestTown];
 					[player,getpos _gundealer,"Gun Dealer"] call OT_fnc_givePlayerWaypoint;
 					sleep 3;
 					hint "Go and speak to the local gun dealer. Head towards the marked location, you have nothing to worry about as long as you are not carrying/wearing any illegal items.";
@@ -70,13 +70,13 @@ if(!dialog) then {
 						"Oh, really? Well that depends. With what?"
 					];
 
-					_gundealer = spawner getVariable format["gundealer%1",(getpos player) call OT_fnc_nearestTown];
+					_gundealer = spawner getVariable format["gundealer%1",player call OT_fnc_nearestTown];
 					_done = {
 						_options = [
 							[
 								"I am sick of NATO pushing us around, what can I do about it?",
 								{
-									_gundealer = spawner getVariable format["gundealer%1",(getpos player) call OT_fnc_nearestTown];
+									_gundealer = spawner getVariable format["gundealer%1",player call OT_fnc_nearestTown];
 									[
 										player,
 										_gundealer,
@@ -110,7 +110,7 @@ if(!dialog) then {
 							[
 								format ["There's too much crime in %1, and NATO isn't doing anything about it",OT_nation],
 								{
-									_gundealer = spawner getVariable format["gundealer%1",(getpos player) call OT_fnc_nearestTown];
+									_gundealer = spawner getVariable format["gundealer%1",player call OT_fnc_nearestTown];
 									[
 										player,
 										_gundealer,
@@ -149,7 +149,7 @@ if(!dialog) then {
 							[
 								"I want to make some cash, and I don't care about breaking the law",
 								{
-									_gundealer = spawner getVariable format["gundealer%1",(getpos player) call OT_fnc_nearestTown];
+									_gundealer = spawner getVariable format["gundealer%1",player call OT_fnc_nearestTown];
 									[
 										player,
 										_gundealer,
@@ -180,7 +180,7 @@ if(!dialog) then {
 							[
 								"I want to make some cash, legally",
 								{
-									_gundealer = spawner getVariable format["gundealer%1",(getpos player) call OT_fnc_nearestTown];
+									_gundealer = spawner getVariable format["gundealer%1",player call OT_fnc_nearestTown];
 									[
 										player,
 										_gundealer,

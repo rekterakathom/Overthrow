@@ -121,7 +121,7 @@ OT_FastTravel_MapSingleClickEHId = addMissionEventHandler ["MapSingleClick", {
 						};
 						{_x allowDamage false} foreach(crew vehicle player);
 						private _road = _roads select 0;
-						_pos = position _road findEmptyPosition [10,120,typeOf (vehicle player)];
+						_pos = getPosATL _road findEmptyPosition [10,120,typeOf (vehicle player)];
 						vehicle player setPos _pos;
 					};
 				}else{

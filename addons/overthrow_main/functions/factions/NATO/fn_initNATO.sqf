@@ -364,7 +364,7 @@ diag_log "Overthrow: NATO Init Done";
 		_supplypos = _pos findEmptyPosition [4,100,OT_item_Storage];
 	}else{
 		//put it at the warehouse
-		_supplypos = (getpos(_warehouses select 0)) findEmptyPosition [4,100,OT_item_Storage];
+		_supplypos = (getPosATL (_warehouses select 0)) findEmptyPosition [4,100,OT_item_Storage];
 	};
 	spawner setVariable [format["NATOsupply%1",_name],_supplypos,false];
 

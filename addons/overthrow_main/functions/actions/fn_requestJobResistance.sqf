@@ -16,7 +16,7 @@ private _expiry = 0;
     call {
         if((toLowerANSI _target) isEqualTo "base") exitWith {
             //get the closest base
-            private _nearest = (getpos player) call OT_fnc_nearestObjectiveNoComms;
+            private _nearest = player call OT_fnc_nearestObjectiveNoComms;
             _nearest params ["_loc","_base"];
             private _inSpawnDistance = _loc call OT_fnc_inSpawnDistance;
             _id = format["%1-%2",_name,_base];
@@ -28,7 +28,7 @@ private _expiry = 0;
         };
         if((toLowerANSI _target) isEqualTo "town") exitWith {
             //get the town we're in
-            private _nearest = (getpos player) call OT_fnc_nearestTown;
+            private _nearest = player call OT_fnc_nearestTown;
             private _loc = server getVariable _nearest;
             private _inSpawnDistance = _loc call OT_fnc_inSpawnDistance;
             _id = format["%1-%2",_name,_nearest];

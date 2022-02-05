@@ -62,7 +62,7 @@ if (isNil "_randomAmmoArray") exitWith {};
 
 
 private _leaderE = leader _enemyGrp;
-private _continueFiring = (getPos _leaderE) inRangeOfArtillery [_aVehGrpUnits,_randomAmmoArray];
+private _continueFiring = (getPosATL _leaderE) inRangeOfArtillery [_aVehGrpUnits,_randomAmmoArray];
 
 if !(_continueFiring) exitWith {};
 
@@ -74,7 +74,7 @@ if (_RoundsToFire < 2) then {_RoundsToFire = 2};
 {
 	private _dist = random (15 + (random VCM_ARTYSPREAD));
 	private _dir = random 360;
-	private _pos = getpos _leaderE;
+	private _pos = getPosASL _leaderE;
 	private _positions = [(_pos select 0) + (sin _dir) * _dist, (_pos select 1) + (cos _dir) * _dist, 0];
 	_x doArtilleryFire [_positions,_randomAmmoArray,_RoundsToFire];
 	

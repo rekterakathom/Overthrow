@@ -23,7 +23,7 @@ if(_handled) then {
 		[] call OT_fnc_garrisonDialog;
 	};
 
-	private _town = (getpos _building) call OT_fnc_nearestTown;
+	private _town = _building call OT_fnc_nearestTown;
 
 	private _money = player getVariable ["money",0];
 
@@ -40,7 +40,7 @@ if(_handled) then {
 
 		buildingpositions setVariable [_id,position _building,true];
 		_owned pushback _id;
-		[player,"Building Purchased",format["Bought: %1 in %2 for $%3",getText(configFile >> "CfgVehicles" >> (typeof _building) >> "displayName"),(getpos _building) call OT_fnc_nearestTown,_price]] call BIS_fnc_createLogRecord;
+		[player,"Building Purchased",format["Bought: %1 in %2 for $%3",getText(configFile >> "CfgVehicles" >> (typeof _building) >> "displayName"),_building call OT_fnc_nearestTown,_price]] call BIS_fnc_createLogRecord;
 		_building addEventHandler ["Dammaged",OT_fnc_buildingDamagedHandler];
 	}else{
 		// Fetch the list of buildable houses
@@ -59,7 +59,7 @@ if(_handled) then {
 
 			deleteMarker _mrkid;
 			_owned deleteAt (_owned find _id);
-			[player,"Building Sold",format["Sold: %1 in %2 for $%3",getText(configFile >> "CfgVehicles" >> (typeof _building) >> "displayName"),(getpos _building) call OT_fnc_nearestTown,_sell]] call BIS_fnc_createLogRecord;
+			[player,"Building Sold",format["Sold: %1 in %2 for $%3",getText(configFile >> "CfgVehicles" >> (typeof _building) >> "displayName"),_building call OT_fnc_nearestTown,_sell]] call BIS_fnc_createLogRecord;
 			[_sell] call OT_fnc_money;
 
 		// Fallback for unknown buildings

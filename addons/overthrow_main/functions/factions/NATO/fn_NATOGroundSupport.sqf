@@ -43,7 +43,7 @@ while {_count < _num} do {
 	_attackpos = _attackpos findEmptyPosition [50,200,_vehtype];
 	_roads = _attackpos nearRoads 150;
 	if(count _roads > 0) then {
-		_attackpos = getpos(selectRandom _roads);
+		_attackpos = ASLtoAGL (getPosASL (selectRandom _roads));
 	};
 
 	_wp = _group addWaypoint [_attackpos,0];

@@ -18,7 +18,7 @@ if(_killer call OT_fnc_unitSeen) then {
 	_killer setVariable ["lastkill",time,true];
 };
 
-_town = (getpos _me) call OT_fnc_nearestTown;
+_town = _me call OT_fnc_nearestTown;
 
 if(isPlayer _me) exitWith {
 	if !(_town in (server getVariable ["NATOabandoned",[]])) then {

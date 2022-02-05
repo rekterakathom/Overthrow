@@ -1,4 +1,4 @@
-private _town = (getpos player) call OT_fnc_nearestTown;
+private _town = player call OT_fnc_nearestTown;
 
 private _stock = server getVariable format["gunstock%1",_town];
 if(isNil "_stock") then {

@@ -140,7 +140,7 @@ if(_byair && _tgroup isEqualType grpNull) then {
 
 		//Try to make sure drop position is on a bigger road
 		{
-			private _pos = getpos _x;
+			private _pos = ASLtoAGL (getPosASL _x);
 			if(isOnRoad _pos) exitWith {_dropos = _pos};
 		}foreach(_roads);
 
@@ -192,7 +192,7 @@ if(_tgroup isEqualType grpNull) then {
 				//Vehicle damaged (and on the ground)
 				_eject = true;
 			};
-			if((getpos _veh) distance _lastpos < 0.5) then {
+			if(_veh distance _lastpos < 0.5) then {
 				_stillfor = _stillfor + 10;
 				if(_stillfor > 60) then {
 					//what are you doing? gtfo

@@ -25,7 +25,7 @@ if(typeof _building == OT_refugeeCamp) exitWith {[] call OT_fnc_recruitSpawnCiv}
 if(typeof _building == OT_warehouse) exitWith {[] call OT_fnc_buyVehicleDialog};
 
 if !(_b isEqualType []) exitWith {
-	private _ob = (getpos player) call OT_fnc_nearestObjective;
+	private _ob = player call OT_fnc_nearestObjective;
 	_ob params ["_obpos","_obname"];
 	if(_obpos distance player < 250) then {
 		if(_obname in (server getVariable ["NATOabandoned",[]])) then {
@@ -68,7 +68,7 @@ if(_handled) then {
 	player setvariable ["leased",_leased,true];
 
 	_leasedata = player getvariable ["leasedata",[]];
-	_leasedata pushback [_id,typeof _building,getpos _building,(getpos _building) call OT_fnc_nearestTown];
+	_leasedata pushback [_id,typeof _building,getpos _building,_building call OT_fnc_nearestTown];
 	player setvariable ["leasedata",_leasedata,true];
 
 	_mrkid = format["bdg-%1",_building];

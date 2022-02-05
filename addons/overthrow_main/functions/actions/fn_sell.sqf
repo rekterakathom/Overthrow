@@ -1,7 +1,7 @@
 if (OT_selling) exitWith {};
 OT_selling = true;
 
-private _town = (getpos player) call OT_fnc_nearestTown;
+private _town = player call OT_fnc_nearestTown;
 private _standing = ([_town] call OT_fnc_support) * -1;
 private _idx = lbCurSel 1500;
 private _cls = lbData [1500,_idx];

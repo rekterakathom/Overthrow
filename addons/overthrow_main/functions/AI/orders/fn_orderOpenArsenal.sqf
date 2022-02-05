@@ -19,7 +19,7 @@ _sorted = [_objects,[],{_x distance _unit},"ASCEND"] call BIS_fnc_SortBy;
 if(_sorted isEqualTo []) exitWith {};
 
 private _target = _sorted select 0;
-private _iswarehouse = (getpos _target) call OT_fnc_positionIsAtWarehouse;
+private _iswarehouse = _target call OT_fnc_positionIsAtWarehouse;
 
 if(!_iswarehouse) then {
     _unit globalchat "Opening Arsenal (Ammobox)";
@@ -28,7 +28,7 @@ if(!_iswarehouse) then {
 };
 
 if(!isNull objectParent _target && (_unit distance _target) > 10) then {
-	_unit doMove position _target;
+	_unit doMove ASLtoAGL (getPosASL _target);
 	waitUntil {sleep 1;!alive _unit || (_unit distance _target < 10)};
 };
 

@@ -1,7 +1,7 @@
 disableSerialization;
 private _amt = _this;
 
-private _town = (getpos player) call OT_fnc_nearestTown;
+private _town = player call OT_fnc_nearestTown;
 private _money = player getVariable ["money",0];
 
 private _soldier = "Police" call OT_fnc_getSoldier;
