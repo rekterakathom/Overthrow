@@ -10,5 +10,5 @@ if(_illegal) then {
 			_x setCaptive false;
 			[_x] call OT_fnc_revealToNATO;
 		};
-	}foreach(_pos nearentities 30);
+	}foreach(_pos nearentities ["CAManBase", 30]);
 };

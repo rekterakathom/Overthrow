@@ -10,7 +10,7 @@ if((_pos distance _p) > 250) then {
 };
 
 if(
-    ((_pos nearEntities 50) findIf {side _x isEqualTo west || side _x isEqualTo east} != -1)
+    ((_pos nearEntities ["CAManBase", 50]) findIf {side _x isEqualTo west || side _x isEqualTo east} != -1)
     &&
     _charge
 ) exitWith {
