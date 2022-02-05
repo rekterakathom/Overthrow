@@ -35,16 +35,16 @@ if(_stability < 50) then {
 //update the markers
 if(_stability < 50) then {
     if(_town in _abandoned) then {
-        _town setMarkerColor "ColorRed";
+        _town setMarkerColorLocal "ColorRed";
     }else{
-        _town setMarkerColor "ColorYellow";
+        _town setMarkerColorLocal "ColorYellow";
     };
     _town setMarkerAlpha 1.0 - (_stability / 50);
     _townmrk setMarkerColor "ColorOPFOR";
 }else{
     _townmrk setMarkerColor "ColorGUER";
     if(_town in _abandoned) then {
-        _town setMarkerAlpha ((_stability - 50) / 100);
+        _town setMarkerAlphaLocal ((_stability - 50) / 100);
         _town setMarkerColor "ColorGUER";
     }else{
         _town setMarkerAlpha 0;
@@ -55,5 +55,4 @@ if(_town isEqualTo (server getVariable ["NATOattacking",""])) then {
 };
 if !(_town in _abandoned) then {
     _townmrk setMarkerAlpha 0;
-    _townmrk setMarkerAlphaLocal 0;
 };

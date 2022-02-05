@@ -220,8 +220,8 @@ if(_cost > 0) then {
 			};
 			if(_typecls == "Camp") then {
 				private _mrkid = format["%1-camp",getplayeruid player];
-				createMarker [_mrkid,getpos modeTarget];
-				_mrkid setMarkerPos (getpos modeTarget);
+				createMarkerLocal [_mrkid,getpos modeTarget];
+				_mrkid setMarkerPosLocal (getpos modeTarget);
 				private _camp = player getVariable["camp",[]];
 				if(count _camp > 0) then {
 					{
@@ -234,10 +234,10 @@ if(_cost > 0) then {
 					}foreach(_camp nearObjects 10);
 				};
 				player setVariable ["camp",getpos modeTarget];
-				_mrkid setMarkerShape "ICON";
-				_mrkid setMarkerType "ot_Camp";
-				_mrkid setMarkerColor "ColorWhite";
-				_mrkid setMarkerAlpha 1;
+				_mrkid setMarkerShapeLocal "ICON";
+				_mrkid setMarkerTypeLocal "ot_Camp";
+				_mrkid setMarkerColorLocal "ColorWhite";
+				_mrkid setMarkerAlphaLocal 1;
 				_mrkid setMarkerText format ["Camp %1",name player];
 				_builder = name player;
 				{

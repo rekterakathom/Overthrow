@@ -316,7 +316,7 @@ diag_log "Overthrow: NATO Init Done";
 
 {
 	_x params ["_pos","_name","_pri"];
-	private _mrk = createMarker [_name,_pos];
+	private _mrk = createMarkerLocal [_name,_pos];
 	_mrk setMarkerShape "ICON";
 	if(_name in (server getVariable "NATOabandoned")) then {
 		_mrk setMarkerType OT_flagMarker;
@@ -328,12 +328,12 @@ diag_log "Overthrow: NATO Init Done";
 		};
 	};
 
-	_mrk = createMarker [_name+"_restrict",_pos];
-	_mrk setMarkerShape "ELLIPSE";
-	_mrk setMarkerBrush "BDIAGONAL";
+	_mrk = createMarkerLocal [_name+"_restrict",_pos];
+	_mrk setMarkerShapeLocal "ELLIPSE";
+	_mrk setMarkerBrushLocal "BDIAGONAL";
 	private _dist = 200;
 	if(_name in OT_NATO_priority) then {_dist = 500};
-	_mrk setMarkerSize [_dist, _dist];
+	_mrk setMarkerSizeLocal [_dist, _dist];
 	_mrk setMarkerColor "ColorRed";
 	if(_name in (server getVariable "NATOabandoned")) then {
 		_mrk setMarkerAlpha 0;
@@ -422,9 +422,9 @@ publicVariable "OT_allObjectives";
 
 {
 	_x params ["_pos","_name"];
-	private _mrk = createMarker [_name,_pos];
-	_mrk setMarkerShape "ICON";
-	_mrk setMarkerType "loc_Transmitter";
+	private _mrk = createMarkerLocal [_name,_pos];
+	_mrk setMarkerShapeLocal "ICON";
+	_mrk setMarkerTypeLocal "loc_Transmitter";
 	if(_name in (server getVariable "NATOabandoned")) then {
 		_mrk setMarkerColor "ColorGUER";
 	}else{
@@ -434,13 +434,13 @@ publicVariable "OT_allObjectives";
 	OT_allComms pushback _name;
 	OT_allObjectives pushback _name;
 
-	_mrk = createMarker [_name+"_restrict",_pos];
-	_mrk setMarkerShape "ELLIPSE";
-	_mrk setMarkerBrush "BDIAGONAL";
+	_mrk = createMarkerLocal [_name+"_restrict",_pos];
+	_mrk setMarkerShapeLocal "ELLIPSE";
+	_mrk setMarkerBrushLocal "BDIAGONAL";
 	private _dist = 40;
 	if(_name in OT_NATO_priority) then {_dist = 500};
-	_mrk setMarkerSize [_dist, _dist];
-	_mrk setMarkerColor "ColorRed";
+	_mrk setMarkerSizeLocal [_dist, _dist];
+	_mrk setMarkerColorLocal "ColorRed";
 	if(_name in (server getVariable "NATOabandoned")) then {
 		_mrk setMarkerAlpha 0;
 	}else{
@@ -473,10 +473,10 @@ private _revealed = server getVariable ["revealedFOBs",[]];
 	private _id = str _pos;
 	if(_id in _revealed) then {
 		//create marker
-		_mrkid = createMarker [format["natofob%1",_id],_pos];
-		_mrkid setMarkerShape "ICON";
-		_mrkid setMarkerType "mil_Flag";
-		_mrkid setMarkerColor "ColorBLUFOR";
+		_mrkid = createMarkerLocal [format["natofob%1",_id],_pos];
+		_mrkid setMarkerShapeLocal "ICON";
+		_mrkid setMarkerTypeLocal "mil_Flag";
+		_mrkid setMarkerColorLocal "ColorBLUFOR";
 		_mrkid setMarkerAlpha 1;
 	};
 }foreach(server getVariable ["NATOfobs",[]]);

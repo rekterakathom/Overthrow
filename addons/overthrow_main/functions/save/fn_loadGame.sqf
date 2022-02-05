@@ -91,11 +91,11 @@ private _hasList_buildableHouses = false;
 			_veh enableDynamicSimulation true;
 
 			_mrkid = format["%1-base",_pos];
-			createMarker [_mrkid,_pos];
-			_mrkid setMarkerShape "ICON";
-			_mrkid setMarkerType "mil_Flag";
-			_mrkid setMarkerColor "ColorWhite";
-			_mrkid setMarkerAlpha 1;
+			createMarkerLocal [_mrkid,_pos];
+			_mrkid setMarkerShapeLocal "ICON";
+			_mrkid setMarkerTypeLocal "mil_Flag";
+			_mrkid setMarkerColorLocal "ColorWhite";
+			_mrkid setMarkerAlphaLocal 1;
 			_mrkid setMarkerText _name;
 		}foreach(_val);
 
@@ -301,29 +301,29 @@ private _hasList_buildableHouses = false;
 				if(_type isEqualTo OT_policeStation) then {
 					_town = _pos call OT_fnc_nearestTown;
 					_mrkid = format["%1-police",_town];
-					createMarker [_mrkid,_pos];
-					_mrkid setMarkerShape "ICON";
-					_mrkid setMarkerType "o_installation";
-					_mrkid setMarkerColor "ColorGUER";
+					createMarkerLocal [_mrkid,_pos];
+					_mrkid setMarkerShapeLocal "ICON";
+					_mrkid setMarkerTypeLocal "o_installation";
+					_mrkid setMarkerColorLocal "ColorGUER";
 					_mrkid setMarkerAlpha 1;
 				};
 
 				if(_type isEqualTo OT_warehouse) then {
 					_mrkid = format["bdg-%1",_veh];
-					createMarker [_mrkid,_pos];
-					_mrkid setMarkerShape "ICON";
-					_mrkid setMarkerType "OT_warehouse";
-					_mrkid setMarkerColor "ColorWhite";
+					createMarkerLocal [_mrkid,_pos];
+					_mrkid setMarkerShapeLocal "ICON";
+					_mrkid setMarkerTypeLocal "OT_warehouse";
+					_mrkid setMarkerColorLocal "ColorWhite";
 					_mrkid setMarkerAlpha 1;
 				};
 
 				if(_type isEqualTo OT_item_tent) then {
 					_mrkid = format["%1-camp",_owner];
-					createMarker [_mrkid,_pos];
-					_mrkid setMarkerShape "ICON";
-					_mrkid setMarkerType "ot_Camp";
-					_mrkid setMarkerColor "ColorWhite";
-					_mrkid setMarkerAlpha 1;
+					createMarkerLocal [_mrkid,_pos];
+					_mrkid setMarkerShapeLocal "ICON";
+					_mrkid setMarkerTypeLocal "ot_Camp";
+					_mrkid setMarkerColorLocal "ColorWhite";
+					_mrkid setMarkerAlphaLocal 1;
 					_mrkid setMarkerText format ["Camp %1",players_NS getvariable [format["name%1",_owner],""]];
 				};
 			};
@@ -407,11 +407,11 @@ sleep 0.3;
 		}foreach(_garrison);
 	};
 	private _mrkid = format["%1-base",_pos];
-    createMarker [_mrkid,_pos];
-    _mrkid setMarkerShape "ICON";
-    _mrkid setMarkerType "mil_Flag";
-    _mrkid setMarkerColor "ColorWhite";
-    _mrkid setMarkerAlpha 1;
+    createMarkerLocal [_mrkid,_pos];
+    _mrkid setMarkerShapeLocal "ICON";
+    _mrkid setMarkerTypeLocal "mil_Flag";
+    _mrkid setMarkerColorLocal "ColorWhite";
+    _mrkid setMarkerAlphaLocal 1;
     _mrkid setMarkerText (_x select 1);
 	_veh = OT_flag_IND createVehicle _pos;
 	[_veh,(server getVariable ["generals",[getPlayerUID player]]) select 0] call OT_fnc_setOwner;
@@ -448,8 +448,8 @@ private _revealed = server getVariable ["revealedGangs",[]];
 
 	if((count _gang) > 0) then {
 		_mrkid = format["gang%1",_gang select 2];
-		_mrk = createMarker [_mrkid, _gang select 4];
-		_mrkid setMarkerType "ot_Camp";
+		_mrk = createMarkerLocal [_mrkid, _gang select 4];
+		_mrkid setMarkerTypeLocal "ot_Camp";
 		_mrkid setMarkerColor "colorOPFOR";
 	};
 }foreach(_revealed);

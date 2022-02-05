@@ -201,10 +201,10 @@ if ((date select 4) != _lastmin) then {
 		_support = [_town] call OT_fnc_support;
 		if (!(_id in _revealed) && (_support > (random 2000))) then {
 			_revealed pushback _id;
-			_mrkid = createMarker [format["natofob%1",_id],_pos];
-			_mrkid setMarkerShape "ICON";
-		    _mrkid setMarkerType "mil_Flag";
-		    _mrkid setMarkerColor "ColorBLUFOR";
+			_mrkid = createMarkerLocal [format["natofob%1",_id],_pos];
+			_mrkid setMarkerShapeLocal "ICON";
+		    _mrkid setMarkerTypeLocal "mil_Flag";
+		    _mrkid setMarkerColorLocal "ColorBLUFOR";
 		    _mrkid setMarkerAlpha 1;
 			format["Citizens of %1 have revealed intelligence of a nearby NATO FOB",_town] remoteExec ["OT_fnc_notifyMinor",0,false];
 		};

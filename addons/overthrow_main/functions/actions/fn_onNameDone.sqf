@@ -11,11 +11,11 @@ if(_name != "") then {
     server setVariable ["bases",_bases,true];
     _base setVariable ["name",_name];
     private _mrkid = format["%1-base",getpos _base];
-    createMarker [_mrkid,getpos _base];
-    _mrkid setMarkerShape "ICON";
-    _mrkid setMarkerType "mil_Flag";
-    _mrkid setMarkerColor "ColorWhite";
-    _mrkid setMarkerAlpha 1;
+    createMarkerLocal [_mrkid,getpos _base];
+    _mrkid setMarkerShapeLocal "ICON";
+    _mrkid setMarkerTypeLocal "mil_Flag";
+    _mrkid setMarkerColorLocal "ColorWhite";
+    _mrkid setMarkerAlphaLocal 1;
     _mrkid setMarkerText _name;
     private _builder = name player;
     {

@@ -320,8 +320,8 @@ if (_canTute) then {
 						params ["_town","_gangid","_gang"];
 						private _town = (getpos player) call OT_fnc_nearestTown;
                         _mrkid = format["gang%1",_town];
-                        _mrk = createMarker [_mrkid, _gang select 4];
-                        _mrkid setMarkerType "ot_Camp";
+                        _mrk = createMarkerLocal [_mrkid, _gang select 4];
+                        _mrkid setMarkerTypeLocal "ot_Camp";
                         _mrkid setMarkerColor "colorOPFOR";
 						private _revealed = server getVariable ["revealedGangs",[]];
                         _revealed pushback _gangid;
@@ -347,8 +347,8 @@ if (_canTute) then {
 											private _town = (getpos player) call OT_fnc_nearestTown;
 											[-50] call OT_fnc_money;
 											_mrkid = format["gang%1",_town];
-					                        _mrk = createMarker [_mrkid, _gang select 4];
-					                        _mrkid setMarkerType "ot_Camp";
+					                        _mrk = createMarkerLocal [_mrkid, _gang select 4];
+					                        _mrkid setMarkerTypeLocal "ot_Camp";
 					                        _mrkid setMarkerColor "colorOPFOR";
 											private _revealed = server getVariable ["revealedGangs",[]];
 					                        _revealed pushback _gangid;
