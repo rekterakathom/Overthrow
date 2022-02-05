@@ -1,4 +1,4 @@
-if!((vehicle _this) isEqualTo _this) then {_this = vehicle _this};
+if (!isNull objectParent) then {_this = objectParent _this};
 
 private _cache = _this getVariable "SeenCacheCRIM";
 if (isNil "_cache" || {time > (_cache select 1)}) then {
