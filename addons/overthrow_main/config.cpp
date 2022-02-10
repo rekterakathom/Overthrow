@@ -17,6 +17,12 @@ class CfgPatches
 			"ace_medical",
 			"a3_ui_f",
 			"a3_characters_f",
+			"A3_Ui_F_Orange",
+			"A3_Ui_F_Tacops",
+			"A3_Ui_F_Tank",
+			"A3_Ui_F_Enoch",
+			"A3_Ui_F_Oldman",
+			"A3_Ui_F_AoW",
 			"A3_Map_Tanoabuka"
 		};
 		requiredVersion=REQUIRED_VERSION;
@@ -38,6 +44,14 @@ class CfgMainMenuSpotlight
 		actionText = $STR_A3_RscDisplayMain_Spotlight_Play; // Text displayed in top left corner of on-hover white frame
 		condition = "true"; // Condition for showing the spotlight
 	};
+	class AoW_Showcase_Future
+	{
+		condition = "false";
+	};
+	class AoW_Showcase_AoW: AoW_Showcase_Future
+	{
+		condition = "false";
+	};
 	class ApexProtocol
 	{
 		condition = "false";
@@ -50,7 +64,7 @@ class CfgMainMenuSpotlight
 	{
 		condition = "false";
 	};
-	class Orange_CampaignGerman
+	class Orange_CampaignGerman: Orange_Campaign
 	{
 		condition = "false";
 	};
@@ -70,11 +84,11 @@ class CfgMainMenuSpotlight
 	{
 		condition = "false";
 	};
-	class Tacops_Campaign_02
+	class Tacops_Campaign_02: Tacops_Campaign_01
 	{
 		condition = "false";
 	};
-	class Tacops_Campaign_03
+	class Tacops_Campaign_03: Tacops_Campaign_01
 	{
 		condition = "false";
 	};

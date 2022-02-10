@@ -6,7 +6,7 @@ class CfgMagazines {
         ot_craftQuantity = 1;
         ot_craftRecipe = "[[""NLAW_F"",1],[""ACE_Cellphone"",1]]";
     };
-    class IEDLandSmall_Remote_Mag : DemoCharge_Remote_Mag
+    class IEDLandSmall_Remote_Mag : IEDUrbanSmall_Remote_Mag
     {
         ot_craftable = 1;
         ot_craftQuantity = 1;
@@ -18,7 +18,7 @@ class CfgMagazines {
         ot_craftQuantity = 1;
         ot_craftRecipe = "[[""NLAW_F"",4],[""ACE_Cellphone"",1]]";
     };
-    class IEDLandBig_Remote_Mag : DemoCharge_Remote_Mag
+    class IEDLandBig_Remote_Mag : IEDUrbanBig_Remote_Mag
     {
         ot_craftable = 1;
         ot_craftQuantity = 1;

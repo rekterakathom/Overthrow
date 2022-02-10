@@ -191,6 +191,7 @@ class CfgVehicles {
 	//Houses (Tanoa)
 	class House_Small_F;
     class House_F;
+    class Land_Workshop_03_F;
     class Land_Slum_01_F: House_Small_F {
         ot_isPlayerHouse = 1;
         ot_template = '[["Land_MetalCase_01_small_F", [-0.746442,-0.078261,0.594079],0.418328,1,0,[0,0],"","",true,false],["Land_CampingChair_V2_F",[1.22725,1.2502,0.594079],199.447,1,0,[0,0],"","",true,false],["Mapboard_tanoa_F",[-0.340959,1.65805,0.59408],327.71,1,0,[0,0],"","",true,false],["OfficeTable_01_new_F",[1.54124,1.92773,0.59408],0,1,0,[0,0],"","",true,false],["Land_Workbench_01_F",[2.70912,-1.90632,0.594079],180,1,0,[0,0],"","",true,false],["B_CargoNet_01_ammo_F",[4.56925,1.31465,0.59408],0,1,0,[0,0],"","",true,false]]';
@@ -234,7 +235,7 @@ class CfgVehicles {
 	};
 
     //Houses (Livonia)
-    class Land_Workshop_03_grey_F : House_Small_f {
+    class Land_Workshop_03_grey_F: Land_Workshop_03_F {
         ot_isPlayerHouse = 1;
         ot_template = '[]';
     };
@@ -275,7 +276,7 @@ class CfgVehicles {
 		ot_isShop = 1;
         ot_template = '[]';
 	};
-	class Land_i_Shop_02_V3_F: House_F {
+	class Land_i_Shop_02_V3_F: Land_i_Shop_02_V1_F {
         ot_isShop = 1;
         ot_template = '[]';
     };
@@ -289,20 +290,20 @@ class CfgVehicles {
         ot_template = '[["Land_CashDesk_F",[-6.93629,2.99194,0],180.686,1,0,[],"","",true,false]]';
     };
 
+    //Car Dealers (Altis)
+	class Land_CarService_F: House_F {
+        ot_isCarDealer = 1;
+        ot_template = '[]';
+    };
+
     //Car Dealers (Tanoa)
     class Land_FuelStation_01_workshop_F: House_F {
         ot_isCarDealer = 1;
         ot_template = '[["Land_CashDesk_F",[2.87972,-3.57524,0.277551],0,1,0,[],"","",true,false]]';
     };
-    class Land_FuelStation_02_workshop_F: House_F {
+    class Land_FuelStation_02_workshop_F: Land_CarService_F {
         ot_isCarDealer = 1;
         ot_template = '[["Land_CashDesk_F",[2.21226,0.566814,0.53],0,1,0,[],"","",true,false]]';
-    };
-
-	//Car Dealers (Altis)
-	class Land_CarService_F: House_F {
-        ot_isCarDealer = 1;
-        ot_template = '[]';
     };
 
 	//Unlocks uniforms (ace_nouniformrestrictions)
