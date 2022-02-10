@@ -210,6 +210,9 @@ private _maxTime = time + 1800;
 private _over = false;
 private _progress = 0;
 
+private _westSide = west;
+private _resSide = resistance;
+
 while {sleep 5; !_over} do {
 	_alive = 0;
 	_enemy = 0;
@@ -217,10 +220,10 @@ while {sleep 5; !_over} do {
 	_enemyin = 0;
 	{
 		if(_x distance _pos < 200) then {
-			if((side _x isEqualTo west) && (alive _x)) then {
+			if (side _x isEqualTo _westSide) then {
 				_alive = _alive + 1;
 			};
-			if((side _x isEqualTo resistance || captive _x) && (alive _x) && !(_x getvariable ["ace_isunconscious",false])) then {
+			if ((side _x isEqualTo _resSide || captive _x) && {!(_x getvariable ["ace_isunconscious",false])}) then {
 				if(isPlayer _x) then {
 					_enemy = _enemy + 2;
 				} else {
@@ -228,7 +231,7 @@ while {sleep 5; !_over} do {
 				};
 			};
 		};
-	}foreach(allunits);
+	} foreach allUnits;
 	if(_alive == 0) then {_enemy = _enemy * 2}; //If no NATO present, cap it faster
 	if(time > _timeout && _alive isEqualTo 0 && _enemy isEqualTo 0) then {_enemy = 1};
 	_progresschange = (_alive - _enemy);
@@ -272,7 +275,7 @@ if(_progress > 0) then {
 			}else{
 				deleteGroup _x;
 			};
-		}
+		};
 	}foreach(allgroups);
 	{
 		if(side _x isEqualTo west) then {
