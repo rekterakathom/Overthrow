@@ -5,6 +5,7 @@ if(isNil "_start") exitWith {};
 if(_start isEqualType true) exitWith {};
 
 _g setVariable ["VCM_Disable",true,true];
+_g setVariable ["lambs_danger_disableGroupAI", true];
 
 _g setBehaviour "SAFE";
 

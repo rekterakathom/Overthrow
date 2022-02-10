@@ -3,6 +3,7 @@ private ["_unit"];
 _unit = _this select 0;
 
 (group _unit) setVariable ["VCM_Disable",true];
+(group _unit) setVariable ["lambs_danger_disableGroupAI", true];
 
 private _firstname = selectRandom OT_firstNames_local;
 private _lastname = selectRandom OT_lastNames_local;
