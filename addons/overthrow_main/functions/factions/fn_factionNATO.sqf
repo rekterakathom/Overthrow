@@ -385,6 +385,7 @@ publicVariable "OT_nextNATOTurn";
 				if !(_name in _abandoned) then {
 					_drone = spawner getVariable [format["drone%1",_name],objNull];
 					if(!alive _drone) then {
+						deleteVehicleCrew _drone;
 						deleteVehicle _drone;
 					};
 					if((isNull _drone || !alive _drone) && {_resources > 10}) then {

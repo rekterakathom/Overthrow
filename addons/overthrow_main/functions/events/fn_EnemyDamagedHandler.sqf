@@ -11,10 +11,10 @@ if(isNull _shooter) then {
 	};
 };
 if ((typeOf _shooter) isKindOf "CAManBase") then {
-    [_shooter,false] remoteExecCall ["setCaptive",_shooter];
+    _shooter setCaptive false;
     if (!isNull objectParent _shooter) then {
         {
-            [_x,false] remoteExecCall ["setCaptive",_x];
+            _x setCaptive false;
         }foreach(crew objectParent _shooter);
     };
 };

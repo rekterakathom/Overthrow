@@ -27,7 +27,11 @@
 			private _CE = [_EL,_mine,true,""2""] call VCM_fnc_ClstObj;
 
 			if (_CE distance _mine < 2.5) then {
-				[_mine, true] remoteExecCall [""enableSimulationGlobal"",2];
+				if (local _mine) then {
+					_mine enableSimulationGlobal true;
+				} else {
+					[_mine, true] remoteExecCall [""enableSimulationGlobal"",2];
+				};
 				[_mine] spawn {
 					_this params [""_mine""];
 					sleep 0.35;

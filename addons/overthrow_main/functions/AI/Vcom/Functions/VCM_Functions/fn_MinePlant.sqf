@@ -85,7 +85,12 @@ _unitSide = (side _unit);
 if (_mine isEqualTo "") exitWith {};
 
 VCOM_mineArray pushBack [_mine,_unitSide];
-[_Mine, false] remoteExecCall ["enableSimulationGlobal",2];
+if (local _mine) then {
+	_mine enableSimulationGlobal true;
+} else {
+	[_Mine, false] remoteExecCall ["enableSimulationGlobal",2];
+};
+
 
 /*
 [_mine,_unitSide] spawn 

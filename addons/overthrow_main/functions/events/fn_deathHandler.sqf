@@ -26,7 +26,7 @@ if(isPlayer _me) exitWith {
 	}else{
 		[_town,-1] call OT_fnc_stability;
 	};
-	[_me,true] remoteExecCall ["setCaptive",_me];
+	_me setCaptive true;
 	if !(isMultiplayer) then {
 		_this params ["_unit", "_killer", "_instigator", "_useEffects"];
 		if (_unit isEqualTo player) then {
@@ -234,11 +234,11 @@ call {
 	};
 };
 if((_killer call OT_fnc_unitSeen) || (_standingChange < -9)) then {
-	[_killer,false] remoteExecCall ["setCaptive",_killer];
+	_killer setCaptive false;
 	if(!isNull objectParent _killer) then {
 		{
-			[_x,false] remoteExecCall ["setCaptive",_x];
-		}foreach(units objectParent _killer);
+			_x setCaptive false;
+		}foreach(crew objectParent _killer);
 	};
 };
 if(isPlayer _killer) then {
