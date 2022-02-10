@@ -1,5 +1,8 @@
 //VCOM AI, huge credits to Genesis, without VCOM this campaign would be so much less
 
+private _cfgVehicles = configfile >> "CfgVehicles";
+private _cfgWeapons = configFile >> "CfgWeapons";
+
 OT_ACEremoveAction = [
 	"OT_Remove",
 	"Remove",
@@ -98,7 +101,7 @@ OT_highPopHouses = [];
         if(_cost > 25000) then {OT_medPopHouses pushback _name;};
         OT_lowPopHouses pushback _name;
     };
-}foreach("(getNumber (_x >> 'scope') isEqualTo 2) && (configName _x isKindOf 'House') && (configName _x find '_House' > -1)" configClasses (configfile >> "CfgVehicles"));
+}foreach("(getNumber (_x >> 'scope') isEqualTo 2) && (configName _x isKindOf 'House') && (configName _x find '_House' > -1)" configClasses (_cfgVehicles));
 
 OT_allBuyableBuildings = OT_lowPopHouses + OT_medPopHouses + OT_highPopHouses + OT_hugePopHouses + OT_mansions + [OT_item_Tent,OT_flag_IND];
 
@@ -269,7 +272,7 @@ OT_spawnHouses = [];
 	OT_spawnHouses pushBack _cls;
 	OT_allBuyableBuildings pushBackUnique _cls;
 	OT_allRealEstate pushBackUnique _cls;
-}foreach( "getNumber ( _x >> ""ot_isPlayerHouse"" ) isEqualTo 1" configClasses ( configFile >> "CfgVehicles" ) );
+}foreach( "getNumber ( _x >> ""ot_isPlayerHouse"" ) isEqualTo 1" configClasses ( _cfgVehicles ) );
 
 //Mission house overrides
 {
@@ -282,7 +285,7 @@ OT_spawnHouses = [];
 
 OT_gunDealerHouses = OT_spawnHouses;
 
-private _allShops = "getNumber ( _x >> ""ot_isShop"" ) isEqualTo 1" configClasses ( configFile >> "CfgVehicles" );
+private _allShops = "getNumber ( _x >> ""ot_isShop"" ) isEqualTo 1" configClasses ( _cfgVehicles );
 OT_shops = _allShops apply {configName _x};
 
 //Mission shop overrides
@@ -292,7 +295,7 @@ OT_shops = _allShops apply {configName _x};
 	templates setVariable [_cls,_template,true];
 }foreach(OT_shopBuildings);
 
-private _allCarShops = "getNumber ( _x >> ""ot_isCarDealer"" ) isEqualTo 1" configClasses ( configFile >> "CfgVehicles" );
+private _allCarShops = "getNumber ( _x >> ""ot_isCarDealer"" ) isEqualTo 1" configClasses ( _cfgVehicles );
 OT_carShops = _allCarShops apply {configName _x};
 
 //Mission car shop overrides
@@ -326,12 +329,12 @@ private _allVehs = "
     { (getText ( _x >> ""faction"" ) isEqualTo ""CIV_F"") or
      (getText ( _x >> ""faction"" ) isEqualTo ""IND_F"")})
 
-" configClasses ( configFile >> "cfgVehicles" );
+" configClasses ( _cfgVehicles );
 
 private _mostExpensive = 0;
 {
 	private _cls = configName _x;
-	private _clsConfig = configFile >> "cfgVehicles" >> _cls;
+	private _clsConfig = _cfgVehicles >> _cls;
 	private _cost = round(getNumber (_clsConfig >> "armor") + (getNumber (_clsConfig >> "enginePower") * 2));
 	_cost = _cost + round(getNumber (_clsConfig >> "maximumLoad") * 0.1);
 
@@ -362,7 +365,7 @@ _allVehs = "
 	{ (getText ( _x >> ""vehicleClass"" ) isEqualTo ""Car"") or
 	 (getText ( _x >> ""vehicleClass"" ) isEqualTo ""Armored"")})
 
-" configClasses ( configFile >> "cfgVehicles" );
+" configClasses ( _cfgVehicles );
 
 {
 	OT_allVehicleThreats pushback (configName _x);
@@ -377,11 +380,11 @@ private _allHelis = "
 	&&
     { (getText ( _x >> ""faction"" ) isEqualTo ""CIV_F"") or
      (getText ( _x >> ""faction"" ) isEqualTo ""IND_F"")})
-" configClasses ( configFile >> "cfgVehicles" );
+" configClasses ( _cfgVehicles );
 
 {
 	private _cls = configName _x;
-	private _clsConfig = configFile >> "cfgVehicles" >> _cls;
+	private _clsConfig = _cfgVehicles >> _cls;
 	private _multiply = 3;
 	if(_cls isKindOf "Plane") then {_multiply = 6};
 	private _cost = (getNumber (_clsConfig >> "armor") + getNumber (_clsConfig >> "enginePower")) * _multiply;
@@ -410,11 +413,11 @@ _allHelis = "
 	{ (getArray ( _x >> ""threat"" ) select 0) >= 0.5}
 	&&
     { getText ( _x >> ""vehicleClass"" ) isEqualTo ""Air""})
-" configClasses ( configFile >> "cfgVehicles" );
+" configClasses ( _cfgVehicles );
 
 {
 	private _cls = configName _x;
-	private _clsConfig = configFile >> "cfgVehicles" >> _cls;
+	private _clsConfig = _cfgVehicles >> _cls;
 	private _numturrets = count("true" configClasses(_clsConfig >> "Turrets"));
 
 	if(_cls isKindOf "Plane") then {
@@ -446,37 +449,37 @@ private _allWeapons = "
     ( getNumber ( _x >> ""scope"" ) isEqualTo 2
     &&
     { getText ( _x >> ""simulation"" ) isEqualTo ""Weapon""})
-" configClasses ( configFile >> "cfgWeapons" );
+" configClasses ( _cfgWeapons );
 
 private _allAttachments = "
     ( getNumber ( _x >> ""scope"" ) isEqualTo 2
     &&
     { _t = getNumber ( _x >> ""ItemInfo"" >> ""type"" ); _t isEqualTo 301 || _t isEqualTo 302 || _t isEqualTo 101})
-" configClasses ( configFile >> "cfgWeapons" );
+" configClasses ( _cfgWeapons );
 
 private _allOptics = "
     ( getNumber ( _x >> ""scope"" ) isEqualTo 2
     &&
     { getNumber ( _x >> ""ItemInfo"" >> ""optics"" ) isEqualTo 1})
-" configClasses ( configFile >> "cfgWeapons" );
+" configClasses ( _cfgWeapons );
 
 private _allDetonators = "
     ( getNumber ( _x >> ""scope"" ) isEqualTo 2
     &&
     { getNumber ( _x >> ""ace_explosives_Detonator"" ) isEqualTo 1})
-" configClasses ( configFile >> "cfgWeapons" );
+" configClasses ( _cfgWeapons );
 
 private _allUniforms = "
     ( getNumber ( _x >> ""scope"" ) isEqualTo 2
     &&
     { getNumber ( _x >> ""ItemInfo"" >> ""type"" ) isEqualTo 801})
-" configClasses ( configFile >> "cfgWeapons" );
+" configClasses ( _cfgWeapons );
 
 private _allHelmets = "
     ( getNumber ( _x >> ""scope"" ) isEqualTo 2
     &&
     { getNumber ( _x >> ""ItemInfo"" >> ""type"" ) isEqualTo 605})
-" configClasses ( configFile >> "cfgWeapons" );
+" configClasses ( _cfgWeapons );
 
 private _allAmmo = "
     ( getNumber ( _x >> ""scope"" ) isEqualTo 2 )
@@ -484,7 +487,7 @@ private _allAmmo = "
 
 private _allVehicles = "
     ( getNumber ( _x >> ""scope"" ) > 0 )
-" configClasses ( configFile >> "cfgVehicles" );
+" configClasses ( _cfgVehicles );
 
 private _allFactions = "
     ( getNumber ( _x >> ""side"" ) < 3 )
@@ -578,7 +581,7 @@ OT_allBLURifleMagazines = [];
 	private _weapons = [];
 	private _blacklist = ["Throw","Put","NLAW_F"];
 
-	private _all = format["(getNumber( _x >> ""scope"" ) isEqualTo 2 ) && (getText( _x >> ""faction"" ) isEqualTo '%1')",_name] configClasses ( configFile >> "cfgVehicles" );
+	private _all = format["(getNumber( _x >> ""scope"" ) isEqualTo 2 ) && (getText( _x >> ""faction"" ) isEqualTo '%1')",_name] configClasses ( _cfgVehicles );
 	{
 		private _cls = configName _x;
 		if(_cls isKindOf "CAManBase") then {
@@ -586,17 +589,17 @@ OT_allBLURifleMagazines = [];
 			{
 				private _base = [_x] call BIS_fnc_baseWeapon;
 				if !(_base in _blacklist) then {
-					private _muzzleEffect = getText (configFile >> "CfgWeapons" >> _base >> "muzzleEffect");
+					private _muzzleEffect = getText (_cfgWeapons >> _base >> "muzzleEffect");
 					if !(_x in _weapons) then {_weapons pushback _base};
 					if(_side isEqualTo 1 && !(_muzzleEffect isEqualTo "BIS_fnc_effectFiredFlares")) then {
-						if(_base isKindOf ["Rifle", configFile >> "CfgWeapons"]) then {
-							private _mass = getNumber (configFile >> "CfgWeapons" >> _base >> "WeaponSlotsInfo" >> "mass");
+						if(_base isKindOf ["Rifle", _cfgWeapons]) then {
+							private _mass = getNumber (_cfgWeapons >> _base >> "WeaponSlotsInfo" >> "mass");
 							_base call {
 								_itemType = ([_cls] call BIS_fnc_itemType) select 1;
 								if(_itemType isEqualTo "MachineGun") exitWith {OT_allBLUMachineGuns pushBackUnique _base};
-								if((_this select [0,7]) == "srifle_" || (_this isKindOf ["Rifle_Long_Base_F", configFile >> "CfgWeapons"])) exitWith {OT_allBLUSniperRifles pushBackUnique _base};
+								if((_this select [0,7]) == "srifle_" || (_this isKindOf ["Rifle_Long_Base_F", _cfgWeapons])) exitWith {OT_allBLUSniperRifles pushBackUnique _base};
 								if((_this find "_GL_") > -1) exitWith {OT_allBLUGLRifles pushBackUnique _base};
-								private _events = "" configClasses (configFile >> "CfgWeapons" >> _base >> "Eventhandlers");
+								private _events = "" configClasses (_cfgWeapons >> _base >> "Eventhandlers");
 								_add = true;
 								{
 									private _n = configName _x;
@@ -605,21 +608,21 @@ OT_allBLURifleMagazines = [];
 								if(_add && _mass < 61) exitWith {OT_allBLUSMG pushBackUnique _base};
 								if(_add) then {
 									OT_allBLURifles pushBackUnique _base;
-									OT_allBLURifleMagazines = OT_allBLURifleMagazines + getArray(configFile >> "CfgWeapons" >> _base >> "WeaponSlotsInfo" >> "magazines");
+									OT_allBLURifleMagazines = OT_allBLURifleMagazines + getArray(_cfgWeapons >> _base >> "WeaponSlotsInfo" >> "magazines");
 								};
 							};
 						};
-						if(_base isKindOf ["Launcher", configFile >> "CfgWeapons"]) then {OT_allBLULaunchers pushBackUnique _base};
-						if(_base isKindOf ["Pistol", configFile >> "CfgWeapons"]) then {OT_allBLUPistols pushBackUnique _base};
+						if(_base isKindOf ["Launcher", _cfgWeapons]) then {OT_allBLULaunchers pushBackUnique _base};
+						if(_base isKindOf ["Pistol", _cfgWeapons]) then {OT_allBLUPistols pushBackUnique _base};
 					};
 					//Get ammo
 					{
 						if (!(_x in _blacklist) || _x in OT_allExplosives) then {
 							_weapons pushbackUnique _x
 						};
-					}foreach(getArray(configFile >> "CfgWeapons" >> _base >> "magazines"));
+					}foreach(getArray(_cfgWeapons >> _base >> "magazines"));
 				};
-			}foreach(getArray(configFile >> "CfgVehicles" >> _cls >> "weapons"));
+			}foreach(getArray(_cfgVehicles >> _cls >> "weapons"));
 		}else{
 			//It's a vehicle
 			if !(_cls isKindOf "Bag_Base" || _cls isKindOf "StaticWeapon") then {
@@ -653,7 +656,7 @@ OT_allBLURifleMagazines = [];
 	private _name = configName _x;
 	_name = [_name] call BIS_fnc_baseWeapon;
 
-	private _short = getText (configFile >> "CfgWeapons" >> _name >> "descriptionShort");
+	private _short = getText (_cfgWeapons >> _name >> "descriptionShort");
 
 	private _s = _short splitString ":";
 	private _caliber = " 5.56";
@@ -666,7 +669,7 @@ OT_allBLURifleMagazines = [];
 	private _weapon = [_name] call BIS_fnc_itemType;
 	private _weaponType = _weapon select 1;
 
-	private _muzzles = getArray (configFile >> "CfgWeapons" >> _name >> "muzzles");
+	private _muzzles = getArray (_cfgWeapons >> _name >> "muzzles");
 	{
 		if((_x find "EGLM") > -1) then {
 			_haslauncher = true;
@@ -737,7 +740,7 @@ OT_allBLURifleMagazines = [];
 		};
 		if (_weaponType ==  "Vest") exitWith {
 			if !(_name in ["V_RebreatherB","V_RebreatherIA","V_RebreatherIR","V_Rangemaster_belt"]) then {
-				private _cost = 40 + (getNumber(configFile >> "CfgWeapons" >> _name >> "ItemInfo" >> "HitpointsProtectionInfo" >> "Chest" >> "armor") * 20);
+				private _cost = 40 + (getNumber(_cfgWeapons >> _name >> "ItemInfo" >> "HitpointsProtectionInfo" >> "Chest" >> "armor") * 20);
 				if !(_name in ["V_Press_F","V_TacVest_blk_POLICE"]) then {
 					OT_allVests pushBack _name;
 					if(_cost > 40) then {
@@ -765,10 +768,10 @@ OT_allBLURifleMagazines = [];
 OT_allLegalClothing = [];
 {
 	private _name = configName _x;
-	private _short = getText (configFile >> "CfgWeapons" >> _name >> "descriptionShort");
-	private _supply = getText(configfile >> "CfgWeapons" >> _name >> "ItemInfo" >> "containerClass");
-	private _mass = getNumber(configfile >> "CfgWeapons" >> _name >> "ItemInfo" >> "mass");
-	private _carry = getNumber(configfile >> "CfgVehicles" >> _supply >> "maximumLoad");
+	private _short = getText (_cfgWeapons >> _name >> "descriptionShort");
+	private _supply = getText(_cfgWeapons >> _name >> "ItemInfo" >> "containerClass");
+	private _mass = getNumber(_cfgWeapons >> _name >> "ItemInfo" >> "mass");
+	private _carry = getNumber(_cfgVehicles >> _supply >> "maximumLoad");
 	private _cost = round(_mass * 4);
 
 	private _c = _name splitString "_";
@@ -787,7 +790,7 @@ OT_allLegalClothing = [];
 
 {
 	private _name = configName _x;
-	private _cost = 20 + (getNumber(configFile >> "CfgWeapons" >> _name >> "ItemInfo" >> "HitpointsProtectionInfo" >> "Head" >> "armor") * 30);
+	private _cost = 20 + (getNumber(_cfgWeapons >> _name >> "ItemInfo" >> "HitpointsProtectionInfo" >> "Head" >> "armor") * 30);
 	if(_cost > 20) then {
 		OT_allHelmets pushback _name;
 	}else{
@@ -857,7 +860,7 @@ OT_allLegalClothing = [];
 
 if(isServer) then {
 	//Remaining vehicle costs
-	private _cfgVeh = configFile >> "cfgVehicles";
+	private _cfgVeh = _cfgVehicles;
 	{
 		private _name = configName _x;
 		if((_name isKindOf "AllVehicles") && !(_name in OT_allVehicles)) then {
@@ -887,7 +890,7 @@ OT_attachments = [];
 {
 	private _name = configName _x;
 	private _cost = 75;
-	private _t = getNumber(configFile >> "CfgWeapons" >> _name >> "ItemInfo" >> "type");
+	private _t = getNumber(_cfgWeapons >> _name >> "ItemInfo" >> "type");
 	if(_t isEqualTo 302) then {
 		//Bipods
 		_cost = 150;
@@ -905,11 +908,11 @@ OT_attachments = [];
 
 {
 	private _name = configName _x;
-	private _allModes = "true" configClasses ( configFile >> "cfgWeapons" >> _name >> "ItemInfo" >> "OpticsModes" );
+	private _allModes = "true" configClasses ( _cfgWeapons >> _name >> "ItemInfo" >> "OpticsModes" );
 	private _cost = 50;
 	{
 		private _mode = configName _x;
-		private _max = getNumber (configFile >> "cfgWeapons" >> _name >> "ItemInfo" >> "OpticsModes" >> _mode >> "distanceZoomMax");
+		private _max = getNumber (_cfgWeapons >> _name >> "ItemInfo" >> "OpticsModes" >> _mode >> "distanceZoomMax");
 		private _mul = 0.1;
 		if(_mode == "NVS") then {_mul = 0.2};
 		if(_mode == "TWS") then {_mul = 0.5};
