@@ -25,4 +25,7 @@ _unit forceAddUniform (selectRandom OT_clothes_shops);
 
 [_unit,"self"] call OT_fnc_setOwner;
 
-_unit disableAI "MOVE";
+_unit disableAI "PATH";
+_unit disableAI "MINEDETECTION";
+_unit disableAI "LIGHTS";
+_unit disableAI "FSM";
