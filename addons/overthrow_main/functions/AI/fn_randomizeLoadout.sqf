@@ -73,6 +73,12 @@ if(_hasPrimary) then {
         selectRandom _rifles;
     };
 
+    // Remove all incompatible attachments.
+    private _compatItems = _wpn call BIS_fnc_compatibleItems;
+    {
+        if !(_x in _compatItems) then {(_newloadout # 0) set [_forEachIndex + 1, ""]};
+    } forEach [((_newloadout # 0) # 1), ((_newloadout # 0) # 2), ((_newloadout # 0) # 3), ((_newloadout # 0) # 6)];
+
     (_newloadout select 0) set [0,_wpn];
 
     _magazines = getArray (_cfgWeapons >> _wpn >> "magazines");
