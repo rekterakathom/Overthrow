@@ -22,7 +22,8 @@ if(_password isEqualTo "") exitWith {
 OT_inputHandler = {
 	private _password = OT_context getVariable ["password",""];
 	private _pw = ctrlText 1400;
-	if(_pw != _password) exitWith {"Wrong password" call OT_fnc_notifyMinor};
+	private _pwHash = hashValue _pw;
+	if(_pwHash != _password) exitWith {"Wrong password" call OT_fnc_notifyMinor};
 	private _in = OT_context getVariable ["money",0];
 
 	OT_inputHandler = {
