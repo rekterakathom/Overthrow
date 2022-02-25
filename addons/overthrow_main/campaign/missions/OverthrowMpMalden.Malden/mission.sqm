@@ -1,4 +1,4 @@
-version=53;
+version=54;
 class EditorData
 {
 	moveGridStep=1;
@@ -16,17 +16,18 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=494;
+		nextID=499;
 	};
 	class Camera
 	{
-		pos[]={9979.1953,39.674191,2243.5647};
-		dir[]={-0.66379827,-0.57024205,0.4839859};
-		up[]={-0.46087089,0.82138848,0.33602798};
-		aside[]={0.58915716,1.2451783e-006,0.80804467};
+		pos[]={9964.4521,27.591377,2243.9089};
+		dir[]={-0.3143577,-0.5978446,0.73745954};
+		up[]={-0.23445414,0.80158156,0.55000907};
+		aside[]={0.91994417,8.5192733e-007,0.39214909};
 	};
 };
 binarizationWanted=0;
+sourceName="OverthrowMpMalden";
 addons[]=
 {
 	"A3_Ui_F",
@@ -38,7 +39,8 @@ addons[]=
 	"ace_attach",
 	"ace_chemlights",
 	"A3_Weapons_F_Items",
-	"ace_medical",
+	"ace_medical_engine",
+	"ace_medical_treatment",
 	"ace_cargo",
 	"ace_captives",
 	"ace_switchunits",
@@ -63,7 +65,7 @@ class AddonsMetaData
 {
 	class List
 	{
-		items=26;
+		items=27;
 		class Item0
 		{
 			className="A3_Ui_F";
@@ -115,131 +117,138 @@ class AddonsMetaData
 		};
 		class Item7
 		{
-			className="ace_medical";
-			name="ACE3 - Medical";
+			className="ace_medical_engine";
+			name="ACE3 - Medical Engine";
 			author="ACE-Team";
 			url="http://ace3mod.com/";
 		};
 		class Item8
+		{
+			className="ace_medical_treatment";
+			name="ACE3 - Medical Treatment";
+			author="ACE-Team";
+			url="http://ace3mod.com/";
+		};
+		class Item9
 		{
 			className="ace_cargo";
 			name="ACE3 - Cargo";
 			author="ACE-Team";
 			url="http://ace3mod.com/";
 		};
-		class Item9
+		class Item10
 		{
 			className="ace_captives";
 			name="ACE3 - Captives";
 			author="ACE-Team";
 			url="http://ace3mod.com/";
 		};
-		class Item10
+		class Item11
 		{
 			className="ace_switchunits";
 			name="ACE3 - Switch Units";
 			author="ACE-Team";
 			url="http://ace3mod.com/";
 		};
-		class Item11
+		class Item12
 		{
 			className="ace_weather";
 			name="ACE3 - Weather";
 			author="ACE-Team";
 			url="http://ace3mod.com/";
 		};
-		class Item12
+		class Item13
 		{
 			className="ace_vehiclelock";
 			name="ACE3 - Vehicle Lock";
 			author="ACE-Team";
 			url="http://ace3mod.com/";
 		};
-		class Item13
+		class Item14
 		{
 			className="ace_advanced_fatigue";
 			name="ACE3 - Advanced Fatigue";
 			author="ACE-Team";
 			url="http://ace3mod.com/";
 		};
-		class Item14
+		class Item15
 		{
 			className="ace_map";
 			name="ACE3 - Map";
 			author="ACE-Team";
 			url="http://ace3mod.com/";
 		};
-		class Item15
+		class Item16
 		{
 			className="A3_Modules_F";
 			name="Arma 3 Alpha - Scripted Modules";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item16
+		class Item17
 		{
 			className="ace_rearm";
 			name="ACE3 - Rearm";
 			author="ACE-Team";
 			url="http://ace3mod.com/";
 		};
-		class Item17
+		class Item18
 		{
 			className="ace_refuel";
 			name="ACE3 - Refuel";
 			author="ACE-Team";
 			url="http://ace3mod.com/";
 		};
-		class Item18
+		class Item19
 		{
 			className="ace_repair";
 			name="ACE3 - Repair";
 			author="ACE-Team";
 			url="http://ace3mod.com/";
 		};
-		class Item19
+		class Item20
 		{
 			className="ace_respawn";
 			name="ACE3 - Respawn";
 			author="ACE-Team";
 			url="http://ace3mod.com/";
 		};
-		class Item20
+		class Item21
 		{
 			className="ace_explosives";
 			name="ACE3 - Explosives";
 			author="ACE-Team";
 			url="http://ace3mod.com/";
 		};
-		class Item21
+		class Item22
 		{
 			className="ace_ui";
 			name="ACE3 - UI";
 			author="ACE-Team";
 			url="http://ace3mod.com/";
 		};
-		class Item22
+		class Item23
 		{
 			className="A3_Structures_F_Mil";
 			name="Arma 3 - Military Buildings and Structures";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item23
+		class Item24
 		{
 			className="A3_Structures_F_Ind";
 			name="Arma 3 - Industrial Structures";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item24
+		class Item25
 		{
 			className="A3_Structures_F_Exp_Industrial";
 			name="Arma 3 Apex - Industrial Structures";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item25
+		class Item26
 		{
 			className="A3_Modules_F_Curator";
 			name="Arma 3 Zeus Update - Scripted Modules";
@@ -261,6 +270,10 @@ class DynamicSimulation
 	{
 		IsMoving=2.5;
 	};
+};
+dlcs[]=
+{
+	"Expansion"
 };
 randomSeed=2938931;
 class ScenarioData
@@ -700,7 +713,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=82;
+		items=79;
 		class Item0
 		{
 			dataType="Layer";
@@ -729,15 +742,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={9949.2773,21.891657,2264.7561};
-						angles[]={0,2.4981596,0};
+						position[]={9949.2773,21.523655,2264.7561};
+						angles[]={0.15319028,2.4981596,6.1827245};
 					};
 					side="Independent";
-					flags=2;
+					flags=6;
 					class Attributes
 					{
 						rank="COLONEL";
-						init="this setCaptive true;";
 						name="bigboss";
 						description="Host";
 						isPlayer=1;
@@ -779,7 +791,6 @@ class Mission
 					};
 					id=1949;
 					type="I_G_officer_F";
-					atlOffset=0.36800194;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -804,7 +815,7 @@ class Mission
 						class Attribute1
 						{
 							property="ace_isEngineer";
-							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							expression="if !(_value == ([0, 1] select (_this getUnitTrait 'engineer')) || {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
 							class Value
 							{
 								class data
@@ -899,7 +910,7 @@ class Mission
 						class Attribute6
 						{
 							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
+							expression="if (_value != -1 && {_value != (parseNumber (_this getUnitTrait 'medic'))}) then {_this setVariable [""ace_medical_medicClass"", _value, true]}";
 							class Value
 							{
 								class data
@@ -923,371 +934,17 @@ class Mission
 			{
 			};
 			id=1718;
-			atlOffset=0.36800194;
 		};
 		class Item3
 		{
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={9945.4736,22.0527,2281.8271};
-			};
-			id=1754;
-			type="ACE_moduleReviveSettings";
-			atlOffset=2.7241764;
-			class CustomAttributes
-			{
-				class Attribute0
-				{
-					property="ACE_moduleReviveSettings_amountOfReviveLives";
-					expression="_this setVariable ['amountOfReviveLives',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"SCALAR"
-								};
-							};
-							value=-1;
-						};
-					};
-				};
-				class Attribute1
-				{
-					property="ACE_moduleReviveSettings_enableRevive";
-					expression="_this setVariable ['enableRevive',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"SCALAR"
-								};
-							};
-							value=2;
-						};
-					};
-				};
-				class Attribute2
-				{
-					property="ACE_moduleReviveSettings_maxReviveTime";
-					expression="_this setVariable ['maxReviveTime',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"SCALAR"
-								};
-							};
-							value=240;
-						};
-					};
-				};
-				nAttributes=3;
-			};
-		};
-		class Item4
-		{
-			dataType="Logic";
-			class PositionInfo
-			{
-				position[]={9945.4736,22.0527,2281.8271};
-			};
-			id=1755;
-			type="ACE_moduleMedicalSettings";
-			atlOffset=2.7241764;
-			class CustomAttributes
-			{
-				class Attribute0
-				{
-					property="ACE_moduleMedicalSettings_litterCleanUpDelay";
-					expression="_this setVariable ['litterCleanUpDelay',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"SCALAR"
-								};
-							};
-							value=1800;
-						};
-					};
-				};
-				class Attribute1
-				{
-					property="ACE_moduleMedicalSettings_enableScreams";
-					expression="_this setVariable ['enableScreams',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"BOOL"
-								};
-							};
-							value=1;
-						};
-					};
-				};
-				class Attribute2
-				{
-					property="ACE_moduleMedicalSettings_preventInstaDeath";
-					expression="_this setVariable ['preventInstaDeath',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"BOOL"
-								};
-							};
-							value=0;
-						};
-					};
-				};
-				class Attribute3
-				{
-					property="ACE_moduleMedicalSettings_bleedingCoefficient";
-					expression="_this setVariable ['bleedingCoefficient',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"SCALAR"
-								};
-							};
-							value=1;
-						};
-					};
-				};
-				class Attribute4
-				{
-					property="ACE_moduleMedicalSettings_increaseTrainingInLocations";
-					expression="_this setVariable ['increaseTrainingInLocations',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"BOOL"
-								};
-							};
-							value=0;
-						};
-					};
-				};
-				class Attribute5
-				{
-					property="ACE_moduleMedicalSettings_enableUnconsciousnessAI";
-					expression="_this setVariable ['enableUnconsciousnessAI',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"SCALAR"
-								};
-							};
-							value=0;
-						};
-					};
-				};
-				class Attribute6
-				{
-					property="ACE_moduleMedicalSettings_remoteControlledAI";
-					expression="_this setVariable ['remoteControlledAI',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"BOOL"
-								};
-							};
-							value=0;
-						};
-					};
-				};
-				class Attribute7
-				{
-					property="ACE_moduleMedicalSettings_painCoefficient";
-					expression="_this setVariable ['painCoefficient',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"SCALAR"
-								};
-							};
-							value=1;
-						};
-					};
-				};
-				class Attribute8
-				{
-					property="ACE_moduleMedicalSettings_AIDamageThreshold";
-					expression="_this setVariable ['AIDamageThreshold',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"SCALAR"
-								};
-							};
-							value=1;
-						};
-					};
-				};
-				class Attribute9
-				{
-					property="ACE_moduleMedicalSettings_playerDamageThreshold";
-					expression="_this setVariable ['playerDamageThreshold',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"SCALAR"
-								};
-							};
-							value=1.2;
-						};
-					};
-				};
-				class Attribute10
-				{
-					property="ACE_moduleMedicalSettings_level";
-					expression="_this setVariable ['level',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"SCALAR"
-								};
-							};
-							value=1;
-						};
-					};
-				};
-				class Attribute11
-				{
-					property="ACE_moduleMedicalSettings_allowLitterCreation";
-					expression="_this setVariable ['allowLitterCreation',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"BOOL"
-								};
-							};
-							value=0;
-						};
-					};
-				};
-				class Attribute12
-				{
-					property="ACE_moduleMedicalSettings_keepLocalSettingsSynced";
-					expression="_this setVariable ['keepLocalSettingsSynced',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"BOOL"
-								};
-							};
-							value=1;
-						};
-					};
-				};
-				class Attribute13
-				{
-					property="ACE_moduleMedicalSettings_medicSetting";
-					expression="_this setVariable ['medicSetting',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"SCALAR"
-								};
-							};
-							value=0;
-						};
-					};
-				};
-				nAttributes=14;
-			};
-		};
-		class Item5
-		{
-			dataType="Logic";
-			class PositionInfo
-			{
-				position[]={9945.4736,22.0527,2281.8271};
+				position[]={9946.4775,21.88851,2281.9604};
 			};
 			id=1757;
 			type="ACE_moduleCargoSettings";
-			atlOffset=2.7241764;
+			atlOffset=2.7241783;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -1331,16 +988,16 @@ class Mission
 				nAttributes=2;
 			};
 		};
-		class Item6
+		class Item4
 		{
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={9945.4736,22.0527,2281.8271};
+				position[]={9946.1631,21.995167,2281.5964};
 			};
 			id=1758;
 			type="ace_captives_moduleSettings";
-			atlOffset=2.7241764;
+			atlOffset=2.7242413;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -1422,16 +1079,16 @@ class Mission
 				nAttributes=4;
 			};
 		};
-		class Item7
+		class Item5
 		{
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={9945.4736,22.0527,2281.8271};
+				position[]={9945.6777,21.886255,2282.6313};
 			};
 			id=1759;
 			type="ACE_ModuleSwitchUnits";
-			atlOffset=2.7241764;
+			atlOffset=2.7240829;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -1551,16 +1208,16 @@ class Mission
 				nAttributes=6;
 			};
 		};
-		class Item8
+		class Item6
 		{
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={9945.4736,22.0527,2281.8271};
+				position[]={9945.7578,22.131939,2281.1301};
 			};
 			id=1760;
 			type="ace_weather_ModuleSettings";
-			atlOffset=2.7241764;
+			atlOffset=2.7240257;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -1623,16 +1280,16 @@ class Mission
 				nAttributes=3;
 			};
 		};
-		class Item9
+		class Item7
 		{
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={9945.4736,22.0527,2281.8271};
+				position[]={9945.2588,22.171656,2281.3093};
 			};
 			id=1761;
 			type="ACE_VehicleLock_ModuleSetup";
-			atlOffset=2.7241764;
+			atlOffset=2.724184;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -1695,16 +1352,16 @@ class Mission
 				nAttributes=3;
 			};
 		};
-		class Item10
+		class Item8
 		{
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={9945.4736,22.0527,2281.8271};
+				position[]={9944.9736,22.170115,2281.5527};
 			};
 			id=1762;
 			type="ace_advanced_fatigue_moduleSettings";
-			atlOffset=2.7241764;
+			atlOffset=2.7242413;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -1805,16 +1462,16 @@ class Mission
 				nAttributes=5;
 			};
 		};
-		class Item11
+		class Item9
 		{
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={9945.4736,22.0527,2281.8271};
+				position[]={9944.9551,22.125799,2281.8267};
 			};
 			id=1766;
 			type="ACE_ModuleMap";
-			atlOffset=2.7241764;
+			atlOffset=2.7241306;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -1934,7 +1591,7 @@ class Mission
 				nAttributes=6;
 			};
 		};
-		class Item12
+		class Item10
 		{
 			dataType="Logic";
 			class PositionInfo
@@ -1946,7 +1603,7 @@ class Mission
 			type="HighCommand";
 			atlOffset=1.1444092e-005;
 		};
-		class Item13
+		class Item11
 		{
 			dataType="Group";
 			side="Independent";
@@ -1958,15 +1615,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={9953.5781,20.936668,2267.481};
-						angles[]={0,2.4981596,0};
+						position[]={9953.5781,20.569241,2267.481};
+						angles[]={0.15319067,2.4981596,6.1550903};
 					};
 					side="Independent";
-					flags=2;
+					flags=6;
 					class Attributes
 					{
 						rank="COLONEL";
-						init="this setCaptive true;";
 						isPlayable=1;
 						class Inventory
 						{
@@ -1989,7 +1645,6 @@ class Mission
 					};
 					id=1788;
 					type="I_G_Soldier_F";
-					atlOffset=0.36742783;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -2014,7 +1669,7 @@ class Mission
 						class Attribute1
 						{
 							property="ace_isEngineer";
-							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							expression="if !(_value == ([0, 1] select (_this getUnitTrait 'engineer')) || {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
 							class Value
 							{
 								class data
@@ -2109,7 +1764,7 @@ class Mission
 						class Attribute6
 						{
 							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
+							expression="if (_value != -1 && {_value != (parseNumber (_this getUnitTrait 'medic'))}) then {_this setVariable [""ace_medical_medicClass"", _value, true]}";
 							class Value
 							{
 								class data
@@ -2133,9 +1788,8 @@ class Mission
 			{
 			};
 			id=1787;
-			atlOffset=0.36742783;
 		};
-		class Item14
+		class Item12
 		{
 			dataType="Group";
 			side="Independent";
@@ -2147,15 +1801,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={9952.4053,21.216955,2266.6443};
-						angles[]={0,2.4981596,0};
+						position[]={9952.4053,20.849569,2266.6443};
+						angles[]={0.15319067,2.4981596,6.1550903};
 					};
 					side="Independent";
-					flags=2;
+					flags=6;
 					class Attributes
 					{
 						rank="COLONEL";
-						init="this setCaptive true;";
 						isPlayable=1;
 						class Inventory
 						{
@@ -2178,7 +1831,6 @@ class Mission
 					};
 					id=1791;
 					type="I_G_Soldier_F";
-					atlOffset=0.36738586;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -2203,7 +1855,7 @@ class Mission
 						class Attribute1
 						{
 							property="ace_isEngineer";
-							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							expression="if !(_value == ([0, 1] select (_this getUnitTrait 'engineer')) || {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
 							class Value
 							{
 								class data
@@ -2298,7 +1950,7 @@ class Mission
 						class Attribute6
 						{
 							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
+							expression="if (_value != -1 && {_value != (parseNumber (_this getUnitTrait 'medic'))}) then {_this setVariable [""ace_medical_medicClass"", _value, true]}";
 							class Value
 							{
 								class data
@@ -2322,9 +1974,8 @@ class Mission
 			{
 			};
 			id=1790;
-			atlOffset=0.36738586;
 		};
-		class Item15
+		class Item13
 		{
 			dataType="Group";
 			side="Independent";
@@ -2336,15 +1987,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={9954.7002,20.667213,2268.2903};
-						angles[]={0,2.5345042,0};
+						position[]={9954.7002,20.299835,2268.2903};
+						angles[]={0.15319067,2.5345042,6.1550903};
 					};
 					side="Independent";
-					flags=2;
+					flags=6;
 					class Attributes
 					{
 						rank="COLONEL";
-						init="this setCaptive true;";
 						isPlayable=1;
 						class Inventory
 						{
@@ -2367,7 +2017,6 @@ class Mission
 					};
 					id=1794;
 					type="I_G_Soldier_F";
-					atlOffset=0.36737823;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -2392,7 +2041,7 @@ class Mission
 						class Attribute1
 						{
 							property="ace_isEngineer";
-							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							expression="if !(_value == ([0, 1] select (_this getUnitTrait 'engineer')) || {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
 							class Value
 							{
 								class data
@@ -2487,7 +2136,7 @@ class Mission
 						class Attribute6
 						{
 							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
+							expression="if (_value != -1 && {_value != (parseNumber (_this getUnitTrait 'medic'))}) then {_this setVariable [""ace_medical_medicClass"", _value, true]}";
 							class Value
 							{
 								class data
@@ -2511,9 +2160,8 @@ class Mission
 			{
 			};
 			id=1793;
-			atlOffset=0.36737823;
 		};
-		class Item16
+		class Item14
 		{
 			dataType="Group";
 			side="Independent";
@@ -2525,15 +2173,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={9950.4316,21.646206,2265.5115};
-						angles[]={0,2.4981596,0};
+						position[]={9950.4316,21.278687,2265.5115};
+						angles[]={0.15319067,2.4981596,6.1550903};
 					};
 					side="Independent";
-					flags=2;
+					flags=6;
 					class Attributes
 					{
 						rank="COLONEL";
-						init="this setCaptive true;";
 						isPlayable=1;
 						class Inventory
 						{
@@ -2556,7 +2203,6 @@ class Mission
 					};
 					id=1806;
 					type="I_G_Soldier_F";
-					atlOffset=0.36751938;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -2581,7 +2227,7 @@ class Mission
 						class Attribute1
 						{
 							property="ace_isEngineer";
-							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							expression="if !(_value == ([0, 1] select (_this getUnitTrait 'engineer')) || {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
 							class Value
 							{
 								class data
@@ -2676,7 +2322,7 @@ class Mission
 						class Attribute6
 						{
 							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
+							expression="if (_value != -1 && {_value != (parseNumber (_this getUnitTrait 'medic'))}) then {_this setVariable [""ace_medical_medicClass"", _value, true]}";
 							class Value
 							{
 								class data
@@ -2700,18 +2346,17 @@ class Mission
 			{
 			};
 			id=1805;
-			atlOffset=0.36751938;
 		};
-		class Item17
+		class Item15
 		{
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={9945.4736,22.0527,2281.8271};
+				position[]={9944.9287,22.041164,2282.3425};
 			};
 			id=1842;
 			type="ACE_moduleRearmSettings";
-			atlOffset=2.7241764;
+			atlOffset=2.7241726;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -2755,16 +2400,16 @@ class Mission
 				nAttributes=2;
 			};
 		};
-		class Item18
+		class Item16
 		{
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={9945.4736,22.0527,2281.8271};
+				position[]={9945.7422,21.947517,2282.2207};
 			};
 			id=1843;
 			type="ACE_moduleRefuelSettings";
-			atlOffset=2.7241764;
+			atlOffset=2.7241707;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -2808,16 +2453,16 @@ class Mission
 				nAttributes=2;
 			};
 		};
-		class Item19
+		class Item17
 		{
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={9945.4736,22.0527,2281.8271};
+				position[]={9945.8438,21.971159,2281.999};
 			};
 			id=1844;
 			type="ACE_moduleRepairSettings";
-			atlOffset=2.7241764;
+			atlOffset=2.7241573;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -2994,27 +2639,27 @@ class Mission
 				nAttributes=9;
 			};
 		};
-		class Item20
+		class Item18
 		{
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={9945.4736,22.0527,2281.8271};
+				position[]={9945.3691,21.942476,2282.5566};
 			};
 			id=1851;
 			type="ACE_ModuleFriendlyFire";
-			atlOffset=2.7241764;
+			atlOffset=2.7241058;
 		};
-		class Item21
+		class Item19
 		{
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={9945.4736,22.0527,2281.8271};
+				position[]={9945.6318,22.071384,2281.5876};
 			};
 			id=1852;
 			type="ACE_ModuleExplosive";
-			atlOffset=2.7241764;
+			atlOffset=2.7240849;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -3077,7 +2722,7 @@ class Mission
 				nAttributes=3;
 			};
 		};
-		class Item22
+		class Item20
 		{
 			dataType="Logic";
 			class PositionInfo
@@ -3090,7 +2735,7 @@ class Mission
 			type="HeadlessClient_F";
 			atlOffset=2.3275661;
 		};
-		class Item23
+		class Item21
 		{
 			dataType="Logic";
 			class PositionInfo
@@ -3103,16 +2748,16 @@ class Mission
 			type="HeadlessClient_F";
 			atlOffset=2.3274784;
 		};
-		class Item24
+		class Item22
 		{
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={9945.4736,22.0527,2281.8271};
+				position[]={9945.2969,22.111038,2281.6318};
 			};
 			id=1906;
 			type="ace_ui_Module";
-			atlOffset=2.7241764;
+			atlOffset=2.7241554;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -3783,269 +3428,7 @@ class Mission
 				nAttributes=35;
 			};
 		};
-		class Item25
-		{
-			dataType="Logic";
-			class PositionInfo
-			{
-				position[]={9945.4736,22.0527,2281.8271};
-			};
-			id=1909;
-			type="ACE_moduleAdvancedMedicalSettings";
-			atlOffset=2.7241764;
-			class CustomAttributes
-			{
-				class Attribute0
-				{
-					property="ACE_moduleAdvancedMedicalSettings_enableVehicleCrashes";
-					expression="_this setVariable ['enableVehicleCrashes',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"BOOL"
-								};
-							};
-							value=0;
-						};
-					};
-				};
-				class Attribute1
-				{
-					property="ACE_moduleAdvancedMedicalSettings_consumeItem_SurgicalKit";
-					expression="_this setVariable ['consumeItem_SurgicalKit',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"SCALAR"
-								};
-							};
-							value=1;
-						};
-					};
-				};
-				class Attribute2
-				{
-					property="ACE_moduleAdvancedMedicalSettings_enableAdvancedWounds";
-					expression="_this setVariable ['enableAdvancedWounds',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"BOOL"
-								};
-							};
-							value=0;
-						};
-					};
-				};
-				class Attribute3
-				{
-					property="ACE_moduleAdvancedMedicalSettings_consumeItem_PAK";
-					expression="_this setVariable ['consumeItem_PAK',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"SCALAR"
-								};
-							};
-							value=1;
-						};
-					};
-				};
-				class Attribute4
-				{
-					property="ACE_moduleAdvancedMedicalSettings_useCondition_PAK";
-					expression="_this setVariable ['useCondition_PAK',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"SCALAR"
-								};
-							};
-							value=1;
-						};
-					};
-				};
-				class Attribute5
-				{
-					property="ACE_moduleAdvancedMedicalSettings_medicSetting_PAK";
-					expression="_this setVariable ['medicSetting_PAK',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"SCALAR"
-								};
-							};
-							value=1;
-						};
-					};
-				};
-				class Attribute6
-				{
-					property="ACE_moduleAdvancedMedicalSettings_medicSetting_SurgicalKit";
-					expression="_this setVariable ['medicSetting_SurgicalKit',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"SCALAR"
-								};
-							};
-							value=1;
-						};
-					};
-				};
-				class Attribute7
-				{
-					property="ACE_moduleAdvancedMedicalSettings_healHitPointAfterAdvBandage";
-					expression="_this setVariable ['healHitPointAfterAdvBandage',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"BOOL"
-								};
-							};
-							value=0;
-						};
-					};
-				};
-				class Attribute8
-				{
-					property="ACE_moduleAdvancedMedicalSettings_useLocation_SurgicalKit";
-					expression="_this setVariable ['useLocation_SurgicalKit',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"SCALAR"
-								};
-							};
-							value=3;
-						};
-					};
-				};
-				class Attribute9
-				{
-					property="ACE_moduleAdvancedMedicalSettings_useCondition_SurgicalKit";
-					expression="_this setVariable ['useCondition_SurgicalKit',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"SCALAR"
-								};
-							};
-							value=0;
-						};
-					};
-				};
-				class Attribute10
-				{
-					property="ACE_moduleAdvancedMedicalSettings_useLocation_PAK";
-					expression="_this setVariable ['useLocation_PAK',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"SCALAR"
-								};
-							};
-							value=3;
-						};
-					};
-				};
-				class Attribute11
-				{
-					property="ACE_moduleAdvancedMedicalSettings_enableFor";
-					expression="_this setVariable ['enableFor',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"SCALAR"
-								};
-							};
-							value=0;
-						};
-					};
-				};
-				class Attribute12
-				{
-					property="ACE_moduleAdvancedMedicalSettings_painIsOnlySuppressed";
-					expression="_this setVariable ['painIsOnlySuppressed',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"BOOL"
-								};
-							};
-							value=1;
-						};
-					};
-				};
-				nAttributes=13;
-			};
-		};
-		class Item26
+		class Item23
 		{
 			dataType="Group";
 			side="Independent";
@@ -4057,7 +3440,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={9951.1768,21.127676,2265.8679};
+						position[]={9951.1768,21.127638,2265.8679};
 						angles[]={0.15319067,2.4981596,6.1550903};
 					};
 					side="Independent";
@@ -4065,7 +3448,6 @@ class Mission
 					class Attributes
 					{
 						rank="COLONEL";
-						init="this setCaptive true;";
 						isPlayable=1;
 						class Inventory
 						{
@@ -4088,7 +3470,6 @@ class Mission
 					};
 					id=1809;
 					type="I_G_Soldier_F";
-					atlOffset=3.8146973e-005;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -4113,7 +3494,7 @@ class Mission
 						class Attribute1
 						{
 							property="ace_isEngineer";
-							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							expression="if !(_value == ([0, 1] select (_this getUnitTrait 'engineer')) || {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
 							class Value
 							{
 								class data
@@ -4208,7 +3589,7 @@ class Mission
 						class Attribute6
 						{
 							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
+							expression="if (_value != -1 && {_value != (parseNumber (_this getUnitTrait 'medic'))}) then {_this setVariable [""ace_medical_medicClass"", _value, true]}";
 							class Value
 							{
 								class data
@@ -4232,9 +3613,8 @@ class Mission
 			{
 			};
 			id=1808;
-			atlOffset=3.8146973e-005;
 		};
-		class Item27
+		class Item24
 		{
 			dataType="Group";
 			side="Independent";
@@ -4246,7 +3626,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={9955.9834,19.938784,2269.5225};
+						position[]={9955.9834,19.938845,2269.5225};
 						angles[]={0.16488957,2.4981596,6.1433048};
 					};
 					side="Independent";
@@ -4254,7 +3634,6 @@ class Mission
 					class Attributes
 					{
 						rank="COLONEL";
-						init="this setCaptive true;";
 						isPlayable=1;
 						class Inventory
 						{
@@ -4277,7 +3656,6 @@ class Mission
 					};
 					id=1812;
 					type="I_G_Soldier_F";
-					atlOffset=-6.1035156e-005;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -4302,7 +3680,7 @@ class Mission
 						class Attribute1
 						{
 							property="ace_isEngineer";
-							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							expression="if !(_value == ([0, 1] select (_this getUnitTrait 'engineer')) || {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
 							class Value
 							{
 								class data
@@ -4397,7 +3775,7 @@ class Mission
 						class Attribute6
 						{
 							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
+							expression="if (_value != -1 && {_value != (parseNumber (_this getUnitTrait 'medic'))}) then {_this setVariable [""ace_medical_medicClass"", _value, true]}";
 							class Value
 							{
 								class data
@@ -4421,9 +3799,8 @@ class Mission
 			{
 			};
 			id=1811;
-			atlOffset=-6.1035156e-005;
 		};
-		class Item28
+		class Item25
 		{
 			dataType="Group";
 			side="Independent";
@@ -4435,7 +3812,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={9957.5596,19.547852,2270.5383};
+						position[]={9957.5596,19.547871,2270.5383};
 						angles[]={0.16488957,2.4981596,6.1433048};
 					};
 					side="Independent";
@@ -4443,7 +3820,6 @@ class Mission
 					class Attributes
 					{
 						rank="COLONEL";
-						init="this setCaptive true;";
 						isPlayable=1;
 						class Inventory
 						{
@@ -4466,7 +3842,6 @@ class Mission
 					};
 					id=1940;
 					type="I_G_Soldier_F";
-					atlOffset=-1.9073486e-005;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -4491,7 +3866,7 @@ class Mission
 						class Attribute1
 						{
 							property="ace_isEngineer";
-							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							expression="if !(_value == ([0, 1] select (_this getUnitTrait 'engineer')) || {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
 							class Value
 							{
 								class data
@@ -4586,7 +3961,7 @@ class Mission
 						class Attribute6
 						{
 							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
+							expression="if (_value != -1 && {_value != (parseNumber (_this getUnitTrait 'medic'))}) then {_this setVariable [""ace_medical_medicClass"", _value, true]}";
 							class Value
 							{
 								class data
@@ -4610,9 +3985,8 @@ class Mission
 			{
 			};
 			id=1939;
-			atlOffset=-1.9073486e-005;
 		};
-		class Item29
+		class Item26
 		{
 			dataType="Logic";
 			class PositionInfo
@@ -4625,7 +3999,7 @@ class Mission
 			type="HeadlessClient_F";
 			atlOffset=2.3275452;
 		};
-		class Item30
+		class Item27
 		{
 			dataType="Logic";
 			class PositionInfo
@@ -4638,35 +4012,35 @@ class Mission
 			type="HeadlessClient_F";
 			atlOffset=2.3274593;
 		};
-		class Item31
+		class Item28
 		{
 			dataType="Layer";
 			name="Check Point (Large)";
 			id=2001;
 			atlOffset=96.5;
 		};
-		class Item32
+		class Item29
 		{
 			dataType="Layer";
 			name="Camp Bear";
 			id=2044;
 			atlOffset=96.5;
 		};
-		class Item33
+		class Item30
 		{
 			dataType="Layer";
 			name="Hasty Roadblock";
 			id=2052;
 			atlOffset=96.5;
 		};
-		class Item34
+		class Item31
 		{
 			dataType="Layer";
 			name="Roadblock";
 			id=2064;
 			atlOffset=96.5;
 		};
-		class Item35
+		class Item32
 		{
 			dataType="Marker";
 			position[]={1121.233,0,11870.059};
@@ -4679,7 +4053,7 @@ class Mission
 			id=2162;
 			atlOffset=-22.164377;
 		};
-		class Item36
+		class Item33
 		{
 			dataType="Marker";
 			position[]={5169.7178,0,6326.625};
@@ -4693,7 +4067,7 @@ class Mission
 			id=2163;
 			atlOffset=-416.98993;
 		};
-		class Item37
+		class Item34
 		{
 			dataType="Marker";
 			position[]={10672.746,0,3813.4919};
@@ -4706,7 +4080,7 @@ class Mission
 			id=2165;
 			atlOffset=-18.314922;
 		};
-		class Item38
+		class Item35
 		{
 			dataType="Marker";
 			position[]={8912.3838,0,4363.9111};
@@ -4719,7 +4093,7 @@ class Mission
 			id=2166;
 			atlOffset=-12.44074;
 		};
-		class Item39
+		class Item36
 		{
 			dataType="Marker";
 			position[]={9840.3838,0,5945.5278};
@@ -4732,7 +4106,7 @@ class Mission
 			id=2167;
 			atlOffset=-6.2479763;
 		};
-		class Item40
+		class Item37
 		{
 			dataType="Marker";
 			position[]={9399.8477,0,6928.8672};
@@ -4746,7 +4120,7 @@ class Mission
 			id=2168;
 			atlOffset=-8.7388935;
 		};
-		class Item41
+		class Item38
 		{
 			dataType="Marker";
 			position[]={10005.585,0,2244.2451};
@@ -4759,7 +4133,7 @@ class Mission
 			id=2169;
 			atlOffset=-17.831839;
 		};
-		class Item42
+		class Item39
 		{
 			dataType="Marker";
 			position[]={911.15198,0,11811.741};
@@ -4769,7 +4143,7 @@ class Mission
 			id=2171;
 			atlOffset=9.6716995;
 		};
-		class Item43
+		class Item40
 		{
 			dataType="Marker";
 			position[]={3522.136,0,3129.863};
@@ -4779,7 +4153,7 @@ class Mission
 			id=2172;
 			atlOffset=4.7688904;
 		};
-		class Item44
+		class Item41
 		{
 			dataType="Marker";
 			position[]={7706.2871,0,3084.821};
@@ -4789,7 +4163,7 @@ class Mission
 			id=2173;
 			atlOffset=12.563861;
 		};
-		class Item45
+		class Item42
 		{
 			dataType="Marker";
 			position[]={5483.395,0,11711.273};
@@ -4799,57 +4173,60 @@ class Mission
 			id=2174;
 			atlOffset=10.147036;
 		};
-		class Item46
+		class Item43
 		{
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={1216.2902,45.955498,661.77649};
-				angles[]={0,4.1927366,0};
+				position[]={1216.29,45.954971,661.776};
+				angles[]={0,4.1927347,0};
 			};
 			side="Empty";
 			flags=5;
 			class Attributes
 			{
+				dynamicSimulation=1;
 			};
 			id=2175;
 			type="Land_Cargo_Tower_V1_F";
-			atlOffset=-0.42855072;
+			atlOffset=-0.42900085;
 		};
-		class Item47
+		class Item44
 		{
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={4931.9531,384.83304,8656.6748};
-				angles[]={0,0.23900661,0};
+				position[]={4931.9531,384.8331,8656.6748};
+				angles[]={0,0.23900539,0};
 			};
 			side="Empty";
 			flags=5;
 			class Attributes
 			{
+				dynamicSimulation=1;
 			};
 			id=2176;
 			type="Land_Cargo_Tower_V3_F";
-			atlOffset=0.085906982;
+			atlOffset=0.085968018;
 		};
-		class Item48
+		class Item45
 		{
 			dataType="Object";
 			class PositionInfo
 			{
 				position[]={5368.0552,77.027695,3705.2329};
-				angles[]={0,5.5374861,0};
+				angles[]={0,5.5374932,0};
 			};
 			side="Empty";
 			flags=5;
 			class Attributes
 			{
+				dynamicSimulation=1;
 			};
 			id=2177;
 			type="Land_Cargo_Tower_V3_F";
 		};
-		class Item49
+		class Item46
 		{
 			dataType="Object";
 			class PositionInfo
@@ -4890,7 +4267,7 @@ class Mission
 				nAttributes=1;
 			};
 		};
-		class Item50
+		class Item47
 		{
 			dataType="Object";
 			class PositionInfo
@@ -4931,7 +4308,7 @@ class Mission
 				nAttributes=1;
 			};
 		};
-		class Item51
+		class Item48
 		{
 			dataType="Object";
 			class PositionInfo
@@ -4943,12 +4320,13 @@ class Mission
 			flags=5;
 			class Attributes
 			{
+				dynamicSimulation=1;
 			};
 			id=2181;
 			type="Land_Cargo_Tower_V3_F";
 			atlOffset=0.1027832;
 		};
-		class Item52
+		class Item49
 		{
 			dataType="Object";
 			class PositionInfo
@@ -4960,12 +4338,13 @@ class Mission
 			flags=5;
 			class Attributes
 			{
+				dynamicSimulation=1;
 			};
 			id=2182;
 			type="Land_Cargo_Patrol_V3_F";
 			atlOffset=9.1552734e-005;
 		};
-		class Item53
+		class Item50
 		{
 			dataType="Object";
 			class PositionInfo
@@ -4976,12 +4355,13 @@ class Mission
 			flags=5;
 			class Attributes
 			{
+				dynamicSimulation=1;
 			};
 			id=2183;
 			type="Land_Cargo_Tower_V1_F";
 			atlOffset=3.5762787e-006;
 		};
-		class Item54
+		class Item51
 		{
 			dataType="Object";
 			class PositionInfo
@@ -4992,12 +4372,13 @@ class Mission
 			flags=5;
 			class Attributes
 			{
+				dynamicSimulation=1;
 			};
 			id=2184;
 			type="Land_Cargo_Patrol_V1_F";
 			atlOffset=-2.3841858e-007;
 		};
-		class Item55
+		class Item52
 		{
 			dataType="Object";
 			class PositionInfo
@@ -5038,7 +4419,7 @@ class Mission
 				nAttributes=1;
 			};
 		};
-		class Item56
+		class Item53
 		{
 			dataType="Object";
 			class PositionInfo
@@ -5079,7 +4460,7 @@ class Mission
 				nAttributes=1;
 			};
 		};
-		class Item57
+		class Item54
 		{
 			dataType="Logic";
 			class PositionInfo
@@ -5190,7 +4571,7 @@ class Mission
 				nAttributes=5;
 			};
 		};
-		class Item58
+		class Item55
 		{
 			dataType="Group";
 			side="Independent";
@@ -5202,15 +4583,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={9954.9219,21.520063,2261.5325};
-						angles[]={0,2.4981596,0};
+						position[]={9954.9219,21.152636,2261.5325};
+						angles[]={6.278389,2.4981596,6.1550903};
 					};
 					side="Independent";
-					flags=2;
+					flags=6;
 					class Attributes
 					{
 						rank="COLONEL";
-						init="this setCaptive true;";
 						isPlayable=1;
 						class Inventory
 						{
@@ -5233,7 +4613,6 @@ class Mission
 					};
 					id=2193;
 					type="I_G_Soldier_F";
-					atlOffset=0.36742783;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -5258,7 +4637,7 @@ class Mission
 						class Attribute1
 						{
 							property="ace_isEngineer";
-							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							expression="if !(_value == ([0, 1] select (_this getUnitTrait 'engineer')) || {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
 							class Value
 							{
 								class data
@@ -5353,7 +4732,7 @@ class Mission
 						class Attribute6
 						{
 							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
+							expression="if (_value != -1 && {_value != (parseNumber (_this getUnitTrait 'medic'))}) then {_this setVariable [""ace_medical_medicClass"", _value, true]}";
 							class Value
 							{
 								class data
@@ -5377,9 +4756,8 @@ class Mission
 			{
 			};
 			id=2192;
-			atlOffset=0.36742783;
 		};
-		class Item59
+		class Item56
 		{
 			dataType="Group";
 			side="Independent";
@@ -5391,15 +4769,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={9953.749,21.667042,2260.6958};
-						angles[]={0,2.4981596,0};
+						position[]={9953.749,21.299656,2260.6958};
+						angles[]={6.278389,2.4981596,6.1550903};
 					};
 					side="Independent";
-					flags=2;
+					flags=6;
 					class Attributes
 					{
 						rank="COLONEL";
-						init="this setCaptive true;";
 						isPlayable=1;
 						class Inventory
 						{
@@ -5422,7 +4799,6 @@ class Mission
 					};
 					id=2195;
 					type="I_G_Soldier_F";
-					atlOffset=0.36738586;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -5447,7 +4823,7 @@ class Mission
 						class Attribute1
 						{
 							property="ace_isEngineer";
-							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							expression="if !(_value == ([0, 1] select (_this getUnitTrait 'engineer')) || {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
 							class Value
 							{
 								class data
@@ -5542,7 +4918,7 @@ class Mission
 						class Attribute6
 						{
 							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
+							expression="if (_value != -1 && {_value != (parseNumber (_this getUnitTrait 'medic'))}) then {_this setVariable [""ace_medical_medicClass"", _value, true]}";
 							class Value
 							{
 								class data
@@ -5566,9 +4942,8 @@ class Mission
 			{
 			};
 			id=2194;
-			atlOffset=0.36738586;
 		};
-		class Item60
+		class Item57
 		{
 			dataType="Group";
 			side="Independent";
@@ -5580,15 +4955,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={9956.0439,21.379349,2262.3418};
-						angles[]={0,2.5345042,0};
+						position[]={9956.0439,21.011971,2262.3418};
+						angles[]={6.278389,2.5345042,6.1550903};
 					};
 					side="Independent";
-					flags=2;
+					flags=6;
 					class Attributes
 					{
 						rank="COLONEL";
-						init="this setCaptive true;";
 						isPlayable=1;
 						class Inventory
 						{
@@ -5611,7 +4985,6 @@ class Mission
 					};
 					id=2197;
 					type="I_G_Soldier_F";
-					atlOffset=0.36737823;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -5636,7 +5009,7 @@ class Mission
 						class Attribute1
 						{
 							property="ace_isEngineer";
-							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							expression="if !(_value == ([0, 1] select (_this getUnitTrait 'engineer')) || {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
 							class Value
 							{
 								class data
@@ -5731,7 +5104,7 @@ class Mission
 						class Attribute6
 						{
 							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
+							expression="if (_value != -1 && {_value != (parseNumber (_this getUnitTrait 'medic'))}) then {_this setVariable [""ace_medical_medicClass"", _value, true]}";
 							class Value
 							{
 								class data
@@ -5755,9 +5128,8 @@ class Mission
 			{
 			};
 			id=2196;
-			atlOffset=0.36737823;
 		};
-		class Item61
+		class Item58
 		{
 			dataType="Group";
 			side="Independent";
@@ -5769,15 +5141,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={9951.7754,21.912077,2259.563};
-						angles[]={0,2.4981596,0};
+						position[]={9951.7754,21.544558,2259.563};
+						angles[]={6.2751846,2.4981596,6.1582398};
 					};
 					side="Independent";
-					flags=2;
+					flags=6;
 					class Attributes
 					{
 						rank="COLONEL";
-						init="this setCaptive true;";
 						isPlayable=1;
 						class Inventory
 						{
@@ -5800,7 +5171,6 @@ class Mission
 					};
 					id=2199;
 					type="I_G_Soldier_F";
-					atlOffset=0.36751938;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -5825,7 +5195,7 @@ class Mission
 						class Attribute1
 						{
 							property="ace_isEngineer";
-							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							expression="if !(_value == ([0, 1] select (_this getUnitTrait 'engineer')) || {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
 							class Value
 							{
 								class data
@@ -5920,7 +5290,7 @@ class Mission
 						class Attribute6
 						{
 							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
+							expression="if (_value != -1 && {_value != (parseNumber (_this getUnitTrait 'medic'))}) then {_this setVariable [""ace_medical_medicClass"", _value, true]}";
 							class Value
 							{
 								class data
@@ -5944,9 +5314,8 @@ class Mission
 			{
 			};
 			id=2198;
-			atlOffset=0.36751938;
 		};
-		class Item62
+		class Item59
 		{
 			dataType="Group";
 			side="Independent";
@@ -5958,7 +5327,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={9952.5205,21.45392,2259.9194};
+						position[]={9952.5205,21.453882,2259.9194};
 						angles[]={6.2751846,2.4981596,6.1582398};
 					};
 					side="Independent";
@@ -5966,7 +5335,6 @@ class Mission
 					class Attributes
 					{
 						rank="COLONEL";
-						init="this setCaptive true;";
 						isPlayable=1;
 						class Inventory
 						{
@@ -5989,7 +5357,6 @@ class Mission
 					};
 					id=2201;
 					type="I_G_Soldier_F";
-					atlOffset=3.8146973e-005;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -6014,7 +5381,7 @@ class Mission
 						class Attribute1
 						{
 							property="ace_isEngineer";
-							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							expression="if !(_value == ([0, 1] select (_this getUnitTrait 'engineer')) || {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
 							class Value
 							{
 								class data
@@ -6109,7 +5476,7 @@ class Mission
 						class Attribute6
 						{
 							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
+							expression="if (_value != -1 && {_value != (parseNumber (_this getUnitTrait 'medic'))}) then {_this setVariable [""ace_medical_medicClass"", _value, true]}";
 							class Value
 							{
 								class data
@@ -6133,9 +5500,8 @@ class Mission
 			{
 			};
 			id=2200;
-			atlOffset=3.8146973e-005;
 		};
-		class Item63
+		class Item60
 		{
 			dataType="Group";
 			side="Independent";
@@ -6147,7 +5513,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={9957.3271,20.689541,2263.574};
+						position[]={9957.3271,20.689602,2263.574};
 						angles[]={0.15319067,2.4981596,6.1550903};
 					};
 					side="Independent";
@@ -6155,7 +5521,6 @@ class Mission
 					class Attributes
 					{
 						rank="COLONEL";
-						init="this setCaptive true;";
 						isPlayable=1;
 						class Inventory
 						{
@@ -6178,7 +5543,6 @@ class Mission
 					};
 					id=2203;
 					type="I_G_Soldier_F";
-					atlOffset=-6.1035156e-005;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -6203,7 +5567,7 @@ class Mission
 						class Attribute1
 						{
 							property="ace_isEngineer";
-							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							expression="if !(_value == ([0, 1] select (_this getUnitTrait 'engineer')) || {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
 							class Value
 							{
 								class data
@@ -6298,7 +5662,7 @@ class Mission
 						class Attribute6
 						{
 							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
+							expression="if (_value != -1 && {_value != (parseNumber (_this getUnitTrait 'medic'))}) then {_this setVariable [""ace_medical_medicClass"", _value, true]}";
 							class Value
 							{
 								class data
@@ -6322,9 +5686,8 @@ class Mission
 			{
 			};
 			id=2202;
-			atlOffset=-6.1035156e-005;
 		};
-		class Item64
+		class Item61
 		{
 			dataType="Group";
 			side="Independent";
@@ -6336,7 +5699,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={9958.9033,20.329815,2264.5898};
+						position[]={9958.9033,20.329834,2264.5898};
 						angles[]={0.15319067,2.4981596,6.1550903};
 					};
 					side="Independent";
@@ -6344,7 +5707,6 @@ class Mission
 					class Attributes
 					{
 						rank="COLONEL";
-						init="this setCaptive true;";
 						isPlayable=1;
 						class Inventory
 						{
@@ -6367,7 +5729,6 @@ class Mission
 					};
 					id=2205;
 					type="I_G_Soldier_F";
-					atlOffset=-1.9073486e-005;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -6392,7 +5753,7 @@ class Mission
 						class Attribute1
 						{
 							property="ace_isEngineer";
-							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							expression="if !(_value == ([0, 1] select (_this getUnitTrait 'engineer')) || {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
 							class Value
 							{
 								class data
@@ -6487,7 +5848,7 @@ class Mission
 						class Attribute6
 						{
 							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
+							expression="if (_value != -1 && {_value != (parseNumber (_this getUnitTrait 'medic'))}) then {_this setVariable [""ace_medical_medicClass"", _value, true]}";
 							class Value
 							{
 								class data
@@ -6511,9 +5872,8 @@ class Mission
 			{
 			};
 			id=2204;
-			atlOffset=-1.9073486e-005;
 		};
-		class Item65
+		class Item62
 		{
 			dataType="Group";
 			side="Independent";
@@ -6525,15 +5885,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={9956.2334,21.324631,2256.1323};
-						angles[]={0,2.4981596,0};
+						position[]={9956.2334,20.957203,2256.1323};
+						angles[]={6.2751846,2.4981596,6.1582398};
 					};
 					side="Independent";
-					flags=2;
+					flags=6;
 					class Attributes
 					{
 						rank="COLONEL";
-						init="this setCaptive true;";
 						isPlayable=1;
 						class Inventory
 						{
@@ -6556,7 +5915,6 @@ class Mission
 					};
 					id=2207;
 					type="I_G_Soldier_F";
-					atlOffset=0.36742783;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -6581,7 +5939,7 @@ class Mission
 						class Attribute1
 						{
 							property="ace_isEngineer";
-							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							expression="if !(_value == ([0, 1] select (_this getUnitTrait 'engineer')) || {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
 							class Value
 							{
 								class data
@@ -6676,7 +6034,7 @@ class Mission
 						class Attribute6
 						{
 							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
+							expression="if (_value != -1 && {_value != (parseNumber (_this getUnitTrait 'medic'))}) then {_this setVariable [""ace_medical_medicClass"", _value, true]}";
 							class Value
 							{
 								class data
@@ -6700,9 +6058,8 @@ class Mission
 			{
 			};
 			id=2206;
-			atlOffset=0.36742783;
 		};
-		class Item66
+		class Item63
 		{
 			dataType="Group";
 			side="Independent";
@@ -6714,15 +6071,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={9955.0605,21.465181,2255.2957};
-						angles[]={0,2.4981596,0};
+						position[]={9955.0605,21.097795,2255.2957};
+						angles[]={6.2751846,2.4981596,6.1582398};
 					};
 					side="Independent";
-					flags=2;
+					flags=6;
 					class Attributes
 					{
 						rank="COLONEL";
-						init="this setCaptive true;";
 						isPlayable=1;
 						class Inventory
 						{
@@ -6745,7 +6101,6 @@ class Mission
 					};
 					id=2209;
 					type="I_G_Soldier_F";
-					atlOffset=0.36738586;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -6770,7 +6125,7 @@ class Mission
 						class Attribute1
 						{
 							property="ace_isEngineer";
-							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							expression="if !(_value == ([0, 1] select (_this getUnitTrait 'engineer')) || {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
 							class Value
 							{
 								class data
@@ -6865,7 +6220,7 @@ class Mission
 						class Attribute6
 						{
 							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
+							expression="if (_value != -1 && {_value != (parseNumber (_this getUnitTrait 'medic'))}) then {_this setVariable [""ace_medical_medicClass"", _value, true]}";
 							class Value
 							{
 								class data
@@ -6889,9 +6244,8 @@ class Mission
 			{
 			};
 			id=2208;
-			atlOffset=0.36738586;
 		};
-		class Item67
+		class Item64
 		{
 			dataType="Group";
 			side="Independent";
@@ -6903,15 +6257,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={9957.3555,21.184507,2256.9417};
-						angles[]={0,2.5345042,0};
+						position[]={9957.3555,20.817129,2256.9417};
+						angles[]={6.278389,2.5345042,6.1550903};
 					};
 					side="Independent";
-					flags=2;
+					flags=6;
 					class Attributes
 					{
 						rank="COLONEL";
-						init="this setCaptive true;";
 						isPlayable=1;
 						class Inventory
 						{
@@ -6934,7 +6287,6 @@ class Mission
 					};
 					id=2211;
 					type="I_G_Soldier_F";
-					atlOffset=0.36737823;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -6959,7 +6311,7 @@ class Mission
 						class Attribute1
 						{
 							property="ace_isEngineer";
-							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							expression="if !(_value == ([0, 1] select (_this getUnitTrait 'engineer')) || {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
 							class Value
 							{
 								class data
@@ -7054,7 +6406,7 @@ class Mission
 						class Attribute6
 						{
 							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
+							expression="if (_value != -1 && {_value != (parseNumber (_this getUnitTrait 'medic'))}) then {_this setVariable [""ace_medical_medicClass"", _value, true]}";
 							class Value
 							{
 								class data
@@ -7078,9 +6430,8 @@ class Mission
 			{
 			};
 			id=2210;
-			atlOffset=0.36737823;
 		};
-		class Item68
+		class Item65
 		{
 			dataType="Group";
 			side="Independent";
@@ -7092,15 +6443,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={9953.0869,21.704151,2254.1628};
-						angles[]={0,2.4981596,0};
+						position[]={9953.0869,21.336632,2254.1628};
+						angles[]={6.2751846,2.4981596,6.1582398};
 					};
 					side="Independent";
-					flags=2;
+					flags=6;
 					class Attributes
 					{
 						rank="COLONEL";
-						init="this setCaptive true;";
 						isPlayable=1;
 						class Inventory
 						{
@@ -7123,7 +6473,6 @@ class Mission
 					};
 					id=2213;
 					type="I_G_Soldier_F";
-					atlOffset=0.36751938;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -7148,7 +6497,7 @@ class Mission
 						class Attribute1
 						{
 							property="ace_isEngineer";
-							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							expression="if !(_value == ([0, 1] select (_this getUnitTrait 'engineer')) || {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
 							class Value
 							{
 								class data
@@ -7243,7 +6592,7 @@ class Mission
 						class Attribute6
 						{
 							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
+							expression="if (_value != -1 && {_value != (parseNumber (_this getUnitTrait 'medic'))}) then {_this setVariable [""ace_medical_medicClass"", _value, true]}";
 							class Value
 							{
 								class data
@@ -7267,9 +6616,8 @@ class Mission
 			{
 			};
 			id=2212;
-			atlOffset=0.36751938;
 		};
-		class Item69
+		class Item66
 		{
 			dataType="Group";
 			side="Independent";
@@ -7281,7 +6629,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={9953.832,21.245996,2254.5193};
+						position[]={9953.832,21.245958,2254.5193};
 						angles[]={6.2751846,2.4981596,6.1582398};
 					};
 					side="Independent";
@@ -7289,7 +6637,6 @@ class Mission
 					class Attributes
 					{
 						rank="COLONEL";
-						init="this setCaptive true;";
 						isPlayable=1;
 						class Inventory
 						{
@@ -7312,7 +6659,6 @@ class Mission
 					};
 					id=2215;
 					type="I_G_Soldier_F";
-					atlOffset=3.8146973e-005;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -7337,7 +6683,7 @@ class Mission
 						class Attribute1
 						{
 							property="ace_isEngineer";
-							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							expression="if !(_value == ([0, 1] select (_this getUnitTrait 'engineer')) || {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
 							class Value
 							{
 								class data
@@ -7432,7 +6778,7 @@ class Mission
 						class Attribute6
 						{
 							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
+							expression="if (_value != -1 && {_value != (parseNumber (_this getUnitTrait 'medic'))}) then {_this setVariable [""ace_medical_medicClass"", _value, true]}";
 							class Value
 							{
 								class data
@@ -7456,9 +6802,8 @@ class Mission
 			{
 			};
 			id=2214;
-			atlOffset=3.8146973e-005;
 		};
-		class Item70
+		class Item67
 		{
 			dataType="Group";
 			side="Independent";
@@ -7470,7 +6815,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={9958.6387,20.6577,2258.1738};
+						position[]={9958.6387,20.657761,2258.1738};
 						angles[]={6.278389,2.4981596,6.1550903};
 					};
 					side="Independent";
@@ -7478,7 +6823,6 @@ class Mission
 					class Attributes
 					{
 						rank="COLONEL";
-						init="this setCaptive true;";
 						isPlayable=1;
 						class Inventory
 						{
@@ -7501,7 +6845,6 @@ class Mission
 					};
 					id=2217;
 					type="I_G_Soldier_F";
-					atlOffset=-6.1035156e-005;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -7526,7 +6869,7 @@ class Mission
 						class Attribute1
 						{
 							property="ace_isEngineer";
-							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							expression="if !(_value == ([0, 1] select (_this getUnitTrait 'engineer')) || {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
 							class Value
 							{
 								class data
@@ -7621,7 +6964,7 @@ class Mission
 						class Attribute6
 						{
 							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
+							expression="if (_value != -1 && {_value != (parseNumber (_this getUnitTrait 'medic'))}) then {_this setVariable [""ace_medical_medicClass"", _value, true]}";
 							class Value
 							{
 								class data
@@ -7645,9 +6988,8 @@ class Mission
 			{
 			};
 			id=2216;
-			atlOffset=-6.1035156e-005;
 		};
-		class Item71
+		class Item68
 		{
 			dataType="Group";
 			side="Independent";
@@ -7659,7 +7001,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={9960.2148,20.459597,2259.1897};
+						position[]={9960.2148,20.459616,2259.1897};
 						angles[]={6.278389,2.4981596,6.1550903};
 					};
 					side="Independent";
@@ -7667,7 +7009,6 @@ class Mission
 					class Attributes
 					{
 						rank="COLONEL";
-						init="this setCaptive true;";
 						isPlayable=1;
 						class Inventory
 						{
@@ -7690,7 +7031,6 @@ class Mission
 					};
 					id=2219;
 					type="I_G_Soldier_F";
-					atlOffset=-1.9073486e-005;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -7715,7 +7055,7 @@ class Mission
 						class Attribute1
 						{
 							property="ace_isEngineer";
-							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							expression="if !(_value == ([0, 1] select (_this getUnitTrait 'engineer')) || {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
 							class Value
 							{
 								class data
@@ -7810,7 +7150,7 @@ class Mission
 						class Attribute6
 						{
 							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
+							expression="if (_value != -1 && {_value != (parseNumber (_this getUnitTrait 'medic'))}) then {_this setVariable [""ace_medical_medicClass"", _value, true]}";
 							class Value
 							{
 								class data
@@ -7834,9 +7174,8 @@ class Mission
 			{
 			};
 			id=2218;
-			atlOffset=-1.9073486e-005;
 		};
-		class Item72
+		class Item69
 		{
 			dataType="Group";
 			side="Independent";
@@ -7848,15 +7187,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={9961.2285,20.670782,2253.822};
-						angles[]={0,2.4981596,0};
+						position[]={9961.2285,20.303354,2253.822};
+						angles[]={6.278389,2.4981596,6.1550903};
 					};
 					side="Independent";
-					flags=2;
+					flags=6;
 					class Attributes
 					{
 						rank="COLONEL";
-						init="this setCaptive true;";
 						isPlayable=1;
 						class Inventory
 						{
@@ -7879,7 +7217,6 @@ class Mission
 					};
 					id=2221;
 					type="I_G_Soldier_F";
-					atlOffset=0.36742783;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -7904,7 +7241,7 @@ class Mission
 						class Attribute1
 						{
 							property="ace_isEngineer";
-							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							expression="if !(_value == ([0, 1] select (_this getUnitTrait 'engineer')) || {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
 							class Value
 							{
 								class data
@@ -7999,7 +7336,7 @@ class Mission
 						class Attribute6
 						{
 							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
+							expression="if (_value != -1 && {_value != (parseNumber (_this getUnitTrait 'medic'))}) then {_this setVariable [""ace_medical_medicClass"", _value, true]}";
 							class Value
 							{
 								class data
@@ -8023,9 +7360,8 @@ class Mission
 			{
 			};
 			id=2220;
-			atlOffset=0.36742783;
 		};
-		class Item73
+		class Item70
 		{
 			dataType="Group";
 			side="Independent";
@@ -8037,15 +7373,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={9960.0557,20.81776,2252.9854};
-						angles[]={0,2.4981596,0};
+						position[]={9960.0557,20.450375,2252.9854};
+						angles[]={6.278389,2.4981596,6.1550903};
 					};
 					side="Independent";
-					flags=2;
+					flags=6;
 					class Attributes
 					{
 						rank="COLONEL";
-						init="this setCaptive true;";
 						isPlayable=1;
 						class Inventory
 						{
@@ -8068,7 +7403,6 @@ class Mission
 					};
 					id=2223;
 					type="I_G_Soldier_F";
-					atlOffset=0.36738586;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -8093,7 +7427,7 @@ class Mission
 						class Attribute1
 						{
 							property="ace_isEngineer";
-							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							expression="if !(_value == ([0, 1] select (_this getUnitTrait 'engineer')) || {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
 							class Value
 							{
 								class data
@@ -8188,7 +7522,7 @@ class Mission
 						class Attribute6
 						{
 							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
+							expression="if (_value != -1 && {_value != (parseNumber (_this getUnitTrait 'medic'))}) then {_this setVariable [""ace_medical_medicClass"", _value, true]}";
 							class Value
 							{
 								class data
@@ -8212,9 +7546,8 @@ class Mission
 			{
 			};
 			id=2222;
-			atlOffset=0.36738586;
 		};
-		class Item74
+		class Item71
 		{
 			dataType="Group";
 			side="Independent";
@@ -8226,15 +7559,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={9962.3506,20.530067,2254.6313};
-						angles[]={0,2.5345042,0};
+						position[]={9962.3506,20.162689,2254.6313};
+						angles[]={6.278389,2.5345042,6.1550903};
 					};
 					side="Independent";
-					flags=2;
+					flags=6;
 					class Attributes
 					{
 						rank="COLONEL";
-						init="this setCaptive true;";
 						isPlayable=1;
 						class Inventory
 						{
@@ -8257,7 +7589,6 @@ class Mission
 					};
 					id=2225;
 					type="I_G_Soldier_F";
-					atlOffset=0.36737823;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -8282,7 +7613,7 @@ class Mission
 						class Attribute1
 						{
 							property="ace_isEngineer";
-							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							expression="if !(_value == ([0, 1] select (_this getUnitTrait 'engineer')) || {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
 							class Value
 							{
 								class data
@@ -8377,7 +7708,7 @@ class Mission
 						class Attribute6
 						{
 							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
+							expression="if (_value != -1 && {_value != (parseNumber (_this getUnitTrait 'medic'))}) then {_this setVariable [""ace_medical_medicClass"", _value, true]}";
 							class Value
 							{
 								class data
@@ -8401,9 +7732,8 @@ class Mission
 			{
 			};
 			id=2224;
-			atlOffset=0.36737823;
 		};
-		class Item75
+		class Item72
 		{
 			dataType="Group";
 			side="Independent";
@@ -8415,15 +7745,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={9958.082,21.058302,2251.8525};
-						angles[]={0,2.4981596,0};
+						position[]={9958.082,20.690783,2251.8525};
+						angles[]={6.2751846,2.4981596,6.1582398};
 					};
 					side="Independent";
-					flags=2;
+					flags=6;
 					class Attributes
 					{
 						rank="COLONEL";
-						init="this setCaptive true;";
 						isPlayable=1;
 						class Inventory
 						{
@@ -8446,7 +7775,6 @@ class Mission
 					};
 					id=2227;
 					type="I_G_Soldier_F";
-					atlOffset=0.36751938;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -8471,7 +7799,7 @@ class Mission
 						class Attribute1
 						{
 							property="ace_isEngineer";
-							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							expression="if !(_value == ([0, 1] select (_this getUnitTrait 'engineer')) || {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
 							class Value
 							{
 								class data
@@ -8566,7 +7894,7 @@ class Mission
 						class Attribute6
 						{
 							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
+							expression="if (_value != -1 && {_value != (parseNumber (_this getUnitTrait 'medic'))}) then {_this setVariable [""ace_medical_medicClass"", _value, true]}";
 							class Value
 							{
 								class data
@@ -8590,9 +7918,8 @@ class Mission
 			{
 			};
 			id=2226;
-			atlOffset=0.36751938;
 		};
-		class Item76
+		class Item73
 		{
 			dataType="Group";
 			side="Independent";
@@ -8604,7 +7931,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={9958.8271,20.60005,2252.209};
+						position[]={9958.8271,20.600012,2252.209};
 						angles[]={6.2751846,2.4981596,6.1582398};
 					};
 					side="Independent";
@@ -8612,7 +7939,6 @@ class Mission
 					class Attributes
 					{
 						rank="COLONEL";
-						init="this setCaptive true;";
 						isPlayable=1;
 						class Inventory
 						{
@@ -8635,7 +7961,6 @@ class Mission
 					};
 					id=2229;
 					type="I_G_Soldier_F";
-					atlOffset=3.8146973e-005;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -8660,7 +7985,7 @@ class Mission
 						class Attribute1
 						{
 							property="ace_isEngineer";
-							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							expression="if !(_value == ([0, 1] select (_this getUnitTrait 'engineer')) || {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
 							class Value
 							{
 								class data
@@ -8755,7 +8080,7 @@ class Mission
 						class Attribute6
 						{
 							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
+							expression="if (_value != -1 && {_value != (parseNumber (_this getUnitTrait 'medic'))}) then {_this setVariable [""ace_medical_medicClass"", _value, true]}";
 							class Value
 							{
 								class data
@@ -8779,9 +8104,8 @@ class Mission
 			{
 			};
 			id=2228;
-			atlOffset=3.8146973e-005;
 		};
-		class Item77
+		class Item74
 		{
 			dataType="Group";
 			side="Independent";
@@ -8793,7 +8117,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={9963.6338,19.966072,2255.8635};
+						position[]={9963.6338,19.966133,2255.8635};
 						angles[]={6.278389,2.4981596,6.1229706};
 					};
 					side="Independent";
@@ -8801,7 +8125,6 @@ class Mission
 					class Attributes
 					{
 						rank="COLONEL";
-						init="this setCaptive true;";
 						isPlayable=1;
 						class Inventory
 						{
@@ -8824,7 +8147,6 @@ class Mission
 					};
 					id=2231;
 					type="I_G_Soldier_F";
-					atlOffset=-6.1035156e-005;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -8849,7 +8171,7 @@ class Mission
 						class Attribute1
 						{
 							property="ace_isEngineer";
-							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							expression="if !(_value == ([0, 1] select (_this getUnitTrait 'engineer')) || {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
 							class Value
 							{
 								class data
@@ -8944,7 +8266,7 @@ class Mission
 						class Attribute6
 						{
 							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
+							expression="if (_value != -1 && {_value != (parseNumber (_this getUnitTrait 'medic'))}) then {_this setVariable [""ace_medical_medicClass"", _value, true]}";
 							class Value
 							{
 								class data
@@ -8968,9 +8290,8 @@ class Mission
 			{
 			};
 			id=2230;
-			atlOffset=-6.1035156e-005;
 		};
-		class Item78
+		class Item75
 		{
 			dataType="Group";
 			side="Independent";
@@ -8982,7 +8303,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={9965.21,19.71627,2256.8794};
+						position[]={9965.21,19.71629,2256.8794};
 						angles[]={6.278389,2.4981596,6.1229706};
 					};
 					side="Independent";
@@ -8990,7 +8311,6 @@ class Mission
 					class Attributes
 					{
 						rank="COLONEL";
-						init="this setCaptive true;";
 						isPlayable=1;
 						class Inventory
 						{
@@ -9013,7 +8333,6 @@ class Mission
 					};
 					id=2233;
 					type="I_G_Soldier_F";
-					atlOffset=-1.9073486e-005;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -9038,7 +8357,7 @@ class Mission
 						class Attribute1
 						{
 							property="ace_isEngineer";
-							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							expression="if !(_value == ([0, 1] select (_this getUnitTrait 'engineer')) || {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
 							class Value
 							{
 								class data
@@ -9133,7 +8452,7 @@ class Mission
 						class Attribute6
 						{
 							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
+							expression="if (_value != -1 && {_value != (parseNumber (_this getUnitTrait 'medic'))}) then {_this setVariable [""ace_medical_medicClass"", _value, true]}";
 							class Value
 							{
 								class data
@@ -9157,9 +8476,8 @@ class Mission
 			{
 			};
 			id=2232;
-			atlOffset=-1.9073486e-005;
 		};
-		class Item79
+		class Item76
 		{
 			dataType="Group";
 			side="Independent";
@@ -9171,15 +8489,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={9959.8965,20.638798,2247.8137};
-						angles[]={0,2.4981596,0};
+						position[]={9959.8965,20.27137,2247.8137};
+						angles[]={6.2041502,2.4981596,6.1582398};
 					};
 					side="Independent";
-					flags=2;
+					flags=6;
 					class Attributes
 					{
 						rank="COLONEL";
-						init="this setCaptive true;";
 						isPlayable=1;
 						class Inventory
 						{
@@ -9202,7 +8519,6 @@ class Mission
 					};
 					id=2235;
 					type="I_G_Soldier_F";
-					atlOffset=0.36742783;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -9227,7 +8543,7 @@ class Mission
 						class Attribute1
 						{
 							property="ace_isEngineer";
-							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							expression="if !(_value == ([0, 1] select (_this getUnitTrait 'engineer')) || {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
 							class Value
 							{
 								class data
@@ -9322,7 +8638,7 @@ class Mission
 						class Attribute6
 						{
 							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
+							expression="if (_value != -1 && {_value != (parseNumber (_this getUnitTrait 'medic'))}) then {_this setVariable [""ace_medical_medicClass"", _value, true]}";
 							class Value
 							{
 								class data
@@ -9346,9 +8662,8 @@ class Mission
 			{
 			};
 			id=2234;
-			atlOffset=0.36742783;
 		};
-		class Item80
+		class Item77
 		{
 			dataType="Group";
 			side="Independent";
@@ -9360,15 +8675,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={9961.0186,20.561884,2248.623};
-						angles[]={0,2.5345042,0};
+						position[]={9961.0186,20.194506,2248.623};
+						angles[]={6.2041502,2.5345042,6.1582398};
 					};
 					side="Independent";
-					flags=2;
+					flags=6;
 					class Attributes
 					{
 						rank="COLONEL";
-						init="this setCaptive true;";
 						isPlayable=1;
 						class Inventory
 						{
@@ -9391,7 +8705,6 @@ class Mission
 					};
 					id=2237;
 					type="I_G_Soldier_F";
-					atlOffset=0.36737823;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -9416,7 +8729,7 @@ class Mission
 						class Attribute1
 						{
 							property="ace_isEngineer";
-							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							expression="if !(_value == ([0, 1] select (_this getUnitTrait 'engineer')) || {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
 							class Value
 							{
 								class data
@@ -9511,7 +8824,7 @@ class Mission
 						class Attribute6
 						{
 							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
+							expression="if (_value != -1 && {_value != (parseNumber (_this getUnitTrait 'medic'))}) then {_this setVariable [""ace_medical_medicClass"", _value, true]}";
 							class Value
 							{
 								class data
@@ -9535,9 +8848,8 @@ class Mission
 			{
 			};
 			id=2236;
-			atlOffset=0.36737823;
 		};
-		class Item81
+		class Item78
 		{
 			dataType="Group";
 			side="Independent";
@@ -9549,7 +8861,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={9962.3018,20.130854,2249.8552};
+						position[]={9962.3018,20.130915,2249.8552};
 						angles[]={6.2041502,2.4981596,6.1582398};
 					};
 					side="Independent";
@@ -9557,7 +8869,6 @@ class Mission
 					class Attributes
 					{
 						rank="COLONEL";
-						init="this setCaptive true;";
 						isPlayable=1;
 						class Inventory
 						{
@@ -9580,7 +8891,6 @@ class Mission
 					};
 					id=2239;
 					type="I_G_Soldier_F";
-					atlOffset=-6.1035156e-005;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -9605,7 +8915,7 @@ class Mission
 						class Attribute1
 						{
 							property="ace_isEngineer";
-							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
+							expression="if !(_value == ([0, 1] select (_this getUnitTrait 'engineer')) || {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
 							class Value
 							{
 								class data
@@ -9700,7 +9010,7 @@ class Mission
 						class Attribute6
 						{
 							property="ace_isMedic";
-							expression="if (_value > -1) then {_this setVariable [""ace_medical_medicClass"", _value, true];};";
+							expression="if (_value != -1 && {_value != (parseNumber (_this getUnitTrait 'medic'))}) then {_this setVariable [""ace_medical_medicClass"", _value, true]}";
 							class Value
 							{
 								class data
@@ -9724,7 +9034,6 @@ class Mission
 			{
 			};
 			id=2238;
-			atlOffset=-6.1035156e-005;
 		};
 	};
 	class Connections
