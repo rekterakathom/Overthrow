@@ -48,7 +48,7 @@ OT_mapcache_radar = [];
 				_vehs pushback [
 					getText(_cfgVeh >> (typeof _x) >> "icon"),
 					[1,1,1,1],
-					getpos _x,
+					getPosASL _x,
 					0.4,
 					0.4,
 					getdir _x
@@ -64,7 +64,7 @@ OT_mapcache_radar = [];
 					_vehs pushback [
 						_i,
 						_col,
-						position _x,
+						getPosASL _x,
 						30,
 						30,
 						0
@@ -72,10 +72,11 @@ OT_mapcache_radar = [];
 				};
 			};
 
-		if((_x isKindOf "Air") && !(_x isKindOf "Parachute") && {(alive _x)} && ((side _x) isEqualTo west) && (_x call OT_fnc_isRadarInRange) && {(count crew _x > 0)}) then {
+		if((_x isKindOf "Air") && {(alive _x)} && ((side _x) isEqualTo west) && (_x call OT_fnc_isRadarInRange) && {(count crew _x > 0)}) then {
 			_radar pushback _x;
 		};
-	}foreach(vehicles);
+	//}foreach(vehicles);
+	} forEach entities [["Car", "Air", "Ship", "StaticWeapon", OT_item_CargoContainer], ["Parachute"], false, false];
 	OT_mapcache_vehicles = _vehs;
 	OT_mapcache_radar = _radar;
 }, 3, []] call CBA_fnc_addPerFrameHandler;

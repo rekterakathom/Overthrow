@@ -26,11 +26,11 @@ if(isMultiplayer && OT_showPlayerMarkers) then {
 
 private _grpUnits = groupSelectedUnits player;
 {
-	if (!(isPlayer _x) && {(side _x isEqualTo resistance) || captive _x} && {(_x getVariable ["polgarrison",""]) isEqualTo ""}) then {
+	if (!(isPlayer _x) && {((side _x isEqualTo resistance) || captive _x) && {(_x getVariable ["polgarrison",""]) isEqualTo ""}}) then {
 		private _veh = vehicle _x;
 		if(_veh isEqualTo _x) then {
 			private _color = [[0,0.2,0,1],[0,0.5,0,1]] select captive _x;
-			private _visPos = visiblePosition _x;
+			private _visPos = getPosASL _x;
 			private _txt = "";
 			if(leader _x isEqualTo player) then {
 				expectedDestination _x params ["_destpos","_planning"];
@@ -170,7 +170,7 @@ if(OT_showEnemyGroups) then {
 					_mapCtrl drawIcon [
 						"\A3\ui_f\data\map\markers\nato\b_inf.paa",
 						[0,0.3,0.59,((_ka-1.4) / 1) min 1],
-						visiblePosition _u,
+						getPosASL _u,
 						30,
 						30,
 						0
@@ -196,7 +196,7 @@ if(OT_showEnemyGroups) then {
 					_mapCtrl drawIcon [
 						"\A3\ui_f\data\map\markers\nato\b_inf.paa",
 						[0.5,0,0,((_ka-1.4) / 1) min 1],
-						visiblePosition _u,
+						getPosASL _u,
 						30,
 						30,
 						0
@@ -365,7 +365,7 @@ if(!isNil "_qrf") then {
 	_mapCtrl drawIcon [
 		_i,
 		[0,0.3,0.59,1],
-		position _x,
+		getPosASL _x,
 		30,
 		30,
 		0
