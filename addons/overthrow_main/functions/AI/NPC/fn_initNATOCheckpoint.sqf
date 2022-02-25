@@ -89,7 +89,7 @@ while {!(isNil "_group") && count (units _group) > 0} do {\
 							_v setVelocity [0,0,0];
 							{
 								[_x,_v,true] call OT_fnc_dumpStuff;
-							}foreach(units _v);
+							}foreach(crew _v);
 						};
 					};
 				}else{
@@ -102,7 +102,7 @@ while {!(isNil "_group") && count (units _group) > 0} do {\
 							_v setVelocity [0,0,0];
 						};
 
-						_items = (objectParent _x) call OT_fnc_unitStock;
+						_items = (vehicle _x) call OT_fnc_unitStock;
 
 						{
 							_cls = _x select 0;
@@ -132,7 +132,7 @@ while {!(isNil "_group") && count (units _group) > 0} do {\
 								{
 									_x setCaptive false;
 									[_x] call OT_fnc_revealToNATO;
-								}foreach(units vehicle _unit);
+								}foreach(crew vehicle _unit);
 							}else{
 								_msg = "We found some illegal items and confiscated them, be on your way";
 							};
