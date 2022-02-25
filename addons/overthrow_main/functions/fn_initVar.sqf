@@ -314,7 +314,7 @@ if(isServer) then {
 		OT_loadedPrices pushback (_x select 0);
 		cost setVariable[_x select 0,_x select 1, true];
 	}forEach(OT_priceData);
-	OT_priceData = []; //free memory
+	OT_priceData = nil; //free memory
 
 	call compileScript ["\overthrow_main\data\gangnames.sqf", false];
 };
