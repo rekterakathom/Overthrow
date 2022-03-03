@@ -68,7 +68,7 @@ if (VCM_RAGDOLL && {_damage > 0.1} && {!(lifestate _unit isEqualTo "INCAPACITATE
 						_unit playMoveNow "amovppnemstpsraswrfldnon_aadjppnemstpsraswrflddown"; //Go as low as possible
 						_unit spawn 
 						{
-							sleep 4 + random 2;
+							sleep (4 + random 2);
 							//Return to normal
 							if (alive _this && {animationState _this isEqualTo "aadjppnemstpsraswrflddown"}) then {_this playMoveNow "aadjppnemstpsraswrflddown_amovppnemstpsraswrfldnon"};
 						};
@@ -87,7 +87,7 @@ if (VCM_RAGDOLL && {_damage > 0.1} && {!(lifestate _unit isEqualTo "INCAPACITATE
 						_unit playMoveNow "amovppnemstpsraswpstdnon_aadjppnemstpsraswpstddown"; //Go as low as possible
 						_unit spawn 
 						{
-							sleep 4 + random 2;
+							sleep (4 + random 2);
 							//Return to normal
 							if (alive _this && {animationState _this isEqualTo "aadjppnemstpsraswpstddown"}) then {_this playMoveNow "aadjppnemstpsraswpstddown_amovppnemstpsraswpstdnon"};
 						};

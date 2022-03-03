@@ -24,7 +24,7 @@ if (isNil "_medics") then {private _medics = []};
 		[_x, _medics] spawn 
 		{
 			params ["_unit", "_medicArr"];
-			sleep random 10;
+			sleep (random 10);
 			if !(_unit call VCM_fnc_HealSelf) then // VCM_fnc_HealSelf returns false if unit unable to heal self
 			{
 				if (count _medicArr == 0) exitWith {};
