@@ -12,7 +12,7 @@ _this # 1 - The spawner object(?).
 params ["_drone","_obname"];
 private _targets = [];
 
-while {alive _drone} do {
+while {sleep 10; alive _drone} do {
     if (((getPos _drone) # 2) < 2) exitWith {
         //Drone has landed?
         deleteVehicleCrew _drone;
@@ -95,5 +95,4 @@ while {alive _drone} do {
     };
 
     _drone setVariable ["OT_seenTargets", _targets, false];
-    sleep 10;
 };
