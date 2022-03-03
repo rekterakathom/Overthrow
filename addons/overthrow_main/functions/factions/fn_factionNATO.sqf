@@ -421,6 +421,7 @@ publicVariable "OT_nextNATOTurn";
 							_targets = [_targets,[],{random 100},"ASCEND"] call BIS_fnc_sortBy;
 							_group = createGroup blufor;
 							_group deleteGroupWhenEmpty true;
+							_group setVariable ["lambs_danger_disableGroupAI", true];
 							_p = [_pos,0,0,false,[0,0],[100,OT_NATO_Vehicles_ReconDrone]] call SHK_pos_fnc_pos;
 							_drone = createVehicle [OT_NATO_Vehicles_ReconDrone, _p, [], 0,""];
 							_drone enableDynamicSimulation false;
@@ -428,6 +429,7 @@ publicVariable "OT_nextNATOTurn";
 							createVehicleCrew _drone;
 							{
 								[_x] joinSilent _group;
+								_x setVariable ["lambs_danger_disableAI", true];
 							}foreach(crew _drone);
 
 
