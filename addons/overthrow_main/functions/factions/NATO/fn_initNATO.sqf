@@ -316,6 +316,10 @@ diag_log "Overthrow: NATO Init Done";
 
 {
 	_x params ["_pos","_name","_pri"];
+
+	// Precalculate empty positions for objectives
+	_pos findEmptyPositionReady [0, 100];
+
 	private _mrk = createMarkerLocal [_name,_pos];
 	_mrk setMarkerShape "ICON";
 	if(_name in (server getVariable "NATOabandoned")) then {
@@ -422,6 +426,10 @@ publicVariable "OT_allObjectives";
 
 {
 	_x params ["_pos","_name"];
+
+	// Precalculate empty positions
+	_pos findEmptyPositionReady [0, 100];
+
 	private _mrk = createMarkerLocal [_name,_pos];
 	_mrk setMarkerShapeLocal "ICON";
 	_mrk setMarkerTypeLocal "loc_Transmitter";
