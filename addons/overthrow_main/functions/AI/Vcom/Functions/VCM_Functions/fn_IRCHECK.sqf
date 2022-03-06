@@ -23,12 +23,12 @@ if (player isIRLaserOn currentWeapon player) then
 	private _endSight = _eyePosB vectoradd _wepDir;
 	private _lineInter = lineIntersectsSurfaces [_eyePosB, _endSight, player, player, true, 1];
 
-	if !(_lineInter isEqualTo []) then
+	if (_lineInter isNotEqualTo []) then
 	{
 		private _finalPos = (_lineInter select 0 select 0);
 		private _enemies = allUnits select {[_side,(side _x)] call BIS_fnc_sideIsEnemy && (currentVisionMode _x isEqualTo 1)};
 		private _dirPlayer = getdir Player;
-		if !(_enemies isEqualTo []) then
+		if (_enemies isNotEqualTo []) then
 		{
 			private _startPos = (ASLtoAGL (getPosASL player));
 			private _toalDist = _startPos distance2D _finalPos;
@@ -36,21 +36,18 @@ if (player isIRLaserOn currentWeapon player) then
 			private _chunkN = 0;
 			while {_chunks > _chunkN} do
 			{
-				_startPos = [_startPos,100,_dirPlayer] call BIS_fnc_relPos;
-				private _ne = [_enemies,_startPos,true,""IR""] call VCM_fnc_ClstObj;
+				_startPos = _startPos getPos [100, _dirPlayer];
+				private _ne = [_enemies,_startPos,true,'IR'] call VCM_fnc_ClstObj;
 				if (_ne distance2D _startPos < 65) exitWith
 				{
 					[
 						[_ne,player],
 						{
-							params [""_ne"",""_unit""];
-							if (local _ne) then
-							{
-								private _kv = _ne knowsAbout _unit;
-								_ne reveal [_unit,(_kv + 0.4)];
-							};
+							params ['_ne','_unit'];
+							private _kv = _ne knowsAbout _unit;
+							_ne reveal [_unit,(_kv + 0.4)];
 						}
-					] remoteExec [""bis_fnc_call"",0];
+					] remoteExec ['bis_fnc_call', _ne];
 				};
 				_chunkN = _chunkN + 1;
 			};
