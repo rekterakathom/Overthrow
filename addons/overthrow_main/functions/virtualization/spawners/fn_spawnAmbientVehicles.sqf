@@ -30,7 +30,7 @@ while {(_count < _numVeh) && (_loops < 50)} do {
 	_roads = _start nearRoads 75;
 	if(count _roads > 0) then {
 		_road = _roads select 0;
-		_pos = getPos _road;
+		_pos = getPosATL _road;
 		_vehtype = "";
 		if(_pop > 600) then {
 			_vehtype = selectRandom (OT_vehTypes_civ - OT_vehTypes_civignore);
@@ -62,6 +62,7 @@ while {(_count < _numVeh) && (_loops < 50)} do {
 
 					if((random 100) > 90 && (count allunits < 300)) then {
 						_group = createGroup CIVILIAN;
+						_group setVariable ["lambs_danger_disableGroupAI", true];
 						_groups pushback _group;
 						_civ = _group createUnit [OT_civType_local, _pos, [],0, "NONE"];
 						_civ setBehaviour "SAFE";
@@ -87,6 +88,7 @@ while {(_count < _numVeh) && (_loops < 50)} do {
 					}else{
 						if(_stability < 50 && (random 100) > 80) then {
 							_veh setDamage [1,false]; //salvage wreck
+							_veh enableDynamicSimulation true;
 						};
 					};
 					_groups pushBack _veh;
