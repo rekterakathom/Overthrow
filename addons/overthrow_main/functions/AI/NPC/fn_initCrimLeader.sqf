@@ -2,6 +2,7 @@ params ["_unit","_town","_gangid"];
 
 (group _unit) setVariable ["VCM_NORESCUE",true];
 (group _unit) setVariable ["VCM_TOUGHSQUAD",true];
+_unit setVariable ["lambs_danger_disableAI", true];
 
 _unit disableAI "PATH";
 
