@@ -1,6 +1,6 @@
 
 /*
-	Author: Freddo
+	Author: Genesis
 
 	Description:
 		Makes a unit heal itself.
@@ -12,16 +12,14 @@
 		BOOLEAN - If unit able to treat self: TRUE, else FALSE
 */
 
-private "_rtrn";
+private _CanHeal = false;
 
-if (alive _this && {"FirstAidKit" in items _this} && {(getAllHitPointsDamage _this select 2) findIf {_x > 0.25}  != -1}) then 
+if (alive _this && {"FirstAidKit" in (items _this)}) then 
 {
-	_this action ["HealSoldierSelf", _this];
-	if VCM_DEBUG then {systemChat format ["VCOM: %1 healing self", _this]};
-	_rtrn = true;
-} else 
-{
-	_rtrn = false;
+	_this setdamage 0;
+	_this action ["HealSoldierSelf", _this];	
+	_CanHeal = true;
+	if VCM_DEBUG then {systemChat format ["%1 healing self", _this]};
 };
 
-_rtrn
+_CanHeal

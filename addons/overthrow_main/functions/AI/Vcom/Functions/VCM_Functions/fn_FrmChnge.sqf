@@ -20,7 +20,7 @@ _unit = _this;
 _group = group _unit;
 
 //Vehicular groups in "SAFE" behaviour will move in convoys
-if (!isNull objectParent _unit && {behaviour _unit == "SAFE"}) exitWith 
+if (!isNull objectParent _unit && {behaviour _unit isEqualTo "SAFE"}) exitWith 
 {
 	_group setFormation "FILE";
 	//Set the units variable so they dont try changing formations too frequently.
@@ -60,7 +60,7 @@ _locationPos2 = locationPosition _nearestVillage;
 
 if ((_locationPos2 distance _unit) < 500) exitWith 
 {
-	if (!isNull objectParent _unit) then
+	if ((vehicle _unit) != _unit) then
 	{
 		_group setFormation "COLUMN"; 
 	}
@@ -80,7 +80,7 @@ _locationPos4 = locationPosition _nearestHill;
 
 if ((_locationPos4 distance _unit) < 500) exitWith 
 {
-	if (!isNull objectParent _unit) then
+	if ((vehicle _unit) != _unit) then
 	{
 		_group setFormation "LINE";
 	}
@@ -100,7 +100,7 @@ _locationPos3 = locationPosition _nearestLocal;
 
 if ((_locationPos3 distance _unit) < 300) exitWith 
 {
-	if (!isNull objectParent _unit) then
+	if ((vehicle _unit) != _unit) then
 	{
 		_group setFormation "COLUMN"; 
 	}

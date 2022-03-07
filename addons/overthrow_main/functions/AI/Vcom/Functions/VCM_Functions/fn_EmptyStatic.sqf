@@ -17,7 +17,7 @@ params ["_grp","_searchDist"];
 if (isNil "_searchDist") then {_searchDist = 100};
 private _returned = false;
 {
-	private _weap = nearestObject [_x, "StaticWeapon"];
+	private _weap = nearestObject [(getpos _x),"StaticWeapon"];
 	if (!(isNull _weap) || {!((_weap distance2D _x) > _searchDist)}) exitWith
 	{
 		_returned = true;

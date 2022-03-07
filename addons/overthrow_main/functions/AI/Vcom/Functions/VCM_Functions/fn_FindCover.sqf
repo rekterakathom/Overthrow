@@ -16,9 +16,10 @@
 		It has been decided to use Vanilla cover system rather than a custom implementation.
 */
 
-params ["_leader","_moveDist"];
+params ["_leader"];
 
 private _grp = (group _leader);
+private _moveDist = 50;
 private _nearestEnemy = _leader findNearestEnemy _leader;
 if (isNull _nearestEnemy) then
 {
@@ -36,11 +37,13 @@ private _wPos = waypointPosition [_grp,_curwp];
 private _dir = _wPos;
 if (_wPos isEqualTo [0,0,0]) then
 {
-	_wPos = ASLtoAGL (getPosASL _leader);
+	_wPos = (getpos _leader);
 	_dir = _nearestEnemy;
+	_moveDist = 15;
 };
 
-private _movePosition = _leader getPos [_moveDist, (_leader getDir _dir)];
+//private _movePosition = [_leader,_moveDist,([_leader, _dir] call BIS_fnc_dirTo)] call BIS_fnc_relPos;
+private _movePosition = _leader getpos [_moveDist,(_leader getDir _dir)];
 if (VCM_Debug) then
 {
 	private _arrow = "Sign_Arrow_Green_F" createVehicle [0,0,0];
@@ -121,7 +124,7 @@ if (_typeListFinal isEqualTo [] && _weakListFinal isEqualTo []) exitWith
 				_unit doSuppressiveFire _fNearestEnemy;
 				sleep (5 + (random 10));
 				
-				private _FPos = _nearestEnemy getPos [(_posCON distance _nearestEnemy) + 2, (_nearestEnemy getDir _posCON)];
+				private _FPos = [_nearestEnemy, (_posCON distance _nearestEnemy) + 2, ([_nearestEnemy, _posCON] call BIS_fnc_dirTo)] call BIS_fnc_relPos;
 				private _DistW = 2;
 				if (_posCON iskindof "AllVehicles") then {_DistW = 5;};
 				if (VCM_Debug) then
@@ -145,11 +148,12 @@ if (_typeListFinal isEqualTo [] && _weakListFinal isEqualTo []) exitWith
 				};
 				_unit setUnitPos "MIDDLE";
 				_unit doWatch ObjNull;
+				_unit disableAI "AUTOTARGET";
 				_unit disableAI "TARGET";
+				_unit disableAI "SUPPRESSION";
 				_unit disableAI "WEAPONAIM";
-				(group _unit) setCombatMode "BLUE";
-				_unit forcespeed 5;
-				sleep 0.3;
+				_unit forcespeed -1;
+				sleep 0.2;
 				_unit doMove _FPos;
 				sleep 1;
 				//_unit setDestination [_FPos,"LEADER PLANNED", true];								
@@ -165,10 +169,11 @@ if (_typeListFinal isEqualTo [] && _weakListFinal isEqualTo []) exitWith
 					sleep 0.1;
 				};
 				if !(_Fail) then {_unit forcespeed 0;};
+				_unit enableAI "AUTOTARGET";
 				_unit enableAI "TARGET";
+				_unit enableAI "SUPPRESSION";
 				_unit enableAI "WEAPONAIM";
 				_unit setUnitPos "AUTO";
-				(group _unit) setCombatMode "RED";
 
 		};
 	};

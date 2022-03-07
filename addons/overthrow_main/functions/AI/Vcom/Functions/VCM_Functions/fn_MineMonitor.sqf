@@ -12,39 +12,44 @@
 		NOTHING
 */
 
-["OT_mine_monitor","_counter%1.5 isEqualTo 0","
-	private _removeList = [];
+//This list is all local.
+private _RemoveLst = [];
+{
+	private _Mine = _x select 0;
+	if (alive _Mine) then
 	{
-		_x params [""_mine"",""_side""];
-		if (alive _mine) then {
-			private _EL = [];
-			private _targetSide = """";
+		private _Side = _x select 1;
+		private _EL = [];
+		private _TargetSide = "";
+		private _Nearbylist = _Mine nearEntities [["CAManBase","LandVehicle"], 2.5];
+
+		if (count _Nearbylist > 0) then
+		{
 			{
-				_targetSide = side _x;
-				if ([_side, _targetSide] call BIS_fnc_sideIsEnemy) then {_EL pushback _x;};
-			} forEach allUnits;
-
-			private _CE = [_EL,_mine,true,""2""] call VCM_fnc_ClstObj;
-
-			if (_CE distance _mine < 2.5) then {
-				if (local _mine) then {
-					_mine enableSimulationGlobal true;
-				} else {
-					[_mine, true] remoteExecCall [""enableSimulationGlobal"",2];
-				};
-				[_mine] spawn {
-					_this params [""_mine""];
-					sleep 0.35;
-					_mine setdamage 1;
-				};
+				_TargetSide = side _x;
+				if ([_Side, _TargetSide] call BIS_fnc_sideIsEnemy) then {_EL pushback _x;};
+			} forEach _Nearbylist;
+			
+			if (count _EL > 0) then 
+			{
+				[_Mine, true] remoteExecCall ["enableSimulationGlobal",2];
+				_Mine spawn {sleep 0.25;_this setdamage 1;};		
 			};
-		} else {
-			_removeList pushback _x;
 		};
-	} foreach VCOM_MINEARRAY;
-
+	}
+	else
 	{
-		_x params [""_a""];
-		VCOM_MINEARRAY deleteAt (VCOM_MINEARRAY findIf {_a isEqualTo _x;});
-	} foreach _RemoveList;
-"] call OT_fnc_addActionLoop;
+		_RemoveLst pushback _x;
+	};
+
+
+
+
+
+
+} foreach VCOM_MINEARRAY;
+
+{
+	private _A = _x;
+	VCOM_MINEARRAY deleteAt (VCOM_MINEARRAY findIf {_A isEqualTo _x;});
+} foreach _RemoveLst;

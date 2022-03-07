@@ -14,18 +14,30 @@
 
 params ["_unit", "_mineArray"];
 
-if ((lifeState _unit != "HEALTHY") || {isPlayer _unit}) exitWith {};
+if !(VCM_MINEENABLED) exitWith {};
 
-if (VCM_Debug) then {systemchat format ["VCOM: %1 PLACING MINE", _unit];};
+if (VCM_MINECHANCE > (random 100)) then
+{
+
+
+if (isPlayer _unit || {lifeState _Unit isEqualTo "INCAPACITATED"}) exitWith {};
 
 private _mineType = _mineArray select 0;
 
 //Let's see if we can place a scripted version of the item.
 private _testName = _mineType + "_scripted";
+
+switch (_mineType) do {
+    case "APERSMine_Range_Ammo_scripted": {_testName = "APERSMineDispenser_Mine_Ammo_Scripted"};
+    default {};
+};
+
+
 private _testMine = _testName createVehiclelocal [0,0,0];
 if !(isNull _testMine) then
 {
 	_mineType = _testName;
+	deleteVehicle _testMine;
 };
 
 private _magazineName = _mineArray select 1;
@@ -45,7 +57,7 @@ if (_nearestEnemy distance2D _unit < 100) then
 	//_mine = createMine [_mineType,getposATL _unit, [], 2];
 	private _mPos = _unit modeltoworld [0,1,0.05];
 	_mine = _mineType createVehicle _mPos;
-	_mine setDir (_mine getDir _nearestEnemy);
+	_mine setDir ([_mine, _nearestEnemy] call BIS_fnc_dirTo);
 	_mine setpos _mPos;
 	_mine setposATL (getposATL _mine);
 	[_unit,"AinvPknlMstpSnonWnonDnon_Putdown_AmovPknlMstpSnonWnonDnon"] remoteExec ["Vcm_PMN",0];
@@ -61,7 +73,7 @@ else
 		waitUntil {!(alive _unit) || _unit distance2D _closestRoad < 7};
 		private _mPos = _unit modeltoworld [0,1,0.05];
 		_mine = _mineType createVehicle _mPos;
-		_mine setDir (_mine getDir _nearestEnemy);
+		_mine setDir ([_mine, _nearestEnemy] call BIS_fnc_dirTo);
 		_mine setpos _mPos;
 		_mine setposATL (getposATL _mine);
 		//_mine = createMine [_mineType,getposATL _closestRoad, [], 3];
@@ -72,7 +84,7 @@ else
 		//_mine = createMine [_mineType,getposATL _unit, [], 3];
 		private _mPos = _unit modeltoworld [0,1,0.05];
 		_mine = _mineType createVehicle _mPos;
-		_mine setDir (_mine getDir _nearestEnemy);
+		_mine setDir ([_mine, _nearestEnemy] call BIS_fnc_dirTo);
 		_mine setpos _mPos;
 		_mine setposATL (getposATL _mine);
 		[_unit,"AinvPknlMstpSnonWnonDnon_Putdown_AmovPknlMstpSnonWnonDnon"] remoteExec ["Vcm_PMN",0];
@@ -84,14 +96,9 @@ _unitSide = (side _unit);
 
 if (_mine isEqualTo "") exitWith {};
 
-VCOM_mineArray pushBack [_mine,_unitSide];
-if (local _mine) then {
-	_mine enableSimulationGlobal true;
-} else {
-	[_Mine, false] remoteExecCall ["enableSimulationGlobal",2];
+VCOM_mineArray pushBack [_Mine,_unitSide];
+[_Mine, false] remoteExecCall ["enableSimulationGlobal",2];
 };
-
-
 /*
 [_mine,_unitSide] spawn 
 {
@@ -111,6 +118,6 @@ if (local _mine) then {
 		(!(alive _mine) || {!(_NotSafe)})
 	};
 	[_Mine, true] remoteExecCall ["enableSimulationGlobal",2];
-	sleep 0.35;
+	sleep 0.25;
 	_Mine setdamage 1;
 };

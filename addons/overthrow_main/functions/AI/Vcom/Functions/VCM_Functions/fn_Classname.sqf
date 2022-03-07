@@ -15,7 +15,7 @@
 params ["_name"];
 private _return = "NotAClass";
 
-if (_name isEqualType "") then
+if ((typeName _name) isEqualTo "STRING") then
 {
   _return = (configFile >> "cfgVehicles" >> _name);
 };
