@@ -562,4 +562,37 @@ class CfgVehicles {
     class C_Man_casual_1_F: C_man_1 {
         modelSides[] = {6};
     };
+
+    // Custom units
+    #define MAG_3(a) a, a, a
+    #define MAG_5(a) a, a, a, a, a
+
+    // Base class (unit class of other mod)
+    class B_Gen_Commander_F;
+    // Your class (unit class of your mod, which extends the other unit class)
+    class B_Gen_Soldier_Heavy_F: B_Gen_Commander_F
+    {
+        // The name of the author of the asset, which is displayed in the editor.
+        author = "ThomasAngel";
+        // The name of the soldier, which is displayed in the editor.
+        displayName = "Gendarme (Heavy)";
+        // Which backpack the character is wearing.
+        backpack = "";
+        // Which weapons the character has.
+        weapons[] = {arifle_SPAR_01_blk_ACO_Pointer_F, hgun_P07_blk_F, Throw, Put};
+        // Which weapons the character respawns with.
+        respawnWeapons[] = {arifle_SPAR_01_blk_ACO_Pointer_F, hgun_P07_blk_F, Throw, Put};
+        // Which items the character has.
+        Items[] = {FirstAidKit, FirstAidKit};
+        // Which items the character respawns with.
+        RespawnItems[] = {FirstAidKit, FirstAidKit};
+        // What ammunition the character has.
+        magazines[] = {MAG_5(30Rnd_556x45_Stanag),MAG_3(16Rnd_9x21_Mag), SmokeShell, SmokeShellGreen, Chemlight_green, Chemlight_green, HandGrenade, ACE_M84};
+        // What ammunition the character respawns with.
+        respawnMagazines[] = {MAG_5(30Rnd_556x45_Stanag),MAG_3(16Rnd_9x21_Mag), SmokeShell, SmokeShellGreen, Chemlight_green, Chemlight_green, HandGrenade, ACE_M84};
+        // Which items the character has.
+        linkedItems[] = {V_PlateCarrier2_blk, H_PASGT_basic_blue_F, G_Balaclava_TI_G_blk_F, ItemMap, ItemCompass, ItemWatch, ItemRadio, O_NVGoggles_urb_F};
+        // Which items the character respawns with.
+        respawnLinkedItems[] = {V_PlateCarrier2_blk, H_PASGT_basic_blue_F, G_Balaclava_TI_G_blk_F, ItemMap, ItemCompass, ItemWatch, ItemRadio, O_NVGoggles_urb_F};
+    };
 };

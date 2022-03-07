@@ -23,7 +23,8 @@ class CfgPatches
 			"A3_Ui_F_Enoch",
 			"A3_Ui_F_Oldman",
 			"A3_Ui_F_AoW",
-			"A3_Map_Tanoabuka"
+			"A3_Map_Tanoabuka",
+			"A3_Map_Tanoa_Scenes_F"
 		};
 		requiredVersion=REQUIRED_VERSION;
         VERSION_CONFIG;
@@ -140,6 +141,13 @@ class CfgMissions
 		class OverthrowMpLivonia
 		{
 			directory="overthrow_main\campaign\missions\OverthrowMpLivonia.Enoch";
+		};
+	};
+	class Cutscenes
+	{
+		class Tanoa_intro1
+		{
+			directory="overthrow_main\campaign\missions\Overthrow_background.Tanoa";
 		};
 	};
 };
