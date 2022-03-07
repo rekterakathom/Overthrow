@@ -125,6 +125,7 @@ OT_NATO_Unit_TeamLeader = "B_Soldier_TL_F";
 OT_NATO_Unit_SquadLeader = "B_Soldier_SL_F";
 
 OT_NATO_Unit_PoliceCommander = "B_Gen_Commander_F";
+OT_NATO_Unit_PoliceCommander_Heavy = "B_Gen_Commander_Heavy_F";
 OT_NATO_Unit_Police = "B_Gen_Soldier_F";
 OT_NATO_Unit_Police_Heavy = "B_Gen_Soldier_Heavy_F";
 OT_NATO_Vehicle_PoliceHeli = "B_Heli_Light_01_F";

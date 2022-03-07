@@ -34,18 +34,13 @@ while {_count < _numNATO} do {
 		_groups pushBack _group;
 
 		private _toSpawn = OT_NATO_Unit_PoliceCommander;
-		if (_stability < 25) then {_toSpawn = OT_NATO_Unit_Police_Heavy};
+		if (_stability < 25) then {_toSpawn = OT_NATO_Unit_PoliceCommander_Heavy};
 		private _civ = _group createUnit [_toSpawn, _home, [],0, "NONE"];
 
 		_civ setVariable ["garrison",_town,false];
 		[_civ] joinSilent _group;
 		_civ setRank "CORPORAL";
 		_civ setBehaviour "SAFE";
-
-		if (_stability < 25) then {
-			_civ addHeadgear "H_Beret_gen_F";
-			_civ addGoggles "";
-		};
 
 		[_civ,_town] call OT_fnc_initGendarm;
 

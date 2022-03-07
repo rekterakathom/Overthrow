@@ -591,8 +591,18 @@ class CfgVehicles {
         // What ammunition the character respawns with.
         respawnMagazines[] = {MAG_5(30Rnd_556x45_Stanag),MAG_3(16Rnd_9x21_Mag), SmokeShell, SmokeShellGreen, Chemlight_green, Chemlight_green, HandGrenade, ACE_M84};
         // Which items the character has.
-        linkedItems[] = {V_PlateCarrier2_blk, H_PASGT_basic_blue_F, G_Balaclava_TI_G_blk_F, ItemMap, ItemCompass, ItemWatch, ItemRadio, O_NVGoggles_urb_F};
+        linkedItems[] = {V_PlateCarrier2_blk, H_PASGT_basic_blue_F, G_Balaclava_TI_G_blk_F, ItemMap, ItemCompass, ItemWatch, ItemRadio, NVGoggles_OPFOR};
         // Which items the character respawns with.
-        respawnLinkedItems[] = {V_PlateCarrier2_blk, H_PASGT_basic_blue_F, G_Balaclava_TI_G_blk_F, ItemMap, ItemCompass, ItemWatch, ItemRadio, O_NVGoggles_urb_F};
+        respawnLinkedItems[] = {V_PlateCarrier2_blk, H_PASGT_basic_blue_F, G_Balaclava_TI_G_blk_F, ItemMap, ItemCompass, ItemWatch, ItemRadio, NVGoggles_OPFOR};
     };
+
+    class B_Gen_Commander_Heavy_F: B_Gen_Soldier_Heavy_F
+    {
+        displayName = "Gendarmerie Commander (Heavy)";
+        // Which items the character has.
+        linkedItems[] = {V_PlateCarrier2_blk, H_Beret_gen_F, ItemMap, ItemCompass, ItemWatch, ItemRadio, NVGoggles_OPFOR};
+        // Which items the character respawns with.
+        respawnLinkedItems[] = {V_PlateCarrier2_blk, H_Beret_gen_F, ItemMap, ItemCompass, ItemWatch, ItemRadio, NVGoggles_OPFOR};
+    };
+
 };
