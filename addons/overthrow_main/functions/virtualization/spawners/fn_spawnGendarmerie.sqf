@@ -3,6 +3,7 @@ if (!isServer) exitwith {};
 params ["_town","_spawnid"];
 
 private _abandoned = server getVariable ["NATOabandoned",[]];
+private _stability = server getVariable format["stability%1",_town];
 if (_town in _abandoned) exitWith {};
 
 private _posTown = server getVariable _town;
@@ -32,16 +33,25 @@ while {_count < _numNATO} do {
 		_group deleteGroupWhenEmpty true;
 		_groups pushBack _group;
 
-		private _civ = _group createUnit [OT_NATO_Unit_PoliceCommander, _home, [],0, "NONE"];
+		private _toSpawn = OT_NATO_Unit_PoliceCommander;
+		if (_stability < 25) then {_toSpawn = OT_NATO_Unit_Police_Heavy};
+		private _civ = _group createUnit [_toSpawn, _home, [],0, "NONE"];
 
 		_civ setVariable ["garrison",_town,false];
 		[_civ] joinSilent _group;
 		_civ setRank "CORPORAL";
 		_civ setBehaviour "SAFE";
+
+		if (_stability < 25) then {
+			_civ addHeadgear "H_Beret_gen_F";
+			_civ addGoggles "";
+		};
+
 		[_civ,_town] call OT_fnc_initGendarm;
 
-
-		_civ = _group createUnit [OT_NATO_Unit_Police, _pos, [],0, "NONE"];
+		_toSpawn = OT_NATO_Unit_Police;
+		if (_stability < 25) then {_toSpawn = OT_NATO_Unit_Police_Heavy};
+		_civ = _group createUnit [_toSpawn, _pos, [],0, "NONE"];
 		_civ setVariable ["garrison",_town,false];
 		[_civ] joinSilent _group;
 		_civ setRank "PRIVATE";
