@@ -1,6 +1,6 @@
-//mainCamera switchCamera "GUNNER";
 
-setViewDistance 250;
+enableSaving [false, false];
+setViewDistance 200;
 disableRemoteSensors true;
 
 [1, "BLACK", 5, 0, "", "", 1] spawn BIS_fnc_fadeEffect;
