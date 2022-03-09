@@ -599,9 +599,9 @@ class CfgVehicles {
     class B_Gen_Commander_Heavy_F: B_Gen_Soldier_Heavy_F
     {
         displayName = "Gendarmerie Commander (Heavy)";
-        // Which items the character has.
+        weapons[] = {arifle_SPAR_01_blk_ACO_Pointer_F, hgun_P07_blk_F, Throw, Put, Binocular};
+        respawnWeapons[] = {arifle_SPAR_01_blk_ACO_Pointer_F, hgun_P07_blk_F, Throw, Put, Binocular};
         linkedItems[] = {V_PlateCarrier2_blk, H_Beret_gen_F, ItemMap, ItemCompass, ItemWatch, ItemRadio, NVGoggles_OPFOR};
-        // Which items the character respawns with.
         respawnLinkedItems[] = {V_PlateCarrier2_blk, H_Beret_gen_F, ItemMap, ItemCompass, ItemWatch, ItemRadio, NVGoggles_OPFOR};
     };
 

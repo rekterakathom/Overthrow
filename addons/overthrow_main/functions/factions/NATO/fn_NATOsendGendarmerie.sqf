@@ -49,7 +49,7 @@ if(!isNil "_close") then {
 		_groups pushback _veh;
 	};
 
-	_civ = _group createUnit [OT_NATO_Unit_PoliceCommander, _start, [],0, "NONE"];
+	_civ = _group createUnit [OT_NATO_Unit_PoliceCommander_Heavy, _start, [],0, "NONE"];
 	_police pushBack _civ;
 	[_civ,_town] call OT_fnc_initGendarm;
 	_civ setBehaviour "SAFE";
