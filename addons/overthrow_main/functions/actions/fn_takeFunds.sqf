@@ -1,6 +1,8 @@
 closeDialog 0;
 OT_inputHandler = {
-	_val = parseNumber(ctrltext 1400);
+	_input = ctrltext 1400;
+	if (count _input > 64) exitWith {hint "You can't take that much!"};
+	_val = parseNumber _input;
 	_cash = server getVariable ["money",0];
 	if(_val > _cash) then {_val = _cash};
 	if(_val > 0) then {
