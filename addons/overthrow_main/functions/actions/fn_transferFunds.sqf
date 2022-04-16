@@ -3,7 +3,7 @@ private _idx = lbCurSel 1500;
 inputData = lbData [1500,_idx];
 OT_inputHandler = {
 	_input = ctrltext 1400;
-	if (count _input > 64) exitWith {hint "You can't send that much!"};
+	if (_input isEqualType "" && count _input > 64) exitWith {hint "You can't send that much!"};
 	_val = parseNumber _input;
 	_cash = server getVariable ["money",0];
 	if(_val > _cash) then {_val = _cash};

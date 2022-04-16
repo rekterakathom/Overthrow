@@ -1,7 +1,7 @@
 closeDialog 0;
 OT_inputHandler = {
 	_input = ctrltext 1400;
-	if (count _input > 64) exitWith {hint "You can't donate that much!"};
+	if (_input isEqualType "" && count _input > 64) exitWith {hint "You can't donate that much!"};
 	_val = parseNumber _input;
 	_cash = player getVariable ["money",0];
 	if(_val > _cash) then {_val = _cash};

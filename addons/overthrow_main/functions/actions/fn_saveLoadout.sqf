@@ -1,6 +1,6 @@
 OT_inputHandler = {
 	_name = ctrltext 1400;
-	if (count _name > 64) exitWith {hint "Loadout name is too long!"};
+	if (_name isEqualType "" && count _name > 64) exitWith {hint "Loadout name is too long!"};
 	if(_name != "") then {
 		profileNamespace setVariable [format["OT_loadout_%1",_name],getUnitLoadout player];
 		_loadouts = profileNamespace getVariable ["OT_loadouts",[]];
