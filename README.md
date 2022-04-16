@@ -4,7 +4,7 @@
 
 Overthrow: Rekter Edition is a continuation of the Overthrow Plus project by Nifnat: https://github.com/Nifnat/Overthrow
 
-The goal of the project to update the Overthrow codebase to allow for easier modification and enhanced performance, while also adding new features, trying to stay faithful to the original vision of Overthrow.
+The goal of the project is to update the Overthrow codebase to allow for easier modification and enhanced performance, while also adding new features, trying to stay faithful to the original vision of Overthrow.
 
 **The goal is to have all non-gameplay changing performance improvements and security updates be accessible to all Overthrow developers in the perf branch, and maybe have them included in Overthrow Plus as well.**
 
