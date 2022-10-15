@@ -2,6 +2,14 @@ params [
 	["_data",profileNameSpace getVariable [OT_saveName,""]]
 ];
 
+// Backwards compatibility
+if (isMissionProfileNamespaceLoaded) then {
+	_data = missionProfileNamespace getVariable [OT_saveName, ""];
+	profileNamespace setVariable [OT_saveName, nil]; // Clean-up the old save from user profile
+} else {
+	_data = profileNamespace getVariable [OT_saveName,""];
+};
+
 //get all server data
 "Loading persistent save" remoteExec['OT_fnc_notifyStart',0,false];
 
@@ -108,18 +116,28 @@ private _hasList_buildableHouses = false;
 				_val deleteAt 0;
 				{
 					if(!isNil "_x") then {
-						if(_x isEqualType []) then {
-							_x params [["_itemClass","",[""]],["_itemCount",0,[0]]];
-							if (_itemCount > 0 && !(_itemClass isEqualTo "")) then {
-								warehouse setVariable [format["item_%1",_itemClass],[_itemClass,_itemCount],true];
-							};
+						private _currentVal = _x;
+						if(_currentVal isEqualType []) then {
+							private _warehouse = (_currentVal # 0) call OT_fnc_nearestWarehouse;
+							{
+								if !(isNil "_x") then {
+									_x params [
+										["_itemClass","",[""]],
+										["_itemCount",0,[0]]
+									];
+									if (_itemCount > 0 && (_itemClass isNotEqualTo "")) then {
+										_warehouse setVariable [format["item_%1",_itemClass],[_itemClass,_itemCount],true];
+									};
+								};
+							} forEach (_currentVal # 1);
 						};
 					};
 				}foreach(_val);
 			};
 			default {
 				{
-					_x params ["_itemClassL","_itemData"];
+					// This isn't used!
+					params ["_itemClassL","_itemData"];
 					if !(isNil "_itemData") then {
 						if (_itemData isEqualType []) then {
 							_itemData params ["_cls",["_num",0,[0]]];
@@ -131,6 +149,11 @@ private _hasList_buildableHouses = false;
 				}foreach(_val select {!(((toLower (_x#0)) select [0,4]) in ["cba_","bis_"])});
 			};
 		};
+		_set = false;
+	};
+	if (_key == "warehouselist") then {
+		private _warehouses = _val apply {_x call OT_fnc_nearestWarehouse};
+		warehouse setVariable ["owned", _warehouses, true];
 		_set = false;
 	};
 	if(_key == "vehicles") then {
