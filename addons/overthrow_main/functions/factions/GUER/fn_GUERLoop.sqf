@@ -1,6 +1,6 @@
 GUER_faction_loop_data params ["_lastmin","_lasthr","_currentProduction","_stabcounter","_trackcounter"];
 
-private _numplayers = count([] call CBA_fnc_players);
+private _numplayers = count(allPlayers - (entities "HeadlessClient_F"));
 if(_numplayers isEqualTo 0) exitWith {};
 
 _trackcounter = _trackcounter + 1;
@@ -13,7 +13,7 @@ if(_trackcounter > 5) then {
 			_x setVariable ["OT_newplayer",false,true];
 		};
 		[_x] call OT_fnc_savePlayerData;
-	}foreach([] call CBA_fnc_players);
+	}foreach(allPlayers - (entities "HeadlessClient_F"));
 
 	_track = [];
 	{

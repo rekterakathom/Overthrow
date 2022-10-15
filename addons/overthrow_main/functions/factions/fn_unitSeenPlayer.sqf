@@ -4,7 +4,7 @@ private _cache = _this getVariable "SeenCachePlayer";
 if (isNil "_cache" || {time > (_cache select 1)}) then {
     _cache = [
         !(
-            ((call CBA_fnc_players) findIf {
+            ((allPlayers - (entities "HeadlessClient_F")) findIf {
                 _x = driver _x;
                 (_x distance _this) < 7
                 ||

@@ -3,5 +3,5 @@ private _online = false;
     if((getPlayerUID _x) in (server getvariable ["generals",[]])) exitWith {
             _online = true;
     };
-}foreach(call CBA_fnc_players);
+}foreach(allPlayers - (entities "HeadlessClient_F"));
 _online;

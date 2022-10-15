@@ -21,7 +21,7 @@ if(isMultiplayer && OT_showPlayerMarkers) then {
 		}else{
 			_vehs pushBackUnique _veh;
 		};
-	}foreach([] call CBA_fnc_players);
+	}foreach(allPlayers - (entities "HeadlessClient_F"));
 };
 
 private _grpUnits = groupSelectedUnits player;
