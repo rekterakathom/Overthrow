@@ -60,7 +60,7 @@ if((isPlayer _unit) && isNil "OT_ACEunconsciousChangedEHId") then {
 		_unit setCaptive false;
 
 		// inform other players
-		if(isMultiplayer && count(call CBA_fnc_players) > 1) then {
+		if(isMultiplayer && count(allPlayers - (entities "HeadlessClient_F")) > 1) then {
 			[
 			  format[
 			    "%1 has fallen unconscious and is waiting for assistance at GRIDREF: %2",

@@ -25,7 +25,7 @@ publicVariable "OT_nextNATOTurn";
 	params ["_handle","_vars"];
 	_vars params ["_abandoned","_resources","_diff","_nextturn","_count","_lastmin","_lastsched"];
 
-	private _numplayers = count([] call CBA_fnc_players);
+	private _numplayers = count(allPlayers - (entities "HeadlessClient_F"));
 	if(_numplayers > 0) then {
 		_fobs = server getVariable ["NATOfobs",[]];
 		_abandoned = server getVariable ["NATOabandoned",[]];

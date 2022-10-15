@@ -1,6 +1,6 @@
 if(isMultiplayer) then {
 	addMissionEventHandler ["Draw3D", {
-		if !(OT_showPlayerMarkers) exitWith {};
+		//if !(OT_showPlayerMarkers) exitWith {};
 		{
 			if (_x isNotEqualTo player) then {
 				private _dis = round(_x distance player);
@@ -15,7 +15,7 @@ if(isMultiplayer) then {
 					drawIcon3D ["a3\ui_f\data\map\groupicons\selector_selectable_ca.paa", [1,1,1,0.3], _pos, 1, 1, 0, format["%1 (%2%3)",name _x,_dis,_t], 0, 0.02, "TahomaB", "center", true];
 				};
 			};
-		}foreach(call CBA_fnc_players);
+		}foreach(allPlayers - (entities "HeadlessClient_F"));
 	}];
 };
 

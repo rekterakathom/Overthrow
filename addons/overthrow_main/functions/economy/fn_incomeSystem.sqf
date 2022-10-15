@@ -48,12 +48,12 @@ if(income_system_lasthour in [0,6,12,18]) then {
 			_totax = _totax + _tt;
 			[_lease-_tt,""Lease Income""] remoteExec [""OT_fnc_money"",_x,false];
 		};
-	}foreach([] call CBA_fnc_players);
+	}foreach(allPlayers - (entities 'HeadlessClient_F'));
 
 	[_totax] call OT_fnc_resistanceFunds;
 	_total = _total - _totax;
 
-	_numPlayers = count([] call CBA_fnc_players);
+	_numPlayers = count(allPlayers - (entities 'HeadlessClient_F'));
 	if(_numPlayers > 0) then {
 		if(isNil ""_total"") then {_total = 0};
 		_perPlayer = round(_total / _numPlayers);
@@ -66,7 +66,7 @@ if(income_system_lasthour in [0,6,12,18]) then {
 			{
 				_money = _x getVariable [""money"",0];
 				_x setVariable [""money"",_money+_perPlayer,true];
-			}foreach([] call CBA_fnc_players);
+			}foreach(allPlayers - (entities 'HeadlessClient_F'));
 			format [""Tax income: $%1 (+%2 Influence)"",[_perPlayer, 1, 0, true] call CBA_fnc_formatNumber,_inf] remoteExec [""OT_fnc_notifyMinor"",0,false];
 		}else{
 			_inf remoteExec [""OT_fnc_influence"",0,false];

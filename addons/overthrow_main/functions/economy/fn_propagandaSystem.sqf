@@ -5,7 +5,7 @@ waitUntil {sleep 1;server getVariable ["StartupType",""] != ""};
 sleep 20;
 
 ["propaganda_system","_counter%10 isEqualTo 0 && {!((date#3) isEqualTo propaganda_system_lasthour)}","
-	private _numplayers = count([] call CBA_fnc_players);
+	private _numplayers = count(allPlayers - (entities 'HeadlessClient_F'));
 	propaganda_system_lasthour = date select 3;
 	if(_numplayers > 0) then {
 		_totalStability = 0;

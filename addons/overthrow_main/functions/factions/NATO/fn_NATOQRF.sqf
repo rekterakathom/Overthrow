@@ -1,6 +1,6 @@
 params ["_pos","_strength","_success","_fail","_params","_garrison"];
 private _totalStrength = _strength;
-private _numPlayers = count([] call CBA_fnc_players);
+private _numPlayers = count(allPlayers - (entities "HeadlessClient_F"));
 private _popControl = call OT_fnc_getControlledPopulation;
 
 if(_strength < 150) then {_strength = 150};

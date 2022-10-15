@@ -5,11 +5,11 @@ if(isPlayer _who) then {
 }else{
     if((side _who) isEqualTo resistance) then {
         //we spread it amongst everyone
-        _perPlayer = round(_amount / count([] call CBA_fnc_players));
+        _perPlayer = round(_amount / count(allPlayers - (entities "HeadlessClient_F")));
         if(_perPlayer > 0) then {
             {
                 [_perPlayer] remoteExec ["OT_fnc_money",_x,false];
-            }foreach([] call CBA_fnc_players);
+            }foreach(allPlayers - (entities "HeadlessClient_F"));
         };
     };
 };
