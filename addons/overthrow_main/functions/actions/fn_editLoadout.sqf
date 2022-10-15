@@ -8,14 +8,16 @@ _soldier params ["","","_loadout","_clothes"];
 
 private _items = [];
 //Add warehouse items to arsenal
+private _warehouse = player call OT_fnc_nearestWarehouse;
+if (_warehouse == objNull) exitWith {hint "No warehouse near by!"};
 {
     if(_x select [0,5] isEqualTo "item_") then {
-        private _d = warehouse getVariable [_x,[_x select [5],0,[0]]];
+        private _d = _warehouse getVariable [_x,[_x select [5],0,[0]]];
         if(_d isEqualType []) then {
             _items pushback _d#0;
         };
     };
-}foreach(allVariables warehouse);
+}foreach(allVariables _warehouse);
 
 if((count _items) isEqualTo 0) exitWith {hint "Cannot edit loadout, no items in warehouse"};
 

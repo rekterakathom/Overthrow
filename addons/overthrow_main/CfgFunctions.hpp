@@ -346,6 +346,7 @@ class CfgFunctions
 			class getRandomRoadPosition {};
 			class isRadarInRange {};
 			class positionIsAtWarehouse {};
+			class nearestWarehouse {};
 		};
 
 		/*
@@ -442,6 +443,7 @@ class CfgFunctions
 			class findScopeInWarehouse {};
 			class findWeaponInWarehouse {};
 			class findVestInWarehouse {};
+			class verifyFromWarehouse {};
 			class verifyLoadoutFromWarehouse {};
 			class applyLoadoutFromWarehouse {};
 			class qtyInWarehouse {};
@@ -630,7 +632,7 @@ class CfgFunctions
 		class Integration
 		{
 			file = "\overthrow_main\functions\integration";
-			class advancedTowingInit {};
+			//class advancedTowingInit {};
 			class detectItems {};
 		};
 	};

@@ -38,6 +38,13 @@ if(_handled) then {
 		[_building,getPlayerUID player] call OT_fnc_setOwner;
 		[-_price] call OT_fnc_money;
 
+		// It's a warehouse! Add it to owned warehouses!
+		if (typeOf _building == OT_warehouse) then {
+			private _ownedWarehouses = warehouse getVariable ["owned", []];
+			_ownedWarehouses pushBack _building;
+			warehouse setVariable ["owned", _ownedWarehouses, true];
+		};
+
 		buildingpositions setVariable [_id,position _building,true];
 		_owned pushback _id;
 		[player,"Building Purchased",format["Bought: %1 in %2 for $%3",getText(configFile >> "CfgVehicles" >> (typeof _building) >> "displayName"),_building call OT_fnc_nearestTown,_price]] call BIS_fnc_createLogRecord;

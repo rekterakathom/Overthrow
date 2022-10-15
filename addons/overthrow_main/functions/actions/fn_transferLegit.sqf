@@ -37,9 +37,11 @@ _doTransfer = {
 
 	_full = false;
 	if(_iswarehouse) then {
+		private _warehouse = player call OT_fnc_nearestWarehouse;
+		if (_warehouse == objNull) exitWith {hint "No warehouse near by!"};
 		{
 			private _count = 0;
-			_d = warehouse getVariable [_x,false];
+			_d = _warehouse getVariable [_x,false];
 			if(_d isEqualType []) then {
 				_d params ["_cls",["_num",0,[0]]];
 				if(_num > 0) then {
@@ -51,16 +53,16 @@ _doTransfer = {
 						if (_count > 0) then {
 							_veh addItemCargoGlobal [_cls,_count];
 							if (_count isEqualTo _num) then {
-								warehouse setVariable [_x,nil,true];
+								_warehouse setVariable [_x,nil,true];
 							} else {
-								warehouse setVariable [_x,[_cls,_num - _count],true];
+								_warehouse setVariable [_x,[_cls,_num - _count],true];
 							};
 						};
 					};
 				};
 			};
 			if(_full) exitWith {};
-		}foreach((allVariables warehouse) select {((toLowerANSI _x select [0,5]) isEqualTo "item_")});
+		}foreach((allVariables _warehouse) select {((toLowerANSI _x select [0,5]) isEqualTo "item_")});
 	}else{
 		{
 			private _count = 0;

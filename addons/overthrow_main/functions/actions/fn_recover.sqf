@@ -25,7 +25,7 @@ waitUntil {time > _end};
 
 //Get the loose weapons
 private _count_weapons = 0;
-private _weapons = _veh nearentities ["WeaponHolderSimulated",_range];
+private _weapons = _veh nearEntities ["WeaponHolderSimulated",_range];
 {
     _weapon = _x;
     _s = (weaponsItems _weapon) select 0;
@@ -48,9 +48,9 @@ private _weapons = _veh nearentities ["WeaponHolderSimulated",_range];
 private _count_bodies = 0;
 {
     if !((_x distance _veh > _range) || (alive _x)) then {
-        [_x,_veh] call OT_fnc_dumpStuff;
+        [_x, _veh] call OT_fnc_dumpStuff;
         _count_bodies = _count_bodies + 1;
-        deleteVehicle _x;
+        hideBody _x;
     };
 }foreach(entities "CAManBase");
 

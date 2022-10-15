@@ -36,30 +36,8 @@ _abandoned = server getvariable ["NATOabandoned",[]];
 
 //Send ground forces by air
 private _count = 0;
+
 {
-	_x params ["_obpos","_name","_pri"];
-
-	_dir = (_pos getDir _obpos);
-	_ao = [_pos,_dir] call OT_fnc_getAO;
-	[_obpos,_ao,_pos,true,300] spawn OT_fnc_NATOGroundForces;
-	diag_log format["Overthrow: NATO Sent ground forces by air from %1 %2",_name,str _obpos];
-	_strength = _strength - 150;
-
-	if(_pri > 600 && _strength >= 500) then {
-		_ao = [_pos,_dir] call OT_fnc_getAO;
-		[_obpos,_ao,_pos,true,420] spawn OT_fnc_NATOGroundForces;
-		_strength = _strength - 150;
-		diag_log format["Overthrow: NATO Sent extra ground forces by air from %1 %2",_name,str _obpos];
-	};
-	_count = _count + 1;
-
-	if(_strength <=0 || _count isEqualTo 4) exitWith {};
-}foreach(_air);
-sleep 2;
-
-//Send ground forces by land
-if(_strength >= 150) then {
-	{
 		_x params ["_obpos","_name","_pri"];
 
 		_dir = (_pos getDir _obpos);
@@ -81,6 +59,30 @@ if(_strength >= 150) then {
 		};
 		if(_strength <=0) exitWith {};
 	}foreach(_ground);
+
+sleep 2;
+
+//Send ground forces by land
+if(_strength >= 150) then {
+	{
+		_x params ["_obpos","_name","_pri"];
+
+		_dir = (_pos getDir _obpos);
+		_ao = [_pos,_dir] call OT_fnc_getAO;
+		[_obpos,_ao,_pos,true,300] spawn OT_fnc_NATOGroundForces;
+		diag_log format["Overthrow: NATO Sent ground forces by air from %1 %2",_name,str _obpos];
+		_strength = _strength - 150;
+
+		if(_pri > 600 && _strength >= 500) then {
+			_ao = [_pos,_dir] call OT_fnc_getAO;
+			[_obpos,_ao,_pos,true,420] spawn OT_fnc_NATOGroundForces;
+			_strength = _strength - 150;
+			diag_log format["Overthrow: NATO Sent extra ground forces by air from %1 %2",_name,str _obpos];
+		};
+		_count = _count + 1;
+
+		if(_strength <=0 || _count isEqualTo 4) exitWith {};
+	}foreach(_air);
 };
 sleep 2;
 
@@ -204,14 +206,11 @@ server setVariable ["QRFprogress",0,true];
 
 waitUntil {(time - _start) > 600};
 
-private _timeout = time + 800;
-private _maxTime = time + 1800;
+private _timeout = time + 800; // ~13 minutes
+private _maxTime = time + 1800; // 30 minutes
 
 private _over = false;
 private _progress = 0;
-
-private _westSide = west;
-private _resSide = resistance;
 
 while {sleep 5; !_over} do {
 	_alive = 0;
@@ -220,10 +219,10 @@ while {sleep 5; !_over} do {
 	_enemyin = 0;
 	{
 		if(_x distance _pos < 200) then {
-			if (side _x isEqualTo _westSide) then {
+			if (side _x isEqualTo west) then {
 				_alive = _alive + 1;
 			};
-			if ((side _x isEqualTo _resSide || captive _x) && {!(_x getvariable ["ace_isunconscious",false])}) then {
+			if ((side _x isEqualTo resistance || captive _x) && {!(_x getvariable ["ace_isunconscious",false])}) then {
 				if(isPlayer _x) then {
 					_enemy = _enemy + 2;
 				} else {
@@ -232,7 +231,7 @@ while {sleep 5; !_over} do {
 			};
 		};
 	} foreach allUnits;
-	if(_alive == 0) then {_enemy = _enemy * 2}; //If no NATO present, cap it faster
+	if(_alive == 0) then {_enemy = _enemy * 8}; //If no NATO present, cap it faster
 	if(time > _timeout && _alive isEqualTo 0 && _enemy isEqualTo 0) then {_enemy = 1};
 	_progresschange = (_alive - _enemy);
 	if(_progresschange < -20) then {_progresschange = -20};

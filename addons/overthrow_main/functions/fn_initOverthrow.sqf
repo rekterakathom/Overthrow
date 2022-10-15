@@ -20,8 +20,12 @@ players_NS = true call CBA_fnc_createNamespace;
 publicVariable "players_NS";
 cost = true call CBA_fnc_createNamespace;
 publicVariable "cost";
+
+// This namespace contains a list of warehouses -
+// instead of warehouse contents like in OT+
 warehouse = true call CBA_fnc_createNamespace;
 publicVariable "warehouse";
+
 spawner = true call CBA_fnc_createNamespace;
 publicVariable "spawner";
 templates = true call CBA_fnc_createNamespace;
@@ -49,7 +53,8 @@ if(isServer) then {
 OT_tpl_checkpoint = [] call compileScript ["data\templates\NATOcheckpoint.sqf", true];
 
 //Advanced towing script, credits to Duda http://www.armaholic.com/page.php?id=30575
-[] spawn OT_fnc_advancedTowingInit;
+// Disabled due to ACE towing
+//[] spawn OT_fnc_advancedTowingInit;
 
 [] spawn {
 	if (false/*isDedicated && profileNamespace getVariable ["OT_autoload",false]*/) then {

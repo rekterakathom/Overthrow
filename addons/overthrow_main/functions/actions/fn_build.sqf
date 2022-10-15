@@ -305,6 +305,12 @@ buildOnMouseUp = {
 					_created setVariable ["OT_house_isPlayerBuilt", true, true];
 				};
 
+				if (typeOf _created == OT_warehouse) then {
+					private _ownedWarehouses = warehouse getVariable ["owned", []];
+					_ownedWarehouses pushBack _created;
+					warehouse setVariable ["owned", _ownedWarehouses, true];
+				};
+
 				if(modeCode != "") then {
 					_created setVariable ["OT_init",modeCode,true];
 					[_created,modeValue,modeCode] remoteExec ["OT_fnc_initBuilding",2];

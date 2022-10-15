@@ -14,23 +14,63 @@ private _closed = -1;
 private _missing = [];
 
 if(_target isEqualType "") then {
-    [_unit,true] call OT_fnc_dumpIntoWarehouse;
-    _unit linkItem "ItemMap";
+    private _warehouse = _unit call OT_fnc_nearestWarehouse;
+    if (_warehouse == objNull) exitWith {hint "No warehouse near by!"};
+
+    // Old method, remove all items and then verify the new loadout
+    //[_unit,true] call OT_fnc_dumpIntoWarehouse;
+    //_unit linkItem "ItemMap";
     {
         if(_x select [0,5] isEqualTo "item_") then {
-            private _d = warehouse getVariable [_x,[_x select [5],0,[0]]];
-            if(_d isEqualType []) then {
-                _items pushback _d#0;
+            private _d = _warehouse getVariable [_x,[_x select [5],0,[0]]];
+            if(_d isEqualType [] && {_d # 1 != 0}) then {
+                _items pushback _d # 0;
             };
         };
-    }foreach(allVariables warehouse);
+    }foreach(allVariables _warehouse);
+
+    // The items the unit has BEFORE they get to use the warehouse.
+    private _oldUnitItems = uniqueUnitItems [_unit, 2, 2, 2, 2, true];
 
     _closed = ["ace_arsenal_displayClosed", {
-        _thisArgs params ["_unit"];
-        _unit call OT_fnc_verifyLoadoutFromWarehouse;
+        _thisArgs params ["_unit", "_oldUnitItems"];
+
+        // The items the unit has AFTER they have used the warehouse.
+        private _newItems = uniqueUnitItems [_unit, 2, 2, 2, 2, true];
+        private _toVerify = [];
+        {
+
+            // Unit has a new item -> they took it from the warehouse!
+            if !(_x in _oldUnitItems) then {
+                _toVerify pushBack [_x, _y];
+            } else {
+                private _oldItemCount = (_oldUnitItems get _x);
+                // Amount of items has changed
+                if (_oldItemCount != _y) then {
+                    if ((_y - _oldItemCount) > 0) then {
+                        // The unit took the items!
+                        _toVerify pushBack [_x, _y - _oldItemCount];
+                    } else {
+                        // The unit put some items in the warehouse.
+                        [_x, _oldItemCount - _y] call OT_fnc_addToWarehouse;
+                    };
+                };
+            };
+        } forEach _newItems;
+
+        // Check if units put anything in the warehouse.
+        {
+            // They put it in the warehouse.
+            if !(_x in _newItems) then {
+                [_x, _y] call OT_fnc_addToWarehouse;
+            }
+        } forEach _oldUnitItems;
+
+        // Verify the item differences
+        [_unit, _toVerify] call OT_fnc_verifyFromWarehouse;
 
         [_thisType, _thisId] call CBA_fnc_removeEventHandler;
-    },[_unit]] call CBA_fnc_addEventHandlerArgs;
+    },[_unit, _oldUnitItems]] call CBA_fnc_addEventHandlerArgs;
 }else{
     [_unit,_ammobox,true] call OT_fnc_dumpStuff;
     _unit linkItem "ItemMap";
