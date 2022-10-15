@@ -1,6 +1,6 @@
 if(isMultiplayer) then {
 	addMissionEventHandler ["Draw3D", {
-		//if !(OT_showPlayerMarkers) exitWith {};
+		if !(OT_showPlayerMarkers) exitWith {};
 		{
 			if (_x isNotEqualTo player) then {
 				private _dis = round(_x distance player);
