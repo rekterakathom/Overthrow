@@ -1,3 +1,5 @@
+// THIS MISSION IS NOT ACTUALLY USED
+
 //Let's find some bandits to shoot
 
 private _done = player getVariable ["OT_tutesDone",[]];
