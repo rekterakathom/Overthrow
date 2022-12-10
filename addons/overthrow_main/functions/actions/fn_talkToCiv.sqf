@@ -430,7 +430,7 @@ if (_canTute) then {
 						"Legal money? Where's the fun in that. I guess you could try selling to stores or leasing houses.",
 						"Thanks."
 					],
-					(OT_tutorialMissions select 1)
+					(OT_tutorialMissions select 2)
 				] call OT_fnc_doConversation;
 			}
 		];
