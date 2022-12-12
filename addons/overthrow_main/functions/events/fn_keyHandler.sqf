@@ -134,7 +134,8 @@ if(!dialog) then {
 											];
 											[{
 												playSound "3DEN_notificationDefault";
-												// No mission here
+												// No mission here, so just clear the gun dealer waypoint.
+												call OT_fnc_clearPlayerWaypoint;
 												hint "You have completed the tutorial. Good luck on your future journey!";
 												player setVariable ["OT_tute_inProgress", false];
 											},1,10] call CBA_fnc_waitAndExecute;
