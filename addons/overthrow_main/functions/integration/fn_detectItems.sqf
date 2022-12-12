@@ -41,12 +41,6 @@ private _getprice = {
             if(_cls find "saline" > -1) exitWith {
                 _price = round(_price * 0.3);
             };
-            if(_cls find "IV_250" > -1) exitWith {
-                _price = round(_price * 0.5);
-            };
-            if(_cls find "IV_500" > -1) exitWith {
-                _price = round(_price * 1.5);
-            };
             if(_cls find "fieldDressing" > -1) exitWith {
                 _price = 1;
             };
