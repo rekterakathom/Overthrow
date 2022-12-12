@@ -46,6 +46,8 @@ OT_priceData = [
 ['ACE_surgicalKit',[50,0,0,3]],
 ['ACE_RangeTable_82mm',[1,0,0.1,0]],
 ['ACE_SpottingScope',[100,0,8,0]],
+['ACE_rope3',[3,0,2,0]],
+['ACE_rope6',[6,0,4,0]],
 ['ACE_rope12',[12,0,8,0]],
 ['ACE_rope15',[15,0,9,0]],
 ['ACE_rope18',[18,0,11,0]],
