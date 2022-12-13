@@ -592,7 +592,7 @@ OT_allBLURifleMagazines = [];
 				private _base = [_x] call BIS_fnc_baseWeapon;
 				if !(_base in _blacklist) then {
 					private _muzzleEffect = getText (_cfgWeapons >> _base >> "muzzleEffect");
-					if !(_x in _weapons) then {_weapons pushback _base};
+					if (!(_x in _weapons) && (getNumber (_cfgWeapons >> _base >> "scope") isEqualTo 2)) then {_weapons pushback _base};
 					if(_side isEqualTo 1 && !(_muzzleEffect isEqualTo "BIS_fnc_effectFiredFlares")) then {
 						if(_base isKindOf ["Rifle", _cfgWeapons]) then {
 							private _mass = getNumber (_cfgWeapons >> _base >> "WeaponSlotsInfo" >> "mass");
@@ -619,7 +619,7 @@ OT_allBLURifleMagazines = [];
 					};
 					//Get ammo
 					{
-						if (!(_x in _blacklist) || _x in OT_allExplosives) then {
+						if ((!(_x in _blacklist) || _x in OT_allExplosives) && (getNumber (configFile >> "CfgMagazines" >> _x >> "scope") isEqualTo 2)) then {
 							_weapons pushbackUnique _x
 						};
 					}foreach(getArray(_cfgWeapons >> _base >> "magazines"));
