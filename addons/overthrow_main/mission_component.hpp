@@ -79,6 +79,12 @@ class Params {
 		texts[] = {"Yes", "No"};
 		default = 1;
 	};
+	class ot_randomizeloadouts {
+		title = "Randomize NATO loadouts";
+		values[] = {1,0};
+		texts[] = {"Yes", "No"};
+		default = 0;
+	};
 	class ace_medical_level {
         title = "ACE Medical Level";
         ACE_setting = 1;
