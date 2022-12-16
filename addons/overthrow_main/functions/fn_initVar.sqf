@@ -47,10 +47,10 @@ OT_localMissions = [];
 }foreach("true" configClasses ( configFile >> "CfgOverthrowMissions" ));
 
 OT_tutorialMissions = [];
-OT_tutorialMissions pushback (compileScript ["\overthrow_main\missions\tutorial\tut_NATO.sqf", true]);
+OT_tutorialMissions pushback (compileScript ["\overthrow_main\missions\tutorial\tut_NATO.sqf", true]); // index 0
 //OT_tutorialMissions pushback (compileFinal preprocessFileLineNumbers "\overthrow_main\missions\tutorial\tut_CRIM.sqf");
-OT_tutorialMissions pushback (compileScript ["\overthrow_main\missions\tutorial\tut_Drugs.sqf", true]);
-OT_tutorialMissions pushback (compileScript ["\overthrow_main\missions\tutorial\tut_Economy.sqf", true]);
+OT_tutorialMissions pushback (compileScript ["\overthrow_main\missions\tutorial\tut_Drugs.sqf", true]); // index 1
+OT_tutorialMissions pushback (compileScript ["\overthrow_main\missions\tutorial\tut_Economy.sqf", true]); // index 2
 
 OT_NATO_HQ_garrisonPos = [];
 OT_NATO_HQ_garrisonDir = 0;

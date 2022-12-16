@@ -37,7 +37,7 @@ if(count _targets isEqualTo 0) exitWith {
                 //If the player fast travelled, give time to spawn
                 [{
                     //loop and hope we find a target
-                    [] call (OT_tutorialMissions select 2);
+                    [] call (OT_tutorialMissions select 1);
                 },0,10] call CBA_fnc_waitAndExecute;
             },
             _destination
