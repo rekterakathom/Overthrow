@@ -41,12 +41,6 @@ private _getprice = {
             if(_cls find "saline" > -1) exitWith {
                 _price = round(_price * 0.3);
             };
-            if(_cls find "IV_250" > -1) exitWith {
-                _price = round(_price * 0.5);
-            };
-            if(_cls find "IV_500" > -1) exitWith {
-                _price = round(_price * 1.5);
-            };
             if(_cls find "fieldDressing" > -1) exitWith {
                 _price = 1;
             };
@@ -127,7 +121,7 @@ private _getprice = {
     if(_categorized) then {
         OT_allItems pushback _cls;
     };
-}foreach("(inheritsFrom _x in [configFile >> ""CfgWeapons"" >> ""Binocular"",configFile >> ""CfgWeapons"" >> ""ItemCore"",configFile >> ""CfgWeapons"" >> ""ACE_ItemCore""])" configClasses ( configFile >> "CfgWeapons" ));
+}foreach("(inheritsFrom _x in [configFile >> ""CfgWeapons"" >> ""Binocular"",configFile >> ""CfgWeapons"" >> ""ItemCore"",configFile >> ""CfgWeapons"" >> ""ACE_ItemCore"",configFile >> ""CfgWeapons"" >> ""ACE_ropeBase"",configFile >> ""CfgWeapons"" >> ""UavTerminal_base""])" configClasses ( configFile >> "CfgWeapons" ));
 
 //add Bags
 {
