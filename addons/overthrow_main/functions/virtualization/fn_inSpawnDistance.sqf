@@ -1,15 +1,16 @@
+private _spawnDistance = OT_spawnDistance;
 if(_this isEqualType grpNull) exitWith {false};
 (
 	(
 		(
-			alldeadmen + (call CBA_fnc_players)
+			alldeadmen + (allPlayers - (entities "HeadlessClient_F"))
 		)
 		+
 		(spawner getVariable ["track",[]])
 	) findIf {
 		(alive _x || (_x getVariable ["player_uid",false]) isEqualType "")
 		&&
-		(_this distance _x) < OT_spawnDistance
+		(_this distance _x) < _spawnDistance
 	}
-	!= -1
+	isNotEqualTo -1
 )
