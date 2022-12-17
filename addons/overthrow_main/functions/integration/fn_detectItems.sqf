@@ -137,10 +137,17 @@ private _getprice = {
 //add Bags
 {
     private _cls = configName _x;
-    if (getNumber (_x >> "scope") isEqualTo 2) then {
-        [_cls,"Surplus"] call _categorize;
-    };
-}foreach("_parents = ([_x,true] call BIS_fnc_returnParents); 'Bag_Base' in _parents && !('Weapon_Bag_Base' in _parents) && (count (_x >> 'TransportItems') isEqualTo 0) && (count (_x >> 'MagazineItems') isEqualTo 0)" configClasses ( configFile >> "CfgVehicles" ));
+    [_cls,"Surplus"] call _categorize;
+}foreach("
+    (getNumber (_x >> 'scope') isEqualTo 2) &&
+    {
+        _parents = ([_x,true] call BIS_fnc_returnParents);
+        'Bag_Base' in _parents &&
+        !('Weapon_Bag_Base' in _parents) &&
+        (count (_x >> 'TransportItems') isEqualTo 0) &&
+        (count (_x >> 'MagazineItems') isEqualTo 0)
+    }
+" configClasses ( configFile >> "CfgVehicles" ));
 //add craftable magazines
 {
     private _cls = configName _x;
