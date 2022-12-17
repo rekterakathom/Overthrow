@@ -682,7 +682,7 @@ OT_priceData = [
 ['O_G_Boat_Transport_01_F',[800,0,5,2]],
 ['I_G_Boat_Transport_01_F',[800,0,5,2]],
 ['I_C_Boat_Transport_01_F',[800,0,5,2]],
-['O_Lifeboat',[250,0,1,2]],
+['O_Lifeboat',[800,0,5,2]],
 ['C_Scooter_Transport_01_F',[1200,0,8,2]],
 ['C_Boat_Civil_01_rescue_F',[4800,0,30,2]],
 ['C_Boat_Transport_02_F',[4000,0,25,2]],
