@@ -181,7 +181,7 @@ OT_itemCategoryDefinitions = [
     ["Pharmacy",["Dressing","Bandage","morphine","adenosine","atropine","ACE_EarPlugs","epinephrine","bodyBag","quikclot","salineIV","bloodIV","plasmaIV","personalAidKit","surgicalKit","tourniquet","splint"]],
     ["Electronics",["Rangefinder","Cellphone","Radio","Watch","GPS","monitor","DAGR","_dagr","Battery","ATragMX","ACE_Flashlight","I_UavTerminal","ACE_Kestrel4500"]],
     ["Hardware",["Tool","CableTie","ACE_Spraypaint","wirecutter","ACE_rope3","ACE_rope6","ACE_rope12","ACE_rope15","ACE_rope18","ACE_rope27","ACE_rope36"]],
-    ["Surplus",["Rangefinder","Binocular","Compass","RangeCard","RangeTable","defusalKit","SpottingScope","ACE_Vector","ACE_Yardage","ACE_Kestrel4500"]]
+    ["Surplus",["Rangefinder","Binocular","Compass","RangeCard","RangeTable","DefusalKit","SpottingScope","ACE_Vector","ACE_Yardage","ACE_Kestrel4500"]]
 ];
 
 OT_items = [];
