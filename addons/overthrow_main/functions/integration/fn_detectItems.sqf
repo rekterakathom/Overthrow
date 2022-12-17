@@ -121,7 +121,18 @@ private _getprice = {
     if(_categorized) then {
         OT_allItems pushback _cls;
     };
-}foreach("(inheritsFrom _x in [configFile >> ""CfgWeapons"" >> ""Binocular"",configFile >> ""CfgWeapons"" >> ""ItemCore"",configFile >> ""CfgWeapons"" >> ""ACE_ItemCore"",configFile >> ""CfgWeapons"" >> ""ACE_ropeBase"",configFile >> ""CfgWeapons"" >> ""UavTerminal_base""])" configClasses ( configFile >> "CfgWeapons" ));
+}foreach("
+    (getNumber (_x >> 'scope') isEqualTo 2) &&
+    {
+        inheritsFrom _x in [
+            configFile >> 'CfgWeapons' >> 'Binocular',
+            configFile >> 'CfgWeapons' >> 'ItemCore',
+            configFile >> 'CfgWeapons' >> 'ACE_ItemCore',
+            configFile >> 'CfgWeapons' >> 'ACE_ropeBase',
+            configFile >> 'CfgWeapons' >> 'UavTerminal_base'
+        ]
+    }
+" configClasses ( configFile >> "CfgWeapons" ));
 
 //add Bags
 {
