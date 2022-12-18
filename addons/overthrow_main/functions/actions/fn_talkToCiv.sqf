@@ -263,12 +263,6 @@ if (_canBuy) then {
 					};
 				}foreach(OT_items);
 
-				if(_cat isEqualTo "Surplus") then {
-					{
-						_s pushback [_x,-1];
-					}foreach(OT_allBackpacks);
-				};
-
 				[_town,_standing,_s] call OT_fnc_buyDialog;
 			};
 		}
