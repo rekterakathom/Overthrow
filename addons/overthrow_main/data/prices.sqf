@@ -408,7 +408,6 @@ OT_priceData = [
 ['C_Offroad_01_F',[580,0,15,2]],
 ['C_Offroad_01_repair_F',[960,0,15,2]],
 ['C_Quadbike_01_F',[140,0,15,2]],
-['I_Quadbike_01_F',[160,0,15,2]],
 ['I_Truck_02_covered_F',[2436,0,25,2]],
 ['I_Truck_02_transport_F',[2436,0,25,2]],
 ['C_Truck_02_covered_F',[1624,0,25,2]],
