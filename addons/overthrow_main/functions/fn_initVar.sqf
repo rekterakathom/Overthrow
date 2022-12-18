@@ -319,6 +319,7 @@ if(isServer) then {
 	call compileScript ["\overthrow_main\data\gangnames.sqf", false];
 };
 
+// note: Kamaz MRL is a special case: it has threat = 0 even though it is armed. This is probably an arma bug. Filtering it out separately.
 private _allVehs = "
     ( getNumber ( _x >> ""scope"" ) isEqualTo 2
     &&
@@ -327,7 +328,9 @@ private _allVehs = "
     { (toLowerANSI getText ( _x >> ""vehicleClass"" ) isEqualTo ""car"") || (toLowerANSI getText ( _x >> ""vehicleClass"" ) isEqualTo ""support"")}
 	&&
     { (getText ( _x >> ""faction"" ) isEqualTo ""CIV_F"") or
-     (getText ( _x >> ""faction"" ) isEqualTo ""IND_F"")})
+     (getText ( _x >> ""faction"" ) isEqualTo ""IND_F"")}
+	&&
+	{ configName _x isNotEqualTo ""I_Truck_02_MRL_F""})
 
 " configClasses ( _cfgVehicles );
 
