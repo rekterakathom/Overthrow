@@ -138,6 +138,10 @@ private _getprice = {
 {
     private _cls = configName _x;
     [_cls,"Surplus"] call _categorize;
+    if (isServer && {isNil {cost getVariable _cls}}) then {
+        private _mass = getNumber (_x >> "mass");
+        cost setVariable [_cls,[_mass,0,0,1],true]; // the price of a bag is its mass, unless otherwise stated in prices.sqf.
+    };
 }foreach("
     (getNumber (_x >> 'scope') isEqualTo 2) &&
     {
