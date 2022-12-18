@@ -5,7 +5,7 @@ OT_priceData = [
 ['OT_Ganja',[100,0,0,0]],
 ['OT_Blow',[250,0,0,0]],
 //Gun dealer stuff
-['Set_HMG',[1700,0,0,0]],
+['Set_HMG',[2190,0,0,0]],
 //Items
 ['ItemWatch',[10,0,0,1]],
 ['ItemCompass',[3,0,1,0]],
