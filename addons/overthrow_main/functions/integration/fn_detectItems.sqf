@@ -147,11 +147,13 @@ private _getprice = {
     {
         _parents = ([_x,true] call BIS_fnc_returnParents);
         'Bag_Base' in _parents &&
-        !('Weapon_Bag_Base' in _parents) &&
-        (count (_x >> 'TransportItems') isEqualTo 0) &&
-        (count (_x >> 'MagazineItems') isEqualTo 0)
+        {getText (_x >> 'Faction') isEqualTo 'Default'} &&
+        {!('Weapon_Bag_Base' in _parents)} &&
+        {count (_x >> 'TransportItems') isEqualTo 0} &&
+        {count (_x >> 'TransportMagazines') isEqualTo 0} &&
+        {count (_x >> 'TransportWeapons') isEqualTo 0}
     }
-" configClasses ( configFile >> "CfgVehicles" ));
+" configClasses ( configFile >> "CfgVehicles" )); // Bags that do not have a faction (weapon and tripod bags do), and carry no content.
 //add craftable magazines
 {
     private _cls = configName _x;
