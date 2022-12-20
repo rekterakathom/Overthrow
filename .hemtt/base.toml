@@ -1,0 +1,12 @@
+name = "Overthrow"
+prefix = "OT"
+author = "The Overthrow community"
+version = "1.0.0.0"
+modname = "Overthrow"
+files = [
+    "LICENSE",
+    "mod.cpp",
+    "README.md"
+]
+folder_optionals = false
+sig_version = 3
