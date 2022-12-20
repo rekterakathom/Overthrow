@@ -8,7 +8,7 @@
 	_params set [0, -1];
 	_pos = _pos isFlatEmpty _params;
 	if (_pos isEqualTo []) exitWith {_pos};
-	_pos
+	_pos;
 
 
 
