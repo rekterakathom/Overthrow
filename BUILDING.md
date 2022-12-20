@@ -2,8 +2,8 @@
 
 **Requirements**
 * Mounted P: drive
-* ArmaScriptCompiler
-* HEMTT
+* [ArmaScriptCompiler](https://github.com/dedmen/ArmaScriptCompiler)
+* [HEMTT](https://github.com/BrettMayson/HEMTT)
 * Arma 3 Tools
 
 Mount the P: drive from Arma 3 Tools/workdrive/mount.bat
