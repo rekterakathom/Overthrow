@@ -9,9 +9,9 @@ private _spawnpos = _frompos;
 private _group1 = createGroup west;
 _group1 deleteGroupWhenEmpty true;
 
+// Spawn 4 soldiers to be seated in a transport vehicle
 for "_i" from 1 to 4 do {
-	private _p = _frompos findEmptyPosition [15,100,_vehtype];
-	(selectRandom OT_NATO_Units_LevelOne) createUnit [_p,_group1,"",0.3,"private"];//fix for units not spawning
+	(selectRandom OT_NATO_Units_LevelOne) createUnit [_frompos,_group1,"",0.3,"private"];
 };
 
 sleep 0.5;
