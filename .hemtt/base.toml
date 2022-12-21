@@ -1,0 +1,13 @@
+name = "Overthrow Rekter Edition"
+prefix = "OT"
+author = "The Overthrow community"
+version = "1.0.0.0"
+modname = "Overthrow Rekter Edition"
+files = [
+    "LICENSE",
+    "mod.cpp",
+    "README.md",
+    "logo_overthrow.paa"
+]
+folder_optionals = false
+sig_version = 3
