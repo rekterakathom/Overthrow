@@ -181,7 +181,7 @@ OT_itemCategoryDefinitions = [
     ["Pharmacy",["Dressing","Bandage","morphine","adenosine","atropine","ACE_EarPlugs","epinephrine","bodyBag","quikclot","salineIV","bloodIV","plasmaIV","personalAidKit","surgicalKit","tourniquet","splint"]],
     ["Electronics",["Rangefinder","Cellphone","Radio","Watch","GPS","monitor","DAGR","_dagr","Battery","ATragMX","ACE_Flashlight","I_UavTerminal","ACE_Kestrel4500"]],
     ["Hardware",["Tool","CableTie","ACE_Spraypaint","wirecutter","ACE_rope3","ACE_rope6","ACE_rope12","ACE_rope15","ACE_rope18","ACE_rope27","ACE_rope36"]],
-    ["Surplus",["Rangefinder","Binocular","Compass","RangeCard","RangeTable","defusalKit","SpottingScope","ACE_Vector","ACE_Yardage","ACE_Kestrel4500"]]
+    ["Surplus",["Rangefinder","Binocular","Compass","RangeCard","RangeTable","DefusalKit","SpottingScope","ACE_Vector","ACE_Yardage","ACE_Kestrel4500"]]
 ];
 
 OT_items = [];
@@ -319,6 +319,7 @@ if(isServer) then {
 	call compileScript ["\overthrow_main\data\gangnames.sqf", false];
 };
 
+// note: Kamaz MRL is a special case: it has threat = 0 even though it is armed. This is probably an arma bug. Filtering it out separately.
 private _allVehs = "
     ( getNumber ( _x >> ""scope"" ) isEqualTo 2
     &&
@@ -327,7 +328,9 @@ private _allVehs = "
     { (toLowerANSI getText ( _x >> ""vehicleClass"" ) isEqualTo ""car"") || (toLowerANSI getText ( _x >> ""vehicleClass"" ) isEqualTo ""support"")}
 	&&
     { (getText ( _x >> ""faction"" ) isEqualTo ""CIV_F"") or
-     (getText ( _x >> ""faction"" ) isEqualTo ""IND_F"")})
+     (getText ( _x >> ""faction"" ) isEqualTo ""IND_F"")}
+	&&
+	{ configName _x isNotEqualTo ""I_Truck_02_MRL_F""})
 
 " configClasses ( _cfgVehicles );
 
@@ -592,7 +595,7 @@ OT_allBLURifleMagazines = [];
 				private _base = [_x] call BIS_fnc_baseWeapon;
 				if !(_base in _blacklist) then {
 					private _muzzleEffect = getText (_cfgWeapons >> _base >> "muzzleEffect");
-					if !(_x in _weapons) then {_weapons pushback _base};
+					if (!(_x in _weapons) && (getNumber (_cfgWeapons >> _base >> "scope") isEqualTo 2)) then {_weapons pushback _base};
 					if(_side isEqualTo 1 && !(_muzzleEffect isEqualTo "BIS_fnc_effectFiredFlares")) then {
 						if(_base isKindOf ["Rifle", _cfgWeapons]) then {
 							private _mass = getNumber (_cfgWeapons >> _base >> "WeaponSlotsInfo" >> "mass");
@@ -619,7 +622,7 @@ OT_allBLURifleMagazines = [];
 					};
 					//Get ammo
 					{
-						if (!(_x in _blacklist) || _x in OT_allExplosives) then {
+						if ((!(_x in _blacklist) || _x in OT_allExplosives) && (getNumber (configFile >> "CfgMagazines" >> _x >> "scope") isEqualTo 2)) then {
 							_weapons pushbackUnique _x
 						};
 					}foreach(getArray(_cfgWeapons >> _base >> "magazines"));
