@@ -2,11 +2,9 @@ params ["_frompos","_ao","_attackpos",["_delay",0]];
 if (_delay > 0) then {sleep _delay};
 private _vehtype = selectRandom OT_NATO_Vehicles_APC;
 private _squadtype = selectRandom OT_NATO_GroundForces;
-private _spawnpos = _frompos findEmptyPosition [15,100,_vehtype];
-if(count _spawnpos == 0) then {
-	_spawnpos = [_frompos,[5,25]] call SHK_pos_fnc_pos;
-};
-private _group1 = [_spawnpos, WEST, (configFile >> "CfgGroups" >> "West" >> OT_faction_NATO >> "Infantry" >> _squadtype)] call BIS_fnc_spawnGroup;
+
+// Spawn a group to be seated in a transport vehicle
+private _group1 = [_frompos, WEST, (configFile >> "CfgGroups" >> "West" >> OT_faction_NATO >> "Infantry" >> _squadtype)] call BIS_fnc_spawnGroup;
 _group1 deleteGroupWhenEmpty true;
 private _group2 = "";
 private _tgroup = false;
