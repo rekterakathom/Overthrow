@@ -1,8 +1,8 @@
 
-# Overthrow: Rekter Edition
+# Overthrow: Community Edition
 **The work on Overthrow continues!**
 
-Overthrow: Rekter Edition is a continuation of the Overthrow Plus project by Nifnat: https://github.com/Nifnat/Overthrow
+Overthrow: Community Edition is a continuation of the Overthrow Plus project by Nifnat: https://github.com/Nifnat/Overthrow
 
 The goal of the project is to update the Overthrow codebase to allow for easier modification and enhanced performance, while also adding new features, trying to stay faithful to the original vision of Overthrow.
 
