@@ -8,7 +8,7 @@ The goal of the project is to update the Overthrow codebase to allow for easier 
 
 **The goal is to have all non-gameplay changing performance improvements and security updates be accessible to all Overthrow developers in the perf branch, and maybe have them included in Overthrow Plus as well.**
 
-![image](https://raw.githubusercontent.com/rekterakathom/Overthrow/rkt_edition/addons/overthrow_main/campaign/RKT-loadingscreen.jpg)
+![image](https://raw.githubusercontent.com/rekterakathom/Overthrow/master/addons/overthrow_main/campaign/RKT-loadingscreen.jpg)
 
 # Overthrow
 A dynamic and persistent revolution campaign mod for ARMA 3 Apex
