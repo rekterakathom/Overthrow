@@ -448,41 +448,17 @@ if(isServer) then {
 	OT_allVehicles pushBack _cls;
 }foreach(OT_vehicles);
 
-private _allWeapons = "
-    ( getNumber ( _x >> ""scope"" ) isEqualTo 2
-    &&
-    { getText ( _x >> ""simulation"" ) isEqualTo ""Weapon""})
-" configClasses ( _cfgWeapons );
+// Filter the scope only once
+private _filteredWeaponConfigs = "
+	(getNumber (_x >> 'scope') == 2)
+" configClasses (_cfgWeapons);
 
-private _allAttachments = "
-    ( getNumber ( _x >> ""scope"" ) isEqualTo 2
-    &&
-    { _t = getNumber ( _x >> ""ItemInfo"" >> ""type"" ); _t isEqualTo 301 || _t isEqualTo 302 || _t isEqualTo 101})
-" configClasses ( _cfgWeapons );
-
-private _allOptics = "
-    ( getNumber ( _x >> ""scope"" ) isEqualTo 2
-    &&
-    { getNumber ( _x >> ""ItemInfo"" >> ""optics"" ) isEqualTo 1})
-" configClasses ( _cfgWeapons );
-
-private _allDetonators = "
-    ( getNumber ( _x >> ""scope"" ) isEqualTo 2
-    &&
-    { getNumber ( _x >> ""ace_explosives_Detonator"" ) isEqualTo 1})
-" configClasses ( _cfgWeapons );
-
-private _allUniforms = "
-    ( getNumber ( _x >> ""scope"" ) isEqualTo 2
-    &&
-    { getNumber ( _x >> ""ItemInfo"" >> ""type"" ) isEqualTo 801})
-" configClasses ( _cfgWeapons );
-
-private _allHelmets = "
-    ( getNumber ( _x >> ""scope"" ) isEqualTo 2
-    &&
-    { getNumber ( _x >> ""ItemInfo"" >> ""type"" ) isEqualTo 605})
-" configClasses ( _cfgWeapons );
+// Could be optimized further, but this is already over twice as fast as the old method (65ms -> 25ms)
+private _allWeapons = _filteredWeaponConfigs select {getText ( _x >> "simulation" ) == "weapon"};
+private _allDetonators = _filteredWeaponConfigs select {getNumber ( _x >> "ace_explosives_Detonator" ) == 1};
+private _allAttachments = _filteredWeaponConfigs select {_t = getNumber ( _x >> "ItemInfo" >> "type" ); _t == 301 || _t == 302 || _t == 101};
+private _allUniforms = _filteredWeaponConfigs select {getNumber ( _x >> "ItemInfo" >> "type" ) == 801};
+private _allHelmets = _filteredWeaponConfigs select {getNumber ( _x >> "ItemInfo" >> "type" ) == 605};
 
 private _allAmmo = "
     ( getNumber ( _x >> ""scope"" ) isEqualTo 2 )
