@@ -1,10 +1,10 @@
-if!((vehicle _this) isEqualTo _this) then {_this = vehicle _this};
+if (!isNull objectParent _this) then {_this = objectParent _this};
 
 private _cache = _this getVariable "SeenCacheCRIM";
 if (isNil "_cache" || {time > (_cache select 1)}) then {
     _cache = [
         !(
-            ((_this nearEntities ["Man",1200]) findIf {
+            ((_this nearEntities ["CAManBase",1200]) findIf {
                 _x = driver _x;
                 side _x isEqualTo east
                 && {

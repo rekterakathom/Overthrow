@@ -2,6 +2,14 @@ params [
 	["_data",profileNameSpace getVariable [OT_saveName,""]]
 ];
 
+// Backwards compatibility
+if (isMissionProfileNamespaceLoaded) then {
+	_data = missionProfileNamespace getVariable [OT_saveName, ""];
+	profileNamespace setVariable [OT_saveName, nil]; // Clean-up the old save from user profile
+} else {
+	_data = profileNamespace getVariable [OT_saveName,""];
+};
+
 //get all server data
 "Loading persistent save" remoteExec['OT_fnc_notifyStart',0,false];
 
@@ -91,11 +99,11 @@ private _hasList_buildableHouses = false;
 			_veh enableDynamicSimulation true;
 
 			_mrkid = format["%1-base",_pos];
-			createMarker [_mrkid,_pos];
-			_mrkid setMarkerShape "ICON";
-			_mrkid setMarkerType "mil_Flag";
-			_mrkid setMarkerColor "ColorWhite";
-			_mrkid setMarkerAlpha 1;
+			createMarkerLocal [_mrkid,_pos];
+			_mrkid setMarkerShapeLocal "ICON";
+			_mrkid setMarkerTypeLocal "mil_Flag";
+			_mrkid setMarkerColorLocal "ColorWhite";
+			_mrkid setMarkerAlphaLocal 1;
 			_mrkid setMarkerText _name;
 		}foreach(_val);
 
@@ -108,18 +116,28 @@ private _hasList_buildableHouses = false;
 				_val deleteAt 0;
 				{
 					if(!isNil "_x") then {
-						if(_x isEqualType []) then {
-							_x params [["_itemClass","",[""]],["_itemCount",0,[0]]];
-							if (_itemCount > 0 && !(_itemClass isEqualTo "")) then {
-								warehouse setVariable [format["item_%1",_itemClass],[_itemClass,_itemCount],true];
-							};
+						private _currentVal = _x;
+						if(_currentVal isEqualType []) then {
+							private _warehouse = (_currentVal # 0) call OT_fnc_nearestWarehouse;
+							{
+								if !(isNil "_x") then {
+									_x params [
+										["_itemClass","",[""]],
+										["_itemCount",0,[0]]
+									];
+									if (_itemCount > 0 && (_itemClass isNotEqualTo "")) then {
+										_warehouse setVariable [format["item_%1",_itemClass],[_itemClass,_itemCount],true];
+									};
+								};
+							} forEach (_currentVal # 1);
 						};
 					};
 				}foreach(_val);
 			};
 			default {
 				{
-					_x params ["_itemClassL","_itemData"];
+					// This isn't used!
+					params ["_itemClassL","_itemData"];
 					if !(isNil "_itemData") then {
 						if (_itemData isEqualType []) then {
 							_itemData params ["_cls",["_num",0,[0]]];
@@ -133,6 +151,11 @@ private _hasList_buildableHouses = false;
 		};
 		_set = false;
 	};
+	if (_key == "warehouselist") then {
+		private _warehouses = _val apply {_x call OT_fnc_nearestWarehouse};
+		warehouse setVariable ["owned", _warehouses, true];
+		_set = false;
+	};
 	if(_key == "vehicles") then {
 		_set = false;
 		_ccc = 0;
@@ -142,7 +165,7 @@ private _hasList_buildableHouses = false;
 				//Backwards-compatability map upgrade for old saves
 				_type = OT_item_Map;
 			};
-			if !(_type isKindOf "Man") then {
+			if !(_type isKindOf "CAManBase") then {
 				_pos = ((_x select 1)#0);
 				_simulation = ((_x select 1)#1);
 				_posFormat = (_x select 1) param [2, 0];		// Assume format 0 by default (posATL)
@@ -168,35 +191,37 @@ private _hasList_buildableHouses = false;
 				if(count _x > 7) then {		// index range 0..6
 					(_x select 7) params ["_fuel","_dmg"];
 					//Fuel in tank
-					_veh setFuel _fuel;
-					{
-						_d = (_dmg select 2) select _forEachIndex;
-						if(_d > 0) then {
-							_veh setHitPointDamage [_x, _d, false];
-						};
-					}foreach(_dmg select 0);
-					if(count (_x select 7) > 2) then {
-						//ACE refuel (fuel trucks)
-						[_veh, (_x select 7) select 2] call ace_refuel_fnc_setFuel;
-					};
-					if(count (_x select 7) > 3) then {
-						//Lock/unlock
-						_veh setVariable ["OT_locked",(_x select 7) select 3,true];
-					};
-					if(count (_x select 7) > 4) then {
-						//Ammo
-						_ammo = (_x select 7) select 4;
+					if !(_veh isKindOf "Building") then {
+						_veh setFuel _fuel;
 						{
-							_veh setAmmo [_x select 0,_x select 1];
-						}foreach((_x select 7) select 4);
-					};
-					if(count (_x select 7) > 5) then {
-						//Attached
-						_a = (_x select 7) select 5;
-						if(count _a > 0) then {
-							_a params ["_attached","_am"];
-							_veh setVariable ["OT_attachedClass",_attached,true];
-							[_veh,_am] call OT_fnc_initAttached;
+							_d = (_dmg select 2) select _forEachIndex;
+							if(_d > 0) then {
+								_veh setHitPointDamage [_x, _d, false];
+							};
+						}foreach(_dmg select 0);
+						if(count (_x select 7) > 2) then {
+							//ACE refuel (fuel trucks)
+							[_veh, (_x select 7) select 2] call ace_refuel_fnc_setFuel;
+						};
+						if(count (_x select 7) > 3) then {
+							//Lock/unlock
+							_veh setVariable ["OT_locked",(_x select 7) select 3,true];
+						};
+						if(count (_x select 7) > 4) then {
+							//Ammo
+							_ammo = (_x select 7) select 4;
+							{
+								_veh setAmmo [_x select 0,_x select 1];
+							}foreach((_x select 7) select 4);
+						};
+						if(count (_x select 7) > 5) then {
+							//Attached
+							_a = (_x select 7) select 5;
+							if(count _a > 0) then {
+								_a params ["_attached","_am"];
+								_veh setVariable ["OT_attachedClass",_attached,true];
+								[_veh,_am] call OT_fnc_initAttached;
+							};
 						};
 					};
 				};
@@ -299,29 +324,29 @@ private _hasList_buildableHouses = false;
 				if(_type isEqualTo OT_policeStation) then {
 					_town = _pos call OT_fnc_nearestTown;
 					_mrkid = format["%1-police",_town];
-					createMarker [_mrkid,_pos];
-					_mrkid setMarkerShape "ICON";
-					_mrkid setMarkerType "o_installation";
-					_mrkid setMarkerColor "ColorGUER";
+					createMarkerLocal [_mrkid,_pos];
+					_mrkid setMarkerShapeLocal "ICON";
+					_mrkid setMarkerTypeLocal "o_installation";
+					_mrkid setMarkerColorLocal "ColorGUER";
 					_mrkid setMarkerAlpha 1;
 				};
 
 				if(_type isEqualTo OT_warehouse) then {
 					_mrkid = format["bdg-%1",_veh];
-					createMarker [_mrkid,_pos];
-					_mrkid setMarkerShape "ICON";
-					_mrkid setMarkerType "OT_warehouse";
-					_mrkid setMarkerColor "ColorWhite";
+					createMarkerLocal [_mrkid,_pos];
+					_mrkid setMarkerShapeLocal "ICON";
+					_mrkid setMarkerTypeLocal "OT_warehouse";
+					_mrkid setMarkerColorLocal "ColorWhite";
 					_mrkid setMarkerAlpha 1;
 				};
 
 				if(_type isEqualTo OT_item_tent) then {
 					_mrkid = format["%1-camp",_owner];
-					createMarker [_mrkid,_pos];
-					_mrkid setMarkerShape "ICON";
-					_mrkid setMarkerType "ot_Camp";
-					_mrkid setMarkerColor "ColorWhite";
-					_mrkid setMarkerAlpha 1;
+					createMarkerLocal [_mrkid,_pos];
+					_mrkid setMarkerShapeLocal "ICON";
+					_mrkid setMarkerTypeLocal "ot_Camp";
+					_mrkid setMarkerColorLocal "ColorWhite";
+					_mrkid setMarkerAlphaLocal 1;
 					_mrkid setMarkerText format ["Camp %1",players_NS getvariable [format["name%1",_owner],""]];
 				};
 			};
@@ -405,11 +430,11 @@ sleep 0.3;
 		}foreach(_garrison);
 	};
 	private _mrkid = format["%1-base",_pos];
-    createMarker [_mrkid,_pos];
-    _mrkid setMarkerShape "ICON";
-    _mrkid setMarkerType "mil_Flag";
-    _mrkid setMarkerColor "ColorWhite";
-    _mrkid setMarkerAlpha 1;
+    createMarkerLocal [_mrkid,_pos];
+    _mrkid setMarkerShapeLocal "ICON";
+    _mrkid setMarkerTypeLocal "mil_Flag";
+    _mrkid setMarkerColorLocal "ColorWhite";
+    _mrkid setMarkerAlphaLocal 1;
     _mrkid setMarkerText (_x select 1);
 	_veh = OT_flag_IND createVehicle _pos;
 	[_veh,(server getVariable ["generals",[getPlayerUID player]]) select 0] call OT_fnc_setOwner;
@@ -446,8 +471,8 @@ private _revealed = server getVariable ["revealedGangs",[]];
 
 	if((count _gang) > 0) then {
 		_mrkid = format["gang%1",_gang select 2];
-		_mrk = createMarker [_mrkid, _gang select 4];
-		_mrkid setMarkerType "ot_Camp";
+		_mrk = createMarkerLocal [_mrkid, _gang select 4];
+		_mrkid setMarkerTypeLocal "ot_Camp";
 		_mrkid setMarkerColor "colorOPFOR";
 	};
 }foreach(_revealed);
@@ -505,6 +530,9 @@ private _built = (allMissionObjects "Static");
 	[_uid,"leased",_leasedNew] call OT_fnc_setOfflinePlayerAttribute;		// Overwrite the "leased" data to get rid of the IDs that point to buildings which no longer exist (player-built houses)
 	[_uid,"leasedBuilt",[]] call OT_fnc_setOfflinePlayerAttribute;
 }foreach(players_NS getvariable ["OT_allPlayers",[]]);
+
+OT_autoSave_last_time = (time + (OT_autoSave_time*60)) + 60;
+
 sleep 2; //let the variables propagate
 server setVariable ["StartupType","LOAD",true];
 hint "Persistent Save Loaded";

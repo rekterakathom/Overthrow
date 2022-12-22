@@ -1,6 +1,6 @@
 GUER_faction_loop_data params ["_lastmin","_lasthr","_currentProduction","_stabcounter","_trackcounter"];
 
-private _numplayers = count([] call CBA_fnc_players);
+private _numplayers = count(allPlayers - (entities "HeadlessClient_F"));
 if(_numplayers isEqualTo 0) exitWith {};
 
 _trackcounter = _trackcounter + 1;
@@ -13,7 +13,7 @@ if(_trackcounter > 5) then {
 			_x setVariable ["OT_newplayer",false,true];
 		};
 		[_x] call OT_fnc_savePlayerData;
-	}foreach([] call CBA_fnc_players);
+	}foreach(allPlayers - (entities "HeadlessClient_F"));
 
 	_track = [];
 	{
@@ -45,14 +45,22 @@ if(_dead > 150) then {
 };
 
 {
-	if (typename _x isEqualTo "GROUP") then {
+	if (_x isEqualType grpNull) then {
 		{
-			deleteVehicle _x;
+			if (isNull objectParent _x) then {
+				deleteVehicle _x;
+			} else {
+				[(objectParent _x), _x] remoteExec ["deleteVehicleCrew", _x, false];
+			};
 		}foreach(units _x);
 		deleteGroup _x;
 	};
-	if (typename _x isEqualTo "OBJECT") then {
-		deleteVehicle _x;
+	if (_x isEqualType objNull) then {
+		if (isNull objectParent _x) then {
+			deleteVehicle _x;
+		} else {
+			[(objectParent _x), _x] remoteExec ["deleteVehicleCrew", _x, false];
+		};
 	};
 }foreach(spawner getVariable ["_noid_",[]]);
 
@@ -60,7 +68,7 @@ if(_dead > 150) then {
 	if((_x isKindOf "Air") && {(alive _x)} && ((side _x) isEqualTo west) && (_x call OT_fnc_isRadarInRange) && {(count crew _x > 0)}) then {
 		[_x,2500] call OT_fnc_revealToResistance;
 	};
-}foreach(vehicles);
+}foreach(entities "Air");
 
 if ((date select 3) != _lasthr) then {
 	_lasthr = date select 3;
@@ -201,10 +209,10 @@ if ((date select 4) != _lastmin) then {
 		_support = [_town] call OT_fnc_support;
 		if (!(_id in _revealed) && (_support > (random 2000))) then {
 			_revealed pushback _id;
-			_mrkid = createMarker [format["natofob%1",_id],_pos];
-			_mrkid setMarkerShape "ICON";
-		    _mrkid setMarkerType "mil_Flag";
-		    _mrkid setMarkerColor "ColorBLUFOR";
+			_mrkid = createMarkerLocal [format["natofob%1",_id],_pos];
+			_mrkid setMarkerShapeLocal "ICON";
+		    _mrkid setMarkerTypeLocal "mil_Flag";
+		    _mrkid setMarkerColorLocal "ColorBLUFOR";
 		    _mrkid setMarkerAlpha 1;
 			format["Citizens of %1 have revealed intelligence of a nearby NATO FOB",_town] remoteExec ["OT_fnc_notifyMinor",0,false];
 		};
@@ -221,14 +229,13 @@ if ((date select 4) != _lastmin) then {
 			_townpos = server getvariable _x;
 			if !(_town in _abandoned) then {
 				if(_townpos call OT_fnc_inSpawnDistance) then {
-					private _numcops = {side _x isEqualTo west} count (_townpos nearObjects ["CAManBase",600]);
-					if(_numcops isEqualTo 0) then {
+					if((_townpos nearEntities ["CAManBase",600]) findIf {side _x isEqualTo west} != -1) then {
 						[_town,-1] call OT_fnc_stability;
 					};
 				};
 			}else{
 				_stabchange = 0;
-				private _numcops = {side _x isEqualTo west} count (_townpos nearObjects ["CAManBase",600]);
+				private _numcops = {side _x isEqualTo west} count (_townpos nearEntities ["CAManBase",600]);
 				if(_numcops > 0) then {
 					_stabchange = _stabchange - _numcops;
 				};
@@ -421,7 +428,7 @@ if ((date select 4) != _lastmin) then {
 
 	{
 		_x params ["_owner","_name","_unit","_rank"];
-		if(typename _unit isEqualTo "OBJECT") then {
+		if(_unit isEqualType objNull) then {
 			_xp = _unit getVariable ["OT_xp",0];
 			_player = spawner getvariable [_owner,objNULL];
 			if(_rank == "PRIVATE" && _xp > (OT_rankXP select 0)) then {

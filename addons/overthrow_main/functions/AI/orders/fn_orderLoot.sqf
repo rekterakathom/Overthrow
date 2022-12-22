@@ -6,8 +6,8 @@ private _myunits = groupSelectedUnits player;
 } forEach (groupSelectedUnits player);
 
 _myunits params ["_tt"];
-if(vehicle _tt != _tt) then {
-	_sorted = [vehicle _tt];
+if(!isNull objectParent _tt) then {
+	_sorted = [objectParent _tt];
 }else{
 	private _objects = _tt nearEntities [["Car","ReammoBox_F","Air","Ship"],20];
 	if(count _objects isEqualTo 0) exitWith {
@@ -32,10 +32,10 @@ private _target = _sorted select 0;
 
 		_unit setVariable ["NOAI",true,true];
 		_unit setBehaviour "SAFE";
-		[[_unit,""],"switchMove",TRUE,FALSE] spawn BIS_fnc_MP;
+		[_unit, ""] remoteExec ["switchMove", 0, false];
 
-		if((vehicle _unit) != _unit) then {
-			_car = (vehicle _unit);
+		if(!isNull objectParent _unit) then {
+			_car = (objectParent _unit);
 			doGetOut _unit;
 			_wasincar = true;
 		};
@@ -49,7 +49,7 @@ private _target = _sorted select 0;
         	_istruck = (_t isKindOf "Truck_F") || (_t isKindOf "ReammoBox_F");
         };
 
-		_unit doMove getpos _t;
+		_unit doMove ASLtoAGL (getPosASL _t);
 
 		_timeout = time + 30;
 		waitUntil {sleep 1; (!alive _unit) || (isNull _t) || (_unit distance _t < 10) || (_timeOut < time) || (unitReady _unit)};
@@ -88,7 +88,7 @@ private _target = _sorted select 0;
 				if !((_x distance _t > 100) || (alive _x)) then {
 					_deadguys pushback _x;
 				};
-			}foreach(entities "Man");
+			}foreach(entities "CAManBase");
 			if(count _deadguys isEqualTo 0) exitWith {_unit globalchat "All done!"};
             _unit globalchat format["%1 bodies to loot",count _deadguys];
 			_sorted = [_deadguys,[],{_x distance _t},"ASCEND"] call BIS_fnc_SortBy;
@@ -98,7 +98,7 @@ private _target = _sorted select 0;
 			_deadguy setVariable ["OT_looted",true,true];
 			_deadguy setvariable ["OT_lootedAt",time,true];
 
-			_unit doMove getpos _deadguy;
+			_unit doMove ASLtoAGL (getPosASL _deadguy);
 			[_unit,1] call OT_fnc_experience;
 
 			waitUntil {sleep 1; (!alive _unit) || (isNull _t) || (_unit distance2D _deadguy < 12) || (_timeOut < time)};
@@ -106,9 +106,13 @@ private _target = _sorted select 0;
 
 			[_deadguy,_unit] call OT_fnc_takeStuff;
 			sleep 2;
-            _deadguy remoteExecCall ["deleteVehicle",_deadguy];
+			if (isNull objectParent _deadguy) then {
+				deleteVehicle _deadguy;
+			} else {
+				[(objectParent _deadguy), _deadguy] remoteExec ["deleteVehicleCrew", _deadguy, false];
+			};
 			_timeout = time + 30;
-			_unit doMove getpos _t;
+			_unit doMove ASLtoAGL (getPosASL _t);
 			waitUntil {sleep 1; (!alive _unit) || (isNull _t) || (_unit distance _t < 12) || (_timeOut < time)};
 			if((!alive _unit) || (_timeOut < time)) exitWith {};
 

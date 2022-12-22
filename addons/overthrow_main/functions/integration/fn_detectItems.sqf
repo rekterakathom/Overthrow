@@ -41,12 +41,6 @@ private _getprice = {
             if(_cls find "saline" > -1) exitWith {
                 _price = round(_price * 0.3);
             };
-            if(_cls find "IV_250" > -1) exitWith {
-                _price = round(_price * 0.5);
-            };
-            if(_cls find "IV_500" > -1) exitWith {
-                _price = round(_price * 1.5);
-            };
             if(_cls find "fieldDressing" > -1) exitWith {
                 _price = 1;
             };
@@ -127,15 +121,33 @@ private _getprice = {
     if(_categorized) then {
         OT_allItems pushback _cls;
     };
-}foreach("(inheritsFrom _x in [configFile >> ""CfgWeapons"" >> ""Binocular"",configFile >> ""CfgWeapons"" >> ""ItemCore"",configFile >> ""CfgWeapons"" >> ""ACE_ItemCore""])" configClasses ( configFile >> "CfgWeapons" ));
+}foreach("
+    (getNumber (_x >> 'scope') isEqualTo 2) &&
+    {
+        inheritsFrom _x in [
+            configFile >> 'CfgWeapons' >> 'Binocular',
+            configFile >> 'CfgWeapons' >> 'ItemCore',
+            configFile >> 'CfgWeapons' >> 'ACE_ItemCore',
+            configFile >> 'CfgWeapons' >> 'ACE_ropeBase',
+            configFile >> 'CfgWeapons' >> 'UavTerminal_base'
+        ]
+    }
+" configClasses ( configFile >> "CfgWeapons" ));
 
 //add Bags
 {
     private _cls = configName _x;
-    if ((_cls find "_Base") isEqualTo -1) then {
-        [_cls,"Surplus"] call _categorize;
-    };
-}foreach("_parents = ([_x,true] call BIS_fnc_returnParents); 'Bag_Base' in _parents && !('Weapon_Bag_Base' in _parents) && (count (_x >> 'TransportItems') isEqualTo 0) && (count (_x >> 'MagazineItems') isEqualTo 0)" configClasses ( configFile >> "CfgVehicles" ));
+    [_cls,"Surplus"] call _categorize;
+}foreach("
+    (getNumber (_x >> 'scope') isEqualTo 2) &&
+    {
+        _parents = ([_x,true] call BIS_fnc_returnParents);
+        'Bag_Base' in _parents &&
+        !('Weapon_Bag_Base' in _parents) &&
+        (count (_x >> 'TransportItems') isEqualTo 0) &&
+        (count (_x >> 'MagazineItems') isEqualTo 0)
+    }
+" configClasses ( configFile >> "CfgVehicles" ));
 //add craftable magazines
 {
     private _cls = configName _x;
@@ -143,3 +155,10 @@ private _getprice = {
     private _qty = getNumber ( _x >> "ot_craftQuantity" );
     OT_craftableItems pushback [_cls,_recipe,_qty];
 }foreach("getNumber (_x >> ""ot_craftable"") isEqualTo 1" configClasses ( configFile >> "CfgMagazines" ));
+//add craftable weapons
+{
+    private _cls = configName _x;
+    private _recipe = call compileFinal getText (_x >> "ot_craftRecipe");
+    private _qty = getNumber ( _x >> "ot_craftQuantity" );
+    OT_craftableItems pushback [_cls,_recipe,_qty];
+}foreach("getNumber (_x >> ""ot_craftable"") isEqualTo 1" configClasses ( configFile >> "CfgWeapons" ));

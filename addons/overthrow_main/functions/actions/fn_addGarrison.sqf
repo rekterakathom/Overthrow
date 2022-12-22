@@ -3,14 +3,14 @@ params ["_p","_create",["_charge",true]];
 private _b = _p call OT_fnc_nearestBase;
 private _pos = _b select 0;
 private _code = format["fob%1",_pos];
-if((_pos distance player) > 100) then {
+if((_pos distance _p) > 250) then {
     _b = _p call OT_fnc_nearestObjective;
     _pos = _b select 0;
     _code = _b select 1;
 };
 
 if(
-    (({side _x isEqualTo west || side _x isEqualTo east} count (_pos nearEntities 50)) > 0)
+    ((_pos nearEntities ["CAManBase", 50]) findIf {side _x isEqualTo west || side _x isEqualTo east} != -1)
     &&
     _charge
 ) exitWith {
@@ -83,7 +83,7 @@ if(_create isEqualType 1) then {
                     || (_type == "Land_Cargo_Patrol_V4_F")
                 ) exitWith {
                     private _ang = (getDir _building) - 190;
-    				private _p = [_building buildingPos 1, 2.3, _ang] call BIS_Fnc_relPos;
+                    private _p = (_building buildingPos 1) getPos [2.3, _ang];
     				private _dir = (getDir _building) - 180;
 
                     private _guns = {alive _x} count(nearestObjects [_p, ["I_HMG_01_high_F","I_GMG_01_high_F"], 5]);
@@ -124,25 +124,27 @@ if(_create isEqualType 1) then {
             _class_obj = "I_GMG_01_high_F";
             _class_price = "I_GMG_01_high_weapon_F";
         };
-
+        
+        private _doit = true;
+        
         if !(_done) then {
             _p = _pos findEmptyPosition [20,120,_class_obj];
-            _dir = random 360;
-            //put sandbags
-			private _sp = [_p,1.5,_dir] call BIS_fnc_relPos;
-			_veh =  OT_NATO_Sandbag_Curved createVehicle _sp;
-			_veh setpos _sp;
-			_veh setDir (_dir-180);
-			_sp = [_p,-1.5,_dir] call BIS_fnc_relPos;
-			_veh =  OT_NATO_Sandbag_Curved createVehicle _sp;
-			_veh setpos _sp;
-			_veh setDir (_dir);
-        };
+            if (count _p == 0) exitWith {_doit = false;_charge = false;diag_log format ["Overthrow: Unable to find a position for %1 near %2",_create,_pos];format ["Unable to find a position for %1",_create] call OT_fnc_notifyMinor};
+                _dir = random 360;
+                //put sandbags
+                private _sp = _p getPos [1.5,_dir];
+                _veh =  OT_NATO_Sandbag_Curved createVehicle _sp;
+                _veh setpos _sp;
+                _veh setDir (_dir-180);
+                _sp = _p getPos [-1.5,_dir];
+                _veh =  OT_NATO_Sandbag_Curved createVehicle _sp;
+                _veh setpos _sp;
+                _veh setDir (_dir);
+            };
 
         private _cost = [OT_nation,_class_price,0] call OT_fnc_getPrice;
         _cost = _cost + ([OT_nation,"CIV",0] call OT_fnc_getPrice);
         _cost = _cost + 300;
-        private _doit = true;
 
         if(_charge) then {
             private _money = player getVariable ["money",0];

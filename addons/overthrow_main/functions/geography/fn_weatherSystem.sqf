@@ -37,21 +37,11 @@ ot_weather_getWeather = {
 			_lightning = 0;
 		};
 	};
-	if(_hour > 8 && _hour < 18) then {
-		_temp = 28 + round(random 5);
-	}else{
-		_temp = 16 + round(random 5);
-		if(_hour isEqualTo 6) then {
-			//morning fog
-			_fogtarget = _fogtarget + 0.002;
-		};
+	if(_hour isEqualTo 6) then {
+		//morning fog
+		_fogtarget = _fogtarget + 0.002;
 	};
-	if(_overtarget > 0.5) then {
-		_temp = _temp - 2;
-	};
-	if(_raintarget > 0.5) then {
-		_temp = _temp - 3;
-	};
+	_temp = ambientTemperature # 0;
 	[_overtarget,_fogtarget,_wavetarget,_raintarget,_lightning,_temp]
 };
 
@@ -60,7 +50,7 @@ ot_weather_change_forecast = "Clear";
 if((server getVariable "StartupType") == "NEW" || (server getVariable ["weatherversion",0]) < 1) then {
 	server setVariable ["weatherversion",1,false];
 
-	_mode = ["Clear","Cloudy"] call BIS_fnc_selectRandom;
+	_mode = selectRandom ["Clear","Cloudy"];
 	_weather = _mode call ot_weather_getWeather;
 	_newOvercast = _weather select 0;
 
@@ -107,7 +97,7 @@ if((server getVariable "StartupType") == "NEW" || (server getVariable ["weatherv
 
 	_date = server getVariable ["timedate",OT_startDate];
 	setdate _date;
-	0 setfog 0; //Tanoa fog wtf
+	120 setfog 0; //Tanoa fog wtf
 	forceWeatherChange;
 	simulWeatherSync;
 };
@@ -118,7 +108,7 @@ publicVariable "OT_SystemInitDone";
 ot_weather_change_time = 350 + (random 600);
 
 //Fog killer
-[{0 setfog 0;}, [], 100] call CBA_fnc_waitAndExecute;
+[{120 setfog 0;}, [], 100] call CBA_fnc_waitAndExecute;
 
 ["unique_ID","(ot_weather_change_time - time) <= 0","
 private _month = date select 1;

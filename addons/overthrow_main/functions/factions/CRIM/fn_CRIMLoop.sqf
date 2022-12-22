@@ -16,7 +16,7 @@ if !(crim_counter < 12) then {
         if(count _gangs > 0) then {
             private _gangid = _gangs select 0;
             private _gang = OT_civilians getVariable [format["gang%1",_gangid],[]];
-            if(count _gang > 4) then { //filter out old gangs
+            if(count _gang == 9) then { //filter out old gangs
                 _gang params ["_members","","","","","","_resources","_level","_name"];
                 private _numingang = count _members;
 
@@ -89,8 +89,8 @@ if !(crim_counter < 12) then {
                     if((random (300 + (_level * 50))) < _support) then {
                         format["Citizens in %1 have notified us of gang nearby with %2 members (%3)",_town,_numingang + 1,_name] remoteExec ["OT_fnc_notifyMinor",0,false];
                         _mrkid = format["gang%1",_town];
-                        _mrk = createMarker [_mrkid, _gang select 4];
-                        _mrkid setMarkerType "ot_Camp";
+                        _mrk = createMarkerLocal [_mrkid, _gang select 4];
+                        _mrkid setMarkerTypeLocal "ot_Camp";
                         _mrkid setMarkerColor "colorOPFOR";
                         _revealed pushback _gangid;
                     };

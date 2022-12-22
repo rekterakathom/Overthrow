@@ -1,1 +1,1 @@
-(position player) call OT_fnc_positionIsAtWarehouse;
+player call OT_fnc_positionIsAtWarehouse;

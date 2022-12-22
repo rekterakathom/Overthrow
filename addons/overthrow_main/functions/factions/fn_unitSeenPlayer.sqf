@@ -1,10 +1,10 @@
-if!((vehicle _this) isEqualTo _this) then {_this = vehicle _this};
+if (!isNull objectParent _this) then {_this = objectParent _this};
 
 private _cache = _this getVariable "SeenCachePlayer";
 if (isNil "_cache" || {time > (_cache select 1)}) then {
     _cache = [
         !(
-            ((call CBA_fnc_players) findIf {
+            ((allPlayers - (entities "HeadlessClient_F")) findIf {
                 _x = driver _x;
                 (_x distance _this) < 7
                 ||

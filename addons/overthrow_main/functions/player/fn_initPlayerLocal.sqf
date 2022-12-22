@@ -33,8 +33,9 @@ OT_centerPos = getArray (configFile >> "CfgWorlds" >> worldName >> "centerPositi
 if(isMultiplayer && (!isServer)) then {
 	// this is all done on server too, no need to execute them again
 	call OT_fnc_initBaseVar;
-	call compile preprocessFileLineNumbers "initVar.sqf";
+	call compileScript ["initVar.sqf", false];
 	call OT_fnc_initVar;
+	[] spawn OT_fnc_jobSystem;
 	addMissionEventHandler ["EntityKilled",OT_fnc_deathHandler];
 	//ACE3 events
 	["ace_cargoLoaded",OT_fnc_cargoLoadedHandler] call CBA_fnc_addEventHandler;
@@ -94,6 +95,7 @@ if((isServer || count ([] call CBA_fnc_players) == 1) && (server getVariable ["S
 OT_showPlayerMarkers = (["ot_showplayermarkers", 1] call BIS_fnc_getParamValue) isEqualTo 1;
 OT_showTownChange = (["ot_showtownchange", 1] call BIS_fnc_getParamValue) isEqualTo 1;
 OT_showEnemyGroups = (["ot_showenemygroups", 1] call BIS_fnc_getParamValue) isEqualTo 1;
+OT_randomizeLoadouts = (["ot_randomizeloadouts", 0] call BIS_fnc_getParamValue) isEqualTo 1;
 
 waitUntil {sleep 1;!isNil "OT_NATOInitDone"};
 
@@ -113,7 +115,7 @@ players_NS setVariable [format["name%1",getplayeruid player],name player,true];
 players_NS setVariable [format["uid%1",name player],getplayeruid player,true];
 spawner setVariable [format["%1",getplayeruid player],player,true];
 
-player forceAddUniform (OT_clothes_locals call BIS_fnc_selectRandom);
+player forceAddUniform (selectRandom OT_clothes_locals);
 // clear player
 removeAllWeapons player;
 removeAllAssignedItems player;
@@ -174,7 +176,7 @@ if(isMultiplayer || _startup == "LOAD") then {
 		_type = _x select 5;
 		_xp = _x select 6;
 		if(_owner isEqualTo (getplayeruid player)) then {
-			if(typename _civ isEqualTo "ARRAY") then {
+			if(_civ isEqualType []) then {
 				_pos = _civ findEmptyPosition [5,20,_type];
 				_civ =  group player createUnit [_type,_pos,[],0,"NONE"];
 				[_civ,getplayeruid player] call OT_fnc_setOwner;
@@ -187,8 +189,8 @@ if(isMultiplayer || _startup == "LOAD") then {
 				if(_rank isEqualTo "LIEUTENANT") then {_civ setSkill 0.6 + (random 0.3)};
 				if(_rank isEqualTo "CAPTAIN") then {_civ setSkill 0.7 + (random 0.3)};
 				if(_rank isEqualTo "MAJOR") then {_civ setSkill 0.8 + (random 0.2)};
-				[_civ, (OT_faces_local call BIS_fnc_selectRandom)] remoteExecCall ["setFace", 0, _civ];
-				[_civ, (OT_voices_local call BIS_fnc_selectRandom)] remoteExecCall ["setSpeaker", 0, _civ];
+				[_civ, (selectRandom OT_faces_local)] remoteExecCall ["setFace", 0, _civ];
+				[_civ, (selectRandom OT_voices_local)] remoteExecCall ["setSpeaker", 0, _civ];
 				_civ setUnitLoadout _loadout;
 				_civ spawn OT_fnc_wantedSystem;
 				_civ setName _name;
@@ -214,7 +216,7 @@ if(isMultiplayer || _startup == "LOAD") then {
 	{
 		_x params ["_owner","_cls","_group","_units"];
 		if(_owner isEqualTo (getplayeruid player)) then {
-			if(typename _group != "GROUP") then {
+			if !(_group isEqualType grpNull) then {
 				_name = _cls;
 				if(count _x > 4) then {
 					_name = _x select 4;
@@ -232,8 +234,8 @@ if(isMultiplayer || _startup == "LOAD") then {
 					_civ = _group createUnit [_type,_pos,[],0,"NONE"];
 					_civ setSkill 0.5 + (random 0.4);
 					_civ setUnitLoadout _loadout;
-					[_civ, (OT_faces_local call BIS_fnc_selectRandom)] remoteExecCall ["setFace", 0, _civ];
-					[_civ, (OT_voices_local call BIS_fnc_selectRandom)] remoteExecCall ["setSpeaker", 0, _civ];
+					[_civ, (selectRandom OT_faces_local)] remoteExecCall ["setFace", 0, _civ];
+					[_civ, (selectRandom OT_voices_local)] remoteExecCall ["setSpeaker", 0, _civ];
 					_civ setVariable ["OT_spawntrack",true,true];
 				}foreach(_units);
 			};
@@ -247,7 +249,7 @@ if(isMultiplayer || _startup == "LOAD") then {
 };
 
 if (_newplayer) then {
-    _clothes = (OT_clothes_guerilla call BIS_fnc_selectRandom);
+    _clothes = (selectRandom OT_clothes_guerilla);
 	player forceAddUniform _clothes;
     player setVariable ["uniform",_clothes,true];
 	private _money = 100;
@@ -270,7 +272,7 @@ if (_newplayer) then {
 
     _town = server getVariable "spawntown";
     if(OT_randomSpawnTown) then {
-        _town = OT_spawnTowns call BIS_fnc_selectRandom;
+        _town = selectRandom OT_spawnTowns;
     };
 	_house = _town call OT_fnc_getPlayerHome;
     _housepos = getpos _house;
@@ -304,6 +306,7 @@ if (_newplayer) then {
             _x addItemCargoGlobal ["ToolKit", 1];
 			_x addBackpackCargoGlobal ["B_AssaultPack_khk", 1];
 			_x addItemCargoGlobal ["NVGoggles_INDEP", 1];
+			_x addItemCargoGlobal ["ACRE_PRC343", 1];
         };
         [_x,getplayeruid player] call OT_fnc_setOwner;
     }foreach(_furniture);
@@ -394,8 +397,7 @@ player addEventHandler ["GetInMan",{
 				["play", _veh] call BIS_fnc_carAlarm;
 				[(getpos player) call OT_fnc_nearestTown,-5,"Stolen vehicle",player] call OT_fnc_support;
 				//does anyone hear the alarm?
-				_nummil = {side _x isEqualTo west} count (_veh nearObjects ["CAManBase",200]);
-				if(_nummil > 0) then {
+				if((_veh nearEntities ["CAManBase",200]) findIf {side _x isEqualTo west} != -1) then {
 					player setCaptive false;
 					[player] call OT_fnc_revealToNATO;
 				};

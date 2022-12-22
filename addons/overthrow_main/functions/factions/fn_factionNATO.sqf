@@ -25,7 +25,7 @@ publicVariable "OT_nextNATOTurn";
 	params ["_handle","_vars"];
 	_vars params ["_abandoned","_resources","_diff","_nextturn","_count","_lastmin","_lastsched"];
 
-	private _numplayers = count([] call CBA_fnc_players);
+	private _numplayers = count(allPlayers - (entities "HeadlessClient_F"));
 	if(_numplayers > 0) then {
 		_fobs = server getVariable ["NATOfobs",[]];
 		_abandoned = server getVariable ["NATOabandoned",[]];
@@ -34,6 +34,13 @@ publicVariable "OT_nextNATOTurn";
 		_knownTargets = spawner getVariable ["NATOknownTargets",[]];
 		_schedule = server getVariable ["NATOschedule",[]];
 		private _popControl = call OT_fnc_getControlledPopulation;
+
+		// Grab global variables into local ones for performance
+		private _allTowns = OT_allTowns;
+		private _objectiveData = OT_objectiveData;
+		private _airportData = OT_airportData;
+		private _NATOObjectives = OT_NATOObjectives;
+		private _NATOComms = OT_NATOComms;
 
 		//scheduler
 		if(count _schedule > 0) then {
@@ -72,8 +79,8 @@ publicVariable "OT_nextNATOTurn";
 				if !(_name in _abandoned) then {
 					if(_pos call OT_fnc_inSpawnDistance) then {
 						_numgarrison = server getVariable [format["garrison%1"],0];
-						_nummil = {side _x isEqualTo west} count (_pos nearObjects ["CAManBase",500]);
-						_numres = {side _x isEqualTo resistance || captive _x} count (_pos nearObjects ["CAManBase",100]);
+						_nummil = {side _x isEqualTo west} count (_pos nearEntities ["CAManBase",500]);
+						_numres = {side _x isEqualTo resistance || captive _x} count (_pos nearEntities ["CAManBase",100]);
 						if(_numgarrison < 4 && _nummil < _numres) then {
 							_countered = true;
 							private _m = 1;
@@ -112,12 +119,12 @@ publicVariable "OT_nextNATOTurn";
 					};
 				};
 				if(_countered) exitWith {};
-			}foreach(OT_objectiveData + OT_airportData);
+			}foreach(_objectiveData + _airportData);
 		};
 
 		//Respond to town stability changes
 		if !(_countered) then {
-			_sorted = [OT_allTowns,[],{server getvariable format["population%1",_x]},"DESCEND"] call BIS_fnc_SortBy;
+			_sorted = [_allTowns,[],{server getvariable format["population%1",_x]},"DESCEND"] call BIS_fnc_SortBy;
 			{
 				_town = _x;
 				_pos = server getVariable _town;
@@ -212,8 +219,8 @@ publicVariable "OT_nextNATOTurn";
 			_name = _x select 1;
 			if !(_name in _abandoned) then {
 				if(_pos call OT_fnc_inSpawnDistance) then {
-					_nummil = {side _x isEqualTo west} count (_pos nearObjects ["CAManBase",300]);
-					_numres = {side _x isEqualTo resistance || captive _x} count (_pos nearObjects ["CAManBase",100]);
+					_nummil = {side _x isEqualTo west} count (_pos nearEntities ["CAManBase",300]);
+					_numres = {side _x isEqualTo resistance || captive _x} count (_pos nearEntities ["CAManBase",100]);
 					if(_nummil < _numres) then {
 						_abandoned pushback _name;
 						server setVariable ["NATOabandoned",_abandoned,true];
@@ -227,14 +234,14 @@ publicVariable "OT_nextNATOTurn";
 				};
 			};
 			if(_countered) exitWith {};
-		}foreach(OT_NATOcomms);
+		}foreach(_NATOComms);
 
 		//Check on FOBs
 		_clearedFOBs = [];
 		{
 			_x params ["_pos","_garrison"];
-			_nummil = {side _x isEqualTo west} count (_pos nearObjects ["CAManBase",300]);
-			_numres = {side _x isEqualTo resistance || captive _x} count (_pos nearObjects ["CAManBase",50]);
+			_nummil = {side _x isEqualTo west} count (_pos nearEntities ["CAManBase",300]);
+			_numres = {side _x isEqualTo resistance || captive _x} count (_pos nearEntities ["CAManBase",50]);
 			if(_nummil isEqualTo 0 && {_numres > 0}) then {
 				_clearedFOBs pushback _x;
 				"Cleared NATO FOB" remoteExec ["OT_fnc_notifyMinor",0,false];
@@ -332,8 +339,8 @@ publicVariable "OT_nextNATOTurn";
 				_population = server getVariable format ["population%1",_town];
 				if(_town != _lastcounter) then {
 					if(_pos call OT_fnc_inSpawnDistance) then {
-						_nummil = {side _x isEqualTo west} count (_pos nearObjects ["CAManBase",300]);
-						_numres = {side _x isEqualTo resistance || captive _x} count (_pos nearObjects ["CAManBase",200]);
+						_nummil = {side _x isEqualTo west} count (_pos nearEntities ["CAManBase",300]);
+						_numres = {side _x isEqualTo resistance || captive _x} count (_pos nearEntities ["CAManBase",200]);
 						if(_nummil < 3 && {_numres > 0}) then {
 							if((time - _lastAttack) > 1200 && {(_town in _abandoned)} && {(_resources > _population)} && {(random 100) > _chance}) then {
 								//Counter a town
@@ -355,7 +362,7 @@ publicVariable "OT_nextNATOTurn";
 					};
 				};
 				if(_countered) exitWith {};
-			}foreach (OT_allTowns);
+			}foreach (_allTowns);
 
 			//Spawn missing drones & counter objectives
 			{
@@ -385,6 +392,7 @@ publicVariable "OT_nextNATOTurn";
 				if !(_name in _abandoned) then {
 					_drone = spawner getVariable [format["drone%1",_name],objNull];
 					if(!alive _drone) then {
+						deleteVehicleCrew _drone;
 						deleteVehicle _drone;
 					};
 					if((isNull _drone || !alive _drone) && {_resources > 10}) then {
@@ -398,7 +406,7 @@ publicVariable "OT_nextNATOTurn";
 									_targets pushback _p;
 								};
 							};
-						}foreach(OT_allTowns);
+						}foreach(_allTowns);
 
 						{
 							_x params ["_p","_name"];
@@ -407,11 +415,11 @@ publicVariable "OT_nextNATOTurn";
 									_targets pushback _p;
 								};
 							};
-						}foreach(OT_NATOobjectives + OT_NATOcomms);
+						}foreach(_NATOObjectives + _NATOComms);
 
 						{
 							_x params ["_ty","_p"];
-							if(((toUpper _ty) isEqualTo "FOB") && {(_p distance _pos) < 3000} && _p call OT_fnc_inSpawnDistance) then {
+							if(((toUpperANSI _ty) isEqualTo "FOB") && {(_p distance _pos) < 3000} && _p call OT_fnc_inSpawnDistance) then {
 								_targets pushback _p;
 							};
 						}foreach(_knownTargets);
@@ -420,6 +428,7 @@ publicVariable "OT_nextNATOTurn";
 							_targets = [_targets,[],{random 100},"ASCEND"] call BIS_fnc_sortBy;
 							_group = createGroup blufor;
 							_group deleteGroupWhenEmpty true;
+							_group setVariable ["lambs_danger_disableGroupAI", true];
 							_p = [_pos,0,0,false,[0,0],[100,OT_NATO_Vehicles_ReconDrone]] call SHK_pos_fnc_pos;
 							_drone = createVehicle [OT_NATO_Vehicles_ReconDrone, _p, [], 0,""];
 							_drone enableDynamicSimulation false;
@@ -427,6 +436,7 @@ publicVariable "OT_nextNATOTurn";
 							createVehicleCrew _drone;
 							{
 								[_x] joinSilent _group;
+								_x setVariable ["lambs_danger_disableAI", true];
 							}foreach(crew _drone);
 
 
@@ -461,7 +471,7 @@ publicVariable "OT_nextNATOTurn";
 					};
 				};
 				if(_resources <= 0) exitWith {_resources = 0};
-			}foreach(OT_objectiveData + OT_airportData);
+			}foreach(_objectiveData + _airportData);
 
 			//Decide on spend
 			_spend = 0;
@@ -498,7 +508,7 @@ publicVariable "OT_nextNATOTurn";
 					if((_x in _abandoned) || _stability < 50) exitWith {
 						_lowest = _x;
 					};
-				}foreach([OT_allTowns,[],{random 100},"DESCEND"] call BIS_fnc_sortBy);
+				}foreach([_allTowns,[],{random 100},"DESCEND"] call BIS_fnc_sortBy);
 				if(_lowest != "") then {
 					_townPos = (server getVariable _lowest);
 					_pp = [_townPos,random 360,2000] call SHK_pos_fnc_pos;
@@ -554,7 +564,7 @@ publicVariable "OT_nextNATOTurn";
 						};
 					};
 					if(_spend < 20) exitWith {};
-				}foreach ([OT_allTowns,[],{random 100},"DESCEND"] call BIS_fnc_sortBy);
+				}foreach ([_allTowns,[],{random 100},"DESCEND"] call BIS_fnc_sortBy);
 			};
 
 			//Send a ground patrol
@@ -583,14 +593,14 @@ publicVariable "OT_nextNATOTurn";
 						};
 					};
 					if(_done) exitWith {};
-				}foreach ([OT_allTowns,[],{random 100},"DESCEND"] call BIS_fnc_sortBy);
+				}foreach ([_allTowns,[],{random 100},"DESCEND"] call BIS_fnc_sortBy);
 			};
 
 			//Schedule a convoy
 			private _lastConvoy = spawner getVariable ["NATOlastconvoy",0];
 			if(_spend > 0) then {
 				if((time - _lastConvoy) > 3600 && _spend > 500 && {(random 100) > _chance}) then {
-					_start = selectRandom (OT_objectiveData + OT_airportData);
+					_start = selectRandom (_objectiveData + _airportData);
 					_startName = _start select 1;
 					_startPos = _start select 0;
 					if(_startName in _abandoned) exitWith {};
@@ -600,7 +610,7 @@ publicVariable "OT_nextNATOTurn";
 						if((_n != _startName) && {!(_n in _abandoned)} && {([_p,_startPos] call OT_fnc_regionIsConnected)}) exitWith {
 							_end = _x;
 						};
-					}foreach([OT_NATOobjectives,[],{random 100},"DESCEND"] call BIS_fnc_sortBy);
+					}foreach([_NATOObjectives,[],{random 100},"DESCEND"] call BIS_fnc_sortBy);
 					if(count _end > 0) then {
 						//Schedule a convoy
 						private _id = format["CONVOY%1",round(random 99999)];
@@ -624,7 +634,7 @@ publicVariable "OT_nextNATOTurn";
 					if !(_name in _abandoned) then {
 						_frombase = _name;
 					};
-				}foreach([OT_airportData,[],{random 100},"DESCEND"] call BIS_fnc_sortBy);
+				}foreach([_airportData,[],{random 100},"DESCEND"] call BIS_fnc_sortBy);
 				if(!(_frombase isEqualTo "") && {(random 100) > _chance}) then {
 					private _waypoints = [];
 					{
@@ -669,7 +679,7 @@ publicVariable "OT_nextNATOTurn";
 						_resources = _resources - 150;
 					};
 				};
-			}foreach(OT_NATOobjectives);
+			}foreach(_NATOObjectives);
 
 			//Upgrade FOBs
 			{
@@ -685,7 +695,7 @@ publicVariable "OT_nextNATOTurn";
 					while {_count < 4} do {
 						_start = [[[_pos,50]]] call BIS_fnc_randomPos;
 
-						_civ = _group createUnit [OT_NATO_Units_LevelOne call BIS_fnc_selectRandom, _start, [],0, "NONE"];
+						_civ = _group createUnit [selectRandom OT_NATO_Units_LevelOne, _start, [],0, "NONE"];
 						_civ setVariable ["garrison","HQ",false];
 						_civ setRank "LIEUTENANT";
 						_civ setVariable ["VCOM_NOPATHING_Unit",true,false];

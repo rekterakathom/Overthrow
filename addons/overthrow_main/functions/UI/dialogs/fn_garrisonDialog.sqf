@@ -3,7 +3,7 @@ disableSerialization;
 
 _b = player call OT_fnc_nearestRealEstate;
 _name = "Base";
-if(typename _b isEqualTo "ARRAY") then {
+if(_b isEqualType []) then {
 	if(typeof (_b select 0) isEqualTo OT_flag_IND) then {
         _name = "";
         {
@@ -11,7 +11,7 @@ if(typename _b isEqualTo "ARRAY") then {
         }foreach(server getVariable ["bases",[]]);
     };
 }else{
-    _ob = (position player) call OT_fnc_nearestObjective;
+    _ob = player call OT_fnc_nearestObjective;
 	_name = _ob select 1;
 };
 
@@ -31,15 +31,15 @@ _soldier = ((OT_Recruitables select 12) select 0) call OT_fnc_getSoldier;
 _btn ctrlSetTooltip format["$%1",[_soldier select 0, 1, 0, true] call CBA_fnc_formatNumber];
 
 _btn = (findDisplay 9000) displayCtrl 1603;
-_soldier = ((OT_Recruitables select 8) select 0) call OT_fnc_getSoldier;
+_soldier = ((OT_Recruitables select 7) select 0) call OT_fnc_getSoldier;
 _btn ctrlSetTooltip format["$%1",[_soldier select 0, 1, 0, true] call CBA_fnc_formatNumber];
 
 _btn = (findDisplay 9000) displayCtrl 1604;
-_soldier = ((OT_Recruitables select 9) select 0) call OT_fnc_getSoldier;
+_soldier = ((OT_Recruitables select 8) select 0) call OT_fnc_getSoldier;
 _btn ctrlSetTooltip format["$%1",[_soldier select 0, 1, 0, true] call CBA_fnc_formatNumber];
 
 _btn = (findDisplay 9000) displayCtrl 1605;
-_soldier = ((OT_Recruitables select 10) select 0) call OT_fnc_getSoldier;
+_soldier = ((OT_Recruitables select 9) select 0) call OT_fnc_getSoldier;
 _btn ctrlSetTooltip format["$%1",[_soldier select 0, 1, 0, true] call CBA_fnc_formatNumber];
 
 _btn = (findDisplay 9000) displayCtrl 1606;

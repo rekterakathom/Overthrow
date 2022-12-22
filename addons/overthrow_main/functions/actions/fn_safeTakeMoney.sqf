@@ -6,7 +6,9 @@ if(_password isEqualTo "") exitWith {
 	private _in = OT_context getVariable ["money",0];
 
 	OT_inputHandler = {
-		_val = parseNumber(ctrltext 1400);
+		_input = ctrltext 1400;
+		if (_input isEqualType "" && count _input > 64) exitWith {hint "You can't withdraw that much!"};
+		_val = parseNumber _input;
 		_cash = player getVariable ["money",0];
 		_in = OT_context getVariable ["money",0];
 		if(_val > _in) then {_val = _in};
@@ -22,11 +24,15 @@ if(_password isEqualTo "") exitWith {
 OT_inputHandler = {
 	private _password = OT_context getVariable ["password",""];
 	private _pw = ctrlText 1400;
-	if(_pw != _password) exitWith {"Wrong password" call OT_fnc_notifyMinor};
+	if (_pw isEqualType "" && count _pw > 64) exitWith {hint "Password is too long!"};
+	private _pwHash = hashValue _pw;
+	if(_pwHash != _password) exitWith {"Wrong password" call OT_fnc_notifyMinor};
 	private _in = OT_context getVariable ["money",0];
 
 	OT_inputHandler = {
-		_val = parseNumber(ctrltext 1400);
+		_input = ctrltext 1400;
+		if (_input isEqualType "" && count _input > 64) exitWith {hint "You can't withdraw that much!"};
+		_val = parseNumber _input;
 		_cash = player getVariable ["money",0];
 		_in = OT_context getVariable ["money",0];
 		if(_val > _in) then {_val = _in};

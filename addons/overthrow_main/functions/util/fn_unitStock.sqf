@@ -27,11 +27,11 @@ if(_this isEqualType []) then {
 private _allCargo = {
 	private _target = _this;
 	private _myitems = [];
-	if(_target isKindOf "Man") then {
+	if(_target isKindOf "CAManBase") then {
 		_myitems = ((items _target) - (weapons _target)) + (magazines _target);
 		{
 			{
-				if(typename _x isEqualTo "STRING") then {
+				if(_x isEqualType "") then {
 					if (!(_x isEqualTo "") && !(_x isEqualTo (binocular _target))) then {
 						if(_forEachIndex isEqualTo 0) then {
 							_myitems pushback (_x call BIS_fnc_baseWeapon);
@@ -40,7 +40,7 @@ private _allCargo = {
 						};
 					};
 				};
-				if(typename _x isEqualTo "ARRAY") then {
+				if(_x isEqualType []) then {
 					if (!(_x#0 isEqualTo "") && !(_x#0 isEqualTo (binocular _target))) then {
 						_myitems pushback (_x select 0);
 					};
@@ -51,7 +51,7 @@ private _allCargo = {
 		_myitems = (itemCargo _target) + (magazineCargo _target) + (backpackCargo _target);
 		{
 			{
-				if(typename _x isEqualTo "STRING") then {
+				if(_x isEqualType "") then {
 					if !(_x isEqualTo "") then {
 						if(_forEachIndex isEqualTo 0) then {
 							_myitems pushback (_x call BIS_fnc_baseWeapon);
@@ -60,7 +60,7 @@ private _allCargo = {
 						};
 					};
 				};
-				if(typename _x isEqualTo "ARRAY") then {
+				if(_x isEqualType []) then {
 					if !((_x select 0) isEqualTo "") then {
 						_myitems pushback (_x select 0);
 					};

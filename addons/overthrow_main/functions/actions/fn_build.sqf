@@ -1,5 +1,5 @@
 if !(captive player) exitWith {"You cannot build while wanted" call OT_fnc_notifyMinor};
-_base = (getpos player) call OT_fnc_nearestBase;
+_base = player call OT_fnc_nearestBase;
 _closest = "";
 _isbase = false;
 _isobj = false;
@@ -16,10 +16,10 @@ if !(isNil "_base") then {
 };
 
 if(!_isBase) then {
-	_obj = (getpos player) call OT_fnc_nearestObjectiveNoComms;
+	_obj = player call OT_fnc_nearestObjectiveNoComms;
 	_objpos = _obj select 0;
 
-	_town = (getpos player) call OT_fnc_nearestTown;
+	_town = player call OT_fnc_nearestTown;
 	_townpos = server getVariable _town;
 
 	_closest = _town;
@@ -54,10 +54,10 @@ openMap false;
 _playerpos = (getpos player);
 
 _campos = [(_playerpos select 0)+35,(_playerpos select 1)+35,(_playerpos select 2)+70];
-_start = [position player select 0, position player select 1, 2];
+_start = [_playerpos select 0, _playerpos select 1, 2];
 buildcam = "camera" camCreate _start;
 
-buildFocus = createVehicle ["Sign_Sphere10cm_F", [_start,1000,getDir player] call BIS_fnc_relPos, [], 0, "NONE"];
+buildFocus = createVehicle ["Sign_Sphere10cm_F", _start getPos [1000,getDir player], [], 0, "NONE"];
 buildFocus setObjectTexture [0,"\overthrow_main\ui\clear.paa"];
 
 buildcam camSetTarget buildFocus;
@@ -103,7 +103,7 @@ buildOnMouseMove = {
 		modeTarget setDir buildRotation;
 
 		if(modeMode == 0) then {
-			if(surfaceIsWater modeValue || (modeTarget distance modeCenter > modeMax) || ({!(_x isKindOf "Man") && (typeof _x != OT_flag_IND) && !(_x isEqualTo modeTarget) && !(_x isEqualTo modeVisual)} count(nearestObjects [modeTarget,[],10]) > 0)) then {
+			if(surfaceIsWater modeValue || (modeTarget distance modeCenter > modeMax) || ((nearestObjects [modeTarget,[],10]) findIf {!(_x isKindOf "CAManBase") && (typeof _x != OT_flag_IND) && !(_x isEqualTo modeTarget) && !(_x isEqualTo modeVisual)} != -1)) then {
 				if (canBuildHere) then {
 					canBuildHere = false;
 					modeVisual setObjectTexture [0,'#(argb,8,8,3)color(1,0,0,0.5)'];
@@ -303,6 +303,12 @@ buildOnMouseUp = {
 				private _buildableHouses = (OT_Buildables param [9, []]) param [2, []];
 				if ((typeof _created) in _buildableHouses) then {
 					_created setVariable ["OT_house_isPlayerBuilt", true, true];
+				};
+
+				if (typeOf _created == OT_warehouse) then {
+					private _ownedWarehouses = warehouse getVariable ["owned", []];
+					_ownedWarehouses pushBack _created;
+					warehouse setVariable ["owned", _ownedWarehouses, true];
 				};
 
 				if(modeCode != "") then {

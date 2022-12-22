@@ -191,6 +191,7 @@ class CfgVehicles {
 	//Houses (Tanoa)
 	class House_Small_F;
     class House_F;
+    class Land_Workshop_03_F;
     class Land_Slum_01_F: House_Small_F {
         ot_isPlayerHouse = 1;
         ot_template = '[["Land_MetalCase_01_small_F", [-0.746442,-0.078261,0.594079],0.418328,1,0,[0,0],"","",true,false],["Land_CampingChair_V2_F",[1.22725,1.2502,0.594079],199.447,1,0,[0,0],"","",true,false],["Mapboard_tanoa_F",[-0.340959,1.65805,0.59408],327.71,1,0,[0,0],"","",true,false],["OfficeTable_01_new_F",[1.54124,1.92773,0.59408],0,1,0,[0,0],"","",true,false],["Land_Workbench_01_F",[2.70912,-1.90632,0.594079],180,1,0,[0,0],"","",true,false],["B_CargoNet_01_ammo_F",[4.56925,1.31465,0.59408],0,1,0,[0,0],"","",true,false]]';
@@ -233,6 +234,12 @@ class CfgVehicles {
         ot_template = '[["Land_MetalCase_01_small_F",[-0.507421,-0.278264,0.377357],0,1,0,[],"","",true,false], ["B_CargoNet_01_ammo_F",[-1.09897,-1.48947,0.377357],0,1,0,[],"","",true,false], ["Land_Workbench_01_F",[-4.09043,2.20817,0.324941],270,1,0,[],"","",true,false], ["Land_MapBoard_F",[-4.07916,-4.87537,0.325],210,1,0,[],"","",true,false] ]';
 	};
 
+    //Houses (Livonia)
+    class Land_Workshop_03_grey_F: Land_Workshop_03_F {
+        ot_isPlayerHouse = 1;
+        ot_template = '[]';
+    };
+
     //Shops (Tanoa)
     class Land_FuelStation_01_shop_F: House_F {
         ot_isShop = 1;
@@ -269,7 +276,7 @@ class CfgVehicles {
 		ot_isShop = 1;
         ot_template = '[]';
 	};
-	class Land_i_Shop_02_V3_F: House_F {
+	class Land_i_Shop_02_V3_F: Land_i_Shop_02_V1_F {
         ot_isShop = 1;
         ot_template = '[]';
     };
@@ -283,20 +290,20 @@ class CfgVehicles {
         ot_template = '[["Land_CashDesk_F",[-6.93629,2.99194,0],180.686,1,0,[],"","",true,false]]';
     };
 
+    //Car Dealers (Altis)
+	class Land_CarService_F: House_F {
+        ot_isCarDealer = 1;
+        ot_template = '[]';
+    };
+
     //Car Dealers (Tanoa)
     class Land_FuelStation_01_workshop_F: House_F {
         ot_isCarDealer = 1;
         ot_template = '[["Land_CashDesk_F",[2.87972,-3.57524,0.277551],0,1,0,[],"","",true,false]]';
     };
-    class Land_FuelStation_02_workshop_F: House_F {
+    class Land_FuelStation_02_workshop_F: Land_CarService_F {
         ot_isCarDealer = 1;
         ot_template = '[["Land_CashDesk_F",[2.21226,0.566814,0.53],0,1,0,[],"","",true,false]]';
-    };
-
-	//Car Dealers (Altis)
-	class Land_CarService_F: House_F {
-        ot_isCarDealer = 1;
-        ot_template = '[]';
     };
 
 	//Unlocks uniforms (ace_nouniformrestrictions)
@@ -555,4 +562,47 @@ class CfgVehicles {
     class C_Man_casual_1_F: C_man_1 {
         modelSides[] = {6};
     };
+
+    // Custom units
+    #define MAG_3(a) a, a, a
+    #define MAG_5(a) a, a, a, a, a
+
+    // Base class (unit class of other mod)
+    class B_Gen_Commander_F;
+    // Your class (unit class of your mod, which extends the other unit class)
+    class B_Gen_Soldier_Heavy_F: B_Gen_Commander_F
+    {
+        // The name of the author of the asset, which is displayed in the editor.
+        author = "ThomasAngel";
+        // The name of the soldier, which is displayed in the editor.
+        displayName = "Gendarme (Heavy)";
+        // Which backpack the character is wearing.
+        backpack = "";
+        // Which weapons the character has.
+        weapons[] = {arifle_SPAR_01_blk_ACO_Pointer_F, hgun_P07_blk_F, Throw, Put};
+        // Which weapons the character respawns with.
+        respawnWeapons[] = {arifle_SPAR_01_blk_ACO_Pointer_F, hgun_P07_blk_F, Throw, Put};
+        // Which items the character has.
+        Items[] = {FirstAidKit, FirstAidKit};
+        // Which items the character respawns with.
+        RespawnItems[] = {FirstAidKit, FirstAidKit};
+        // What ammunition the character has.
+        magazines[] = {MAG_5(30Rnd_556x45_Stanag),MAG_3(16Rnd_9x21_Mag), SmokeShell, SmokeShellGreen, Chemlight_green, Chemlight_green, HandGrenade, ACE_M84};
+        // What ammunition the character respawns with.
+        respawnMagazines[] = {MAG_5(30Rnd_556x45_Stanag),MAG_3(16Rnd_9x21_Mag), SmokeShell, SmokeShellGreen, Chemlight_green, Chemlight_green, HandGrenade, ACE_M84};
+        // Which items the character has.
+        linkedItems[] = {V_PlateCarrier2_blk, H_PASGT_basic_blue_F, G_Balaclava_TI_G_blk_F, ItemMap, ItemCompass, ItemWatch, ItemRadio, NVGoggles_OPFOR};
+        // Which items the character respawns with.
+        respawnLinkedItems[] = {V_PlateCarrier2_blk, H_PASGT_basic_blue_F, G_Balaclava_TI_G_blk_F, ItemMap, ItemCompass, ItemWatch, ItemRadio, NVGoggles_OPFOR};
+    };
+
+    class B_Gen_Commander_Heavy_F: B_Gen_Soldier_Heavy_F
+    {
+        displayName = "Gendarmerie Commander (Heavy)";
+        weapons[] = {arifle_SPAR_01_blk_ACO_Pointer_F, hgun_P07_blk_F, Throw, Put, Binocular};
+        respawnWeapons[] = {arifle_SPAR_01_blk_ACO_Pointer_F, hgun_P07_blk_F, Throw, Put, Binocular};
+        linkedItems[] = {V_PlateCarrier2_blk, H_Beret_gen_F, ItemMap, ItemCompass, ItemWatch, ItemRadio, NVGoggles_OPFOR};
+        respawnLinkedItems[] = {V_PlateCarrier2_blk, H_Beret_gen_F, ItemMap, ItemCompass, ItemWatch, ItemRadio, NVGoggles_OPFOR};
+    };
+
 };

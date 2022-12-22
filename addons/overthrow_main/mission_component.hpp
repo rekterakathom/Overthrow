@@ -39,6 +39,7 @@ showBinocular = 1;
 showNotepad = 1;
 showWatch = 1;
 debriefing = 0;
+allowProfileGlasses = 0;
 
 //Disable ACE blood (just too much of it in a heavy game)
 class Params {
@@ -77,6 +78,12 @@ class Params {
 		values[] = {1,0};
 		texts[] = {"Yes", "No"};
 		default = 1;
+	};
+	class ot_randomizeloadouts {
+		title = "Randomize NATO loadouts";
+		values[] = {1,0};
+		texts[] = {"Yes", "No"};
+		default = 0;
 	};
 	class ace_medical_level {
         title = "ACE Medical Level";

@@ -28,7 +28,7 @@ if((count _possible) > 0) then {
         private _veh = createVehicle ["Campfire_burning_F",_home,[],0,"CAN_COLLIDE"];
 
         private _spawnid = spawner getvariable [format["townspawnid%1",_town],-1];
-        private _groups = spawner getvariable [_spawnid,[]];
+        private _groups = spawner getvariable [str _spawnid,[]];
         _groups pushback _veh;
 
         _numtents = 2 + round(random 3);
@@ -40,6 +40,7 @@ if((count _possible) > 0) then {
             _p = [_home,[2,9],_d] call SHK_pos_fnc_pos;
             _p = _p findEmptyPosition [1,40,"Land_TentDome_F"];
             _veh = createVehicle ["Land_TentDome_F",_p,[],0,"CAN_COLLIDE"];
+            _veh enableDynamicSimulation true;
             _veh setDir _d;
             _groups pushback _veh;
             _count = _count + 1;
@@ -49,6 +50,7 @@ if((count _possible) > 0) then {
         private _leaderGroup = creategroup [opfor,true];
         _leaderGroup setVariable ["VCM_TOUGHSQUAD",true,true];
 		_leaderGroup setVariable ["VCM_NORESCUE",true,true];
+        _leaderGroup setVariable ["lambs_danger_disableGroupAI", true];
         private _pos = [_home,10] call SHK_pos_fnc_pos;
         _civ = _leaderGroup createUnit [OT_CRIM_Unit, _pos, [],0, "NONE"];
         _civ setRank "COLONEL";
@@ -70,7 +72,7 @@ if((count _possible) > 0) then {
         spawner setVariable [format["gangspawn%1",_gangid],_group,true];
         _groups pushback _group;
         _groups pushback _leaderGroup;
-        spawner setvariable [_spawnid,_groups,false];
+        //spawner setvariable [_spawnid,_groups,false];
 
         [_group,_townpos] call OT_fnc_initCriminalGroup;
 

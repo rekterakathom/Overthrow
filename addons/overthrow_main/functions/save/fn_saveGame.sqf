@@ -104,7 +104,7 @@ private _cfgVeh = configFile >> "CfgVehicles";
 private _tocheck = ((allMissionObjects "Static") + vehicles) select {
 	(alive _x)
 	&& {(typeof _x != OT_flag_IND)}
-	&& {!(typeOf _x isKindOf ["Man", _cfgVeh])}
+	&& {!(typeOf _x isKindOf ["CAManBase", _cfgVeh])}
 	&& {(_x call OT_fnc_hasOwner) or (_x getVariable ["OT_forceSaveUnowned", false])}
 	&& {(_x getVariable["OT_garrison",false]) isEqualTo false}
 };
@@ -178,10 +178,23 @@ if !(_quiet) then {
 };
 
 private _warehouse = [2]; //First element is save version
-_warehouse append ((allVariables warehouse) select {((toLower _x select [0,5]) isEqualTo "item_")} apply {
-	warehouse getVariable _x
-});
+//_warehouse append ((allVariables warehouse) select {((toLower _x select [0,5]) isEqualTo "item_")} apply {
+//	warehouse getVariable _x
+//});
+
+private _warehouselist = warehouse getVariable ["owned", []];
+{
+	private _currentWarehouse = _x;
+	_warehouse pushBack [
+		getPosATL _currentWarehouse,
+		(allVariables _currentWarehouse) select {((toLower _x select [0,5]) isEqualTo "item_")} apply {_currentWarehouse getVariable _x}
+	];
+} forEach _warehouselist;
+
+private _warehouselistsave = _warehouselist apply {getPosATL _x};
+
 _data pushback ["warehouse",_warehouse];
+_data pushback ["warehouselist", _warehouselistsave];
 
 if !(_quiet) then {
 	"Step 7/11 - Saving recruits" remoteExecCall ["OT_fnc_notifyAndLog",0,false];
@@ -213,7 +226,7 @@ private _squads = ((server getVariable ["squads",[]]) select {
 	_x params ["_owner","_cls","_group"];
 	_group isEqualType grpNull
 	&& { count units _group > 0 }
-	&& { ({alive _x} count units _group) > 0 }
+	&& { (units _group) findIf {alive _x} != -1 }
 }) apply {
 	_x params ["_owner","_cls","_group"];
 	_units = [];
@@ -235,10 +248,10 @@ private _getGroupSoldiers = {
 		private _veh = vehicle _x;
 		alive _x && { _veh isEqualTo _x || {(someAmmo _veh && toLower typeOf _veh in ["i_hmg_01_high_f","i_gmg_01_high_f"])} }
 	}) apply {
-		if(vehicle _x isEqualTo _x) then {
+		if(isNull objectParent _x) then {
 			[typeof _x,getUnitLoadout _x];
 		}else{
-			if(typeof vehicle _x == "I_HMG_01_high_F") then {["HMG",[]]} else {["GMG",[]]};
+			if(typeof objectParent _x == "I_HMG_01_high_F") then {["HMG",[]]} else {["GMG",[]]};
 		};
 	};
 };
@@ -281,12 +294,13 @@ if !(_quiet) then {
 	"Step 11/11 - Exporting" remoteExecCall ["OT_fnc_notifyAndLog",0,false];
 };
 
-profileNameSpace setVariable [OT_saveName,_data];
+missionProfileNamespace setVariable [OT_saveName, _data];
+saveMissionProfileNamespace;
+
 if (isDedicated) then {
 	if !(_quiet) then {
 		"Saving to dedicated server.. not long now" remoteExecCall ["OT_fnc_notifyAndLog",0,false];
 	};
-	saveProfileNamespace;
 };
 
 if !(_quiet) then {

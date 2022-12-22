@@ -1,12 +1,10 @@
 params ["_frompos","_ao","_attackpos",["_delay",0]];
 if (_delay > 0) then {sleep _delay};
-private _vehtype = OT_NATO_Vehicles_APC call BIS_fnc_selectRandom;
-private _squadtype = OT_NATO_GroundForces call BIS_fnc_SelectRandom;
-private _spawnpos = _frompos findEmptyPosition [15,100,_vehtype];
-if(count _spawnpos == 0) then {
-	_spawnpos = [_frompos,[5,25]] call SHK_pos_fnc_pos;
-};
-private _group1 = [_spawnpos, WEST, (configFile >> "CfgGroups" >> "West" >> OT_faction_NATO >> "Infantry" >> _squadtype)] call BIS_fnc_spawnGroup;
+private _vehtype = selectRandom OT_NATO_Vehicles_APC;
+private _squadtype = selectRandom OT_NATO_GroundForces;
+
+// Spawn a group to be seated in a transport vehicle
+private _group1 = [_frompos, WEST, (configFile >> "CfgGroups" >> "West" >> OT_faction_NATO >> "Infantry" >> _squadtype)] call BIS_fnc_spawnGroup;
 _group1 deleteGroupWhenEmpty true;
 private _group2 = "";
 private _tgroup = false;
@@ -43,7 +41,7 @@ _allunits = (units _tgroup);
 sleep 1;
 
 {
-	if(typename _tgroup isEqualTo "GROUP") then {
+	if(_tgroup isEqualType grpNull) then {
 		_x moveInCargo _veh;
 	};
 	[_x] joinSilent _group1;
@@ -62,13 +60,13 @@ spawner setVariable ["NATOattackforce",(spawner getVariable ["NATOattackforce",[
 
 sleep 15;
 
-if((typename _tgroup) isEqualTo "GROUP") then {
+if(_tgroup isEqualType grpNull) then {
 	_veh setdamage 0;
 	_dir = _attackpos getDir _frompos;
 	_roads = _ao nearRoads 150;
 	private _dropos = _ao;
 	if(count _roads > 0) then {
-		_dropos = getpos(_roads select (count _roads - 1));
+		_dropos = ASLtoAGL (getPosASL (_roads select (count _roads - 1)));
 	};
 	_move = _tgroup addWaypoint [_dropos,0];
 	_move setWaypointBehaviour "CARELESS";
@@ -95,7 +93,7 @@ _wp setWaypointType "SAD";
 _wp setWaypointBehaviour "COMBAT";
 _wp setWaypointSpeed "FULL";
 
-if((typename _tgroup) isEqualTo "GROUP") then {
+if(_tgroup isEqualType grpNull) then {
 
 	[_veh,_tgroup,_frompos] spawn {
 		//Ejects crew from vehicles when they take damage or stay relatively still for too long (you know, like when they ram a tree for 4 hours)
@@ -112,7 +110,7 @@ if((typename _tgroup) isEqualTo "GROUP") then {
 				//Vehicle damaged (and on the ground)
 				_eject = true;
 			};
-			if((getpos _veh) distance _lastpos < 0.5) then {
+			if(_veh distance _lastpos < 0.5) then {
 				_stillfor = _stillfor + 10;
 				if(_stillfor > 60) then {
 					//what are you doing? gtfo

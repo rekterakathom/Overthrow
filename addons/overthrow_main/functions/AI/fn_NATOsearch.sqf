@@ -38,7 +38,7 @@ while {(count(waypoints _group))>0} do
 };
 sleep 0.5;
 
-private _wp = _group addWaypoint [position _target,0];
+private _wp = _group addWaypoint [ASLtoAGL (getPosASL _target),0];
 _wp setWaypointBehaviour "AWARE";
 _group setBehaviour "AWARE";
 if(isplayer _target) then {
@@ -72,7 +72,7 @@ private _cleanup = {
 		[_target, "MOVE"] remoteExec ["enableAI",_target,false];
 	};
 };
-[_cop,(position _target)] remoteExec["doMove",_cop,false];
+_cop doMove ASLtoAGL (getPosASL _target);
 waitUntil {sleep 1;(_cop distance _target) < 7 || (_target distance _posnow) > 2 || (time - _timenow) > 120};
 if(isNil "_cop" || isNil "_target") exitWith{[_group,_cop,_target,_hdl] call _cleanup};
 if(!alive _cop || !alive _target) exitWith{[_group,_cop,_target,_hdl] call _cleanup};
@@ -90,13 +90,13 @@ if((_target distance _posnow) > 2) then {
 		};
 		sleep 3;
 
-		private _wp = _group addWaypoint [position _target,0];
+		private _wp = _group addWaypoint [ASLtoAGL (getPosASL _target),0];
 		_wp setWaypointBehaviour "COMBAT";
 		_wp setWaypointSpeed "FULL";
 
 		_posnow = position _target;
 		_timenow = time;
-		_cop doMove (position _target);
+		_cop doMove ASLtoAGL (getPosASL _target);
 		waitUntil {sleep 2;(_cop distance _target) < 7|| (_target distance _posnow) > 2|| (time - _timenow) > 120};
 		if((_target distance _posnow) > 2) then {
 			_target setCaptive false;
@@ -169,7 +169,7 @@ if(isplayer _target) then {
 				if((random 100) < _chance) then {
 					[_cop,"We found some illegal items && confiscated them, be on your way"] remoteExec ["globalchat",_target,false];
 					"NATO confiscated illegal items" remoteExecCall ["hint",_target,false];
-					private _town = (getpos _target) call OT_fnc_nearestTown;
+					private _town = _target call OT_fnc_nearestTown;
 				}else{
 					[_cop,"Thank you for your co-operation"] remoteExec ["globalchat",_target,false];
 				};

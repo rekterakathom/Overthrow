@@ -13,7 +13,7 @@ if(count _def > 0) then {
     private _err = false;
     _def params ["_cls","_recipe","_qty"];
 
-    _container = getpos player nearestObject OT_item_Storage;
+    _container = player nearestObject OT_item_Storage;
     if !(isNull _container) then {
         if(_container distance player > 20) exitWith {"You need to be within 20m of an ammobox to craft" call OT_fnc_notifyMinor};
         _stock = _container call OT_fnc_unitStock;

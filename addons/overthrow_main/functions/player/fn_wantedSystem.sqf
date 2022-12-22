@@ -9,7 +9,7 @@ _unit addEventHandler ["Take", {
 
 	if (captive _me) then {
 		//Looting dead bodies is illegal
-		if(!alive _container && {typeof _container isKindOf ["Man",configFile>>"CfgVehicles"]}) then {
+		if(!alive _container && {typeof _container isKindOf ["CAManBase",configFile>>"CfgVehicles"]}) then {
 			_container setvariable ["OT_looted",true,true];
 			_container setvariable ["OT_lootedAt",time,true];
 			if (!(_container call OT_fnc_hasOwner) && (_me call OT_fnc_unitSeen)) then {
@@ -60,7 +60,7 @@ if((isPlayer _unit) && isNil "OT_ACEunconsciousChangedEHId") then {
 		_unit setCaptive false;
 
 		// inform other players
-		if(isMultiplayer && count(call CBA_fnc_players) > 1) then {
+		if(isMultiplayer && count(allPlayers - (entities "HeadlessClient_F")) > 1) then {
 			[
 			  format[
 			    "%1 has fallen unconscious and is waiting for assistance at GRIDREF: %2",
@@ -76,7 +76,7 @@ if((isPlayer _unit) && isNil "OT_ACEunconsciousChangedEHId") then {
 		{
 			if (
 				!isPlayer _x
-				&& { (vehicle _x isEqualTo _x) }
+				&& { (isNull objectParent _x) }
 				&& { ((side _x isEqualTo resistance) || captive _x) }
 				&& { !(_unit isEqualTo _x) }
 				&& { _havepi || {("ACE_epinephrine" in (items _x))} }

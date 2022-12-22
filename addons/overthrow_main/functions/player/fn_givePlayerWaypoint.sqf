@@ -11,7 +11,7 @@ if(count _this > 3) then {
 while {(count (waypoints group _target)) > 0} do {
     deleteWaypoint ((waypoints group _target) select 0);
 };
-private _wp = (group _target) addWaypoint [position player, 0];
+private _wp = (group _target) addWaypoint [ASLtoAGL (getPosASL player), 0];
 private _wp = (group player) addWaypoint [_destpos, 15];
 OT_missionMarker = _destpos;
 OT_missionMarkerText = _txt;

@@ -20,8 +20,12 @@ players_NS = true call CBA_fnc_createNamespace;
 publicVariable "players_NS";
 cost = true call CBA_fnc_createNamespace;
 publicVariable "cost";
+
+// This namespace contains a list of warehouses -
+// instead of warehouse contents like in OT+
 warehouse = true call CBA_fnc_createNamespace;
 publicVariable "warehouse";
+
 spawner = true call CBA_fnc_createNamespace;
 publicVariable "spawner";
 templates = true call CBA_fnc_createNamespace;
@@ -36,7 +40,7 @@ publicVariable "OT_civilians";
 OT_centerPos = getArray (configFile >> "CfgWorlds" >> worldName >> "centerPosition");
 
 call OT_fnc_initBaseVar;
-call compile preprocessFileLineNumbers "initVar.sqf";
+call compileScript ["initVar.sqf", false];
 call OT_fnc_initVar;
 
 if(isServer) then {
@@ -46,10 +50,11 @@ if(isServer) then {
     call OT_fnc_initVirtualization;
 };
 
-OT_tpl_checkpoint = [] call compileFinal preProcessFileLineNumbers "data\templates\NATOcheckpoint.sqf";
+OT_tpl_checkpoint = [] call compileScript ["data\templates\NATOcheckpoint.sqf", true];
 
 //Advanced towing script, credits to Duda http://www.armaholic.com/page.php?id=30575
-[] spawn OT_fnc_advancedTowingInit;
+// Disabled due to ACE towing
+//[] spawn OT_fnc_advancedTowingInit;
 
 [] spawn {
 	if (false/*isDedicated && profileNamespace getVariable ["OT_autoload",false]*/) then {
@@ -119,16 +124,24 @@ OT_tpl_checkpoint = [] call compileFinal preProcessFileLineNumbers "data\templat
 				if(_x getVariable [""OT_Looted"",false]) then {
 					private _stock = _x call OT_fnc_unitStock;
 					if((count _stock) isEqualTo 0) then {
-						deleteVehicle _x;
+						if (isNull objectParent _x) then {
+							deleteVehicle _x;
+						} else {
+							[(objectParent _x), _x] remoteExec [""deleteVehicleCrew"", _unit, false];
+						};
 					};
 				};
 			}forEach(alldeadmen);
 			if(_totalcivs < 50) exitWith {};
 			{
-				if (side group _x isEqualTo civilian && {!(isPlayer _x)} && {!(_x getVariable [""shopcheck"",false])} && { ({side _x isEqualTo civilian} count ((getPos _x) nearObjects [""CAManBase"",150])) > round(150*OT_spawnCivPercentage) } ) then {
+				if (side group _x isEqualTo civilian && {!(isPlayer _x)} && {!(_x getVariable [""shopcheck"",false])} && { ({side _x isEqualTo civilian} count (_x nearEntities [""CAManBase"",150])) > round(150*OT_spawnCivPercentage) } ) then {
 					private _group = group _x;
 					private _unit = _x;
-					deleteVehicle _unit;
+					if (isNull objectParent _unit) then {
+						deleteVehicle _unit;
+					} else {
+						[(objectParent _unit), _unit] remoteExec [""deleteVehicleCrew"", _unit, false];
+					};
 					if (count units _group < 1) then {
 						deleteGroup _group;
 					};

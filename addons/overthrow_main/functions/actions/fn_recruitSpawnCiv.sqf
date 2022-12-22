@@ -1,6 +1,6 @@
 if !(captive player) exitWith {"You cannot recruit while wanted" call OT_fnc_notifyMinor};
 
-if(({side _x isEqualTo west || side _x isEqualTo east} count ((getpos player) nearEntities 50)) > 0) exitWith {
+if ((player nearEntities ["CAManBase", 50]) findIf {side _x isEqualTo west || side _x isEqualTo east} != -1) exitWith {
 	"You cannot recruit with enemies nearby" call OT_fnc_notifyMinor;
 };
 
@@ -11,7 +11,7 @@ if(_money < _price) exitWith {format ["You need $%1",_price] call OT_fnc_notifyM
 playSound "3DEN_notificationDefault";
 [-_price] call OT_fnc_money;
 
-private _pos = [[[getPos player,30]]] call BIS_fnc_randomPos;
+private _pos = [[[getPosATL player,30]]] call BIS_fnc_randomPos;
 private _civ = (group player) createUnit [OT_civType_local, _pos, [],0, "NONE"];
 _civ setBehaviour "SAFE";
 [_civ,call OT_fnc_randomLocalIdentity] call OT_fnc_applyIdentity;

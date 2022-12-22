@@ -1,5 +1,5 @@
 private _b = player call OT_fnc_nearestRealEstate;
-if(typename _b != "ARRAY") exitWith {};
+if !(_b isEqualType []) exitWith {};
 private _building = (_b select 0);
 if(damage _building isEqualTo 1) exitWith {"Must repair before you can recruit" call OT_fnc_notifyMinor};
 
@@ -8,7 +8,7 @@ disableSerialization;
 private _base = nil;
 private _good = true;
 if(typeof _building isEqualTo OT_barracks) then {
-	_base = (getpos player) call OT_fnc_nearestObjective;
+	_base = player call OT_fnc_nearestObjective;
 	if !((_base select 1) in (server getvariable "NATOabandoned")) then {
 		_good = false;
 	}

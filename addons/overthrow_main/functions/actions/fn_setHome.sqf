@@ -1,6 +1,6 @@
 private _b = player call OT_fnc_nearestRealEstate;
 private _building = objNull;
-if(typename _b isEqualTo "ARRAY") then {
+if(_b isEqualType []) then {
 	_building = (_b select 0);
 };
 if((typeof _building) in OT_allRepairableRuins) exitWith {

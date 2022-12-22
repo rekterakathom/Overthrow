@@ -1,6 +1,6 @@
 private _b = player call OT_fnc_nearestRealEstate;
 private _building = objNull;
-if(typename _b isEqualTo "ARRAY") then {
+if(_b isEqualType []) then {
 	_building = (_b select 0);
 };
 if(damage _building isEqualTo 1) exitWith {
@@ -24,8 +24,8 @@ if((typeof _building == OT_barracks) || (typeof _building == OT_trainingCamp)) e
 if(typeof _building == OT_refugeeCamp) exitWith {[] call OT_fnc_recruitSpawnCiv};
 if(typeof _building == OT_warehouse) exitWith {[] call OT_fnc_buyVehicleDialog};
 
-if(typename _b != "ARRAY") exitWith {
-	private _ob = (getpos player) call OT_fnc_nearestObjective;
+if !(_b isEqualType []) exitWith {
+	private _ob = player call OT_fnc_nearestObjective;
 	_ob params ["_obpos","_obname"];
 	if(_obpos distance player < 250) then {
 		if(_obname in (server getVariable ["NATOabandoned",[]])) then {
@@ -41,7 +41,7 @@ _handled = false;
 _type = "buy";
 _err = false;
 _building = objNull;
-if(typename _b isEqualTo "ARRAY") then {
+if(_b isEqualType []) then {
 	_building = (_b select 0);
 	if !(_building call OT_fnc_hasOwner) then {
 		_handled = true;
@@ -68,7 +68,7 @@ if(_handled) then {
 	player setvariable ["leased",_leased,true];
 
 	_leasedata = player getvariable ["leasedata",[]];
-	_leasedata pushback [_id,typeof _building,getpos _building,(getpos _building) call OT_fnc_nearestTown];
+	_leasedata pushback [_id,typeof _building,getpos _building,_building call OT_fnc_nearestTown];
 	player setvariable ["leasedata",_leasedata,true];
 
 	_mrkid = format["bdg-%1",_building];

@@ -49,28 +49,28 @@ if(!isNil "_close") then {
 		_groups pushback _veh;
 	};
 
-	_civ = _group createUnit [OT_NATO_Unit_PoliceCommander, _start, [],0, "NONE"];
+	_civ = _group createUnit [OT_NATO_Unit_PoliceCommander_Heavy, _start, [],0, "NONE"];
 	_police pushBack _civ;
 	[_civ,_town] call OT_fnc_initGendarm;
 	_civ setBehaviour "SAFE";
 	sleep 0.01;
 
 	_start = [_start, 0, 20, 1, 0, 0, 0] call BIS_fnc_findSafePos;
-	_civ = _group createUnit [OT_NATO_Unit_Police, _start, [],0, "NONE"];
+	_civ = _group createUnit [OT_NATO_Unit_Police_Heavy, _start, [],0, "NONE"];
 
 	_police pushBack _civ;
 	[_civ,_town] call OT_fnc_initGendarm;
 	_civ setBehaviour "SAFE";
 
 	_start = [_start, 0, 20, 1, 0, 0, 0] call BIS_fnc_findSafePos;
-	_civ = _group createUnit [OT_NATO_Unit_Police, _start, [],0, "NONE"];
+	_civ = _group createUnit [OT_NATO_Unit_Police_Heavy, _start, [],0, "NONE"];
 
 	_police pushBack _civ;
 	[_civ,_town] call OT_fnc_initGendarm;
 	_civ setBehaviour "SAFE";
 
 	_start = [_start, 0, 20, 1, 0, 0, 0] call BIS_fnc_findSafePos;
-	_civ = _group createUnit [OT_NATO_Unit_Police, _start, [],0, "NONE"];
+	_civ = _group createUnit [OT_NATO_Unit_Police_Heavy, _start, [],0, "NONE"];
 
 	_police pushBack _civ;
 	[_civ,_town] call OT_fnc_initGendarm;
@@ -89,6 +89,7 @@ if(!isNil "_close") then {
 
 		_move = _group addWaypoint [_drop,0];
 		_move setWaypointType "UNLOAD";
+		_move setWaypointBehaviour "AWARE";
 	};
 
 	sleep 1;

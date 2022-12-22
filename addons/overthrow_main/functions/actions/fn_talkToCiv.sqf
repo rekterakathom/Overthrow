@@ -2,7 +2,7 @@ private _civ = _this;
 
 OT_interactingWith = _civ;
 
-private _town = (getpos player) call OT_fnc_nearestTown;
+private _town = player call OT_fnc_nearestTown;
 private _standing = [_town] call OT_fnc_support;
 private _civprice = [_town,"CIV",_standing] call OT_fnc_getPrice;
 private _influence = player getvariable "influence";
@@ -243,7 +243,7 @@ if (_canBuy) then {
 	_options pushBack [
 		"Buy",{
 			private _civ = OT_interactingWith;
-			private _town = (getpos player) call OT_fnc_nearestTown;
+			private _town = player call OT_fnc_nearestTown;
 			private _standing = [_town] call OT_fnc_support;
 
 			_cat = _civ getVariable "OT_shopCategory";
@@ -284,7 +284,7 @@ if (_canTute) then {
 	_options pushBack [
 		"Do you know any gangs nearby?",{
 			private _civ = OT_interactingWith;
-			private _town = (getpos player) call OT_fnc_nearestTown;
+			private _town = player call OT_fnc_nearestTown;
 			private _talk = ["Do you know any gangs nearby?"];
 			//find nearest gang
 			private _gangid = -1;
@@ -318,10 +318,10 @@ if (_canTute) then {
 					_talk pushback "Anything for the resistance";
 					_code = {
 						params ["_town","_gangid","_gang"];
-						private _town = (getpos player) call OT_fnc_nearestTown;
+						private _town = player call OT_fnc_nearestTown;
                         _mrkid = format["gang%1",_town];
-                        _mrk = createMarker [_mrkid, _gang select 4];
-                        _mrkid setMarkerType "ot_Camp";
+                        _mrk = createMarkerLocal [_mrkid, _gang select 4];
+                        _mrkid setMarkerTypeLocal "ot_Camp";
                         _mrkid setMarkerColor "colorOPFOR";
 						private _revealed = server getVariable ["revealedGangs",[]];
                         _revealed pushback _gangid;
@@ -344,11 +344,11 @@ if (_canTute) then {
 										["What if I gave you $50?",format["Yeah, OK. I know of a gang called %1, I'll mark their camp on your map, maybe they'll have some jobs for you",_name]],
 										{
 											params ["_town","_gangid","_gang","_name"];
-											private _town = (getpos player) call OT_fnc_nearestTown;
+											private _town = player call OT_fnc_nearestTown;
 											[-50] call OT_fnc_money;
 											_mrkid = format["gang%1",_town];
-					                        _mrk = createMarker [_mrkid, _gang select 4];
-					                        _mrkid setMarkerType "ot_Camp";
+					                        _mrk = createMarkerLocal [_mrkid, _gang select 4];
+					                        _mrkid setMarkerTypeLocal "ot_Camp";
 					                        _mrkid setMarkerColor "colorOPFOR";
 											private _revealed = server getVariable ["revealedGangs",[]];
 					                        _revealed pushback _gangid;
@@ -430,7 +430,7 @@ if (_canTute) then {
 						"Legal money? Where's the fun in that. I guess you could try selling to stores or leasing houses.",
 						"Thanks."
 					],
-					(OT_tutorialMissions select 1)
+					(OT_tutorialMissions select 2)
 				] call OT_fnc_doConversation;
 			}
 		];
@@ -444,7 +444,7 @@ if (_canBuyBoats) then {
 			{
 				private _civ = OT_interactingWith;
 				_cls = _x select 0;
-				private _town = (getpos player) call OT_fnc_nearestTown;
+				private _town = player call OT_fnc_nearestTown;
 				private _standing = [_town] call OT_fnc_support;
 
 				_price = [_town,_cls,_standing] call OT_fnc_getPrice;
@@ -472,7 +472,7 @@ if (_canBuyBoats) then {
 						private _destpos = _this;
 						player setVariable ["OT_ferryDestination",_destpos,false];
 						private _desttown = _destpos call OT_fnc_nearestTown;
-						private _pos = (getpos player) findEmptyPosition [10,100,OT_vehType_ferry];
+						private _pos = (getPosATL player) findEmptyPosition [10,100,OT_vehType_ferry];
 						if (count _pos isEqualTo 0) exitWith {
 							"Not enough space, please clear an area nearby" call OT_fnc_notifyMinor;
 						};
@@ -491,7 +491,7 @@ if (_canBuyBoats) then {
 							clearItemCargoGlobal _veh;
 
 							private _dir = 0;
-							while {!(surfaceIsWater ([_pos,800,_dir] call BIS_fnc_relPos)) && _dir < 360} do {
+							while {!(surfaceIsWater (_pos getPos [800,_dir])) && _dir < 360} do {
 								_dir = _dir + 45;
 							};
 
@@ -549,7 +549,7 @@ if (_canBuyBoats) then {
 							waitUntil {_veh distance _pos < 100 || time > _timeout};
 							if(!alive _driver) exitWith{};
 
-							deleteVehicle _driver;
+							[(objectParent _driver), _driver] remoteExec ["deleteVehicleCrew", _driver, false];
 							deleteVehicle _veh;
 						};
 					};
@@ -579,7 +579,7 @@ if (_canSell) then {
 	_options pushBack [
 		"Sell",{
 			private _civ = OT_interactingWith;
-			private _town = (getpos player) call OT_fnc_nearestTown;
+			private _town = player call OT_fnc_nearestTown;
 			private _standing = [_town] call OT_fnc_support;
 
 			_cat = _civ getVariable "OT_shopCategory";
@@ -626,7 +626,7 @@ if (_canSellDrugs) then {
 				}foreach(player call OT_fnc_unitStock);
 				OT_drugQty = _num;
 
-				private _town = (getpos player) call OT_fnc_nearestTown;
+				private _town = player call OT_fnc_nearestTown;
 				private _price = [_town,_drugcls] call OT_fnc_getDrugPrice;
 				private _civ = OT_interactingWith;
 				_civ setVariable["OT_askedDrugs",true,true];
@@ -655,13 +655,13 @@ if (_canSellDrugs) then {
 								private _drugSell = _this select 0;
 								[
 									round(
-										([(getpos player) call OT_fnc_nearestTown,_drugSell] call OT_fnc_getDrugPrice)*1.2
+										([player call OT_fnc_nearestTown, _drugSell] call OT_fnc_getDrugPrice)*1.2
 									)
 								] call OT_fnc_money;
 								player removeItem _drugSell;
 								OT_interactingWith addItem _drugSell;
 								OT_interactingWith setVariable ["OT_Talking",false,true];
-								private _town = (getpos player) call OT_fnc_nearestTown;
+								private _town = player call OT_fnc_nearestTown;
 								if((random 100 > 50) && !isNil "_town") then {
 									[_town,-1] call OT_fnc_stability;
 								};

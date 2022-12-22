@@ -30,12 +30,16 @@ recruitSelected = {
 		<t align='left' size='0.7'>Location: %2</t><br/>
 		<t align='left' size='0.7'>Rank: %3</t><br/>
 		<t align='left' size='0.7'>XP: %4/%5</t>
-	",name _recruit,(getpos _recruit) call BIS_fnc_locationDescription,rank _recruit,_recruit getVariable ["OT_xp",0],OT_rankXP select (rankId _recruit)];
+	",name _recruit,_recruit call BIS_fnc_locationDescription,rank _recruit,_recruit getVariable ["OT_xp",0],OT_rankXP select (rankId _recruit)];
 };
 
 dismissRecruit = {
 	_recruit = (units group player) select (lbValue[1500,lbCurSel 1500]-1);
-	deleteVehicle _recruit;
+	if (isNull objectParent _recruit) then {
+		deleteVehicle _recruit;
+	} else {
+		[(objectParent _recruit), _recruit] remoteExec ["deleteVehicleCrew", _recruit, false];
+	};
 	ctrlEnable [1600,false];
 	[] call refreshRecruits;
 	disableSerialization;

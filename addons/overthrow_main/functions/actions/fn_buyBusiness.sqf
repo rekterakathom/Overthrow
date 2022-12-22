@@ -1,4 +1,4 @@
-private _b = (position player) call OT_fnc_nearestLocation;
+private _b = player call OT_fnc_nearestLocation;
 if((_b select 1) isEqualTo "Business") then {
     if (call OT_fnc_playerIsGeneral) then {
         private _name = (_b select 0);
@@ -21,7 +21,7 @@ if((_b select 1) isEqualTo "Business") then {
         };
     };
 }else{
-    if((getpos player) distance OT_factoryPos < 150) then {
+    if(player distance OT_factoryPos < 150) then {
         if (call OT_fnc_playerIsGeneral) then {
             private _name = "Factory";
 

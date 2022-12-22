@@ -25,7 +25,7 @@ OT_NATO_Units_LevelOne = [];
 OT_NATO_Units_LevelTwo = [];
 OT_NATO_Units_CTRGSupport = [];
 
-(OT_loadingMessages call BIS_fnc_selectRandom) remoteExec['OT_fnc_notifyStart',0,false];
+(selectRandom OT_loadingMessages) remoteExec['OT_fnc_notifyStart',0,false];
 
 private _c = 0;
 
@@ -79,7 +79,7 @@ private _c = 0;
 	};
 }foreach(format["(getNumber(_x >> 'scope') isEqualTo 2) && (getText(_x >> 'faction') isEqualTo '%1') && (configName _x) isKindOf 'SoldierWB'",OT_faction_NATO] configClasses (configFile >> "CfgVehicles"));
 
-(OT_loadingMessages call BIS_fnc_selectRandom) remoteExec['OT_fnc_notifyStart',0,false];
+(selectRandom OT_loadingMessages) remoteExec['OT_fnc_notifyStart',0,false];
 
 //Generate and cache gendarm loadouts
 private _loadout = getUnitLoadout OT_NATO_Unit_Police;
@@ -116,7 +116,7 @@ if((server getVariable "StartupType") == "NEW" || (server getVariable ["NATOvers
 	server setVariable ["NATOversion",OT_NATOversion,false];
 	private _abandoned = server getVariable ["NATOabandoned",[]];
 
-	(OT_loadingMessages call BIS_fnc_selectRandom) remoteExec['OT_fnc_notifyStart',0,false];
+	(selectRandom OT_loadingMessages) remoteExec['OT_fnc_notifyStart',0,false];
 	sleep 0.3;
 	{
 		private _stability = server getVariable format ["stability%1",_x];
@@ -213,7 +213,7 @@ if((server getVariable "StartupType") == "NEW" || (server getVariable ["NATOvers
 		_count = _count + 1;
 	};
 
-	(OT_loadingMessages call BIS_fnc_selectRandom) remoteExec['OT_fnc_notifyStart',0];
+	(selectRandom OT_loadingMessages) remoteExec['OT_fnc_notifyStart',0];
 	sleep 0.3;
 	//Add comms towers
 	{
@@ -251,7 +251,7 @@ if((server getVariable "StartupType") == "NEW" || (server getVariable ["NATOvers
 			_x params ["_type","_num"];
 			private _count = 0;
 			while {_count < _num} do {
-				private _name = _prilist call BIS_fnc_selectRandom;
+				private _name = selectRandom _prilist;
 				private _garrison = server getVariable [format["airgarrison%1",_name],[]];
 				_garrison pushback _type;
 				_count = _count + 1;
@@ -316,7 +316,11 @@ diag_log "Overthrow: NATO Init Done";
 
 {
 	_x params ["_pos","_name","_pri"];
-	private _mrk = createMarker [_name,_pos];
+
+	// Precalculate empty positions for objectives
+	_pos findEmptyPositionReady [0, 100];
+
+	private _mrk = createMarkerLocal [_name,_pos];
 	_mrk setMarkerShape "ICON";
 	if(_name in (server getVariable "NATOabandoned")) then {
 		_mrk setMarkerType OT_flagMarker;
@@ -328,12 +332,12 @@ diag_log "Overthrow: NATO Init Done";
 		};
 	};
 
-	_mrk = createMarker [_name+"_restrict",_pos];
-	_mrk setMarkerShape "ELLIPSE";
-	_mrk setMarkerBrush "BDIAGONAL";
+	_mrk = createMarkerLocal [_name+"_restrict",_pos];
+	_mrk setMarkerShapeLocal "ELLIPSE";
+	_mrk setMarkerBrushLocal "BDIAGONAL";
 	private _dist = 200;
 	if(_name in OT_NATO_priority) then {_dist = 500};
-	_mrk setMarkerSize [_dist, _dist];
+	_mrk setMarkerSizeLocal [_dist, _dist];
 	_mrk setMarkerColor "ColorRed";
 	if(_name in (server getVariable "NATOabandoned")) then {
 		_mrk setMarkerAlpha 0;
@@ -364,7 +368,7 @@ diag_log "Overthrow: NATO Init Done";
 		_supplypos = _pos findEmptyPosition [4,100,OT_item_Storage];
 	}else{
 		//put it at the warehouse
-		_supplypos = (getpos(_warehouses select 0)) findEmptyPosition [4,100,OT_item_Storage];
+		_supplypos = (getPosATL (_warehouses select 0)) findEmptyPosition [4,100,OT_item_Storage];
 	};
 	spawner setVariable [format["NATOsupply%1",_name],_supplypos,false];
 
@@ -422,9 +426,13 @@ publicVariable "OT_allObjectives";
 
 {
 	_x params ["_pos","_name"];
-	private _mrk = createMarker [_name,_pos];
-	_mrk setMarkerShape "ICON";
-	_mrk setMarkerType "loc_Transmitter";
+
+	// Precalculate empty positions
+	_pos findEmptyPositionReady [0, 100];
+
+	private _mrk = createMarkerLocal [_name,_pos];
+	_mrk setMarkerShapeLocal "ICON";
+	_mrk setMarkerTypeLocal "loc_Transmitter";
 	if(_name in (server getVariable "NATOabandoned")) then {
 		_mrk setMarkerColor "ColorGUER";
 	}else{
@@ -434,13 +442,13 @@ publicVariable "OT_allObjectives";
 	OT_allComms pushback _name;
 	OT_allObjectives pushback _name;
 
-	_mrk = createMarker [_name+"_restrict",_pos];
-	_mrk setMarkerShape "ELLIPSE";
-	_mrk setMarkerBrush "BDIAGONAL";
+	_mrk = createMarkerLocal [_name+"_restrict",_pos];
+	_mrk setMarkerShapeLocal "ELLIPSE";
+	_mrk setMarkerBrushLocal "BDIAGONAL";
 	private _dist = 40;
 	if(_name in OT_NATO_priority) then {_dist = 500};
-	_mrk setMarkerSize [_dist, _dist];
-	_mrk setMarkerColor "ColorRed";
+	_mrk setMarkerSizeLocal [_dist, _dist];
+	_mrk setMarkerColorLocal "ColorRed";
 	if(_name in (server getVariable "NATOabandoned")) then {
 		_mrk setMarkerAlpha 0;
 	}else{
@@ -458,7 +466,7 @@ private _revealed = server getVariable ["revealedFOBs",[]];
 	while {_count < _garrison} do {
 		private _start = [[[_pos,50]]] call BIS_fnc_randomPos;
 
-		private _civ = _group createUnit [OT_NATO_Units_LevelOne call BIS_fnc_selectRandom, _start, [],0, "NONE"];
+		private _civ = _group createUnit [selectRandom OT_NATO_Units_LevelOne, _start, [],0, "NONE"];
 		_civ setVariable ["garrison","HQ",false];
 		_civ setRank "LIEUTENANT";
 		_civ setVariable ["VCOM_NOPATHING_Unit",true,false];
@@ -473,10 +481,10 @@ private _revealed = server getVariable ["revealedFOBs",[]];
 	private _id = str _pos;
 	if(_id in _revealed) then {
 		//create marker
-		_mrkid = createMarker [format["natofob%1",_id],_pos];
-		_mrkid setMarkerShape "ICON";
-		_mrkid setMarkerType "mil_Flag";
-		_mrkid setMarkerColor "ColorBLUFOR";
+		_mrkid = createMarkerLocal [format["natofob%1",_id],_pos];
+		_mrkid setMarkerShapeLocal "ICON";
+		_mrkid setMarkerTypeLocal "mil_Flag";
+		_mrkid setMarkerColorLocal "ColorBLUFOR";
 		_mrkid setMarkerAlpha 1;
 	};
 }foreach(server getVariable ["NATOfobs",[]]);

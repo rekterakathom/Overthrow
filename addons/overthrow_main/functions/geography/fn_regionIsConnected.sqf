@@ -1,12 +1,12 @@
 params ["_f","_t"];
 private _por = "";
 private _region = "";
-if((typename _f) isEqualTo "ARRAY") then {
+if(_f isEqualType []) then {
     _por = _f call OT_fnc_getRegion;
 }else{
     _por = _f;
 };
-if((typename _t) isEqualTo "ARRAY") then {
+if(_t isEqualType []) then {
     _region = _t call OT_fnc_getRegion;
 }else{
     _region = _t;

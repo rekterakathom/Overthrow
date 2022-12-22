@@ -70,14 +70,14 @@ if(_version < OT_economyVersion) then {
         _x params ["_cls","_name","_side"];
         if(_side != 1) then {
             _reppos = server getVariable [format["factionrep%1",_cls],false];
-            if(typename _reppos != "ARRAY") then {
+            if !(_reppos isEqualType []) then {
                 _town = selectRandom OT_allTowns;
                 if(_cls isEqualTo OT_spawnFaction) then {_town = server getvariable "spawntown"};
                 _posTown = server getVariable _town;
                 _building = [_posTown,OT_allHouses] call OT_fnc_getRandomBuilding;
                 _pos = _posTown;
-                if(typename _building != "BOOL") then {
-            		_pos = (_building call BIS_fnc_buildingPositions) call BIS_fnc_selectRandom;
+                if !(_building isEqualType true) then {
+            		_pos = selectRandom (_building call BIS_fnc_buildingPositions);
             		[_building,"system"] call OT_fnc_setOwner;
                     if(isNil "_pos") then {
                         _pos = [[[getpos _building,20]]] call BIS_fnc_randomPos;
@@ -106,22 +106,22 @@ if(_version < OT_economyVersion) then {
 {
     _stability = server getVariable format["stability%1",_x];
     _posTown = server getVariable _x;
-    _pos = [_posTown,40,-90] call BIS_fnc_relPos;
+    _pos = _posTown getPos [40, -90];
     _mSize = 250;
 
     if(_x in OT_Capitals) then {
         _mSize = 400;
     };
 
-    _mrk = createMarker [_x,_pos];
-    _mrk setMarkerShape "ELLIPSE";
-    _mrk setMarkerSize[_mSize,_mSize];
+    _mrk = createMarkerLocal [_x,_pos];
+    _mrk setMarkerShapeLocal "ELLIPSE";
+    _mrk setMarkerSizeLocal [_mSize,_mSize];
 
     _abandoned = server getVariable ["NATOabandoned",[]];
     if(_mrk in _abandoned) then {
-        _mrk setMarkerColor "ColorRed";
+        _mrk setMarkerColorLocal "ColorRed";
     }else{
-        _mrk setMarkerColor "ColorYellow";
+        _mrk setMarkerColorLocal "ColorYellow";
     };
 
     if(_stability < 50) then {
@@ -129,18 +129,18 @@ if(_version < OT_economyVersion) then {
     }else{
         _mrk setMarkerAlpha 0;
     };
-    _mrk = createMarker [format["%1-abandon",_x],_pos];
-    _mrk setMarkerShape "ICON";
+    _mrk = createMarkerLocal [format["%1-abandon",_x],_pos];
+    _mrk setMarkerShapeLocal "ICON";
     _garrison = server getVariable [format['police%1',_x],0];
 	if(_garrison > 0) then {
-		_mrk setMarkerType "OT_Police";
+		_mrk setMarkerTypeLocal "OT_Police";
 	}else{
-		_mrk setMarkerType "OT_Anarchy";
+		_mrk setMarkerTypeLocal "OT_Anarchy";
 	};
     if(_stability < 50) then {
-        _mrk setMarkerColor "ColorOPFOR";
+        _mrk setMarkerColorLocal "ColorOPFOR";
     }else{
-        _mrk setMarkerColor "ColorGUER";
+        _mrk setMarkerColorLocal "ColorGUER";
     };
     if(_x in (server getVariable ["NATOabandoned",[]])) then {
         _mrk setMarkerAlpha 1;
@@ -153,24 +153,24 @@ if(_version < OT_economyVersion) then {
     };
 
 	_shops = server getVariable [format["activeshopsin%1",_x],[]];
-	[_allActiveShops,_shops] call BIS_fnc_arrayPushStack;
+	_allActiveShops append _shops;
 
 	_carshops = server getVariable [format["activecarshopsin%1",_x],[]];
-	[_allActiveCarShops,_carshops] call BIS_fnc_arrayPushStack;
+	_allActiveCarShops append _carshops;
 
 	_piers = server getVariable [format["activepiersin%1",_x],[]];
-	[_allActivePiers,_piers] call BIS_fnc_arrayPushStack;
+	_allActivePiers append _piers;
     sleep 0.3;
 }foreach(OT_allTowns);
 
 OT_allEconomic = [];
 {
 	_x params ["_pos","_name"];
-	_mrk = createMarker [_name,_pos];
-	_mrk setMarkerShape "ICON";
-    _mrk setMarkerType "ot_Business";
-    _mrk setMarkerColor "ColorWhite";
-    if(_name in (server getVariable["GEURowned",[]])) then {_mrk setMarkerColor "ColorGUER"};
+	_mrk = createMarkerLocal [_name,_pos];
+	_mrk setMarkerShapeLocal "ICON";
+    _mrk setMarkerTypeLocal "ot_Business";
+    _mrk setMarkerColorLocal "ColorWhite";
+    if(_name in (server getVariable["GEURowned",[]])) then {_mrk setMarkerColorLocal "ColorGUER"};
     _mrk setMarkerAlpha 0.8;
 	OT_allEconomic pushback _name;
     server setVariable [_name,_pos,true];
@@ -178,11 +178,11 @@ OT_allEconomic = [];
 }foreach(OT_economicData);
 sleep 0.3;
 
-_mrk = createMarker ["Factory",OT_factoryPos];
-_mrk setMarkerShape "ICON";
-_mrk setMarkerType "ot_Factory";
-_mrk setMarkerColor "ColorWhite";
-if("Factory" in (server getVariable["GEURowned",[]])) then {_mrk setMarkerColor "ColorGUER"};
+_mrk = createMarkerLocal ["Factory",OT_factoryPos];
+_mrk setMarkerShapeLocal "ICON";
+_mrk setMarkerTypeLocal "ot_Factory";
+_mrk setMarkerColorLocal "ColorWhite";
+if("Factory" in (server getVariable["GEURowned",[]])) then {_mrk setMarkerColorLocal "ColorGUER"};
 _mrk setMarkerAlpha 0.8;
 
 server setVariable ["EconomyVersion",OT_economyVersion,false];

@@ -3,7 +3,7 @@
 overviewPicture = "\overthrow_main\campaign\missions\overthrow_tanoa.jpg";
 briefingName = "Overthrow: Livonia";
 OnLoadName = "Overthrow: Livonia";
-loadScreen = "\overthrow_main\campaign\missions\pic.jpg";
+loadScreen = "\overthrow_main\campaign\RKT-loadingscreen.jpg";
 
 overviewText = "TBC";
 

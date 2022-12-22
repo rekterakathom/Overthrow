@@ -38,7 +38,7 @@ private _actualMission = {
                     //If the player fast travelled, give time to spawn
                     [{
                         //loop and hope we find a target
-                        [] call (OT_tutorialMissions select 3);
+                        [] call (OT_tutorialMissions select 2);
                     },0,10] call CBA_fnc_waitAndExecute;
                 },
                 _destination

@@ -1,7 +1,9 @@
+private _warehouse = player call OT_fnc_nearestWarehouse;
+if (_warehouse == objNull) exitWith {hint "No warehouse near by!"};
 
 params ["_cls","_num"];
 private _ret = true;
-private _d = warehouse getVariable [format["item_%1",_cls],[_cls,0,[0]]];
+private _d = _warehouse getVariable [format["item_%1",_cls],[_cls,0,[0]]];
 if(_d isEqualType []) then {
 	_d params ["","_in"];
 
@@ -12,12 +14,12 @@ if(_d isEqualType []) then {
 
 	private _newnum = _in - _num;
 	if(_newnum > 0) then {
-		warehouse setVariable [format["item_%1",_cls],[_cls,_newnum],true];
+		_warehouse setVariable [format["item_%1",_cls],[_cls,_newnum],true];
 	}else{
-		warehouse setVariable [format["item_%1",_cls],nil,true];
+		_warehouse setVariable [format["item_%1",_cls],nil,true];
 	};
 }else{
 	_ret = false;
-	warehouse setVariable [format["item_%1",_cls],nil,true];
+	_warehouse setVariable [format["item_%1",_cls],nil,true];
 };
 _ret

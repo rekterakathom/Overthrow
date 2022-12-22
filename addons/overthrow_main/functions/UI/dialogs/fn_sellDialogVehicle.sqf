@@ -1,4 +1,4 @@
-private _town = (getpos player) call OT_fnc_nearestTown;
+private _town = player call OT_fnc_nearestTown;
 private _standing = [_town] call OT_fnc_support;
 
 private _category = ((nearestBuilding player) getVariable ["OT_shopCategory","General"]);

@@ -1,10 +1,18 @@
+
+// This file is responsible for handling item verification -
+// for NPC's, player item verification method was updated -
+// and is now handled by fn_verifyFromWarehouse
+
 params ["_unit",["_correct",true]];
+
+private _warehouse = _unit call OT_fnc_nearestWarehouse;
+if (_warehouse == objNull) exitWith {hint "No warehouse near by!"};
 
 private _ignore = [];
 {
     _x params [["_cls",""], ["_count",0]];
     if !(_cls in _ignore) then {
-        private _boxAmount = (warehouse getVariable [format["item_%1",_cls],[_cls,0]]) select 1;
+        private _boxAmount = (_warehouse getVariable [format["item_%1",_cls],[_cls,0]]) select 1;
         if(_boxAmount < _count) then {
             //take off the difference
             call {

@@ -32,7 +32,7 @@ if(_price > -1) then {
     			gettext(configFile >> "CfgGlasses" >> _cls >> "displayName")
 			]
     	};
-        if(_cls isKindOf "Man") exitWith {
+        if(_cls isKindOf "CAManBase") exitWith {
             private _soldier = _cls call OT_fnc_getSoldier;
             private _bought = _soldier select 5;
     		private _price = _soldier select 0;

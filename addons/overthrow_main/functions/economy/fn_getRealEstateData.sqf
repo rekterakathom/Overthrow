@@ -1,11 +1,11 @@
 private _town = "";
 private _type = "";
-if(typename _this isEqualTo "ARRAY") then {
+if(_this isEqualType []) then {
 	_type = _this select 0;
 	_town = _this select 1;
 }else{
 	_type = typeof _this;
-	_town = (getpos _this) call OT_fnc_nearestTown;
+	_town = _this call OT_fnc_nearestTown;
 };
 
 if(isNil "_town") exitWith {[-1,-1,-1,-1]};

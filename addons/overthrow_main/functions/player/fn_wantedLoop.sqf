@@ -63,7 +63,7 @@ if !(captive _unit) then {
 
 	if(_unit call OT_fnc_unitSeenCRIM && !_gottem) then {
 		//get closest gang member
-		private _ents = _unit nearEntities ["Man",1200];
+		private _ents = _unit nearEntities ["CAManBase",1200];
 		private _i = _ents findIf {side _x isEqualTo east};
 		if !(_i isEqualTo -1) then {
 			private _member = _ents select _i;
@@ -98,11 +98,11 @@ if !(captive _unit) then {
 					};
 
 					// driving with weapons, illegal clothing/gear, in illegal vehicles
-					if(!(_vehicle isEqualTo _unit) && { _unit call OT_fnc_illegalInCar }) exitWith {
+					if((!isNull objectParent _unit) && { _unit call OT_fnc_illegalInCar }) exitWith {
 						//Set the whole car wanted
 						{
 							_x setCaptive false;
-						}foreach(crew vehicle _unit);
+						}foreach(crew objectParent _unit);
 						[vehicle _unit] call OT_fnc_revealToCRIM;
 					};
 
@@ -134,16 +134,16 @@ if !(captive _unit) then {
 					"NATO has seen the static weapon" call OT_fnc_notifyMinor;
 				};
 			};
-			if(!(_vehicle isEqualTo _unit) && { _unit call OT_fnc_illegalInCar }) exitWith {
+			if ((!isNull objectParent _unit) && { _unit call OT_fnc_illegalInCar }) exitWith {
 				//Set the whole car wanted
 				_unit setcaptive false;
 				{
 					_x setcaptive false;
-				}forEach(units _vehicle);
-				[vehicle _unit] call OT_fnc_revealToNATO;
+				}forEach(crew objectParent _unit);
+				[objectParent _unit] call OT_fnc_revealToNATO;
 
 				//Record any threats as known targets
-				(vehicle _unit) call OT_fnc_NATOreportThreat;
+				(objectParent _unit) call OT_fnc_NATOreportThreat;
 			};
 			if(_unit call OT_fnc_hasWeaponEquipped) exitWith {
 				_unit setCaptive false;

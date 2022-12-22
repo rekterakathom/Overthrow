@@ -1,10 +1,10 @@
 params ["_frompos","_ao","_attackpos","_byair",["_delay",0]];
 if (_delay > 0) then {sleep _delay};
-private _vehtype = OT_NATO_Vehicle_Transport call BIS_fnc_selectRandom;
+private _vehtype = selectRandom OT_NATO_Vehicle_Transport;
 if(_byair) then {
-	_vehtype = OT_NATO_Vehicle_AirTransport call BIS_fnc_selectRandom;
+	_vehtype = selectRandom OT_NATO_Vehicle_AirTransport;
 };
-private _squadtype = OT_NATO_GroundForces call BIS_fnc_SelectRandom;
+private _squadtype = selectRandom OT_NATO_GroundForces;
 private _spawnpos = _frompos;
 private _group1 = [_spawnpos, WEST, (configFile >> "CfgGroups" >> "West" >> OT_faction_NATO >> "Infantry" >> _squadtype)] call BIS_fnc_spawnGroup;
 _group1 deleteGroupWhenEmpty true;
@@ -12,7 +12,7 @@ private _group2 = "";
 private _tgroup = false;
 if !(_byair) then {
 	sleep 0.3;
-	_squadtype = OT_NATO_GroundForces call BIS_fnc_SelectRandom;
+	_squadtype = selectRandom OT_NATO_GroundForces;
 	_group2 = [_spawnpos, WEST, (configFile >> "CfgGroups" >> "West" >> OT_faction_NATO >> "Infantry" >> _squadtype)] call BIS_fnc_spawnGroup;
 	_group2 deleteGroupWhenEmpty true;
 };
@@ -40,7 +40,7 @@ if !(_pos isEqualType []) then {
 	if(count _pos == 0) then {
 		_pos = [_frompos,0,75,false,[0,0],[120,_vehtype]] call SHK_pos_fnc_pos;
 	};
-	_dir = [_frompos,_ao] call BIS_fnc_dirTo;
+	_dir = (_frompos getDir _ao);
 };
 _pos set [2,1];
 _veh = createVehicle [_vehtype, [0,0,1000+random 1000], [], 0, "CAN_COLLIDE"];
@@ -69,7 +69,7 @@ sleep 1;
 _tgroup deleteGroupWhenEmpty true;
 
 {
-	if(typename _tgroup isEqualTo "GROUP") then {
+	if(_tgroup isEqualType grpNull) then {
 		_x moveInCargo _veh;
 	};
 	[_x] joinSilent _group1;
@@ -89,7 +89,7 @@ spawner setVariable ["NATOattackforce",(spawner getVariable ["NATOattackforce",[
 
 if !(_byair) then {
 	{
-		if(typename _tgroup isEqualTo "GROUP") then {
+		if(_tgroup isEqualType grpNull) then {
 			_x moveInCargo _veh;
 		};
 		[_x] joinSilent _group2;
@@ -132,15 +132,15 @@ if(_byair && _tgroup isEqualType grpNull) then {
 	_wp setWaypointStatements ["true","(vehicle this) AnimateDoor ['Door_rear_source', 0, false];"];
 	_wp setWaypointTimeout [20,20,20];
 }else{
-	if(typename _tgroup isEqualTo "GROUP") then {
+	if(_tgroup isEqualType grpNull) then {
 		_veh setdamage 0;
-		_dir = [_attackpos,_frompos] call BIS_fnc_dirTo;
+		_dir = (_attackpos getDir _frompos);
 		_roads = _ao nearRoads 150;
 		private _dropos = _ao;
 
 		//Try to make sure drop position is on a bigger road
 		{
-			private _pos = getpos _x;
+			private _pos = ASLtoAGL (getPosASL _x);
 			if(isOnRoad _pos) exitWith {_dropos = _pos};
 		}foreach(_roads);
 
@@ -175,7 +175,7 @@ if !(_byair) then {
 	_wp setWaypointSpeed "FULL";
 };
 
-if(typename _tgroup isEqualTo "GROUP") then {
+if(_tgroup isEqualType grpNull) then {
 
 	[_veh,_tgroup,_frompos,_byair] spawn {
 		//Ejects crew from vehicles when they take damage or stay relatively still for too long (you know, like when they ram a tree for 4 hours)
@@ -192,7 +192,7 @@ if(typename _tgroup isEqualTo "GROUP") then {
 				//Vehicle damaged (and on the ground)
 				_eject = true;
 			};
-			if((getpos _veh) distance _lastpos < 0.5) then {
+			if(_veh distance _lastpos < 0.5) then {
 				_stillfor = _stillfor + 10;
 				if(_stillfor > 60) then {
 					//what are you doing? gtfo

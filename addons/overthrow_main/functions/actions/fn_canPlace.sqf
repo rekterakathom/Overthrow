@@ -5,7 +5,7 @@ _isbase = false;
 _canplace = true;
 
 if(_typecls != "Base") then {
-	private _ob = (getpos player) call OT_fnc_nearestLocation;
+	private _ob = player call OT_fnc_nearestLocation;
 	if((_ob select 1) isEqualTo "Business") then {
 		_obpos = (_ob select 2) select 0;
 		_obname = (_ob select 0);
@@ -58,7 +58,7 @@ if(!_canplace) exitWith {false};
 if !(_isbase) then {
 	//Building proximity check
 	_estate = _pos call OT_fnc_nearestRealEstate;
-	if(typename _estate isEqualTo "ARRAY") then {
+	if(_estate isEqualType []) then {
 		_b = _estate select 0;
 		if(typeof _b isEqualTo OT_item_Tent) exitWith {_canplace = false};
 		if(_b call OT_fnc_hasOwner) then {

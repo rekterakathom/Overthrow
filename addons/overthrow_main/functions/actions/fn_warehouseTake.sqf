@@ -1,10 +1,13 @@
 if (OT_taking) exitWith {};
 
+private _warehouse = player call OT_fnc_nearestWarehouse;
+if (_warehouse == objNull) exitWith {hint "No warehouse near by!"};
+
 OT_taking = true;
 private _idx = lbCurSel 1500;
 private _cls = lbData [1500,_idx];
 private _num = _this select 0;
-private _d = warehouse getVariable [format["item_%1",_cls],[_cls,0]];
+private _d = _warehouse getVariable [format["item_%1",_cls],[_cls,0]];
 _d params ["_wCls", ["_in",0,[0]]];
 
 if(_num > _in || _num isEqualTo -1) then {
@@ -16,7 +19,7 @@ private _veh = (vehicle player);
 private	_iswarehouse = false;
 if(_veh isEqualTo player) then {
 	_b = OT_warehouseTarget call OT_fnc_nearestRealEstate;
-	if(typename _b isEqualTo "ARRAY") then {
+	if(_b isEqualType []) then {
 		_building = _b select 0;
 		if((typeof _building) == OT_warehouse && _building call OT_fnc_hasOwner) then {
 			_iswarehouse = true;
@@ -55,9 +58,9 @@ while {_count < _num} do {
 
 private _newnum = _in - _num;
 if(_newnum > 0) then {
-	warehouse setVariable [format["item_%1",_cls],[_cls,_newnum],true];
+	_warehouse setVariable [format["item_%1",_cls],[_cls,_newnum],true];
 }else{
-	warehouse setVariable [format["item_%1",_cls],nil,true];
+	_warehouse setVariable [format["item_%1",_cls],nil,true];
 };
 
 [] call OT_fnc_warehouseDialog;

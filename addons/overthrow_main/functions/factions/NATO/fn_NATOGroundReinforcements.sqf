@@ -4,14 +4,14 @@ private _vehtype = OT_NATO_Vehicle_Transport_Light;
 if(_byair) then {
 	_vehtype = OT_NATO_Vehicle_AirTransport select 0;
 };
-private _squadtype = OT_NATO_GroundForces call BIS_fnc_SelectRandom;
+private _squadtype = selectRandom OT_NATO_GroundForces;
 private _spawnpos = _frompos;
 private _group1 = createGroup west;
 _group1 deleteGroupWhenEmpty true;
 
+// Spawn 4 soldiers to be seated in a transport vehicle
 for "_i" from 1 to 4 do {
-	private _p = _frompos findEmptyPosition [15,100,_vehtype];
-	private _civ = _group1 createUnit [selectRandom OT_NATO_Units_LevelOne,_p,[],0,"NONE"];
+	(selectRandom OT_NATO_Units_LevelOne) createUnit [_frompos,_group1,"",0.3,"private"];
 };
 
 sleep 0.5;
@@ -38,7 +38,7 @@ if !(_pos isEqualType []) then {
 	if(count _pos == 0) then {
 		_pos = [_frompos,0,75,false,[0,0],[120,_vehtype]] call SHK_pos_fnc_pos;
 	};
-	_dir = [_frompos,_ao] call BIS_fnc_dirTo;
+	_dir = (_frompos getDir _ao);
 };
 _pos set [2,0];
 _veh = _vehtype createVehicle _pos;
@@ -66,7 +66,7 @@ sleep 1;
 _tgroup deleteGroupWhenEmpty true;
 
 {
-	if(typename _tgroup isEqualTo "GROUP") then {
+	if(_tgroup isEqualType grpNull) then {
 		_x moveInCargo _veh;
 	};
 	[_x] joinSilent _group1;
@@ -111,15 +111,15 @@ if(_byair && _tgroup isEqualType grpNull) then {
 	_wp setWaypointStatements ["true","(vehicle this) AnimateDoor ['Door_rear_source', 0, false];"];
 	_wp setWaypointTimeout [20,20,20];
 }else{
-	if(typename _tgroup isEqualTo "GROUP") then {
+	if(_tgroup isEqualType grpNull) then {
 		_veh setdamage 0;
-		_dir = [_attackpos,_frompos] call BIS_fnc_dirTo;
+		_dir = (_attackpos getDir _frompos);
 		_roads = _ao nearRoads 150;
 		private _dropos = _ao;
 
 		//Try to make sure drop position is on a bigger road
 		{
-			private _pos = getpos _x;
+			private _pos = ASLtoAGL (getPosASL _x);
 			if(isOnRoad _pos) exitWith {_dropos = _pos};
 		}foreach(_roads);
 
@@ -147,7 +147,7 @@ _wp setWaypointType "SAD";
 _wp setWaypointBehaviour "COMBAT";
 _wp setWaypointSpeed "FULL";
 
-if(typename _tgroup isEqualTo "GROUP") then {
+if(_tgroup isEqualType grpNull) then {
 
 	[_veh,_tgroup,_frompos,_byair] spawn {
 		//Ejects crew from vehicles when they take damage or stay relatively still for too long (you know, like when they ram a tree for 4 hours)
@@ -164,7 +164,7 @@ if(typename _tgroup isEqualTo "GROUP") then {
 				//Vehicle damaged (and on the ground)
 				_eject = true;
 			};
-			if((getpos _veh) distance _lastpos < 0.5) then {
+			if(_veh distance _lastpos < 0.5) then {
 				_stillfor = _stillfor + 10;
 				if(_stillfor > 60) then {
 					//what are you doing? gtfo

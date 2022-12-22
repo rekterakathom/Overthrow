@@ -16,7 +16,7 @@ private _expiry = 0;
     _jobcode = _code;
     _expiry = _expires;
     call {
-        if((toLower _target) isEqualTo "gang") exitWith {
+        if((toLowerANSI _target) isEqualTo "gang") exitWith {
             _id = format["%1-%2",_name,_gangid];
             if(([_gang] call _condition) && !(_id in _completed) && !(_id in _activeJobs) && !(_id in OT_jobsOffered)) then {
                 _gotjob = true;

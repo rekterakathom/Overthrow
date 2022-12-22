@@ -1,6 +1,6 @@
 params ["_mortar","_mortargroup"];
 
-while {sleep 5+(random 5); ("8Rnd_82mm_Mo_shells" in getArtilleryAmmo[_mortar]) && (alive _mortar) && ({alive _x} count (units _mortargroup)) > 0} do {
+while {sleep 5+(random 5); ("8Rnd_82mm_Mo_shells" in getArtilleryAmmo[_mortar]) && (alive _mortar) && ((units _mortargroup) findIf {alive _x} != -1)} do {
     private _attacking = server getVariable ["NATOattacking",""];
     private _mortarpos = position _mortar;
 
@@ -19,7 +19,7 @@ while {sleep 5+(random 5); ("8Rnd_82mm_Mo_shells" in getArtilleryAmmo[_mortar]) 
                 sleep 3;
                 _mortargroup setCombatMode "BLUE";
                 //Did anyone hear that?
-                if({side _x isEqualTo resistance || captive _x} count (_mortarpos nearObjects ["CAManBase",3000]) > 0) then {
+                if((_mortarpos nearEntities ["CAManBase",3000]) findIf {side _x isEqualTo resistance || captive _x} != -1) then {
                     private _icons = spawner getVariable ["NATOmortars",[]];
                     _found = false;
                     {
@@ -55,7 +55,7 @@ while {sleep 5+(random 5); ("8Rnd_82mm_Mo_shells" in getArtilleryAmmo[_mortar]) 
                 sleep 3;
                 _mortargroup setCombatMode "BLUE";
                 //Did anyone hear that?
-                if({side _x isEqualTo resistance || captive _x} count (_mortarpos nearObjects ["CAManBase",3000]) > 0) then {
+                if((_mortarpos nearEntities ["CAManBase",3000]) findIf {side _x isEqualTo resistance || captive _x} != -1) then {
                     private _icons = spawner getVariable ["NATOmortars",[]];
                     _found = false;
                     {

@@ -4,7 +4,7 @@ if(!dialog) then {
 	if(count (player nearObjects [OT_workshopBuilding,10]) > 0) then {
 		[] call OT_fnc_workshopDialog;
 	}else{
-		if((vehicle player) != player && count (player nearObjects [OT_portBuilding,30]) > 0) then {
+		if((vehicle player) != player && count (nearestObjects [player,OT_portBuilding,30]) > 0) then {
 			createDialog "OT_dialog_vehicleport";
 			private _ft = server getVariable ["OT_fastTravelType",1];
 			if(!OT_adminMode && _ft > 1) then {
@@ -56,7 +56,7 @@ if(!dialog) then {
 					], 0, 0.2, 20, 1, 0, 2] call OT_fnc_dynamicText;
 
 					sleep 20;
-					_gundealer = spawner getVariable format["gundealer%1",(getpos player) call OT_fnc_nearestTown];
+					_gundealer = spawner getVariable format["gundealer%1",player call OT_fnc_nearestTown];
 					[player,getpos _gundealer,"Gun Dealer"] call OT_fnc_givePlayerWaypoint;
 					sleep 3;
 					hint "Go and speak to the local gun dealer. Head towards the marked location, you have nothing to worry about as long as you are not carrying/wearing any illegal items.";
@@ -70,13 +70,13 @@ if(!dialog) then {
 						"Oh, really? Well that depends. With what?"
 					];
 
-					_gundealer = spawner getVariable format["gundealer%1",(getpos player) call OT_fnc_nearestTown];
+					_gundealer = spawner getVariable format["gundealer%1",player call OT_fnc_nearestTown];
 					_done = {
 						_options = [
 							[
 								"I am sick of NATO pushing us around, what can I do about it?",
 								{
-									_gundealer = spawner getVariable format["gundealer%1",(getpos player) call OT_fnc_nearestTown];
+									_gundealer = spawner getVariable format["gundealer%1",player call OT_fnc_nearestTown];
 									[
 										player,
 										_gundealer,
@@ -110,7 +110,7 @@ if(!dialog) then {
 							[
 								format ["There's too much crime in %1, and NATO isn't doing anything about it",OT_nation],
 								{
-									_gundealer = spawner getVariable format["gundealer%1",(getpos player) call OT_fnc_nearestTown];
+									_gundealer = spawner getVariable format["gundealer%1",player call OT_fnc_nearestTown];
 									[
 										player,
 										_gundealer,
@@ -134,7 +134,8 @@ if(!dialog) then {
 											];
 											[{
 												playSound "3DEN_notificationDefault";
-												[] call (OT_tutorialMissions select 1);
+												// No mission here, so just clear the gun dealer waypoint.
+												call OT_fnc_clearPlayerWaypoint;
 												hint "You have completed the tutorial. Good luck on your future journey!";
 												player setVariable ["OT_tute_inProgress", false];
 											},1,10] call CBA_fnc_waitAndExecute;
@@ -149,7 +150,7 @@ if(!dialog) then {
 							[
 								"I want to make some cash, and I don't care about breaking the law",
 								{
-									_gundealer = spawner getVariable format["gundealer%1",(getpos player) call OT_fnc_nearestTown];
+									_gundealer = spawner getVariable format["gundealer%1",player call OT_fnc_nearestTown];
 									[
 										player,
 										_gundealer,
@@ -168,7 +169,7 @@ if(!dialog) then {
 											];
 											[{
 												playSound "3DEN_notificationDefault";
-												[] call (OT_tutorialMissions select 2);
+												[] call (OT_tutorialMissions select 1);
 												hint "You have completed the tutorial. Good luck on your future journey!";
 												player setVariable ["OT_tute_inProgress", false];
 											},2,10] call CBA_fnc_waitAndExecute;
@@ -180,7 +181,7 @@ if(!dialog) then {
 							[
 								"I want to make some cash, legally",
 								{
-									_gundealer = spawner getVariable format["gundealer%1",(getpos player) call OT_fnc_nearestTown];
+									_gundealer = spawner getVariable format["gundealer%1",player call OT_fnc_nearestTown];
 									[
 										player,
 										_gundealer,
@@ -196,7 +197,7 @@ if(!dialog) then {
 											];
 											[{
 												playSound "3DEN_notificationDefault";
-												[] call (OT_tutorialMissions select 3);
+												[] call (OT_tutorialMissions select 2);
 												hint "You have completed the tutorial. Good luck on your future journey!";
 												player setVariable ["OT_tute_inProgress", false];
 											},3,10] call CBA_fnc_waitAndExecute;
@@ -215,7 +216,7 @@ if(!dialog) then {
 			if(hcShownBar && count (hcSelected player) > 0) exitWith {
 				createDialog "OT_dialog_squad";
 			};
-			if(!hcShownBar && ({!isplayer _x} count (groupSelectedUnits player) > 0)) exitWith {
+			if(!hcShownBar && ((groupSelectedUnits player) findIf {!isplayer _x} != -1)) exitWith {
 				{
 					if(isPlayer _x) then {
 						player groupSelectUnit [_x,false];
@@ -254,7 +255,7 @@ if(!dialog) then {
 						sleep 2;
 						disableUserInput false;
 						cutText ["","BLACK IN",3];
-						deleteVehicle _driver;
+						[(objectParent _driver), _driver] remoteExec ["deleteVehicleCrew", _driver, false];
 						deleteVehicle _veh;
 						{
 							_x allowDamage true;

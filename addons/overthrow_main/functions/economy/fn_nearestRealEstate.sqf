@@ -11,7 +11,7 @@ if(!isNil "modeTarget") then {
 };
 
 {
-	if ((typeof _x) in (OT_allBuyableBuildings+OT_allRepairableRuins)) exitWith {
+	if ((typeof _x) in (OT_allBuyableBuildings + OT_allRepairableRuins + OT_warehouses)) exitWith {
 		_building = _x;
 		_gotbuilding = true;
 	};

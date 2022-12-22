@@ -1,8 +1,14 @@
 
-# Overthrow-Remastered
-Overthrow - Remastered is a rework of the original Overthrow mission created by armazac @ https://github.com/ArmaOverthrow/Overthrow
+# Overthrow: Rekter Edition
+**The work on Overthrow continues!**
 
-![image](https://cloud.githubusercontent.com/assets/19246239/17642726/b268a4da-6194-11e6-850a-8951aed0f930.png)
+Overthrow: Rekter Edition is a continuation of the Overthrow Plus project by Nifnat: https://github.com/Nifnat/Overthrow
+
+The goal of the project is to update the Overthrow codebase to allow for easier modification and enhanced performance, while also adding new features, trying to stay faithful to the original vision of Overthrow.
+
+**The goal is to have all non-gameplay changing performance improvements and security updates be accessible to all Overthrow developers in the perf branch, and maybe have them included in Overthrow Plus as well.**
+
+![image](https://raw.githubusercontent.com/rekterakathom/Overthrow/rkt_edition/addons/overthrow_main/campaign/RKT-loadingscreen.jpg)
 
 # Overthrow
 A dynamic and persistent revolution campaign mod for ARMA 3 Apex
