@@ -13,9 +13,9 @@
 	{
 		if (isFilePatchingEnabled) then
 		{
-			private _Filecheck = loadFile "\userconfig\VCOM_AI\AISettingsV3.hpp";
+			private _Filecheck = fileExists "\userconfig\VCOM_AI\AISettingsV3.hpp";
 	
-			if !(_FileCheck isEqualTo "") then
+			if (_FileCheck) then
 			{
 				[] call compileScript ["\userconfig\VCOM_AI\AISettingsV3.hpp", false];
 				[Vcm_Settings] remoteExec ["VCM_PublicScript",0,false];

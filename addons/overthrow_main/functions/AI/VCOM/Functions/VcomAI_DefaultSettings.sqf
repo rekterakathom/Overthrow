@@ -80,6 +80,7 @@ Vcm_Settings =
 	
 	VCM_AISIDESPEC =
 	{
+		if !(VCM_SKILLCHANGE) exitWith {};
 		private _Side = (side (group _this));
 		switch (_Side) do {
 			case west: 
@@ -122,6 +123,7 @@ Vcm_Settings =
 		
 	VCM_AIDIFSET =
 	{
+		if !(VCM_SKILLCHANGE) exitWith {};
 		{
 			private _unit = _x;
 			_unit setSkill 0.9;
