@@ -74,7 +74,11 @@ OT_priceData = [
 ['Ace_splint',[10,0.1,0.1]],
 ['MineDetector',[100,0,0.5,0.5]],
 ['ACE_NVG_Gen4',[10000,0,0,200]],
+['ACE_NVG_Gen4_Green',[10000,0,0,200]],
+['ACE_NVG_Gen4_Black',[10000,0,0,200]],
 ['ACE_NVG_Wide',[10000,0,0,400]],
+['ACE_NVG_Wide_Green',[10000,0,0,400]],
+['ACE_NVG_Wide_Black',[10000,0,0,400]],
 //Weapons
 ['SMG_01_F',[250,0,0.5,0]],
 ['SMG_02_F',[250,0,0.5,0]],
