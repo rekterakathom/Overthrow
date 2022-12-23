@@ -94,44 +94,20 @@ private _getprice = {
                 if(_category != "General") then {
                     _primaryCategory = _category;
                 };
-                {
-                    private _c = configName _x;
-                    [_c,_category] call _categorize;
-
-                    private _craftable = getNumber ( _x >> "ot_craftable" );
-
-                    if(_craftable > 0) then {
-                        private _recipe = call compileFinal getText (_x >> "ot_craftRecipe");
-                        private _qty = getNumber ( _x >> "ot_craftQuantity" );
-                        OT_craftableItems pushback [configName _x,_recipe,_qty];
-                    };
-
-                    if(isServer && isNil {cost getVariable _c}) then {
-                        cost setVariable [_c,[_x,_primaryCategory] call _getprice,true];
-                    };
-                }foreach(format ["inheritsFrom _x isEqualTo (configFile >> ""CfgWeapons"" >> ""%1"")",_cls] configClasses ( configFile >> "CfgWeapons" ));
             };
         }foreach(_types);
     }foreach(OT_itemCategoryDefinitions);
 
-    if(isServer && isNil {cost getVariable _c}) then {
-        cost setVariable [_cls,[_x,_primaryCategory] call _getprice,true];
-    };
-
     if(_categorized) then {
+        if(isServer && isNil {cost getVariable _cls}) then {
+            cost setVariable [_cls,[_x,_primaryCategory] call _getprice,true];
+        };
+
         OT_allItems pushback _cls;
     };
 }foreach("
     (getNumber (_x >> 'scope') isEqualTo 2) &&
-    {
-        inheritsFrom _x in [
-            configFile >> 'CfgWeapons' >> 'Binocular',
-            configFile >> 'CfgWeapons' >> 'ItemCore',
-            configFile >> 'CfgWeapons' >> 'ACE_ItemCore',
-            configFile >> 'CfgWeapons' >> 'ACE_ropeBase',
-            configFile >> 'CfgWeapons' >> 'UavTerminal_base'
-        ]
-    }
+    {(configName _x call BIS_fnc_itemType) # 0 isEqualTo 'Item'}
 " configClasses ( configFile >> "CfgWeapons" ));
 
 //add Bags
