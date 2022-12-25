@@ -28,7 +28,7 @@
 
 #define PREFIX overthrow_main
 
-#define MOD_AUTHOR ARMAzac
+#define MOD_AUTHOR ARMAzac & Overthrow Community
 
 #include "script_version.hpp"
 
