@@ -389,20 +389,21 @@ player addEventHandler ["GetInMan",{
 
 	call OT_fnc_notifyVehicle;
 
-	if(_position == "driver") then {
-		if !(_veh call OT_fnc_hasOwner) then {
-			[_veh,getplayeruid player] call OT_fnc_setOwner;
-			_veh setVariable ["stolen",true,true];
-			if((_veh getVariable ["ambient",false]) && (random 100) > 30) then {
-				["play", _veh] call BIS_fnc_carAlarm;
-				[(getpos player) call OT_fnc_nearestTown,-5,"Stolen vehicle",player] call OT_fnc_support;
-				//does anyone hear the alarm?
-				if((_veh nearEntities ["CAManBase",200]) findIf {side _x isEqualTo west} != -1) then {
-					player setCaptive false;
-					[player] call OT_fnc_revealToNATO;
-				};
+	if !(_veh call OT_fnc_hasOwner) then {
+		[_veh,getplayeruid player] call OT_fnc_setOwner;
+		_veh setVariable ["stolen",true,true];
+		if((_veh getVariable ["ambient",false]) && (random 100) > 30) then {
+			["play", _veh] call BIS_fnc_carAlarm;
+			[(getpos player) call OT_fnc_nearestTown,-5,"Stolen vehicle",player] call OT_fnc_support;
+			//does anyone hear the alarm?
+			if((_veh nearEntities ["CAManBase",200]) findIf {side _x isEqualTo west} != -1) then {
+				player setCaptive false;
+				[player] call OT_fnc_revealToNATO;
 			};
-		}else{
+		};
+	};
+
+	if(_position == "driver") then {
 			if !(_veh call OT_fnc_playerIsOwner) then {
 				private _isgen = call OT_fnc_playerIsGeneral;
 				if(!_isgen && (_veh getVariable ["OT_locked",false])) then {
@@ -410,7 +411,6 @@ player addEventHandler ["GetInMan",{
 					hint format["This vehicle has been locked by %1",server getVariable "name"+(_veh call OT_fnc_getOwner)];
 				};
 			};
-		};
 	}else{
 		if (isNull (driver _veh)) then {
 			if !(_veh call OT_fnc_playerIsOwner) then {
