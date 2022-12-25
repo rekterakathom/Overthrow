@@ -21,6 +21,7 @@ OT_allShops = [];
     private _shops = [];
     private _allshops = [];
 
+    /*
     {
         _low pushback (getpos _x);
     }foreach(nearestObjects [_pos, OT_lowPopHouses, _mSize]);
@@ -40,6 +41,14 @@ OT_allShops = [];
     {
         _allshops pushback (getpos _x);
     }foreach(nearestObjects [_pos, OT_shops + OT_offices + OT_warehouses + OT_carShops + OT_portBuildings, _mSize]);
+    */
+    {
+        if (_x in OT_lowPopHouses) then {_low pushBack (getPos _x); continue};
+        if (_x in OT_medPopHouses) then {_med pushBack (getPos _x); continue};
+        if (_x in OT_highPopHouses) then {_hi pushBack (getPos _x); continue};
+        if (_x in OT_hugePopHouses) then {_huge pushBack (getPos _x); continue};
+        if (_x in (OT_shops + OT_offices + OT_warehouses + OT_carShops + OT_portBuildings)) then {_allshops pushBack (getPos _x)};
+    } nearestTerrainObjects [_pos, ["House"], _mSize, false];
 
     private _lopop = round(count(_low) * (random(2) + 1));
     private _medpop = round(count(_med) * (random(4) + 2));
@@ -69,7 +78,7 @@ OT_allShops = [];
     {
         if(_pos inArea _x) exitWith {server setVariable [format["region_%1",_name],_x,true]};
     }foreach(OT_regions);
-    sleep 0.1;
+    //sleep 0.1;
 }foreach (OT_allTowns);
 private _spawn = selectRandom OT_spawnTowns;
 diag_log format["Overthrow: Spawn town is %1",_spawn];
