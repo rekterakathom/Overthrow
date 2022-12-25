@@ -684,15 +684,15 @@ OT_allBLURifleMagazines = [];
 			} else {
 				OT_allCheapRifles pushback _name;
 			};
-			[_cost]
+			[_cost, 2]
 		};
 		if (_weaponType ==  "MachineGun") exitWith {
 			OT_allMachineGuns pushBack _name;
-			[1500];
+			[1500, 2];
 		};
 		if (_weaponType ==  "SniperRifle") exitWith {
 			OT_allSniperRifles pushBack _name;
-			[4000];
+			[4000, 2];
 		};
 		if (_weaponType ==  "Handgun") exitWith {
 			private _cost = _caliber call {
@@ -707,7 +707,7 @@ OT_allBLURifleMagazines = [];
 		};
 		if (_weaponType ==  "MissileLauncher") exitWith {
 			OT_allMissileLaunchers pushBack _name;
-			[15000];
+			[15000, 2];
 		};
 		if (_weaponType ==  "RocketLauncher") exitWith {
 			OT_allRocketLaunchers pushBack _name;
@@ -715,7 +715,7 @@ OT_allBLURifleMagazines = [];
 			if(_name == "launch_NLAW_F") then {
 				_cost=1000
 			};
-			[_cost]
+			[_cost, 2]
 		};
 		if (_weaponType ==  "Vest") exitWith {
 			if !(_name in ["V_RebreatherB","V_RebreatherIA","V_RebreatherIR","V_Rangemaster_belt"]) then {
@@ -732,14 +732,15 @@ OT_allBLURifleMagazines = [];
 						OT_allCheapVests pushback _name;
 					};
 				};
-				[_cost]
+				[_cost, 2]
 			} else {
 				[]
 			};
 		};
+		// There are many other items in _allWeapons, set their prices elsewhere.
 		[]
-	}) params [["_cost", 500], ["_steel", 2]];
-	if(isServer && isNil {cost getVariable _name}) then {
+	}) params ["_cost", "_steel"];
+	if(isServer && {isNil {cost getVariable _name}} && {! isNil {_cost}}) then {
 		cost setVariable [_name,[_cost,0,_steel,0],true];
 	};
 } foreach (_allWeapons);
