@@ -31,9 +31,9 @@ OT_ferryDestinations = [];
 OT_NATO_control = [];
 OT_regions = [];
 {
-	if((_x select [0,12]) isEqualTo "destination_") then {OT_ferryDestinations pushback _x};
-	if((_x select [0,8]) isEqualTo "control_") then {OT_NATO_control pushback _x};
-	if((_x select [0,7]) isEqualTo "island_") then {OT_regions pushback _x};
+	if((_x select [0,12]) isEqualTo "destination_") then {OT_ferryDestinations pushback _x; continue};
+	if((_x select [0,8]) isEqualTo "control_") then {OT_NATO_control pushback _x; continue};
+	if((_x select [0,7]) isEqualTo "island_") then {OT_regions pushback _x; continue};
 	if((_x select [0,7]) isEqualTo "region_") then {OT_regions pushback _x};
 }foreach(allMapMarkers);
 
@@ -96,12 +96,12 @@ OT_highPopHouses = [];
     private _cost = getNumber(_x >> "cost");
     [_cost,configName _x] call {
 		params ["_cost","_name"];
-        if(_cost > 70000) then {OT_hugePopHouses pushback _name;};
-        if(_cost > 55000) then {OT_highPopHouses pushback _name;};
-        if(_cost > 25000) then {OT_medPopHouses pushback _name;};
-        OT_lowPopHouses pushback _name;
+        if(_cost > 70000) exitWith {OT_hugePopHouses pushBack _name;};
+        if(_cost > 55000) exitWith {OT_highPopHouses pushBack _name;};
+        if(_cost > 25000) exitWith {OT_medPopHouses pushBack _name;};
+        OT_lowPopHouses pushBack _name;
     };
-}foreach("(getNumber (_x >> 'scope') isEqualTo 2) && (configName _x isKindOf 'House') && (configName _x find '_House' > -1)" configClasses (_cfgVehicles));
+}foreach("(getNumber (_x >> 'scope') isEqualTo 2) && {(configName _x isKindOf 'House') && {(configName _x find '_House' > -1)}}" configClasses (_cfgVehicles));
 
 OT_allBuyableBuildings = OT_lowPopHouses + OT_medPopHouses + OT_highPopHouses + OT_hugePopHouses + OT_mansions + [OT_item_Tent,OT_flag_IND];
 
@@ -451,12 +451,24 @@ private _filteredWeaponConfigs = "
 	(getNumber (_x >> 'scope') == 2)
 " configClasses (_cfgWeapons);
 
-// Could be optimized further, but this is already over twice as fast as the old method (65ms -> 25ms)
-private _allWeapons = _filteredWeaponConfigs select {getText ( _x >> "simulation" ) == "weapon"};
-private _allDetonators = _filteredWeaponConfigs select {getNumber ( _x >> "ace_explosives_Detonator" ) == 1};
-private _allAttachments = _filteredWeaponConfigs select {_t = getNumber ( _x >> "ItemInfo" >> "type" ); _t == 301 || _t == 302 || _t == 101};
-private _allUniforms = _filteredWeaponConfigs select {getNumber ( _x >> "ItemInfo" >> "type" ) == 801};
-private _allHelmets = _filteredWeaponConfigs select {getNumber ( _x >> "ItemInfo" >> "type" ) == 605};
+private _allWeapons = [];
+private _allVests = [];
+private _allDetonators = [];
+private _allAttachments = [];
+private _allUniforms = [];
+private _allHelmets = [];
+
+{
+	if (getNumber (_x >> "type") in [1,2,4]) then { _allWeapons pushBack _x; continue};
+	if (getNumber (_x >> "ItemInfo">> "type") == 701) then { _allVests pushBack _x; continue};
+	if (getNumber (_x >> "ItemInfo" >> "type") in [101,301,302]) then { _allAttachments pushBack _x; continue };
+	if (getNumber (_x >> "ItemInfo" >> "type") == 605) then { _allHelmets pushBack _x; continue };
+	if (getNumber (_x >> "ItemInfo" >> "type") == 801) then { _allUniforms pushBack _x; continue };
+	if (getNumber ( _x >> "ace_explosives_Detonator" ) == 1) then { _allDetonators pushBack _x};
+} forEach _filteredWeaponConfigs;
+
+// Delete this massive variable after it's no longer used
+_filteredWeaponConfigs = nil;
 
 private _allAmmo = "
     ( getNumber ( _x >> ""scope"" ) isEqualTo 2 )
@@ -560,7 +572,7 @@ OT_allBLURifleMagazines = [];
 	// These weapons and magazines will NEVER be given to units.
 	private _blacklist = ["Throw","Put","NLAW_F","rhs_weap_m79","rhs_mag_30Rnd_556x45_M200_Stanag"];
 
-	private _all = format["(getNumber( _x >> ""scope"" ) isEqualTo 2 ) && (getText( _x >> ""faction"" ) isEqualTo '%1')",_name] configClasses ( _cfgVehicles );
+	private _all = format["(getNumber( _x >> ""scope"" ) isEqualTo 2 ) && {(getText( _x >> ""faction"" ) isEqualTo '%1')}",_name] configClasses ( _cfgVehicles );
 	{
 		private _cls = configName _x;
 		if(_cls isKindOf "CAManBase") then {
@@ -717,26 +729,6 @@ OT_allBLURifleMagazines = [];
 			};
 			[_cost, 2]
 		};
-		if (_weaponType ==  "Vest") exitWith {
-			if !(_name in ["V_RebreatherB","V_RebreatherIA","V_RebreatherIR","V_Rangemaster_belt"]) then {
-				private _cost = 40 + (getNumber(_cfgWeapons >> _name >> "ItemInfo" >> "HitpointsProtectionInfo" >> "Chest" >> "armor") * 20);
-				if !(_name in ["V_Press_F","V_TacVest_blk_POLICE"]) then {
-					OT_allVests pushBack _name;
-					if(_cost > 40) then {
-						OT_allProtectiveVests pushback _name;
-					};
-					if(_cost > 300) then {
-						OT_allExpensiveVests pushback _name;
-					};
-					if(_cost < 300 && _cost > 40) then {
-						OT_allCheapVests pushback _name;
-					};
-				};
-				[_cost, 2]
-			} else {
-				[]
-			};
-		};
 		// There are many other items in _allWeapons, set their prices elsewhere.
 		[]
 	}) params ["_cost", "_steel"];
@@ -744,6 +736,29 @@ OT_allBLURifleMagazines = [];
 		cost setVariable [_name,[_cost,0,_steel,0],true];
 	};
 } foreach (_allWeapons);
+
+{
+	private _cost = 0;
+	private _steel = 0;
+	private _name = configName _x;
+	if !(_name in ["V_RebreatherB","V_RebreatherIA","V_RebreatherIR","V_Rangemaster_belt"]) then {
+		_cost = 40 + (getNumber(_cfgWeapons >> _name >> "ItemInfo" >> "HitpointsProtectionInfo" >> "Chest" >> "armor") * 20);
+		if !(_name in ["V_Press_F","V_TacVest_blk_POLICE"]) then {
+			OT_allVests pushBack _name;
+			if(_cost > 40) then {
+				OT_allProtectiveVests pushback _name;
+			};
+			if(_cost > 300) then {
+				OT_allExpensiveVests pushback _name;
+			};
+			if(_cost < 300 && _cost > 40) then {
+				OT_allCheapVests pushback _name;
+			};
+		};
+		_steel = 2;
+		cost setVariable [_name,[_cost,0,_steel,0],true];
+	};
+} forEach _allVests;
 
 OT_allLegalClothing = [];
 {
