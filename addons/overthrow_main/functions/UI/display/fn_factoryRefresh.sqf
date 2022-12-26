@@ -99,6 +99,11 @@ private _desc = "";
 		_pic = _cls call OT_fnc_magazineGetPic;
 		_desc = _cls call OT_fnc_magazineGetDescription;
 	};
+	if(_cls isKindOf "Bag_Base") exitWith {
+		_txt = _cls call OT_fnc_vehicleGetName;
+		_pic = _cls call OT_fnc_vehicleGetPic;
+		_desc = _cls call OT_fnc_vehicleGetDescription;
+	};
 	if(_cls isKindOf "All") exitWith {
 		_txt = _cls call OT_fnc_vehicleGetName;
 		_pic = getText(configFile >> "cfgVehicles" >> _cls >> "editorPreview");
@@ -107,11 +112,6 @@ private _desc = "";
 	if(isClass (configFile >> "CfgGlasses" >> _cls)) exitWith {
 		_txt = gettext(configFile >> "CfgGlasses" >> _cls >> "displayName");
 		_pic = gettext(configFile >> "CfgGlasses" >> _cls >> "picture");
-	};
-	if(_cls isKindOf "Bag_Base") exitWith {
-		_txt = _cls call OT_fnc_vehicleGetName;
-		_pic = _cls call OT_fnc_vehicleGetPic;
-		_desc = _cls call OT_fnc_vehicleGetDescription;
 	};
 	if(_cls isKindOf ["Default",configFile >> "CfgWeapons"]) exitWith {
 		_txt = _cls call OT_fnc_weaponGetName;

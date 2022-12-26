@@ -58,6 +58,13 @@ if(_price > -1) then {
 				_price
 			]
     	};
+    	if(_cls isKindOf "Bag_Base") exitWith {
+    		[
+				_cls call OT_fnc_vehicleGetPic,
+				_cls call OT_fnc_vehicleGetDescription,
+				_cls call OT_fnc_vehicleGetName
+			]
+    	};
     	if(isClass (configFile >> "CfgVehicles" >> _cls)) exitWith {
     		[
 				getText(configFile >> "cfgVehicles" >> _cls >> "editorPreview"),
@@ -65,13 +72,6 @@ if(_price > -1) then {
 					getText(configFile >> "cfgVehicles" >> _cls >> "Library" >> "libTextDesc"),
 					"Gets you from A to B, not guaranteed to stay upright."
 				] select (_cls == "C_Quadbike_01_F"),
-				_cls call OT_fnc_vehicleGetName
-			]
-    	};
-    	if(_cls isKindOf "Bag_Base") exitWith {
-    		[
-				_cls call OT_fnc_vehicleGetPic,
-				_cls call OT_fnc_vehicleGetDescription,
 				_cls call OT_fnc_vehicleGetName
 			]
     	};
