@@ -75,7 +75,7 @@ private _gunOut = false;
     		_gunOut = true;
     	};
     };
-} forEach ("true" configClasses (configfile >> "CfgVehicles" >> _cls >> "HitPoints"));
+} forEach (configProperties [configFile >> "CfgVehicles" >> _cls >> "HitPoints"]);
 
 if !(_cls isKindOf "StaticWeapon") then {
     _txt = format["%1Fuel: %2%3<br/>",_txt,_fuel,"%"];
