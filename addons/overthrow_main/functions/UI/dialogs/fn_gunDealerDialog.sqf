@@ -61,7 +61,7 @@ createDialog "OT_dialog_buy";
 			params ["_cls"];
 			if(_cls == "Set_HMG") exitWith {
 				_txt = "Quadbike w/ HMG Backpacks";
-				_pic = "C_Quadbike_01_F" call OT_fnc_magazineGetPic;
+				_pic = "C_Quadbike_01_F" call OT_fnc_vehicleGetPic;
 			};
 			if(_cls isKindOf ["Default",configFile >> "CfgMagazines"]) exitWith {
 				_txt = format["--- %1",_cls call OT_fnc_magazineGetName];
