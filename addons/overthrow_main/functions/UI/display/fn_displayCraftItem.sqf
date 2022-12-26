@@ -53,5 +53,7 @@ if(count _def > 0) then {
 
     if (!isNil "_pic" && {!(_pic isEqualTo "")}) then {
     	ctrlSetText [1200,_pic];
+    } else {
+        ctrlSetText [1200,""];
     };
 };

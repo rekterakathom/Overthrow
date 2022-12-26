@@ -107,6 +107,8 @@ if(_price > -1) then {
 };
 if(!isNil "_pic" && { !(_pic isEqualTo "") }) then {
 	ctrlSetText [1200,_pic];
+}else{
+	ctrlSetText [1200,""];
 };
 
 if(_cls in OT_allExplosives) then {

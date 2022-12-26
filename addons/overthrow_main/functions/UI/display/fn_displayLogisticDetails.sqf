@@ -12,6 +12,8 @@ if(isNil "_owner") then {_owner = "Someone"};
 
 if(!isNil "_pic" && { !(_pic isEqualTo "") }) then {
 	ctrlSetText [1200,_pic];
+}else{
+	ctrlSetText [1200,""];
 };
 
 private _txt = "<br/>";

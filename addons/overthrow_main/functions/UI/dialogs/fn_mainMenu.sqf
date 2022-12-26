@@ -81,6 +81,8 @@ if(_b isEqualType []) then {
 
 	if !(isNil "_pic") then {
 		ctrlSetText [1201,_pic];
+	} else {
+		ctrlSetText [1201,""];
 	};
 	_txt = "";
 

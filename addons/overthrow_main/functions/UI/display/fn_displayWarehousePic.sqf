@@ -35,6 +35,8 @@ if(_cls isKindOf ["Default",configFile >> "CfgWeapons"]) then {
 };
 if !(isNil "_pic") then {
 	ctrlSetText [1200,_pic];
+} else {
+	ctrlSetText [1200,""];
 };
 
 _textctrl = (findDisplay 8000) displayCtrl 1100;

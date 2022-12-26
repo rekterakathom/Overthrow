@@ -122,6 +122,8 @@ private _desc = "";
 
 if !(_pic isEqualTo "") then {
 	ctrlSetText [1200,_pic];
+} else {
+	ctrlSetText [1200,""];
 };
 
 private _cost = cost getVariable[_cls,[]];
