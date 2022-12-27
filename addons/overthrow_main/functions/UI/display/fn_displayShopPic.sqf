@@ -21,8 +21,8 @@ if(_price > -1) then {
     	if(_cls isKindOf ["Default",configFile >> "CfgMagazines"]) exitWith {
     		[
 				_cls call OT_fnc_magazineGetPic,
-    			_cls call OT_fnc_magazineGetName,
-    			_cls call OT_fnc_magazineGetDescription
+    			_cls call OT_fnc_magazineGetDescription,
+    			_cls call OT_fnc_magazineGetName
 			]
     	};
     	if(isClass (configFile >> "CfgGlasses" >> _cls)) exitWith {
