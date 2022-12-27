@@ -35,11 +35,11 @@ if(count _def > 0) then {
     private _pic = "";
 
     if(_cls isKindOf ["Default", configFile >> "CfgMagazines"]) then {
-        _desc = getText(configFile >> "CfgWeapons" >> _cls >> "descriptionShort");
+        _desc = getText(configFile >> "CfgMagazines" >> _cls >> "descriptionShort");
         _itemName = _cls call OT_fnc_magazineGetName;
         _pic = _cls call OT_fnc_magazineGetPic;
     }else{
-        _desc = getText(configFile >> "CfgMagazines" >> _cls >> "descriptionShort");
+        _desc = getText(configFile >> "CfgWeapons" >> _cls >> "descriptionShort");
         _itemName = _cls call OT_fnc_weaponGetName;
         _pic = _cls call OT_fnc_weaponGetPic;
     };
