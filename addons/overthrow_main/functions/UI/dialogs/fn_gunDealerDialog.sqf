@@ -54,30 +54,14 @@ createDialog "OT_dialog_buy";
 {
 	_x params ["_cls","_price"];
 	if !(isNil "_cls") then {
-		private _txt = _cls;
-		private _pic = "";
+		(_cls call OT_fnc_getClassDisplayInfo) params ["_pic", "_txt"];
 
-		[_cls] call {
-			params ["_cls"];
-			if(_cls == "Set_HMG") exitWith {
-				_txt = "Quadbike w/ HMG Backpacks";
-				_pic = "C_Quadbike_01_F" call OT_fnc_vehicleGetPic;
-			};
-			if(_cls isKindOf ["Default",configFile >> "CfgMagazines"]) exitWith {
-				_txt = format["--- %1",_cls call OT_fnc_magazineGetName];
-				_pic = _cls call OT_fnc_magazineGetPic;
-			};
-			if(_cls in OT_allStaticBackpacks) exitWith {
-				_txt = format["--- %1",_cls call OT_fnc_vehicleGetName];
-				_pic = _cls call OT_fnc_vehicleGetPic;
-			};
-			if(_cls isKindOf "Land") exitWith {
-				_txt = format["%1",_cls call OT_fnc_vehicleGetName];
-				_pic = _cls call OT_fnc_vehicleGetPic;
-			};
-			_txt = _cls call OT_fnc_weaponGetName;
-			_pic = _cls call OT_fnc_weaponGetPic;
+		// special case
+		if(_cls == "Set_HMG") then {
+			_pic = "C_Quadbike_01_F" call OT_fnc_vehicleGetPic;
+			_txt = "Quadbike w/ HMG Backpacks";
 		};
+
 		if(_cls in OT_allDrugs) then {
 			_price = [_town,_cls] call OT_fnc_getDrugPrice;
 		}else{

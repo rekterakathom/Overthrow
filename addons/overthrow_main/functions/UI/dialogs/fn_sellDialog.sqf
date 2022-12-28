@@ -12,28 +12,10 @@ private _numitems = 0;
 	_num = _x select 1;
 	_price = [_town,_cls,_standing] call OT_fnc_getSellPrice;
 
-	_name = "";
-	_pic = "";
-	_cansell = true;
-	if(_cls isKindOf ["None",configFile >> "CfgGlasses"]) then {
-		_name = _cls call OT_fnc_glassesGetName;
-		_pic = _cls call OT_fnc_glassesGetPic;
-	};
-	if(_cls isKindOf ["Default",configFile >> "CfgWeapons"]) then {
-		_name = _cls call OT_fnc_weaponGetName;
-		_pic = _cls call OT_fnc_weaponGetPic;
-	};
-	if(_cls isKindOf ["Default",configFile >> "CfgMagazines"]) then {
-		_name = _cls call OT_fnc_magazineGetName;
-		_pic = _cls call OT_fnc_magazineGetPic;
-	};
-	if(_cls isKindOf "Bag_Base") then {
-		_cansell = false;
-	};
-	if(_cls in OT_allClothing) then {
-		_cansell = false;
-	};
+	private _cansell = !(_cls isKindOf "Bag_Base" || {_cls in OT_allClothing});
 	if(_cansell) then {
+		(_cls call OT_fnc_getClassDisplayInfo) params ["_pic", "_name"];
+
 		_idx = lbAdd [1500,format["%1 x %2 ($%3)",_num,_name,_price]];
 		lbSetPicture [1500,_idx,_pic];
 		lbSetValue [1500,_idx,_price];

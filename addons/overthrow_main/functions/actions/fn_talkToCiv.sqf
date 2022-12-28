@@ -451,8 +451,9 @@ if (_canBuyBoats) then {
 				if("fuel depot" in (server getVariable "OT_NATOabandoned")) then {
 					_price = round(_price * 0.5);
 				};
-				_idx = lbAdd [1500,format["%1",_cls call OT_fnc_vehicleGetName]];
-				lbSetPicture [1500,_idx,_cls call OT_fnc_vehicleGetPic];
+				(_cls call OT_fnc_getClassDisplayInfo) params ["_pic", "_name"];
+				_idx = lbAdd [1500,format["%1",_name]];
+				lbSetPicture [1500,_idx,_pic];
 				lbSetData [1500,_idx,_cls];
 				lbSetValue [1500,_idx,_price];
 			}foreach(OT_boats);

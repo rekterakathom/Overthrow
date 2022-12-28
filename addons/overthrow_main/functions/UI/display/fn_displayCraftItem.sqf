@@ -16,7 +16,6 @@ if(count _def > 0) then {
     _def params ["_cls","_recipe","_qty"];
 
     private _textctrl = (findDisplay 8000) displayCtrl 1100;
-    private _itemName = "";
 
     private _recipeText = "";
     {
@@ -26,23 +25,12 @@ if(count _def > 0) then {
             if(_rcls isEqualTo "Uniform_Base") exitWith {"Clothing"};// allows hierarchy w/o display name to have display name in recipe menu
 			if(_rcls isEqualTo "CA_LauncherMagazine") exitWith {"Rocket"};
 			if(_rcls isEqualTo "HandGrenade") exitWith {"Grenade"};
-            if(_rcls isKindOf ["Default", configFile >> "CfgMagazines"]) exitWith {_rcls call OT_fnc_magazineGetName};
-            _rcls call OT_fnc_weaponGetName;
+            _rcls call OT_fnc_getClassDisplayName
         };
         _recipeText = _recipeText + format["%1 x %2<br/>",_rqty,_name];
     }foreach(_recipe);
-    private _desc = "";
-    private _pic = "";
 
-    if(_cls isKindOf ["Default", configFile >> "CfgMagazines"]) then {
-        _desc = getText(configFile >> "CfgMagazines" >> _cls >> "descriptionShort");
-        _itemName = _cls call OT_fnc_magazineGetName;
-        _pic = _cls call OT_fnc_magazineGetPic;
-    }else{
-        _desc = getText(configFile >> "CfgWeapons" >> _cls >> "descriptionShort");
-        _itemName = _cls call OT_fnc_weaponGetName;
-        _pic = _cls call OT_fnc_weaponGetPic;
-    };
+    ([_cls, true] call OT_fnc_getClassDisplayInfo) params ["_pic", "_itemName", "_desc"];
 
     _textctrl ctrlSetStructuredText parseText format["
     	<t align='center' size='1.1'>%1 x %2</t><br/>
@@ -51,9 +39,5 @@ if(count _def > 0) then {
         <t align='center' size='0.7'>%4</t><br/>
     ",_qty,_itemName,_desc,_recipeText];
 
-    if (!isNil "_pic" && {!(_pic isEqualTo "")}) then {
-    	ctrlSetText [1200,_pic];
-    } else {
-        ctrlSetText [1200,""];
-    };
+    ctrlSetText [1200, _pic];
 };

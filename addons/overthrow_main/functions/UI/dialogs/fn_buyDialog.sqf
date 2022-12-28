@@ -8,28 +8,9 @@ lbClear 1500;
 	
 	private _price = [_town,_cls,_standing] call OT_fnc_getPrice;
 	_price = _price * _multiplier;
-	([_cls] call {
-		params ["_cls", ["_name",""], ["_pic",""]];
-		if(_cls isKindOf "All") exitWith {
-			_name = _cls call OT_fnc_vehicleGetName;
-			_pic = _cls call OT_fnc_vehicleGetPic;
-			[_name, _pic]
-		};
-		if(_cls isKindOf ["None",configFile >> "CfgGlasses"]) exitWith {
-			_name = _cls call OT_fnc_glassesGetName;
-			_pic = _cls call OT_fnc_glassesGetPic;
-			[_name, _pic]
-		};
-		if(_cls isKindOf ["Default",configFile >> "CfgMagazines"]) exitWith {
-			_name = _cls call OT_fnc_magazineGetName;
-			_pic = _cls call OT_fnc_magazineGetPic;
-			[_name, _pic]
-		};
-		_name = _cls call OT_fnc_weaponGetName;
-		_pic = _cls call OT_fnc_weaponGetPic;
-		[_name, _pic]
-	}) params ["_name", "_pic"];
-	
+
+	(_cls call OT_fnc_getClassDisplayInfo) params ["_pic", "_name"];
+
 	private _text = format["%1 x %2",_num,_name];
 	if(_num isEqualTo -1) then {_text = _name};
 	private _idx = lbAdd [1500,_text];

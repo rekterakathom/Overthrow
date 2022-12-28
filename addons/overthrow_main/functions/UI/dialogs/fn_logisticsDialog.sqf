@@ -5,8 +5,9 @@ lbClear 1500;
     private _veh = _x;
     private _cls = typeof _veh;
     if((_veh call OT_fnc_hasOwner) && ((_cls isKindOf "LandVehicle") || (_cls isKindOf "Air") || (_cls isKindOf "Ship"))) then {
-        private _name = _cls call OT_fnc_vehicleGetName;
-        private _pic = _cls call OT_fnc_vehicleGetPic;
+
+        (_cls call OT_fnc_getClassDisplayInfo) params ["_pic", "_name"];
+
         private _dis = round(_veh distance player);
         private _t = "m";
         if(_dis > 999) then {

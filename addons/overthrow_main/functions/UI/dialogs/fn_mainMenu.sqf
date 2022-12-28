@@ -76,15 +76,9 @@ if(_b isEqualType []) then {
 	_totaloccupants = _b select 4;
 
 	_cls = typeof _building;
-	_name = _cls call OT_fnc_vehicleGetName;
-	_pic = getText(configFile >>  "CfgVehicles" >>  _cls >> "editorPreview");
+	([_cls, true] call OT_fnc_getClassDisplayInfo) params ["_pic", "_name"];
 
-	if !(isNil "_pic") then {
-		ctrlSetText [1201,_pic];
-	} else {
-		ctrlSetText [1201,""];
-	};
-	_txt = "";
+	ctrlSetText [1201, _pic];
 
 	if(_building call OT_fnc_hasOwner) then {
 		_owner = _building call OT_fnc_getOwner;
