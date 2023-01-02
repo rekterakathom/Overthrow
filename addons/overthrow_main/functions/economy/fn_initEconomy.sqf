@@ -48,7 +48,7 @@ OT_allShops = [];
         if (_x in OT_highPopHouses) then {_hi pushBack (getPos _x); continue};
         if (_x in OT_hugePopHouses) then {_huge pushBack (getPos _x); continue};
         if (_x in (OT_shops + OT_offices + OT_warehouses + OT_carShops + OT_portBuildings)) then {_allshops pushBack (getPos _x)};
-    } nearestTerrainObjects [_pos, ["House"], _mSize, false];
+    } forEach nearestTerrainObjects [_pos, ["House"], _mSize, false];
 
     private _lopop = round(count(_low) * (random(2) + 1));
     private _medpop = round(count(_med) * (random(4) + 2));
