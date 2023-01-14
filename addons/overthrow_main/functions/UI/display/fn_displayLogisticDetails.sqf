@@ -4,15 +4,13 @@ params ["_ctrl","_index"];
 private _netId = _ctrl lbData _index;
 private _veh = _netId call BIS_fnc_objectFromNetId;
 private _cls = typeof _veh;
-private _name = _cls call OT_fnc_vehicleGetName;
-private _pic = getText(configFile >> "cfgVehicles" >> _cls >> "editorPreview");
+
+([_cls, true] call OT_fnc_getClassDisplayInfo) params ["_pic", "_name"];
 
 private _owner = players_NS getVariable ("name"+(_veh call OT_fnc_getOwner));
 if(isNil "_owner") then {_owner = "Someone"};
 
-if(!isNil "_pic" && { !(_pic isEqualTo "") }) then {
-	ctrlSetText [1200,_pic];
-};
+ctrlSetText [1200, _pic];
 
 private _txt = "<br/>";
 
@@ -73,7 +71,7 @@ private _gunOut = false;
     		_gunOut = true;
     	};
     };
-} forEach ("true" configClasses (configfile >> "CfgVehicles" >> _cls >> "HitPoints"));
+} forEach (configProperties [configFile >> "CfgVehicles" >> _cls >> "HitPoints"]);
 
 if !(_cls isKindOf "StaticWeapon") then {
     _txt = format["%1Fuel: %2%3<br/>",_txt,_fuel,"%"];
@@ -121,7 +119,7 @@ private _ammotxt = "";
 {
     _x params ["_ammocls","_num"];
     _totalAmmo = _totalAmmo + _num;
-    _ammotxt = format["%1%2 x %3<br/>",_ammotxt,_num,_ammocls call OT_fnc_magazineGetName];
+    _ammotxt = format["%1%2 x %3<br/>",_ammotxt,_num,_ammocls call OT_fnc_getClassDisplayName];
 }foreach(magazinesAmmo _veh);
 
 if(_totalAmmo > 0) then {

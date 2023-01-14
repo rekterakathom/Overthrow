@@ -417,17 +417,11 @@ class CfgFunctions
 			file = "\overthrow_main\functions\inventory";
 			class takeFromCargoContainers {};
 			class hasFromCargoContainers {};
-			class anythingGetName {};
+			class getClassDisplayName {};
+			class getClassDisplayInfo {};
 			class weaponGetName {};
-			class magazineGetName {};
 			class vehicleGetName {};
-			class glassesGetName {};
-			class weaponGetPic {};
-			class magazineGetPic {};
 			class vehicleGetPic {};
-			class glassesGetPic {};
-			class magazineGetDescription {};
-			class vehicleGetDescription {};
 			class getSearchStock {};
 		};
 

@@ -18,12 +18,7 @@ if(count _def > 0) then {
         if(_container distance player > 20) exitWith {"You need to be within 20m of an ammobox to craft" call OT_fnc_notifyMinor};
         _stock = _container call OT_fnc_unitStock;
 
-        _itemName = "";
-        if(_cls isKindOf ["Default", configFile >> "CfgMagazines"]) then {
-            _itemName = _cls call OT_fnc_magazineGetName;
-        }else{
-            _itemName = _cls call OT_fnc_weaponGetName;
-        };
+        private _itemName = _cls call OT_fnc_getClassDisplayName;
 
         {
             _x params ["_needed","_qtyneeded"];
