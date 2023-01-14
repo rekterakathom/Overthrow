@@ -454,6 +454,7 @@ private _filteredWeaponConfigs = "
 private _allWeapons = [];
 private _allVests = [];
 private _allDetonators = [];
+private _allOptics = [];
 private _allAttachments = [];
 private _allUniforms = [];
 private _allHelmets = [];
@@ -461,6 +462,7 @@ private _allHelmets = [];
 {
 	if (getNumber (_x >> "type") in [1,2,4]) then { _allWeapons pushBack _x; continue};
 	if (getNumber (_x >> "ItemInfo">> "type") == 701) then { _allVests pushBack _x; continue};
+	if (getNumber (_x >> "ItemInfo" >> "type") == 201) then { _allOptics pushBack _x; continue };
 	if (getNumber (_x >> "ItemInfo" >> "type") in [101,301,302]) then { _allAttachments pushBack _x; continue };
 	if (getNumber (_x >> "ItemInfo" >> "type") == 605) then { _allHelmets pushBack _x; continue };
 	if (getNumber (_x >> "ItemInfo" >> "type") == 801) then { _allUniforms pushBack _x; continue };
