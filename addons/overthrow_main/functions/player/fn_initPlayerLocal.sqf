@@ -177,7 +177,7 @@ if(isMultiplayer || _startup == "LOAD") then {
 		_xp = _x select 6;
 		if(_owner isEqualTo (getplayeruid player)) then {
 			if(_civ isEqualType []) then {
-				_pos = _civ findEmptyPosition [5,20,_type];
+				_pos = _civ findEmptyPosition [1,20,_type];
 				_civ =  group player createUnit [_type,_pos,[],0,"NONE"];
 				[_civ,getplayeruid player] call OT_fnc_setOwner;
 				_civ setVariable ["OT_xp",_xp,true];

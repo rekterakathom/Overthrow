@@ -200,7 +200,7 @@ while {_count < _numNATO} do {
 
 	_count = _count + 1;
 	while {(_count < _numNATO) && (_groupcount < 8)} do {
-		_start = _start findEmptyPosition [5,50];
+		_start = _start findEmptyPosition [2,50];
 
 		_civ = _group createUnit [selectRandom (OT_NATO_Units_LevelOne + OT_NATO_Units_LevelOne + OT_NATO_Units_LevelOne + OT_NATO_Units_LevelTwo), _start, [],0, "NONE"];
 		_civ setVariable ["garrison",_name,false];
@@ -330,7 +330,7 @@ private _road = objNull;
 		_groups pushback _veh;
 		sleep 0.5;
 
-		private _pos = _vpos findEmptyPosition [5,20,OT_NATO_Unit_HVT];
+		private _pos = _vpos findEmptyPosition [2,50,OT_NATO_Unit_HVT];
 		private _civ = _group createUnit [OT_NATO_Unit_HVT, _pos, [],0, "NONE"];
 		_civ setVariable ["garrison","HQ",false];
 		_civ setVariable ["hvt",true,true];

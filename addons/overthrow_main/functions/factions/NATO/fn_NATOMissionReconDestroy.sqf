@@ -27,12 +27,13 @@ if(isNil "_close") then {
 		};
 	}foreach([OT_airportData,[],{random 100},"ASCEND"] call BIS_fnc_SortBy);
 };
+// Group may not be moved into a vehicle, so it also needs space to spawn
 _start = [_close,50,200, 1, 0, 0, 0] call BIS_fnc_findSafePos;
 _group = [_start, WEST, (configFile >> "CfgGroups" >> "West" >> OT_faction_NATO >> "Infantry" >> OT_NATO_Group_Recon)] call BIS_fnc_spawnGroup;
 
 sleep 0.5;
 
-_dir = (_start getDir _posTarget);
+_dir = (_close getDir _posTarget);
 
 if(_isAir) then {
 

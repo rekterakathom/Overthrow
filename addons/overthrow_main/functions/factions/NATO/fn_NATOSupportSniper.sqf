@@ -30,7 +30,7 @@ _group = [_start, WEST,  (configFile >> "CfgGroups" >> "West" >> OT_faction_NATO
 
 sleep 0.5;
 
-_dir = (_start getDir _posTown);
+_dir = (_close getDir _posTown);
 
 _ao = getpos(nearestLocation[_posTown, "Hill"]);
 
