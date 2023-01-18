@@ -323,6 +323,7 @@ private _road = objNull;
 		_groups pushBack _group;
 		_group setVariable ["Vcm_Disable",true,true]; //stop him from running off
 		private _vpos = _posTown findEmptyPosition [10,100,OT_NATO_Vehicle_HVT];
+		if (count _vpos == 0) then {_vpos = _posTown findEmptyPosition [0,100,OT_NATO_Vehicle_HVT]};
 		//His empty APC
 		private _veh =  OT_NATO_Vehicle_HVT createVehicle _vpos;
 		_veh setpos _vpos;

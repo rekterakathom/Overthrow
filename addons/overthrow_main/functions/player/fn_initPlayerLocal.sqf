@@ -285,6 +285,7 @@ if (_newplayer) then {
 
 	//Free quad
 	_pos = _housepos findEmptyPosition [5,100,"C_Quadbike_01_F"];
+	if (count _pos == 0) then {_pos = _housepos findEmptyPosition [0,100,"C_Quadbike_01_F"]};
 
 	if (count _pos > 0) then {
 		_veh = "C_Quadbike_01_F" createVehicle _pos;
