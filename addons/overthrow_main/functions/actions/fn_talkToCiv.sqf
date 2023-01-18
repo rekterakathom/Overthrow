@@ -442,7 +442,7 @@ if (_canBuyBoats) then {
 				private _standing = [_town] call OT_fnc_support;
 
 				_price = [_town,_cls,_standing] call OT_fnc_getPrice;
-				if("fuel depot" in (server getVariable "OT_NATOabandoned")) then {
+				if("fuel depot" in (server getVariable "NATOabandoned")) then {
 					_price = round(_price * 0.5);
 				};
 				(_cls call OT_fnc_getClassDisplayInfo) params ["_pic", "_name"];
