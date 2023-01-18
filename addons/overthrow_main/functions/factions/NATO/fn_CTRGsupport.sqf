@@ -44,9 +44,10 @@ sleep 0.3;
 
 //Transport
 _tgroup = creategroup blufor;
-_pos = [_pos,60,80,false,[0,0],[100,OT_NATO_Vehicle_CTRGTransport]] call SHK_pos_fnc_pos;
+private _emptypos = _pos findEmptyPosition [15,100,OT_NATO_Vehicle_CTRGTransport];
+if (count _emptypos == 0) then {_emptypos = _pos findEmptyPosition [8,100,OT_NATO_Vehicle_CTRGTransport]};
 sleep 0.3;
-_veh = createVehicle [OT_NATO_Vehicle_CTRGTransport, _pos, [], 0,""];
+_veh = createVehicle [OT_NATO_Vehicle_CTRGTransport, _emptypos, [], 0,""];
 _vehs pushback _veh;
 
 

@@ -429,7 +429,8 @@ publicVariable "OT_nextNATOTurn";
 							_group = createGroup blufor;
 							_group deleteGroupWhenEmpty true;
 							_group setVariable ["lambs_danger_disableGroupAI", true];
-							_p = [_pos,0,0,false,[0,0],[100,OT_NATO_Vehicles_ReconDrone]] call SHK_pos_fnc_pos;
+							_p = _pos findEmptyPosition [5,100,OT_NATO_Vehicles_ReconDrone];
+							if (count _p == 0) then {_p = _pos findEmptyPosition [2,100,OT_NATO_Vehicles_ReconDrone]};
 							_drone = createVehicle [OT_NATO_Vehicles_ReconDrone, _p, [], 0,""];
 							_drone enableDynamicSimulation false;
 
