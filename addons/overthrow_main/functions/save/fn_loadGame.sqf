@@ -13,7 +13,7 @@ if (isMissionProfileNamespaceLoaded) then {
 //get all server data
 "Loading persistent save" remoteExec['OT_fnc_notifyStart',0,false];
 
-if (_data isEqualType "" && {_data isEqualTo ""}) then {
+if (_data isEqualType "" && {_data isEqualTo ""}) exitWith {
 	[] remoteExec ['OT_fnc_newGame',2];
 	"No save found, starting new game" remoteExec ["hint",0,false];
 };
