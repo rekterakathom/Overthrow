@@ -41,7 +41,8 @@ if(!isNil "_close") then {
 	_veh = objNull;
 
 	if(((_close distance _townPos) > 2000) && (random 100) > 50) then {
-		_spawnpos = _start findEmptyPosition [5,100,OT_NATO_Vehicle_Police];
+		_spawnpos = _close findEmptyPosition [10,100,OT_NATO_Vehicle_Police];
+		if (count _spawnpos == 0) then {_spawnpos = _close findEmptyPosition [0,100,OT_NATO_Vehicle_Police]};
 		_veh =  OT_NATO_Vehicle_Police createVehicle _spawnpos;
 		_veh setDir (random 360);
 		_group addVehicle _veh;

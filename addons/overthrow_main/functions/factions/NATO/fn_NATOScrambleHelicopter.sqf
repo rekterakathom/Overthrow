@@ -19,7 +19,8 @@ if !(isNil "_from") then {
 
     private _frompos = _from select 0;
 
-    private _pos = _frompos findEmptyPosition [2,100,_vehtype];
+    private _pos = _frompos findEmptyPosition [15,100,_vehtype];
+    if (count _pos == 0) then {_pos = _frompos findEmptyPosition [8,100,_vehtype]};
 
     private _group = creategroup blufor;
     private _veh = _vehtype createVehicle _pos;

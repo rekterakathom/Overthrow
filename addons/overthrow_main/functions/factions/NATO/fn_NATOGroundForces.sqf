@@ -33,13 +33,15 @@ if(_byair) then {
 		private _on = ASLToAGL getPosASL _x nearEntities ["Air",15];
 		if((count _on) isEqualTo 0) exitWith {_pos = getPosASL _x;_dir = getDir _x};
 	}foreach(_helipads);
-};
 
-if !(_pos isEqualType []) then {
-	_pos = _frompos findEmptyPosition [15,100,_vehtype];
-	if(count _pos == 0) then {
-		_pos = [_frompos,0,75,false,[0,0],[120,_vehtype]] call SHK_pos_fnc_pos;
+	if !(_pos isEqualType []) then {
+		_pos = _frompos findEmptyPosition [15,100,_vehtype];
+		if (count _pos == 0) then {_pos = _frompos findEmptyPosition [8,100,_vehtype]};
+		_dir = (_frompos getDir _ao);
 	};
+} else {
+	_pos = _frompos findEmptyPosition [10,100,_vehtype];
+	if (count _pos == 0) then {_pos = _frompos findEmptyPosition [0,100,_vehtype]};
 	_dir = (_frompos getDir _ao);
 };
 _pos set [2,1];

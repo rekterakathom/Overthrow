@@ -17,10 +17,8 @@ private _veh = false;
 private _tgroup = creategroup blufor;
 
 private _dir = _frompos getDir _ao;
-private _pos = _frompos findEmptyPosition [15,100,_vehtype];
-if(count _pos == 0) then {
-	_pos = [_frompos,0,75,false,[0,0],[120,_vehtype]] call SHK_pos_fnc_pos;
-};
+private _pos = _frompos findEmptyPosition [10,100,_vehtype];
+if (count _pos == 0) then {_pos = _frompos findEmptyPosition [0,100,_vehtype]};
 
 _veh = _vehtype createVehicle _pos;
 _veh setVariable ["garrison","HQ",false];

@@ -20,15 +20,13 @@ if ([_topos,_fromregion] call OT_fnc_regionIsConnected) then {
     if (!isNull _road) then {
         _roadscon = roadsConnectedto _road;
         if (count _roadscon isEqualTo 2) then {
-            _posVeh = (getPosATL _road) findEmptyPosition [5,25,_vehtypes select 0];
-            if(count _posVeh > 0) then {
-                _convoypos = _posVeh;
-                _dir = (_road getDir (_roadscon select 0));
-            };
+            _convoypos = getPosATL _road;
+            _dir = (_road getDir (_roadscon select 0));
         };
     };
     {
-        _pos = _convoypos;
+        _pos = _convoypos findEmptyPosition [10,100,_x];
+        if (count _pos == 0) then {_pos = _convoypos findEmptyPosition [0,100,_x]};
         _veh = createVehicle [_x, _pos, [], 0,""];
     	_veh setVariable ["garrison","HQ",false];
 
@@ -43,7 +41,7 @@ if ([_topos,_fromregion] call OT_fnc_regionIsConnected) then {
     		_x setVariable ["garrison","HQ",false];
     	}foreach(crew _veh);
         _driver assignAsCommander _veh;
-        _convoyPos = _convoyPos getPos [20,_dir+180];
+        _convoypos = _convoypos getPos [20,_dir+180];
         {
             _x addCuratorEditableObjects [[_veh]];
         }foreach(allCurators);
@@ -51,7 +49,8 @@ if ([_topos,_fromregion] call OT_fnc_regionIsConnected) then {
     }foreach(_vehtypes);
 
     {
-        _pos = [_convoypos,0,120,false,[0,0],[250,OT_NATO_Vehicle_HVT]] call SHK_pos_fnc_pos;
+        _pos = _convoypos findEmptyPosition [10,100,OT_NATO_Vehicle_HVT];
+        if (count _pos == 0) then {_pos = _convoypos findEmptyPosition [0,100,OT_NATO_Vehicle_HVT]};
         _veh = createVehicle [OT_NATO_Vehicle_HVT, _pos, [], 0,""];
     	_veh setVariable ["garrison","HQ",false];
 
@@ -72,7 +71,7 @@ if ([_topos,_fromregion] call OT_fnc_regionIsConnected) then {
         _driver setRank "COLONEL";
         if(isNull _track) then {_track = _driver};
 
-        _convoyPos = _convoyPos getPos [20,_dir];
+        _convoypos = _convoypos getPos [20,_dir];
 
     	sleep 0.3;
         _x set [2,"CONVOY"];
@@ -84,7 +83,8 @@ if ([_topos,_fromregion] call OT_fnc_regionIsConnected) then {
         private _count = 0;
         while {_count < _numsupport} do {
             _vehtype = selectRandom OT_NATO_Vehicles_GroundSupport;
-            _pos = [_convoypos,0,120,false,[0,0],[250,_vehtype]] call SHK_pos_fnc_pos;
+            _pos = _convoypos findEmptyPosition [10,100,_vehtype];
+            if (count _pos == 0) then {_pos = _convoypos findEmptyPosition [0,100,_vehtype]};
             _veh = createVehicle [_vehtype, _pos, [], 0,""];
         	_veh setVariable ["garrison","HQ",false];
         	_veh setDir (_dir);
@@ -98,7 +98,7 @@ if ([_topos,_fromregion] call OT_fnc_regionIsConnected) then {
         		_x setVariable ["garrison","HQ",false];
         	}foreach(crew _veh);
             _driver assignAsCommander _veh;
-            _convoyPos = _convoyPos getPos [20,-_dir];
+            _convoypos = _convoypos getPos [20,-_dir];
             _count = _count + 1;
             sleep 0.3;
         };

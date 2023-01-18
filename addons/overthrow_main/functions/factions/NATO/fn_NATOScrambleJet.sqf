@@ -9,7 +9,8 @@ if !(OT_NATO_HQ in _abandoned) then {
     private _vehtype = selectRandom OT_NATO_Vehicles_AirWingedSupport;
     private _frompos = OT_NATO_JetPos;
 
-    private _pos = _frompos findEmptyPosition [2,100,_vehtype];
+    private _pos = _frompos findEmptyPosition [20,100,_vehtype];
+    if (count _pos == 0) then {_pos = _frompos findEmptyPosition [10,100,_vehtype]};
 
     private _group = creategroup blufor;
     private _veh = _vehtype createVehicle _pos;
