@@ -122,7 +122,7 @@ if(_isAir) then {
 	} forEach allCurators;
 }else{
     _convoypos = [_close,random 360,120] call SHK_pos_fnc_pos;
-    private _road = [_convoypos] call BIS_fnc_nearestRoad;
+    private _road = [_convoypos, 150] call BIS_fnc_nearestRoad;
     if (!isNull _road) then {
         _convoypos = (getpos _road);
     };
