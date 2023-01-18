@@ -544,7 +544,8 @@ if (_canBuyBoats) then {
 							waitUntil {_veh distance _pos < 100 || time > _timeout};
 							if(!alive _driver) exitWith{};
 
-							[(objectParent _driver), _driver] remoteExec ["deleteVehicleCrew", _driver, false];
+							moveOut _driver;
+							deleteVehicle _driver;
 							deleteVehicle _veh;
 						};
 					};

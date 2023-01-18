@@ -106,11 +106,8 @@ private _target = _sorted select 0;
 
 			[_deadguy,_unit] call OT_fnc_takeStuff;
 			sleep 2;
-			if (isNull objectParent _deadguy) then {
-				deleteVehicle _deadguy;
-			} else {
-				[(objectParent _deadguy), _deadguy] remoteExec ["deleteVehicleCrew", _deadguy, false];
-			};
+			moveOut _deadguy;
+			deleteVehicle _deadguy;
 			_timeout = time + 30;
 			_unit doMove ASLtoAGL (getPosASL _t);
 			waitUntil {sleep 1; (!alive _unit) || (isNull _t) || (_unit distance _t < 12) || (_timeOut < time)};
