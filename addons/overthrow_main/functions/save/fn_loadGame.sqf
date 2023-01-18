@@ -30,7 +30,6 @@ private _cc = 0;
 				server setVariable [_subkey,_subval,true];
 			};
 		}foreach(_val);
-		_set = false;
 	};
 }foreach(_data);
 
@@ -392,7 +391,7 @@ private _hasList_buildableHouses = false;
 		_set = false;
 	};
 
-	if(_set && !(isNil "_val")) then {
+	if(_set && _key != "server" && !(isNil "_val")) then {
 		if!(toLower (_key select [0,4]) in ["ace_","cba_","bis_"]) then {
 			// server setvariable [_key,_val,true];
 			diag_log format["Dangling key value pair found: %1 - %2", _key, _val];
