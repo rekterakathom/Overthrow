@@ -34,7 +34,6 @@ sleep 0.5;
 _dir = (_start getDir _posTarget);
 
 if(_isAir) then {
-	_attackpos = [_posTarget,[0,150]] call SHK_pos_fnc_pos;
 
 	//Determine direction to attack from (preferrably away from water)
 	_attackdir = random 360;

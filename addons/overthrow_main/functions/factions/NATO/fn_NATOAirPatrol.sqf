@@ -36,7 +36,6 @@ if !(_frombase in _abandoned) then {
     	_x setVariable ["NOAI",true,false];
     }foreach(crew _veh);
     sleep 1;
-    private _attackpos = [_topos,[0,200]] call SHK_pos_fnc_pos;
 
     {
         _wp = _group addWaypoint [_x,50];
