@@ -14,7 +14,7 @@ if(_force) exitWith {
 if(_vehicle isEqualType grpNull) exitWith {
 	if(count (units _vehicle) isEqualTo 0) exitWith {deleteGroup _vehicle};
 	private _l = (units _vehicle) select 0;
-	[{!((_this#0) call OT_fnc_inSpawnDistance) || _force}, {
+	[{!((_this#0) call OT_fnc_inSpawnDistance)}, {
 		_vehs = [];
 		_this params ["_l","_vehicle"];
 		{
