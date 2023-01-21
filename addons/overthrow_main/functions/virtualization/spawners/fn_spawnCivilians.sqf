@@ -60,7 +60,7 @@ while {_count < _numCiv} do {
 
 	private _home = _town call OT_fnc_getRandomRoadPosition;
 	while {(_groupcount < _pergroup) && (_count < _numCiv)} do {
-		_pos = [_home,random 360,10] call SHK_pos_fnc_pos;
+		_pos = [_home,10,random 360] call SHK_pos_fnc_pos;
 		_civ = _group createUnit [OT_civType_local, _pos, [],0, "NONE"];
 		_civ setBehaviour "SAFE";
 		_civ setVariable ["hometown",_hometown,true];
