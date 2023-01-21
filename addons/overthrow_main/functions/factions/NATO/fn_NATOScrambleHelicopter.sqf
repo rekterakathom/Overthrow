@@ -45,7 +45,7 @@ if !(isNil "_from") then {
     sleep 1;
 
     private _dir = (_targetpos getDir _frompos);
-    private _attackpos = [_targetpos,[100,400],_dir] call SHK_pos_fnc_pos;
+    private _attackpos = _targetpos getPos [(100 + random 300), _dir];
 
     _wp = _group addWaypoint [_attackpos,50];
     _wp setWaypointType "SAD";

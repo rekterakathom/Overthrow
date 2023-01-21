@@ -246,7 +246,7 @@ if(!dialog) then {
 						private _driver = driver _veh;
 						private _e = [];
 						{
-							private _p = [_pos,[0,50]] call SHK_pos_fnc_pos;
+							private _p = _pos getPos [random 50, random 360];
 							moveOut _x;
 							_x allowDamage false;
 							_x setPos _p;

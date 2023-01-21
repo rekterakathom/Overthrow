@@ -19,7 +19,7 @@ while {_count < _amt} do {
           _group = spawner getVariable [format["gangspawn%1",_gangid],grpNull];
           //Spawn new gang member at camp
 
-          private _pos = [_pos,10] call SHK_pos_fnc_pos;
+          private _pos = _pos getPos [10, random 360];
           private _civ = _group createUnit [OT_CRIM_Unit, _pos, [],0, "NONE"];
           [_civ] joinSilent nil;
           [_civ] joinSilent _group;

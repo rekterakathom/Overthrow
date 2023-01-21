@@ -37,7 +37,7 @@ if((count _possible) > 0) then {
         while {_count < _numtents} do {
             //this code is in tents
             _d = random 360;
-            _p = [_home,[2,9],_d] call SHK_pos_fnc_pos;
+            _p = _home getPos [(2 + random 7), _d];
             _p = _p findEmptyPosition [1,40,"Land_TentDome_F"];
             _veh = createVehicle ["Land_TentDome_F",_p,[],0,"CAN_COLLIDE"];
             _veh enableDynamicSimulation true;
@@ -51,7 +51,7 @@ if((count _possible) > 0) then {
         _leaderGroup setVariable ["VCM_TOUGHSQUAD",true,true];
 		_leaderGroup setVariable ["VCM_NORESCUE",true,true];
         _leaderGroup setVariable ["lambs_danger_disableGroupAI", true];
-        private _pos = [_home,10] call SHK_pos_fnc_pos;
+        private _pos = _home getPos [10, random 360];
         _civ = _leaderGroup createUnit [OT_CRIM_Unit, _pos, [],0, "NONE"];
         _civ setRank "COLONEL";
         _civ setVariable ["NOAI",true,false];
