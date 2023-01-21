@@ -631,31 +631,6 @@ class CfgFunctions
 		};
 	};
 
-	class SHK_pos {
-		class Functions {
-			file="\overthrow_main\functions\geography\SHK_pos";
-
-			class findClosestPosition {};
-			class getMarkerCorners {};
-			class getMarkerShape {};
-			class getPos {};
-			class getPosFromCircle {};
-			class getPosFromEllipse {};
-			class getPosFromRectangle {};
-			class getPosFromSquare {};
-			class isBlacklisted {};
-			class isInCircle {};
-			class isInEllipse {};
-			class isInRectangle {};
-			class isSamePosition {};
-			class rotatePosition {};
-
-			class getPosWrapper {};
-			class getPosMarkerWrapper {};
-			class pos {};
-		};
-	};
-
 	// VCOM
 	#include "\overthrow_main\functions\AI\VCOM\cfgFunctions.hpp"
 
