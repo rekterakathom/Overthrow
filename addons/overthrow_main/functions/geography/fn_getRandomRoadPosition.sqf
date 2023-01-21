@@ -8,7 +8,9 @@ if(_test isEqualType "") then {
     _test = server getvariable _test;
 };
 
-private _pos = [_test,[random 100,_msize]] call SHK_pos_fnc_pos;
+// uniform sampling density inside a circle of 100m and decreasing density outside of it, up to _msize
+private _rand = random 100;
+private _pos = _test getPos [(_rand + random (_msize - _rand)), random 360];
 private _roads = _pos nearRoads 100;
 if(count _roads > 0) exitWith {
     getPosATL (_roads select 0)
