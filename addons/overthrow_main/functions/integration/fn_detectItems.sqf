@@ -15,66 +15,81 @@ private _categorize = {
 private _getprice = {
     params ["_x","_primaryCategory"];
     private _cls = configName _x;
-    private _mass = getNumber ( _x >> "ItemInfo" >> "mass" );
+    private _mass = 0;
 
-    private _name = getText (_x >> "displayName");
+    // Not every item has ItemInfo, for example RHS binoculars
+    if (isNumber (_x >> "ItemInfo" >> "mass")) then {
+        _mass = getNumber (_x >> "ItemInfo" >> "mass");
+    } else {
+        _mass = getNumber (_x >> "WeaponSlotsInfo" >> "mass");
+    };
+
+    if (_mass isEqualTo 0) then {
+        diag_log format ["Overthrow: Failed to get mass for %1", _cls];
+        _mass = 10; // Set the mass to something to avoid free items
+    };
+
     private _price = round(_mass * 1.5);
     private _steel = 0;
     private _wood = 0;
     private _plastic = 0;
     private _steel = ceil(_mass * 0.2);
+
     if(_mass isEqualTo 1) then {
         _steel = 0.1;
     };
-    if(_primaryCategory isEqualTo "Pharmacy") then {
+
+    if(_primaryCategory == "Pharmacy") then {
         _steel = 0;
         _plastic = ceil(_mass * 0.2);
         if(_mass isEqualTo 1) then {
             _plastic = 0.1;
         };
-        private _res = [_name,_mass] call {
-            params ["_name", "_mass"];
+        private _res = [_mass] call {
+            params ["_mass"];
             _price = _mass * 4;
-            if(_cls find "blood" > -1) exitWith {
+            if("blood" in _cls) exitWith {
                 _price = round(_price * 1.3);
             };
-            if(_cls find "saline" > -1) exitWith {
+            if("saline" in _cls) exitWith {
                 _price = round(_price * 0.3);
             };
-            if(_cls find "fieldDressing" > -1) exitWith {
+            if("fieldDressing" in _cls) exitWith {
                 _price = 1;
             };
-            if(_cls find "epinephrine" > -1) exitWith {
+            if("epinephrine" in _cls) exitWith {
                 _price = 30;
                 _plastic = 0;
             };
-            if(_cls find "bodybag" > -1) exitWith {
+            if("bodybag" in _cls) exitWith {
                 _price = 2;
                 _plastic = 0.1;
             };
         };
     };
-    if(_primaryCategory isEqualTo "Electronics") then {
+
+    if(_primaryCategory == "Electronics") then {
         _steel = 0;
         _plastic = ceil(_mass * 0.2);
         _price = _mass * 4;
-        private _factor = [_name] call {
-            params ["_name"];
-            if(_cls find "altimeter" > -1) exitWith {3};
-            if(_cls find "DAGR" > -1) exitWith {7};
-            if(_cls find "GPS" > -1) exitWith {1.5};
-            if(_cls find "_dagr" > -1) exitWith {2};
+        private _factor = [] call {
+            if("altimeter" in _cls) exitWith {3};
+            if("DAGR" in _cls) exitWith {7};
+            if("GPS" in _cls) exitWith {1.5};
+            if("_dagr" in _cls) exitWith {2};
             1
         };
         _price = round (_price * _factor);
     };
-    if(_primaryCategory isEqualTo "Hardware") then {
+
+    if(_primaryCategory == "Hardware") then {
         _price = _mass;
     };
-    private _cls = configName _x;
-    if(_cls isEqualTo "ToolKit") then {
+
+    if(_cls == "ToolKit") then {
         _price = 80;
     };
+
     [_price,_wood,_steel,_plastic];
 };
 
