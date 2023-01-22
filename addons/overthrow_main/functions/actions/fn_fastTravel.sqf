@@ -110,8 +110,9 @@ OT_FastTravel_MapSingleClickEHId = addMissionEventHandler ["MapSingleClick", {
 			{
 				private _pos = _this;
 
-				if((vehicle player) != player) then {
-					if ((driver vehicle player) isEqualTo player) then {
+				private _vehicle = vehicle player;
+				if(_vehicle != player) then {
+					if ((driver _vehicle) isEqualTo player) then {
 						private _tam = 10;
 						private _roads = [];
 						while {true} do {
@@ -119,10 +120,10 @@ OT_FastTravel_MapSingleClickEHId = addMissionEventHandler ["MapSingleClick", {
 							if (count _roads < 1) then {_tam = _tam + 10};
 							if (count _roads > 0) exitWith {};
 						};
-						{_x allowDamage false} foreach(crew vehicle player);
+						{_x allowDamage false} foreach (crew _vehicle);
 						private _road = _roads select 0;
-						_pos = getPosATL _road findEmptyPosition [10,120,typeOf (vehicle player)];
-						vehicle player setPos _pos;
+						_pos = getPosATL _road findEmptyPosition [10,120,typeOf _vehicle];
+						_vehicle setPos _pos;
 					};
 				}else{
 					player setpos (_pos findEmptyPosition [2,100]);
@@ -131,8 +132,8 @@ OT_FastTravel_MapSingleClickEHId = addMissionEventHandler ["MapSingleClick", {
 				disableUserInput false;
 				cutText ["","BLACK IN",3];
 
-				if((vehicle player) != player) then {
-					{_x allowDamage true} foreach(crew vehicle player);
+				if(_vehicle != player) then {
+					{_x allowDamage true} foreach (crew _vehicle);
 				};
 				player allowDamage true;
 				openMap false;
