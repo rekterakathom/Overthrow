@@ -123,10 +123,11 @@ OT_FastTravel_MapSingleClickEHId = addMissionEventHandler ["MapSingleClick", {
 						{_x allowDamage false} foreach (crew _vehicle);
 						private _road = _roads select 0;
 						_pos = getPosATL _road findEmptyPosition [10,120,typeOf _vehicle];
+						if (count _pos == 0) then {_pos = getPosATL _road findEmptyPosition [0,120,typeOf _vehicle]};
 						_vehicle setPos _pos;
 					};
 				}else{
-					player setpos (_pos findEmptyPosition [2,100]);
+					player setpos (_pos findEmptyPosition [1,100]);
 				};
 
 				disableUserInput false;
