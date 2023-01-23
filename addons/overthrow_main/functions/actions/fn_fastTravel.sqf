@@ -88,16 +88,15 @@ OT_FastTravel_MapSingleClickEHId = addMissionEventHandler ["MapSingleClick", {
 		hint "You must click near a friendly base/camp or a building you own";
 		openMap false;
 	}else{
+		private _cost = 0;
 		private _ft = server getVariable ["OT_fastTravelType",1];
 		if(_handled && _ft isEqualTo 1 && !OT_adminMode) then {
-			private _cost = 0;
 			if((vehicle player) isEqualTo player) then {
 				_cost = ceil((player distance _pos) / 50);
 			}else{
 				_cost = ceil((player distance _pos) / 20);
 			};
 			if((player getVariable ["money",0]) < _cost) exitWith {_exit = true;hint format ["You need $%1 to fast travel that distance",_cost]};
-			[-_cost] call OT_fnc_money;
 		};
 
 		if(_exit) exitWith {};
@@ -108,7 +107,7 @@ OT_FastTravel_MapSingleClickEHId = addMissionEventHandler ["MapSingleClick", {
 		cutText ["Fast travelling","BLACK",2];
 		[
 			{
-				private _pos = _this;
+				params ["_pos", "_cost"];
 
 				private _vehicle = vehicle player;
 				if(_vehicle != player) then {
@@ -124,10 +123,23 @@ OT_FastTravel_MapSingleClickEHId = addMissionEventHandler ["MapSingleClick", {
 						private _road = _roads select 0;
 						_pos = getPosATL _road findEmptyPosition [10,120,typeOf _vehicle];
 						if (count _pos == 0) then {_pos = getPosATL _road findEmptyPosition [0,120,typeOf _vehicle]};
-						_vehicle setPos _pos;
+
+						if (count _pos > 0) then {
+							_vehicle setPos _pos;
+							if (_cost > 0) then {[-_cost] call OT_fnc_money};
+						} else {
+							hint "Not enough space for this vehicle in the destination";
+						};
 					};
 				}else{
-					player setpos (_pos findEmptyPosition [1,100]);
+					_pos = _pos findEmptyPosition [1,100];
+
+					if (count _pos > 0) then {
+						player setpos _pos;
+						if (_cost > 0) then {[-_cost] call OT_fnc_money};
+					} else {
+						hint "Not enough space for a human in the destination";
+					};
 				};
 
 				disableUserInput false;
@@ -139,7 +151,7 @@ OT_FastTravel_MapSingleClickEHId = addMissionEventHandler ["MapSingleClick", {
 				player allowDamage true;
 				openMap false;
 			},
-			_pos,
+			[_pos, _cost],
 			2
 		] call CBA_fnc_waitAndExecute;
 	};
