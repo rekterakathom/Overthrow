@@ -16,11 +16,11 @@ OT_CRIMversion = 1;
 OT_faction_NATO = "BLU_F";
 OT_spawnFaction = "IND_G_F"; //This faction will have a rep in spawn town
 
-OT_flag_NATO = "Flag_NATO_F";
+OT_flag_NATO = "Flag_NATO_F"; // Flag objects in bases
 OT_flag_CRIM = "Flag_Syndikat_F";
 OT_flag_IND = "Flag_Green_F";
-OT_flagImage = "\overthrow_main\flags\flag_malden.paa";
-OT_flagMarker = "flag_Malden";
+OT_flagImage = "\overthrow_main\flags\flag_malden.paa"; // Gun dealer icon on map
+OT_flagMarker = "flag_Malden"; // Friendly base marker on map
 
 OT_populationMultiplier = 0.5; //Used to tweak populations per map
 

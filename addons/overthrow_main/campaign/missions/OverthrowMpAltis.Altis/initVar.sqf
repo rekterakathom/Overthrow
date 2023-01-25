@@ -16,11 +16,11 @@ OT_CRIMversion = 1;
 OT_faction_NATO = "BLU_F";
 OT_spawnFaction = "IND_G_F"; //This faction will have a rep in spawn town
 
-OT_flag_NATO = "Flag_NATO_F";
+OT_flag_NATO = "Flag_NATO_F"; // Flag objects in bases
 OT_flag_CRIM = "Flag_Syndikat_F";
 OT_flag_IND = "Flag_Altis_F";
-OT_flagImage = "\A3\ui_f\data\map\markers\flags\Altis_ca.paa";
-OT_flagMarker = "flag_Tanoa";
+OT_flagImage = "\A3\ui_f\data\map\markers\flags\Altis_ca.paa"; // Gun dealer icon on map
+OT_flagMarker = "flag_Altis"; // Friendly base marker on map
 
 OT_populationMultiplier = 0.5; //Used to tweak populations per map
 

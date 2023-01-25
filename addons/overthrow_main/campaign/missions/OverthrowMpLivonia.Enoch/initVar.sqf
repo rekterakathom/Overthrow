@@ -16,11 +16,11 @@ OT_CRIMversion = 1;
 OT_faction_NATO = "BLU_T_F";
 OT_spawnFaction = "IND_F"; //This faction will have a rep in spawn town
 
-OT_flag_NATO = "Flag_NATO_F";
+OT_flag_NATO = "Flag_NATO_F"; // Flag objects in bases
 OT_flag_CRIM = "Flag_Syndikat_F";
-OT_flag_IND = "Flag_HorizonIslands_F";
-OT_flagImage = "\A3\ui_f\data\map\markers\flags\Tanoa_ca.paa";
-OT_flagMarker = "flag_Tanoa";
+OT_flag_IND = "Flag_Enoch_F";
+OT_flagImage = "\A3\UI_F_Enoch\Data\CfgMarkers\Livonia_CA.paa"; // Gun dealer icon on map
+OT_flagMarker = "flag_Enoch"; // Friendly base marker on map
 
 OT_populationMultiplier = 0.8; //Used to tweak populations per map
 
