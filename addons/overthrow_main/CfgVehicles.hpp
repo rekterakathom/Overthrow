@@ -605,4 +605,12 @@ class CfgVehicles {
         respawnLinkedItems[] = {V_PlateCarrier2_blk, H_Beret_gen_F, ItemMap, ItemCompass, ItemWatch, ItemRadio, NVGoggles_OPFOR};
     };
 
+    // Flagpole object with Malden flag
+    class Flag_Green_F;
+    class OT_Flag_Malden_F: Flag_Green_F {
+        displayName = "Flag (Malden)";
+        class EventHandlers {
+            init = "(_this select 0) setFlagTexture '\overthrow_main\flags\flag_malden_flagpole.paa'";
+        };
+    };
 };
