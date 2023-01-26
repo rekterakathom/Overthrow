@@ -26,9 +26,12 @@ OT_populationMultiplier = 0.5; //Used to tweak populations per map
 
 //Interactable items that spawn in your house
 OT_item_Storage = "B_CargoNet_01_ammo_F"; //Your spawn ammobox
+OT_item_Desk = "OfficeTable_01_new_F"; //Your spawn desk
+OT_item_Radio = "Land_PortableLongRangeRadio_F";
 OT_item_Map = "Mapboard_Malden_F";
 OT_item_Tent = "Land_TentDome_F";
 OT_item_Safe = "Land_MetalCase_01_small_F";
+OT_item_Workbench = "Land_Workbench_01_F";
 
 //Animals to spawn (@todo: spawn animals)
 OT_allLowAnimals = ["Rabbit_F","Turtle_F"];
