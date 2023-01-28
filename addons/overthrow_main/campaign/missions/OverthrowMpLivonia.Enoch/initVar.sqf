@@ -89,8 +89,8 @@ OT_fuelPumps = ["Land_FuelStation_03_pump_F","Land_FuelStation_Feed_F"];
 
 OT_churches = ["Land_Church_03_F","Land_Church_01_F","Land_Church_02_F","Land_Temple_Native_01_F"];
 
-OT_language_local = "LanguageENG_F";
-OT_identity_local = "Head_Euro";
+OT_language_local = "LanguagePOL_F";
+OT_identity_local = "Head_Enoch";
 
 OT_language_western = "LanguageENG_F";
 OT_identity_western = "Head_Euro";
