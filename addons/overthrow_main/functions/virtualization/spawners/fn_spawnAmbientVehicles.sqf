@@ -67,6 +67,7 @@ while {(_count < _numVeh) && (_loops < 50)} do {
 						_civ = _group createUnit [OT_civType_local, _pos, [],0, "NONE"];
 						_civ setBehaviour "SAFE";
 						[_civ] call OT_fnc_initCivilian;
+						[_civ, call OT_fnc_randomLocalIdentity] call OT_fnc_applyIdentity;
 						_civ moveInDriver _veh;
 
 						_region  = server getVariable format["region_%1",_town];
