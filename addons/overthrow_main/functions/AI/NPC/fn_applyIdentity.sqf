@@ -14,6 +14,11 @@ _unit forceAddUniform _clothes;
 //Name
 private _firstname = OT_firstNames_local select (_name select 0);
 private _lastname = OT_lastNames_local select (_name select 1);
+// Legacy compatibility: the indexes are stored in save files and the local name arrays may have been longer in the past.
+if (isNil "_firstname" || isNil "_lastname") then {
+    _firstname = selectRandom OT_firstNames_local;
+    _lastname = selectRandom OT_lastNames_local;
+};
 private _fullname = [format["%1 %2",_firstname,_lastname],_firstname,_lastname];
 [_unit,_fullname] remoteExecCall ["setName",0,_unit];
 
