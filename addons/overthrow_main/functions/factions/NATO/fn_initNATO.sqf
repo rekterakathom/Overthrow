@@ -4,9 +4,8 @@ OT_NATO_Group_Recon = "";
 OT_NATO_Group_Engineers = "";
 {
 	private _name = configName _x;
-	if((_name find "Recon") > -1) then {
+	if((_name find "ReconTeam") > -1) then {
 		OT_NATO_Group_Recon = _name;
-		OT_NATO_Group_Engineers = _name;
 	};
 	private _numtroops = count("true" configClasses _x);
 	if(_numtroops > 5) then {
