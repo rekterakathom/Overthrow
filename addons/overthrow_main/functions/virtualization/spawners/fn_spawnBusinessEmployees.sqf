@@ -15,7 +15,7 @@ while {_count < _numCiv} do {
 	_civ = _group createUnit [OT_civType_worker, _pos, [],0, "NONE"];
 	_civ setBehaviour "SAFE";
 	private _identity = call OT_fnc_randomLocalIdentity;
-	_identity set [1, nil]; // Retain original worker clothes
+	_identity set [1, ""]; // Retain original worker clothes
 	[_civ, _identity] call OT_fnc_applyIdentity;
 	_civ setVariable ["employee",_name];
 	_count = _count + 1;

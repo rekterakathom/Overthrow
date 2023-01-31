@@ -83,8 +83,6 @@ private _gangs = OT_civilians getVariable [format["gangs%1",_town],[]];
 	_gang params ["_members"];
 
 	if (!isNil "_members" && {_members isEqualType []}) then {
-		private _vest = "";
-		_vest = _gang select 3;
 		private _group = creategroup [opfor,true];
 		_group setVariable ["VCM_TOUGHSQUAD",true,true];
 		_group setVariable ["VCM_NORESCUE",true,true];
@@ -147,13 +145,7 @@ private _gangs = OT_civilians getVariable [format["gangs%1",_town],[]];
 				[_civ] joinSilent nil;
 				[_civ] joinSilent _group;
 
-				if(isNil "_identity" || { _identity isEqualTo [] }) then {
-					_identity = call OT_fnc_randomLocalIdentity;
-				};
-
-				[_civ,_town,_vest,_gangid] call OT_fnc_initCriminal;
-				[_civ,_identity] call OT_fnc_applyIdentity;
-				[_civ, (selectRandom OT_voices_local)] remoteExecCall ["setSpeaker", 0, _civ];
+				[_civ,_town,_identity,_gangid] call OT_fnc_initCriminal;
 
 				_civ setVariable ["OT_gangid",_gangid,true];
 				_civ setVariable ["OT_civid",_civid,true];

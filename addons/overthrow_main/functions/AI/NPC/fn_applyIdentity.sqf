@@ -6,10 +6,13 @@ _identity params ["_face","_clothes","_name","_glasses"];
 [_unit, _face] remoteExecCall ["setFace", 0, _unit];
 
 //Clothes
+// Possibly some old legacy compatibility where _clothes could be nil.
 if(isNil "_clothes") then {
     _clothes = selectRandom OT_clothes_locals;
 };
-_unit forceAddUniform _clothes;
+if(_clothes != "") then {
+    _unit forceAddUniform _clothes;
+};
 
 //Name
 private _firstname = OT_firstNames_local select (_name select 0);
@@ -22,6 +25,7 @@ if (isNil "_firstname" || isNil "_lastname") then {
 private _fullname = [format["%1 %2",_firstname,_lastname],_firstname,_lastname];
 [_unit,_fullname] remoteExecCall ["setName",0,_unit];
 
+//Glasses
 if(_glasses != "") then {
     _unit addGoggles _glasses;
 };

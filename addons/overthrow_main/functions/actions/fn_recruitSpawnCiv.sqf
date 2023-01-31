@@ -18,7 +18,6 @@ _civ setBehaviour "SAFE";
 
 removeAllWeapons _civ;
 removeAllAssignedItems _civ;
-removeGoggles _civ;
 removeBackpack _civ;
 removeHeadgear _civ;
 removeVest _civ;
