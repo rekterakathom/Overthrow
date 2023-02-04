@@ -35,11 +35,7 @@ recruitSelected = {
 
 dismissRecruit = {
 	_recruit = (units group player) select (lbValue[1500,lbCurSel 1500]-1);
-	if (isNull objectParent _recruit) then {
-		deleteVehicle _recruit;
-	} else {
-		[(objectParent _recruit), _recruit] remoteExec ["deleteVehicleCrew", _recruit, false];
-	};
+	[_recruit] remoteExecCall ["OT_fnc_cleanupUnit", _recruit, false];
 	ctrlEnable [1600,false];
 	[] call refreshRecruits;
 	disableSerialization;

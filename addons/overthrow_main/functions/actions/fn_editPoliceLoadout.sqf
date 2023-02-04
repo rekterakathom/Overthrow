@@ -86,11 +86,7 @@ if ((_civ getVariable ["cba_projectile_firedEhId", -1]) != -1) then {
 
     playSound "3DEN_notificationDefault";
     "Saved police loadout" call OT_fnc_notifyMinor;
-    if (isNull objectParent _unit) then {
-		deleteVehicle _unit;
-	} else {
-		[(objectParent _unit), _unit] remoteExec ["deleteVehicleCrew", _unit, false];
-	};
+    [_unit] remoteExecCall ["OT_fnc_cleanupUnit", _unit, false];
 
     [_thisType, _thisId] call CBA_fnc_removeEventHandler;
 },[_civ]] call CBA_fnc_addEventHandlerArgs;

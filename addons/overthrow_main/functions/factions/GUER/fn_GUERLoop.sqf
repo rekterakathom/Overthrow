@@ -47,20 +47,12 @@ if(_dead > 150) then {
 {
 	if (_x isEqualType grpNull) then {
 		{
-			if (isNull objectParent _x) then {
-				deleteVehicle _x;
-			} else {
-				[(objectParent _x), _x] remoteExec ["deleteVehicleCrew", _x, false];
-			};
+			[_x] remoteExecCall ["OT_fnc_cleanupUnit", _x, false];
 		}foreach(units _x);
 		deleteGroup _x;
 	};
 	if (_x isEqualType objNull) then {
-		if (isNull objectParent _x) then {
-			deleteVehicle _x;
-		} else {
-			[(objectParent _x), _x] remoteExec ["deleteVehicleCrew", _x, false];
-		};
+		[_x] remoteExecCall ["OT_fnc_cleanupUnit", _x, false];
 	};
 }foreach(spawner getVariable ["_noid_",[]]);
 

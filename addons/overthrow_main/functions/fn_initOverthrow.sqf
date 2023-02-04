@@ -124,11 +124,7 @@ OT_tpl_checkpoint = [] call compileScript ["data\templates\NATOcheckpoint.sqf", 
 				if(_x getVariable [""OT_Looted"",false]) then {
 					private _stock = _x call OT_fnc_unitStock;
 					if((count _stock) isEqualTo 0) then {
-						if (isNull objectParent _x) then {
-							deleteVehicle _x;
-						} else {
-							[(objectParent _x), _x] remoteExec [""deleteVehicleCrew"", _unit, false];
-						};
+						[_x] remoteExecCall ['OT_fnc_cleanupUnit', _x, false];
 					};
 				};
 			}forEach(alldeadmen);
@@ -137,11 +133,7 @@ OT_tpl_checkpoint = [] call compileScript ["data\templates\NATOcheckpoint.sqf", 
 				if (side group _x isEqualTo civilian && {!(isPlayer _x)} && {!(_x getVariable [""shopcheck"",false])} && { ({side _x isEqualTo civilian} count (_x nearEntities [""CAManBase"",150])) > round(150*OT_spawnCivPercentage) } ) then {
 					private _group = group _x;
 					private _unit = _x;
-					if (isNull objectParent _unit) then {
-						deleteVehicle _unit;
-					} else {
-						[(objectParent _unit), _unit] remoteExec [""deleteVehicleCrew"", _unit, false];
-					};
+					[_unit] remoteExecCall ['OT_fnc_cleanupUnit', _unit, false];
 					if (count units _group < 1) then {
 						deleteGroup _group;
 					};

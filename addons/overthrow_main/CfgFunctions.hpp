@@ -14,6 +14,8 @@ class CfgFunctions
 		{
 			file = "\overthrow_main\functions\cleanup";
 			class cleanup {};
+			class cleanupUnit {};
+			class cleanupVehicle {};
 			class cleanDead {};
 		};
 
