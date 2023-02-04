@@ -34,7 +34,7 @@ createDialog "OT_dialog_buy";
 	if((_cls select [0,3]) != "IED") then {
 
 		private _price = [_town,_cls,_standing] call OT_fnc_getPrice;
-		if("fuel depot" in (server getVariable "OT_NATOabandoned")) then {
+		if("fuel depot" in (server getVariable "NATOabandoned")) then {
 			_price = round(_price * 0.5);
 		};
 
