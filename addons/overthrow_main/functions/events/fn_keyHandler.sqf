@@ -255,7 +255,8 @@ if(!dialog) then {
 						sleep 2;
 						disableUserInput false;
 						cutText ["","BLACK IN",3];
-						[(objectParent _driver), _driver] remoteExec ["deleteVehicleCrew", _driver, false];
+						moveOut _driver;
+						deleteVehicle _driver;
 						deleteVehicle _veh;
 						{
 							_x allowDamage true;
