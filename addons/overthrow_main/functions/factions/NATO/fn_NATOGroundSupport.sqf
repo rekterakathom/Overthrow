@@ -10,10 +10,8 @@ while {_count < _num} do {
 	private _vehtype = selectRandom OT_NATO_Vehicles_GroundSupport;
 
 	private _dir = (_frompos getDir _attackpos);
-	private _pos = _frompos findEmptyPosition [15,100,_vehtype];
-	if(count _pos == 0) then {
-		_pos = [_frompos,0,120,false,[0,0],[250,_vehtype]] call SHK_pos_fnc_pos;
-	};
+	private _pos = _frompos findEmptyPosition [10,100,_vehtype];
+    if (count _pos == 0) then {_pos = _frompos findEmptyPosition [0,100,_vehtype]};
 
 	_veh = createVehicle [_vehtype, _pos, [], 0,""];
 	_veh setVariable ["garrison","HQ",false];

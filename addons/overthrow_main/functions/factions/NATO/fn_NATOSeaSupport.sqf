@@ -3,6 +3,7 @@ sleep _delay;
 
 private _dir = (_frompos getDir _attackpos);
 _pos = _frompos findEmptyPosition [50,200,OT_NATO_Vehicle_Boat_Small];
+if (count _pos == 0) then {_pos = _frompos findEmptyPosition [20,200,OT_NATO_Vehicle_Boat_Small]};
 
 _group = creategroup blufor;
 _veh = createVehicle [OT_NATO_Vehicle_Boat_Small, _pos, [], 0,""];

@@ -27,15 +27,15 @@ if(isNil "_close") then {
 		};
 	}foreach([OT_airportData,[],{random 100},"ASCEND"] call BIS_fnc_SortBy);
 };
+// Group may not be moved into a vehicle, so it also needs space to spawn
 _start = [_close,50,200, 1, 0, 0, 0] call BIS_fnc_findSafePos;
 _group = [_start, WEST, (configFile >> "CfgGroups" >> "West" >> OT_faction_NATO >> "Infantry" >> OT_NATO_Group_Recon)] call BIS_fnc_spawnGroup;
 
 sleep 0.5;
 
-_dir = (_start getDir _posTarget);
+_dir = (_close getDir _posTarget);
 
 if(_isAir) then {
-	_attackpos = [_posTarget,[0,150]] call SHK_pos_fnc_pos;
 
 	//Determine direction to attack from (preferrably away from water)
 	_attackdir = random 360;
@@ -55,7 +55,8 @@ if(_isAir) then {
 	_ao = [_posTarget,[350,500],_attackdir + (random 90)] call SHK_pos_fnc_pos;
 	_tgroup = creategroup blufor;
 
-	_spawnpos = _close findEmptyPosition [5,100,OT_NATO_Vehicle_AirTransport_Small];
+	_spawnpos = _close findEmptyPosition [15,100,OT_NATO_Vehicle_AirTransport_Small];
+    if (count _spawnpos == 0) then {_spawnpos = _close findEmptyPosition [8,100,OT_NATO_Vehicle_AirTransport_Small]};
 	_veh =  OT_NATO_Vehicle_AirTransport_Small createVehicle _spawnpos;
 	_veh setDir _dir;
 	_tgroup addVehicle _veh;

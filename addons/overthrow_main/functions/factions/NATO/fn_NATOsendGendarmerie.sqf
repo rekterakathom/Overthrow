@@ -34,14 +34,16 @@ if(!isNil "_close") then {
 	server setVariable [format ["garrison%1",_town],_current+4,true];
 	if !(_townPos call OT_fnc_inSpawnDistance) exitWith {};
 
-	_start = [_close,0,200, 1, 0, 0, 0] call BIS_fnc_findSafePos;
+	// Group may not be moved into a vehicle, so it also needs space to spawn
+	_start = [_close,50,200, 1, 0, 0, 0] call BIS_fnc_findSafePos;
 	_group = creategroup blufor;
 	_groups pushback _group;
 	_usecar = false;
 	_veh = objNull;
 
 	if(((_close distance _townPos) > 2000) && (random 100) > 50) then {
-		_spawnpos = _start findEmptyPosition [5,100,OT_NATO_Vehicle_Police];
+		_spawnpos = _close findEmptyPosition [10,100,OT_NATO_Vehicle_Police];
+		if (count _spawnpos == 0) then {_spawnpos = _close findEmptyPosition [0,100,OT_NATO_Vehicle_Police]};
 		_veh =  OT_NATO_Vehicle_Police createVehicle _spawnpos;
 		_veh setDir (random 360);
 		_group addVehicle _veh;
@@ -55,21 +57,21 @@ if(!isNil "_close") then {
 	_civ setBehaviour "SAFE";
 	sleep 0.01;
 
-	_start = [_start, 0, 20, 1, 0, 0, 0] call BIS_fnc_findSafePos;
+	_start = _start findEmptyPosition [1,100,OT_NATO_Unit_Police_Heavy];
 	_civ = _group createUnit [OT_NATO_Unit_Police_Heavy, _start, [],0, "NONE"];
 
 	_police pushBack _civ;
 	[_civ,_town] call OT_fnc_initGendarm;
 	_civ setBehaviour "SAFE";
 
-	_start = [_start, 0, 20, 1, 0, 0, 0] call BIS_fnc_findSafePos;
+	_start = _start findEmptyPosition [1,100,OT_NATO_Unit_Police_Heavy];
 	_civ = _group createUnit [OT_NATO_Unit_Police_Heavy, _start, [],0, "NONE"];
 
 	_police pushBack _civ;
 	[_civ,_town] call OT_fnc_initGendarm;
 	_civ setBehaviour "SAFE";
 
-	_start = [_start, 0, 20, 1, 0, 0, 0] call BIS_fnc_findSafePos;
+	_start = _start findEmptyPosition [1,100,OT_NATO_Unit_Police_Heavy];
 	_civ = _group createUnit [OT_NATO_Unit_Police_Heavy, _start, [],0, "NONE"];
 
 	_police pushBack _civ;

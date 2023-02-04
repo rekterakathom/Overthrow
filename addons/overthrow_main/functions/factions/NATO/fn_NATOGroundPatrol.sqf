@@ -10,7 +10,8 @@ if !(_frombase in _abandoned) then {
     if((call OT_fnc_getControlledPopulation) > 2000) then {_vehtype = selectRandom OT_NATO_Vehicles_TankSupport};
 
     private _frompos = server getVariable _frombase;
-    private _pos = _frompos findEmptyPosition [2,100,_vehtype];
+    private _pos = _frompos findEmptyPosition [10,100,_vehtype];
+    if (count _pos == 0) then {_pos = _frompos findEmptyPosition [0,100,_vehtype]};
 
     private _group = creategroup blufor;
     private _veh = _vehtype createVehicle _pos;

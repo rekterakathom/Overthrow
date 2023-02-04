@@ -12,8 +12,8 @@ if !(_frombase in _abandoned) then {
     if((call OT_fnc_getControlledPopulation) > 1500) then {_vehtype = selectRandom OT_NATO_Vehicles_AirSupport};
 
     private _frompos = server getVariable _frombase;
-    private _pos = _frompos findEmptyPosition [2,100,_vehtype];
-    if(isNil "_pos") exitWith {};
+    private _pos = _frompos findEmptyPosition [15,100,_vehtype];
+    if (count _pos == 0) then {_pos = _frompos findEmptyPosition [8,100,_vehtype]};
 
     private _group = creategroup blufor;
     private _veh = _vehtype createVehicle _pos;
@@ -36,7 +36,6 @@ if !(_frombase in _abandoned) then {
     	_x setVariable ["NOAI",true,false];
     }foreach(crew _veh);
     sleep 1;
-    private _attackpos = [_topos,[0,200]] call SHK_pos_fnc_pos;
 
     {
         _wp = _group addWaypoint [_x,50];

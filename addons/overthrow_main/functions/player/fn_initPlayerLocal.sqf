@@ -177,7 +177,7 @@ if(isMultiplayer || _startup == "LOAD") then {
 		_xp = _x select 6;
 		if(_owner isEqualTo (getplayeruid player)) then {
 			if(_civ isEqualType []) then {
-				_pos = _civ findEmptyPosition [5,20,_type];
+				_pos = _civ findEmptyPosition [1,20,_type];
 				_civ =  group player createUnit [_type,_pos,[],0,"NONE"];
 				[_civ,getplayeruid player] call OT_fnc_setOwner;
 				_civ setVariable ["OT_xp",_xp,true];
@@ -285,6 +285,7 @@ if (_newplayer) then {
 
 	//Free quad
 	_pos = _housepos findEmptyPosition [5,100,"C_Quadbike_01_F"];
+	if (count _pos == 0) then {_pos = _housepos findEmptyPosition [0,100,"C_Quadbike_01_F"]};
 
 	if (count _pos > 0) then {
 		_veh = "C_Quadbike_01_F" createVehicle _pos;

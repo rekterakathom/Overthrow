@@ -30,14 +30,15 @@ _group = [_start, WEST,  (configFile >> "CfgGroups" >> "West" >> OT_faction_NATO
 
 sleep 0.5;
 
-_dir = (_start getDir _posTown);
+_dir = (_close getDir _posTown);
 
 _ao = getpos(nearestLocation[_posTown, "Hill"]);
 
 if(_isHQ) then {
 	_tgroup = creategroup blufor;
 
-	_spawnpos = OT_NATO_HQPos findEmptyPosition [5,100,OT_NATO_Vehicle_AirTransport_Small];
+	_spawnpos = OT_NATO_HQPos findEmptyPosition [15,100,OT_NATO_Vehicle_AirTransport_Small];
+	if (count _spawnpos == 0) then {_spawnpos = OT_NATO_HQPos findEmptyPosition [8,100,OT_NATO_Vehicle_AirTransport_Small]};
 	_veh =  OT_NATO_Vehicle_AirTransport_Small createVehicle _spawnpos;
 	_veh setDir _dir;
 	_tgroup addVehicle _veh;

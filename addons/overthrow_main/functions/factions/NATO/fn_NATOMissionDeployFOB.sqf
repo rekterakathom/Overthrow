@@ -26,15 +26,14 @@ if(isNil "_close") then {
 		};
 	}foreach([OT_airportData,[],{random 100},"ASCEND"] call BIS_fnc_SortBy);
 };
-_start = [_close,50,200, 1, 0, 0, 0] call BIS_fnc_findSafePos;
-_group = [_start, WEST,  (configFile >> "CfgGroups" >> "West" >> OT_faction_NATO >> "Support" >> OT_NATO_Group_Engineers)] call BIS_fnc_spawnGroup;
+
+_group = [_close, WEST,  (configFile >> "CfgGroups" >> "West" >> OT_faction_NATO >> "Support" >> OT_NATO_Group_Engineers)] call BIS_fnc_spawnGroup;
 
 sleep 0.5;
 
-_dir = (_start getDir _posTarget);
+_dir = (_close getDir _posTarget);
 
 if(_isAir) then {
-	_attackpos = [_posTarget,[0,150]] call SHK_pos_fnc_pos;
 
 	//Determine direction to attack from (preferrably away from water)
 	_attackdir = random 360;
@@ -54,7 +53,8 @@ if(_isAir) then {
 	_ao = [_posTarget,[350,500],_attackdir + (random 90)] call SHK_pos_fnc_pos;
 	_tgroup = creategroup blufor;
 
-	_spawnpos = _close findEmptyPosition [5,100,OT_NATO_Vehicle_AirTransport_Small];
+	_spawnpos = _close findEmptyPosition [15,100,OT_NATO_Vehicle_AirTransport_Small];
+    if (count _spawnpos == 0) then {_spawnpos = _close findEmptyPosition [8,100,OT_NATO_Vehicle_AirTransport_Small]};
 	_veh =  OT_NATO_Vehicle_AirTransport_Small createVehicle _spawnpos;
 	_veh setDir _dir;
 	_tgroup addVehicle _veh;
@@ -117,11 +117,12 @@ if(_isAir) then {
 	} forEach allCurators;
 }else{
     _convoypos = [_close,random 360,120] call SHK_pos_fnc_pos;
-    private _road = [_convoypos] call BIS_fnc_nearestRoad;
+    private _road = [_convoypos, 150] call BIS_fnc_nearestRoad;
     if (!isNull _road) then {
         _convoypos = (getpos _road);
     };
-    _spawnpos = _convoypos findEmptyPosition [5,100,OT_NATO_Vehicle_Transport_Light];
+    _spawnpos = _convoypos findEmptyPosition [10,100,OT_NATO_Vehicle_Transport_Light];
+    if (count _spawnpos == 0) then {_spawnpos = _convoypos findEmptyPosition [0,100,OT_NATO_Vehicle_Transport_Light]};
 	_veh =  OT_NATO_Vehicle_Transport_Light createVehicle _spawnpos;
 	_group addVehicle _veh;
 
