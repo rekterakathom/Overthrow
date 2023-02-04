@@ -5,8 +5,11 @@ spawner setVariable [_i,[],false];
     if(_x isEqualType grpNull) then {
         {
             if !(_x call OT_fnc_hasOwner) then {
-                moveOut _x;
-                deleteVehicle _x;
+                if (isNull objectParent _x) then {
+                    deleteVehicle _x;
+                } else {
+                    [(objectParent _x), _x] remoteExec ["deleteVehicleCrew", _x, false];
+                };
                 sleep 0.3;
             };
         }foreach(units _x);
