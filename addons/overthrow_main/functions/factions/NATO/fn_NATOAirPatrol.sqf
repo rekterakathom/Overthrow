@@ -69,8 +69,7 @@ if !(_frombase in _abandoned) then {
             deleteWaypoint ((waypoints _group) select 0);
         };
         _veh land "LAND";
-        // Sometimes helicopters land just briefly and take off again, so checking this every second
-        waitUntil{sleep 1;(getpos _veh)#2 < 2};
+        waitUntil{sleep 10;(getpos _veh)#2 < 2};
     };
     _veh call OT_fnc_cleanup;
     _group call OT_fnc_cleanup;
