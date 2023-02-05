@@ -74,9 +74,9 @@ if !(isNil "_from") then {
         while {(count (waypoints _group)) > 0} do {
             deleteWaypoint ((waypoints _group) select 0);
         };
-		_veh land "LAND";
+        _veh land "LAND";
         // Sometimes helicopters land just briefly and take off again, so checking this every second
-		waitUntil{sleep 1;(getpos _veh)#2 < 2};
+        waitUntil{sleep 1;(getpos _veh)#2 < 2};
     };
     _veh call OT_fnc_cleanup;
     _group call OT_fnc_cleanup;
