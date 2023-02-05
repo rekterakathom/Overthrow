@@ -18,6 +18,8 @@ params [
 	["_unit", objNull, [objNull]]
 ];
 
+if (isNull _unit) exitWith {diag_log "Overthrow: Tried to delete a null unit"};
+
 // objectParent is more reliable than vehicle, see biki.
 private _unitObjectParent = objectParent _unit;
 
@@ -29,7 +31,11 @@ if (isNull _unitObjectParent) exitWith {
 
 // Unit is in a local vehicle and can be deleted.
 if (local _unitObjectParent) exitWith {
-	_unitObjectParent deleteVehicleCrew _unit;
+	//_unitObjectParent deleteVehicleCrew _unit;
+	// deleteVehicleCrew is currently bugged (as of 2.10) so use moveOut instead
+	moveOut _unit;
+	deleteVehicle _unit;
+
 	true;
 };
 

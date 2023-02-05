@@ -18,6 +18,17 @@ params [
 	["_vehicle", objNull, [objNull]]
 ];
 
-deleteVehicleCrew _vehicle;
-deleteVehicle _vehicle;
-true
+if (isNull _vehicle) exitWith {diag_log "Overthrow: Tried to delete a null vehicle"};
+
+// Vehicle is local and can be deleted
+if (local _vehicle) exitWith {
+	//deleteVehicleCrew _vehicle;
+	// deleteVehicleCrew is currently bugged (as of 2.10) so use moveOut instead
+	{moveOut _x; deleteVehicle _x} forEach crew _vehicle;
+	deleteVehicle _vehicle;
+	true;
+};
+
+// Vehicle isn't local, execute where it is
+[_vehicle] remoteExecCall ["OT_fnc_cleanupVehicle", _vehicle, false];
+false
