@@ -35,7 +35,7 @@ recruitSelected = {
 
 dismissRecruit = {
 	_recruit = (units group player) select (lbValue[1500,lbCurSel 1500]-1);
-	[_recruit] remoteExecCall ["OT_fnc_cleanupUnit", _recruit, false];
+	[_recruit] call OT_fnc_cleanupUnit;
 	ctrlEnable [1600,false];
 	[] call refreshRecruits;
 	disableSerialization;

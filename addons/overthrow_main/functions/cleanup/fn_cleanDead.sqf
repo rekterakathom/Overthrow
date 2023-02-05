@@ -2,14 +2,14 @@
     private _veh = _x;
     {
         if (!alive _x) then {
-            [_x] remoteExecCall ["OT_fnc_cleanupUnit", _veh, false];
+            [_x] call OT_fnc_cleanupUnit;
         };
     } foreach crew _veh;
     if (!alive _x) then {
-        [_x] remoteExecCall ["OT_fnc_cleanupVehicle", _x, false];
+        [_x] call OT_fnc_cleanupVehicle;
     };
 } foreach vehicles;
 
 {
-    [_x] remoteExecCall ["OT_fnc_cleanupUnit", _x, false];
+    [_x] call OT_fnc_cleanupUnit;
 } foreach allDeadMen;

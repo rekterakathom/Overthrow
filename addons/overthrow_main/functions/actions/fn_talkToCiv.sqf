@@ -544,8 +544,8 @@ if (_canBuyBoats) then {
 							waitUntil {_veh distance _pos < 100 || time > _timeout};
 							if(!alive _driver) exitWith{};
 
-							[_vehicle] remoteExecCall ["OT_fnc_cleanupVehicle", _vehicle, false];
-							[_driver] remoteExecCall ["OT_fnc_cleanupUnit", _driver, false]; // Ensure driver deletion
+							[_vehicle] call OT_fnc_cleanupVehicle;
+							[_driver] call OT_fnc_cleanupUnit; // Ensure driver deletion
 						};
 					};
 				};

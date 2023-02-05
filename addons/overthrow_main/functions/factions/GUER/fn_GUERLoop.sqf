@@ -47,12 +47,12 @@ if(_dead > 150) then {
 {
 	if (_x isEqualType grpNull) then {
 		{
-			[_x] remoteExecCall ["OT_fnc_cleanupUnit", _x, false];
+			[_x] call OT_fnc_cleanupUnit;
 		}foreach(units _x);
 		deleteGroup _x;
 	};
 	if (_x isEqualType objNull) then {
-		[_x] remoteExecCall ["OT_fnc_cleanupUnit", _x, false];
+		[_x] call OT_fnc_cleanupUnit;
 	};
 }foreach(spawner getVariable ["_noid_",[]]);
 

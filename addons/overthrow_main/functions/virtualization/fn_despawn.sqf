@@ -5,7 +5,7 @@ spawner setVariable [_i,[],false];
     if(_x isEqualType grpNull) then {
         {
             if !(_x call OT_fnc_hasOwner) then {
-                [_x] remoteExecCall ["OT_fnc_cleanupUnit", _x, false];
+                [_x] call OT_fnc_cleanupUnit;
                 sleep 0.3;
             };
         }foreach(units _x);

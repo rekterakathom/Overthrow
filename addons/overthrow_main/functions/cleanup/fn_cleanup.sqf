@@ -20,11 +20,11 @@ if(_vehicle isEqualType grpNull) exitWith {
 		{
 			if(!isNull objectParent _x) then {_vehs pushBackUnique (objectParent _x)};
 			if !(_x call OT_fnc_hasOwner) then {
-				[_x] remoteExecCall ["OT_fnc_cleanupUnit", _x, false];
+				[_x] call OT_fnc_cleanupUnit;
 			};
 		}foreach(units _vehicle);
 		{
-			[_x] remoteExecCall ["OT_fnc_cleanupVehicle", _x, false];
+			[_x] call OT_fnc_cleanupVehicle;
 		}foreach(_vehs);
 		deleteGroup _vehicle;
 	}, [(units _vehicle) select 0,_vehicle]] call CBA_fnc_waitUntilAndExecute;
@@ -45,7 +45,7 @@ if(OT_adminMode) then {
 	}else{
 		{
 			if !(_x call OT_fnc_hasOwner) then {
-				[_x] remoteExecCall ["OT_fnc_cleanupUnit", _x, false];
+				[_x] call OT_fnc_cleanupUnit;
 			};
 		}foreach(crew _vehicle);
 	};
