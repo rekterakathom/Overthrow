@@ -142,7 +142,7 @@
 			"CHECKBOX", // setting type
 			"AI steal empty/unlocked vehicles?", // Pretty name shown inside the ingame settings menu. Can be stringtable entry.
 			"VCOM SETTINGS", // Pretty name of the category where the setting can be found. Can be stringtable entry.
-			true,// data for this setting:
+			false,// data for this setting:
 			true, // "_isGlobal" flag. Set this to true to always have this setting synchronized between all clients in multiplayer
 			{  
 				params ["_value"];
@@ -207,7 +207,7 @@
 			"CHECKBOX", // setting type
 			"AI impacted by Vcom skill settings.", // Pretty name shown inside the ingame settings menu. Can be stringtable entry.
 			"VCOM SETTINGS", // Pretty name of the category where the setting can be found. Can be stringtable entry.
-			true,// data for this setting:
+			false,// data for this setting:
 			true, // "_isGlobal" flag. Set this to true to always have this setting synchronized between all clients in multiplayer
 			{  
 				params ["_value"];
@@ -233,7 +233,7 @@
 			"CHECKBOX", // setting type
 			"AI Ragdoll when hit?", // Pretty name shown inside the ingame settings menu. Can be stringtable entry.
 			"VCOM SETTINGS", // Pretty name of the category where the setting can be found. Can be stringtable entry.
-			true,// data for this setting:
+			false,// data for this setting:
 			true, // "_isGlobal" flag. Set this to true to always have this setting synchronized between all clients in multiplayer
 			{  
 				params ["_value"];
@@ -431,7 +431,7 @@
 			"CHECKBOX", // setting type
 			"Player AI recieve unique skill settings", // Pretty name shown inside the ingame settings menu. Can be stringtable entry.
 			"VCOM SETTINGS", // Pretty name of the category where the setting can be found. Can be stringtable entry.
-			true,// data for this setting:
+			false,// data for this setting:
 			true, // "_isGlobal" flag. Set this to true to always have this setting synchronized between all clients in multiplayer
 			{  
 				params ["_value"];
