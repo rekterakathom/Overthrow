@@ -133,6 +133,8 @@ class CfgFunctions
 			class EnemyDamagedHandler {};
 			class QRFStartHandler {};
 			class QRFEndHandler {};
+			class wheelStateHandler {};
+			class healedHandler {};
 		};
 
 		class UI

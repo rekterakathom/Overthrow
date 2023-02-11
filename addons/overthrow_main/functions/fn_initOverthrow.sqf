@@ -108,6 +108,8 @@ OT_tpl_checkpoint = [] call compileScript ["data\templates\NATOcheckpoint.sqf", 
 	["ace_common_setFuel",OT_fnc_refuelHandler] call CBA_fnc_addEventHandler;
 	["ace_explosives_place",OT_fnc_explosivesPlacedHandler] call CBA_fnc_addEventHandler;
 	["ace_tagCreated", OT_fnc_taggedHandler] call CBA_fnc_addEventHandler;
+	["ace_repair_setWheelHitPointDamage",OT_fnc_wheelStateHandler] call CBA_fnc_addEventHandler;
+	["ace_treatmentSucceded", OT_fnc_healedHandler] call CBA_fnc_addEventHandler;
 
 	//Overthrow events
 	["OT_QRFstart", OT_fnc_QRFStartHandler] call CBA_fnc_addEventHandler;
