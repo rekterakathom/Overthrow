@@ -15,7 +15,7 @@ _group setFormation "COLUMN";
 private _track = objNull;
 
 if ([_topos,_fromregion] call OT_fnc_regionIsConnected) then {
-    _convoypos = [_frompos,random 360,120] call SHK_pos_fnc_pos;
+    _convoypos = _frompos getPos [120, random 360];
     private _road = [_convoypos, 150] call BIS_fnc_nearestRoad;
     if (!isNull _road) then {
         _roadscon = roadsConnectedto _road;

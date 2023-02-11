@@ -14,6 +14,8 @@ class CfgFunctions
 		{
 			file = "\overthrow_main\functions\cleanup";
 			class cleanup {};
+			class cleanupUnit {};
+			class cleanupVehicle {};
 			class cleanDead {};
 		};
 
@@ -630,31 +632,6 @@ class CfgFunctions
 			file = "\overthrow_main\functions\integration";
 			//class advancedTowingInit {};
 			class detectItems {};
-		};
-	};
-
-	class SHK_pos {
-		class Functions {
-			file="\overthrow_main\functions\geography\SHK_pos";
-
-			class findClosestPosition {};
-			class getMarkerCorners {};
-			class getMarkerShape {};
-			class getPos {};
-			class getPosFromCircle {};
-			class getPosFromEllipse {};
-			class getPosFromRectangle {};
-			class getPosFromSquare {};
-			class isBlacklisted {};
-			class isInCircle {};
-			class isInEllipse {};
-			class isInRectangle {};
-			class isSamePosition {};
-			class rotatePosition {};
-
-			class getPosWrapper {};
-			class getPosMarkerWrapper {};
-			class pos {};
 		};
 	};
 

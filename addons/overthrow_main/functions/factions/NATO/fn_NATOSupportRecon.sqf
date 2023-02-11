@@ -50,7 +50,7 @@ if(_isAir) then {
 		};
 	};
 	_attackdir = _attackdir - 45;
-	_ao = [_posTarget,[350,500],_attackdir + (random 90)] call SHK_pos_fnc_pos;
+	_ao = _posTarget getPos [(350 + random 150), (_attackdir + random 90)];
 	_tgroup = creategroup blufor;
 
 	_spawnpos = _close findEmptyPosition [15,100,OT_NATO_Vehicle_CTRGTransport];
@@ -80,7 +80,7 @@ if(_isAir) then {
 
 	sleep 2;
 
-	_moveto = [_close,500,_dir] call SHK_pos_fnc_pos;
+	_moveto = _close getPos [500, _dir];
 	_wp = _tgroup addWaypoint [_moveto,0];
 	_wp setWaypointType "MOVE";
 	_wp setWaypointBehaviour "COMBAT";
@@ -105,7 +105,7 @@ if(_isAir) then {
 	_wp setWaypointStatements ["true","(vehicle this) AnimateDoor ['Door_rear_source', 0, false];"];
 	_wp setWaypointTimeout [15,15,15];
 
-	_moveto = [_close,200,_dir] call SHK_pos_fnc_pos;
+	_moveto = _close getPos [200, _dir];
 
 	_wp = _tgroup addWaypoint [_moveto,0];
 	_wp setWaypointType "LOITER";
@@ -121,7 +121,7 @@ if(_isAir) then {
 		_x addCuratorEditableObjects [units _tgroup,true];
 	} forEach allCurators;
 }else{
-    _convoypos = [_close,random 360,120] call SHK_pos_fnc_pos;
+    _convoypos = _close getPos [120, random 360];
     private _road = [_convoypos, 150] call BIS_fnc_nearestRoad;
     if (!isNull _road) then {
         _convoypos = (getpos _road);

@@ -246,7 +246,7 @@ if(!dialog) then {
 						private _driver = driver _veh;
 						private _e = [];
 						{
-							private _p = [_pos,[0,50]] call SHK_pos_fnc_pos;
+							private _p = _pos getPos [random 50, random 360];
 							moveOut _x;
 							_x allowDamage false;
 							_x setPos _p;
@@ -255,8 +255,8 @@ if(!dialog) then {
 						sleep 2;
 						disableUserInput false;
 						cutText ["","BLACK IN",3];
-						[(objectParent _driver), _driver] remoteExec ["deleteVehicleCrew", _driver, false];
-						deleteVehicle _veh;
+						[_veh] call OT_fnc_cleanupVehicle;
+						[_driver] call OT_fnc_cleanupUnit;
 						{
 							_x allowDamage true;
 						}foreach(_e);

@@ -37,7 +37,7 @@ if !(OT_NATO_HQ in _abandoned) then {
     sleep 1;
 
     private _dir = (_targetpos getDir OT_NATO_JetPos);
-    private _attackpos = [_targetpos,[200,500],_dir] call SHK_pos_fnc_pos;
+    private _attackpos = _targetpos getPos [(200 + random 300), _dir];
 
     _wp = _group addWaypoint [_attackpos,50];
     _wp setWaypointType "SAD";

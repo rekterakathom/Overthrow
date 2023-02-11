@@ -392,8 +392,7 @@ publicVariable "OT_nextNATOTurn";
 				if !(_name in _abandoned) then {
 					_drone = spawner getVariable [format["drone%1",_name],objNull];
 					if(!alive _drone) then {
-						deleteVehicleCrew _drone;
-						deleteVehicle _drone;
+						[_drone] call OT_fnc_cleanupVehicle;
 					};
 					if((isNull _drone || !alive _drone) && {_resources > 10}) then {
 						_targets = [];
@@ -512,7 +511,7 @@ publicVariable "OT_nextNATOTurn";
 				}foreach([_allTowns,[],{random 100},"DESCEND"] call BIS_fnc_sortBy);
 				if(_lowest != "") then {
 					_townPos = (server getVariable _lowest);
-					_pp = [_townPos,random 360,2000] call SHK_pos_fnc_pos;
+					_pp = _townPos getPos [2000, random 360];
 					_gotpos = [];
 					{
 						_pos = _x select 0;

@@ -42,7 +42,7 @@ sleep 1;
 	_x addCuratorEditableObjects [[_veh]];
 }foreach(allCurators);
 
-_topos = [_attackpos,[0,200]] call SHK_pos_fnc_pos;
+_topos = _attackpos getPos [random 200, random 360];
 
 _wp = _group addWaypoint [_topos,600];
 _wp setWaypointType "SAD";
@@ -50,7 +50,7 @@ _wp setWaypointBehaviour "COMBAT";
 _wp setWaypointSpeed "FULL";
 _wp setWaypointTimeout [30,30,30];
 
-_topos = [_attackpos,[0,200]] call SHK_pos_fnc_pos;
+_topos = _attackpos getPos [random 200, random 360];
 
 _wp = _group addWaypoint [_topos,600];
 _wp setWaypointType "SAD";
@@ -58,7 +58,7 @@ _wp setWaypointBehaviour "COMBAT";
 _wp setWaypointSpeed "FULL";
 _wp setWaypointTimeout [30,30,30];
 
-_topos = [_attackpos,[0,200]] call SHK_pos_fnc_pos;
+_topos = _attackpos getPos [random 200, random 360];
 
 _wp = _group addWaypoint [_topos,600];
 _wp setWaypointType "SAD";
@@ -66,7 +66,7 @@ _wp setWaypointBehaviour "COMBAT";
 _wp setWaypointSpeed "FULL";
 _wp setWaypointTimeout [30,30,30];
 
-_topos = [_attackpos,[0,200]] call SHK_pos_fnc_pos;
+_topos = _attackpos getPos [random 200, random 360];
 
 _wp = _group addWaypoint [_topos,600];
 _wp setWaypointType "SAD";
@@ -74,7 +74,7 @@ _wp setWaypointBehaviour "COMBAT";
 _wp setWaypointSpeed "FULL";
 _wp setWaypointTimeout [30,30,30];
 
-_topos = [_attackpos,[0,200]] call SHK_pos_fnc_pos;
+_topos = _attackpos getPos [random 200, random 360];
 
 _wp = _group addWaypoint [_topos,600];
 _wp setWaypointType "SAD";
@@ -82,7 +82,7 @@ _wp setWaypointBehaviour "COMBAT";
 _wp setWaypointSpeed "FULL";
 _wp setWaypointTimeout [30,30,30];
 
-_topos = [_attackpos,[0,200]] call SHK_pos_fnc_pos;
+_topos = _attackpos getPos [random 200, random 360];
 
 _wp = _group addWaypoint [_topos,0];
 _wp setWaypointType "CYCLE";

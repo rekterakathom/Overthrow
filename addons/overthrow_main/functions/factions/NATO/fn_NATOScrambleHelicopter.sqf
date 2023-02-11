@@ -45,7 +45,7 @@ if !(isNil "_from") then {
     sleep 1;
 
     private _dir = (_targetpos getDir _frompos);
-    private _attackpos = [_targetpos,[100,400],_dir] call SHK_pos_fnc_pos;
+    private _attackpos = _targetpos getPos [(100 + random 300), _dir];
 
     _wp = _group addWaypoint [_attackpos,50];
     _wp setWaypointType "SAD";
@@ -74,8 +74,9 @@ if !(isNil "_from") then {
         while {(count (waypoints _group)) > 0} do {
             deleteWaypoint ((waypoints _group) select 0);
         };
-		_veh land "LAND";
-		waitUntil{sleep 10;(getpos _veh)#2 < 2};
+        _veh land "LAND";
+        // Sometimes helicopters land just briefly and take off again, so checking this every second
+        waitUntil{sleep 1;(getpos _veh)#2 < 2};
     };
     _veh call OT_fnc_cleanup;
     _group call OT_fnc_cleanup;

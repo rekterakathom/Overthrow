@@ -15,8 +15,7 @@ private _targets = [];
 while {sleep 10; alive _drone} do {
     if (((getPos _drone) # 2) < 2) exitWith {
         //Drone has landed?
-        deleteVehicleCrew _drone;
-        deleteVehicle _drone;
+        [_drone] call OT_fnc_cleanupVehicle;
         spawner setVariable [format ["drone%1", _obname], objNull, false];
     };
 
