@@ -14,21 +14,17 @@ if(_force) exitWith {
 if(_vehicle isEqualType grpNull) exitWith {
 	if(count (units _vehicle) isEqualTo 0) exitWith {deleteGroup _vehicle};
 	private _l = (units _vehicle) select 0;
-	[{!((_this#0) call OT_fnc_inSpawnDistance) || _force}, {
+	[{!((_this#0) call OT_fnc_inSpawnDistance)}, {
 		_vehs = [];
 		_this params ["_l","_vehicle"];
 		{
 			if(!isNull objectParent _x) then {_vehs pushBackUnique (objectParent _x)};
 			if !(_x call OT_fnc_hasOwner) then {
-				if (isNull objectParent _x) then {
-					deleteVehicle _x;
-				} else {
-					[(objectParent _x), _x] remoteExec ["deleteVehicleCrew", _x, false];
-				};
+				[_x] call OT_fnc_cleanupUnit;
 			};
 		}foreach(units _vehicle);
 		{
-			deleteVehicle _x;
+			[_x] call OT_fnc_cleanupVehicle;
 		}foreach(_vehs);
 		deleteGroup _vehicle;
 	}, [(units _vehicle) select 0,_vehicle]] call CBA_fnc_waitUntilAndExecute;
@@ -49,7 +45,7 @@ if(OT_adminMode) then {
 	}else{
 		{
 			if !(_x call OT_fnc_hasOwner) then {
-				[(objectParent _x), _x] remoteExec ["deleteVehicleCrew", _x, false];
+				[_x] call OT_fnc_cleanupUnit;
 			};
 		}foreach(crew _vehicle);
 	};

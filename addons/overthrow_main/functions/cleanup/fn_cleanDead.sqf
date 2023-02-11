@@ -2,18 +2,14 @@
     private _veh = _x;
     {
         if (!alive _x) then {
-            [_veh, _x] remoteExecCall ["deleteVehicleCrew", _x];
+            [_x] call OT_fnc_cleanupUnit;
         };
     } foreach crew _veh;
     if (!alive _x) then {
-        deleteVehicle _x;
+        [_x] call OT_fnc_cleanupVehicle;
     };
 } foreach vehicles;
 
 {
-    if (isNull objectParent _x) then {
-            deleteVehicle _x;
-        } else {
-            [(objectParent _x), _x] remoteExec ["deleteVehicleCrew", _x, false];
-        };
+    [_x] call OT_fnc_cleanupUnit;
 } foreach allDeadMen;

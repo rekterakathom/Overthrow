@@ -255,8 +255,8 @@ if(!dialog) then {
 						sleep 2;
 						disableUserInput false;
 						cutText ["","BLACK IN",3];
-						[(objectParent _driver), _driver] remoteExec ["deleteVehicleCrew", _driver, false];
-						deleteVehicle _veh;
+						[_veh] call OT_fnc_cleanupVehicle;
+						[_driver] call OT_fnc_cleanupUnit;
 						{
 							_x allowDamage true;
 						}foreach(_e);
