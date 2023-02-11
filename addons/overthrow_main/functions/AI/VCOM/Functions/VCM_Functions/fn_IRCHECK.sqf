@@ -45,13 +45,10 @@ while {alive player && {Vcm_ActivateAI}} do
 							[_ne,player],
 							{
 								params ["_ne","_unit"];
-								if (local _ne) then
-								{
-									private _kv = _ne knowsAbout _unit;
-									_ne reveal [_unit,(_kv + 0.4)];
-								};								
+								private _kv = _ne knowsAbout _unit;
+								_ne reveal [_unit,(_kv + 0.4)];							
 							}
-						] remoteExec ["bis_fnc_call",0];		
+						] remoteExec ["bis_fnc_call", _ne, false];		
 					};					
 					_chunkN = _chunkN + 1;
 					sleep 0.1;
