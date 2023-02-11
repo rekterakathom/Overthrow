@@ -511,7 +511,7 @@ publicVariable "OT_nextNATOTurn";
 				}foreach([_allTowns,[],{random 100},"DESCEND"] call BIS_fnc_sortBy);
 				if(_lowest != "") then {
 					_townPos = (server getVariable _lowest);
-					_pp = [_townPos,random 360,2000] call SHK_pos_fnc_pos;
+					_pp = _townPos getPos [2000, random 360];
 					_gotpos = [];
 					{
 						_pos = _x select 0;
