@@ -159,7 +159,7 @@ OT_NATO_Mortar = "B_Mortar_01_F";
 
 OT_NATO_Vehicle_HVT = "B_MRAP_01_F";
 
-OT_NATO_Vehicle_CTRGTransport = "B_CTRG_Heli_Transport_01_tropic_F";
+OT_NATO_Vehicle_CTRGTransport = "B_CTRG_Heli_Transport_01_sand_F";
 
 OT_NATO_weapons_Police = [];
 OT_NATO_weapons_Pistols = ["hgun_Pistol_heavy_01_F","hgun_ACPC2_F","hgun_P07_F","hgun_Rook40_F"];

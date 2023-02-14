@@ -156,7 +156,7 @@ OT_NATO_Barrier_Large = "Land_HBarrier_01_wall_6_green_F";
 
 OT_NATO_Mortar = "B_T_Mortar_01_F";
 
-OT_NATO_Vehicle_HVT = "B_MRAP_01_F";
+OT_NATO_Vehicle_HVT = "B_T_MRAP_01_F";
 
 OT_NATO_Vehicle_CTRGTransport = "B_CTRG_Heli_Transport_01_tropic_F";
 

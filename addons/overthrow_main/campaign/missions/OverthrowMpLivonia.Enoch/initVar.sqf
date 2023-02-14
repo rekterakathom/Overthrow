@@ -177,7 +177,7 @@ OT_NATO_Vehicle_PoliceHeli = "B_Heli_Light_01_F";
 OT_NATO_Vehicle_Quad = "B_Quadbike_01_F";
 OT_NATO_Vehicle_Police = "B_GEN_Offroad_01_gen_F";
 OT_NATO_Vehicle_Transport = ["B_T_Truck_01_transport_F","B_T_Truck_01_covered_F"];
-OT_NATO_Vehicle_Transport_Light = "B_LSV_01_unarmed_F";
+OT_NATO_Vehicle_Transport_Light = "B_T_LSV_01_unarmed_F";
 OT_NATO_Vehicles_PoliceSupport = ["B_T_MRAP_01_hmg_F","B_T_MRAP_01_gmg_F","B_T_LSV_01_armed_F","B_Heli_Light_01_armed_F"];
 OT_NATO_Vehicles_ReconDrone = "B_UAV_01_F";
 OT_NATO_Vehicles_CASDrone = "B_UAV_02_CAS_F";
@@ -199,7 +199,7 @@ OT_NATO_Barrier_Large = "Land_HBarrier_01_wall_6_green_F";
 
 OT_NATO_Mortar = "B_T_Mortar_01_F";
 
-OT_NATO_Vehicle_HVT = "B_MRAP_01_F";
+OT_NATO_Vehicle_HVT = "B_T_MRAP_01_F";
 
 OT_NATO_Vehicle_CTRGTransport = "B_CTRG_Heli_Transport_01_tropic_F";
 
