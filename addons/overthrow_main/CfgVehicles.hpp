@@ -564,8 +564,11 @@ class CfgVehicles {
     };
 
     // Custom units
+    #define MAG_2(a) a, a
     #define MAG_3(a) a, a, a
+    #define MAG_4(a) a, a, a, a
     #define MAG_5(a) a, a, a, a, a
+    #define MAG_6(a) a, a, a, a, a, a
 
     // Base class (unit class of other mod)
     class B_Gen_Commander_F;
@@ -603,6 +606,83 @@ class CfgVehicles {
         respawnWeapons[] = {arifle_SPAR_01_blk_ACO_Pointer_F, hgun_P07_blk_F, Throw, Put, Binocular};
         linkedItems[] = {V_PlateCarrier2_blk, H_Beret_gen_F, ItemMap, ItemCompass, ItemWatch, ItemRadio, NVGoggles_OPFOR};
         respawnLinkedItems[] = {V_PlateCarrier2_blk, H_Beret_gen_F, ItemMap, ItemCompass, ItemWatch, ItemRadio, NVGoggles_OPFOR};
+    };
+
+    // Recon units for woodland NATO, based on existing recon units for Altis and Pacific and regular woodland NATO infantry.
+    class B_recon_exp_F;
+    class B_W_Recon_Exp_F: B_recon_exp_F {
+        author = "Tuupertunut";
+        faction = "BLU_W_F";
+        uniformClass = "U_B_CombatUniform_tshirt_mcam_wdL_f";
+        backpack = "B_Kitbag_rgr_BTReconExp_F";
+        #define weaps {"arifle_MX_Black_ACO_Pointer_Snds_F", "hgun_P07_khk_F", "Throw", "Put"}
+        weapons[] = weaps; respawnWeapons[] = weaps;
+        #define mags {MAG_6("30Rnd_65x39_caseless_black_mag"), MAG_3("16Rnd_9x21_Mag"), MAG_3("APERSMine_Range_Mag"), MAG_2("MiniGrenade"), "SmokeShell", "SmokeShellGreen", MAG_2("Chemlight_green")}
+        magazines[] = mags; respawnMagazines[] = mags;
+        #define links {"H_Booniehat_wdl", "V_Chestrig_rgr", "ItemGPS", "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio", "NVGoggles_INDEP"}
+        linkedItems[] = links; respawnLinkedItems[] = links;
+    };
+    class B_recon_JTAC_F;
+    class B_W_Recon_JTAC_F: B_recon_JTAC_F {
+        author = "Tuupertunut";
+        faction = "BLU_W_F";
+        uniformClass = "U_B_CombatUniform_mcam_wdl_f";
+        #define weaps {"arifle_MX_GL_Black_Holo_Pointer_Snds_F", "hgun_P07_khk_F", "Throw", "Put", "Laserdesignator_01_khk_F"}
+        weapons[] = weaps; respawnWeapons[] = weaps;
+        #define mags {MAG_6("30Rnd_65x39_caseless_black_mag"), MAG_3("16Rnd_9x21_Mag"), MAG_2("MiniGrenade"), MAG_2("B_IR_Grenade"), MAG_6("1Rnd_HE_Grenade_shell"), "Laserbatteries", "SmokeShell", "SmokeShellGreen", MAG_2("Chemlight_green"), MAG_2("1Rnd_Smoke_Grenade_shell"), "1Rnd_SmokeBlue_Grenade_shell", "1Rnd_SmokeGreen_Grenade_shell", "1Rnd_SmokeOrange_Grenade_shell"}
+        magazines[] = mags; respawnMagazines[] = mags;
+        #define links {"H_Watchcap_camo", "V_Chestrig_rgr", "ItemGPS", "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio", "NVGoggles_INDEP"}
+        linkedItems[] = links; respawnLinkedItems[] = links;
+    };
+    class B_recon_M_F;
+    class B_W_Recon_M_F: B_recon_M_F {
+        author = "Tuupertunut";
+        faction = "BLU_W_F";
+        uniformClass = "U_B_CombatUniform_mcam_wdl_f";
+        #define weaps {"arifle_MXM_Black_MOS_Pointer_Bipod_Snds_F", "hgun_P07_khk_F", "Throw", "Put", "Rangefinder"}
+        weapons[] = weaps; respawnWeapons[] = weaps;
+        #define mags {MAG_6("30Rnd_65x39_caseless_black_mag"), MAG_3("16Rnd_9x21_Mag"), MAG_2("MiniGrenade"), "SmokeShell", "SmokeShellGreen", MAG_2("Chemlight_green")}
+        magazines[] = mags; respawnMagazines[] = mags;
+        #define links {"H_Booniehat_wdl", "V_Chestrig_rgr", "ItemGPS", "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio", "NVGoggles_INDEP"}
+        linkedItems[] = links; respawnLinkedItems[] = links;
+    };
+    class B_recon_medic_F;
+    class B_W_Recon_Medic_F: B_recon_medic_F {
+        author = "Tuupertunut";
+        faction = "BLU_W_F";
+        uniformClass = "U_B_CombatUniform_tshirt_mcam_wdL_f";
+        backpack = "B_AssaultPack_wdl_BWReconMedic";
+        #define weaps {"arifle_MXC_Black_ACO_Pointer_Snds_F", "hgun_P07_khk_F", "Throw", "Put"}
+        weapons[] = weaps; respawnWeapons[] = weaps;
+        #define mags {MAG_6("30Rnd_65x39_caseless_black_mag"), MAG_3("16Rnd_9x21_Mag"), MAG_2("MiniGrenade"), "SmokeShell", "SmokeShellGreen", MAG_2("Chemlight_green")}
+        magazines[] = mags; respawnMagazines[] = mags;
+        #define links {"H_HelmetB_light_wdl", "V_Chestrig_rgr", "ItemGPS", "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio", "NVGoggles_INDEP"}
+        linkedItems[] = links; respawnLinkedItems[] = links;
+    };
+    class B_recon_LAT_F;
+    class B_W_Recon_LAT_F: B_recon_LAT_F {
+        author = "Tuupertunut";
+        faction = "BLU_W_F";
+        uniformClass = "U_B_CombatUniform_tshirt_mcam_wdL_f";
+        backpack = "B_AssaultPack_wdl_BWLAT_F";
+        #define weaps {"arifle_MX_Black_ACO_Pointer_Snds_F", "launch_NLAW_F", "hgun_P07_khk_F", "Throw", "Put"}
+        weapons[] = weaps; respawnWeapons[] = weaps;
+        #define mags {MAG_6("30Rnd_65x39_caseless_black_mag"), MAG_3("16Rnd_9x21_Mag"), "NLAW_F", MAG_2("MiniGrenade"), "SmokeShell", "SmokeShellGreen", MAG_2("Chemlight_green")}
+        magazines[] = mags; respawnMagazines[] = mags;
+        #define links {"H_HelmetB_plain_wdl", "V_Chestrig_rgr", "ItemGPS", "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio", "NVGoggles_INDEP"}
+        linkedItems[] = links; respawnLinkedItems[] = links;
+    };
+    class B_recon_TL_F;
+    class B_W_Recon_TL_F: B_recon_TL_F {
+        author = "Tuupertunut";
+        faction = "BLU_W_F";
+        uniformClass = "U_B_CombatUniform_vest_mcam_wdl_f";
+        #define weaps {"arifle_MX_Black_Hamr_Pointer_Snds_F", "hgun_P07_khk_F", "Throw", "Put", "Rangefinder"}
+        weapons[] = weaps; respawnWeapons[] = weaps;
+        #define mags {MAG_4("30Rnd_65x39_caseless_black_mag"), MAG_2("30Rnd_65x39_caseless_black_mag_Tracer"), MAG_2("16Rnd_9x21_Mag"), MAG_2("MiniGrenade"), "SmokeShell", "SmokeShellGreen", "SmokeShellBlue", "SmokeShellOrange", MAG_2("Chemlight_green")}
+        magazines[] = mags; respawnMagazines[] = mags;
+        #define links {"H_MilCap_wdl", "V_Chestrig_rgr", "ItemGPS", "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio", "NVGoggles_INDEP"}
+        linkedItems[] = links; respawnLinkedItems[] = links;
     };
 
     // Flagpole object with Malden flag

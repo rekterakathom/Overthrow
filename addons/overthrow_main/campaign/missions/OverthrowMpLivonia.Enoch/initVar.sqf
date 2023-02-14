@@ -10,10 +10,10 @@ OT_startCameraTarget = [9154.2,987.363,50];
 
 //Used to control updates and persistent save compatability. When these numbers go up, that section will be reinitialized on load if required. (ie leave them alone)
 OT_economyVersion = 1;
-OT_NATOversion = 1;
+OT_NATOversion = 2;
 OT_CRIMversion = 1;
 
-OT_faction_NATO = "BLU_T_F";
+OT_faction_NATO = "BLU_W_F";
 OT_spawnFaction = "IND_F"; //This faction will have a rep in spawn town
 
 OT_flag_NATO = "Flag_NATO_F"; // Flag objects in bases
@@ -163,11 +163,11 @@ OT_NATO_CommTowers = ["Land_TTowerBig_1_F","Land_TTowerBig_2_F"];
 
 OT_NATO_Unit_Sniper = "B_T_Sniper_F";
 OT_NATO_Unit_Spotter = "B_T_Spotter_F";
-OT_NATO_Unit_AA_spec = "B_T_Soldier_AA_F";
-OT_NATO_Unit_AA_ass = "B_T_Soldier_AAA_F";
-OT_NATO_Unit_HVT = "B_T_Officer_F";
-OT_NATO_Unit_TeamLeader = "B_T_Soldier_TL_F";
-OT_NATO_Unit_SquadLeader = "B_T_Soldier_SL_F";
+OT_NATO_Unit_AA_spec = "B_W_Soldier_AA_F";
+OT_NATO_Unit_AA_ass = "B_W_Soldier_AAA_F";
+OT_NATO_Unit_HVT = "B_W_Officer_F";
+OT_NATO_Unit_TeamLeader = "B_W_Soldier_TL_F";
+OT_NATO_Unit_SquadLeader = "B_W_Soldier_SL_F";
 
 OT_NATO_Unit_PoliceCommander = "B_Gen_Commander_F";
 OT_NATO_Unit_PoliceCommander_Heavy = "B_Gen_Commander_Heavy_F";
