@@ -4,9 +4,8 @@ OT_NATO_Group_Recon = "";
 OT_NATO_Group_Engineers = "";
 {
 	private _name = configName _x;
-	if((_name find "Recon") > -1) then {
+	if((_name find "ReconTeam") > -1) then {
 		OT_NATO_Group_Recon = _name;
-		OT_NATO_Group_Engineers = _name;
 	};
 	private _numtroops = count("true" configClasses _x);
 	if(_numtroops > 5) then {
@@ -35,18 +34,6 @@ private _c = 0;
 	if(!(_name isEqualTo OT_NATO_Unit_Police) && !(_name isEqualTo OT_NATO_Unit_PoliceCommander)) then {
 		[_name] call {
 			params ["_name"];
-			if((_name find "_TL_") > -1) exitWith {
-				OT_NATO_Unit_TeamLeader = _name;
-			};
-			if((_name find "_SL_") > -1) exitWith {
-				OT_NATO_Unit_SquadLeader = _name;
-			};
-			if((_name find "_Officer_") > -1 || (_name find "_officer_") > -1) exitWith {
-				OT_NATO_Unit_HVT = _name
-			};
-			if((_name find "_CTRG_") > -1) exitWith {
-				OT_NATO_Units_CTRGSupport pushback _name
-			};
 			if(
 				(_name find "_Recon_") > -1
 				|| (_name find "_recon_") > -1
@@ -54,14 +41,18 @@ private _c = 0;
 				|| (_name find "_Story_") > -1
 				|| (_name find "_lite_") > -1
 				|| (_name find "_HeavyGunner_") > -1
+				|| (_name find "_TL_") > -1
+				|| (_name find "_SL_") > -1
+				|| (_name find "_Officer_") > -1
+				|| (_name find "_officer_") > -1
 			) exitWith {};
+			if((_name find "_CTRG_") > -1) exitWith {
+				OT_NATO_Units_CTRGSupport pushback _name
+			};
 
 			private _role = getText (_x >> "role");
 			if(_role in ["MachineGunner","Rifleman","CombatLifeSaver"]) then {OT_NATO_Units_LevelOne pushback _name};
 			if(_role in ["Grenadier","MissileSpecialist","Marksman"]) then {OT_NATO_Units_LevelTwo pushback _name};
-			if(_role == "Marksman" && (_name find "Sniper") > -1) then {OT_NATO_Unit_Sniper = _name};
-			if(_role == "Marksman" && (_name find "Spotter") > -1) then {OT_NATO_Unit_Spotter = _name};
-			if(_role == "MissileSpecialist" && (_name find "_AA_") > -1) then {OT_NATO_Unit_AA_spec = _name};
 
 			//Generate and cache alternative loadouts for this unit
 			private _loadout = getUnitLoadout _unitCfg;

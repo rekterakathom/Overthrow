@@ -72,10 +72,9 @@ private _title = format["Deliver %1 x %2 for %3 store in %4",_numitems,_itemname
         _civ disableAI "MOVE";
         _civ setVariable ["OT_delivery",[_itemcls,_numitems],true];
 
-        //Set face,voice and uniform
-        [_civ, selectRandom OT_faces_local] remoteExecCall ["setFace", 0, _civ];
-        [_civ, selectRandom OT_voices_local] remoteExecCall ["setSpeaker", 0, _civ];
-        _civ forceAddUniform (selectRandom OT_clothes_locals);
+        private _identity = call OT_fnc_randomLocalIdentity;
+        _identity pushBack (selectRandom OT_voices_local);
+        [_civ, _identity] call OT_fnc_applyIdentity;
 
         //Make sure hes in the group
         [_civ] joinSilent nil;

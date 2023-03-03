@@ -16,19 +16,22 @@ OT_CRIMversion = 1;
 OT_faction_NATO = "BLU_F";
 OT_spawnFaction = "IND_G_F"; //This faction will have a rep in spawn town
 
-OT_flag_NATO = "Flag_NATO_F";
+OT_flag_NATO = "Flag_NATO_F"; // Flag objects in bases
 OT_flag_CRIM = "Flag_Syndikat_F";
-OT_flag_IND = "Flag_Green_F";
-OT_flagImage = "\overthrow_main\flags\flag_malden.paa";
-OT_flagMarker = "flag_Malden";
+OT_flag_IND = "OT_Flag_Malden_F";
+OT_flagImage = "\overthrow_main\flags\flag_malden_marker.paa"; // Gun dealer icon on map
+OT_flagMarker = "flag_Malden"; // Friendly base marker on map
 
 OT_populationMultiplier = 0.5; //Used to tweak populations per map
 
 //Interactable items that spawn in your house
 OT_item_Storage = "B_CargoNet_01_ammo_F"; //Your spawn ammobox
+OT_item_Desk = "OfficeTable_01_new_F"; //Your spawn desk
+OT_item_Radio = "Land_PortableLongRangeRadio_F";
 OT_item_Map = "Mapboard_Malden_F";
 OT_item_Tent = "Land_TentDome_F";
 OT_item_Safe = "Land_MetalCase_01_small_F";
+OT_item_Workbench = "Land_Workbench_01_F";
 
 //Animals to spawn (@todo: spawn animals)
 OT_allLowAnimals = ["Rabbit_F","Turtle_F"];
@@ -156,7 +159,7 @@ OT_NATO_Mortar = "B_Mortar_01_F";
 
 OT_NATO_Vehicle_HVT = "B_MRAP_01_F";
 
-OT_NATO_Vehicle_CTRGTransport = "B_CTRG_Heli_Transport_01_tropic_F";
+OT_NATO_Vehicle_CTRGTransport = "B_CTRG_Heli_Transport_01_sand_F";
 
 OT_NATO_weapons_Police = [];
 OT_NATO_weapons_Pistols = ["hgun_Pistol_heavy_01_F","hgun_ACPC2_F","hgun_P07_F","hgun_Rook40_F"];

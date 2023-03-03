@@ -206,6 +206,7 @@ class Extended_PreInit_EventHandlers {
 #include "CfgWeapons.hpp"
 #include "CfgFunctions.hpp"
 #include "CfgMagazines.hpp"
+#include "CfgGroups.hpp"
 #include "missions\CfgOverthrowMissions.hpp"
 
 #include "ui\dialogs\defines.hpp"

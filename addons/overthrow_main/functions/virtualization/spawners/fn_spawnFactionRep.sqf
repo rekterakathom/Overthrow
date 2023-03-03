@@ -16,18 +16,15 @@ _groups pushback _group;
 
 _shopkeeper = _group createUnit [OT_civType_shopkeeper, _pos, [],0, "NONE"];
 
-//Set face/voice && uniform
-[_shopkeeper, (selectRandom OT_faces_local)] remoteExecCall ["setFace", 0, _shopkeeper];
-[_shopkeeper, "NoVoice"] remoteExecCall ["setSpeaker", 0, _shopkeeper];
-_shopkeeper forceAddUniform (selectRandom OT_clothes_locals);
+private _identity = call OT_fnc_randomLocalIdentity;
+_identity set [3, selectRandom OT_allGlasses];
+[_shopkeeper, _identity] call OT_fnc_applyIdentity;
 
-removeAllItems _shopkeeper;
+removeBackpack _shopkeeper;
 removeHeadgear _shopkeeper;
 removeAllWeapons _shopkeeper;
 removeVest _shopkeeper;
 removeAllAssignedItems _shopkeeper;
-
-_shopkeeper addGoggles (selectRandom OT_allGlasses);
 
 _shopkeeper allowDamage false;
 _shopkeeper disableAI "MOVE";

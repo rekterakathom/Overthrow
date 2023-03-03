@@ -40,17 +40,19 @@ private _abandoned = server getVariable ["NATOabandoned",[]];
     };
 }foreach([OT_allTowns,[],{random 100},"ASCEND"] call BIS_fnc_SortBy);
 
+//Give our VIP an identity
+private _identity = call OT_fnc_randomLocalIdentity;
+_identity pushBack (selectRandom OT_voices_local);
 
-//Give our VIP a name
-private _firstname = OT_firstNames_local call BIS_fnc_selectRandom;
-private _lastname = OT_lastNames_local call BIS_fnc_selectRandom;
-private _fullname = [format["%1 %2",_firstname,_lastname],_firstname,_lastname];
+private _firstname = OT_firstNames_local # (_identity # 2 # 0);
+private _lastname = OT_lastNames_local # (_identity # 2 # 1);
+private _fullname = format["%1 %2",_firstname,_lastname];
 
-private _params = [_faction,_pickup,_destination,_fullname];
+private _params = [_faction,_pickup,_destination,_identity];
 private _markerPos = _destination;
 
 //Build a mission description and title
-private _description = format["Our intelligence operative %1 is in need of transport from %2 to %3. He is of local descent so you should have no problems passing through NATO checkpoints unnoticed. Please take care of it within 12 hrs.<br/><br/>Reward: +5 (%4), $250",_fullname select 0,_pickupTown,_destinationTown,_factionName];
+private _description = format["Our intelligence operative %1 is in need of transport from %2 to %3. He is of local descent so you should have no problems passing through NATO checkpoints unnoticed. Please take care of it within 12 hrs.<br/><br/>Reward: +5 (%4), $250",_fullname,_pickupTown,_destinationTown,_factionName];
 private _title = format["Operative transport for %1",_factionName];
 
 //The data below is what is returned to the gun dealer/faction rep, _markerPos is where to put the mission marker, the code in {} brackets is the actual mission code, only run if the player accepts
@@ -58,17 +60,13 @@ private _title = format["Operative transport for %1",_factionName];
     [_title,_description],
     _markerPos,
     {
-        params ["_faction","_pickup","_destination","_fullname"];
+        params ["_faction","_pickup","_destination","_identity"];
 
         //Spawn the dude
         private _civ = (group player) createUnit [OT_civType_gunDealer, _pickup, [],0, "NONE"];
         _civ setVariable ["notalk",true,true]; //Tells Overthrow this guy cannot be recruited etc
-        _civ setName _fullname;
 
-        //Set face,voice and uniform
-        [_civ, (OT_faces_local call BIS_fnc_selectRandom)] remoteExecCall ["setFace", 0, _civ];
-        [_civ, (OT_voices_local call BIS_fnc_selectRandom)] remoteExecCall ["setSpeaker", 0, _civ];
-        _civ forceAddUniform (OT_clothes_locals call BIS_fnc_selectRandom);
+        [_civ, _identity] call OT_fnc_applyIdentity;
 
         //Make sure hes in our group
         [_civ] joinSilent nil;
@@ -97,7 +95,7 @@ private _title = format["Operative transport for %1",_factionName];
     },
     {
         //Cleanup
-        params ["_faction","_pickup","_destination","_fullname","_civ","_wassuccess"];
+        params ["_faction","_pickup","_destination","_identity","_civ","_wassuccess"];
 
         _group = createGroup civilian;
         [_civ] joinSilent nil;

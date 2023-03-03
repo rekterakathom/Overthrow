@@ -1,4 +1,4 @@
-params ["_unit","_town","_vest","_gangid"];
+params ["_unit","_town","_identity","_gangid"];
 
 _unit setVariable ["criminal",true,false];
 _unit setVariable ["civ",nil,false];
@@ -10,6 +10,14 @@ _unit setSkill 0.4 + (random 0.4);
 _unit removeAllEventHandlers "FiredNear";
 private _gang = OT_civilians getVariable [format["gang%1",_gangid],[]];
 _unit setUnitLoadout [_gang select 5,true];
+
+if(isNil "_identity" || { _identity isEqualTo [] }) then {
+	_identity = call OT_fnc_randomLocalIdentity;
+	_identity set [1, selectRandom OT_CRIM_Clothes];
+	_identity set [3, selectRandom OT_CRIM_Goggles];
+	_identity pushBack (selectRandom OT_voices_local);
+};
+[_unit,_identity] call OT_fnc_applyIdentity;
 
 if((random 100) < 15) then {
 	_unit addItem "OT_Ganja";
@@ -46,6 +54,5 @@ if((random 100) < 15) then {
 		for "_i" from 1 to round(random 15) do {_unit addItemToBackpack "OT_Ganja";};
 	};
 };
-_unit addGoggles (selectRandom OT_CRIM_Goggles);
 
 _unit addEventHandler ["Dammaged", OT_fnc_EnemyDamagedHandler];

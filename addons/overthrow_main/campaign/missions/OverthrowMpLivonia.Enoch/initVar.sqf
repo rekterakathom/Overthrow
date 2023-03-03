@@ -10,17 +10,17 @@ OT_startCameraTarget = [9154.2,987.363,50];
 
 //Used to control updates and persistent save compatability. When these numbers go up, that section will be reinitialized on load if required. (ie leave them alone)
 OT_economyVersion = 1;
-OT_NATOversion = 1;
+OT_NATOversion = 2;
 OT_CRIMversion = 1;
 
-OT_faction_NATO = "BLU_T_F";
+OT_faction_NATO = "BLU_W_F";
 OT_spawnFaction = "IND_F"; //This faction will have a rep in spawn town
 
-OT_flag_NATO = "Flag_NATO_F";
+OT_flag_NATO = "Flag_NATO_F"; // Flag objects in bases
 OT_flag_CRIM = "Flag_Syndikat_F";
-OT_flag_IND = "Flag_HorizonIslands_F";
-OT_flagImage = "\A3\ui_f\data\map\markers\flags\Tanoa_ca.paa";
-OT_flagMarker = "flag_Tanoa";
+OT_flag_IND = "Flag_Enoch_F";
+OT_flagImage = "\A3\UI_F_Enoch\Data\CfgMarkers\Livonia_CA.paa"; // Gun dealer icon on map
+OT_flagMarker = "flag_Enoch"; // Friendly base marker on map
 
 OT_populationMultiplier = 0.8; //Used to tweak populations per map
 
@@ -89,8 +89,8 @@ OT_fuelPumps = ["Land_FuelStation_03_pump_F","Land_FuelStation_Feed_F"];
 
 OT_churches = ["Land_Church_03_F","Land_Church_01_F","Land_Church_02_F","Land_Temple_Native_01_F"];
 
-OT_language_local = "LanguageENG_F";
-OT_identity_local = "Head_Euro";
+OT_language_local = "LanguagePOL_F";
+OT_identity_local = "Head_Enoch";
 
 OT_language_western = "LanguageENG_F";
 OT_identity_western = "Head_Euro";
@@ -163,11 +163,11 @@ OT_NATO_CommTowers = ["Land_TTowerBig_1_F","Land_TTowerBig_2_F"];
 
 OT_NATO_Unit_Sniper = "B_T_Sniper_F";
 OT_NATO_Unit_Spotter = "B_T_Spotter_F";
-OT_NATO_Unit_AA_spec = "B_T_Soldier_AA_F";
-OT_NATO_Unit_AA_ass = "B_T_Soldier_AAA_F";
-OT_NATO_Unit_HVT = "B_T_Officer_F";
-OT_NATO_Unit_TeamLeader = "B_T_Soldier_TL_F";
-OT_NATO_Unit_SquadLeader = "B_T_Soldier_SL_F";
+OT_NATO_Unit_AA_spec = "B_W_Soldier_AA_F";
+OT_NATO_Unit_AA_ass = "B_W_Soldier_AAA_F";
+OT_NATO_Unit_HVT = "B_W_Officer_F";
+OT_NATO_Unit_TeamLeader = "B_W_Soldier_TL_F";
+OT_NATO_Unit_SquadLeader = "B_W_Soldier_SL_F";
 
 OT_NATO_Unit_PoliceCommander = "B_Gen_Commander_F";
 OT_NATO_Unit_PoliceCommander_Heavy = "B_Gen_Commander_Heavy_F";
@@ -177,7 +177,7 @@ OT_NATO_Vehicle_PoliceHeli = "B_Heli_Light_01_F";
 OT_NATO_Vehicle_Quad = "B_Quadbike_01_F";
 OT_NATO_Vehicle_Police = "B_GEN_Offroad_01_gen_F";
 OT_NATO_Vehicle_Transport = ["B_T_Truck_01_transport_F","B_T_Truck_01_covered_F"];
-OT_NATO_Vehicle_Transport_Light = "B_LSV_01_unarmed_F";
+OT_NATO_Vehicle_Transport_Light = "B_T_LSV_01_unarmed_F";
 OT_NATO_Vehicles_PoliceSupport = ["B_T_MRAP_01_hmg_F","B_T_MRAP_01_gmg_F","B_T_LSV_01_armed_F","B_Heli_Light_01_armed_F"];
 OT_NATO_Vehicles_ReconDrone = "B_UAV_01_F";
 OT_NATO_Vehicles_CASDrone = "B_UAV_02_CAS_F";
@@ -199,7 +199,7 @@ OT_NATO_Barrier_Large = "Land_HBarrier_01_wall_6_green_F";
 
 OT_NATO_Mortar = "B_T_Mortar_01_F";
 
-OT_NATO_Vehicle_HVT = "B_MRAP_01_F";
+OT_NATO_Vehicle_HVT = "B_T_MRAP_01_F";
 
 OT_NATO_Vehicle_CTRGTransport = "B_CTRG_Heli_Transport_01_tropic_F";
 

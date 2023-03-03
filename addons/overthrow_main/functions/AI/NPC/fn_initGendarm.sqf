@@ -1,7 +1,10 @@
 params ["_unit","_town"];
 
-[_unit, (selectRandom OT_faces_local)] remoteExecCall ["setFace", 0, _unit];
-[_unit, (selectRandom OT_voices_local)] remoteExecCall ["setSpeaker", 0, _unit];
+private _identity = call OT_fnc_randomLocalIdentity;
+_identity set [1, ""]; // Retain original gendarme clothes
+_identity set [3, ""]; // No glasses for gendarme
+_identity pushBack (selectRandom OT_voices_local);
+[_unit,_identity] call OT_fnc_applyIdentity;
 
 _unit setVariable ["garrison",_town,false];
 

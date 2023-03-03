@@ -66,7 +66,7 @@ class CfgMarkers
 	class flag_Malden
 	{
 		name = "Malden";
-		icon = "\overthrow_main\flags\flag_malden.paa";
+		icon = "\overthrow_main\flags\flag_malden_marker.paa";
 		color[] = {1, 1, 1, 1};
 		size = 32;
 		shadow = true;
