@@ -37,5 +37,5 @@ A dynamic and persistent revolution campaign mod for ARMA 3 Apex
 * ACE3 (Fully integrated) [(Steam Workshop)](https://steamcommunity.com/sharedfiles/filedetails/?id=463939057)
 
 # To install
-* Overthrow is available on the [Steam Workshop](http://steamcommunity.com/sharedfiles/filedetails/?id=774201744)
+* Overthrow is available on the [Steam Workshop](http://steamcommunity.com/sharedfiles/filedetails/?id=2824471652)
 * or from [Github](https://github.com/ArmaOverthrow/Overthrow.Tanoa/releases/latest)
