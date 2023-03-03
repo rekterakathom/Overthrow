@@ -267,15 +267,16 @@ private _road = objNull;
 	_groups pushback _vgroup;
 	private _vehtype = _x;
 	private _got = false;
-	private _pos = _posTown findEmptyPosition [25,250,_vehtype];
-	if ((count _pos)==0) then {//added to correct error
-	    _pos = [0,0,0];
-	};
+	private _pos = _posTown findEmptyPosition [10,250,_vehtype];
+	if (count _pos == 0) then {_pos = _posTown findEmptyPosition [0,250,_vehtype]};
 	private _dir = random 360;
 
+	// if position is on road, randomize a little and try again, until it is not on road
 	private _loops = 0;
 	while {(isOnRoad _pos) && (_loops < 50)} do {
-		_pos = _posTown findEmptyPosition [25,250,_vehtype];
+		private _newRandomPos = _posTown getPos [random 100, random 360];
+		_pos = _newRandomPos findEmptyPosition [10,250,_vehtype];
+		if (count _pos == 0) then {_pos = _newRandomPos findEmptyPosition [0,250,_vehtype]};
 		_loops = _loops + 1;
 	};
 
