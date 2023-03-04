@@ -2,6 +2,7 @@
 
 private _cfgVehicles = configfile >> "CfgVehicles";
 private _cfgWeapons = configFile >> "CfgWeapons";
+private _cfgMagazines = configFIle >> "CfgMagazines";
 
 OT_ACEremoveAction = [
 	"OT_Remove",
@@ -647,16 +648,26 @@ OT_allBLURifleMagazines = [];
 
 {
 	private _name = configName _x;
+	private _caliberRegex = "(\d*\.\d+)\s*x\s*(\d+)|(\d+)\.(\d+)|\.(\d+)|(\d+)x(\d+)|(\d+)\s*GA/i";
 	_name = [_name] call BIS_fnc_baseWeapon;
 
 	private _short = getText (_cfgWeapons >> _name >> "descriptionShort");
 
-	private _s = _short splitString ":";
-	private _caliber = " 5.56";
+	private _caliber = (_short regexFind [_caliberRegex]);
 	private _haslauncher = false;
-	if(count _s > 1) then{
-		_s = (_s select 1) splitString "x";
-		_caliber = _s select 0;
+	if (_caliber isNotEqualTo []) then {
+		_caliber = _caliber # 0 # 0 # 0;
+	} else {
+		// We didn't find a caliber. Start looping through mags until we find a caliber.
+		private _magazines = getArray (_cfgWeapons >> _name >> "magazines");
+		{
+			private _magName = getText (_cfgMagazines >> _x >> "displayName");
+			private _magCaliber =  _magName regexFind [_caliberRegex];
+			if (_magCaliber isNotEqualTo []) exitWith {_caliber = _magCaliber # 0 # 0 # 0};
+			private _magDescription = getText (_cfgMagazines >> _x >> "descriptionShort");
+			private _magCaliber =  _magDescription regexFind [_caliberRegex];
+			if (_magCaliber isNotEqualTo []) exitWith {_caliber = _magCaliber # 0 # 0 # 0};
+		} forEach _magazines; 
 	};
 
 	private _weapon = [_name] call BIS_fnc_itemType;
@@ -674,20 +685,21 @@ OT_allBLURifleMagazines = [];
 
 		if (_weaponType == "SubmachineGun") exitWith {
 			OT_allSubMachineGuns pushBack _name;
-			[250, 0.5];
+			[350, 1];
 		};
 		if (_weaponType == "AssaultRifle") exitWith {
 			private _cost = [_caliber] call {
 				params ["_caliber"];
-				if(_caliber == " 5.56" || _caliber == "5.56" || _caliber == " 5.45" || _caliber == " 5.8") exitWith {500};
-				if(_caliber == " 12 gauge") exitWith {1200};
-				if(_caliber == " .408") exitWith {4000};
-				if(_caliber == " .338 Lapua Magnum" || _caliber == " .303") exitWith {700};
-				if(_caliber == " 9") exitWith {400}; //9x21mm
-				if(_caliber == " 6.5") exitWith {1000};
-				if(_caliber == " 7.62") exitWith {1500};
-				if(_caliber == " 9.3" || _caliber == "9.3") exitWith {1700};
-				if(_caliber == " 12.7") exitWith {3000};
+				_caliber = toLower _caliber;
+				if("5.56" in _caliber || "5.45" in _caliber || "5.8" in _caliber) exitWith {500};
+				if("12 ga" in _caliber) exitWith {1200};
+				if(".408" in _caliber) exitWith {4000};
+				if(".338" in _caliber || ".303" in _caliber) exitWith {700};
+				if("9.3" in _caliber) exitWith {1700};
+				if("6.5" in _caliber) exitWith {1000};
+				if("7.62" in _caliber) exitWith {1500};
+				if("12.7" in _caliber) exitWith {3000};
+				if("9" in _caliber) exitWith {400}; //9x21mm
 				//I dunno what caliber this is
 				1500;
 			};
@@ -700,6 +712,10 @@ OT_allBLURifleMagazines = [];
 			};
 			[_cost, 2]
 		};
+		if (_weaponType == "Shotgun") exitWith {
+			OT_allAssaultRifles pushBack _name;
+			[250, 0.5];
+		};
 		if (_weaponType ==  "MachineGun") exitWith {
 			OT_allMachineGuns pushBack _name;
 			[1500, 2];
@@ -710,8 +726,8 @@ OT_allBLURifleMagazines = [];
 		};
 		if (_weaponType ==  "Handgun") exitWith {
 			private _cost = _caliber call {
-				if(_this == " .408") exitWith {2000};
-				if(_this == " .338 Lapua Magnum" || _this == " .303") exitWith {700};
+				if(".408" in _this) exitWith {2000};
+				if(".338" in _this || ".303" in _this) exitWith {700};
 				100
 			};
 			if(_short != "Metal Detector") then {
