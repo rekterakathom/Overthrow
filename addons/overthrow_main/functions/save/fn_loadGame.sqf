@@ -1,13 +1,16 @@
 params [
-	["_data",profileNameSpace getVariable [OT_saveName,""]]
+	["_data", ""]
 ];
 
-// Backwards compatibility
-if (isMissionProfileNamespaceLoaded) then {
-	_data = missionProfileNamespace getVariable [OT_saveName, ""];
-	profileNamespace setVariable [OT_saveName, nil]; // Clean-up the old save from user profile
-} else {
-	_data = profileNamespace getVariable [OT_saveName,""];
+// If string save is used then don't load from missionProfileNamespace
+if (_data == "") then {
+	// Backwards compatibility
+	if (isMissionProfileNamespaceLoaded) then {
+		_data = missionProfileNamespace getVariable [OT_saveName, ""];
+		profileNamespace setVariable [OT_saveName, nil]; // Clean-up the old save from user profile
+	} else {
+		_data = profileNamespace getVariable [OT_saveName,""];
+	};
 };
 
 //get all server data
