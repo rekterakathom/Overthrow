@@ -17,7 +17,7 @@ if(count _activeshops > 0) exitWith {
 		_group setBehaviour "CARELESS";
 		_groups pushback _group;
 		private _start = _building buildingPos 0;
-		_shopkeeper = _group createUnit [OT_civType_shopkeeper, _start, [],0, "NONE"];
+		_shopkeeper = _group createUnit [OT_civType_shopkeeper, _start, [],0, "CAN_COLLIDE"];
 
 		private _tracked = _building call OT_fnc_spawnTemplate;
 		private _vehs = _tracked select 0;

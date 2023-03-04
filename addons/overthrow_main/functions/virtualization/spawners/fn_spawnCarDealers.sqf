@@ -27,7 +27,7 @@ private _groups = [];
 	_dir = getDir _cashdesk;
 	_cashpos = _cashDesk getPos [1, _dir];
 	private _start = _building buildingPos 0;
-	_shopkeeper = _group createUnit [OT_civType_carDealer, _start, [],0, "NONE"];
+	_shopkeeper = _group createUnit [OT_civType_carDealer, _start, [],0, "CAN_COLLIDE"];
 	_shopkeeper allowDamage false;
 	_shopkeeper disableAI "MOVE";
 	_shopkeeper disableAI "AUTOCOMBAT";
