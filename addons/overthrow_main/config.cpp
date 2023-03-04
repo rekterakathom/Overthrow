@@ -194,10 +194,6 @@ class ACE_Tags {
 	};
 };
 
-class Extended_PreInit_EventHandlers {
-	VCM_CBASettings = call compileScript ["\overthrow_main\functions\AI\VCOM\Functions\VCM_Functions\fn_CBASettings.sqf", false];
-};
-
 #include "CfgMarkers.hpp"
 #include "CfgGlasses.hpp"
 #include "CfgSounds.hpp"

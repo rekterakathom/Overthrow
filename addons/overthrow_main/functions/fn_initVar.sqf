@@ -1,5 +1,3 @@
-//VCOM AI, huge credits to Genesis, without VCOM this campaign would be so much less
-
 private _cfgVehicles = configfile >> "CfgVehicles";
 private _cfgWeapons = configFile >> "CfgWeapons";
 private _cfgMagazines = configFIle >> "CfgMagazines";

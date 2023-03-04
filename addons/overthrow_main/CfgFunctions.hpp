@@ -634,8 +634,4 @@ class CfgFunctions
 			class detectItems {};
 		};
 	};
-
-	// VCOM
-	#include "\overthrow_main\functions\AI\VCOM\cfgFunctions.hpp"
-
 };
