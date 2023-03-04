@@ -31,11 +31,7 @@ if (isNull _unitObjectParent) exitWith {
 
 // Unit is in a local vehicle and can be deleted.
 if (local _unitObjectParent) exitWith {
-	//_unitObjectParent deleteVehicleCrew _unit;
-	// deleteVehicleCrew is currently bugged (as of 2.10) so use moveOut instead
-	moveOut _unit;
-	deleteVehicle _unit;
-
+	_unitObjectParent deleteVehicleCrew _unit;
 	true;
 };
 

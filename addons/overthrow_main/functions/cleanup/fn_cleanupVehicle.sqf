@@ -22,10 +22,7 @@ if (isNull _vehicle) exitWith {diag_log "Overthrow: Tried to delete a null vehic
 
 // Vehicle is local and can be deleted
 if (local _vehicle) exitWith {
-	//deleteVehicleCrew _vehicle;
-	// deleteVehicleCrew is currently bugged (as of 2.10) so use moveOut instead
-	{moveOut _x; deleteVehicle _x} forEach crew _vehicle;
-	deleteVehicle _vehicle;
+	deleteVehicleCrew _vehicle;
 	true;
 };
 
