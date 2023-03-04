@@ -73,7 +73,7 @@ if !(_quiet) then {
 private _prefixFilter = { !((toLower _x select [0,4]) in ["ace_","cba_","bis_","____"]) };
 
 private _poses = (allVariables buildingpositions select _prefixFilter) apply {
-	if !(isNil buildingpositions getVariable _x) then {
+	if !(isNil {buildingpositions getVariable _x}) then {
 		[_x,buildingpositions getVariable _x];
 	};
 };
@@ -84,7 +84,7 @@ if !(_quiet) then {
 };
 
 private _civs = (allVariables OT_civilians select _prefixFilter) apply {
-	if !(isNil OT_civilians getVariable _x) then {
+	if !(isNil {OT_civilians getVariable _x}) then {
 		[_x,OT_civilians getVariable _x];
 	};
 };
@@ -100,7 +100,7 @@ if !(_quiet) then {
 }foreach([] call CBA_fnc_players);
 
 private _players = (allVariables players_NS) apply {
-	if !(isNil players_NS getVariable _x) then {
+	if !(isNil {players_NS getVariable _x}) then {
 		[_x, players_NS getVariable _x];
 	};
 };
