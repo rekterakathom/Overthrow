@@ -3,7 +3,7 @@ params [
 ];
 
 // If string save is used then don't load from missionProfileNamespace
-if (_data == "") then {
+if (_data isEqualTo "") then {
 	// Backwards compatibility
 	if (isMissionProfileNamespaceLoaded) then {
 		_data = missionProfileNamespace getVariable [OT_saveName, ""];
