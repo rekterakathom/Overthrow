@@ -670,6 +670,12 @@ OT_allBLURifleMagazines = [];
 		} forEach _magazines; 
 	};
 
+	// A caliber wasn't found. Default to empty string
+	if (_caliber isEqualType []) then {
+		_caliber = "";
+		diag_log format ["Overthrow: Couldn't find a caliber for %1", _name];
+	};
+
 	private _weapon = [_name] call BIS_fnc_itemType;
 	private _weaponType = _weapon select 1;
 
