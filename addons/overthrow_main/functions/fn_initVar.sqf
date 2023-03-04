@@ -648,11 +648,12 @@ OT_allBLURifleMagazines = [];
 
 {
 	private _name = configName _x;
+	private _caliberRegex = "(\d*\.\d+)\s*x\s*(\d+)|(\d+)\.(\d+)|\.(\d+)|(\d+)x(\d+)|(\d+)\s*GA/i";
 	_name = [_name] call BIS_fnc_baseWeapon;
 
 	private _short = getText (_cfgWeapons >> _name >> "descriptionShort");
 
-	private _caliber = (_short regexFind ["(\d*\.\d+)\s*x\s*(\d+)|(\d+)\.(\d+)|\.(\d+)|(\d+)x(\d+)|(\d+)\s*GA/i"]);
+	private _caliber = (_short regexFind [_caliberRegex]);
 	private _haslauncher = false;
 	if (_caliber isNotEqualTo []) then {
 		_caliber = _caliber # 0 # 0 # 0;
@@ -661,10 +662,10 @@ OT_allBLURifleMagazines = [];
 		private _magazines = getArray (_cfgWeapons >> _name >> "magazines");
 		{
 			private _magName = getText (_cfgMagazines >> _x >> "displayName");
-			private _magCaliber =  _magName regexFind ["(\d*\.\d+)\s*x\s*(\d+)|(\d+)\.(\d+)|\.(\d+)|(\d+)x(\d+)|(\d+)\s*GA/i"];
+			private _magCaliber =  _magName regexFind [_caliberRegex];
 			if (_magCaliber isNotEqualTo []) exitWith {_caliber = _magCaliber # 0 # 0 # 0};
 			private _magDescription = getText (_cfgMagazines >> _x >> "descriptionShort");
-			private _magCaliber =  _magDescription regexFind ["(\d*\.\d+)\s*x\s*(\d+)|(\d+)\.(\d+)|\.(\d+)|(\d+)x(\d+)|(\d+)\s*GA/i"];
+			private _magCaliber =  _magDescription regexFind [_caliberRegex];
 			if (_magCaliber isNotEqualTo []) exitWith {_caliber = _magCaliber # 0 # 0 # 0};
 		} forEach _magazines; 
 	};
