@@ -25,9 +25,11 @@ private _cc = 0;
 
 //make sure server vars are done first
 {
+	if (isNil "_x") then {continue};
 	_x params ["_key","_val"];
 	if(_key == "server") then {
 		{
+			if (isNil "_x") then {continue};
 			_x params ["_subkey","_subval"];
 			if(!(toLower (_subkey select [0,4]) in ["cba_","bis_"])) then {
 				server setVariable [_subkey,_subval,true];
@@ -51,11 +53,13 @@ private _hasList_buildableHouses = false;
 
 	if(_key == "players") then {
 		{
+			if (isNil "_x") then {continue};
 			_x params ["_subkey","_subval"];
 			if(!(toLower (_subkey select [0,4]) in ["ace_","cba_","bis_"]) && {(_subkey select [0,9]) != "seencache"}) then {
 				//v0.7.8.3 : Clears extraneous tutorial done entries
 				if(_subval isEqualType []) then {
 					{
+						if (isNil "_x") then {continue};
 						if(_x isEqualType []) then {
 							if(count _x == 2) then {
 								_x params ["_k","_v"];
@@ -73,6 +77,7 @@ private _hasList_buildableHouses = false;
 	};
 	if(_key == "civilians") then {
 		{
+			if (isNil "_x") then {continue};
 			_x params ["_subkey",["_subval",""]];
 			if!(toLower (_subkey select [0,4]) in ["ace_","cba_","bis_"]) then {
 				OT_civilians setVariable [_subkey,_subval,true];
@@ -82,6 +87,7 @@ private _hasList_buildableHouses = false;
 	};
 	if(_key == "buildingpositions") then {
 		{
+			if (isNil "_x") then {continue};
 			_x params ["_subkey","_subval"];
 			if!(toLower (_subkey select [0,4]) in ["ace_","cba_","bis_"]) then {
 				buildingpositions setVariable [_subkey,_subval,true];
@@ -91,6 +97,7 @@ private _hasList_buildableHouses = false;
 	};
 	if(_key == "bases") then {
 		{
+			if (isNil "_x") then {continue};
 			_x params ["_pos","_name","_owner"];
 
 			_veh = createVehicle [OT_flag_IND, _pos, [], 0, "CAN_COLLIDE"];
@@ -117,22 +124,20 @@ private _hasList_buildableHouses = false;
 			case 2: {
 				_val deleteAt 0;
 				{
-					if(!isNil "_x") then {
-						private _currentVal = _x;
-						if(_currentVal isEqualType []) then {
-							private _warehouse = (_currentVal # 0) call OT_fnc_nearestWarehouse;
-							{
-								if !(isNil "_x") then {
-									_x params [
-										["_itemClass","",[""]],
-										["_itemCount",0,[0]]
-									];
-									if (_itemCount > 0 && (_itemClass isNotEqualTo "")) then {
-										_warehouse setVariable [format["item_%1",_itemClass],[_itemClass,_itemCount],true];
-									};
-								};
-							} forEach (_currentVal # 1);
-						};
+					if (isNil "_x") then {continue};
+					private _currentVal = _x;
+					if(_currentVal isEqualType []) then {
+						private _warehouse = (_currentVal # 0) call OT_fnc_nearestWarehouse;
+						{
+							if (isNil "_x") then {continue};
+							_x params [
+								["_itemClass","",[""]],
+								["_itemCount",0,[0]]
+							];
+							if (_itemCount > 0 && (_itemClass isNotEqualTo "")) then {
+								_warehouse setVariable [format["item_%1",_itemClass],[_itemClass,_itemCount],true];
+							};
+						} forEach (_currentVal # 1);
 					};
 				}foreach(_val);
 			};
@@ -140,12 +145,11 @@ private _hasList_buildableHouses = false;
 				{
 					// This isn't used!
 					params ["_itemClassL","_itemData"];
-					if !(isNil "_itemData") then {
-						if (_itemData isEqualType []) then {
-							_itemData params ["_cls",["_num",0,[0]]];
-							if (_num > 0) then {
-								warehouse setVariable [format["item_%1",_itemClassL],_itemData,true];
-							};
+					if (isNil "_x") then {continue};
+					if (_itemData isEqualType []) then {
+						_itemData params ["_cls",["_num",0,[0]]];
+						if (_num > 0) then {
+							warehouse setVariable [format["item_%1",_itemClassL],_itemData,true];
 						};
 					};
 				}foreach(_val select {!(((toLower (_x#0)) select [0,4]) in ["cba_","bis_"])});
@@ -154,6 +158,7 @@ private _hasList_buildableHouses = false;
 		_set = false;
 	};
 	if (_key == "warehouselist") then {
+		if (isNil "_x") then {continue};
 		private _warehouses = _val apply {_x call OT_fnc_nearestWarehouse};
 		warehouse setVariable ["owned", _warehouses, true];
 		_set = false;
@@ -162,6 +167,7 @@ private _hasList_buildableHouses = false;
 		_set = false;
 		_ccc = 0;
 		{
+			if (isNil "_x") then {continue};
 			_type = _x select 0;
 			if(_type isEqualTo "Land_MapBoard_F") then {
 				//Backwards-compatability map upgrade for old saves
@@ -378,6 +384,7 @@ private _hasList_buildableHouses = false;
 	if(_key == "recruitables") then {
 		private _done = false;
 		{
+			if (isNil "_x") then {continue};
 			_x params ["_cls","_loadout"];
 			{
 				_x params ["_c","_l"];
@@ -409,6 +416,7 @@ private _hasList_buildableHouses = false;
 sleep 0.3;
 
 {
+	if (isNil "_x") then {continue};
 	_pos = _x select 0;
 	_code = format["fob%1",_pos];
 	_garrison = server getVariable [format["resgarrison%1",_code],[]];
@@ -443,6 +451,7 @@ sleep 0.3;
 }foreach(server getvariable ["bases",[]]);
 
 {
+	if (isNil "_x") then {continue};
 	_pos = _x select 0;
 	_code = _x select 1;
 	_garrison = server getVariable [format["resgarrison%1",_code],[]];
@@ -469,6 +478,7 @@ sleep 0.3;
 //reveal gang camps
 private _revealed = server getVariable ["revealedGangs",[]];
 {
+	if (isNil "_x") then {continue};
 	private _gang = OT_civilians getVariable [format["gang%1",_x],[]];
 
 	if((count _gang) > 0) then {
@@ -481,6 +491,7 @@ private _revealed = server getVariable ["revealedGangs",[]];
 
 private _built = (allMissionObjects "Static");
 {
+	if (isNil "_x") then {continue};
 	private _uid = _x;
 	private _vars = players_NS getVariable [_uid,[]];
 	private _leased = [_uid,"leased",[]] call OT_fnc_getOfflinePlayerAttribute;
@@ -522,6 +533,7 @@ private _built = (allMissionObjects "Static");
 
 	// Add the built houses
 	{
+		if (isNil "_x") then {continue};
 		private _ID = [_x] call OT_fnc_getBuildID;
 		private _pos = position _x;
 		_leasedata pushBack [_ID, typeof _x,_pos,_pos call OT_fnc_nearestTown];

@@ -3,6 +3,7 @@ private _data = players_NS getvariable (getplayeruid _player);
 private _newplayer = isNil "_data";
 if !(_newplayer) then {
     {
+        if (isNil "_x") then {continue};
         _x params ["_key","_val"];
         if !(isNil "_val") then {
             if((_key select [0,3] != "tf_") && {!((_key select [0,7]) in ["@attack","@counte","@assaul"])}) then {
