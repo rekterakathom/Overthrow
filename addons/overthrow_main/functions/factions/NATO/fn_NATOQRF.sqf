@@ -262,7 +262,7 @@ if(_progress > 0) then {
 					if(!isNull objectParent _lead) then {
 						[objectParent _lead] call OT_fnc_cleanup;
 					}else{
-						if(_lead call OT_fnc_inSpawnDistance) then {
+						if([_lead] call OT_fnc_inSpawnDistance) then {
 							{
 								_x setVariable ["garrison",_garrison,true];
 							}foreach(units _x);

@@ -9,7 +9,7 @@ private _currentTown = _reppos call OT_fnc_nearestTown;
 private _abandoned = server getVariable ["NATOabandoned",[]];
 private _outofspawndistance = [];
 {
-    if !((server getVariable _x) call OT_fnc_inSpawnDistance) then {
+    if !([(server getVariable _x)] call OT_fnc_inSpawnDistance) then {
         private _stability = server getVariable [format["stability%1"],100];
         if !(_x in _abandoned || _x == _currentTown || _stability < 50) then {
             _outofspawndistance pushback _x;

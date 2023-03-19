@@ -77,7 +77,7 @@ publicVariable "OT_nextNATOTurn";
 			{
 				_x params ["_pos","_name","_cost"];
 				if !(_name in _abandoned) then {
-					if(_pos call OT_fnc_inSpawnDistance) then {
+					if([_pos] call OT_fnc_inSpawnDistance) then {
 						_numgarrison = server getVariable [format["garrison%1"],0];
 						_nummil = {side _x isEqualTo west} count (_pos nearEntities ["CAManBase",500]);
 						_numres = {side _x isEqualTo resistance || captive _x} count (_pos nearEntities ["CAManBase",100]);
@@ -132,7 +132,7 @@ publicVariable "OT_nextNATOTurn";
 				_population = server getVariable format ["population%1",_town];
 				_garrison = server getVariable format ["garrison%1",_town];
 				//Limit towns checked to those within range of players
-				if(_pos call OT_fnc_inSpawnDistance) then {
+				if([_pos] call OT_fnc_inSpawnDistance) then {
 					//Send QRF to Town with >100 population
 					if(_population >= 100 && {_stability isEqualTo 0} && {!(_town in _abandoned)}) then {
 						server setVariable [format ["garrison%1",_town],0,true];
@@ -218,7 +218,7 @@ publicVariable "OT_nextNATOTurn";
 			_pos = _x select 0;
 			_name = _x select 1;
 			if !(_name in _abandoned) then {
-				if(_pos call OT_fnc_inSpawnDistance) then {
+				if([_pos] call OT_fnc_inSpawnDistance) then {
 					_nummil = {side _x isEqualTo west} count (_pos nearEntities ["CAManBase",300]);
 					_numres = {side _x isEqualTo resistance || captive _x} count (_pos nearEntities ["CAManBase",100]);
 					if(_nummil < _numres) then {
@@ -338,7 +338,7 @@ publicVariable "OT_nextNATOTurn";
 				_stability = server getVariable format ["stability%1",_town];
 				_population = server getVariable format ["population%1",_town];
 				if(_town != _lastcounter) then {
-					if(_pos call OT_fnc_inSpawnDistance) then {
+					if([_pos] call OT_fnc_inSpawnDistance) then {
 						_nummil = {side _x isEqualTo west} count (_pos nearEntities ["CAManBase",300]);
 						_numres = {side _x isEqualTo resistance || captive _x} count (_pos nearEntities ["CAManBase",200]);
 						if(_nummil < 3 && {_numres > 0}) then {
@@ -399,7 +399,7 @@ publicVariable "OT_nextNATOTurn";
 						{
 							_town = _x;
 							_p = server getVariable _town;
-							if((_p distance _pos) < 3000 && _p call OT_fnc_inSpawnDistance) then {
+							if((_p distance _pos) < 3000 && [_p] call OT_fnc_inSpawnDistance) then {
 								_stability = server getVariable format["stability%1",_town];
 								if((_town in _abandoned) || (_stability < 50)) then {
 									_targets pushback _p;
@@ -410,7 +410,7 @@ publicVariable "OT_nextNATOTurn";
 						{
 							_x params ["_p","_name"];
 							if((_p distance _pos) < 3000) then {
-								if (_name in _abandoned && _p call OT_fnc_inSpawnDistance) then {
+								if (_name in _abandoned && [_p] call OT_fnc_inSpawnDistance) then {
 									_targets pushback _p;
 								};
 							};
@@ -418,7 +418,7 @@ publicVariable "OT_nextNATOTurn";
 
 						{
 							_x params ["_ty","_p"];
-							if(((toUpperANSI _ty) isEqualTo "FOB") && {(_p distance _pos) < 3000} && _p call OT_fnc_inSpawnDistance) then {
+							if(((toUpperANSI _ty) isEqualTo "FOB") && {(_p distance _pos) < 3000} && [_p] call OT_fnc_inSpawnDistance) then {
 								_targets pushback _p;
 							};
 						}foreach(_knownTargets);
@@ -575,7 +575,7 @@ publicVariable "OT_nextNATOTurn";
 					_town = _x;
 					_stability = server getVariable format ["stability%1",_town];
 					_townPos = server getVariable _town;
-					if(_townPos call OT_fnc_inSpawnDistance) then {
+					if([_townPos] call OT_fnc_inSpawnDistance) then {
 						_base = _townPos call OT_fnc_nearestObjective;
 						_basename = _base select 1;
 						_basepos = _base select 0;
@@ -673,7 +673,7 @@ publicVariable "OT_nextNATOTurn";
 					if(_pri > 1200) then {
 						_max = 32;
 					};
-					if(!(_pos call OT_fnc_inSpawnDistance) && {(_garrison < _max)} && {(_spend > 150)} &&  {(random 100 > _chance)}) then {
+					if(!([_pos] call OT_fnc_inSpawnDistance) && {(_garrison < _max)} && {(_spend > 150)} &&  {(random 100 > _chance)}) then {
 						server setvariable [format["garrison%1",_name],_garrison+4,true];
 						_spend = _spend - 150;
 						_resources = _resources - 150;

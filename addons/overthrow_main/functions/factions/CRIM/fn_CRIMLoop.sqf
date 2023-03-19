@@ -34,7 +34,7 @@ if !(crim_counter < 12) then {
                 };
 
                 //when out of spawn distance, simulate kills (only when resistance controls the town)
-                if(_town in (server getVariable ["NATOabandoned",[]]) && _stability < 50 && !(_pos call OT_fnc_inSpawnDistance)) then {
+                if(_town in (server getVariable ["NATOabandoned",[]]) && _stability < 50 && !([_pos] call OT_fnc_inSpawnDistance)) then {
                     _garrison = (server getVariable [format["police%1",_x],0]);
                     if(_numingang > _garrison) then {
                         if(_garrison > 0 && (random 50) < (_numingang - _garrison)) then {

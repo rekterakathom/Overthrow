@@ -18,7 +18,7 @@ while {_count < _amt} do {
     private _civ = [_identity,_gangid];
     OT_civilians setVariable [format["%1",_civid],_civ];
 
-    if(_spawn && _townpos call OT_fnc_inSpawnDistance) then {
+    if(_spawn && [_townpos] call OT_fnc_inSpawnDistance) then {
           _pos = (_gang select 4);
           _group = spawner getVariable [format["gangspawn%1",_gangid],grpNull];
           //Spawn new gang member at camp

@@ -220,7 +220,7 @@ if ((date select 4) != _lastmin) then {
 			_town = _x;
 			_townpos = server getvariable _x;
 			if !(_town in _abandoned) then {
-				if(_townpos call OT_fnc_inSpawnDistance) then {
+				if([_townpos] call OT_fnc_inSpawnDistance) then {
 					if((_townpos nearEntities ["CAManBase",600]) findIf {side _x isEqualTo west} != -1) then {
 						[_town,-1] call OT_fnc_stability;
 					};

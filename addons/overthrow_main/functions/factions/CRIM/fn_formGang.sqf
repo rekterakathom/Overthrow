@@ -23,7 +23,7 @@ if((count _possible) > 0) then {
     OT_civilians setVariable [format["gang%1",_gangid],[[],-1,_town,_vest,_home,_loadout,0,1,_name],true];
     _gangs pushback _gangid;
 
-    if(_spawn && _townpos call OT_fnc_inSpawnDistance) then {
+    if(_spawn && [_townpos] call OT_fnc_inSpawnDistance) then {
         //Spawn the camp
         private _veh = createVehicle ["Campfire_burning_F",_home,[],0,"CAN_COLLIDE"];
 

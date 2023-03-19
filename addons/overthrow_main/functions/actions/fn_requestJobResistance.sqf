@@ -18,7 +18,7 @@ private _expiry = 0;
             //get the closest base
             private _nearest = player call OT_fnc_nearestObjectiveNoComms;
             _nearest params ["_loc","_base"];
-            private _inSpawnDistance = _loc call OT_fnc_inSpawnDistance;
+            private _inSpawnDistance = [_loc] call OT_fnc_inSpawnDistance;
             _id = format["%1-%2",_name,_base];
             private _stability = server getVariable [format["stability%1",_loc call OT_fnc_nearestTown],100];
             if(([_inSpawnDistance,_base,_stability] call _condition) && !(_id in _completed) && !(_id in _activeJobs) && !(_id in OT_jobsOffered)) then {
@@ -30,7 +30,7 @@ private _expiry = 0;
             //get the town we're in
             private _nearest = player call OT_fnc_nearestTown;
             private _loc = server getVariable _nearest;
-            private _inSpawnDistance = _loc call OT_fnc_inSpawnDistance;
+            private _inSpawnDistance = [_loc] call OT_fnc_inSpawnDistance;
             _id = format["%1-%2",_name,_nearest];
             private _stability = server getVariable [format["stability%1",_nearest],100];
             if(([_inSpawnDistance,_stability,_nearest] call _condition) && !(_id in _completed) && !(_id in _activeJobs) && !(_id in OT_jobsOffered)) then {
