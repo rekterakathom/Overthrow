@@ -46,6 +46,10 @@ private _buildableHouses = [];
 private _hasList_buildableHouses = false;
 {
 	_x params ["_key","_val"];
+	if (isNil "_val") then {
+		diag_log format ["Overthrow: Found nil variable %1", _key];
+		continue;
+	};
 
 	// copy, we might modify it
 	if (_val isEqualType []) then {_val = +_val;};
@@ -74,6 +78,7 @@ private _hasList_buildableHouses = false;
 			};
 		}foreach(_val);
 		_set = false;
+		continue;
 	};
 	if(_key == "civilians") then {
 		{
@@ -84,6 +89,7 @@ private _hasList_buildableHouses = false;
 			};
 		}foreach(_val);
 		_set = false;
+		continue;
 	};
 	if(_key == "buildingpositions") then {
 		{
@@ -94,6 +100,7 @@ private _hasList_buildableHouses = false;
 			};
 		}foreach(_val);
 		_set = false;
+		continue;
 	};
 	if(_key == "bases") then {
 		{
@@ -117,6 +124,7 @@ private _hasList_buildableHouses = false;
 		}foreach(_val);
 
 		// todo _set = false?
+		continue;
 	};
 	if(_key == "warehouse") then {
 		private _version = _val param [0,1,[0]];
@@ -156,12 +164,14 @@ private _hasList_buildableHouses = false;
 			};
 		};
 		_set = false;
+		continue;
 	};
 	if (_key == "warehouselist") then {
 		if (isNil "_x") then {continue};
 		private _warehouses = _val apply {_x call OT_fnc_nearestWarehouse};
 		warehouse setVariable ["owned", _warehouses, true];
 		_set = false;
+		continue;
 	};
 	if(_key == "vehicles") then {
 		_set = false;
@@ -363,23 +373,28 @@ private _hasList_buildableHouses = false;
 				sleep 0.3;
 			};
 		}foreach(_val);
+		continue;
 	};
 	if(_key == "recruits") then {
 		server setVariable [_key,_val,true];
 		_set = false;
+		continue;
 	};
 	if(_key == "squads") then {
 		server setVariable [_key,_val,true];
 		_set = false;
+		continue;
 	};
 	if(_key == "timedate") then {
 		server setVariable [_key,_val,true];
 		_set = false;
+		continue;
 	};
 	if(_key == "autosave") then {
 		OT_autoSave_time = (_val#0);
 		OT_autoSave_last_time = (_val#1);
 		_set = false;
+		continue;
 	};
 	if(_key == "recruitables") then {
 		private _done = false;
@@ -394,11 +409,13 @@ private _hasList_buildableHouses = false;
 		if !(_done) then {OT_Recruitables pushback [_cls,_loadout]};
 		publicVariable "OT_Recruitables";
 		_set = false;
+		continue;
 	};
 	if(_key == "policeLoadout") then {
 		OT_Loadout_Police = _val;
 		publicVariable "OT_Loadout_Police";
 		_set = false;
+		continue;
 	};
 
 	if(_set && _key != "server" && !(isNil "_val")) then {
