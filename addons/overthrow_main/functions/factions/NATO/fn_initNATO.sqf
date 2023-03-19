@@ -3,22 +3,28 @@ OT_NATO_GroundForces = [];
 OT_NATO_Group_Recon = "";
 OT_NATO_Group_Engineers = "";
 {
-	private _name = configName _x;
-	if((_name find "ReconTeam") > -1) then {
-		OT_NATO_Group_Recon = _name;
-	};
-	private _numtroops = count("true" configClasses _x);
-	if(_numtroops > 5) then {
-		OT_NATO_GroundForces pushback _name;
-	};
-}foreach("true" configClasses (configFile >> "CfgGroups" >> "West" >> OT_faction_NATO >> "Infantry"));
+	private _config = _x;
+	{
+		private _name = configName _x;
+		if((_name find "ReconTeam") > -1) then {
+			OT_NATO_Group_Recon = _name;
+		};
+		private _numtroops = count("true" configClasses _x);
+		if(_numtroops > 5) then {
+			OT_NATO_GroundForces pushback _name;
+		};
+	} forEach ("true" configClasses _config);
+}foreach("'infantry' in toLower (configName _x)" configClasses (configFile >> "CfgGroups" >> "West" >> OT_faction_NATO));
 
 {
-	private _name = configName _x;
-	if((_name find "ENG") > -1) then {
-		OT_NATO_Group_Engineers = _name;
-	};
-}foreach("true" configClasses (configFile >> "CfgGroups" >> "West" >> OT_faction_NATO >> "Support"));
+	private _config = _x;
+	{
+		private _name = configName _x;
+		if((_name find "ENG") > -1) then {
+			OT_NATO_Group_Engineers = _name;
+		};
+	} forEach ("true" configClasses _config);
+}foreach("'support' in toLower (configName _x)" configClasses (configFile >> "CfgGroups" >> "West" >> OT_faction_NATO));
 
 OT_NATO_Units_LevelOne = [];
 OT_NATO_Units_LevelTwo = [];
@@ -34,20 +40,22 @@ private _c = 0;
 	if(!(_name isEqualTo OT_NATO_Unit_Police) && !(_name isEqualTo OT_NATO_Unit_PoliceCommander)) then {
 		[_name] call {
 			params ["_name"];
+			_name = toLower _name;
 			if(
-				(_name find "_Recon_") > -1
-				|| (_name find "_recon_") > -1
+				(_name find "_recon_") > -1
 				|| (_name find "_story_") > -1
-				|| (_name find "_Story_") > -1
 				|| (_name find "_lite_") > -1
-				|| (_name find "_HeavyGunner_") > -1
-				|| (_name find "_TL_") > -1
-				|| (_name find "_SL_") > -1
-				|| (_name find "_Officer_") > -1
+				|| (_name find "_heavygunner_") > -1
 				|| (_name find "_officer_") > -1
 			) exitWith {};
-			if((_name find "_CTRG_") > -1) exitWith {
+			if((_name find "_ctrg_") > -1) exitWith {
 				OT_NATO_Units_CTRGSupport pushback _name
+			};
+
+			private _leader = getText (_x >> "icon") == "iconManLeader";
+			if (_leader) then {
+				OT_NATO_Unit_TeamLeader = _name;
+				OT_NATO_Unit_SquadLeader = _name;
 			};
 
 			private _role = getText (_x >> "role");
@@ -132,6 +140,8 @@ if((server getVariable "StartupType") == "NEW" || (server getVariable ["NATOvers
 	if(_diff == 0) then {_numHVTs = 4};
 	if(_diff == 2) then {_numHVTs = 8};
 
+	OT_allBLUOffensiveVehicles = (spawner getVariable format["facvehicles%1",OT_faction_NATO]) select {(getArray (configFile >> "cfgVehicles" >> _x >> "threat") # 0) > 0.5};
+
 	//Find military objectives
 	_groundvehs = OT_allBLUOffensiveVehicles select {!((_x isKindOf "Air") || (_x isKindOf "Tank") || (_x isKindOf "Ship"))};
 	{
@@ -151,7 +161,7 @@ if((server getVariable "StartupType") == "NEW" || (server getVariable ["NATOvers
                 _base = 24;
                 _statics = OT_NATO_StaticGarrison_LevelThree;
             };
-			if((random 300) < ((count _groundvehs)+_base)) then {
+			if((random 150) < ((count _groundvehs)+_base)) then {
 				_veh = (selectRandom _groundvehs);
 				diag_log format["Adding %1 to %2",_veh call OT_fnc_vehicleGetName,_name];
 				_statics pushbackUnique _veh;

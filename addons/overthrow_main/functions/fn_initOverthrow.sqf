@@ -39,6 +39,21 @@ publicVariable "OT_civilians";
 
 OT_centerPos = getArray (configFile >> "CfgWorlds" >> worldName >> "centerPosition");
 
+// Get faction before variable init
+private _faction = ["ot_enemy_faction", 0] call BIS_fnc_getParamValue;
+switch (_faction) do {
+	case 0: {_faction = OT_faction_NATO};
+	case 1: {_faction = "BLU_F"};
+	case 2: {_faction = "BLU_T_F"};
+	case 3: {_faction = "BLU_W_F"};
+	case 4: {_faction = "rhs_faction_usarmy_wd"};
+	case 5: {_faction = "rhs_faction_usarmy_d"};
+	case 6: {_faction = "rhs_faction_usmc_wd"};
+	case 7: {_faction = "rhs_faction_usmc_d"};
+	case 8: {_faction = "rhsgref_faction_hidf"};
+};
+OT_faction_NATO = _faction;
+
 call OT_fnc_initBaseVar;
 call compileScript ["initVar.sqf", false];
 call OT_fnc_initVar;
