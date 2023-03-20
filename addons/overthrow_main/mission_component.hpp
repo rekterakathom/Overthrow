@@ -54,7 +54,12 @@ class Params {
 			"5. RHS US Army Desert",
 			"6. RHS USMC Woodland",
 			"7. RHS USMC Desert",
-			"8. RHS Horizon Islands Defence Force"
+			"8. RHS Horizon Islands Defence Force",
+			"9. 3CB AAF",
+			"10. 3CB Livonian Defence Force",
+			"11. 3CB Livonia Separatist Militia",
+			"12. 3CB Malden Defence Force",
+			"13. 3CB Middle East Insurgents"
 		};
 		values[] = {
 			0, // Map default
@@ -65,7 +70,12 @@ class Params {
 			5, // RHS US Army Desert
 			6, // RHS USMC Woodland
 			7, // RHS USMC Desert
-			8  // RHS Horizon Islands Defence Force
+			8, // RHS Horizon Islands Defence Force
+			9, // 3CB AAF
+			10, // 3CB Livonian Defence Force
+			11, // 3CB Livonia Separatist Militia
+			12, // 3CB Malden Defence Force
+			13 // 3CB Middle East Insurgents
 		};
 		default = 0;
 	};

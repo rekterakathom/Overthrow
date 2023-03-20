@@ -42,6 +42,11 @@ switch (_faction) do {
 	case 6: {_faction = "rhs_faction_usmc_wd"};
 	case 7: {_faction = "rhs_faction_usmc_d"};
 	case 8: {_faction = "rhsgref_faction_hidf"};
+	case 9: {_faction = "UK3CB_AAF_B"};
+	case 10: {_faction = "UK3CB_LDF_B"};
+	case 11: {_faction = "UK3CB_LSM_B"};
+	case 12: {_faction = "UK3CB_MDF_B"};
+	case 13: {_faction = "UK3CB_MEI_B"};
 };
 OT_faction_NATO = _faction;
 
