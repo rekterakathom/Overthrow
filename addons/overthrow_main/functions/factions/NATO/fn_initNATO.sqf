@@ -11,7 +11,7 @@ OT_NATO_Group_Engineers = "";
 		};
 		private _numtroops = count("true" configClasses _x);
 		if(_numtroops > 5) then {
-			OT_NATO_GroundForces pushback _name;
+			OT_NATO_GroundForces pushback _x;
 		};
 	} forEach ("true" configClasses _config);
 }foreach("'infantry' in toLower (configName _x)" configClasses (configFile >> "CfgGroups" >> "West" >> OT_faction_NATO));

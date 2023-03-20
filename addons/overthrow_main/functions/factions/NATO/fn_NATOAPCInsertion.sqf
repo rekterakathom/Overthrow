@@ -4,7 +4,7 @@ private _vehtype = selectRandom OT_NATO_Vehicles_APC;
 private _squadtype = selectRandom OT_NATO_GroundForces;
 
 // Spawn a group to be seated in a transport vehicle
-private _group1 = [_frompos, WEST, (configFile >> "CfgGroups" >> "West" >> OT_faction_NATO >> "Infantry" >> _squadtype)] call BIS_fnc_spawnGroup;
+private _group1 = [_frompos, WEST, _squadtype] call BIS_fnc_spawnGroup;
 _group1 deleteGroupWhenEmpty true;
 private _group2 = "";
 private _tgroup = false;
