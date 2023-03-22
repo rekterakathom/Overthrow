@@ -39,6 +39,11 @@ publicVariable "OT_civilians";
 
 OT_centerPos = getArray (configFile >> "CfgWorlds" >> worldName >> "centerPosition");
 
+// Dedicated servers need a separate definition for mission params
+if (isDedicated) then {
+	OT_randomizeLoadouts = (["ot_randomizeloadouts", 0] call BIS_fnc_getParamValue) isEqualTo 1;
+};
+
 call OT_fnc_initBaseVar;
 call compileScript ["initVar.sqf", false];
 call OT_fnc_initVar;
