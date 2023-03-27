@@ -39,7 +39,11 @@ publicVariable "OT_civilians";
 
 OT_centerPos = getArray (configFile >> "CfgWorlds" >> worldName >> "centerPosition");
 
-// Get faction before variable init
+// Init basic variables
+call OT_fnc_initBaseVar;
+call compileScript ["initVar.sqf", false];
+
+// Get faction before final variable init & detection takes place
 private _faction = ["ot_enemy_faction", 0] call BIS_fnc_getParamValue;
 switch (_faction) do {
 	case 0: {_faction = OT_faction_NATO};
@@ -56,16 +60,18 @@ switch (_faction) do {
 	case 11: {_faction = "UK3CB_LSM_B"};
 	case 12: {_faction = "UK3CB_MDF_B"};
 	case 13: {_faction = "UK3CB_MEI_B"};
+	default {_faction = OT_faction_NATO};
 };
+
 OT_faction_NATO = _faction;
+publicVariable "OT_faction_NATO";
 
 // Dedicated servers need a separate definition for mission params
 if (isDedicated) then {
 	OT_randomizeLoadouts = (["ot_randomizeloadouts", 0] call BIS_fnc_getParamValue) isEqualTo 1;
 };
 
-call OT_fnc_initBaseVar;
-call compileScript ["initVar.sqf", false];
+// Call final variable init
 call OT_fnc_initVar;
 
 if(isServer) then {
