@@ -43,6 +43,42 @@ allowProfileGlasses = 0;
 
 //Disable ACE blood (just too much of it in a heavy game)
 class Params {
+	class ot_enemy_faction {
+		title = "Occupying faction";
+		texts[] = {
+			"0. Map default",
+			"1. Vanilla NATO",
+			"2. Vanilla NATO pacific",
+			"3. Vanilla NATO woodland",
+			"4. RHS US Army Woodland",
+			"5. RHS US Army Desert",
+			"6. RHS USMC Woodland",
+			"7. RHS USMC Desert",
+			"8. RHS Horizon Islands Defence Force",
+			"9. 3CB AAF",
+			"10. 3CB Livonian Defence Force",
+			"11. 3CB Livonia Separatist Militia",
+			"12. 3CB Malden Defence Force",
+			"13. 3CB Middle East Insurgents"
+		};
+		values[] = {
+			0, // Map default
+			1, // Vanilla NATO
+			2, // Vanilla NATO pacific
+			3, // Vanilla NATO woodland
+			4, // RHS US Army Woodland
+			5, // RHS US Army Desert
+			6, // RHS USMC Woodland
+			7, // RHS USMC Desert
+			8, // RHS Horizon Islands Defence Force
+			9, // 3CB AAF
+			10, // 3CB Livonian Defence Force
+			11, // 3CB Livonia Separatist Militia
+			12, // 3CB Malden Defence Force
+			13 // 3CB Middle East Insurgents
+		};
+		default = 0;
+	};
 	class ot_start_autoload {
 		title = "Autoload a save or start a new game";
 		values[] = {0, 1};
