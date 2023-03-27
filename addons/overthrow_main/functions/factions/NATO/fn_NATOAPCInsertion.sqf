@@ -67,7 +67,7 @@ if(_tgroup isEqualType grpNull) then {
 		_dropos = ASLtoAGL (getPosASL (_roads select (count _roads - 1)));
 	};
 	_move = _tgroup addWaypoint [_dropos,0];
-	_move setWaypointBehaviour "CARELESS";
+	_move setWaypointBehaviour "SAFE";
 	_move setWaypointType "MOVE";
 
 	_move = _tgroup addWaypoint [_dropos,0];
