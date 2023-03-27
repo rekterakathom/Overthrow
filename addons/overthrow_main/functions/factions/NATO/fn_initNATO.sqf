@@ -42,11 +42,13 @@ private _c = 0;
 			params ["_name"];
 			_name = toLower _name;
 			if(
-				(_name find "_recon_") > -1
-				|| (_name find "_story_") > -1
-				|| (_name find "_lite_") > -1
-				|| (_name find "_heavygunner_") > -1
-				|| (_name find "_officer_") > -1
+				(_name find "recon") > -1
+				|| (_name find "story") > -1
+				|| (_name find "lite") > -1
+				|| (_name find "heavygunner") > -1
+				|| (_name find "officer") > -1
+				|| (_name find "crew") > -1
+				|| (_name find "diver") > -1
 			) exitWith {};
 			if((_name find "_ctrg_") > -1) exitWith {
 				OT_NATO_Units_CTRGSupport pushback _name
