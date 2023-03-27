@@ -23,7 +23,7 @@ private _population = server getVariable [format["population%1",_town],50];
     _expiry = _expires;
     call {
         if((toLowerANSI _target) isEqualTo "faction") exitWith {
-            _id = format["%1-%2",_name,_gangid];
+            _id = format["%1-%2",_name,_faction];
             if(([_inSpawnDistance, _standing, _town, _stability, _population] call _condition) && !(_id in _completed) && !(_id in _activeJobs) && !(_id in OT_jobsOffered)) then {
                 _gotjob = true;
                 _params = [_faction];
