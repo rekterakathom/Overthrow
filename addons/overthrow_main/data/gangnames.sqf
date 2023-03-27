@@ -1,3 +1,4 @@
+// format ["name", _town, OT_nation]
 OT_gangNames = [
 "Sons of %2",
 "%1 Boyz",
