@@ -49,6 +49,7 @@ private _c = 0;
 				|| (_name find "officer") > -1
 				|| (_name find "crew") > -1
 				|| (_name find "diver") > -1
+				|| (_name find "pilot") > -1
 			) exitWith {};
 			if((_name find "_ctrg_") > -1) exitWith {
 				OT_NATO_Units_CTRGSupport pushback _name
