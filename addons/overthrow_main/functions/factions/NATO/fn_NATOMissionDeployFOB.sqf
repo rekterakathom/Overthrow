@@ -24,7 +24,7 @@ if(isNil "_close") then {
 		if !(_name in _abandoned) exitWith {
 			_close = _obpos;
 		};
-	}foreach([OT_airportData,[],{random 100},"ASCEND"] call BIS_fnc_SortBy);
+	}foreach(OT_airportData call BIS_fnc_arrayShuffle);
 };
 _start = [_close,50,200, 1, 0, 0, 0] call BIS_fnc_findSafePos;
 _group = [_start, WEST,  (configFile >> "CfgGroups" >> "West" >> OT_faction_NATO >> "Support" >> OT_NATO_Group_Engineers)] call BIS_fnc_spawnGroup;
