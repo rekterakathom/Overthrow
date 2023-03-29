@@ -88,7 +88,7 @@ if(_hasPrimary) then {
     {
         _scope = getNumber (_cfgMagazines >> _x >> "scope");
         if(_scope > 1) exitWith {_mag = _x};
-    }foreach([_magazines,[],{random 100},"ASCEND"] call BIS_fnc_sortBy);
+    }foreach(_magazines call BIS_fnc_arrayShuffle);
 
     private _count = getNumber(_cfgMagazines >> _mag >> "count");
     (_newloadout select 0) set [4,[_mag,_count]];
@@ -154,7 +154,7 @@ if(_hasLauncher) then {
                     _c = _c + 1;
                 };
                 if(_c isEqualTo 2) exitWith {};
-            }foreach([_magazines,[],{random 100},"ASCEND"] call BIS_fnc_sortBy);
+            }foreach(_magazines call BIS_fnc_arrayShuffle);
         };
     };
 };

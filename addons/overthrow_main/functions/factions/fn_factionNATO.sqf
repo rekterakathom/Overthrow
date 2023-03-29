@@ -424,7 +424,7 @@ publicVariable "OT_nextNATOTurn";
 						}foreach(_knownTargets);
 
 						if(count _targets > 0) then {
-							_targets = [_targets,[],{random 100},"ASCEND"] call BIS_fnc_sortBy;
+							_targets = _targets call BIS_fnc_arrayShuffle;
 							_group = createGroup blufor;
 							_group deleteGroupWhenEmpty true;
 							_group setVariable ["lambs_danger_disableGroupAI", true];
@@ -508,7 +508,7 @@ publicVariable "OT_nextNATOTurn";
 					if((_x in _abandoned) || _stability < 50) exitWith {
 						_lowest = _x;
 					};
-				}foreach([_allTowns,[],{random 100},"DESCEND"] call BIS_fnc_sortBy);
+				}foreach(_allTowns call BIS_fnc_arrayShuffle);
 				if(_lowest != "") then {
 					_townPos = (server getVariable _lowest);
 					_pp = _townPos getPos [2000, random 360];
@@ -564,7 +564,7 @@ publicVariable "OT_nextNATOTurn";
 						};
 					};
 					if(_spend < 20) exitWith {};
-				}foreach ([_allTowns,[],{random 100},"DESCEND"] call BIS_fnc_sortBy);
+				}foreach (_allTowns call BIS_fnc_arrayShuffle);
 			};
 
 			//Send a ground patrol
@@ -593,7 +593,7 @@ publicVariable "OT_nextNATOTurn";
 						};
 					};
 					if(_done) exitWith {};
-				}foreach ([_allTowns,[],{random 100},"DESCEND"] call BIS_fnc_sortBy);
+				}foreach (_allTowns call BIS_fnc_arrayShuffle);
 			};
 
 			//Schedule a convoy
@@ -610,7 +610,7 @@ publicVariable "OT_nextNATOTurn";
 						if((_n != _startName) && {!(_n in _abandoned)} && {([_p,_startPos] call OT_fnc_regionIsConnected)}) exitWith {
 							_end = _x;
 						};
-					}foreach([_NATOObjectives,[],{random 100},"DESCEND"] call BIS_fnc_sortBy);
+					}foreach(_NATOObjectives call BIS_fnc_arrayShuffle);
 					if(count _end > 0) then {
 						//Schedule a convoy
 						private _id = format["CONVOY%1",round(random 99999)];
@@ -634,7 +634,7 @@ publicVariable "OT_nextNATOTurn";
 					if !(_name in _abandoned) then {
 						_frombase = _name;
 					};
-				}foreach([_airportData,[],{random 100},"DESCEND"] call BIS_fnc_sortBy);
+				}foreach(_airportData call BIS_fnc_arrayShuffle);
 				if(!(_frombase isEqualTo "") && {(random 100) > _chance}) then {
 					private _waypoints = [];
 					{
@@ -647,7 +647,7 @@ publicVariable "OT_nextNATOTurn";
 							_waypoints pushback _x
 						};
 						if((count _waypoints) > 6) exitWith {};
-					}foreach ([OT_NATO_control,[],{random 100},"DESCEND"] call BIS_fnc_sortBy);
+					}foreach (OT_NATO_control call BIS_fnc_arrayShuffle);
 
 					if((count _waypoints) > 0) then {
 						_spend = _spend - 250;
