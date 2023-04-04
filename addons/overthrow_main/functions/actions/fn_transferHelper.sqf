@@ -49,7 +49,7 @@ _this spawn {
 	}foreach(_mags);
 
 	if(_iswarehouse) then {
-		private _warehouse = player call OT_fnc_nearestWarehouse;
+		private _warehouse = [player] call OT_fnc_nearestWarehouse;
 		if (_warehouse == objNull) exitWith {hint "No warehouse near by!"};
 		{
 			_x params ["_cls", "_num"];

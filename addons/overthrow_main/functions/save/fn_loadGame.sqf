@@ -136,6 +136,7 @@ private _hasList_buildableHouses = false;
 					private _currentVal = _x;
 					if(_currentVal isEqualType []) then {
 						private _warehouse = (_currentVal # 0) call OT_fnc_nearestWarehouse;
+						_warehouse = [(_currentVal # 0)] call OT_fnc_nearestWarehouse;
 						{
 							if (isNil "_x") then {continue};
 							_x params [
@@ -169,6 +170,7 @@ private _hasList_buildableHouses = false;
 	if (_key == "warehouselist") then {
 		if (isNil "_x") then {continue};
 		private _warehouses = _val apply {_x call OT_fnc_nearestWarehouse};
+		private _warehouses = _val apply {[_x] call OT_fnc_nearestWarehouse};
 		warehouse setVariable ["owned", _warehouses, true];
 		_set = false;
 		continue;

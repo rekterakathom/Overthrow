@@ -1079,6 +1079,7 @@ OT_noCopyMags = ["ACE_PreloadedMissileDummy"];
 OT_autoSave_time = 0;
 OT_autoSave_last_time = (10*60);
 OT_cleanup_civilian_loop = (5*60);
+OT_warehouseLocationCache = createHashMap;
 zeusToggle = true;
 
 if(isServer) then {

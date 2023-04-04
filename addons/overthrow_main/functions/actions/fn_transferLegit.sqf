@@ -37,7 +37,7 @@ _doTransfer = {
 
 	_full = false;
 	if(_iswarehouse) then {
-		private _warehouse = player call OT_fnc_nearestWarehouse;
+		private _warehouse = [player] call OT_fnc_nearestWarehouse;
 		if (_warehouse == objNull) exitWith {hint "No warehouse near by!"};
 		{
 			private _count = 0;

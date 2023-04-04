@@ -6,7 +6,7 @@ _soldier params ["","","_loadout","_clothes"];
 
 private _items = [];
 //Add warehouse items to arsenal
-private _warehouse = player call OT_fnc_nearestWarehouse;
+private _warehouse = [player] call OT_fnc_nearestWarehouse;
 if (_warehouse == objNull) exitWith {hint "No warehouse near by!"};
 {
     if(_x select [0,5] isEqualTo "item_") then {
