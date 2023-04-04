@@ -1,6 +1,5 @@
 if (OT_taking) exitWith {};
 
-private _warehouse = player call OT_fnc_nearestWarehouse;
 private _warehouse =[ player] call OT_fnc_nearestWarehouse;
 if (_warehouse == objNull) exitWith {hint "No warehouse near by!"};
 
@@ -32,18 +31,53 @@ if(_veh isEqualTo player) exitWith {
 	"No warehouse within range" call OT_fnc_notifyMinor;
 };
 
+private _attachmentsToRemove = [];
+
 while {_count < _num} do {
 	if ((!(_veh isKindOf "Truck_F")) && (!(_veh isKindOf OT_item_Storage)) && (!(_veh canAdd _cls))) exitWith {hint "This vehicle is full, use a truck for more storage"; closeDialog 0; _num = _count};
 	[_cls, _veh] call {
 		params ["_cls", "_veh"];
 		if(_cls isKindOf ["Rifle",configFile >> "CfgWeapons"]) exitWith {
 			_veh addWeaponCargoGlobal [_cls,1];
+
+			// Search for linked items
+			_linkedItems = [];
+			{
+				_linkedItems pushBack (getText (_x >> "item"));
+			} forEach (configProperties [configFile >> "CfgWeapons" >> _cls >> "LinkedItems", "(getText (_x >> 'item') != '')", true]);
+			if (_linkedItems isNotEqualTo []) then {
+				{
+					[_x, 1] call OT_fnc_removeFromWarehouse;
+				} forEach _linkedItems;
+			};
 		};
 		if(_cls isKindOf ["Launcher",configFile >> "CfgWeapons"]) exitWith {
 			_veh addWeaponCargoGlobal [_cls,1];
+
+			// Search for linked items
+			_linkedItems = [];
+			{
+				_linkedItems pushBack (getText (_x >> "item"));
+			} forEach (configProperties [configFile >> "CfgWeapons" >> _cls >> "LinkedItems", "(getText (_x >> 'item') != '')", true]);
+			if (_linkedItems isNotEqualTo []) then {
+				{
+					[_x, 1] call OT_fnc_removeFromWarehouse;
+				} forEach _linkedItems;
+			};
 		};
 		if(_cls isKindOf ["Pistol",configFile >> "CfgWeapons"]) exitWith {
 			_veh addWeaponCargoGlobal [_cls,1];
+
+			// Search for linked items
+			_linkedItems = [];
+			{
+				_linkedItems pushBack (getText (_x >> "item"));
+			} forEach (configProperties [configFile >> "CfgWeapons" >> _cls >> "LinkedItems", "(getText (_x >> 'item') != '')", true]);
+			if (_linkedItems isNotEqualTo []) then {
+				{
+					[_x, 1] call OT_fnc_removeFromWarehouse;
+				} forEach _linkedItems;
+			};
 		};
 		if(_cls isKindOf ["Default",configFile >> "CfgMagazines"]) exitWith {
 			_veh addMagazineCargoGlobal [_cls,1];
