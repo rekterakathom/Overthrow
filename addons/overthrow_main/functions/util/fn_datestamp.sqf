@@ -6,7 +6,7 @@ private _stamp = 0;
 //add up completed months
 {
     if(_forEachIndex isEqualTo (_month - 1)) exitWith {};
-    _stamp = _stamp + ((_daysInMonth select _forEachIndex) * 1440);
+    _stamp = _stamp + (_x * 1440);
 }foreach(_daysInMonth);
 
 //add up completed days in month
