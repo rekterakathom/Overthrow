@@ -20,15 +20,15 @@ if (isNil "OT_item_Workbench") then {
 	OT_item_Workbench = "Land_Workbench_01_F";
 };
 
+private _currentObject = typeOf _this;
 
-
-if(typeof _this isEqualTo OT_item_Map) then {
+if(_currentObject isEqualTo OT_item_Map) then {
 	_this addAction ["Town Info", OT_fnc_mapInfoDialog,nil,0,false,true,"",""];
 	_this addAction ["Reset UI", {
 		closedialog 0;
 		[] spawn OT_fnc_setupPlayer;
 	},nil,0,false,true,"",""];
-
+	_this enableDynamicSimulation true;
 };
 
 if(_currentObject isEqualTo OT_item_Storage) then {
@@ -69,15 +69,19 @@ if(_currentObject isEqualTo OT_item_Storage) then {
 			[OT_fnc_makeWarehouseGlobal, _this] call CBA_fnc_directCall;
 		},nil,0,false,true,"","!((nearestObject [_target, OT_warehouse]) getVariable ['is_shared', false])"];
 	};
+	_this enableDynamicSimulation true;
 };
-if(typeof _this isEqualTo OT_item_Safe) then {
+
+if(_currentObject isEqualTo OT_item_Safe) then {
 	_this addAction ["Put Money", OT_fnc_safePutMoney,nil,0,false,true,"",""];
 	_this addAction ["Take Money", OT_fnc_safeTakeMoney,nil,0,false,true,"",""];
 	_this addAction ["Set Password", OT_fnc_safeSetPassword,nil,0,false,true,"","(_target getVariable ['owner','']) isEqualTo getplayeruid _this"];
+	_this enableDynamicSimulation true;
 };
 
-if(typeof _this isEqualTo "Land_Cargo_House_V4_F") then {
+if(_currentObject isEqualTo "Land_Cargo_House_V4_F") then {
 	[_this] call ace_repair_fnc_moduleAssignRepairFacility;
+	_this enableDynamicSimulation true;
 };
 
 if(_this isKindOf "CAManBase" || _this isKindOf "FlagCarrier") exitWith {};
@@ -88,7 +92,7 @@ if(_this isKindOf "CAManBase" || _this isKindOf "FlagCarrier") exitWith {};
 if(_this isKindOf "Building" || _this isKindOf "LandVehicle") exitWith{};
 
 _dir = 0;
-if(typeof _this isEqualTo "C_Rubberboat") then {
+if(_currentObject isEqualTo "C_Rubberboat") then {
 	_dir = 90;
 };
 [_this, true, [0, 2, 0.4],_dir] call ace_dragging_fnc_setCarryable;
