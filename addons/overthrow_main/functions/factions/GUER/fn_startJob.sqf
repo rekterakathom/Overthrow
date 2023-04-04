@@ -82,6 +82,7 @@ if !(_jobparams call _setup) exitWith {
                     if(_repeat < 1) then {
                         _completed = server getVariable ["OT_completedJobIds",[]];
                         _completed pushback _id;
+                        server setVariable ["OT_completedJobIds",_completed];
                     };
                 };
 
