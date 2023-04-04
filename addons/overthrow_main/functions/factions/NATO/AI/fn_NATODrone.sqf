@@ -95,3 +95,8 @@ while {sleep 10; alive _drone} do {
 
     _drone setVariable ["OT_seenTargets", _targets, false];
 };
+
+// The drone is dead, delete all the crew
+{
+    [_x] call OT_fnc_cleanupUnit;
+} forEach (crew _drone);
