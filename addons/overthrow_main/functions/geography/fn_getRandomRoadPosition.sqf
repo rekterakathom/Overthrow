@@ -13,11 +13,18 @@ private _rand = random 100;
 private _pos = [];
 
 // Don't accept positions in water
-while {_pos isEqualTo []} do {
+private _attempts = 0;
+while {_pos isEqualTo [] && _attempts < 10} do {
     private _testedPosition = _test getPos [(_rand + random (_msize - _rand)), random 360];
-    if !(surfaceIsWater _testedPosition) then {
+    if !(surfaceIsWater _testedPosition) exitWith {
         _pos = _testedPosition;
     };
+    _attempts = _attempts + 1;
+};
+
+// If we didn't get a non-water position, give up
+if (_pos isEqualTo []) then {
+    _pos = _test getPos [(_rand + random (_msize - _rand)), random 360];
 };
 
 private _roads = _pos nearRoads 100;
