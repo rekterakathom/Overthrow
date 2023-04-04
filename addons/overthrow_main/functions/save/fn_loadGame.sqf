@@ -134,8 +134,9 @@ private _hasList_buildableHouses = false;
 				{
 					if (isNil "_x") then {continue};
 					private _currentVal = _x;
+					private _warehouse = objNull;
 					if(_currentVal isEqualType []) then {
-						private _warehouse = (_currentVal # 0) call OT_fnc_nearestWarehouse;
+						diag_log _currentVal;
 						_warehouse = [(_currentVal # 0)] call OT_fnc_nearestWarehouse;
 						{
 							if (isNil "_x") then {continue};
@@ -147,6 +148,12 @@ private _hasList_buildableHouses = false;
 								_warehouse setVariable [format["item_%1",_itemClass],[_itemClass,_itemCount],true];
 							};
 						} forEach (_currentVal # 1);
+
+						// Backwards compatibility 2.0.0 -> 1.9.0
+						if (count _currentVal > 2) then {
+							_warehouse setVariable ["is_shared", _currentVal # 2, true];
+						};
+						continue;
 					};
 				}foreach(_val);
 			};
@@ -169,10 +176,28 @@ private _hasList_buildableHouses = false;
 	};
 	if (_key == "warehouselist") then {
 		if (isNil "_x") then {continue};
-		private _warehouses = _val apply {_x call OT_fnc_nearestWarehouse};
 		private _warehouses = _val apply {[_x] call OT_fnc_nearestWarehouse};
 		warehouse setVariable ["owned", _warehouses, true];
 		_set = false;
+		continue;
+	};
+	if (_key == "warehouseshared") then {
+		if (isNil "_x") then {continue};
+		{
+			if (isNil "_x") then {continue};
+			private _currentVal = _x;
+			diag_log _currentVal;
+			if(_currentVal isEqualType []) then {
+				private _warehouse = warehouse_shared;
+				_currentVal params [
+					["_itemClass","",[""]],
+					["_itemCount",0,[0]]
+				];
+				if (_itemCount > 0 && (_itemClass isNotEqualTo "")) then {
+					_warehouse setVariable [format["item_%1",_itemClass],[_itemClass,_itemCount],true];
+				};
+			};
+		}foreach(_val);
 		continue;
 	};
 	if(_key == "vehicles") then {

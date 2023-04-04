@@ -30,7 +30,8 @@ if(typeof _this isEqualTo OT_item_Map) then {
 	},nil,0,false,true,"",""];
 
 };
-if(typeof _this isEqualTo OT_item_Storage) then {
+
+if(_currentObject isEqualTo OT_item_Storage) then {
 	_this addAction ["Open Arsenal (This Ammobox)", {[_this select 0,player] call OT_fnc_openArsenal},nil,0,false,true,"","!(call OT_fnc_playerIsAtWarehouse)"];
 	_this addAction ["Open Arsenal (Warehouse)", {["WAREHOUSE",player,_this select 0] call OT_fnc_openArsenal},nil,0,false,true,"","call OT_fnc_playerIsAtWarehouse"];
 	_this addAction ["Take From Warehouse", {
@@ -64,6 +65,9 @@ if(typeof _this isEqualTo OT_item_Storage) then {
 			(_this select 0) setVariable ["OT_locked",false,true];
 			"Ammobox unlocked" call OT_fnc_notifyMinor;
 		},nil,0,false,true,"","(_target getVariable ['OT_locked',false])"];
+		_this addAction ["Make global (10000$)", {
+			[OT_fnc_makeWarehouseGlobal, _this] call CBA_fnc_directCall;
+		},nil,0,false,true,"","!((nearestObject [_target, OT_warehouse]) getVariable ['is_shared', false])"];
 	};
 };
 if(typeof _this isEqualTo OT_item_Safe) then {

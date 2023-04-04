@@ -26,6 +26,9 @@ publicVariable "cost";
 warehouse = true call CBA_fnc_createNamespace;
 publicVariable "warehouse";
 
+warehouse_shared = true call CBA_fnc_createNamespace;
+publicVariable "warehouse_shared";
+
 spawner = true call CBA_fnc_createNamespace;
 publicVariable "spawner";
 templates = true call CBA_fnc_createNamespace;
