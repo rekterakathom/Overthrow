@@ -1,2 +1,3 @@
 author = "ThomasAngel";
+onLoadName = "Loading...";
 loadScreen = "\overthrow_main\campaign\missions\overthrow_tanoa.jpg";

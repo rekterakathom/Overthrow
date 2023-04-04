@@ -145,7 +145,7 @@ class CfgMissions
 	};
 	class Cutscenes
 	{
-		class Tanoa_intro1
+		class OT_Tanoa_intro1
 		{
 			directory="overthrow_main\campaign\missions\Overthrow_background.Tanoa";
 		};
@@ -157,6 +157,7 @@ class CfgWorlds
 	class CAWorld;
 	class Tanoa : CAWorld
 	{
+		cutscenes[] = { "OT_Tanoa_intro1" };
 		class Names
 		{
 			class RailwayDepot01 {
@@ -164,6 +165,8 @@ class CfgWorlds
 			};
 		};
 	};
+	initWorld = "Tanoa";
+	demoWorld = "Tanoa";
 };
 
 
