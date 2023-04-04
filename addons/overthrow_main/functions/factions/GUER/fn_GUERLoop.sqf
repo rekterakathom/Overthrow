@@ -37,7 +37,7 @@ if(_trackcounter > 5) then {
 			_x setBehaviour "SAFE";
 		};
 	};
-}foreach(allGroups select {(side _x) isEqualTo civilian});
+}foreach (groups civilian);
 
 private _dead = count alldeadmen;
 if(_dead > 150) then {
