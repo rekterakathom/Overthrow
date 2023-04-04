@@ -99,7 +99,7 @@ private _mortars = spawner getVariable ["NATOmortars",[]];
 		""
 	];
 }foreach(_mortars);
-if(((getposatl player) select 2) > 30) then {
+if(((getpos player) select 2) > 30) then {
 	//Show no-fly zones
 	private _abandoned = server getVariable ["NATOabandoned",[]];
 	{
@@ -177,6 +177,7 @@ if(OT_showEnemyGroups) then {
 					];
 				};
 			};
+			continue;
 		};
 
 		if(side _x isEqualTo east) then {
