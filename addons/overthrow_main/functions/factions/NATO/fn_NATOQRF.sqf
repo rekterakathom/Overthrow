@@ -275,7 +275,7 @@ if(_progress > 0) then {
 				deleteGroup _x;
 			};
 		};
-	}foreach(allgroups);
+	}foreach(groups west);
 	{
 		if(side _x isEqualTo west) then {
 			if(_x getVariable ["garrison",""] isEqualTo "HQ") then {
