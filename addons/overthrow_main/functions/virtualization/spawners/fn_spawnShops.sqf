@@ -5,31 +5,29 @@ params ["_town","_spawnid"];
 
 private _activeshops = server getVariable [format["activeshopsin%1",_town],[]];
 
-if(count _activeshops > 0) exitWith {
-	private _groups = [];
+// All shopkeepers can be in the same group to save performance
+private _groups = [];
+private _group = createGroup civilian;
+_group setBehaviour "CARELESS";
+_group setGroupIdGlobal [format ["Shops %1", _town]];
+_groups pushback _group;
 
+if(count _activeshops > 0) exitWith {
 	{
 		_x params ["_pos","_category"];
 		private _pos = _x select 0;
 		_building = nearestBuilding _pos;
-
-		private _group = createGroup civilian;
-		_group setBehaviour "CARELESS";
-		_groups pushback _group;
 		private _start = _building buildingPos 0;
 		_shopkeeper = _group createUnit [OT_civType_shopkeeper, _start, [],0, "CAN_COLLIDE"];
-
 		private _tracked = _building call OT_fnc_spawnTemplate;
 		private _vehs = _tracked select 0;
 		{
 			_groups pushback _x;
 		}foreach(_vehs);
 
+		doStop _shopkeeper;
 		_shopkeeper allowDamage false;
-		_shopkeeper disableAI "MOVE";
-		_shopkeeper disableAI "AUTOCOMBAT";
 		_shopkeeper setVariable ["NOAI",true,false];
-
 		_shopkeeper setVariable ["shopcheck",true,true];
 		_shopkeeper setVariable ["shop",format["%1",_pos],true];
 		_shopkeeper setVariable ["OT_shopCategory",_category,true];
