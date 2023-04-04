@@ -14,15 +14,14 @@
 	Returns: Boolean - was vehicle deleted
 */
 
-params [
+if !(params [
 	["_vehicle", objNull, [objNull]]
-];
-
-if (isNull _vehicle) exitWith {diag_log "Overthrow: Tried to delete a null vehicle"};
+]) exitWith {diag_log format ["Overthrow: Tried to delete a null vehicle: %1", _vehicle]; false};
 
 // Vehicle is local and can be deleted
 if (local _vehicle) exitWith {
 	deleteVehicleCrew _vehicle;
+	deleteVehicle _vehicle;
 	true;
 };
 
