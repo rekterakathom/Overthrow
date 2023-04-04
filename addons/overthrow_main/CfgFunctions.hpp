@@ -312,6 +312,7 @@ class CfgFunctions
 			class vehicleCanMove {};
 			class unflipVehicle {};
 			class triggerBattle {};
+			class donateTransformer {};
 
 		};
 

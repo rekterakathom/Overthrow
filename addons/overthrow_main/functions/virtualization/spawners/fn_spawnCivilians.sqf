@@ -52,8 +52,21 @@ private _pergroup = 1;
 if(_numCiv > 8) then {_pergroup = 2};
 if(_numCiv > 16) then {_pergroup = 4};
 
+// Spawn a mayor for the town
+private _mayorpos = _town call OT_fnc_getRandomRoadPosition;
+private _group = createGroup [civilian,true];
+_group setBehaviour "SAFE";
+_groups pushback _group;
+_mayor = _group createUnit ["C_Man_formal_1_F", _mayorpos, [],0, "NONE"];
+_mayor setBehaviour "CARELESS";
+_mayor setVariable ["hometown",_hometown,true];
+[_mayor] call OT_fnc_initMayor;
+_group call OT_fnc_initCivilianGroup;
+
+
+// Spawn the rest of the civvies
 while {_count < _numCiv} do {
-	private _groupcount = 0;
+	private _groupCount = 0;
 	private _group = createGroup [civilian,true];
 	_group setBehaviour "SAFE";
 	_groups pushback _group;

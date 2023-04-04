@@ -153,4 +153,15 @@ class CfgOverthrowMissions
         expires = 6;
         requestable = 1;
     };
+
+    class Transformer
+    {
+        target = "Town";
+        repeatable = 0;
+        condition = "params['_inSpawnDistance','_stability'];_inSpawnDistance && _stability < 50";
+        script = "\overthrow_main\missions\transformer.sqf";
+        chance = 20;
+        expires = 6;
+        requestable = 0;
+    };
 };

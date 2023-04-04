@@ -31,6 +31,7 @@ private _canMission = false;
 private _canTute = false;
 private _canGangJob = false;
 private _isShop = false;
+private _isMayor = false;
 
 if !((_civ getvariable ["shop",[]]) isEqualTo []) then {_canSellDrugs = true;_canRecruit = false;_canBuy=true;_canSell=true;_isShop = true};
 if (_civ getvariable ["carshop",false]) then {_canSellDrugs = true;_canRecruit = false;_canBuyVehicles=true};
@@ -41,6 +42,7 @@ if (_civ getvariable ["notalk",false]) then {_canSellDrugs = false;_canRecruit =
 if (_civ getvariable ["factionrep",false]) then {_canSellDrugs = false;_canRecruit = false;_canBuyGuns=false;_canIntel=false;_canMission=true};
 if (_civ getvariable ["crimleader",false]) then {_canSellDrugs = true;_canRecruit = false;_canBuyGuns=false;_canIntel=false;_canMission=false;_canGangJob=true};
 if (_civ getvariable ["criminal",false]) then {_canSellDrugs = true;_canRecruit = false;_canBuyGuns=false;_canIntel=false;_canMission=false};
+if (_civ getvariable ["mayor",false]) then {_canSellDrugs = false;_canRecruit = false;_canBuyGuns=false;_canIntel=false;_canMission=false;_isMayor = true};
 
 if (_civ call OT_fnc_hasOwner) then {_canRecruit = false;_canIntel = false;_canSellDrugs=false};
 
@@ -99,6 +101,12 @@ if((count _delivery) > 0) then {
 			};
 		},
 		[_civ,_itemcls,_numitems]
+	];
+};
+
+if (_isMayor && !(server getVariable [(_town + "transformerpaid"), true])) then {
+	_options pushBack [
+		format["Donate 4000$"], OT_fnc_donateTransformer
 	];
 };
 
