@@ -387,6 +387,7 @@ class CfgFunctions
 			class spawnNATOObjective {};
 			class spawnPolice {};
 			class spawnShops {};
+			class spawnStabilityObjects {};
 		};
 
 		/*

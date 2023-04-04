@@ -47,7 +47,8 @@ OT_townSpawners = [
 	OT_fnc_spawnCarDealers,
 	OT_fnc_spawnGunDealer,
 	OT_fnc_spawnAmbientVehicles,
-	OT_fnc_spawnBoatDealers
+	OT_fnc_spawnBoatDealers,
+	OT_fnc_spawnStabilityObjects
 ];
 
 {
