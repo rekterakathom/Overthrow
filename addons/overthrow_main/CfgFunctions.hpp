@@ -494,6 +494,7 @@ class CfgFunctions
 			file = "\overthrow_main\functions\AI\NPC";
 			class randomLocalIdentity {};
 			class applyIdentity {};
+			class initMayor {};
 			class initCarDealer {};
 			class initCivilian {};
 			class initCivilianGroup {};
