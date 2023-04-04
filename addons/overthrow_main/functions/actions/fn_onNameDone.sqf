@@ -7,11 +7,13 @@ if(_name != "") then {
     [_base, ["Set As Home", {player setVariable ["home",getpos (_this select 0),true];"This FOB is now your home" call OT_fnc_notifyMinor},nil,0,false,true]] remoteExec ["addAction",0,_base];
 
     private _bases = server getVariable ["bases",[]];
-    _bases pushback [getpos _base,_name,getplayeruid player];
+    private _basePos = getPosASL _base;
+    _basePos set [2, 0];
+    _bases pushback [_basePos,_name,getplayeruid player];
     server setVariable ["bases",_bases,true];
     _base setVariable ["name",_name];
-    private _mrkid = format["%1-base",getpos _base];
-    createMarkerLocal [_mrkid,getpos _base];
+    private _mrkid = format["%1-base",_basePos];
+    createMarkerLocal [_mrkid,_basePos];
     _mrkid setMarkerShapeLocal "ICON";
     _mrkid setMarkerTypeLocal "mil_Flag";
     _mrkid setMarkerColorLocal "ColorWhite";
@@ -22,7 +24,7 @@ if(_name != "") then {
         [
             _x,
             format["New Base: %1",_name],
-            format["%1 created a new base for resistance efforts %2",_builder,(getpos _base) call BIS_fnc_locationDescription]
+            format["%1 created a new base for resistance efforts %2",_builder,_basePos call BIS_fnc_locationDescription]
         ] call BIS_fnc_createLogRecord;
     }foreach([] call CBA_fnc_players);
 };
