@@ -215,6 +215,8 @@ if(isMultiplayer || _startup == "LOAD") then {
 	_squads = server getVariable ["squads",[]];
 	_newsquads = [];
 	_cc = 1;
+	// Remove all the HC groups
+	hcRemoveAllGroups player;
 	{
 		_x params ["_owner","_cls","_group","_units"];
 		if(_owner isEqualTo (getplayeruid player)) then {
