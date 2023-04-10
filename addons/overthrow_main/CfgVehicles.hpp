@@ -563,6 +563,22 @@ class CfgVehicles {
         modelSides[] = {6};
     };
 
+    // Custom clothing, backpacks etc
+    /// Equipment list macros definition ///
+    #define MAG_XX(a,b) class _xx_##a {magazine = a; count = b;}
+    #define WEAP_XX(a,b) class _xx_##a {weapon = a; count = b;}
+    #define ITEM_XX(a,b) class _xx_##a {name = a; count = b;}
+
+    // Black backpack for medic unit
+    class B_AssaultPack_blk;
+    class OT_B_AssaultPack_blk_MEDIC: B_AssaultPack_blk {
+        scope = 1;
+        class TransportItems {
+            ITEM_XX(FirstAidKit, 5);
+            ITEM_XX(Medikit, 1);
+        };
+    };
+
     // Custom units
     #define MAG_2(a) a, a
     #define MAG_3(a) a, a, a
@@ -602,10 +618,27 @@ class CfgVehicles {
     class B_Gen_Commander_Heavy_F: B_Gen_Soldier_Heavy_F
     {
         displayName = "Gendarmerie Commander (Heavy)";
+        icon = "iconManLeader";
         weapons[] = {arifle_SPAR_01_blk_ACO_Pointer_F, hgun_P07_blk_F, Throw, Put, Binocular};
         respawnWeapons[] = {arifle_SPAR_01_blk_ACO_Pointer_F, hgun_P07_blk_F, Throw, Put, Binocular};
         linkedItems[] = {V_PlateCarrier2_blk, H_Beret_gen_F, ItemMap, ItemCompass, ItemWatch, ItemRadio, NVGoggles_OPFOR};
         respawnLinkedItems[] = {V_PlateCarrier2_blk, H_Beret_gen_F, ItemMap, ItemCompass, ItemWatch, ItemRadio, NVGoggles_OPFOR};
+    };
+
+    class B_Gen_Medic_Heavy_F: B_Gen_Soldier_Heavy_F
+    {
+        displayName = "Gendarmerie Medic (Heavy)";
+        backpack = "OT_B_AssaultPack_blk_MEDIC";
+        icon = "iconManMedic";
+        nameSound = "veh_infantry_medic_s";
+        picture = "pictureHeal";
+        role = "CombatLifeSaver";
+        textPlural = "medics";
+        textSingular = "medic";
+        weapons[] = {arifle_SPAR_01_blk_ACO_Pointer_F, hgun_P07_blk_F, Throw, Put, Binocular};
+        respawnWeapons[] = {arifle_SPAR_01_blk_ACO_Pointer_F, hgun_P07_blk_F, Throw, Put, Binocular};
+        linkedItems[] = {V_PlateCarrierSpec_blk, H_PASGT_basic_white_F, G_Balaclava_TI_G_blk_F, ItemMap, ItemCompass, ItemWatch, ItemRadio, NVGoggles_OPFOR};
+        respawnLinkedItems[] = {V_PlateCarrierSpec_blk, H_PASGT_basic_white_F, G_Balaclava_TI_G_blk_F, ItemMap, ItemCompass, ItemWatch, ItemRadio, NVGoggles_OPFOR};
     };
 
     // Recon units for woodland NATO, based on existing recon units for Altis and Pacific and regular woodland NATO infantry.

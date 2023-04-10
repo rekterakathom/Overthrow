@@ -130,6 +130,7 @@ OT_NATO_Unit_PoliceCommander = "B_Gen_Commander_F";
 OT_NATO_Unit_PoliceCommander_Heavy = "B_Gen_Commander_Heavy_F";
 OT_NATO_Unit_Police = "B_Gen_Soldier_F";
 OT_NATO_Unit_Police_Heavy = "B_Gen_Soldier_Heavy_F";
+OT_NATO_Unit_PoliceMedic_Heavy = "B_Gen_Medic_Heavy_F";
 OT_NATO_Vehicle_PoliceHeli = "B_Heli_Light_01_F";
 OT_NATO_Vehicle_Quad = "B_Quadbike_01_F";
 OT_NATO_Vehicle_Police = "B_GEN_Offroad_01_gen_F";

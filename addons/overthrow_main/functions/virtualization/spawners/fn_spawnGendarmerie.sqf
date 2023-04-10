@@ -52,6 +52,15 @@ while {_count < _numNATO} do {
 		_civ setRank "PRIVATE";
 		[_civ,_town] call OT_fnc_initGendarm;
 		_civ setBehaviour "SAFE";
+		if (_stability < 25) then {
+			_toSpawn = OT_NATO_Unit_PoliceMedic_Heavy;
+			_civ = _group createUnit [_toSpawn, _pos, [],0, "NONE"];
+			_civ setVariable ["garrison",_town,false];
+			[_civ] joinSilent _group;
+			_civ setRank "PRIVATE";
+			[_civ,_town] call OT_fnc_initGendarm;
+			_civ setBehaviour "SAFE";
+		};
 
 		sleep 0.5;
 		_group call OT_fnc_initGendarmPatrol;
