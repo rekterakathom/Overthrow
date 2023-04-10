@@ -20,6 +20,14 @@ _unit addEventHandler ["HandleDamage", {
 	};
 }];
 
+// Increase skill levels for heavy units to simulate training
+if (toLowerANSI (typeOf _unit) in ["b_gen_commander_heavy_f", "b_gen_soldier_heavy_f", "b_gen_medic_heavy_f"]) then {
+	_unit setRank "SERGEANT";
+	_unit setSkill ["courage", 0.7];
+	_unit setSkill ["commanding", 0.7];
+	_unit setSkill ["spotTime", 0.7];
+};
+
 if((random 100) < 75 && OT_randomizeLoadouts) then {
 	_unit setUnitLoadout [_unit call OT_fnc_getRandomLoadout, true];
 };
