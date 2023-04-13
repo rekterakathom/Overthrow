@@ -458,6 +458,8 @@ class CfgFunctions
 			file = "\overthrow_main\functions\AI";
 			class createEmployee {};
 			class deleteEmployee {};
+			class createGarrisonUnit {};
+			class createGarrisonGun {};
 			class createSoldier {};
 			class getSoldier {};
 			class getSquad {};
