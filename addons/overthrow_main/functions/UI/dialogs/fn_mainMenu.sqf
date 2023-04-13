@@ -32,7 +32,7 @@ private _standing = [_town] call OT_fnc_support;
 private _rep = server getVariable ["rep",0];
 private _extra = "";
 
-if(isMultiplayer && { ((getplayeruid player) in (server getVariable ["generals",[]])) }) then {
+if((getplayeruid player) in (server getVariable ["generals",[]])) then {
 	_extra = format[
 		"<t align='left' size='0.65'>Resistance Funds: $%1 (Tax Rate %2%3)</t>",
 		[server getVariable ["money",0], 1, 0, true] call CBA_fnc_formatNumber,

@@ -1,1 +1,1 @@
-(!isMultiplayer) || ((getPlayerUID player) in (server getvariable ["generals",[]]))
+(getPlayerUID player) in (server getvariable ["generals",[]])

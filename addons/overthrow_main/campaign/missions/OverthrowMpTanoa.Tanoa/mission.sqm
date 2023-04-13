@@ -419,7 +419,7 @@ class CustomAttributes
 		class Attribute4
 		{
 			property="SharedObjectives";
-			expression="if (isMultiplayer) then {[_value] spawn bis_fnc_sharedObjectives;};";
+			expression="[_value] spawn bis_fnc_sharedObjectives;";
 			class Value
 			{
 				class data
@@ -568,7 +568,7 @@ class Mission
 			class Attribute1
 			{
 				property="Enh_disableGrass";
-				expression="if(_value) then {50 remoteExec ['setTerrainGrid',[0,-2] select (isMultiplayer && isDedicated),true]}";
+				expression="if(_value) then {50 remoteExec ['setTerrainGrid',[0,-2] select (isDedicated),true]}";
 				class Value
 				{
 					class data
@@ -581,7 +581,7 @@ class Mission
 			class Attribute2
 			{
 				property="Enh_viewDistance";
-				expression="if (!is3DEN && (_value > 0)) then {_value remoteExec ['setViewDistance',[0,-2] select (isMultiplayer && isDedicated),true]}";
+				expression="if (!is3DEN && (_value > 0)) then {_value remoteExec ['setViewDistance',[0,-2] select (isDedicated),true]}";
 				class Value
 				{
 					class data

@@ -140,7 +140,7 @@ if (isNil "OT_spawnCivPercentage") then {
 };
 OT_spawnVehiclePercentage = 0.04;
 OT_standardMarkup = 0.2; //Markup in shops is calculated from this
-OT_randomSpawnTown = false; //if true, every player will start in a different town, if false, all players start in the same town (Multiplayer only)
+OT_randomSpawnTown = false; //if true, every player will start in a different town, if false, all players start in the same town
 OT_distroThreshold = 500; //Size a towns order must be before a truck is sent (in dollars)
 OT_saving = false;
 OT_activeShops = [];

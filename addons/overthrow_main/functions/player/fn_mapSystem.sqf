@@ -1,23 +1,21 @@
-if(isMultiplayer) then {
-	addMissionEventHandler ["Draw3D", {
-		if !(OT_showPlayerMarkers) exitWith {};
-		{
-			if (_x isNotEqualTo player) then {
-				private _dis = round(_x distance player);
-				if(_dis < 250) then {
-					private _t = "m";
-					//if(_dis > 999) then {
-					//	_dis = round(_dis / 1000);
-					//	_t = "km";
-					//};
-					private _pos = _x modelToWorldVisual [0,0,0];
-					if ((worldToScreen _pos) isEqualTo []) exitWith {};
-					drawIcon3D ["a3\ui_f\data\map\groupicons\selector_selectable_ca.paa", [1,1,1,0.3], _pos, 1, 1, 0, format["%1 (%2%3)",name _x,_dis,_t], 0, 0.02, "TahomaB", "center", true];
-				};
+addMissionEventHandler ["Draw3D", {
+	if !(OT_showPlayerMarkers) exitWith {};
+	{
+		if (_x isNotEqualTo player) then {
+			private _dis = round(_x distance player);
+			if(_dis < 250) then {
+				private _t = "m";
+				//if(_dis > 999) then {
+				//	_dis = round(_dis / 1000);
+				//	_t = "km";
+				//};
+				private _pos = _x modelToWorldVisual [0,0,0];
+				if ((worldToScreen _pos) isEqualTo []) exitWith {};
+				drawIcon3D ["a3\ui_f\data\map\groupicons\selector_selectable_ca.paa", [1,1,1,0.3], _pos, 1, 1, 0, format["%1 (%2%3)",name _x,_dis,_t], 0, 0.02, "TahomaB", "center", true];
 			};
-		}foreach(allPlayers - (entities "HeadlessClient_F"));
-	}];
-};
+		};
+	}foreach(allPlayers - (entities "HeadlessClient_F"));
+}];
 
 addMissionEventHandler ["Draw3D", {
 	if(!isNil "OT_missionMarker") then {

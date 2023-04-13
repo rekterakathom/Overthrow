@@ -27,32 +27,6 @@ if(isPlayer _me) exitWith {
 		[_town,-1] call OT_fnc_stability;
 	};
 	_me setCaptive true;
-	if !(isMultiplayer) then {
-		_this params ["_unit", "_killer", "_instigator", "_useEffects"];
-		if (_unit isEqualTo player) then {
-			cutText ["", "BLACK FADED", 15];
-			private _new_unit = (creategroup resistance) createUnit ["I_G_Soldier_F",(player getVariable ["home",[worldSize/2,worldSize/2,0]]),[],0,"NONE"];
-			selectPlayer _new_unit;
-
-			player forceAddUniform (player getVariable ["uniform",""]);
-			player setdamage 0;
-			[] spawn {
-				sleep 0.5;
-				player setpos (player getVariable "home");
-				removeAllWeapons player;
-				removeAllItems player;
-				removeAllAssignedItems player;
-				removeBackpack player;
-				removeVest player;
-				removeGoggles player;
-				removeHeadgear player;
-				player setDamage 0;
-				player linkItem "ItemMap";
-				player switchMove "";
-				cutText ["", "BLACK IN", 5];
-			};
-		};
-	};
 };
 
 _civ = _me getvariable "civ";
