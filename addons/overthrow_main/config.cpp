@@ -109,21 +109,6 @@ class CfgMissions
 			directory = "overthrow_main\campaign";
 		};
 	};
-	class Missions
-	{
-		class OverthrowSpTanoa
-		{
-			directory="overthrow_main\campaign\missions\OverthrowSpTanoa.Tanoa";
-		};
-		class OverthrowSpAltis
-		{
-			directory="overthrow_main\campaign\missions\OverthrowSpAltis.Altis";
-		};
-		class OverthrowSpMalden
-		{
-			directory="overthrow_main\campaign\missions\OverthrowSpMalden.Malden";
-		};
-	};
 	class MPMissions
 	{
 		class OverthrowMpTanoa
