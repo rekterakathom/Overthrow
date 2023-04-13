@@ -24,7 +24,7 @@ A dynamic and persistent revolution campaign mod for ARMA 3 Apex
 * Manipulate the markets with guns or piles of cash
 * Recruit and arm civilians
 * Recruit civilians simply just to loot for you
-* Designed to work in both single player and multiplayer
+* Designed to work in both multiplayer and solo on a LAN server
 
 # Required DLC
 * APEX
