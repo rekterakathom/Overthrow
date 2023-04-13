@@ -35,7 +35,8 @@ diag_log format["Overthrow: Economy version is %1",_version];
 
             _towndist = (server getVariable _town) distance _pos;
             _control = _pos call OT_fnc_nearestCheckpoint;
-    		_cdist = (getmarkerpos _control) distance _pos;
+            // If there are no checkpoints (Malden), use one million as distance.
+    		_cdist = if (!isNil "_control") then {(getmarkerpos _control) distance _pos} else {1000000};
 
     		if(_obdist > 800 and _towndist > 200 and _cdist > 500) then {
                 _allpos pushback _pos;
