@@ -81,7 +81,7 @@ if((isplayer _target && !captive _target) || (!alive _cop) || ((time - _timenow)
 
 if((_target distance _posnow) > 2) then {
 	if(isplayer _target) then {
-		[_cop,"I said stop! move again && we WILL open fire"] remoteExec ["globalchat",_target,false];
+		[_cop,"I said stop! move again and we WILL open fire"] remoteExec ["globalchat",_target,false];
 		"sectorLost" remoteExec ["playsound",_target,false];
 
 		while {!((waypoints _group) isEqualTo [])} do
@@ -167,7 +167,7 @@ if(isplayer _target) then {
 					_chance = 100 - (_stealth * 20);
 				};
 				if((random 100) < _chance) then {
-					[_cop,"We found some illegal items && confiscated them, be on your way"] remoteExec ["globalchat",_target,false];
+					[_cop,"We found some illegal items and confiscated them, be on your way"] remoteExec ["globalchat",_target,false];
 					"NATO confiscated illegal items" remoteExecCall ["hint",_target,false];
 					private _town = _target call OT_fnc_nearestTown;
 				}else{

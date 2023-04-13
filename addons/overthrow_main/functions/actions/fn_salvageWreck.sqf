@@ -65,7 +65,7 @@ private _doSalvage = {
     _done = 0;
     for "_x" from 0 to (_steel - 1) do {
         if(!(_veh isKindOf "Truck_F" || _veh isKindOf "ReammoBox_F") && !(_veh canAdd "OT_Steel")) exitWith {
-            "Vehicle is full, use a truck || ammobox for more storage" call OT_fnc_notifyMinor;
+            "Vehicle is full, use a truck or ammobox for more storage" call OT_fnc_notifyMinor;
         };
         _done = _done + 1;
         _veh addItemCargoGlobal ["OT_Steel", 1];
