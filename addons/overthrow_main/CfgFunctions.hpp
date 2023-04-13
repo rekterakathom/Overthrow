@@ -204,7 +204,6 @@ class CfgFunctions
 			class displayWarehousePic {};
 			class showMemberInfo {};
 			class showBusinessInfo {};
-			class refreshEmployees {};
 			class displayJobDetails {};
 			class displayCraftItem {};
 			class factoryRefresh {};
@@ -457,6 +456,8 @@ class CfgFunctions
 		class AI
 		{
 			file = "\overthrow_main\functions\AI";
+			class createEmployee {};
+			class deleteEmployee {};
 			class createSoldier {};
 			class getSoldier {};
 			class getSquad {};
