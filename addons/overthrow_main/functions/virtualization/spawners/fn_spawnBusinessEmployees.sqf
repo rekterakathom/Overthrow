@@ -17,7 +17,7 @@ while {_count < _numCiv} do {
 	private _identity = call OT_fnc_randomLocalIdentity;
 	_identity set [1, ""]; // Retain original worker clothes
 	[_civ, _identity] call OT_fnc_applyIdentity;
-	_civ setVariable ["employee",_name];
+	_civ setVariable ["employee",_name, true];
 	_count = _count + 1;
 	sleep 0.3;
 };
