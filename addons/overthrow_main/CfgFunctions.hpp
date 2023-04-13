@@ -460,6 +460,7 @@ class CfgFunctions
 			class deleteEmployee {};
 			class createGarrisonUnit {};
 			class createGarrisonGun {};
+			class createPoliceGroup {};
 			class createSoldier {};
 			class getSoldier {};
 			class getSquad {};
