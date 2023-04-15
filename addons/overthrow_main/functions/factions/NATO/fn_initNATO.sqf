@@ -143,10 +143,8 @@ if((server getVariable "StartupType") == "NEW" || (server getVariable ["NATOvers
 	if(_diff == 0) then {_numHVTs = 4};
 	if(_diff == 2) then {_numHVTs = 8};
 
-	OT_allBLUOffensiveVehicles = (spawner getVariable format["facvehicles%1",OT_faction_NATO]) select {(getArray (configFile >> "cfgVehicles" >> _x >> "threat") # 0) > 0.5};
-
 	//Find military objectives
-	_groundvehs = OT_allBLUOffensiveVehicles select {!((_x isKindOf "Air") || (_x isKindOf "Tank") || (_x isKindOf "Ship"))};
+	_groundvehs = OT_allBLUOffensiveVehicles select {getText (configFile >> "CfgVehicles" >> _x >> "faction") == OT_faction_NATO && {!((_x isKindOf "Air") || (_x isKindOf "Tank") || (_x isKindOf "Ship"))}};
 	{
 		_x params ["_pos","_name","_worth"];
 		if !(_name in _abandoned) then {
@@ -264,7 +262,7 @@ if((server getVariable "StartupType") == "NEW" || (server getVariable ["NATOvers
 		}foreach(OT_NATO_Vehicles_AirGarrison);
 
 		//Distribute some random Air vehicles
-		_airvehs = OT_allBLUOffensiveVehicles select {_x isKindOf "Air"};
+		_airvehs = OT_allBLUOffensiveVehicles select {getText (configFile >> "CfgVehicles" >> _x >> "faction") == OT_faction_NATO && {_x isKindOf "Air"}};
 		{
 			_name = _x;
 			if((random 200) < (count _airvehs)) then {

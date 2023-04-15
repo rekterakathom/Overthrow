@@ -621,7 +621,7 @@ OT_allBLURifleMagazines = [];
 				if(_cls isKindOf "LandVehicle" || _cls isKindOf "Air" || _cls isKindOf "Ship") then {
 					_vehicles pushback _cls;
 					_numblueprints = _numblueprints + 1;
-					if(_side isEqualTo 1 && (getText (_x >> "faction") == OT_faction_NATO)) then {
+					if(_side isEqualTo 1) then {
 						private _threat = getArray (_x >> "threat");
 						if(_threat # 0 > 0.5) then {
 							OT_allBLUOffensiveVehicles pushBackUnique _cls;
