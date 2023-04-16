@@ -90,7 +90,7 @@ if(!isNil "_close") then {
 		_move setWaypointBehaviour "CARELESS";
 
 		_move = _group addWaypoint [_drop,0];
-		_move setWaypointType "UNLOAD";
+		_move setWaypointType "GETOUT";
 		_move setWaypointBehaviour "AWARE";
 	};
 

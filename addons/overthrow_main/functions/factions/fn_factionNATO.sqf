@@ -649,7 +649,7 @@ publicVariable "OT_nextNATOTurn";
 					{
 						if((server getVariable [format ["garrison%1",_x],-1]) > 0) then {
 							private _pos = markerPos _x;
-							_waypoints pushback _x
+							_waypoints pushback _pos;
 						};
 						if((count _waypoints) > 6) exitWith {};
 					}foreach (OT_NATO_control call BIS_fnc_arrayShuffle);
