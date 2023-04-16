@@ -326,11 +326,9 @@ publicVariable "OT_nextNATOTurn";
 			if(_popControl > 2000) then {_chance = _chance - 1};
 			_gain = _gain + (5 * count ([] call CBA_fnc_allPlayers)); // 5 extra resources per player in-game
 
-			//Recover resources
 			// Recover resources
 			_resources = _resources + _gain + _resourceGain + ((round (_popControl * 0.01)) * _mul);
 
-			server setVariable ["NATOlastgain",_gain + _resourceGain + ((round (_popControl * 0.01)) * _mul),true];
 			server setVariable ["NATOlastgain", _gain + _resourceGain + ((round (_popControl * 0.01)) * _mul), true];
 
 			//Counter Towns
@@ -729,7 +727,6 @@ publicVariable "OT_nextNATOTurn";
 			}foreach(_fobs);
 		};
 		//Finish
-		_limit = 2500;
 		_limit = 3000;
 		if(_diff > 0 && _popControl > 1000) then {_limit = _limit + 500};
 		if(_diff > 1 && _popControl > 1000) then {_limit = _limit + 500};
