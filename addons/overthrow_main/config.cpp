@@ -41,7 +41,8 @@ class CfgMainMenuSpotlight
 		textIsQuote = 1; // 1 to add quotation marks around the text
 		picture = "\overthrow_main\campaign\overthrow_spotlight.jpg"; // Square picture, ideally 512x512
 		video = "\a3\Ui_f\Video\spotlight_1_Apex.ogv"; // Video played on mouse hover
-		action = "ctrlactivate ((ctrlparent (_this select 0)) displayctrl 101);";
+		// First activate "multiplayer" control in main display, then activate "host server" control in "multiplayer" display
+		action = "ctrlactivate ((ctrlparent (_this select 0)) displayctrl 105); ctrlactivate (findDisplay 8 displayctrl 167);";
 		actionText = $STR_A3_RscDisplayMain_Spotlight_Play; // Text displayed in top left corner of on-hover white frame
 		condition = "true"; // Condition for showing the spotlight
 	};
@@ -102,28 +103,6 @@ class CfgMainMenuSpotlight
 
 class CfgMissions
 {
-	class Campaigns
-	{
-		class Overthrow
-		{
-			directory = "overthrow_main\campaign";
-		};
-	};
-	class Missions
-	{
-		class OverthrowSpTanoa
-		{
-			directory="overthrow_main\campaign\missions\OverthrowSpTanoa.Tanoa";
-		};
-		class OverthrowSpAltis
-		{
-			directory="overthrow_main\campaign\missions\OverthrowSpAltis.Altis";
-		};
-		class OverthrowSpMalden
-		{
-			directory="overthrow_main\campaign\missions\OverthrowSpMalden.Malden";
-		};
-	};
 	class MPMissions
 	{
 		class OverthrowMpTanoa

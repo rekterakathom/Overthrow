@@ -5,7 +5,7 @@ params ["_mapCtrl"];
 
 private _vehs = [];
 private _cfgVeh = configFile >> "CfgVehicles";
-if(isMultiplayer && OT_showPlayerMarkers) then {
+if(OT_showPlayerMarkers) then {
 	{
 		private _veh = vehicle _x;
 		if(_veh isEqualTo _x) then {

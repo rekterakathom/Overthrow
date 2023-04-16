@@ -131,10 +131,8 @@ OT_tpl_checkpoint = [] call compileScript ["data\templates\NATOcheckpoint.sqf", 
 	["Police", OT_Loadout_Police] call ace_arsenal_fnc_addDefaultLoadout;
 
 	//Subscribe to events
-	if(isMultiplayer) then {
-	    addMissionEventHandler ["PlayerConnected",OT_fnc_playerConnectHandler];
-	    addMissionEventHandler ["HandleDisconnect",OT_fnc_playerDisconnectHandler];
-	};
+	addMissionEventHandler ["PlayerConnected",OT_fnc_playerConnectHandler];
+	addMissionEventHandler ["HandleDisconnect",OT_fnc_playerDisconnectHandler];
 	["Building", "Dammaged", OT_fnc_buildingDamagedHandler] call CBA_fnc_addClassEventHandler;
 
 	//ACE3 events

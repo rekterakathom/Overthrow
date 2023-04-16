@@ -30,7 +30,7 @@ if(isNil {server getVariable "generals"}) then {
 
 OT_centerPos = getArray (configFile >> "CfgWorlds" >> worldName >> "centerPosition");
 
-if(isMultiplayer && (!isServer)) then {
+if(!isServer) then {
 	// this is all done on server too, no need to execute them again
 	call OT_fnc_initBaseVar;
 	call compileScript ["initVar.sqf", false];
@@ -65,18 +65,6 @@ _introcam camCommit 0;
 waitUntil {camCommitted _introcam};
 showCinemaBorder false;
 
-if(!isMultiplayer) exitWith {
-	[
-		"<t size='0.5' color='#000000'>Overthrow currently does not work very well in Single Player mode. Please host a LAN game for solo play. See the wiki at http://armaoverthrow.com/</t>",
-		0,
-		0.2,
-		30,
-		0,
-		0,
-		2
-	] call OT_fnc_dynamicText;
-};
-
 if((isServer || count ([] call CBA_fnc_players) == 1) && (server getVariable ["StartupType",""] isEqualTo "")) then {
     waitUntil {!(isnull (findDisplay 46)) && OT_varInitDone};
 
@@ -106,13 +94,6 @@ if ((_aplayers find (getplayeruid player)) isEqualTo -1) then {
 	_aplayers pushback (getplayeruid player);
 	players_NS setVariable ["OT_allplayers",_aplayers,true];
 };
-if(!isMultiplayer) then {
-	private _generals = server getVariable ["generals",[]];
-	if ((_generals find (getplayeruid player)) isEqualTo -1) then {
-		_generals pushback (getplayeruid player);
-		server setVariable ["generals",_generals,true];
-	};
-};
 players_NS setVariable [format["name%1",getplayeruid player],name player,true];
 players_NS setVariable [format["uid%1",name player],getplayeruid player,true];
 spawner setVariable [format["%1",getplayeruid player],player,true];
@@ -127,130 +108,125 @@ removeHeadgear player;
 removeVest player;
 player linkItem "ItemMap";
 
-private _startup = server getVariable "StartupType";
 private _newplayer = true;
 private _furniture = [];
 private _town = "";
 private _pos = [];
 private _housepos = [];
 
-if(isMultiplayer || _startup == "LOAD") then {
-	player remoteExec ["OT_fnc_loadPlayerData",2,false];
-  waitUntil{sleep 0.5;player getVariable ["OT_loaded",false]};
+player remoteExec ["OT_fnc_loadPlayerData",2,false];
+waitUntil{sleep 0.5;player getVariable ["OT_loaded",false]};
 
-	if (player getVariable["home",false] isEqualType []) then {
-	  _newplayer = false;
-	}else{
-	  _newplayer = true;
-	};
+if (player getVariable["home",false] isEqualType []) then {
+	_newplayer = false;
+}else{
+	_newplayer = true;
+};
 
 
-	if(isMultiplayer) then {
-		//ensure player is in own group, not one someone else left
-		private  _group = creategroup resistance;
-		[player] joinSilent _group;
-	};
+//ensure player is in own group, not one someone else left
+private  _group = creategroup resistance;
+[player] joinSilent _group;
 
-	if(!_newplayer) then {
-		_housepos = player getVariable "home";
-		if(isNil "_housepos" || (count _housepos) isEqualTo 0) exitWith {_newplayer = true};
-		_town = _housepos call OT_fnc_nearestTown;
-		_pos = server getVariable _town;
-		{
-			if(_x call OT_fnc_hasOwner) then {
-				if ((_x call OT_fnc_playerIsOwner) && !(_x isKindOf "LandVehicle") && !(_x isKindOf "Building")) then {
-					_furniture pushback _x
-				};
-			};
-		}foreach(_housepos nearObjects 50);
-	};
-
-	(group player) setVariable ["VCM_Disable",true];
-
-	_recruits = server getVariable ["recruits",[]];
-	_newrecruits = [];
+if(!_newplayer) then {
+	_housepos = player getVariable "home";
+	if(isNil "_housepos" || (count _housepos) isEqualTo 0) exitWith {_newplayer = true};
+	_town = _housepos call OT_fnc_nearestTown;
+	_pos = server getVariable _town;
 	{
-		_owner = _x select 0;
-		_name = _x select 1;
-		_civ = _x select 2;
-		_rank = _x select 3;
-		_loadout = _x select 4;
-		_type = _x select 5;
-		_xp = _x select 6;
-		if(_owner isEqualTo (getplayeruid player)) then {
-			if(_civ isEqualType []) then {
-				_pos = _civ findEmptyPosition [1,20,_type];
-				_civ =  group player createUnit [_type,_pos,[],0,"NONE"];
-				[_civ,getplayeruid player] call OT_fnc_setOwner;
-				_civ setVariable ["OT_xp",_xp,true];
-				_civ setVariable ["NOAI",true,true];
-				_civ setRank _rank;
-				if(_rank isEqualTo "PRIVATE") then {_civ setSkill 0.2 + (random 0.3)};
-				if(_rank isEqualTo "CORPORAL") then {_civ setSkill 0.3 + (random 0.3)};
-				if(_rank isEqualTo "SERGEANT") then {_civ setSkill 0.4 + (random 0.3)};
-				if(_rank isEqualTo "LIEUTENANT") then {_civ setSkill 0.6 + (random 0.3)};
-				if(_rank isEqualTo "CAPTAIN") then {_civ setSkill 0.7 + (random 0.3)};
-				if(_rank isEqualTo "MAJOR") then {_civ setSkill 0.8 + (random 0.2)};
+		if(_x call OT_fnc_hasOwner) then {
+			if ((_x call OT_fnc_playerIsOwner) && !(_x isKindOf "LandVehicle") && !(_x isKindOf "Building")) then {
+				_furniture pushback _x
+			};
+		};
+	}foreach(_housepos nearObjects 50);
+};
+
+(group player) setVariable ["VCM_Disable",true];
+
+_recruits = server getVariable ["recruits",[]];
+_newrecruits = [];
+{
+	_owner = _x select 0;
+	_name = _x select 1;
+	_civ = _x select 2;
+	_rank = _x select 3;
+	_loadout = _x select 4;
+	_type = _x select 5;
+	_xp = _x select 6;
+	if(_owner isEqualTo (getplayeruid player)) then {
+		if(_civ isEqualType []) then {
+			_pos = _civ findEmptyPosition [1,20,_type];
+			_civ =  group player createUnit [_type,_pos,[],0,"NONE"];
+			[_civ,getplayeruid player] call OT_fnc_setOwner;
+			_civ setVariable ["OT_xp",_xp,true];
+			_civ setVariable ["NOAI",true,true];
+			_civ setRank _rank;
+			if(_rank isEqualTo "PRIVATE") then {_civ setSkill 0.2 + (random 0.3)};
+			if(_rank isEqualTo "CORPORAL") then {_civ setSkill 0.3 + (random 0.3)};
+			if(_rank isEqualTo "SERGEANT") then {_civ setSkill 0.4 + (random 0.3)};
+			if(_rank isEqualTo "LIEUTENANT") then {_civ setSkill 0.6 + (random 0.3)};
+			if(_rank isEqualTo "CAPTAIN") then {_civ setSkill 0.7 + (random 0.3)};
+			if(_rank isEqualTo "MAJOR") then {_civ setSkill 0.8 + (random 0.2)};
+			[_civ, (selectRandom OT_faces_local)] remoteExecCall ["setFace", 0, _civ];
+			[_civ, (selectRandom OT_voices_local)] remoteExecCall ["setSpeaker", 0, _civ];
+			_civ setUnitLoadout _loadout;
+			_civ spawn OT_fnc_wantedSystem;
+			_civ setName _name;
+			_civ setVariable ["OT_spawntrack",true,true];
+
+			[_civ] joinSilent nil;
+			[_civ] joinSilent (group player);
+
+			commandStop _civ;
+		}else{
+			if(_civ call OT_fnc_playerIsOwner) then {
+				[_civ] joinSilent (group player);
+			};
+		};
+	};
+	_newrecruits pushback [_owner,_name,_civ,_rank,_loadout,_type];
+}foreach (_recruits);
+server setVariable ["recruits",_newrecruits,true];
+
+_squads = server getVariable ["squads",[]];
+_newsquads = [];
+_cc = 1;
+// Remove all the HC groups
+hcRemoveAllGroups player;
+{
+	_x params ["_owner","_cls","_group","_units"];
+	if(_owner isEqualTo (getplayeruid player)) then {
+		if !(_group isEqualType grpNull) then {
+			_name = _cls;
+			if(count _x > 4) then {
+				_name = _x select 4;
+			}else{
+				{
+					if((_x select 0) isEqualTo _cls) then {
+						_name = _x select 2;
+					};
+				}foreach(OT_Squadables);
+			};
+			_group = creategroup resistance;
+			_group setGroupIdGlobal [_name];
+			{
+				_x params ["_type","_pos","_loadout"];
+				_civ = _group createUnit [_type,_pos,[],0,"NONE"];
+				_civ setSkill 0.5 + (random 0.4);
+				_civ setUnitLoadout _loadout;
 				[_civ, (selectRandom OT_faces_local)] remoteExecCall ["setFace", 0, _civ];
 				[_civ, (selectRandom OT_voices_local)] remoteExecCall ["setSpeaker", 0, _civ];
-				_civ setUnitLoadout _loadout;
-				_civ spawn OT_fnc_wantedSystem;
-				_civ setName _name;
 				_civ setVariable ["OT_spawntrack",true,true];
-
-				[_civ] joinSilent nil;
-				[_civ] joinSilent (group player);
-
-				commandStop _civ;
-			}else{
-				if(_civ call OT_fnc_playerIsOwner) then {
-					[_civ] joinSilent (group player);
-				};
-			};
+			}foreach(_units);
 		};
-		_newrecruits pushback [_owner,_name,_civ,_rank,_loadout,_type];
-	}foreach (_recruits);
-	server setVariable ["recruits",_newrecruits,true];
-
-	_squads = server getVariable ["squads",[]];
-	_newsquads = [];
-	_cc = 1;
-	// Remove all the HC groups
-	hcRemoveAllGroups player;
-	{
-		_x params ["_owner","_cls","_group","_units"];
-		if(_owner isEqualTo (getplayeruid player)) then {
-			if !(_group isEqualType grpNull) then {
-				_name = _cls;
-				if(count _x > 4) then {
-					_name = _x select 4;
-				}else{
-					{
-						if((_x select 0) isEqualTo _cls) then {
-							_name = _x select 2;
-						};
-					}foreach(OT_Squadables);
-				};
-				_group = creategroup resistance;
-				_group setGroupIdGlobal [_name];
-				{
-					_x params ["_type","_pos","_loadout"];
-					_civ = _group createUnit [_type,_pos,[],0,"NONE"];
-					_civ setSkill 0.5 + (random 0.4);
-					_civ setUnitLoadout _loadout;
-					[_civ, (selectRandom OT_faces_local)] remoteExecCall ["setFace", 0, _civ];
-					[_civ, (selectRandom OT_voices_local)] remoteExecCall ["setSpeaker", 0, _civ];
-					_civ setVariable ["OT_spawntrack",true,true];
-				}foreach(_units);
-			};
-			player hcSetGroup [_group,groupId _group,"teamgreen"];
-			_cc = _cc + 1;
-		};
-		_newsquads pushback [_owner,_cls,_group,[]];
-	}foreach (_squads);
-	player setVariable ["OT_squadcount",_cc,true];
-	server setVariable ["squads",_newsquads,true];
-};
+		player hcSetGroup [_group,groupId _group,"teamgreen"];
+		_cc = _cc + 1;
+	};
+	_newsquads pushback [_owner,_cls,_group,[]];
+}foreach (_squads);
+player setVariable ["OT_squadcount",_cc,true];
+server setVariable ["squads",_newsquads,true];
 
 if (_newplayer) then {
     _clothes = (selectRandom OT_clothes_guerilla);
@@ -266,13 +242,6 @@ if (_newplayer) then {
 	};
     player setVariable ["money",_money,true];
     [player,getplayeruid player] call OT_fnc_setOwner;
-    if(!isMultiplayer) then {
-        {
-            if(_x != player) then {
-             	deleteVehicle _x;
-            };
-        } foreach switchableUnits;
-    };
 
     _town = server getVariable "spawntown";
     if(OT_randomSpawnTown) then {
@@ -460,9 +429,7 @@ player addEventHandler ["GetInMan",{
 	};
 }foreach(player getvariable ["owned",[]]);
 
-if(isMultiplayer) then {
-	player addEventHandler ["Respawn",OT_fnc_respawnHandler];
-};
+player addEventHandler ["Respawn",OT_fnc_respawnHandler];
 
 OT_keyHandlerID = [21, [false, false, false], OT_fnc_keyHandler] call CBA_fnc_addKeyHandler;
 
