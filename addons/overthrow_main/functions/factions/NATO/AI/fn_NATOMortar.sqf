@@ -1,5 +1,10 @@
 params ["_mortar","_mortargroup"];
 
+// Lambs is enabled - register the arty
+if (isClass (configFile >> "CfgPatches" >> "lambs_wp")) then {
+    [_mortarGroup] call lambs_wp_fnc_taskArtilleryRegister;
+};
+
 while {sleep 5+(random 5); ("8Rnd_82mm_Mo_shells" in getArtilleryAmmo[_mortar]) && (alive _mortar) && ((units _mortargroup) findIf {alive _x} != -1)} do {
     private _attacking = server getVariable ["NATOattacking",""];
     private _mortarpos = position _mortar;
