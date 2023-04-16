@@ -374,7 +374,7 @@ publicVariable "OT_nextNATOTurn";
 				if(_pri > 800) then {_chance = _chance - 1};
 				if(_popControl > 1000) then {_chance = _chance - 1};
 				if(_popControl > 2000) then {_chance = _chance - 1};
-				if((_time - _lastAttack) > 1200 && {(_name != _lastcounter)} && {(_name in _abandoned)} && {(_resources > _pri)} && {(random 100) > _chance}) exitWith {
+				if((time - _lastAttack) > 1200 && {(_name != _lastcounter)} && {(_name in _abandoned)} && {(_resources > _pri)} && {(random 100) > _chance}) exitWith {
 					//Counter an objective
 
 					private _m = _diff + 1;
