@@ -28,11 +28,12 @@ OT_populationMultiplier = 0.8; //Used to tweak populations per map
 //Building templates
 //To generate these templates:
 //1. Open Arma editor, choose VR map
-//2. Add the building you want to make a template for, set its location and rotation to 0,0,0
+//2. Add the building you want to make a template for, set its rotation to 0 and name it "building"
 //3. Add furniture objects
 //4. Add a player (any unit), Play the Scenario
-//5. Run this in console: [getPos player, 50, true] call BIS_fnc_ObjectsGrabber
+//5. Run this in console: [getPosATL building, 50, false] call BIS_fnc_ObjectsGrabber
 //6. Copy the results, paste them here and remove any extraneous items (ie the building, Logic, babe_helper, Signs)
+//7. If the building floor was much higher than the ground, adjust heights manually
 
 OT_shopBuildings = [
 	["Land_VillageStore_01_F",[]],
@@ -45,28 +46,28 @@ OT_carShopBuildings = [
 ];
 OT_spawnHouseBuildings = [
 	["Land_House_1W01_F",[
-		["Land_MetalCase_01_small_F",[-0.0391073,-2.38339,-0.00100088],269.766,1,0,[2.80922e-005,-0.000455107],"","",true,false],
-		["Land_CampingChair_V2_F",[-0.95352,2.19191,-0.000998974],205.312,1,0,[0.000419523,0.00036544],"","",true,false],
-		["OfficeTable_01_new_F",[-0.669114,2.76221,-0.000998974],3.3096e-005,1,0,[-6.48772e-005,0.000181224],"","",true,false],
-		["MapBoard_altis_F",[2.80548,0.361253,-0.00155544],86.6927,1,0,[-0.294008,-0.0546504],"","",true,false],
-		["B_CargoNet_01_ammo_F",[2.65323,-1.62338,-0.00099659],360,1,0,[-0.000187827,0.000360995],"","",true,false],
-		["Land_Workbench_01_F",[2.20189,2.67528,-0.000597],359.805,1,0,[0.103474,-0.00103475],"","",true,false]
+		["Land_MetalCase_01_small_F",[1.72656,0.281738,0.07100708],222.829,1,0,[],"","",true,false],
+		["Land_CampingChair_V2_F",[-0.578613,4.1958,0.07100136],197.16,1,0,[],"","",true,false],
+		["OfficeTable_01_new_F",[-0.299316,5.08594,0.07100708],358.592,1,0,[],"","",true,false],
+		["MapBoard_altis_F",[3.82178,3.03174,0.07323391],86.7119,1,0,[],"","",true,false],
+		["B_CargoNet_01_ammo_F",[3.66895,1.04785,0.070999928],0.0065373,1,0,[],"","",true,false],
+		["Land_Workbench_01_F",[2.56641,5.02344,0.070999928],359.402,1,0,[],"","",true,false]
 	]],
 	["Land_House_1W10_F",[
-		["Land_CampingChair_V2_F",[0.920077,-0.901972,0.034317],24.7907,1,0,[-0.124043,0.271041],"","",true,false],
-		["OfficeTable_01_new_F",[0.640592,-1.47487,0.0357647],179.487,1,0,[-0.00276878,-0.297944],"","",true,false],
-		["Land_MetalCase_01_small_F",[1.14552,1.94735,0.0331335],92.3128,1,0,[-0.297861,-0.0119579],"","",true,false],
-		["Land_Workbench_01_F",[-2.52448,-1.38322,0.0522304],180.992,1,0,[0.0054578,-0.297945],"","",true,false],
-		["B_CargoNet_01_ammo_F",[-3.02816,1.29547,0.0548558],179.482,1,0,[-0.00272333,-0.298135],"","",true,false],
-		["MapBoard_altis_F",[3.00379,-1.43205,0.061625],134.089,1,0,[0.654025,0.845397],"","",true,false]
+		["Land_CampingChair_V2_F",[-0.0717773,-2.97461,0.6327754],23.9868,1,0,[],"","",true,false],
+		["OfficeTable_01_new_F",[-0.45166,-3.6626,0.6347524],180.058,1,0,[],"","",true,false],
+		["Land_MetalCase_01_small_F",[-0.836914,-0.214355,0.6367527],92.354,1,0,[],"","",true,false],
+		["Land_Workbench_01_F",[-3.62061,-3.59717,0.651239],179.456,1,0,[],"","",true,false],
+		["B_CargoNet_01_ammo_F",[-4.26172,-1.10889,0.6545793],179.502,1,0,[],"","",true,false],
+		["MapBoard_altis_F",[1.979,-3.14404,0.6671887],124.872,1,0,[],"","",true,false]
 	]],
 	["Land_House_1W02_F",[
-		["Land_MetalCase_01_small_F",[-0.538328,0.901626,-0.0010004],174.741,1,0,[-9.37514e-005,9.29899e-005],"","",true,false],
-		["Land_CampingChair_V2_F",[2.85857,-0.415011,-0.000994682],292.015,1,0,[-0.00038614,-0.00123639],"","",true,false],
-		["OfficeTable_01_new_F",[3.44428,-0.666138,-0.000999928],86.7032,1,0,[0.000145824,6.21702e-005],"","",true,false],
-		["MapBoard_altis_F",[-1.49216,3.31236,0.0428715],355.179,1,0,[-0.360939,0.0461294],"","",true,false],
-		["B_CargoNet_01_ammo_F",[2.64869,3.16984,-0.0010004],179.483,1,0,[-0.000110829,1.88703e-005],"","",true,false],
-		["Land_Workbench_01_F",[-4.55341,1.23832,-0.00100088],269.89,1,0,[0.00126416,2.55769e-005],"","",true,false]
+		["Land_MetalCase_01_small_F",[0.868164,0.938965,0.04100374],174.724,1,0,[],"","",true,false],
+		["Land_CampingChair_V2_F",[4.17432,-1.0459,0.0410128],240.978,1,0,[],"","",true,false],
+		["OfficeTable_01_new_F",[4.93945,-1.02637,0.04100183],90.6483,1,0,[],"","",true,false],
+		["MapBoard_altis_F",[-0.0957031,3.0415,0.0427804],355.249,1,0,[],"","",true,false],
+		["B_CargoNet_01_ammo_F",[4.13232,2.63623,0.040999928],179.48,1,0,[],"","",true,false],
+		["Land_Workbench_01_F",[-3.15674,0.967285,0.0410004],269.897,1,0,[],"","",true,false]
 	]]
 ];
 
