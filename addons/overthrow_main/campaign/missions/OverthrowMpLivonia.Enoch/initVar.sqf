@@ -14,6 +14,7 @@ OT_NATOversion = 2;
 OT_CRIMversion = 1;
 
 OT_faction_NATO = "BLU_W_F";
+OT_fallback_faction_NATO = "BLU_T_F"; // If there were no vehicles in the first faction, take them from this faction
 OT_spawnFaction = "IND_F"; //This faction will have a rep in spawn town
 
 OT_flag_NATO = "Flag_NATO_F"; // Flag objects in bases
