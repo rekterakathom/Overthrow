@@ -17,15 +17,6 @@ if(
     "You cannot garrison with enemies nearby" call OT_fnc_notifyMinor;
 };
 
-private _group = spawner getVariable [format["resgarrison%1",_code],grpNull];
-private _doinit = false;
-if(isNull _group) then {
-    _group = creategroup resistance;
-    _group setVariable ["VCM_TOUGHSQUAD",true,true];
-	_group setVariable ["VCM_NORESCUE",true,true];
-    spawner setVariable [format["resgarrison%1",_code],_group,true];
-    _doinit = true;
-};
 if(_create isEqualType 1) then {
     private _sol = OT_recruitables select _create;
     _sol params ["_cls"];
@@ -40,17 +31,7 @@ if(_create isEqualType 1) then {
         [-_cost] call OT_fnc_money;
     };
 
-    private _civ = [_soldier,_pos,_group] call OT_fnc_createSoldier;
-
-    if(_doinit) then {
-        _group call OT_fnc_initMilitaryPatrol;
-    };
-    if(_charge) then {
-        _loadout = getUnitLoadout _civ;
-        _garrison = server getVariable [format["resgarrison%1",_code],[]];
-        _garrison pushback [_cls,_loadout];
-        server setVariable [format["resgarrison%1",_code],_garrison,true];
-    };
+    [_code, _pos, _soldier, _charge] remoteExec ["OT_fnc_createGarrisonUnit", 2];
 }else{
     if(_create == "HMG" || _create == "GMG") then {
         private _buildings = nearestObjects [_pos, OT_garrisonBuildings, 250];
@@ -161,10 +142,8 @@ if(_create isEqualType 1) then {
             [_gun,getplayeruid player] call OT_fnc_setOwner;
             _gun setDir _dir;
             _gun setPosATL _p;
-            createVehicleCrew _gun;
-            {
-                [_x] joinSilent _group;
-            }foreach(crew _gun);
+
+            [_code, _gun] remoteExec ["OT_fnc_createGarrisonGun", 2];
         };
     };
 };
