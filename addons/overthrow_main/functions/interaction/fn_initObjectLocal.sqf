@@ -67,7 +67,7 @@ if(_currentObject isEqualTo OT_item_Storage) then {
 		},nil,0,false,true,"","(_target getVariable ['OT_locked',false])"];
 		_this addAction ["Make global (10000$)", {
 			[OT_fnc_makeWarehouseGlobal, _this] call CBA_fnc_directCall;
-		},nil,0,false,true,"","!((nearestObject [_target, OT_warehouse]) getVariable ['is_shared', false])"];
+		},nil,0,false,true,"","(call OT_fnc_playerIsAtWarehouse && !((nearestObject [_target, OT_warehouse]) getVariable ['is_shared', false]))"];
 	};
 	_this enableDynamicSimulation true;
 };
