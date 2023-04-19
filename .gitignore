@@ -9,6 +9,9 @@ hemtt.exe
 .hemtt/template/
 *.pbo
 
+# SQFC
+*.sqfc
+
 # Windows thumbnail cache files
 Thumbs.db
 ehthumbs.db
