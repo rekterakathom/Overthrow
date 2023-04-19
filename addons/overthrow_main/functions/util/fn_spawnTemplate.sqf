@@ -16,7 +16,7 @@ if(isNil {templates getVariable _type}) then {
 			__LINE__
 		] call CBA_fnc_error;
 	};
-	_template = call compile call compile _tpl;
+	_template = call compile _tpl;
 	if(isNil "_template") exitWith {
 		[
 			"OT",
