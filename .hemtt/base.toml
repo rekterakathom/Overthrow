@@ -1,8 +1,8 @@
-name = "Overthrow Rekter Edition"
+name = "Overthrow Community Edition"
 prefix = ""
 author = "The Overthrow community"
 version = "1.0.0.0"
-modname = "Overthrow Rekter Edition"
+modname = "Overthrow Community Edition"
 files = [
     "LICENSE",
     "mod.cpp",
@@ -11,3 +11,36 @@ files = [
 ]
 folder_optionals = false
 sig_version = 3
+
+check = [
+    "!remove_compiled_scripts",
+    "!compile_scripts"
+]
+
+postbuild = [
+    "!remove_compiled_scripts"
+]
+
+[scripts.compile_scripts]
+steps_windows = [
+    "echo 'Compile Arma Scripts'",
+    "ArmaScriptCompiler.exe"
+]
+
+steps_linux = [
+    "echo 'Compiling Arma Scripts does not work yet on Linux'"
+]
+only_release = true
+show_output = false
+
+[scripts.remove_compiled_scripts]
+steps_windows = [
+    "echo 'Remove compiled Arma Scripts'",
+    "python sqfc_cleanup.py"
+]
+
+steps_linux = [
+    "python sqfc_cleanup.py"
+]
+only_release = true
+show_output = false

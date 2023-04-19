@@ -3,20 +3,18 @@
 **Requirements**
 * Mounted P: drive
 * [ArmaScriptCompiler](https://github.com/dedmen/ArmaScriptCompiler)
-* [HEMTT](https://github.com/BrettMayson/HEMTT)
+* [HEMTT 0.7.6](https://github.com/BrettMayson/HEMTT)
 * Arma 3 Tools
+* Python 3
 
-Mount the P: drive from Arma 3 Tools/workdrive/mount.bat
+1. Mount the P: drive from 'Arma 3 Tools/workdrive/mount.bat'
 
-Copy everything from the tools folder to the root of your P: drive
+2. Copy the repository to the root of your P: drive
 
-Copy everything from the imports folder to the root of your P: drive
+3. Copy the latest binary of ArmaScriptCompiler to project root (P:/Overthrow)
 
-Copy ArmaScriptCompiler.exe and HEMTT.exe to the root of your P: drive
+4. Open the command prompt in the Overthrow directory (P:/Overthrow)
 
-Copy the repository to the root of your P: drive (P:/Overthrow)
+5. Run 'hemtt build --release'
 
-On windows: run build_ot_hemtt.bat
-on linux: TODO
-
-The built addon can now be found in P:/Overthrow/Releases
+6. The built addon can now be found in P:/Overthrow/Releases
