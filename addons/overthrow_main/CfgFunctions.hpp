@@ -581,6 +581,25 @@ class CfgFunctions
 			class NATOMortar {};
 		};
 
+		class NATOSYSTEM
+		{
+			file = "\overthrow_main\functions\factions\NATO\system";
+			class NATOabandonTowers {};
+			class NATOcheckFOBs {};
+			class NATOcheckObjectives {};
+			class NATOcheckTowns {};
+			class NATOcounterObjectives {};
+			class NATOcounterTowns {};
+			class NATOdeployFOB {};
+			class NATOreinforceGendarmerie {};
+			class NATOscheduleConvoy {};
+			class NATOsendAirPatrol {};
+			class NATOsendGroundPatrol {};
+			class NATOupgradeFOBs {};
+			class NATOupgradeGarrisons {};
+			class NATOscrambleAircraft {};
+		};
+
 		class CRIM
 		{
 			file = "\overthrow_main\functions\factions\CRIM";
