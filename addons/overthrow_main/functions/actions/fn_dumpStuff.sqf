@@ -116,6 +116,9 @@ if(secondaryWeapon _unit != "") then {
 	if (!(_t canAdd secondaryWeapon _unit) && !_isTruck) exitWith {
 		_full = true;
 	};
+	{
+		_t addItemCargoGlobal [_x,1];
+	}foreach(secondaryWeaponItems _unit);
 	_t addWeaponCargoGlobal [secondaryWeapon _unit,1];
 	_unit removeWeaponGlobal secondaryWeapon _unit;
 };
