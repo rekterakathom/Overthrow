@@ -1,3 +1,4 @@
+// _unit may be non-local
 params ["_unit","_t",["_linkedItems",false]];
 
 _full = false;
@@ -11,7 +12,7 @@ if(binocular _unit != "") then {
 		_full = true;
 	};
 	_t addWeaponCargoGlobal [binocular _unit,1];
-	_unit removeWeapon binocular _unit;
+	_unit removeWeaponGlobal binocular _unit;
 };
 
 if(hmd _unit != "") then {
@@ -35,15 +36,15 @@ if(_full) exitWith {false};
 			params ["_veh", "_cls"];
 			if(_cls isKindOf ["Rifle",configFile >> "CfgWeapons"]) exitWith {
 				_veh addWeaponCargoGlobal [_cls,1];
-				_unit removeWeapon _cls;
+				_unit removeWeaponGlobal _cls;
 			};
 			if(_cls isKindOf ["Launcher",configFile >> "CfgWeapons"]) exitWith {
 				_veh addWeaponCargoGlobal [_cls,1];
-				_unit removeWeapon _cls;
+				_unit removeWeaponGlobal _cls;
 			};
 			if(_cls isKindOf ["Pistol",configFile >> "CfgWeapons"]) exitWith {
 				_veh addWeaponCargoGlobal [_cls,1];
-				_unit removeWeapon _cls;
+				_unit removeWeaponGlobal _cls;
 			};
 			if(_cls isKindOf ["Binocular",configFile >> "CfgWeapons"]) exitWith {
 				_veh addWeaponCargoGlobal [_cls,1];
@@ -51,7 +52,7 @@ if(_full) exitWith {false};
 			};
 			if(_cls isKindOf ["Default",configFile >> "CfgMagazines"]) exitWith {
 				_veh addMagazineCargoGlobal [_cls,1];
-				_unit removeMagazine _cls;
+				_unit removeMagazineGlobal _cls;
 			};
 			_veh addItemCargoGlobal [_cls,1];
 			_unit removeItem _cls;
@@ -77,7 +78,7 @@ if(backpack _unit != "") then {
 		_full = true;
 	};
 	_t addBackpackCargoGlobal [_cls,1];
-	removeBackpack _unit;
+	removeBackpackGlobal _unit;
 };
 if(_full) exitWith {false};
 
@@ -106,9 +107,8 @@ if(primaryWeapon _unit != "") then {
 	{
 		_t addItemCargoGlobal [_x,1];
 	}foreach(primaryWeaponItems _unit);
-	removeAllPrimaryWeaponItems _unit;
 	_t addWeaponCargoGlobal [(primaryWeapon _unit) call BIS_fnc_baseWeapon,1];
-	_unit removeWeapon primaryWeapon _unit;
+	_unit removeWeaponGlobal primaryWeapon _unit;
 };
 if(_full) exitWith {false};
 
@@ -117,7 +117,7 @@ if(secondaryWeapon _unit != "") then {
 		_full = true;
 	};
 	_t addWeaponCargoGlobal [secondaryWeapon _unit,1];
-	_unit removeWeapon secondaryWeapon _unit;
+	_unit removeWeaponGlobal secondaryWeapon _unit;
 };
 if(_full) exitWith {false};
 
@@ -129,9 +129,8 @@ if(handgunWeapon _unit != "") then {
 	{
 		_t addItemCargoGlobal [_x,1];
 	}foreach(handgunItems _unit);
-	removeAllHandgunItems _unit;
 	_t addWeaponCargoGlobal [handgunWeapon _unit,1];
-	_unit removeWeapon handgunWeapon _unit;
+	_unit removeWeaponGlobal handgunWeapon _unit;
 };
 if(_full) exitWith {false};
 
@@ -143,7 +142,7 @@ if((!isplayer _unit) || _linkedItems) then {
 			};
 			if (([(configFile >> "CfgWeapons" >> _x),"useAsBinocular",0] call BIS_fnc_returnConfigEntry) > 0) then {
 				_unit unassignItem _x;
-				_unit removeWeapon _x;
+				_unit removeWeaponGlobal _x;
 			}else{
 				_unit unlinkItem _x;
 			};
