@@ -50,7 +50,7 @@ private _count_bodies = 0;
     if !((_x distance _veh > _range) || (alive _x)) then {
         [_x, _veh] call OT_fnc_dumpStuff;
         _count_bodies = _count_bodies + 1;
-        hideBody _x;
+        [_x] call OT_fnc_cleanupUnit;
     };
 }foreach(entities "CAManBase");
 
