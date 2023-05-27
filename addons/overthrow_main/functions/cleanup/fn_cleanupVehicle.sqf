@@ -9,7 +9,7 @@
 	Parameters:
 		_this # 0: OBJECT - Vehicle to delete
 
-	Usage: [_vehicle] remoteExecCall ["OT_fnc_cleanupVehicle", _vehicle, false];
+	Usage: [_vehicle] call OT_fnc_cleanupVehicle;
 
 	Returns: Boolean - was vehicle deleted
 */

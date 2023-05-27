@@ -9,7 +9,7 @@
 	Parameters:
 		_this # 0: OBJECT - Unit to be deleted
 
-	Usage: [_unit] remoteExecCall ["OT_fnc_cleanupUnit", _unit, false];
+	Usage: [_unit] call OT_fnc_cleanupUnit;
 
 	Returns: Boolean - was unit deleted
 */
