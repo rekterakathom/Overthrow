@@ -4,14 +4,16 @@ spawner setVariable [_i,[],false];
 {
     // Cleanup a group
     if (_x isEqualType grpNull) then {
+		private _units = units _x;
+        if (count _units isEqualTo 0) then {
+            _x call OT_fnc_cleanupEmptyGroup;
+        };
         {
             if !(_x call OT_fnc_hasOwner) then {
                 [_x] call OT_fnc_cleanupUnit;
                 sleep 0.1;
             };
-        }foreach(units _x);
-        // Group must be deleted where it is local!
-        [_x] remoteExec ["deleteGroup", groupOwner _x, false];
+        }foreach(_units);
         continue;
     };
 

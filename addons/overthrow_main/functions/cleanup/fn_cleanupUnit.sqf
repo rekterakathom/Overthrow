@@ -25,13 +25,27 @@ private _unitObjectParent = objectParent _unit;
 
 // Unit is not in a vehicle and can be deleted.
 if (isNull _unitObjectParent) exitWith {
+	private _group = group _unit;
+
 	deleteVehicle _unit;
+
+	// If unit's group becomes empty, delete the group too.
+	if (count units _group isEqualTo 0) then {
+		_group call OT_fnc_cleanupEmptyGroup;
+	};
 	true;
 };
 
 // Unit is in a local vehicle and can be deleted.
 if (local _unitObjectParent) exitWith {
+	private _group = group _unit;
+
 	_unitObjectParent deleteVehicleCrew _unit;
+
+	// If unit's group becomes empty, delete the group too.
+	if (count units _group isEqualTo 0) then {
+		_group call OT_fnc_cleanupEmptyGroup;
+	};
 	true;
 };
 
