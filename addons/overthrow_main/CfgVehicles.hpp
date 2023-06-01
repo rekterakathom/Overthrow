@@ -260,7 +260,7 @@ class CfgVehicles {
     class Land_Supermarket_01_F: House_F {
         ot_isShop = 1;
         ot_template = '[]';
-        ot_shopPos = 13;
+        ot_shopPos = 14;
     };
 
 	//Shops (Altis)
