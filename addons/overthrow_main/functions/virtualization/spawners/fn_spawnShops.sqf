@@ -14,17 +14,32 @@ _groups pushback _group;
 
 if(count _activeshops > 0) exitWith {
 	{
+		//find building for active shop
 		_x params ["_pos","_category"];
 		private _pos = _x select 0;
 		_building = nearestBuilding _pos;
-		private _start = _building buildingPos 0;
-		_shopkeeper = _group createUnit [OT_civType_shopkeeper, _start, [],0, "CAN_COLLIDE"];
-		private _tracked = _building call OT_fnc_spawnTemplate;
+
+		//set start location based on building config
+		private _start = _building buildingPos getNumber(configFile >> "CfgVehicles" >> typeOf(_building) >> "ot_shopPos");
+		if (isNil "_start" || {_start isEqualTo ""} || {_start isEqualTo "''"}) then { _start = _building buildingPos 0; };
+		private _facing = 0;
+
+		//spawn objects from building template
+		private _tracked = _building call OT_fnc_spawnTemplate;		
 		private _vehs = _tracked select 0;
 		{
+			//check for counter object and if found set start position relative.
+			if (typeOf _x == "Land_CashDesk_F") then { 
+				_start = _x getRelPos [0.8, 0]; 
+				_facing = getDir _x - 180;
+			};
 			_groups pushback _x;
 		}foreach(_vehs);
 
+		//create shopkeeper as member of group
+		_shopkeeper = _group createUnit [OT_civType_shopkeeper, _start, [], 0, "CAN_COLLIDE"];
+
+		_shopkeeper setDir _facing;
 		doStop _shopkeeper;
 		_shopkeeper allowDamage false;
 		_shopkeeper setVariable ["NOAI",true,false];
