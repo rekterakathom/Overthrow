@@ -86,6 +86,7 @@ OT_showPlayerMarkers = (["ot_showplayermarkers", 1] call BIS_fnc_getParamValue) 
 OT_showTownChange = (["ot_showtownchange", 1] call BIS_fnc_getParamValue) isEqualTo 1;
 OT_showEnemyGroups = (["ot_showenemygroups", 1] call BIS_fnc_getParamValue) isEqualTo 1;
 OT_randomizeLoadouts = (["ot_randomizeloadouts", 0] call BIS_fnc_getParamValue) isEqualTo 1;
+OT_factoryProductionMulti = (["ot_factoryproductionmulti", 0] call BIS_fnc_getParamValue) * 0.01;
 
 waitUntil {sleep 1;!isNil "OT_NATOInitDone"};
 

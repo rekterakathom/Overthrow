@@ -55,7 +55,7 @@ if(_currentCls != "") then {
 			_text = _text + format["%1 x plastic",_plastic];
 		};
 		_text = _text + "<br/>";
-		_text = _text + format["Time: %1 of %2 mins<br/>",_timespent,_timetoproduce];
+		_text = _text + format["Time: %1 of %2 mins<br/>",_timespent,round(_timetoproduce / OT_factoryProductionMulti)];
 		_text = _text + format["Output: %1 x %2<br/></t>",_numtoproduce,_currentName];
 	};
 };
@@ -121,7 +121,7 @@ if(count _cost > 0) then {
         _recipe = _recipe + format["%1 x plastic",_plastic];
     };
     _recipe = _recipe + "<br/>";
-    _recipe = _recipe + format["Time: %1 mins<br/>",_timetoproduce];
+    _recipe = _recipe + format["Time: %1 mins<br/>",round(_timetoproduce / OT_factoryProductionMulti)];
     _recipe = _recipe + format["Output: %1 x %2<br/></t>",_numtoproduce,_txt];
 };
 

@@ -121,6 +121,12 @@ class Params {
 		texts[] = {"Yes", "No"};
 		default = 0;
 	};
+	class ot_factoryproductionmulti {
+		title = "Factory Production Multiplier";
+		texts[] = {"100% Speed", "150% Speed", "200% Speed", "250% Speed", "300% Speed", "350% Speed", "400% Speed", "450% Speed", "500% Speed", "1000% Speed"};
+		values[] = {100, 150, 200, 250, 300, 350, 400, 450, 500, 1000};
+		default = 100;
+	};
 	class ace_medical_level {
         title = "ACE Medical Level";
         ACE_setting = 1;

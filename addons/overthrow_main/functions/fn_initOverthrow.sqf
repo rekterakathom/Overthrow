@@ -72,6 +72,7 @@ publicVariable "OT_faction_NATO";
 // Dedicated servers need a separate definition for mission params
 if (isDedicated) then {
 	OT_randomizeLoadouts = (["ot_randomizeloadouts", 0] call BIS_fnc_getParamValue) isEqualTo 1;
+	OT_factoryProductionMulti = (["ot_factoryproductionmulti", 0] call BIS_fnc_getParamValue) * 0.01;
 };
 
 // Call final variable init
