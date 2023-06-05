@@ -88,6 +88,7 @@ OT_showEnemyGroups = (["ot_showenemygroups", 1] call BIS_fnc_getParamValue) isEq
 OT_randomizeLoadouts = (["ot_randomizeloadouts", 0] call BIS_fnc_getParamValue) isEqualTo 1;
 OT_factoryProductionMulti = (["ot_factoryproductionmulti", 0] call BIS_fnc_getParamValue) * 0.01;
 OT_gangMemberCap = ["ot_gangmembercap", 0] call BIS_fnc_getParamValue;
+OT_gangResourceCap = ["ot_gangresourcecap", 0] call BIS_fnc_getParamValue;
 
 waitUntil {sleep 1;!isNil "OT_NATOInitDone"};
 

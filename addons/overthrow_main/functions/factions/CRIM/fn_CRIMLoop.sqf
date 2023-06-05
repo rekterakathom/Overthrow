@@ -26,7 +26,7 @@ if !(crim_counter < 12) then {
                 if(_stability < 50) then {
                     _add = _add + (50 - _stability);
                 };
-                _resources = (_resources + _add) min 500;
+                _resources = (_resources + _add) min OT_gangResourceCap;
 
                 if(_resources > 100 && _numingang < OT_gangMemberCap) then {
                     _resources = _resources - 100;

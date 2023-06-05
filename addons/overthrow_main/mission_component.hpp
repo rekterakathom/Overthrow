@@ -127,6 +127,12 @@ class Params {
 		values[] = {10, 15, 20, 25, 30};
 		default = 15;
 	};
+	class ot_gangresourcecap {
+		title = "Gang Maximum Resources";
+		texts[] = {"Low", "Medium", "High", "Very High"};
+		values[] = {300, 600, 900, 1500};
+		default = 600;
+	};
 	class ot_factoryproductionmulti {
 		title = "Factory Production Multiplier";
 		texts[] = {"100% Speed", "150% Speed", "200% Speed", "250% Speed", "300% Speed", "350% Speed", "400% Speed", "450% Speed", "500% Speed", "1000% Speed"};
