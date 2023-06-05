@@ -26,9 +26,9 @@ if !(crim_counter < 12) then {
                 if(_stability < 50) then {
                     _add = _add + (50 - _stability);
                 };
-                _resources = _resources + _add;
+                _resources = (_resources + _add) min 500;
 
-                if(_resources > 100 && _numingang < 15) then {
+                if(_resources > 100 && _numingang < OT_gangMemberCap) then {
                     _resources = _resources - 100;
                     [_gangid] call OT_fnc_addToGang;
                 };

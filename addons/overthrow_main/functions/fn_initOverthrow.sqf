@@ -73,6 +73,7 @@ publicVariable "OT_faction_NATO";
 if (isDedicated) then {
 	OT_randomizeLoadouts = (["ot_randomizeloadouts", 0] call BIS_fnc_getParamValue) isEqualTo 1;
 	OT_factoryProductionMulti = (["ot_factoryproductionmulti", 0] call BIS_fnc_getParamValue) * 0.01;
+	OT_gangMemberCap = ["ot_gangmembercap", 0] call BIS_fnc_getParamValue;
 };
 
 // Call final variable init
