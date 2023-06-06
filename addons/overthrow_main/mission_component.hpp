@@ -123,7 +123,7 @@ class Params {
 	};
 	class ot_gangmembercap {
 		title = "Gang Maximum Size";
-		texts[] = {"10", "15 - Default", "20", "25", "30"};
+		texts[] = {"10", "15", "20", "25", "30"};
 		values[] = {10, 15, 20, 25, 30};
 		default = 15;
 	};
