@@ -98,7 +98,18 @@ class CfgMainMenuSpotlight
 	{
 		condition = "false";
 	};
-
+	class OldMan 
+	{
+		condition = "false";
+	};
+	class SP_FD14 
+	{
+		condition = "false";
+	};
+	class Contact_Campaign
+	{
+		condition = "false";
+	};
 };
 
 class CfgMissions
