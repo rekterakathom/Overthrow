@@ -270,6 +270,16 @@ if(_scale <= 0.1) then {
 			};
 			{
 				_mapCtrl drawIcon [
+					"\overthrow_main\ui\markers\shop-Vehicle.paa",
+					[1,1,1,1],
+					_x,
+					0.2/_scale,
+					0.2/_scale,
+					0
+				];
+			}foreach(server getVariable [format["activecarshopsin%1",_tname],[]]);
+			{
+				_mapCtrl drawIcon [
 					format["\overthrow_main\ui\markers\shop-%1.paa",_x select 1],
 					[1,1,1,1],
 					_x select 0,
