@@ -4,7 +4,9 @@ disableSerialization;
 params ["_mapCtrl"];
 
 private _vehs = [];
-private _cfgVeh = configFile >> "CfgVehicles";
+//private _cfgVeh = configFile >> "CfgVehicles";
+
+//draw markers for all players on foot, else save as vehicle to draw
 if(OT_showPlayerMarkers) then {
 	{
 		private _veh = vehicle _x;
@@ -24,15 +26,18 @@ if(OT_showPlayerMarkers) then {
 	}foreach(allPlayers - (entities "HeadlessClient_F"));
 };
 
+//draw units under player command
 private _grpUnits = groupSelectedUnits player;
 {
 	if (!(isPlayer _x) && {((side _x isEqualTo resistance) || captive _x) && {(_x getVariable ["polgarrison",""]) isEqualTo ""}}) then {
 		private _veh = vehicle _x;
+		// if unit is on foot draw unit, else save as vehicle to draw
 		if(_veh isEqualTo _x) then {
 			private _color = [[0,0.2,0,1],[0,0.5,0,1]] select captive _x;
 			private _visPos = getPosASL _x;
 			private _txt = "";
 			if(leader _x isEqualTo player) then {
+				//draw planned route
 				expectedDestination _x params ["_destpos","_planning"];
 				if (_planning == "LEADER PLANNED") then {
 					_mapCtrl drawLine [
@@ -49,16 +54,7 @@ private _grpUnits = groupSelectedUnits player;
 						0
 					];
 				};
-
-				_mapCtrl drawIcon [
-					"iconMan",
-					_color,
-					_visPos,
-					24,
-					24,
-					getDir _x
-				];
-
+				//draw circle on currently selected units
 				if(_x in _grpUnits) then {
 					_mapCtrl drawIcon [
 						"\A3\ui_f\data\igui\cfg\islandmap\iconplayer_ca.paa",
@@ -69,24 +65,49 @@ private _grpUnits = groupSelectedUnits player;
 						0
 					];
 				};
-			}else {
-
-				_mapCtrl drawIcon [
-					"iconMan",
-					_color,
-					_visPos,
-					24,
-					24,
-					getDir _x
-				];
 			};
-
+			_mapCtrl drawIcon [
+				"iconMan",
+				_color,
+				_visPos,
+				24,
+				24,
+				getDir _x
+			];
 		}else{
 			_vehs pushBackUnique _veh;
 		};
 	};
 }foreach(allunits);
 
+//Draw vehicles on map only
+if (visibleMap && {_scale < 0.075}) then{
+	{
+		private _pos = getPosASL _x;
+		if (_pos distance2D player < 1200) then {
+			private _passengers = "";
+			private _color = [0,0.5,0,1];
+			{
+				if(isPlayer _x && !(_x isEqualTo player)) then {
+					_passengers = format["%1 %2",_passengers,name _x];
+				};
+				if !(captive _x) then {_color = [0,0.2,0,1];};
+			}foreach(crew _x);
+
+			_mapCtrl drawIcon [
+				getText(configFile >> "CfgVehicles" >> (typeof _x) >> "icon"),
+				_color,
+				_pos,
+				24,
+				24,
+				getdir _x,
+				_passengers
+			];
+		};
+	}foreach(_vehs);
+};
+
+//Draw NATO Mortars
 private _mortars = spawner getVariable ["NATOmortars",[]];
 {
 	_mapCtrl drawIcon [
@@ -99,58 +120,23 @@ private _mortars = spawner getVariable ["NATOmortars",[]];
 		""
 	];
 }foreach(_mortars);
-if(((getpos player) select 2) > 30) then {
-	//Show no-fly zones
-	private _abandoned = server getVariable ["NATOabandoned",[]];
-	{
-		if !(_x in _abandoned) then {
-			_mapCtrl drawEllipse [
-				server getvariable _x,
-				2000,
-				2000,
-				0,
-				[1, 0, 0, 1],
-				"\A3\ui_f\data\map\markerbrushes\bdiagonal_ca.paa"
-			];
-		};
-	}foreach(OT_allAirports);
-	private _attack = server getVariable ["NATOattacking",""];
-	if(_attack != "") then {
-		_mapCtrl drawEllipse [
-			server getvariable [_attack, [0,0]],
-			2000,
-			2000,
-			0,
-			[1, 0, 0, 1],
-			"\A3\ui_f\data\map\markerbrushes\bdiagonal_ca.paa"
-		];
-	};
-};
 
+//Draw known Radar hits
 {
-	private _pos = getPosASL _x;
-	if (visibleMap || { _pos distance2D player < 1200 }) then {
-		private _passengers = "";
-		private _color = [0,0.5,0,1];
-		{
-			if(isPlayer _x && !(_x isEqualTo player)) then {
-				_passengers = format["%1 %2",_passengers,name _x];
-			};
-			if !(captive _x) then {_color = [0,0.2,0,1];};
-		}foreach(crew _x);
+	private _i = "\A3\ui_f\data\map\markers\nato\b_air.paa";
+	if(_x isKindOf "Plane") then {_i = "\A3\ui_f\data\map\markers\nato\b_plane.paa"};
+	if((_x isKindOf "UAV") || (typeof _x isEqualTo OT_NATO_Vehicles_ReconDrone)) then {_i = "\A3\ui_f\data\map\markers\nato\b_uav.paa"};
+	_mapCtrl drawIcon [
+		_i,
+		[0,0.3,0.59,1],
+		getPosASL _x,
+		30,
+		30,
+		0
+	];
+}foreach(OT_mapcache_radar);
 
-		_mapCtrl drawIcon [
-			getText(_cfgVeh >> (typeof _x) >> "icon"),
-			_color,
-			_pos,
-			24,
-			24,
-			getdir _x,
-			_passengers
-		];
-	};
-}foreach(_vehs);
-
+//Draw enemy groups on map, mission parameter
 if(OT_showEnemyGroups) then {
 	{
 		if(side _x isEqualTo west) then {
@@ -208,8 +194,9 @@ if(OT_showEnemyGroups) then {
 	}foreach(allGroups);
 };
 
+// if zoomed in draw shop, business, faction rep and corpse markers
 private _scale = ctrlMapScale _mapCtrl;
-if(_scale <= 0.1) then {
+if(_scale < 0.075) then {
 	private _mousepos = [0,0,0];
 	private _towns = OT_townData;
 	if !(visibleMap) then {
@@ -320,9 +307,14 @@ if(_scale <= 0.1) then {
 		}foreach(OT_mapcache_vehicles);
 	};
 };
+
+//Draw QRF regions, possible duplicate
 private _qrf = server getVariable "QRFpos";
 if(!isNil "_qrf") then {
 	private _progress = server getVariable ["QRFprogress",0];
+	_col = [];
+	if(_progress > 0) then {_col = [0,0,1,_progress]};
+	if(_progress < 0) then {_col = [0,1,0,abs _progress]};
 	if(_progress != 0) then {
 		_mapCtrl drawEllipse [
 			_qrf,
@@ -337,16 +329,6 @@ if(!isNil "_qrf") then {
 			],
 			"\A3\ui_f\data\map\markerbrushes\fdiagonal_ca.paa"
 		];
-	};
-};
-
-private _qrf = server getVariable "QRFpos";
-if(!isNil "_qrf") then {
-	private _progress = server getVariable ["QRFprogress",0];
-	_col = [];
-	if(_progress > 0) then {_col = [0,0,1,_progress]};
-	if(_progress < 0) then {_col = [0,1,0,abs _progress]};
-	if(_progress != 0) then {
 		_mapCtrl drawEllipse [
 			_qrf,
 			200,
@@ -358,20 +340,33 @@ if(!isNil "_qrf") then {
 	};
 };
 
-//Radar
-{
-	private _i = "\A3\ui_f\data\map\markers\nato\b_air.paa";
-	if(_x isKindOf "Plane") then {_i = "\A3\ui_f\data\map\markers\nato\b_plane.paa"};
-	if((_x isKindOf "UAV") || (typeof _x isEqualTo OT_NATO_Vehicles_ReconDrone)) then {_i = "\A3\ui_f\data\map\markers\nato\b_uav.paa"};
-	_mapCtrl drawIcon [
-		_i,
-		[0,0.3,0.59,1],
-		getPosASL _x,
-		30,
-		30,
-		0
-	];
-}foreach(OT_mapcache_radar);
+//Draw no-fly zones if player is in the air
+if(((getpos player) select 2) > 30) then {
+	private _abandoned = server getVariable ["NATOabandoned",[]];
+	{
+		if !(_x in _abandoned) then {
+			_mapCtrl drawEllipse [
+				server getvariable _x,
+				2000,
+				2000,
+				0,
+				[1, 0, 0, 1],
+				"\A3\ui_f\data\map\markerbrushes\bdiagonal_ca.paa"
+			];
+		};
+	}foreach(OT_allAirports);
+	private _attack = server getVariable ["NATOattacking",""];
+	if(_attack != "") then {
+		_mapCtrl drawEllipse [
+			server getvariable [_attack, [0,0]],
+			2000,
+			2000,
+			0,
+			[1, 0, 0, 1],
+			"\A3\ui_f\data\map\markerbrushes\bdiagonal_ca.paa"
+		];
+	};
+};
 
 //Draw resistance radar coverage
 if(_scale > 0.16) then {
