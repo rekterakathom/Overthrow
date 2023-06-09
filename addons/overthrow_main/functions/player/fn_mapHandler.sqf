@@ -4,9 +4,9 @@ disableSerialization;
 params ["_mapCtrl"];
 
 private _vehs = [];
-//private _cfgVeh = configFile >> "CfgVehicles";
+private _cfgVeh = configFile >> "CfgVehicles";
 
-//draw markers for all players on foot, else save as vehicle to draw
+// Draw markers for all players on foot, else save as vehicle to draw
 if(OT_showPlayerMarkers) then {
 	{
 		private _veh = vehicle _x;
@@ -29,7 +29,7 @@ if(OT_showPlayerMarkers) then {
 //draw units under player command
 private _grpUnits = groupSelectedUnits player;
 {
-	if (!(isPlayer _x) && {((side _x isEqualTo resistance) || captive _x) && {(_x getVariable ["polgarrison",""]) isEqualTo ""}}) then {
+	if (!(isPlayer _x) && {(_x getVariable ["polgarrison",""]) isEqualTo ""}) then {
 		private _veh = vehicle _x;
 		// if unit is on foot draw unit, else save as vehicle to draw
 		if(_veh isEqualTo _x) then {
@@ -78,10 +78,10 @@ private _grpUnits = groupSelectedUnits player;
 			_vehs pushBackUnique _veh;
 		};
 	};
-}foreach(allunits);
+}foreach(units independent);
 
-//Draw vehicles on map only
-if (visibleMap && {_scale < 0.075}) then{
+//Draw player vehicles on map only
+if (visibleMap) then {
 	{
 		private _pos = getPosASL _x;
 		if (_pos distance2D player < 1200) then {
@@ -95,7 +95,7 @@ if (visibleMap && {_scale < 0.075}) then{
 			}foreach(crew _x);
 
 			_mapCtrl drawIcon [
-				getText(configFile >> "CfgVehicles" >> (typeof _x) >> "icon"),
+				getText(_cfgVeh >> (typeof _x) >> "icon"),
 				_color,
 				_pos,
 				24,
@@ -139,64 +139,60 @@ private _mortars = spawner getVariable ["NATOmortars",[]];
 //Draw enemy groups on map, mission parameter
 if(OT_showEnemyGroups) then {
 	{
-		if(side _x isEqualTo west) then {
-			private _u = leader _x;
-			private _alive = alive _u;
-			if(!_alive) then {
-				{
-					if(alive _x) exitWith {
-						_u = _x;
-						_alive=true;
-					};
-				}foreach(units _x);
-			};
-			if(_alive) then {
-				private _ka = resistance knowsabout _u;
-				if(_ka > 1.4) then {
-					_mapCtrl drawIcon [
-						"\A3\ui_f\data\map\markers\nato\b_inf.paa",
-						[0,0.3,0.59,((_ka-1.4) / 1) min 1],
-						getPosASL _u,
-						30,
-						30,
-						0
-					];
+		private _u = leader _x;
+		private _alive = alive _u;
+		if(!_alive) then {
+			{
+				if(alive _x) exitWith {
+					_u = _x;
+					_alive=true;
 				};
-			};
-			continue;
+			}foreach(units _x);
 		};
-
-		if(side _x isEqualTo east) then {
-			private _u = leader _x;
-			private _alive = alive _u;
-			if(!_alive) then {
-				{
-					if(alive _x) exitWith {
-						_u = _x;
-						_alive=true;
-					};
-				}foreach(units _x);
+		if(_alive) then {
+			private _ka = resistance knowsabout _u;
+			if(_ka > 1.4) then {
+				_mapCtrl drawIcon [
+					"\A3\ui_f\data\map\markers\nato\b_inf.paa",
+					[0,0.3,0.59,((_ka-1.4) / 1) min 1],
+					getPosASL _u,
+					30,
+					30,
+					0
+				];
 			};
-			if(_alive) then {
-				private _ka = resistance knowsabout _u;
-				if(_ka > 1.4) then {
-					_mapCtrl drawIcon [
-						"\A3\ui_f\data\map\markers\nato\b_inf.paa",
-						[0.5,0,0,((_ka-1.4) / 1) min 1],
-						getPosASL _u,
-						30,
-						30,
-						0
-					];
+		};
+	}foreach(groups west);
+	{
+		private _u = leader _x;
+		private _alive = alive _u;
+		if(!_alive) then {
+			{
+				if(alive _x) exitWith {
+					_u = _x;
+					_alive=true;
 				};
-			}
+			}foreach(units _x);
 		};
-	}foreach(allGroups);
+		if(_alive) then {
+			private _ka = resistance knowsabout _u;
+			if(_ka > 1.4) then {
+				_mapCtrl drawIcon [
+					"\A3\ui_f\data\map\markers\nato\b_inf.paa",
+					[0.5,0,0,((_ka-1.4) / 1) min 1],
+					getPosASL _u,
+					30,
+					30,
+					0
+				];
+			};
+		};
+	}foreach(groups east);
 };
 
-// if zoomed in draw shop, business, faction rep and corpse markers
+// if zoomed in draw shop, business, faction rep, corpse markers and vehicle cache
 private _scale = ctrlMapScale _mapCtrl;
-if(_scale < 0.075) then {
+if(_scale < 0.1) then {
 	private _mousepos = [0,0,0];
 	private _towns = OT_townData;
 	if !(visibleMap) then {
@@ -205,6 +201,7 @@ if(_scale < 0.075) then {
 		_mousepos = _mapCtrl ctrlMapScreenToWorld getMousePosition;
 	};
 
+	//Draw owned properties
 	private _leased = player getvariable ["leased",[]];
 	{
 		private _buildingPos = buildingpositions getVariable _x;
@@ -222,6 +219,7 @@ if(_scale < 0.075) then {
 		};
 	}foreach(player getvariable ["owned",[]]);
 
+	// Draw faction reps
 	{
 		_x params ["_cls","_name","_side","_flag"];
 		if!(_side isEqualTo 1) then {
@@ -241,6 +239,7 @@ if(_scale < 0.075) then {
 		};
 	}foreach(OT_allFactions);
 
+	// Draw shop icons
 	{
 		_x params ["_tpos","_tname"];
 		if((_tpos distance2D _mousepos) < 2500) then {
@@ -279,36 +278,41 @@ if(_scale < 0.075) then {
 	}foreach(_towns);
 
 	if(visibleMap) then {
-		{
-			if (typeof _x != "B_UAV_AI") then {
-				_p = getPosASL _x;
-				if((_p distance2D _mousepos) < 3000) then {
-					_mapCtrl drawIcon [
-						"\overthrow_main\ui\markers\death.paa",
-						[1,1,1,0.5],
-						_p,
-						0.2/_scale,
-						0.2/_scale,
-						0
-					];
-				};
-			};
-		}foreach(alldeadmen);
-
+		// Draw corpse markers
 		{
 			if(((_x select 2) distance2D _mousepos) < 3000) then {
-				private _icon = +_x;
-				if((_icon select 3) < 1) then {
-					_icon set [3,(_icon select 3) / _scale];
-					_icon set [4,(_icon select 4) / _scale];
+				_mapCtrl drawIcon [
+					_x select 0,
+					_x select 1,
+					_x select 2,
+					(_x select 3) / _scale,
+					(_x select 4) / _scale,
+					_x select 5
+				];
+			};
+		}foreach(OT_mapcache_bodies);
+
+		//draw owned vehicle map cache
+		{
+			if(((_x select 2) distance2D _mousepos) < 3000) then {
+				if((_x select 3) < 1) then {
+					_mapCtrl drawIcon [
+						_x select 0,
+						_x select 1,
+						_x select 2,
+						(_x select 3) / _scale,
+						(_x select 4) / _scale,
+						_x select 5
+					];
+				} else {
+					_mapCtrl drawIcon _x;
 				};
-				_mapCtrl drawIcon _icon;
 			};
 		}foreach(OT_mapcache_vehicles);
 	};
 };
 
-//Draw QRF regions, possible duplicate
+//Draw QRF regions
 private _qrf = server getVariable "QRFpos";
 if(!isNil "_qrf") then {
 	private _progress = server getVariable ["QRFprogress",0];

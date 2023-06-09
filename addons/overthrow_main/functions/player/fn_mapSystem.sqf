@@ -38,48 +38,70 @@ OT_OnDraw = ((findDisplay 12) displayCtrl 51) ctrlAddEventHandler ["Draw", OT_fn
 //Map caching
 OT_mapcache_vehicles = [];
 OT_mapcache_radar = [];
+OT_mapcache_bodies = [];
+//3 second Cache
 [{
 	if (!visibleMap) exitWith {};
 	private _vehs = [];
 	private _radar = [];
+	private _bodies = [];
 	private _cfgVeh = configFile >> "CfgVehicles";
+	//Vehicle Cache
 	{
+		//Owned vehicles
 		if(((typeof _x == OT_item_CargoContainer) || (_x isKindOf "Ship") || (_x isKindOf "Air") || (_x isKindOf "Car")) && {(count crew _x == 0)} && {(_x call OT_fnc_hasOwner)}) then {
+			_vehs pushback [
+				getText(_cfgVeh >> (typeof _x) >> "icon"),
+				[1,1,1,1],
+				getPosASL _x,
+				0.4,
+				0.4,
+				getdir _x
+			];
+		};
+		//All resistance static weapons
+		if((_x isKindOf "StaticWeapon") && {(isNull attachedTo _x)} && {(alive _x)}) then {
+			if(side _x isEqualTo civilian || side _x isEqualTo resistance || captive _x) then {
+				_col = [0.5,0.5,0.5,1];
+				if(!(isNull gunner _x) && {(alive gunner _x)}) then {_col = [0,0.5,0,1]};
+				_i = "\A3\ui_f\data\map\markers\nato\o_art.paa";
+				if(_x isKindOf "StaticMortar") then {_i = "\A3\ui_f\data\map\markers\nato\o_mortar.paa"};
+				if !(someAmmo _x) then {_col set [3,0.4]};
 				_vehs pushback [
-					getText(_cfgVeh >> (typeof _x) >> "icon"),
-					[1,1,1,1],
+					_i,
+					_col,
 					getPosASL _x,
-					0.4,
-					0.4,
-					getdir _x
+					30,
+					30,
+					0
 				];
 			};
-			if((_x isKindOf "StaticWeapon") && {(isNull attachedTo _x)} && {(alive _x)}) then {
-				if(side _x isEqualTo civilian || side _x isEqualTo resistance || captive _x) then {
-					_col = [0.5,0.5,0.5,1];
-					if(!(isNull gunner _x) && {(alive gunner _x)}) then {_col = [0,0.5,0,1]};
-					_i = "\A3\ui_f\data\map\markers\nato\o_art.paa";
-					if(_x isKindOf "StaticMortar") then {_i = "\A3\ui_f\data\map\markers\nato\o_mortar.paa"};
-					if !(someAmmo _x) then {_col set [3,0.4]};
-					_vehs pushback [
-						_i,
-						_col,
-						getPosASL _x,
-						30,
-						30,
-						0
-					];
-				};
-			};
-
+		};
+		//Radar hits
 		if((_x isKindOf "Air") && {(alive _x)} && ((side _x) isEqualTo west) && (_x call OT_fnc_isRadarInRange) && {(count crew _x > 0)}) then {
 			_radar pushback _x;
 		};
-	//}foreach(vehicles);
 	} forEach entities [["Car", "Air", "Ship", "StaticWeapon", OT_item_CargoContainer], ["Parachute"], false, false];
+	//Dead Body Cache
+	{
+		if (typeof _x != "B_UAV_AI") then {
+			_p = getPosASL _x;
+			_bodies pushback [
+				"\overthrow_main\ui\markers\death.paa",
+				[1,1,1,0.5],
+				_p,
+				0.2,
+				0.2,
+				0
+			];
+		};
+	}foreach(alldeadmen);
 	OT_mapcache_vehicles = _vehs;
 	OT_mapcache_radar = _radar;
+	OT_mapcache_bodies = _bodies;
 }, 3, []] call CBA_fnc_addPerFrameHandler;
+
+
 
 [{
 	disableSerialization;
