@@ -26,16 +26,14 @@ if(OT_showPlayerMarkers) then {
 	}foreach(allPlayers - (entities "HeadlessClient_F"));
 };
 
-//Draw units under player command
+//Draw indepenent units
 private _grpUnits = groupSelectedUnits player;
 {
 	if (!(isPlayer _x) && {(_x getVariable ["polgarrison",""]) isEqualTo ""}) then {
 		private _veh = vehicle _x;
 		//If unit is on foot draw unit, else save as vehicle to draw
 		if(_veh isEqualTo _x) then {
-			private _color = [[0,0.2,0,1],[0,0.5,0,1]] select captive _x;
 			private _visPos = getPosASL _x;
-			private _txt = "";
 			if(leader _x isEqualTo player) then {
 				//Draw selected unit planned route
 				expectedDestination _x params ["_destpos","_planning"];
@@ -43,11 +41,11 @@ private _grpUnits = groupSelectedUnits player;
 					_mapCtrl drawLine [
 						_visPos,
 						_destpos,
-						_color
+						[0,0.2,0,1]
 					];
 					_mapCtrl drawIcon [
 						"\A3\ui_f\data\map\groupicons\waypoint.paa",
-						_color,
+						[0,0.2,0,1],
 						_destpos,
 						24,
 						24,
@@ -58,7 +56,7 @@ private _grpUnits = groupSelectedUnits player;
 				if(_x in _grpUnits) then {
 					_mapCtrl drawIcon [
 						"\A3\ui_f\data\igui\cfg\islandmap\iconplayer_ca.paa",
-						_color,
+						[0,0.2,0,1],
 						_visPos,
 						24,
 						24,
@@ -69,7 +67,7 @@ private _grpUnits = groupSelectedUnits player;
 			//Draw unit
 			_mapCtrl drawIcon [
 				"iconMan",
-				_color,
+				[0,0.2,0,1],
 				_visPos,
 				24,
 				24,
@@ -80,6 +78,20 @@ private _grpUnits = groupSelectedUnits player;
 		};
 	};
 }foreach(units independent);
+
+//Draw captive units
+{
+	if (captive _x) then {
+		_mapCtrl drawIcon [
+			"iconMan",
+			[0,0.5,0,1],
+			getPosASL _x,
+			24,
+			24,
+			getDir _x
+		];
+	};
+}foreach(units civilian);
 
 //Draw player vehicles on map only
 if (visibleMap) then {
@@ -195,7 +207,6 @@ if(OT_showEnemyGroups) then {
 private _scale = ctrlMapScale _mapCtrl;
 if(_scale < 0.1) then {
 	private _mousepos = [0,0,0];
-	private _towns = OT_townData;
 	if !(visibleMap) then {
 		_mousepos = getpos player;
 	}else{
@@ -276,7 +287,7 @@ if(_scale < 0.1) then {
 				];
 			}foreach(server getVariable [format["activehardwarein%1",_tname],[]]);
 		};
-	}foreach(_towns);
+	}foreach(OT_townData);
 
 	if(visibleMap) then {
 		//Draw corpse markers
