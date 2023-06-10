@@ -41,11 +41,11 @@ private _grpUnits = groupSelectedUnits player;
 					_mapCtrl drawLine [
 						_visPos,
 						_destpos,
-						[0,0.2,0,1]
+						[0,0.5,0,1]
 					];
 					_mapCtrl drawIcon [
 						"\A3\ui_f\data\map\groupicons\waypoint.paa",
-						[0,0.2,0,1],
+						[0,0.5,0,1],
 						_destpos,
 						24,
 						24,
@@ -56,7 +56,7 @@ private _grpUnits = groupSelectedUnits player;
 				if(_x in _grpUnits) then {
 					_mapCtrl drawIcon [
 						"\A3\ui_f\data\igui\cfg\islandmap\iconplayer_ca.paa",
-						[0,0.2,0,1],
+						[0,0.5,0,1],
 						_visPos,
 						24,
 						24,
@@ -67,7 +67,7 @@ private _grpUnits = groupSelectedUnits player;
 			//Draw unit
 			_mapCtrl drawIcon [
 				"iconMan",
-				[0,0.2,0,1],
+				[0,0.5,0,1],
 				_visPos,
 				24,
 				24,
@@ -84,7 +84,7 @@ private _grpUnits = groupSelectedUnits player;
 	if (captive _x) then {
 		_mapCtrl drawIcon [
 			"iconMan",
-			[0,0.5,0,1],
+			[0,0.2,0,1],
 			getPosASL _x,
 			24,
 			24,
