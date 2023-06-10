@@ -6,7 +6,7 @@ params ["_mapCtrl"];
 private _vehs = [];
 private _cfgVeh = configFile >> "CfgVehicles";
 
-// Draw markers for all players on foot, else save as vehicle to draw
+//Draw markers for all players on foot, else save as vehicle to draw - Mission Parameter
 if(OT_showPlayerMarkers) then {
 	{
 		private _veh = vehicle _x;
@@ -26,18 +26,18 @@ if(OT_showPlayerMarkers) then {
 	}foreach(allPlayers - (entities "HeadlessClient_F"));
 };
 
-//draw units under player command
+//Draw units under player command
 private _grpUnits = groupSelectedUnits player;
 {
 	if (!(isPlayer _x) && {(_x getVariable ["polgarrison",""]) isEqualTo ""}) then {
 		private _veh = vehicle _x;
-		// if unit is on foot draw unit, else save as vehicle to draw
+		//If unit is on foot draw unit, else save as vehicle to draw
 		if(_veh isEqualTo _x) then {
 			private _color = [[0,0.2,0,1],[0,0.5,0,1]] select captive _x;
 			private _visPos = getPosASL _x;
 			private _txt = "";
 			if(leader _x isEqualTo player) then {
-				//draw planned route
+				//Draw selected unit planned route
 				expectedDestination _x params ["_destpos","_planning"];
 				if (_planning == "LEADER PLANNED") then {
 					_mapCtrl drawLine [
@@ -54,7 +54,7 @@ private _grpUnits = groupSelectedUnits player;
 						0
 					];
 				};
-				//draw circle on currently selected units
+				//Draw circle on currently selected units
 				if(_x in _grpUnits) then {
 					_mapCtrl drawIcon [
 						"\A3\ui_f\data\igui\cfg\islandmap\iconplayer_ca.paa",
@@ -66,6 +66,7 @@ private _grpUnits = groupSelectedUnits player;
 					];
 				};
 			};
+			//Draw unit
 			_mapCtrl drawIcon [
 				"iconMan",
 				_color,
@@ -136,7 +137,7 @@ private _mortars = spawner getVariable ["NATOmortars",[]];
 	];
 }foreach(OT_mapcache_radar);
 
-//Draw enemy groups on map, mission parameter
+//Draw enemy groups on map - Mission Parameter
 if(OT_showEnemyGroups) then {
 	{
 		private _u = leader _x;
@@ -190,7 +191,7 @@ if(OT_showEnemyGroups) then {
 	}foreach(groups east);
 };
 
-// if zoomed in draw shop, business, faction rep, corpse markers and vehicle cache
+//If zoomed in draw shop, business, faction rep, corpse cache and vehicle cache
 private _scale = ctrlMapScale _mapCtrl;
 if(_scale < 0.1) then {
 	private _mousepos = [0,0,0];
@@ -219,7 +220,7 @@ if(_scale < 0.1) then {
 		};
 	}foreach(player getvariable ["owned",[]]);
 
-	// Draw faction reps
+	//Draw faction reps
 	{
 		_x params ["_cls","_name","_side","_flag"];
 		if!(_side isEqualTo 1) then {
@@ -239,7 +240,7 @@ if(_scale < 0.1) then {
 		};
 	}foreach(OT_allFactions);
 
-	// Draw shop icons
+	//Draw shop icons
 	{
 		_x params ["_tpos","_tname"];
 		if((_tpos distance2D _mousepos) < 2500) then {
@@ -278,7 +279,7 @@ if(_scale < 0.1) then {
 	}foreach(_towns);
 
 	if(visibleMap) then {
-		// Draw corpse markers
+		//Draw corpse markers
 		{
 			if(((_x select 2) distance2D _mousepos) < 3000) then {
 				_mapCtrl drawIcon [
@@ -292,7 +293,7 @@ if(_scale < 0.1) then {
 			};
 		}foreach(OT_mapcache_bodies);
 
-		//draw owned vehicle map cache
+		//Draw owned vehicle map cache
 		{
 			if(((_x select 2) distance2D _mousepos) < 3000) then {
 				if((_x select 3) < 1) then {
@@ -316,9 +317,6 @@ if(_scale < 0.1) then {
 private _qrf = server getVariable "QRFpos";
 if(!isNil "_qrf") then {
 	private _progress = server getVariable ["QRFprogress",0];
-	_col = [];
-	if(_progress > 0) then {_col = [0,0,1,_progress]};
-	if(_progress < 0) then {_col = [0,1,0,abs _progress]};
 	if(_progress != 0) then {
 		_mapCtrl drawEllipse [
 			_qrf,
@@ -338,7 +336,12 @@ if(!isNil "_qrf") then {
 			200,
 			200,
 			0,
-			_col,
+			[
+				0,
+				parseNumber(_progress < 0),
+				parseNumber(_progress > 0),
+				abs _progress
+			],
 			"\A3\ui_f\data\map\markerbrushes\bdiagonal_ca.paa"
 		];
 	};
