@@ -233,13 +233,13 @@ if("Factory" in (server getVariable["GEURowned",[]])) then {_mrk setMarkerColorL
 _mrk setMarkerAlpha 0.8;
 
 //Map Icon Cache
-OT_allFactionRepIcons = [];
+OT_mapcache_factions = [];
 {
     _x params ["_cls","_name","_side","_flag"];
     if!(_side isEqualTo 1) then {
         private _factionPos = server getVariable format["factionrep%1",_cls];
         if!(isNil "_factionPos") then {
-            OT_allFactionRepIcons pushBack [
+            OT_mapcache_factions pushBack [
                 _flag,
                 [1,1,1,1],
                 _factionPos,
@@ -256,7 +256,7 @@ OT_allFactionRepIcons = [];
     _x params ["_tpos","_tname"];
     private _townPos = server getVariable format["gundealer%1",_tname];
     if!(isNil "_townPos") then {
-        OT_allFactionRepIcons pushback [
+        OT_mapcache_factions pushback [
             OT_flagImage,
             [1,1,1,1],
             _townPos,

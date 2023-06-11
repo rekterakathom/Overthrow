@@ -36,17 +36,35 @@ if(!isNil "OT_OnDraw") then {
 OT_OnDraw = ((findDisplay 12) displayCtrl 51) ctrlAddEventHandler ["Draw", OT_fnc_mapHandler];
 
 //Map caching
+OT_mapcache_properties = [];
 OT_mapcache_vehicles = [];
 OT_mapcache_radar = [];
 OT_mapcache_bodies = [];
 //3 second Cache
 [{
 	if (!visibleMap) exitWith {};
+	private _properties = [];
 	private _vehs = [];
 	private _radar = [];
 	private _bodies = [];
+	//Properties cache
+	private _leased = player getvariable ["leased",[]];
+	{
+		private _buildingPos = buildingpositions getVariable _x;
+		if!(isNil "_buildingPos") then {
+			_properties pushback [
+				"\A3\ui_f\data\map\mapcontrol\Tourism_CA.paa",
+				[1,1,1,[1,0.3] select (_x in _leased)],
+				_buildingPos,
+				0.3,
+				0.3,
+				0
+			];
+		};
+	}foreach(player getvariable ["owned",[]]);
+
+	//Vehicle cache
 	private _cfgVeh = configFile >> "CfgVehicles";
-	//Vehicle Cache
 	{
 		//Owned vehicles
 		if(((typeof _x == OT_item_CargoContainer) || (_x isKindOf "Ship") || (_x isKindOf "Air") || (_x isKindOf "Car")) && {(count crew _x == 0)} && {(_x call OT_fnc_hasOwner)}) then {
@@ -82,7 +100,7 @@ OT_mapcache_bodies = [];
 			_radar pushback _x;
 		};
 	} forEach entities [["Car", "Air", "Ship", "StaticWeapon", OT_item_CargoContainer], ["Parachute"], false, false];
-	//Dead Body Cache
+	//Corpse cache
 	{
 		if (typeof _x != "B_UAV_AI") then {
 			_p = getPosASL _x;
@@ -96,6 +114,7 @@ OT_mapcache_bodies = [];
 			];
 		};
 	}foreach(alldeadmen);
+	OT_mapcache_properties = _properties;
 	OT_mapcache_vehicles = _vehs;
 	OT_mapcache_radar = _radar;
 	OT_mapcache_bodies = _bodies;

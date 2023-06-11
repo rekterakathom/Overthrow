@@ -203,7 +203,7 @@ if(OT_showEnemyGroups) then {
 	}foreach(groups east);
 };
 
-//If zoomed in draw shop, business, faction rep, corpse cache and vehicle cache
+//If zoomed in draw shop, owned properties, faction rep, corpse cache and vehicle cache
 private _scale = ctrlMapScale _mapCtrl;
 if(_scale < 0.1) then {
 	private _mousepos = [0,0,0];
@@ -213,29 +213,25 @@ if(_scale < 0.1) then {
 		_mousepos = _mapCtrl ctrlMapScreenToWorld getMousePosition;
 	};
 
-	//Make Shop icons visible
+	//Make shop markers visible
 	{
 		_x setMarkerAlphaLocal 1;
 		_x setMarkerSizeLocal [(0.1/_scale),(0.1/_scale)];
 	} foreach (OT_allShopMarkers);
 
 	//Draw owned properties
-	private _leased = player getvariable ["leased",[]];
 	{
-		private _buildingPos = buildingpositions getVariable _x;
-		if!(isNil "_buildingPos") then {
-			if((_buildingPos distance2D _mousepos) < 3000) then {
-				_mapCtrl drawIcon [
-					"\A3\ui_f\data\map\mapcontrol\Tourism_CA.paa",
-					[1,1,1,[1,0.3] select (_x in _leased)],
-					_buildingPos,
-					0.3/_scale,
-					0.3/_scale,
-					0
-				];
-			};
+		if(((_x select 2) distance2D _mousepos) < 3000) then {
+			_mapCtrl drawIcon [
+				_x select 0,
+				_x select 1,
+				_x select 2,
+				(_x select 3) / _scale,
+				(_x select 4) / _scale,
+				_x select 5
+			];
 		};
-	}foreach(player getvariable ["owned",[]]);
+	}foreach(OT_mapcache_properties);
 
 	//Draw faction reps and Gun dealers
 	{
@@ -249,7 +245,7 @@ if(_scale < 0.1) then {
 				_x select 5
 			];
 		};
-	}foreach(OT_allFactionRepIcons);
+	}foreach(OT_mapcache_factions);
 
 	if(visibleMap) then {
 		//Draw corpse markers
