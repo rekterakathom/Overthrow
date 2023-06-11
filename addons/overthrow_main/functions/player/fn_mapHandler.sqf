@@ -213,6 +213,12 @@ if(_scale < 0.1) then {
 		_mousepos = _mapCtrl ctrlMapScreenToWorld getMousePosition;
 	};
 
+	//Make Shop icons visible
+	{
+		_x setMarkerAlphaLocal 1;
+		_x setMarkerSizeLocal [(0.1/_scale),(0.1/_scale)];
+	} foreach (OT_allShopMarkers);
+
 	//Draw owned properties
 	private _leased = player getvariable ["leased",[]];
 	{
@@ -231,63 +237,19 @@ if(_scale < 0.1) then {
 		};
 	}foreach(player getvariable ["owned",[]]);
 
-	//Draw faction reps
+	//Draw faction reps and Gun dealers
 	{
-		_x params ["_cls","_name","_side","_flag"];
-		if!(_side isEqualTo 1) then {
-			private _factionPos = server getVariable format["factionrep%1",_cls];
-			if!(isNil "_factionPos") then {
-				if((_factionPos distance2D _mousepos) < 3000) then {
-					_mapCtrl drawIcon [
-						_flag,
-						[1,1,1,1],
-						_factionPos,
-						0.6/_scale,
-						0.5/_scale,
-						0
-					];
-				};
-			};
+		if(((_x select 2) distance2D _mousepos) < 3000) then {
+			_mapCtrl drawIcon [
+				_x select 0,
+				_x select 1,
+				_x select 2,
+				(_x select 3) / _scale,
+				(_x select 4) / _scale,
+				_x select 5
+			];
 		};
-	}foreach(OT_allFactions);
-
-	//Draw shop icons
-	{
-		_x params ["_tpos","_tname"];
-		if((_tpos distance2D _mousepos) < 2500) then {
-			private _townPos = server getVariable format["gundealer%1",_tname];
-			if!(isNil "_townPos") then {
-				_mapCtrl drawIcon [
-					OT_flagImage,
-					[1,1,1,1],
-					_townPos,
-					0.3/_scale,
-					0.3/_scale,
-					0
-				];
-			};
-			{
-				_mapCtrl drawIcon [
-					format["\overthrow_main\ui\markers\shop-%1.paa",_x select 1],
-					[1,1,1,1],
-					_x select 0,
-					0.2/_scale,
-					0.2/_scale,
-					0
-				];
-			}foreach(server getVariable [format["activeshopsin%1",_tname],[]]);
-			{
-				_mapCtrl drawIcon [
-					"\overthrow_main\ui\markers\shop-Hardware.paa",
-					[1,1,1,1],
-					_x select 0,
-					0.3/_scale,
-					0.3/_scale,
-					0
-				];
-			}foreach(server getVariable [format["activehardwarein%1",_tname],[]]);
-		};
-	}foreach(OT_townData);
+	}foreach(OT_allFactionRepIcons);
 
 	if(visibleMap) then {
 		//Draw corpse markers
@@ -322,6 +284,11 @@ if(_scale < 0.1) then {
 			};
 		}foreach(OT_mapcache_vehicles);
 	};
+} else {
+	//hide shop markers
+	{
+		_x setMarkerAlphaLocal 0;
+	} foreach (OT_allShopMarkers);
 };
 
 //Draw QRF regions

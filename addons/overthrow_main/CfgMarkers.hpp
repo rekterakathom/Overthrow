@@ -18,6 +18,60 @@ class CfgMarkers
 		shadow = true;
 		scope = 1;
 	};
+	class ot_ShopClothing
+	{
+		name = "ShopClothing";
+		icon = "\overthrow_main\ui\markers\shop-Clothing.paa";
+		color[] = {1, 1, 1, 1};
+		size = 4;
+		shadow = false;
+		scope = 1;
+	};
+	class ot_ShopElectronics
+	{
+		name = "ShopElectronics";
+		icon = "\overthrow_main\ui\markers\shop-Electronics.paa";
+		color[] = {1, 1, 1, 1};
+		size = 4;
+		shadow = false;
+		scope = 1;
+	};
+	class ot_ShopGeneral
+	{
+		name = "ShopGeneral";
+		icon = "\overthrow_main\ui\markers\shop-General.paa";
+		color[] = {1, 1, 1, 1};
+		size = 4;
+		shadow = false;
+		scope = 1;
+	};
+	class ot_ShopHardware
+	{
+		name = "ShopHardware";
+		icon = "\overthrow_main\ui\markers\shop-Hardware.paa";
+		color[] = {1, 1, 1, 1};
+		size = 4;
+		shadow = false;
+		scope = 1;
+	};
+	class ot_ShopPharmacy
+	{
+		name = "ShopPharmacy";
+		icon = "\overthrow_main\ui\markers\shop-Pharmacy.paa";
+		color[] = {1, 1, 1, 1};
+		size = 4;
+		shadow = false;
+		scope = 1;
+	};
+	class ot_ShopSurplus
+	{
+		name = "ShopSurplus";
+		icon = "\overthrow_main\ui\markers\shop-Surplus.paa";
+		color[] = {1, 1, 1, 1};
+		size = 4;
+		shadow = false;
+		scope = 1;
+	};
 	class ot_Police
 	{
 		name = "Police";
