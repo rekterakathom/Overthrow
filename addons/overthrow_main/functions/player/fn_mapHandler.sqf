@@ -207,10 +207,13 @@ if(OT_showEnemyGroups) then {
 private _scale = ctrlMapScale _mapCtrl;
 if(_scale < 0.1) then {
 	private _mousepos = [0,0,0];
+	private _drawDist = 0;
 	if !(visibleMap) then {
 		_mousepos = getpos player;
+		_drawDist = 1000;
 	}else{
 		_mousepos = _mapCtrl ctrlMapScreenToWorld getMousePosition;
+		_drawDist = 3000;
 	};
 
 	//Make shop markers visible
@@ -221,7 +224,7 @@ if(_scale < 0.1) then {
 
 	//Draw owned properties
 	{
-		if(((_x select 2) distance2D _mousepos) < 3000) then {
+		if(((_x select 2) distance2D _mousepos) < _drawDist) then {
 			_mapCtrl drawIcon [
 				_x select 0,
 				_x select 1,
@@ -235,7 +238,7 @@ if(_scale < 0.1) then {
 
 	//Draw faction reps and Gun dealers
 	{
-		if(((_x select 2) distance2D _mousepos) < 3000) then {
+		if(((_x select 2) distance2D _mousepos) < _drawDist) then {
 			_mapCtrl drawIcon [
 				_x select 0,
 				_x select 1,
@@ -250,7 +253,7 @@ if(_scale < 0.1) then {
 	if(visibleMap) then {
 		//Draw corpse markers
 		{
-			if(((_x select 2) distance2D _mousepos) < 3000) then {
+			if(((_x select 2) distance2D _mousepos) < _drawDist) then {
 				_mapCtrl drawIcon [
 					_x select 0,
 					_x select 1,
@@ -264,7 +267,7 @@ if(_scale < 0.1) then {
 
 		//Draw owned vehicle map cache
 		{
-			if(((_x select 2) distance2D _mousepos) < 3000) then {
+			if(((_x select 2) distance2D _mousepos) < _drawDist) then {
 				if((_x select 3) < 1) then {
 					_mapCtrl drawIcon [
 						_x select 0,
