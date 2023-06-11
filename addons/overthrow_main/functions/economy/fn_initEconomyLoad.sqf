@@ -188,6 +188,24 @@ OT_allShopMarkers = [];
         _mrk setMarkerAlphaLocal 1;
         OT_allShopMarkers pushback _mrkName;
     }foreach(server getVariable [format["activehardwarein%1",_tname],[]]);
+    //Vehicle Store Markers
+    {
+        private _mrkName = format["%1 %2", _x select 0, _x select 1];
+        _mrk = createMarkerLocal [_mrkName,_x];
+        _mrk setMarkerShapeLocal "ICON";
+        _mrk setMarkerTypeLocal "ot_ShopVehicle";
+        _mrk setMarkerAlphaLocal 1;
+        OT_allShopMarkers pushback _mrkName;
+    }foreach(server getVariable [format["activecarshopsin%1",_tname],[]]);
+    //Pier Store Markers
+    {
+        private _mrkName = format["%1 %2", _x select 0, _x select 1];
+        _mrk = createMarkerLocal [_mrkName,_x];
+        _mrk setMarkerShapeLocal "ICON";
+        _mrk setMarkerTypeLocal "ot_ShopPier";
+        _mrk setMarkerAlphaLocal 1;
+        OT_allShopMarkers pushback _mrkName;
+    }foreach(server getVariable [format["activepiersin%1",_tname],[]]);
 } foreach (OT_townData);
 
 //Business Markers

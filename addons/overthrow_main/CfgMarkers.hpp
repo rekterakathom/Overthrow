@@ -63,10 +63,28 @@ class CfgMarkers
 		shadow = false;
 		scope = 1;
 	};
+	class ot_ShopPier
+	{
+		name = "ShopPier";
+		icon = "\overthrow_main\ui\markers\shop-Pier.paa";
+		color[] = {1, 1, 1, 1};
+		size = 4;
+		shadow = false;
+		scope = 1;
+	};
 	class ot_ShopSurplus
 	{
 		name = "ShopSurplus";
 		icon = "\overthrow_main\ui\markers\shop-Surplus.paa";
+		color[] = {1, 1, 1, 1};
+		size = 4;
+		shadow = false;
+		scope = 1;
+	};
+	class ot_ShopVehicle
+	{
+		name = "ShopVehicle";
+		icon = "\overthrow_main\ui\markers\shop-Vehicle.paa";
 		color[] = {1, 1, 1, 1};
 		size = 4;
 		shadow = false;
