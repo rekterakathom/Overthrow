@@ -1,36 +1,63 @@
 if (!isServer) exitwith {};
-OT_NATO_GroundForces = [];
-OT_NATO_Group_Recon = "";
+OT_NATO_Group_Recon = ["", 0]; // 2nd param used to keep track of group size, see below
 OT_NATO_Group_Engineers = "";
+OT_NATO_GroundForces = [];
+
+// Basic infantry troops
 {
 	private _config = _x;
 	{
-		private _name = configName _x;
-		if((_name find "ReconTeam") > -1) then {
-			OT_NATO_Group_Recon = _name;
+		private _name = toLower (configName _x);
+		private _numtroops = count ("true" configClasses _x);
+
+		// Recon troops are checked here as well, in case specops config doesn't exist
+		// no uav or ugv groups
+		// also try to get the largest possible recon group
+		if ((_name find "recon") > -1 && {((_name find "uav") == -1) && ((_name find "ugv") == -1) && _numTroops > (OT_NATO_Group_Recon # 1)}) then {
+			OT_NATO_Group_Recon = [_x, _numtroops];
+			continue; // We don't want recon guys ending up as regular infantry
 		};
-		private _numtroops = count("true" configClasses _x);
-		if(_numtroops > 5) then {
-			OT_NATO_GroundForces pushback _x;
+		if (_numtroops > 5) then {
+			OT_NATO_GroundForces pushBack _x;
 		};
 	} forEach ("true" configClasses _config);
-}foreach("'infantry' in toLower (configName _x)" configClasses (configFile >> "CfgGroups" >> "West" >> OT_faction_NATO));
+} forEach ("'infantry' in toLower (configName _x)" configClasses (configFile >> "CfgGroups" >> "West" >> OT_faction_NATO));
 
+// Reset the recon troop size because a smaller group from 'specops' is worth more
+OT_NATO_Group_Recon set [1, 0];
+
+// Recon troops / special forces
 {
 	private _config = _x;
 	{
-		private _name = configName _x;
-		if((_name find "ENG") > -1) then {
+		private _name = toLower (configName _x);
+		private _numTroops = count ("true" configClasses _x);
+		// Try to get the largest possible recon group
+		if ((_name find "recon") > -1 && {((_name find "uav") == -1) && ((_name find "ugv") == -1) && _numTroops > (OT_NATO_Group_Recon # 1)}) then {
+			OT_NATO_Group_Recon = [_x, _numTroops];
+		};
+	} forEach ("true" configClasses _config);
+} forEach ("'specops' in toLower (configName _x)" configClasses (configFile >> "CfgGroups" >> "West" >> OT_faction_NATO));
+
+// Remove the specops counter, it's no longer needed
+OT_NATO_Group_Recon = (OT_NATO_Group_Recon # 0);
+
+// Engineering troops
+{
+	private _config = _x;
+	{
+		private _name = toLower (configName _x);
+		if ((_name find "eng") > -1) then {
 			OT_NATO_Group_Engineers = _name;
 		};
 	} forEach ("true" configClasses _config);
-}foreach("'support' in toLower (configName _x)" configClasses (configFile >> "CfgGroups" >> "West" >> OT_faction_NATO));
+} forEach ("'support' in toLower (configName _x)" configClasses (configFile >> "CfgGroups" >> "West" >> OT_faction_NATO));
 
 OT_NATO_Units_LevelOne = [];
 OT_NATO_Units_LevelTwo = [];
 OT_NATO_Units_CTRGSupport = [];
 
-(selectRandom OT_loadingMessages) remoteExec['OT_fnc_notifyStart',0,false];
+(selectRandom OT_loadingMessages) remoteExec ['OT_fnc_notifyStart', 0, false];
 
 private _c = 0;
 
@@ -50,6 +77,8 @@ private _c = 0;
 				|| (_name find "crew") > -1
 				|| (_name find "diver") > -1
 				|| (_name find "pilot") > -1
+				|| (_name find "pettka") > -1
+				|| (_name find "captain_jay") > -1
 			) exitWith {};
 			if((_name find "_ctrg_") > -1) exitWith {
 				OT_NATO_Units_CTRGSupport pushback _name
@@ -61,9 +90,9 @@ private _c = 0;
 				OT_NATO_Unit_SquadLeader = _name;
 			};
 
-			private _role = getText (_x >> "role");
-			if(_role in ["MachineGunner","Rifleman","CombatLifeSaver"]) then {OT_NATO_Units_LevelOne pushback _name};
-			if(_role in ["Grenadier","MissileSpecialist","Marksman"]) then {OT_NATO_Units_LevelTwo pushback _name};
+			private _role = toLower (getText (_x >> "role"));
+			if(_role in ["machinegunner","rifleman","combatlifesaver"]) then {OT_NATO_Units_LevelOne pushBack _name};
+			if(_role in ["grenadier","missilespecialist","marksman"]) then {OT_NATO_Units_LevelTwo pushBack _name};
 
 			//Generate and cache alternative loadouts for this unit
 			private _loadout = getUnitLoadout _unitCfg;
@@ -74,14 +103,14 @@ private _c = 0;
 			spawner setVariable [format["loadouts_%1",_name],_loadouts,false];
 			_c = _c + 1;
 			if(_c isEqualTo 10) then {
-				sleep 0.1;
+				uiSleep 0.1;
 				_c = 0;
 			};
 		};
 	};
-}foreach(format["(getNumber(_x >> 'scope') isEqualTo 2) && (getText(_x >> 'faction') isEqualTo '%1') && (configName _x) isKindOf 'SoldierWB'",OT_faction_NATO] configClasses (configFile >> "CfgVehicles"));
+} forEach (format["(getNumber(_x >> 'scope') == 2) && (getText(_x >> 'faction') == '%1') && (configName _x) isKindOf 'SoldierWB'",OT_faction_NATO] configClasses (configFile >> "CfgVehicles"));
 
-(selectRandom OT_loadingMessages) remoteExec['OT_fnc_notifyStart',0,false];
+(selectRandom OT_loadingMessages) remoteExec ['OT_fnc_notifyStart', 0, false];
 
 //Generate and cache gendarm loadouts
 private _loadout = getUnitLoadout OT_NATO_Unit_Police;
@@ -104,14 +133,14 @@ OT_NATO_Units_LevelTwo = OT_NATO_Units_LevelOne + OT_NATO_Units_LevelTwo;
 OT_NATOobjectives = [];
 OT_NATOcomms = [];
 
-OT_NATOobjectives = server getVariable ["NATOobjectives",[]];
-OT_NATOcomms = server getVariable ["NATOcomms",[]];
-OT_NATOhvts = server getVariable ["NATOhvts",[]];
+OT_NATOobjectives = server getVariable ["NATOobjectives", []];
+OT_NATOcomms = server getVariable ["NATOcomms", []];
+OT_NATOhvts = server getVariable ["NATOhvts", []];
 OT_allObjectives = [];
 OT_allComms = [];
 OT_NATOHelipads = [];
 
-private _diff = server getVariable ["OT_difficulty",1];
+private _diff = server getVariable ["OT_difficulty", 1];
 
 if((server getVariable "StartupType") == "NEW" || (server getVariable ["NATOversion",0]) < OT_NATOversion) then {
 	diag_log "Overthrow: Generating NATO";
@@ -119,7 +148,7 @@ if((server getVariable "StartupType") == "NEW" || (server getVariable ["NATOvers
 	private _abandoned = server getVariable ["NATOabandoned",[]];
 
 	(selectRandom OT_loadingMessages) remoteExec['OT_fnc_notifyStart',0,false];
-	sleep 0.3;
+	uiSleep 0.2;
 	{
 		private _stability = server getVariable format ["stability%1",_x];
 		if(_stability < 11 && !(_x in _abandoned)) then {
@@ -219,7 +248,7 @@ if((server getVariable "StartupType") == "NEW" || (server getVariable ["NATOvers
 	};
 
 	(selectRandom OT_loadingMessages) remoteExec['OT_fnc_notifyStart',0];
-	sleep 0.3;
+	uiSleep 0.2;
 	//Add comms towers
 	{
 		_x params ["_pos","_name"];
@@ -318,7 +347,7 @@ if((server getVariable "StartupType") == "NEW" || (server getVariable ["NATOvers
 		};
 		server setVariable [format ["garrison%1",_x],_garrison,true];
 	}foreach (OT_allTowns);
-	sleep 0.3;
+	uiSleep 0.2;
 };
 diag_log "Overthrow: NATO Init Done";
 
@@ -427,8 +456,8 @@ diag_log "Overthrow: NATO Init Done";
 		};
 	};
 	spawner setVariable [format["NATOsupplyitems%1",_name],[_items,_wpns,_mags],false];
-}foreach(OT_NATOobjectives);
-sleep 0.3;
+} forEach (OT_NATOobjectives);
+uiSleep 0.2;
 
 publicVariable "OT_allObjectives";
 
@@ -462,8 +491,8 @@ publicVariable "OT_allObjectives";
 	}else{
 		_mrk setMarkerAlpha 0.4;
 	};
-}foreach(OT_NATOcomms);
-sleep 0.3;
+} forEach (OT_NATOcomms);
+uiSleep 0.2;
 private _revealed = server getVariable ["revealedFOBs",[]];
 {
 	_x params ["_pos","_garrison","_upgrades"];
@@ -495,7 +524,7 @@ private _revealed = server getVariable ["revealedFOBs",[]];
 		_mrkid setMarkerColorLocal "ColorBLUFOR";
 		_mrkid setMarkerAlpha 1;
 	};
-}foreach(server getVariable ["NATOfobs",[]]);
+} forEach (server getVariable ["NATOfobs",[]]);
 
 publicVariable "OT_allObjectives";
 publicVariable "OT_allComms";
