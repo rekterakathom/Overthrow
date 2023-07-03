@@ -212,13 +212,13 @@ if(_b isEqualType []) then {
 				if((_x select 0) distance _building < 5) exitWith {_base = _x};
 			}foreach(server getvariable ["bases",[]]);
 
-			_ownername = players_NS getVariable format["name%1",_base select 2];
+			_ownername = players_NS getVariable [format["name%1",_base select 2], ""];
 			ctrlSetText [1608,"Sell"];
-			ctrlEnable [1608,true];
-			ctrlSetText [1608,"Garrison"];
+			ctrlEnable [1608,false];
+			ctrlEnable [1621,true];
 			ctrlEnable [1609,false];
 			//ctrlEnable [1609,false];
-			ctrlEnable [1610,false];
+			ctrlEnable [1610,true];
 
 			_buildingTxt = format["
 				<t align='left' size='0.8'>%1</t><br/>
@@ -401,8 +401,13 @@ if(_obpos distance player < 250) then {
 				};
 			};
 		}else{
+			_base = player call OT_fnc_nearestBase;
+			if !(isNil "_base" && {(_base select 0) distance player < 100}) then {
+				ctrlEnable [1621,true];
+			} else {
+				ctrlEnable [1621,false];
+			};
 			ctrlEnable [1620,false];
-			ctrlEnable [1621,false];
 		};
 	};
 };
