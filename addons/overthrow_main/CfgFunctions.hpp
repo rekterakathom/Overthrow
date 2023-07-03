@@ -564,14 +564,15 @@ class CfgFunctions
 			class NATOSupportSniper {};
 			class NATOSupportRecon {};
 			class NATOConvoy {};
-			class NATODeployFOB {};
+			class NATOGroupDeployFOB {};
 			class NATOMissionDeployFOB {};
-			class NATOMissionReconDestroy {};
+			class NATOMissionReconInsert {};
 			class NATOSetExplosives {};
 			class NATOupgradeFOB {};
 			class NATOsendGendarmerie {};
 			class NATOreportThreat {};
 			class NATOGetAttackVectors {};
+			class NATOsiegeFOB {};
 		};
 
 		class NATOAI
@@ -598,6 +599,7 @@ class CfgFunctions
 			class NATOupgradeFOBs {};
 			class NATOupgradeGarrisons {};
 			class NATOscrambleAircraft {};
+			class NATOsendRaid {};
 		};
 
 		class CRIM
