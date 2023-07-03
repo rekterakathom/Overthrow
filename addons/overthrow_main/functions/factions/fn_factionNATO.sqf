@@ -20,7 +20,7 @@ publicVariable "OT_nextNATOTurn";
 
 	private _numplayers = count(allPlayers - (entities "HeadlessClient_F"));
 	if(_numplayers > 0) then {
-		private _countered = (server getVariable ["NATOattacking",""]) != "";
+		private _countered = (server getVariable ["NATOattacking",""]) isNotEqualTo "";
 		_knownTargets = spawner getVariable ["NATOknownTargets",[]];
 		_schedule = server getVariable ["NATOschedule",[]];
 		private _popControl = call OT_fnc_getControlledPopulation;
@@ -85,7 +85,7 @@ publicVariable "OT_nextNATOTurn";
 		[] call OT_fnc_NATOscrambleAircraft;
 
 		//NATO gets to play if it hasn't reacted to anything
-		if(time >= OT_nextNATOTurn && {!_countered}) then {
+		if(time >= OT_nextNATOTurn && !_countered) then {
 			OT_lastNATOTurn = time;
 			publicVariable "OT_lastNATOTurn";
 			_lastAttack = time - (server getVariable ["NATOlastattack", 0]);
@@ -146,7 +146,7 @@ publicVariable "OT_nextNATOTurn";
 				_chance = _chance - 5;
 			};
 
-			if (!(spawner getVariable ["NATOdeploying",false]) && {(_spend > 500)} && {(count (server getVariable ["NATOfobs",[]])) < 3} && {(random 100) > _chance}) then {
+			if (!(spawner getVariable ["NATOdeploying", false]) && {(_spend > 500)} && {(count (server getVariable ["NATOfobs", []])) < 3} && {(random 100) > _chance}) then {
 				[] call OT_fnc_NATOdeployFOB;
 			};
 
@@ -162,13 +162,13 @@ publicVariable "OT_nextNATOTurn";
 			};
 
 			//Send a ground patrol
-			private _last = spawner getVariable ["NATOlastpatrol",0];
+			private _last = spawner getVariable ["NATOlastpatrol", 0];
 			if ((time - _last) > 1200 && _spend > 150) then {
-				private _spend = [_spend, _chance] call OT_fnc_NATOsendGroundPatrol;
+				_spend = [_spend, _chance] call OT_fnc_NATOsendGroundPatrol;
 			};
 
 			//Schedule a convoy
-			private _lastConvoy = spawner getVariable ["NATOlastconvoy",0];
+			private _lastConvoy = spawner getVariable ["NATOlastconvoy", 0];
 			if(_spend > 500) then {
 				if((time - _lastConvoy) > 3600 && {(random 100) > _chance}) then {
 					_spend = [_spend] call OT_fnc_NATOscheduleConvoy;
@@ -176,7 +176,7 @@ publicVariable "OT_nextNATOTurn";
 			};
 
 			//Send an air patrol
-			_last = spawner getVariable ["NATOlastairpatrol",0];
+			_last = spawner getVariable ["NATOlastairpatrol", 0];
 			if((time - _last) > 3600 && _spend > 250 && _popControl > 750) then {
 				_spend = [_spend] call OT_fnc_NATOsendAirPatrol;
 			};
