@@ -13,6 +13,7 @@
 */
 
 private _fobs = server getVariable ["NATOfobs", []];
+private _abandoned = server getVariable["NATOabandoned",[]];
 
 private _fobEstablished = false;
 private _lowest = "";
