@@ -155,6 +155,12 @@ publicVariable "OT_nextNATOTurn";
 				_spend = [_spend] call OT_fnc_NATOreinforceGendarmerie;
 			};
 
+			// v2.3.0 - react to known targets
+			private _last = spawner getVariable ["NATOlastRaid", 0];
+			if ((time - _last) > 1200 && _spend > 250) then {
+				_spend = [_spend, _chance] call OT_fnc_NATOsendRaid;
+			};
+
 			//Send a ground patrol
 			private _last = spawner getVariable ["NATOlastpatrol",0];
 			if ((time - _last) > 1200 && _spend > 150) then {
