@@ -12,32 +12,45 @@ private _activeshops = server getVariable [format["activecarshopsin%1",_town],[]
 
 private _groups = [];
 {
+	//find building for active shop
 	private _pos = _x;
 	_building = nearestBuilding _pos;
 
+	//create group for car dealer
 	_group = createGroup civilian;
 	_group setBehaviour "CARELESS";
 	_groups pushback _group;
 
-	_tracked = _building call OT_fnc_spawnTemplate;
-	_vehs = _tracked select 0;
-	_groups append _vehs;
+	//set start location based on building config
+	private _start = _building buildingPos getNumber(configFile >> "CfgVehicles" >> typeOf(_building) >> "ot_shopPos");
+	if (isNil "_start" || {_start isEqualTo ""} || {_start isEqualTo "''"}) then { _start = _building buildingPos 0; };
+	private _facing = 0;
 
-	_cashdesk = _pos nearestObject OT_item_ShopRegister;
-	_dir = getDir _cashdesk;
-	_cashpos = _cashDesk getPos [1, _dir];
-	private _start = _building buildingPos 0;
+	//spawn objects from building template
+	private _tracked = _building call OT_fnc_spawnTemplate;
+	private _vehs = _tracked select 0;
+	{
+		//check for counter object and if found set start position relative.
+		if (typeOf _x == "Land_CashDesk_F") then { 
+			_start = _x getRelPos [0.8, 0]; 
+			_facing = getDir _x - 180;
+		};
+		_groups pushback _x;
+	}foreach(_vehs);
+
+	//create shopkeeper as member of group
 	_shopkeeper = _group createUnit [OT_civType_carDealer, _start, [],0, "CAN_COLLIDE"];
+
+	_shopkeeper setDir (_facing);
+	doStop _shopkeeper;
 	_shopkeeper allowDamage false;
 	_shopkeeper disableAI "MOVE";
 	_shopkeeper disableAI "AUTOCOMBAT";
 	_shopkeeper setVariable ["NOAI",true,false];
-
-	_shopkeeper setDir (_dir-180);
-
-	[_shopkeeper] call OT_fnc_initCarDealer;
 	_shopkeeper setVariable ["carshop",true,true];
 	_shopkeeper setVariable ["shopcheck",true,true];
+	[_shopkeeper] call OT_fnc_initCarDealer;
+
 	sleep 0.5;
 }foreach(_activeshops);
 
