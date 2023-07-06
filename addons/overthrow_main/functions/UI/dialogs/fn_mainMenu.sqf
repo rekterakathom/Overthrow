@@ -62,8 +62,6 @@ _ctrl ctrlSetStructuredText parseText format[
 	[player getVariable ["money",0], 1, 0, true] call CBA_fnc_formatNumber
 ];
 
-
-sleep 0.3;
 //Nearest building info
 _b = player call OT_fnc_nearestRealEstate;
 _buildingTxt = "";
@@ -75,7 +73,7 @@ if(_b isEqualType []) then {
 	_lease = _b select 3;
 	_totaloccupants = _b select 4;
 
-	_cls = typeof _building;
+	_cls = typeOf _building;
 	([_cls, true] call OT_fnc_getClassDisplayInfo) params ["_pic", "_name"];
 
 	ctrlSetText [1201, _pic];
@@ -85,7 +83,7 @@ if(_b isEqualType []) then {
 		_ownername = players_NS getVariable format["name%1",_owner];
 		if(isNil "_ownername") then {_ownername = "Someone"};
 
-		if(typeof _building isEqualTo OT_warehouse) exitWith {
+		if(_cls isEqualTo OT_warehouse) exitWith {
 			ctrlEnable [1609,true];
 			ctrlSetText [1609,"Procurement"];
 
@@ -113,7 +111,7 @@ if(_b isEqualType []) then {
 				_ownername = format["%1 (Leased)",_ownername];
 			};
 
-			if(typeof _building isEqualTo OT_item_Tent) exitWith {
+			if(_cls isEqualTo OT_item_Tent) exitWith {
 				ctrlSetText [1608,"Sell"];
 				ctrlEnable [1608,false];
 				ctrlEnable [1609,false];
@@ -145,10 +143,10 @@ if(_b isEqualType []) then {
 			ctrlEnable [1608,false];
 			ctrlEnable [1609,false];
 			ctrlEnable [1610,false];
-			if(typeof _building isEqualTo OT_item_Tent) then {
+			if(_cls isEqualTo OT_item_Tent) then {
 				_name = "Camp";
 			};
-			if(typeof _building isEqualTo OT_flag_IND) then {
+			if(_cls isEqualTo OT_flag_IND) then {
 				_name = _building getVariable "name";
 			};
 			_buildingTxt = format["
@@ -157,7 +155,7 @@ if(_b isEqualType []) then {
 				<t align='left' size='0.65'>Damage: %3%4</t>
 			",_name,_ownername,round((damage _building) * 100),"%"];
 		};
-		if(typeof _building isEqualTo OT_barracks) then {
+		if(_cls isEqualTo OT_barracks) then {
 			_owner = _building call OT_fnc_getOwner;
 			_ownername = players_NS getVariable format["name%1",_owner];
 			ctrlSetText [1608,"Sell"];
@@ -173,7 +171,7 @@ if(_b isEqualType []) then {
 				<t align='left' size='0.65'>Damage: %2%3</t>
 			",_ownername,round((damage _building) * 100),"%"];
 		};
-		if(typeof _building isEqualTo OT_trainingCamp) then {
+		if(_cls isEqualTo OT_trainingCamp) then {
 			_owner = _building call OT_fnc_getOwner;
 			_ownername = players_NS getVariable format["name%1",_owner];
 			ctrlSetText [1608,"Sell"];
@@ -190,7 +188,7 @@ if(_b isEqualType []) then {
 			",_ownername,round((damage _building) * 100),"%"];
 		};
 
-		if(typeof _building isEqualTo OT_refugeeCamp) then {
+		if(_cls isEqualTo OT_refugeeCamp) then {
 			_owner = _building call OT_fnc_getOwner;
 			_ownername = players_NS getVariable format["name%1",_owner];
 			ctrlSetText [1608,"Sell"];
@@ -206,7 +204,7 @@ if(_b isEqualType []) then {
 			",_ownername,round((damage _building) * 100),"%"];
 		};
 
-		if(typeof _building isEqualTo OT_flag_IND) then {
+		if(_cls isEqualTo OT_flag_IND) then {
 			_base = [];
 			{
 				if((_x select 0) distance _building < 5) exitWith {_base = _x};
@@ -235,7 +233,7 @@ if(_b isEqualType []) then {
 			};
 		};
 	}else{
-		if((typeof _building) in OT_allRepairableRuins) then {
+		if((_cls) in OT_allRepairableRuins) then {
 			ctrlEnable [1608,false];
 			ctrlEnable [1609,false];
 			ctrlSetText [1610,"Repair"];
@@ -257,7 +255,7 @@ if(_b isEqualType []) then {
 					<t align='left' size='0.65'>Lease Value: $%2/6hrs</t>
 				",_name,[_lease, 1, 0, true] call CBA_fnc_formatNumber];
 
-				if(typeof _building isEqualTo OT_barracks) then {
+				if(_cls isEqualTo OT_barracks) then {
 					ctrlSetText [1608,"Sell"];
 					ctrlEnable [1608,false];
 					ctrlEnable [1609,false];
@@ -271,7 +269,7 @@ if(_b isEqualType []) then {
 		};
 	};
 
-	if(typeof _building isEqualTo OT_policeStation) then {
+	if(_cls isEqualTo OT_policeStation) then {
 		_owner = _building call OT_fnc_getOwner;
 		if(!isNil "_owner") then {
 			_ownername = players_NS getVariable format["name%1",_owner];
@@ -288,7 +286,7 @@ if(_b isEqualType []) then {
 		};
 	};
 
-	if(typeof _building isEqualTo "Land_Cargo_House_V4_F") then {
+	if(_cls isEqualTo "Land_Cargo_House_V4_F") then {
 		_owner = _building call OT_fnc_getOwner;
 		if(!isNil "_owner") then {
 			_ownername = players_NS getVariable format["name%1",_owner];
@@ -306,7 +304,7 @@ if(_b isEqualType []) then {
 
 	// Fetch the list of buildable houses
 	private _buildableHouses = (OT_Buildables param [9, []]) param [2, []];
-	if(!((typeof _building) in OT_allRealEstate + [OT_flag_IND]) and {!(typeOf _building in _buildableHouses)}) then {
+	if(!((_cls) in OT_allRealEstate + [OT_flag_IND]) and {!(_cls in _buildableHouses)}) then {
 		ctrlEnable [1609,false];
 		ctrlEnable [1610,false];
 		ctrlEnable [1608,false];
@@ -419,27 +417,12 @@ _buildingtextctrl ctrlSetStructuredText parseText _buildingTxt;
 
 _notifytxtctrl = (findDisplay 8001) displayCtrl 1150;
 
-_txt = "";
-_opacity = "FF";
+private _notifications = [];
+private _opacityList = ["FF", "EF", "DF", "CF", "BF", "AF", "9F", "8F", "7F", "6F", "5F", "4F", "3F", "2F", "1F", "0F"];
 for "_x" from 0 to (count OT_notifyHistory - 1) do {
-	_txt = format["%1<t size='0.7' align='left' color='#%2FFFFFF'>%3</t><br/>",_txt,_opacity,OT_notifyHistory select ((count OT_notifyHistory) - _x - 1)];
-	call {
-		if(_opacity isEqualTo "FF") exitWith {_opacity = "EF"};
-		if(_opacity isEqualTo "EF") exitWith {_opacity = "DF"};
-		if(_opacity isEqualTo "DF") exitWith {_opacity = "CF"};
-		if(_opacity isEqualTo "CF") exitWith {_opacity = "BF"};
-		if(_opacity isEqualTo "BF") exitWith {_opacity = "AF"};
-		if(_opacity isEqualTo "AF") exitWith {_opacity = "9F"};
-		if(_opacity isEqualTo "9F") exitWith {_opacity = "8F"};
-		if(_opacity isEqualTo "8F") exitWith {_opacity = "7F"};
-		if(_opacity isEqualTo "7F") exitWith {_opacity = "6F"};
-		if(_opacity isEqualTo "6F") exitWith {_opacity = "5F"};
-		if(_opacity isEqualTo "5F") exitWith {_opacity = "4F"};
-		if(_opacity isEqualTo "4F") exitWith {_opacity = "3F"};
-		if(_opacity isEqualTo "3F") exitWith {_opacity = "2F"};
-		if(_opacity isEqualTo "2F") exitWith {_opacity = "1F"};
-		if(_opacity isEqualTo "1F") exitWith {_opacity = "0F"};
-	};
+	// Notifications are retreived back to front because the latest one is at the back
+	_notifications pushBack (format ["<t size='0.7' align='left' color='#%1FFFFFF'>%2</t>", _opacityList select _x, OT_notifyHistory select ((count OT_notifyHistory) - _x - 1)]);
 };
 
+_txt = _notifications joinString "<br/>";
 _notifytxtctrl ctrlSetStructuredText parseText _txt;
