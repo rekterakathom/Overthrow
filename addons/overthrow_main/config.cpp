@@ -150,29 +150,101 @@ class CfgWorlds
 
 
 class ACE_Tags {
-	class OT_goHome {
+	class OT_goHomeBlack {
 		displayName = "NATO Go Home";
 		requiredItem = "ACE_SpraypaintBlack";
 		textures[] = {"\overthrow_main\ui\tags\gohome.paa"};
 		icon = "\z\ace\addons\tagging\UI\icons\iconTaggingBlack.paa";
 	};
-	class OT_overthrow {
+	class OT_goHomeRed {
+		displayName = "NATO Go Home";
+		requiredItem = "ACE_SpraypaintRed";
+		textures[] = {"\overthrow_main\ui\tags\gohomered.paa"};
+		icon = "\z\ace\addons\tagging\UI\icons\iconTaggingRed.paa";
+	};
+	class OT_goHomeGreen {
+		displayName = "NATO Go Home";
+		requiredItem = "ACE_SpraypaintGreen";
+		textures[] = {"\overthrow_main\ui\tags\gohomegreen.paa"};
+		icon = "\z\ace\addons\tagging\UI\icons\iconTaggingGreen.paa";
+	};
+	class OT_goHomeBlue {
+		displayName = "NATO Go Home";
+		requiredItem = "ACE_SpraypaintBlue";
+		textures[] = {"\overthrow_main\ui\tags\gohomeblue.paa"};
+		icon = "\z\ace\addons\tagging\UI\icons\iconTaggingBlue.paa";
+	};
+	class OT_overthrowBlack {
 		displayName = "Overthrow";
 		requiredItem = "ACE_SpraypaintBlack";
 		textures[] = {"\overthrow_main\ui\tags\overthrow.paa"};
 		icon = "\z\ace\addons\tagging\UI\icons\iconTaggingBlack.paa";
 	};
-	class OT_fuckNATO {
+	class OT_overthrowRed {
+		displayName = "Overthrow";
+		requiredItem = "ACE_SpraypaintRed";
+		textures[] = {"\overthrow_main\ui\tags\overthrowred.paa"};
+		icon = "\z\ace\addons\tagging\UI\icons\iconTaggingRed.paa";
+	};
+	class OT_overthrowGreen {
+		displayName = "Overthrow";
+		requiredItem = "ACE_SpraypaintGreen";
+		textures[] = {"\overthrow_main\ui\tags\overthrowgreen.paa"};
+		icon = "\z\ace\addons\tagging\UI\icons\iconTaggingGreen.paa";
+	};
+	class OT_overthrowBlue {
+		displayName = "Overthrow";
+		requiredItem = "ACE_SpraypaintBlue";
+		textures[] = {"\overthrow_main\ui\tags\overthrowblue.paa"};
+		icon = "\z\ace\addons\tagging\UI\icons\iconTaggingBlue.paa";
+	};
+	class OT_fuckNATOBlack {
 		displayName = "Fuck NATO";
 		requiredItem = "ACE_SpraypaintBlack";
 		textures[] = {"\overthrow_main\ui\tags\fucknato.paa"};
 		icon = "\z\ace\addons\tagging\UI\icons\iconTaggingBlack.paa";
 	};
-	class OT_join {
+	class OT_fuckNATORed {
+		displayName = "Fuck NATO";
+		requiredItem = "ACE_SpraypaintRed";
+		textures[] = {"\overthrow_main\ui\tags\fucknatored.paa"};
+		icon = "\z\ace\addons\tagging\UI\icons\iconTaggingRed.paa";
+	};
+	class OT_fuckNATOGreen {
+		displayName = "Fuck NATO";
+		requiredItem = "ACE_SpraypaintGreen";
+		textures[] = {"\overthrow_main\ui\tags\fucknatogreen.paa"};
+		icon = "\z\ace\addons\tagging\UI\icons\iconTaggingGreen.paa";
+	};
+	class OT_fuckNATOBlue {
+		displayName = "Fuck NATO";
+		requiredItem = "ACE_SpraypaintBlue";
+		textures[] = {"\overthrow_main\ui\tags\fucknatoblue.paa"};
+		icon = "\z\ace\addons\tagging\UI\icons\iconTaggingBlue.paa";
+	};
+	class OT_joinBlack {
 		displayName = "Join";
 		requiredItem = "ACE_SpraypaintBlack";
 		textures[] = {"\overthrow_main\ui\tags\join.paa"};
 		icon = "\z\ace\addons\tagging\UI\icons\iconTaggingBlack.paa";
+	};
+	class OT_joinRed {
+		displayName = "Join";
+		requiredItem = "ACE_SpraypaintRed";
+		textures[] = {"\overthrow_main\ui\tags\joinred.paa"};
+		icon = "\z\ace\addons\tagging\UI\icons\iconTaggingRed.paa";
+	};
+	class OT_joinGreen {
+		displayName = "Join";
+		requiredItem = "ACE_SpraypaintGreen";
+		textures[] = {"\overthrow_main\ui\tags\joingreen.paa"};
+		icon = "\z\ace\addons\tagging\UI\icons\iconTaggingGreen.paa";
+	};
+	class OT_joinBlue {
+		displayName = "Join";
+		requiredItem = "ACE_SpraypaintBlue";
+		textures[] = {"\overthrow_main\ui\tags\joinblue.paa"};
+		icon = "\z\ace\addons\tagging\UI\icons\iconTaggingBlue.paa";
 	};
 };
 
