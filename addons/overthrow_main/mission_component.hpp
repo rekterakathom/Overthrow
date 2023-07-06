@@ -121,6 +121,24 @@ class Params {
 		texts[] = {"Yes", "No"};
 		default = 0;
 	};
+	class ot_gangmembercap {
+		title = "Gang Maximum Size";
+		texts[] = {"10", "15", "20", "25", "30"};
+		values[] = {10, 15, 20, 25, 30};
+		default = 15;
+	};
+	class ot_gangresourcecap {
+		title = "Gang Maximum Resources";
+		texts[] = {"Low", "Medium", "High", "Very High"};
+		values[] = {300, 600, 900, 1500};
+		default = 600;
+	};
+	class ot_factoryproductionmulti {
+		title = "Factory Production Multiplier";
+		texts[] = {"100% Speed", "150% Speed", "200% Speed", "250% Speed", "300% Speed", "350% Speed", "400% Speed", "450% Speed", "500% Speed", "1000% Speed"};
+		values[] = {100, 150, 200, 250, 300, 350, 400, 450, 500, 1000};
+		default = 100;
+	};
 	class ace_medical_level {
         title = "ACE Medical Level";
         ACE_setting = 1;

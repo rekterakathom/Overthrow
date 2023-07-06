@@ -331,7 +331,7 @@ if ((date select 4) != _lastmin) then {
 						["OT_steel",_steel,OT_factoryPos] call OT_fnc_takeFromCargoContainers;
 						["OT_plastic",_plastic,OT_factoryPos] call OT_fnc_takeFromCargoContainers;
 						[-_costtoproduce] call OT_fnc_resistanceFunds;
-						_timespent = _timespent + 1;
+						_timespent = _timespent + OT_factoryProductionMulti;
 					}else{
                         			_need = "";
 			                        if !(_dowood) then {_need = _need + format["%1 x wood ",_wood]};
@@ -342,7 +342,7 @@ if ((date select 4) != _lastmin) then {
 						spawner setVariable ["GEURproduceerror",format["Factory has insufficient resources to produce item (need: %1)",_need],true];
 					};
 				}else{
-					_timespent = _timespent + 1;
+					_timespent = _timespent + OT_factoryProductionMulti;
 				};
 				if(_timespent >= _timetoproduce) then {
 					_timespent = 0;
