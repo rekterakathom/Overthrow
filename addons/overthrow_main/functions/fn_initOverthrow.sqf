@@ -77,12 +77,10 @@ if (isDedicated) then {
 // Call final variable init
 call OT_fnc_initVar;
 
-if(isServer) then {
-    diag_log "Overthrow: Server Pre-Init";
+diag_log "Overthrow: Server Pre-Init";
+server setVariable ["StartupType","",true];
+call OT_fnc_initVirtualization;
 
-    server setVariable ["StartupType","",true];
-    call OT_fnc_initVirtualization;
-};
 
 OT_tpl_checkpoint = [] call compileScript ["data\templates\NATOcheckpoint.sqf", true];
 
@@ -94,11 +92,11 @@ OT_tpl_checkpoint = [] call compileScript ["data\templates\NATOcheckpoint.sqf", 
 	if (false/*isDedicated && profileNamespace getVariable ["OT_autoload",false]*/) then {
 		diag_log "== OVERTHROW == Mission autoloaded as per settings. Toggle in the options menu in-game to disable.";
 		diag_log "== OVERTHROW == Waiting for a player to connect!";
-		waitUntil{sleep 1; count (allPlayers - entities "HeadlessClient_F") > 0};
+		waitUntil{sleep 1; count ([] call CBA_fnc_players) > 0};
 		[] spawn OT_fnc_loadGame;
 	};
 
-	waitUntil {sleep 1;server getVariable ["StartupType",""] != ""};
+	waitUntil {sleep 1; server getVariable ["StartupType",""] != ""};
 
 	if(OT_fastTime) then {
 	    setTimeMultiplier 4;
@@ -147,34 +145,30 @@ OT_tpl_checkpoint = [] call compileScript ["data\templates\NATOcheckpoint.sqf", 
 	["OT_QRFstart", OT_fnc_QRFStartHandler] call CBA_fnc_addEventHandler;
 	["OT_QRFend", OT_fnc_QRFEndHandler] call CBA_fnc_addEventHandler;
 
-	if(isServer) then {
-		addMissionEventHandler ["EntityKilled",OT_fnc_deathHandler];
+	addMissionEventHandler ["EntityKilled", OT_fnc_deathHandler];
 
-		["OT_autosave_loop"] call OT_fnc_addActionLoop;
-		["OT_civilian_cleanup_crew", "time > OT_cleanup_civilian_loop","
-			OT_cleanup_civilian_loop = time + (5*60);
-			private _totalcivs = {(side _x isEqualTo civilian) && !captive _x} count (allUnits);
-			{
-				if(_x getVariable [""OT_Looted"",false]) then {
-					private _stock = _x call OT_fnc_unitStock;
-					if((count _stock) isEqualTo 0) then {
-						[_x] call OT_fnc_cleanupUnit;
-					};
+	["OT_autosave_loop"] call OT_fnc_addActionLoop;
+	["OT_civilian_cleanup_crew", "time > OT_cleanup_civilian_loop","
+		OT_cleanup_civilian_loop = time + (5*60);
+		private _totalcivs = {!captive _x} count (units civilian);
+		{
+			if(_x getVariable [""OT_Looted"",false]) then {
+				private _stock = _x call OT_fnc_unitStock;
+				if((count _stock) isEqualTo 0) then {
+					[_x] call OT_fnc_cleanupUnit;
 				};
-			}forEach(alldeadmen);
-			if(_totalcivs < 50) exitWith {};
-			{
-				if (side group _x isEqualTo civilian && {!(isPlayer _x)} && {!(_x getVariable [""shopcheck"",false])} && { ({side _x isEqualTo civilian} count (_x nearEntities [""CAManBase"",150])) > round(150*OT_spawnCivPercentage) } ) then {
-					private _unit = _x;
-					[_unit] call OT_fnc_cleanupUnit;
-				};
-			}forEach (allUnits);
-		"] call OT_fnc_addActionLoop;
-	};
+			};
+		}forEach(alldeadmen);
+		if(_totalcivs < 50) exitWith {};
+		{
+			if ({!(isPlayer _x)} && {!(_x getVariable [""shopcheck"",false])} && { ({side _x isEqualTo civilian} count (_x nearEntities [""CAManBase"",150])) > round(150*OT_spawnCivPercentage) } ) then {
+				private _unit = _x;
+				[_unit] call OT_fnc_cleanupUnit;
+			};
+		}forEach (units civilian);
+	"] call OT_fnc_addActionLoop;
 
 	OT_serverInitDone = true;
 	publicVariable "OT_serverInitDone";
-	if(isServer) then {
-	    diag_log "Overthrow: Server Pre-Init Done";
-	};
+	diag_log "Overthrow: Server Pre-Init Done";
 };

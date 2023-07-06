@@ -1,4 +1,8 @@
-params ["_knownPos"];
+/*
+	Inserts a recon team to _knownPos to do _objective
+*/
+
+params ["_knownPos", "_objective"];
 
 private _posTarget = _knownPos;
 private _close = nil;
@@ -29,7 +33,19 @@ if(isNil "_close") then {
 };
 // Group may not be moved into a vehicle, so it also needs space to spawn
 _start = [_close,50,200, 1, 0, 0, 0] call BIS_fnc_findSafePos;
-_group = [_start, WEST, (configFile >> "CfgGroups" >> "West" >> OT_faction_NATO >> "Infantry" >> OT_NATO_Group_Recon)] call BIS_fnc_spawnGroup;
+_group = [_start, WEST, OT_NATO_Group_Recon] call BIS_fnc_spawnGroup;
+
+// These are special forces, they are much better than regular guys
+// Randomskill macro to add some variance to units
+#define RANDOMSKILL (random [0.75,0.8,0.85])
+{
+	_x setSkill ["courage", RANDOMSKILL];
+	_x setSkill ["spotDistance", RANDOMSKILL];
+	_x setSkill ["spotTime", RANDOMSKILL];
+	_x setSkill ["commanding", RANDOMSKILL];
+	_x setSkill ["reloadSpeed", RANDOMSKILL];
+} forEach (units _group);
+_group allowFleeing 0.33; // Make them less likely to flee
 
 sleep 0.5;
 
@@ -83,7 +99,7 @@ if(_isAir) then {
 	_wp setWaypointBehaviour "COMBAT";
 	_wp setWaypointSpeed "FULL";
 	_wp setWaypointCompletionRadius 150;
-	_wp setWaypointStatements ["true","(vehicle this) flyInHeight 100;"];
+	_wp setWaypointStatements ["true","(vehicle this) flyInHeight 200;"];
 
 	_wp = _tgroup addWaypoint [_ao,0];
 	_wp setWaypointType "MOVE";
@@ -129,8 +145,8 @@ sleep 2;
 	_x setVariable ["OT_targetPos",_knownPos,true];
 }foreach(units _group);
 
-_wp = _group addWaypoint [_posTarget,0];
+_wp = _group addWaypoint [_knownPos,0];
 _wp setWaypointType "MOVE";
-_wp setWaypointBehaviour "COMBAT";
+_wp setWaypointBehaviour "STEALTH";
 _wp setWaypointSpeed "FULL";
-_wp setWaypointStatements ["true","this spawn OT_fnc_NATOSetExplosives"];
+_wp setWaypointStatements ["true", _objective];

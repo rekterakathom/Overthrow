@@ -21,6 +21,8 @@ while {sleep 10; alive _drone} do {
 
     {
         if (alive _x) then {
+            // The drone will sometimes miss targets
+            if ((random 100) < 50) then {continue};
             [_x, _drone, _targets] spawn {
                 params ["_x", "_drone", "_targets"];
                 private _type = typeOf _x;
@@ -89,7 +91,7 @@ while {sleep 10; alive _drone} do {
     private _numMil = {side _x isEqualTo west} count _nearMen;
     private _numRes = {side _x isEqualTo resistance} count _nearMen;;
 
-    if (_numRes > 7 && {_numMil isEqualTo 0}) then {
+    if (_numRes > 10 && {_numMil isEqualTo 0}) then {
         _targets pushBack ["INF", getPos _drone, 100, _drone];
     };
 

@@ -128,14 +128,14 @@ if (_canGangJob) then {
 				OT_jobsOffered = [];
 				call OT_fnc_requestJobGang;
 			}];
-			if(_rep >= 100) then {
-				_options pushBack [format["Do you want to join the resistance?"], {
-					params ["_gangid","_gang","_name"];
-					private _talk = ["Do you want to join the resistance?"];
-					private _civ = OT_interactingWith;
-					private _town = _gang select 2;
-					private _support = [_town] call OT_fnc_support;
-					private _code = {};
+			_options pushBack [format["Do you want to join the resistance?"], {
+				params ["_gangid","_gang","_name","_rep"];
+				private _talk = ["Do you want to join the resistance?"];
+				private _civ = OT_interactingWith;
+				private _town = _gang select 2;
+				private _support = [_town] call OT_fnc_support;
+				private _code = {};
+				if(_rep >= 50) then {
 					if(_support >= 100) then {
 						_talk pushback format["We've heard good things about what you've been doing. I guess we're in"];
 						_talk pushback "Good to have you on board";
@@ -173,17 +173,19 @@ if (_canGangJob) then {
 
 							_gangoptions pushBack ["Cancel",{}];
 							_gangoptions call OT_fnc_playerDecision;
-						}
+						};
 					};
-					[
-						player,
-						_civ,
-						_talk,
-						_code,
-						[_civ,_town,_gangid,_gang,_name]
-					] call OT_fnc_doConversation;
-				},[_gangid,_gang,_name]];
-			};
+				} else {
+					_talk pushBack "You need to scratch our back first before we scratch yours. How about you do some jobs for us?";
+				};
+				[
+					player,
+					_civ,
+					_talk,
+					_code,
+					[_civ,_town,_gangid,_gang,_name]
+				] call OT_fnc_doConversation;
+			},[_gangid,_gang,_name,_rep]];
 		};
 	};
 };

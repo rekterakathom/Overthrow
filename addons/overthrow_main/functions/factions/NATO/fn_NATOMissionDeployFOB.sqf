@@ -145,4 +145,4 @@ _wp = _group addWaypoint [_posTarget,0];
 _wp setWaypointType "MOVE";
 _wp setWaypointBehaviour "CARELESS";
 _wp setWaypointSpeed "FULL";
-_wp setWaypointStatements ["true","this spawn OT_fnc_NATODeployFOB"];
+_wp setWaypointStatements ["true","this spawn OT_fnc_NATOGroupDeployFOB"];

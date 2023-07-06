@@ -9,6 +9,9 @@ hemtt.exe
 .hemtt/template/
 *.pbo
 
+# SQFC
+*.sqfc
+
 # Windows thumbnail cache files
 Thumbs.db
 ehthumbs.db
@@ -45,3 +48,4 @@ $RECYCLE.BIN/
 # Build Directory
 @Overthrow
 tools/includes.txt
+ArmaScriptCompiler.exe

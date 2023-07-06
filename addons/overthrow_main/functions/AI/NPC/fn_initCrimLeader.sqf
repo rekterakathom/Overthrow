@@ -25,5 +25,8 @@ if((random 100) < 50) then {
 	_unit addItem "OT_Blow";
 };
 
+_wp = (group _unit) addWaypoint [getPosATL _unit, 0];
+_wp setWaypointType "HOLD";
+
 _unit addEventHandler ["Dammaged", OT_fnc_EnemyDamagedHandler];
 _unit addEventHandler ["FiredNear", {params ["_unit"];_unit enableAI "PATH"}];
