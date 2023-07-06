@@ -91,6 +91,7 @@ class RscTitles {
                 colorBackground[] = {0,0,0,0.2};
                 colorText[] = {0.34,0.33,0.33,0};//{1,1,1,1}
                 text = "";
+				shadow = 1;
             };
 		};
 	};
