@@ -5,7 +5,7 @@ if (isClass (configFile >> "CfgPatches" >> "lambs_wp")) then {
     [_mortarGroup] call lambs_wp_fnc_taskArtilleryRegister;
 };
 
-while {sleep 5+(random 5); ("8Rnd_82mm_Mo_shells" in getArtilleryAmmo[_mortar]) && (alive _mortar) && ((units _mortargroup) findIf {alive _x} != -1)} do {
+while {sleep (5+(random 5)); ("8Rnd_82mm_Mo_shells" in getArtilleryAmmo[_mortar]) && (alive _mortar) && ((units _mortargroup) findIf {alive _x} != -1)} do {
     private _attacking = server getVariable ["NATOattacking",""];
     private _mortarpos = position _mortar;
 
@@ -19,7 +19,7 @@ while {sleep 5+(random 5); ("8Rnd_82mm_Mo_shells" in getArtilleryAmmo[_mortar]) 
                 _mortargroup setCombatMode "RED";
                 _p = _pos getPos [150, random 360];
                 _mortar commandArtilleryFire [_p, "8Rnd_82mm_Mo_shells", 1];
-                sleep 3+(random 3);
+                sleep (3 + (random 3));
                 _mortar commandArtilleryFire [_p, "8Rnd_82mm_Mo_shells", 1];
                 sleep 3;
                 _mortargroup setCombatMode "BLUE";
@@ -45,17 +45,29 @@ while {sleep 5+(random 5); ("8Rnd_82mm_Mo_shells" in getArtilleryAmmo[_mortar]) 
         private _targets = [spawner getVariable ["NATOknownTargets",[]],[],{_x select 2},"DESCEND"] call BIS_fnc_SortBy;
         {
             _x params ["_ty","_pos","_pri","_obj","_done"];
-            _distance = (_pos distance _mortar);
+            _distance = (_pos distance2D _mortar);
             _town = _pos call OT_fnc_nearestTown;
-            _towndist = _pos distance (server getvariable [_town,_pos]); //make sure we dont shell towns
-            if (!(_ty == "H" || _ty == "P" || _ty == "V") && _pri > 80 && _towndist > 600 && _distance < 4000 && _distance > 250 && !_done) exitWith {
-                _x set [4,true];
+
+            // Make sure we don't shell towns. The safezone around a town depends on the population
+            _towndist = _pos distance2D (server getvariable [_town, _pos]);
+            _safezone = 200 + (server getVariable format["population%1", _town] / 2);
+
+            if (
+                !(_ty == "H" || _ty == "P" || _ty == "V") 
+                && _pri > 80 
+                && _towndist > safezone 
+                && _distance < 4000 
+                && _distance > 250 
+                //&& _housedist > 75
+                && !_done) exitWith {
+                _x set [4, true];
                 _mortargroup setCombatMode "RED";
 
+                // The first shot must miss the target!!! Otherwise players just... die
+                _mortar commandArtilleryFire [_pos getPos [30, random 360], "8Rnd_82mm_Mo_shells", 1];
+                sleep (3 + (random 3));
                 _mortar commandArtilleryFire [_pos, "8Rnd_82mm_Mo_shells", 1];
-                sleep 3+(random 3);
-                _mortar commandArtilleryFire [_pos, "8Rnd_82mm_Mo_shells", 1];
-                sleep 3+(random 3);
+                sleep (3 + (random 3));
                 _mortar commandArtilleryFire [_pos, "8Rnd_82mm_Mo_shells", 1];
                 sleep 3;
                 _mortargroup setCombatMode "BLUE";

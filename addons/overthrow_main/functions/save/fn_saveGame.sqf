@@ -47,6 +47,7 @@ private _server = (allVariables server select {
 
 		_x = toLower _x;
 		!(_x in ["startuptype","recruits","squads"])
+		&& {(_x select [0,5]) != "marta_"}
 		&& {(_x select [0,11]) != "resgarrison"}
 		&& {(_x select [0,9]) != "seencache"}
 		&& {!((_x select [0,4]) in ["ace_","cba_","bis_"])}

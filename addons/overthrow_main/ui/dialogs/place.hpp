@@ -2,6 +2,7 @@ class OT_dialog_name
 {
 	idd=-1;
 	movingenable=false;
+	onKeyDown = "_this call OT_fnc_onNameKeyDown;";
 
 	class controlsBackground {
 		class RscStructuredText_1199: RscOverthrowStructuredText
@@ -29,7 +30,6 @@ class OT_dialog_name
 			y = 0.412 * safezoneH + safezoneY;
 			w = 0.242344 * safezoneW;
 			h = 0.055 * safezoneH;
-			onKeyDown = "_this call OT_fnc_onNameKeyDown;";
 			text = "Base";
 		};
 		class RscStructuredText_1100: RscOverthrowStructuredText
