@@ -1,3 +1,4 @@
+// _unit may be non-local
 private ["_unit","_t"];
 
 _unit = _this select 0;
@@ -21,7 +22,7 @@ if(hmd _unit != "") then {
 	_cls = _x select 0;
 	while {_count < (_x select 1)} do {
 		if(_cls isKindOf ["Default",configFile >> "CfgMagazines"]) then {
-			_unit removeMagazine _cls;
+			_unit removeMagazineGlobal _cls;
 			_t addMagazine _cls;
 		}else{
 			_unit removeItem _cls;
@@ -51,15 +52,14 @@ if(handgunWeapon _unit != "") then {
 	_t addWeaponGlobal handgunWeapon _unit;
 	{
 		_t addItem _x;
-		_unit removeHandgunItem _x;
 	}foreach(handgunItems _unit);
-	_unit removeWeapon handgunWeapon _unit;
+	_unit removeWeaponGlobal handgunWeapon _unit;
 };
 {
 	if(_x != "ItemMap") then {
 		if (([(configFile >> "CfgWeapons" >> _x),"useAsBinocular",0] call BIS_fnc_returnConfigEntry) > 0) then {
 			_unit unassignItem _x;
-			_unit removeWeapon _x;
+			_unit removeWeaponGlobal _x;
 			_t addWeaponGlobal _x;
 			_t assignItem _x;
 		}else{

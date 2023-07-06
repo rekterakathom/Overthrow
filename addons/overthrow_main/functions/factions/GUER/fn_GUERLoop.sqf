@@ -45,10 +45,13 @@ if(_dead > 150) then {
 
 {
 	if (_x isEqualType grpNull) then {
+		private _units = units _x;
+		if (count _units isEqualTo 0) then {
+			_x call OT_fnc_cleanupEmptyGroup;
+		};
 		{
 			[_x] call OT_fnc_cleanupUnit;
-		}foreach(units _x);
-		deleteGroup _x;
+		}foreach(_units);
 	};
 	if (_x isEqualType objNull) then {
 		[_x] call OT_fnc_cleanupUnit;
