@@ -16,8 +16,6 @@ OT_nextNATOTurn = time+_nextturn;
 publicVariable "OT_nextNATOTurn";
 
 [{
-	[] spawn { // Run in scheduled to debug errors
-
 	private _numplayers = count(allPlayers - (entities "HeadlessClient_F"));
 	if(_numplayers > 0) then {
 		private _countered = (server getVariable ["NATOattacking",""]) isNotEqualTo "";
@@ -208,6 +206,5 @@ publicVariable "OT_nextNATOTurn";
 
 		private _fobs = server getVariable ["NATOfobs", []];
 		server setVariable ["NATOfobs",_fobs,true];
-	};
 	};
 }, 10, []] call CBA_fnc_addPerFrameHandler;
