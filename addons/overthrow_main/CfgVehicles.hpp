@@ -113,7 +113,7 @@ class CfgVehicles {
 	//ACE Interactions
     class Man;
     class CAManBase: Man {
-        fsmDanger = "overthrow_main\fsm\danger.fsm";
+        //fsmDanger = "overthrow_main\fsm\danger.fsm";
         class ACE_Actions {
             class ACE_MainActions {
                 class OT_InteractionActions {
@@ -130,7 +130,7 @@ class CfgVehicles {
                 class OT_StartSpliff
                 {
                     displayName = "Smoke a spliff";
-                    condition = "('OT_Ganja' in (items player)) && (!(_player getVariable ['ot_isSmoking', false]))";
+                    condition = "('OT_Ganja' in (items player)) && {!(_player getVariable ['ot_isSmoking', false])}";
                     statement = "[_player] spawn ot_fnc_startSpliff";
                     showDisabled = 0;
                     exceptions[] = {"isNotInside", "isNotSitting"};
@@ -139,7 +139,7 @@ class CfgVehicles {
                 class OT_StopSpliff
                 {
                     displayName = "Ditch your spliff!";
-                    condition = "(goggles _player) in OT_cigsArray && ((_player getVariable ['ot_isSmoking', false]))";
+                    condition = "(goggles _player) in OT_cigsArray && {_player getVariable ['ot_isSmoking', false]}";
                     statement = "[_player] spawn ot_fnc_stopSpliff";
                     showDisabled = 0;
                     exceptions[] = {"isNotInside", "isNotSitting"};
