@@ -656,21 +656,23 @@ if (_canSellDrugs) then {
 							[_civ,player,["How much?",format["$%1",_price],"OK"],
 							{
 								private _drugSell = _this select 0;
-								[
-									round(
-										([player call OT_fnc_nearestTown, _drugSell] call OT_fnc_getDrugPrice)*1.2
-									)
-								] call OT_fnc_money;
-								player removeItem _drugSell;
-								OT_interactingWith addItem _drugSell;
+								if (((items player) find _drugSell) > -1) then {
+									player removeItem _drugSell;
+									OT_interactingWith addItem _drugSell;
+									[
+										round(
+											([player call OT_fnc_nearestTown, _drugSell] call OT_fnc_getDrugPrice)*1.2
+										)
+									] call OT_fnc_money;
+									private _town = player call OT_fnc_nearestTown;
+									if((random 100 > 50) && !isNil "_town") then {
+										[_town,-1] call OT_fnc_stability;
+									};
+									if(random 100 > 80) then {
+										1 call OT_fnc_influence;
+									};
+								};
 								OT_interactingWith setVariable ["OT_Talking",false,true];
-								private _town = player call OT_fnc_nearestTown;
-								if((random 100 > 50) && !isNil "_town") then {
-									[_town,-1] call OT_fnc_stability;
-								};
-								if(random 100 > 80) then {
-									1 call OT_fnc_influence;
-								};
 							}, [OT_drugSelling]] call OT_fnc_doConversation;
 						}else{
 							[_civ,player,["No, thank you"],{OT_interactingWith setVariable ["OT_Talking",false,true];}] call OT_fnc_doConversation;
@@ -687,14 +689,17 @@ if (_canSellDrugs) then {
 								player,
 								[format["OK I'll give you $%1 for each",_price],"OK"],
 								{
-									[([OT_nation,OT_drugSelling] call OT_fnc_getDrugPrice) * OT_drugQty] call OT_fnc_money;
-									for "_t" from 1 to OT_drugQty do {
-										player removeItem OT_drugSelling
+									if (({ _x == OT_drugSelling } count items player) == OT_drugQty) then {
+										[([OT_nation,OT_drugSelling] call OT_fnc_getDrugPrice) * OT_drugQty] call OT_fnc_money;
+										for "_t" from 1 to OT_drugQty do {
+											player removeItem OT_drugSelling
+										};
+										private _town = player call OT_fnc_nearestTown;
+										[_town,-OT_drugQty] call OT_fnc_stability;
 									};
 									OT_interactingWith setVariable ["OT_Talking",false,true];
 								}
 							] call OT_fnc_doConversation;
-							[_town,-OT_drugQty] call OT_fnc_stability;
 						}else{
 							[_civ,player,["No, go away!"],{OT_interactingWith setVariable ["OT_Talking",false,true];player setCaptive false;}] call OT_fnc_doConversation;
 							if(player call OT_fnc_unitSeenCRIM) then {
