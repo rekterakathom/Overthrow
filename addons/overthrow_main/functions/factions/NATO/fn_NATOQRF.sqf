@@ -284,11 +284,11 @@ if(_progress > 0) then {
 			};
 		}
 	}foreach(vehicles);
+	//Nato gets pushed back
+	server setVariable ["NATOresourceGain",0,true];
+	server setVariable ["NATOresources",-_strength,true];
 }else{
 	_params call _fail;
-	//Nato gets pushed back
-	server setVariable ["NATOresources",-_strength,true];
-	server setVariable ["NATOresourceGain",0,true];
 };
 server setVariable ["NATOlastattack",time,true]; //Ensures NATO takes some time after a QRF to recover (even if they win)
 server setVariable ["QRFpos",nil,true];
