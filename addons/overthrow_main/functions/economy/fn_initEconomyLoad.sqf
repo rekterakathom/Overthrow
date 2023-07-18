@@ -164,50 +164,6 @@ if(_version < OT_economyVersion) then {
     sleep 0.3;
 }foreach(OT_allTowns);
 
-//Shop Markers
-OT_allShopMarkers = [];
-{
-    _x params ["_tpos","_tname"];
-    //Shop Markers
-    {
-	    _x params ["_pos","_name"];
-        private _mrkName = format["%1 %2", _pos select 0, _pos select 1];
-        _mrk = createMarkerLocal [_mrkName,_pos];
-        _mrk setMarkerShapeLocal "ICON";
-        _mrk setMarkerTypeLocal format["ot_Shop%1",_name];
-        _mrk setMarkerAlpha 1;
-        OT_allShopMarkers pushback _mrkName;
-    }foreach(server getVariable [format["activeshopsin%1",_tname],[]]);
-    //Hardware Store Markers
-    {
-	    _x params ["_pos","_name"];
-        private _mrkName = format["%1 %2", _pos select 0, _pos select 1];
-        _mrk = createMarkerLocal [_mrkName,_pos];
-        _mrk setMarkerShapeLocal "ICON";
-        _mrk setMarkerTypeLocal "ot_ShopHardware";
-        _mrk setMarkerAlpha 1;
-        OT_allShopMarkers pushback _mrkName;
-    }foreach(server getVariable [format["activehardwarein%1",_tname],[]]);
-    //Vehicle Store Markers
-    {
-        private _mrkName = format["%1 %2", _x select 0, _x select 1];
-        _mrk = createMarkerLocal [_mrkName,_x];
-        _mrk setMarkerShapeLocal "ICON";
-        _mrk setMarkerTypeLocal "ot_ShopVehicle";
-        _mrk setMarkerAlpha 1;
-        OT_allShopMarkers pushback _mrkName;
-    }foreach(server getVariable [format["activecarshopsin%1",_tname],[]]);
-    //Pier Store Markers
-    {
-        private _mrkName = format["%1 %2", _x select 0, _x select 1];
-        _mrk = createMarkerLocal [_mrkName,_x];
-        _mrk setMarkerShapeLocal "ICON";
-        _mrk setMarkerTypeLocal "ot_ShopPier";
-        _mrk setMarkerAlpha 1;
-        OT_allShopMarkers pushback _mrkName;
-    }foreach(server getVariable [format["activepiersin%1",_tname],[]]);
-} foreach (OT_townData);
-
 //Business Markers
 OT_allEconomic = [];
 {
@@ -231,41 +187,6 @@ _mrk setMarkerTypeLocal "ot_Factory";
 _mrk setMarkerColorLocal "ColorWhite";
 if("Factory" in (server getVariable["GEURowned",[]])) then {_mrk setMarkerColorLocal "ColorGUER"};
 _mrk setMarkerAlpha 0.8;
-
-//Map Icon Cache
-OT_mapcache_factions = [];
-{
-    _x params ["_cls","_name","_side","_flag"];
-    if!(_side isEqualTo 1) then {
-        private _factionPos = server getVariable format["factionrep%1",_cls];
-        if!(isNil "_factionPos") then {
-            OT_mapcache_factions pushBack [
-                _flag,
-                [1,1,1,1],
-                _factionPos,
-                0.6,
-                0.5,
-                0
-            ];
-        };
-    };
-}foreach(OT_allFactions);
-
-//Cache Gun Dealer map icons
-{
-    _x params ["_tpos","_tname"];
-    private _townPos = server getVariable format["gundealer%1",_tname];
-    if!(isNil "_townPos") then {
-        OT_mapcache_factions pushback [
-            OT_flagImage,
-            [1,1,1,1],
-            _townPos,
-            0.3,
-            0.3,
-            0
-        ];
-    };
-}foreach(OT_townData);
 
 server setVariable ["EconomyVersion",OT_economyVersion,false];
 
