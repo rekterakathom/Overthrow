@@ -1,8 +1,8 @@
 name = "Overthrow Community Edition"
 prefix = ""
 author = "The Overthrow community"
-version = "2.2.0.0"
-modname = "Overthrow Community Edition"
+version = "2.3.0.0"
+modname = "Overthrow-Community-Edition"
 files = [
     "LICENSE",
     "mod.cpp",
@@ -10,6 +10,9 @@ files = [
     "logo_overthrow.paa"
 ]
 folder_optionals = false
+reuse_private_key = false
+key_name = "overthrow-community-{{version}}"
+authority = "overthrow-community-{{version}}"
 sig_version = 3
 
 check = [
