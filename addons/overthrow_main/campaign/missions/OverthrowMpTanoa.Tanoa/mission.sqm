@@ -16,7 +16,7 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=377;
+		nextID=378;
 	};
 	class Camera
 	{
@@ -346,7 +346,7 @@ dlcs[]=
 randomSeed=2938931;
 class ScenarioData
 {
-	author="ARMAzac";
+	author="ARMAzac & Overthrow Community";
 	respawnDialog=0;
 	disabledAI=1;
 	respawn=2;
@@ -419,7 +419,7 @@ class CustomAttributes
 		class Attribute4
 		{
 			property="SharedObjectives";
-			expression="[_value] spawn bis_fnc_sharedObjectives;";
+			expression="if (isMultiplayer) then {[_value] spawn bis_fnc_sharedObjectives;};";
 			class Value
 			{
 				class data
@@ -532,7 +532,7 @@ class Mission
 {
 	class Intel
 	{
-		briefingName="Overthrow.Tanoa";
+		briefingName="Overthrow CE: Tanoa";
 		resistanceWest=0;
 		startWeather=0.29173625;
 		startWind=0;
