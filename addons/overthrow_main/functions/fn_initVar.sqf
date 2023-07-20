@@ -100,7 +100,7 @@ OT_highPopHouses = [];
         if(_cost > 25000) exitWith {OT_medPopHouses pushBack _name;};
         OT_lowPopHouses pushBack _name;
     };
-}foreach("(getNumber (_x >> 'scope') isEqualTo 2) && {(configName _x isKindOf 'House') && {(configName _x find '_House' > -1)}}" configClasses (_cfgVehicles));
+}foreach("(getNumber (_x >> 'scope') isEqualTo 2) && {(configName _x isKindOf 'House') && {'_house' in (toLowerANSI (configName _x))}}" configClasses (_cfgVehicles));
 
 OT_allBuyableBuildings = OT_lowPopHouses + OT_medPopHouses + OT_highPopHouses + OT_hugePopHouses + OT_mansions + [OT_item_Tent,OT_flag_IND];
 
