@@ -30,8 +30,8 @@ if(_byair) then {
 	private _helipads = (_frompos nearObjects ["Land_HelipadCircle_F", 400]) + (_frompos nearObjects ["Land_HelipadSquare_F", 400]);
 	{
 		//check if theres anything on it
-		private _on = ASLToAGL getPosASL _x nearEntities ["Air",15];
-		if((count _on) isEqualTo 0) exitWith {_pos = getPosASL _x;_dir = getDir _x};
+		private _on = (ASLToAGL (getPosASL _x)) nearEntities [["Air", "LandVehicle", "Ship"], 15];
+		if(_on isEqualTo []) exitWith {_pos = getPosASL _x;_dir = getDir _x};
 	}foreach(_helipads);
 
 	if !(_pos isEqualType []) then {
@@ -44,7 +44,7 @@ if(_byair) then {
 	if (count _pos == 0) then {_pos = _frompos findEmptyPosition [0,100,_vehtype]};
 	_dir = (_frompos getDir _ao);
 };
-_pos set [2,1];
+_pos set [2,1]; // Set the altitude to 1 to hopefully avoid explosions
 _veh = createVehicle [_vehtype, [0,0,1000+random 1000], [], 0, "CAN_COLLIDE"];
 _veh setDir (_dir);
 _veh setPosATL _pos;
