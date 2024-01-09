@@ -175,13 +175,14 @@ OT_mapcache_bodies = [];
 	OT_mapcache_bodies = _bodies;
 }, 3, []] call CBA_fnc_addPerFrameHandler;
 
-//Map Icon Cache
+//Map Icon Caching
 [] spawn {
+
+	waitUntil {!isNil "OT_economyLoadDone"};
+
 	OT_mapcache_factions = [];
 	{
 		_x params ["_cls","_name","_side","_flag"];
-		// Ensure that the server is done with this faction
-		waitUntil {!(isNil {server getVariable format["factionname%1",_cls]})};
 		if!(_side isEqualTo 1) then {
 			private _factionPos = server getVariable format["factionrep%1",_cls];
 			if!(isNil "_factionPos") then {

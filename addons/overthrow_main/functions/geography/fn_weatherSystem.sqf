@@ -102,9 +102,6 @@ if((server getVariable "StartupType") == "NEW" || (server getVariable ["weatherv
 	simulWeatherSync;
 };
 
-OT_SystemInitDone = true;
-publicVariable "OT_SystemInitDone";
-
 ot_weather_change_time = 350 + (random 600);
 
 //Fog killer

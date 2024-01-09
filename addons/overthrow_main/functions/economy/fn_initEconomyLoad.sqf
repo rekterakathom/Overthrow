@@ -1,4 +1,3 @@
-waitUntil {sleep 1;missionNamespace getVariable ["OT_varInitDone",false]};
 {_x setMarkerAlpha 0} foreach OT_regions;
 
 //Find NATO HQ
@@ -161,7 +160,6 @@ if(_version < OT_economyVersion) then {
 
 	_piers = server getVariable [format["activepiersin%1",_x],[]];
 	_allActivePiers append _piers;
-    sleep 0.3;
 }foreach(OT_allTowns);
 
 //Business Markers
@@ -178,7 +176,6 @@ OT_allEconomic = [];
     server setVariable [_name,_pos,true];
     cost setVariable [_name,_x,true];
 }foreach(OT_economicData);
-sleep 0.3;
 
 //Factory Marker
 _mrk = createMarkerLocal ["Factory",OT_factoryPos];

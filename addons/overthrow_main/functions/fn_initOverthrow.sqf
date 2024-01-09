@@ -99,26 +99,39 @@ OT_tpl_checkpoint = [] call compileScript ["data\templates\NATOcheckpoint.sqf", 
 		[] spawn OT_fnc_loadGame;
 	};
 
-	waitUntil {sleep 1; server getVariable ["StartupType",""] != ""};
+	waitUntil {sleep 0.1; server getVariable ["StartupType",""] != ""};
+
+	private _initStart = diag_tickTime;
 
 	if(OT_fastTime) then {
 	    setTimeMultiplier 4;
 	};
 
 	//Init factions
-	[] spawn OT_fnc_initNATO;
-	waitUntil {!isNil "OT_NATOInitDone"};
-	[] spawn OT_fnc_factionNATO;
-	[] spawn OT_fnc_factionGUER;
-	[] spawn OT_fnc_factionCRIM;
+	(selectRandom OT_loadingMessages) remoteExec ['OT_fnc_notifyStart', 0];
+	[OT_fnc_initNATO] call CBA_fnc_directCall; // directCall is way faster, but won't show script errors, so switch to a normal call for debug!
+	(selectRandom OT_loadingMessages) remoteExec ['OT_fnc_notifyStart', 0];
+	[] call OT_fnc_factionNATO;
+	(selectRandom OT_loadingMessages) remoteExec ['OT_fnc_notifyStart', 0];
+	[] call OT_fnc_factionGUER;
+	(selectRandom OT_loadingMessages) remoteExec ['OT_fnc_notifyStart', 0];
+	[] call OT_fnc_factionCRIM;
+	(selectRandom OT_loadingMessages) remoteExec ['OT_fnc_notifyStart', 0];
 
-	[] spawn OT_fnc_initEconomyLoad;
+	[OT_fnc_initEconomyLoad] call CBA_fnc_directCall; // [] call OT_fnc_initEconomyLoad;
+	(selectRandom OT_loadingMessages) remoteExec ['OT_fnc_notifyStart', 0];
 
 	//Game systems
-	[] spawn OT_fnc_propagandaSystem;
-	[] spawn OT_fnc_weatherSystem;
-	[] spawn OT_fnc_incomeSystem;
-	[] spawn OT_fnc_jobSystem;
+	[] call OT_fnc_weatherSystem;
+	(selectRandom OT_loadingMessages) remoteExec ['OT_fnc_notifyStart', 0];
+	[] call OT_fnc_incomeSystem;
+	(selectRandom OT_loadingMessages) remoteExec ['OT_fnc_notifyStart', 0];
+	[] call OT_fnc_jobSystem;
+	[] spawn OT_fnc_propagandaSystem; // Must be spawned due to delay
+
+	// Declare systems done
+	OT_SystemInitDone = true;
+	publicVariable "OT_SystemInitDone";
 
 	//Init virtualization
 	waitUntil {!isNil "OT_economyLoadDone"};
@@ -174,4 +187,8 @@ OT_tpl_checkpoint = [] call compileScript ["data\templates\NATOcheckpoint.sqf", 
 	OT_serverInitDone = true;
 	publicVariable "OT_serverInitDone";
 	diag_log "Overthrow: Server Pre-Init Done";
+
+	private _initFinish = diag_tickTime;
+	private _initTime = _initFinish - _initStart;
+	diag_log format ["Overthrow: server init finished in %1", _initTime];
 };

@@ -57,10 +57,6 @@ OT_NATO_Units_LevelOne = [];
 OT_NATO_Units_LevelTwo = [];
 OT_NATO_Units_CTRGSupport = [];
 
-(selectRandom OT_loadingMessages) remoteExec ['OT_fnc_notifyStart', 0, false];
-
-private _c = 0;
-
 {
 	private _name = configName _x;
 	private _unitCfg = _x;
@@ -101,16 +97,9 @@ private _c = 0;
 				_loadouts pushback ([_loadout] call OT_fnc_randomizeLoadout);
 			};
 			spawner setVariable [format["loadouts_%1",_name],_loadouts,false];
-			_c = _c + 1;
-			if(_c isEqualTo 10) then {
-				uiSleep 0.1;
-				_c = 0;
-			};
 		};
 	};
 } forEach (format["(getNumber(_x >> 'scope') == 2) && (getText(_x >> 'faction') == '%1') && (configName _x) isKindOf 'SoldierWB'",OT_faction_NATO] configClasses (configFile >> "CfgVehicles"));
-
-(selectRandom OT_loadingMessages) remoteExec ['OT_fnc_notifyStart', 0, false];
 
 //Generate and cache gendarm loadouts
 private _loadout = getUnitLoadout OT_NATO_Unit_Police;
@@ -147,8 +136,6 @@ if((server getVariable "StartupType") == "NEW" || (server getVariable ["NATOvers
 	server setVariable ["NATOversion",OT_NATOversion,false];
 	private _abandoned = server getVariable ["NATOabandoned",[]];
 
-	(selectRandom OT_loadingMessages) remoteExec['OT_fnc_notifyStart',0,false];
-	uiSleep 0.2;
 	{
 		private _stability = server getVariable format ["stability%1",_x];
 		if(_stability < 11 && !(_x in _abandoned)) then {
@@ -247,8 +234,6 @@ if((server getVariable "StartupType") == "NEW" || (server getVariable ["NATOvers
 		_count = _count + 1;
 	};
 
-	(selectRandom OT_loadingMessages) remoteExec['OT_fnc_notifyStart',0];
-	uiSleep 0.2;
 	//Add comms towers
 	{
 		_x params ["_pos","_name"];
@@ -347,7 +332,6 @@ if((server getVariable "StartupType") == "NEW" || (server getVariable ["NATOvers
 		};
 		server setVariable [format ["garrison%1",_x],_garrison,true];
 	}foreach (OT_allTowns);
-	uiSleep 0.2;
 };
 diag_log "Overthrow: NATO Init Done";
 
@@ -457,7 +441,6 @@ diag_log "Overthrow: NATO Init Done";
 	};
 	spawner setVariable [format["NATOsupplyitems%1",_name],[_items,_wpns,_mags],false];
 } forEach (OT_NATOobjectives);
-uiSleep 0.2;
 
 publicVariable "OT_allObjectives";
 
@@ -492,7 +475,7 @@ publicVariable "OT_allObjectives";
 		_mrk setMarkerAlpha 0.4;
 	};
 } forEach (OT_NATOcomms);
-uiSleep 0.2;
+
 private _revealed = server getVariable ["revealedFOBs",[]];
 {
 	_x params ["_pos","_garrison","_upgrades"];
