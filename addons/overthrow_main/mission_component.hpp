@@ -16,7 +16,7 @@ briefing = 0;
 
 class Header
 {
-	gameType = Coop;
+	gameType = "Coop";
 	minPlayers = 1;
 	maxPlayers = 12;
 };
