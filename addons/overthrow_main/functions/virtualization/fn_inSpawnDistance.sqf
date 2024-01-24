@@ -10,8 +10,12 @@ if (time > (OT_trackedUnitCache # 1)) then {
 	];
 };
 
+// Performance trick - we square the spawn distance so we -
+// don't have to take the square root in the distance calculation.
+// Also optimizes the global variable to a local one
+private _spawnDistanceSquared = OT_spawnDistance ^ 2;
 OT_trackedUnitCache # 0 findIf {
-	(_target distance _x) < OT_spawnDistance
+	(_target distanceSqr _x) < _spawnDistanceSquared
 	&&
 	{alive _x || (_x getVariable ["player_uid",false]) isEqualType ""}
 } isNotEqualTo -1
