@@ -21,6 +21,11 @@ params [
 // Run game with -debug on to see callstack of assert
 if (!assert !(isNull _vehicle)) exitWith {diag_log "Overthrow: Tried to delete a null vehicle!"; false};
 
+// Add debug information
+#if __A3_DEBUG__
+diag_log format ["Overthrow Debug: Attempting to delete vehicle %1, local: %2", _vehicle, local _vehicle];
+#endif
+
 // Vehicle is local and can be deleted
 if (local _vehicle) exitWith {
 	deleteVehicleCrew _vehicle;
