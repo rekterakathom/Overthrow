@@ -18,7 +18,8 @@ params [
 	["_vehicle", objNull, [objNull]]
 ];
 
-if (isNull _vehicle) exitWith {diag_log format ["Overthrow: Tried to delete a null vehicle: %1", _vehicle]; false};
+// Run game with -debug on to see callstack of assert
+if (!assert !(isNull _vehicle)) exitWith {diag_log "Overthrow: Tried to delete a null vehicle!"; false};
 
 // Vehicle is local and can be deleted
 if (local _vehicle) exitWith {
