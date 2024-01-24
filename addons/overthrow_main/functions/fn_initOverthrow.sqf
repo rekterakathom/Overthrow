@@ -14,8 +14,14 @@ publicVariable "server_dedi";
 
 missionNamespace setVariable ["OT_varInitDone", false, true];
 
+// This is a saved namespace, this is persistent.
 server = true call CBA_fnc_createNamespace;
 publicVariable "server";
+
+// This is not a saved namespace, this is not persistent.
+server_nosave = true call CBA_fnc_createNamespace;
+publicVariable "server_nosave";
+
 players_NS = true call CBA_fnc_createNamespace;
 publicVariable "players_NS";
 cost = true call CBA_fnc_createNamespace;
