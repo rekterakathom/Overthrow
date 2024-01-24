@@ -104,7 +104,7 @@ if((count _delivery) > 0) then {
 	];
 };
 
-if (_isMayor && !(server getVariable [(_town + "transformerpaid"), true])) then {
+if (_isMayor && !(server_nosave getVariable [(_town + "transformerpaid"), true])) then {
 	_options pushBack [
 		format["Donate 4000$"], OT_fnc_donateTransformer
 	];

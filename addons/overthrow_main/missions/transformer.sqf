@@ -21,7 +21,7 @@ private _title = format["%1 needs electricity", _destinationName];
 
 // Set variables
 private _paidVariable = _destinationName + "transformerpaid";
-server setVariable [_paidVariable, false, true];
+server_nosave setVariable [_paidVariable, false, true];
 
 //The data below is what is returned to the gun dealer/faction rep, _markerPos is where to put the mission marker, the code in {} brackets is the actual mission code, only run if the player accepts
 [
@@ -39,7 +39,7 @@ server setVariable [_paidVariable, false, true];
         //Success Check
         params ["_destination","_destinationName"];
         private _paidVariable = _destinationName + "transformerpaid";
-        server getVariable [_paidVariable, false]
+        server_nosave getVariable [_paidVariable, false]
     },
     {
         params ["_destination","_destinationName","_wassuccess"];
