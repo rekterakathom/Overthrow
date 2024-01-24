@@ -53,7 +53,7 @@ private _lastCounter = server getVariable ["NATOlastcounter", ""];
 
 	if !(_name in _abandoned) then {
 		private _drone = spawner getVariable [format ["drone%1", _name], objNull];
-		if (!alive _drone) then {
+		if (!(isNull _drone) && !(alive _drone)) then {
 			[_drone] call OT_fnc_cleanupVehicle;
 		};
 		if ((isNull _drone || !alive _drone) && {_resources > 10}) then {
