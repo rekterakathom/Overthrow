@@ -18,7 +18,7 @@ ace_interaction_EnableTeamManagement = false; //Disable group switching
 ace_interaction_disableNegativeRating = true; //Disable ACE negative ratings
 
 enableSaving [false,false];
-enableEnvironment [false,true];
+enableEnvironment [false,true,0.5]; // Wind volume to 50%
 
 if(isServer) then {
 	missionNameSpace setVariable ["OT_HOST", player, true];
