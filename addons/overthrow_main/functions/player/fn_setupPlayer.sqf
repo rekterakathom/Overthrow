@@ -8,5 +8,6 @@ player call OT_fnc_wantedSystem;
 [OT_fnc_notificationLoop,player,1] call CBA_fnc_waitAndExecute;
 
 player setVariable ["player_uid",getPlayerUID player,true];
+player setUnitTrait ["UAVHacker", true];
 
 disableUserInput false;
