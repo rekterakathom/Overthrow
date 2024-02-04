@@ -76,7 +76,7 @@ private _loopCode = {
     params ["_loopCode","_wp","_reached","_group","_total","_done"];
     if(!isNil "_wp") then {
         //update waypoint
-        OT_missionMarker = getPosATL leader _group;
+        OT_missionMarker = getPosATLVisual leader _group;
         _wp setWaypointPosition [OT_missionMarker, 0];
     };
     if(!_reached) then {

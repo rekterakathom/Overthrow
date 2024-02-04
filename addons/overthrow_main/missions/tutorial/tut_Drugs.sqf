@@ -59,7 +59,7 @@ private _loopCode = {
     params ["_loopCode","_wp","_group"];
     if(!isNil "_wp") then {
         //update waypoint
-        OT_missionMarker = getPosATL leader _group;
+        OT_missionMarker = getPosATLVisual leader _group;
         _wp setWaypointPosition [OT_missionMarker, 0];
     };
     if(player distance (leader _group) < 30) then {
