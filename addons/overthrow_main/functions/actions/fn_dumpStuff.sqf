@@ -35,25 +35,42 @@ if(_full) exitWith {false};
 		[_t, _cls] call {
 			params ["_veh", "_cls"];
 			if(_cls isKindOf ["Rifle",configFile >> "CfgWeapons"]) exitWith {
+				if (primaryWeapon _unit == _cls) then {
+					_unit removeWeaponGlobal _cls;
+				} else {
+					_unit removeItem _cls;
+				};
 				_veh addWeaponCargoGlobal [_cls,1];
-				_unit removeWeaponGlobal _cls;
 			};
+
 			if(_cls isKindOf ["Launcher",configFile >> "CfgWeapons"]) exitWith {
+				if (secondaryWeapon _unit == _cls) then {
+					_unit removeWeaponGlobal _cls;
+				} else {
+					_unit removeItem _cls;
+				};
 				_veh addWeaponCargoGlobal [_cls,1];
-				_unit removeWeaponGlobal _cls;
 			};
+
 			if(_cls isKindOf ["Pistol",configFile >> "CfgWeapons"]) exitWith {
+				if (handgunWeapon _unit == _cls) then {
+					_unit removeWeaponGlobal _cls;
+				} else {
+					_unit removeItem _cls;
+				};
 				_veh addWeaponCargoGlobal [_cls,1];
-				_unit removeWeaponGlobal _cls;
 			};
+
 			if(_cls isKindOf ["Binocular",configFile >> "CfgWeapons"]) exitWith {
 				_veh addWeaponCargoGlobal [_cls,1];
 				_unit removeItem _cls;
 			};
+
 			if(_cls isKindOf ["Default",configFile >> "CfgMagazines"]) exitWith {
 				_veh addMagazineCargoGlobal [_cls,1];
 				_unit removeMagazineGlobal _cls;
 			};
+
 			_veh addItemCargoGlobal [_cls,1];
 			_unit removeItem _cls;
 		};

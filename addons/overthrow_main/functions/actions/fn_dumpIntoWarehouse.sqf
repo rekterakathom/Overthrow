@@ -17,17 +17,33 @@ if(hmd _unit != "") then {
 		[_cls] call {
 			params ["_cls"];
 			if(_cls isKindOf ["Rifle",configFile >> "CfgWeapons"]) exitWith {
-				_unit removeWeapon _cls;
+				if (primaryWeapon _unit == _cls) then {
+					_unit removeWeaponGlobal _cls;
+				} else {
+					_unit removeItem _cls;
+				};
 			};
+
 			if(_cls isKindOf ["Launcher",configFile >> "CfgWeapons"]) exitWith {
-				_unit removeWeapon _cls;
+				if (secondaryWeapon _unit == _cls) then {
+					_unit removeWeaponGlobal _cls;
+				} else {
+					_unit removeItem _cls;
+				};
 			};
+
 			if(_cls isKindOf ["Pistol",configFile >> "CfgWeapons"]) exitWith {
-				_unit removeWeapon _cls;
+				if (handgunWeapon _unit == _cls) then {
+					_unit removeWeaponGlobal _cls;
+				} else {
+					_unit removeItem _cls;
+				};
 			};
+
 			if(_cls isKindOf ["Binocular",configFile >> "CfgWeapons"]) exitWith {
 				_unit removeItem _cls;
 			};
+			
 			if(_cls isKindOf ["Default",configFile >> "CfgMagazines"]) exitWith {
 				_unit removeMagazine _cls;
 			};
