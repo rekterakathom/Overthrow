@@ -15,7 +15,7 @@ if(isPlayer _user) then {
         //Fail safe for user input disabled.
     };
     format["Looting all bodies within %1m",_range] call OT_fnc_notifyMinor;
-    [15,false] call OT_fnc_progressBar;
+    [5,false] call OT_fnc_progressBar;
 }else {
     _user globalchat format["Looting bodies within %1m using Recovery vehicle",_range];
 };
@@ -25,7 +25,7 @@ waitUntil {time > _end};
 
 //Get the loose weapons
 private _count_weapons = 0;
-private _weapons = _veh nearEntities ["WeaponHolderSimulated",_range];
+private _weapons = (_veh nearObjects ["WeaponHolder", _range]) + (_veh nearEntities ["WeaponHolderSimulated", _range]);
 {
     _weapon = _x;
     _s = (weaponsItems _weapon) select 0;
@@ -47,12 +47,13 @@ private _weapons = _veh nearEntities ["WeaponHolderSimulated",_range];
 //Get the bodies
 private _count_bodies = 0;
 {
-    if !((_x distance _veh > _range) || (alive _x)) then {
+    if !(_x isKindOf "CAManBase") then {continue};
+    if (_x distance _veh < _range) then {
         [_x, _veh] call OT_fnc_dumpStuff;
         _count_bodies = _count_bodies + 1;
         [_x] call OT_fnc_cleanupUnit;
     };
-}foreach(entities "CAManBase");
+} foreach allDeadMen;
 
 if(isPlayer _user) then {
     _veh enableSimulation true;

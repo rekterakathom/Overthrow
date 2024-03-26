@@ -59,7 +59,7 @@ private _target = _sorted select 0;
 			_unit globalchat "This vehicle is full, cancelling loot order";
 			_active = false;
 		};
-        private _weapons = _t nearentities ["WeaponHolderSimulated",100];
+        private _weapons = (_t nearObjects ["WeaponHolder", 100]) + (_t nearEntities ["WeaponHolderSimulated", 100]);
         _unit globalchat format["Looting %1 weapons",count _weapons];
         {
             _weapon = _x;
@@ -85,10 +85,12 @@ private _target = _sorted select 0;
 		while {_active} do {
 			_deadguys = [];
 			{
-				if !((_x distance _t > 100) || (alive _x)) then {
+				if !(_x isKindOf "CAManBase") then {continue};
+				if (_x distance _t < 100) then {
 					_deadguys pushback _x;
 				};
-			}foreach(entities "CAManBase");
+			} forEach allDeadMen;
+
 			if(count _deadguys isEqualTo 0) exitWith {_unit globalchat "All done!"};
             _unit globalchat format["%1 bodies to loot",count _deadguys];
 			_sorted = [_deadguys,[],{_x distance _t},"ASCEND"] call BIS_fnc_SortBy;
