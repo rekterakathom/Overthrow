@@ -1,1 +1,1 @@
-count(nearestObjects [player, [OT_hardwareStore], 12,false]) > 0
+count(nearestObjects [player, [OT_hardwareStore], 20, false]) > 0
