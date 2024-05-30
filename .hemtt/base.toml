@@ -4,7 +4,7 @@ author = "The Overthrow community"
 version = "2.3.9.0"
 modname = "Overthrow-Community-Edition"
 files = [
-    "LICENSE",
+    "LICENSE.md",
     "mod.cpp",
     "README.md",
     "logo_overthrow.paa"
