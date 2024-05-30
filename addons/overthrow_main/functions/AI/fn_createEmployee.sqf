@@ -4,6 +4,7 @@ params ["_businessName"];
 
 private _group = spawner getVariable [format ["employees%1", _businessName], grpNull];
 private _pos = server getVariable _businessName;
+if (!assert !(isNil "_pos")) exitWith {diag_log "Overthrow: Nil position"};
 if (isNull _group) then {
     // Either no player is in spawn distance or there are currently no employees on the business.
     // Create new group using the regular spawning mechanism

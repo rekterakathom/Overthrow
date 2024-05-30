@@ -8,6 +8,8 @@ if(_test isEqualType "") then {
     _test = server getvariable _test;
 };
 
+if (!assert !(isNil "_test")) exitWith {diag_log "Overthrow: Nil test position"; []};
+
 // uniform sampling density inside a circle of 100m and decreasing density outside of it, up to _msize
 private _rand = random 100;
 private _pos = [];
