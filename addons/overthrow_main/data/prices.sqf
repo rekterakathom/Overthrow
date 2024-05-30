@@ -222,6 +222,7 @@ OT_priceData = [
 ['arifle_SPAR_03_snd_F',[4000,0,2,0]],
 ['hgun_ACPC2_F',[100,0,1,0]],
 ['hgun_P07_F',[100,0,1,0]],
+['hgun_P07_blk_F',[100,0,1,0]],
 ['hgun_Pistol_heavy_01_F',[100,0,1,0]],
 ['hgun_Pistol_heavy_02_F',[100,0,1,0]],
 ['hgun_Rook40_F',[100,0,1,0]],
