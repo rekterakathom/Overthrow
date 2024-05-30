@@ -49,7 +49,7 @@ publicVariable "OT_civilians";
 OT_centerPos = getArray (configFile >> "CfgWorlds" >> worldName >> "centerPosition");
 
 // Init basic variables
-call OT_fnc_initBaseVar;
+[OT_fnc_initBaseVar] call CBA_fnc_directCall;
 call compileScript ["initVar.sqf", false];
 
 // Get faction before final variable init & detection takes place
@@ -84,7 +84,7 @@ if (isDedicated) then {
 };
 
 // Call final variable init
-call OT_fnc_initVar;
+[OT_fnc_initVar] call CBA_fnc_directCall;
 
 diag_log "Overthrow: Server Pre-Init";
 server setVariable ["StartupType","",true];
