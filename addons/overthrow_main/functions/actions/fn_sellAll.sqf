@@ -33,14 +33,16 @@ if(_total > 100) then {[_town,round(_total / 100)] call OT_fnc_support};
 private _ocls = _sellcls;
 
 if((player getVariable ["OT_shopTarget","Self"]) isEqualTo "Vehicle") then {
-	private _noncontaineritems = ((weaponCargo _target) + (itemCargo _target) + (magazineCargo _target) + (backpackCargo _target)) call BIS_fnc_consolidateArray;
+	private _noncontaineritems = ((weaponCargo _target) + (itemCargo _target) + (magazineCargo _target) + (backpackCargo _target)) call OT_fnc_consolidateArray;
 	private _ncqty = 0;
 	{
-		_x params ["_thiscls","_thisqty"];
+		private _thiscls = _x;
+		private _thisqty = _y;
 		if(_thiscls isEqualTo _sellcls) exitWith {
 			_ncqty = _thisqty;
 		};
 	}foreach(_noncontaineritems);
+
 	if(_ncqty > 0) then {
 		if !([_target, _sellcls, _ncqty] call CBA_fnc_removeItemCargo) then {
 			if !([_target, _sellcls, _ncqty] call CBA_fnc_removeWeaponCargo) then {
@@ -57,31 +59,36 @@ if((player getVariable ["OT_shopTarget","Self"]) isEqualTo "Vehicle") then {
 		{
 			_x params ["_itemcls","_item"];
 			{
-				_x params ["_c","_q"];
-				if(_c isEqualTo _sellcls) exitWith {
+				private _c = _x;
+				private _q = _y;
+				if (_c isEqualTo _sellcls) exitWith {
 					[_item, _sellcls, _q] call CBA_fnc_removeItemCargo;
 					_qty = _qty - _q;
 				};
-			}foreach((itemCargo _item) call BIS_fnc_consolidateArray);
-			if(_qty > 0) then {
+			} foreach ((itemCargo _item) call OT_fnc_consolidateArray);
+
+			if (_qty > 0) then {
 				{
-					_x params ["_c","_q"];
-					if(_c isEqualTo _sellcls) exitWith {
+					private _c = _x;
+					private _q = _y;
+					if (_c isEqualTo _sellcls) exitWith {
 						[_item, _sellcls, _q] call CBA_fnc_removeWeaponCargo;
 						_qty = _qty - _q;
 					};
-				}foreach((weaponCargo _item) call BIS_fnc_consolidateArray);
+				} foreach ((weaponCargo _item) call OT_fnc_consolidateArray);
 			};
+
 			if(_qty > 0) then {
 				{
-					_x params ["_c","_q"];
-					if(_c isEqualTo _sellcls) exitWith {
+					private _c = _x;
+					private _q = _y;
+					if (_c isEqualTo _sellcls) exitWith {
 						[_item, _sellcls, _q] call CBA_fnc_removeMagazineCargo;
 						_qty = _qty - _q;
 					};
-				}foreach((magazineCargo _item) call BIS_fnc_consolidateArray);
+				} foreach ((magazineCargo _item) call OT_fnc_consolidateArray);
 			};
-		}foreach(everyContainer _target);
+		} foreach (everyContainer _target);
 	};
 }else{
 	for "_i" from 0 to _qty do {
