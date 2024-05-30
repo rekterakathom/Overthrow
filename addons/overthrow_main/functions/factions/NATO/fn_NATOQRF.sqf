@@ -212,35 +212,35 @@ private _maxTime = time + 1800; // 30 minutes
 private _over = false;
 private _progress = 0;
 
-private _westSide = west;
-private _guerSide = independent;
-private _civSide = civilian;
-
 while {sleep 5; !_over} do {
 	_alive = 0;
 	_enemy = 0;
-	_alivein = 0;
-	_enemyin = 0;
+
 	{
 		if(_x distance _pos < 200) then {
 			if (_x getVariable ["ace_isunconscious", false]) then {continue}; // Don't count unconscious units
 			if ("UAV_AI" in (typeOf _x)) then {continue}; // UAV's don't count
-			if (side _x isEqualTo _westSide) then {
+			if (side _x isEqualTo west) then {
 				_alive = _alive + 1;
 				continue;
 			};
-			if (side _x isEqualTo _guerSide || captive _x) then {
+			if (side _x isEqualTo resistance || captive _x) then {
 				// Players count twice
 				_enemy = _enemy + ([1, 2] select (isPlayer _x));
 			};
 		};
-	} forEach ((units _westSide) + (units _guerSide) + (units _civSide)); // Faster than allUnits
+	} forEach allUnits;
+
 	if(_alive isEqualTo 0) then {_enemy = _enemy * 8}; //If no NATO present, cap it faster
+
 	if(time > _timeout && {_alive isEqualTo 0 && _enemy isEqualTo 0}) then {_enemy = 1};
+
 	_progress = _progress + ((-20 max (_alive - _enemy)) min 10);
+
 	_progressPercent = 0;
 	if(_progress isNotEqualTo 0) then {_progressPercent = _progress/1500};
 	server setVariable ["QRFprogress",_progressPercent,true];
+
 	if((abs _progress) >= 1500 || time > _maxTime) then {
 		//Someone has won
 		_over = true;
