@@ -35,7 +35,7 @@ if(!isNil "OT_OnDraw") then {
 
 // Set-up shop markers
 [] spawn {
-	waitUntil {!(isNil "OT_townData")};
+	waitUntil {!(isNil "OT_townData") && !(isNil "OT_economyLoadDone")};
 	OT_allShopMarkers = [];
 	{
 		_x params ["_tpos","_tname"];
@@ -177,8 +177,7 @@ OT_mapcache_bodies = [];
 
 //Map Icon Caching
 [] spawn {
-
-	waitUntil {!isNil "OT_economyLoadDone"};
+	waitUntil {!(isNil "OT_townData") && !(isNil "OT_economyLoadDone")};
 
 	OT_mapcache_factions = [];
 	{
