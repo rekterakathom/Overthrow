@@ -10,6 +10,8 @@ private _groups = [];
 private _group = createGroup civilian;
 _group setBehaviour "CARELESS";
 _group setGroupIdGlobal [format ["Shops %1", _town]];
+_group setVariable ["VCM_Disable", true];
+_group setVariable ["lambs_danger_disableGroupAI", true];
 _groups pushback _group;
 
 if(count _activeshops > 0) exitWith {
