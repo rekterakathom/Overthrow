@@ -50,3 +50,4 @@ $RECYCLE.BIN/
 tools/includes.txt
 ArmaScriptCompiler.exe
 /.hemttout
+*.exe
