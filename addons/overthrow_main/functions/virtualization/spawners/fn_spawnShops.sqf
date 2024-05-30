@@ -57,5 +57,11 @@ if(count _activeshops > 0) exitWith {
 		_groups pushback _light;
 		sleep 0.5;
 	}foreach(_activeshops);
+
+	// High command fix
+	if (hcLeader _group isNotEqualTo objNull) then {
+		(hcLeader _group) hcRemoveGroup _group;
+	};
+
 	spawner setvariable [_spawnid,(spawner getvariable [_spawnid,[]]) + _groups,false];
 };

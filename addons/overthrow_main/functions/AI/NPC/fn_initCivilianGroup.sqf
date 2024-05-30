@@ -40,3 +40,8 @@ _wp setWaypointTimeout [20, 40, 80];
 
 _wp = _g addWaypoint [_start,0];
 _wp setWaypointType "CYCLE";
+
+// High command fix
+if (hcLeader _g isNotEqualTo objNull) then {
+    (hcLeader _g) hcRemoveGroup _g;
+};
