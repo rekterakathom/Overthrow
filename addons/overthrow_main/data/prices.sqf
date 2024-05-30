@@ -723,12 +723,17 @@ OT_priceData = [
 //Static Weapon Backpacks
 ['I_HMG_01_high_weapon_F',[2000,1,0,1]],
 ['I_GMG_01_high_weapon_F',[4000,1,0,1]],
-['I_HMG_01_support_high_F',[50,1,0,0]],
+['I_HMG_01_support_F',[50,1,0,0]], // Standard (low) tripod
+['I_HMG_01_support_high_F',[50,1,0,0]], // Raised tripod
 ['I_Mortar_01_weapon_F',[12000,1,0,1]],
 ['I_Mortar_01_support_F',[100,1,0,0]],
 ['I_AT_01_weapon_F',[10000,1,0,1]],
 ['I_AA_01_weapon_F',[10000,1,0,1]],
-['I_HMG_01_support_F',[50,1,0,0]],
+// New M2 HMG
+['I_G_HMG_02_high_weapon_F',[2000,1,0,1]], // High tripod M2
+['I_G_HMG_02_support_high_F',[50,1,0,1]],
+['I_G_HMG_02_weapon_F',[2000,1,0,1]], // Low tripod M2
+['I_C_HMG_02_support_F',[50,1,0,1]],
 //Vests
 ['V_BandollierB_khk',[40,0,2,0]],
 ['V_BandollierB_cbr',[40,0,2,0]],
