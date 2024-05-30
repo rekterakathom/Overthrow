@@ -165,17 +165,37 @@ if(_byair && _tgroup isEqualType grpNull) then {
 };
 sleep 10;
 
-_wp = _group1 addWaypoint [_attackpos,100];
-_wp setWaypointType "SAD";
-_wp setWaypointBehaviour "COMBAT";
-_wp setWaypointSpeed "FULL";
+_wp1 = _group1 addWaypoint [_attackpos,100];
+_wp1 setWaypointType "SAD";
+_wp1 setWaypointBehaviour "COMBAT";
+_wp1 setWaypointSpeed "FULL";
 
 if !(_byair) then {
-	_wp = _group2 addWaypoint [_attackpos,100];
-	_wp setWaypointType "SAD";
-	_wp setWaypointBehaviour "COMBAT";
-	_wp setWaypointSpeed "FULL";
+	_wp2 = _group2 addWaypoint [_attackpos,100];
+	_wp2 setWaypointType "SAD";
+	_wp2 setWaypointBehaviour "COMBAT";
+	_wp2 setWaypointSpeed "FULL";
 };
+
+// Once the attack is over and attack position is unloaded, despawn all alive units.
+// Bodies are left for looting purposes
+[
+	{server getVariable ["NATOattacking",""] isEqualTo "" && {!([_this # 2] call OT_fnc_inSpawnDistance)}},
+	{
+		_this params ["_group1", "_group2", "_attackpos"];
+		{
+			if (alive _x) then {continue};
+			[_x] call OT_fnc_cleanup;
+		} forEach (units _group1);
+
+		{
+			if (alive _x) then {continue};
+			[_x] call OT_fnc_cleanup;
+		} forEach (units _group2);
+	},
+	[_group1, _group2, _attackpos],
+	(120 * 60) // Timeout 2 hours
+] call CBA_fnc_waitUntilAndExecute;
 
 if(_tgroup isEqualType grpNull) then {
 
