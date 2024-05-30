@@ -43,9 +43,9 @@ private _popControl = call OT_fnc_getControlledPopulation;
 			_strength = _population * _multiplier;
 			if (_strength > _resources) then {_strength = _resources};
 			if (_town in OT_NATO_priority) then {_strength = _resources};
-			[_town, _strength] spawn OT_fnc_NATOResponseTown;
 			server setVariable ["NATOattacking", _town, true];
 			server setVariable ["NATOattackstart", time, true];
+			[_town, _strength] spawn OT_fnc_NATOResponseTown;
 			_countered = true;
 			_resources = _resources - _strength;
 		} else {
