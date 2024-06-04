@@ -78,13 +78,12 @@ private _allCargo = {
 
 private _theseitems = _target call _allCargo;
 if !(isNil "_theseitems") then {
-
-	// Modify the cls for TFAR items
-	// Doesn't seem to do anything with modern TFAR, but I'll let it be just in case. ~ThomasAngel
-	if (OT_hasTFAR) then {
-		{
-			private _cls = _x;
-			if(_category isEqualTo "" || _cls in _categoryItems) then {
+	{
+		private _cls = _x;
+		if(_category isEqualTo "" || _cls in _categoryItems) then {
+			// Modify the cls for TFAR items
+			// Doesn't seem to do anything with modern TFAR, but I'll let it be just in case. ~ThomasAngel
+			if (OT_hasTFAR) then {
 				private _c = _cls splitString "_";
 				if((_c select 0) == "tf") then { // I don't believe any modern TFAR classnames start with this...
 					_cls = "tf";
@@ -94,12 +93,16 @@ if !(isNil "_theseitems") then {
 							_cls = format["%1_%2",_cls,_x];
 						};
 					}foreach(_c);
-					_theseitems set [_forEachIndex, _cls];
 				};
 			};
-		}foreach(_theseitems);
-	};
 
+			_theseitems set [_forEachIndex, _cls];
+		} else {
+			_theseItems set [_forEachIndex, objNull];
+		};
+	}foreach(_theseitems);
+	
+	_theseitems = _theseitems - [objNull];
 	_items = _theseitems call BIS_fnc_consolidateArray;
 };
 _items;
