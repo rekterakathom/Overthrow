@@ -28,8 +28,36 @@ class CfgPatches
 		};
 		requiredVersion=REQUIRED_VERSION;
         VERSION_CONFIG;
-		units[] = {"OT_GanjaItem","OT_BlowItem","OT_I_Truck_recovery"};
-		weapons[] = {"OT_Ganja","OT_Blow"};
+		units[] = {
+			"OT_GanjaItem",
+			"OT_BlowItem",
+			"OT_I_Truck_recovery",
+			"B_Gen_Soldier_Heavy_F",
+			"B_Gen_Commander_Heavy_F",
+			"B_Gen_Medic_Heavy_F",
+			"B_W_Recon_Exp_F",
+			"B_W_Recon_JTAC_F",
+			"B_W_Recon_M_F",
+			"B_W_Recon_Medic_F",
+			"B_W_Recon_LAT_F",
+			"B_W_Recon_TL_F",
+			"OT_Flag_Malden_F"
+		};
+		weapons[] = {
+			"OT_Ganja",
+			"OT_Blow",
+			"OT_Wood",
+			"OT_Lumber",
+			"OT_Steel",
+			"OT_Plastic",
+			"OT_Sugarcane",
+			"OT_Sugar",
+			"OT_Grapes",
+			"OT_Wine",
+			"OT_Olives",
+			"OT_Fertilizer",
+			"OT_ammo50cal"
+		};
 	};
 };
 
