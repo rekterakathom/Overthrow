@@ -43,7 +43,7 @@ class CfgMainMenuSpotlight
 		video = "\a3\Ui_f\Video\spotlight_1_Apex.ogv"; // Video played on mouse hover
 		// First activate "multiplayer" control in main display, then activate "host server" control in "multiplayer" display
 		action = "ctrlactivate ((ctrlparent (_this select 0)) displayctrl 105); ctrlactivate (findDisplay 8 displayctrl 167);";
-		actionText = $STR_A3_RscDisplayMain_Spotlight_Play; // Text displayed in top left corner of on-hover white frame
+		actionText = "$STR_A3_RscDisplayMain_Spotlight_Play"; // Text displayed in top left corner of on-hover white frame
 		condition = "true"; // Condition for showing the spotlight
 	};
 	class AoW_Showcase_Future

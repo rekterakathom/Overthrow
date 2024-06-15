@@ -24,6 +24,8 @@
 
 // these settings work with CBA_A3 common macros
 
+#define QUOTE(var1) #var1
+
 #define MOD_NAME Overthrow
 
 #define PREFIX overthrow_main
@@ -32,8 +34,8 @@
 
 #include "script_version.hpp"
 
-#define VERSION MAJOR.MINOR.PATCHLVL.BUILD
-
+#define VERSION MAJOR.MINOR
+#define VERSION_STR MAJOR.MINOR.PATCHLVL.BUILD
 #define VERSION_AR MAJOR,MINOR,PATCHLVL,BUILD
 
 // MINIMAL required ARMA version for the addon
@@ -48,5 +50,5 @@
 #define COMPONENT_NAME QUOTE(MOD_NAME - VERSION)
 
 #ifndef VERSION_CONFIG
-    #define VERSION_CONFIG version = VERSION; versionStr = QUOTE(VERSION); versionAr[] = {VERSION_AR}
+    #define VERSION_CONFIG version = VERSION; versionStr = QUOTE(VERSION_STR); versionAr[] = {VERSION_AR}
 #endif

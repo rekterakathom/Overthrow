@@ -95,6 +95,22 @@
 // 3d object
 #define CT_OBJECT 80
 
+//--- New grid for new A3 displays
+#define GUI_GRID_WAbs         ((safezoneW / safezoneH) min 1.2)
+#define GUI_GRID_HAbs         (GUI_GRID_WAbs / 1.2)
+#define GUI_GRID_W            (GUI_GRID_WAbs / 40)
+#define GUI_GRID_H            (GUI_GRID_HAbs / 25)
+
+//--- Screen Center
+#define GUI_GRID_CENTER_WAbs  GUI_GRID_WAbs
+#define GUI_GRID_CENTER_HAbs  GUI_GRID_HAbs
+#define GUI_GRID_CENTER_W     GUI_GRID_W
+#define GUI_GRID_CENTER_H     GUI_GRID_H
+#define GUI_GRID_CENTER_X     (safezoneX + (safezoneW - GUI_GRID_CENTER_WAbs)/2)
+#define GUI_GRID_CENTER_Y     (safezoneY + (safezoneH - GUI_GRID_CENTER_HAbs)/2)
+
+#define QUOTE(var1) #var1
+
 
 class RscText;
 class RscSlider;
@@ -768,10 +784,10 @@ class RscOverthrowXListBox
 	style = SL_HORZ + ST_CENTER + LB_TEXTURES;
 	default = 0;
 	blinkingPeriod = 0;
-	x = 12 * GUI_GRID_CENTER_W + GUI_GRID_CENTER_X;
-	y = 17 * GUI_GRID_CENTER_H + GUI_GRID_CENTER_Y;
-	w = 10 * GUI_GRID_CENTER_W;
-	h = 1 * GUI_GRID_CENTER_H;
+	x = QUOTE(12 * GUI_GRID_CENTER_W + GUI_GRID_CENTER_X);
+	y = QUOTE(17 * GUI_GRID_CENTER_H + GUI_GRID_CENTER_Y);
+	w = QUOTE(10 * GUI_GRID_CENTER_W);
+	h = QUOTE(1 * GUI_GRID_CENTER_H);
 	color[] = {1,1,1,1};
 	colorActive[] = {1,1,1,1};
 	sizeEx = "(((((2560 / safezoneH ) min 1.2) / 1.2) / 25) * 1)";
@@ -1800,7 +1816,7 @@ class RscOverthrowActiveText
 	y = 0.5;
 	w = 0.2;
 	h = 0.035;
-	font = PuristaMedium;
+	font = "PuristaMedium";
 	sizeEx = 0.024;
 	color[] = { 1, 1, 1, 1 };
 	colorActive[] = { 1, 0.2, 0.2, 1 };
@@ -1812,5 +1828,5 @@ class RscOverthrowActiveText
 	action = "hint ""Good choice!""";
 	tooltip = "";
 	text = "";
-	default = true;
+	default = 1;
 };

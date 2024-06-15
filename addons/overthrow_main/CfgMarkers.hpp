@@ -6,7 +6,7 @@ class CfgMarkers
 		icon = "\overthrow_main\ui\markers\camp.paa";
 		color[] = {1, 0, 0, 1};
 		size = 32;
-		shadow = true;
+		shadow = 1;
 		scope = 1;
 	};
 	class ot_Shop
@@ -15,7 +15,7 @@ class CfgMarkers
 		icon = "\overthrow_main\ui\markers\shop.paa";
 		color[] = {1, 0, 0, 1};
 		size = 32;
-		shadow = true;
+		shadow = 1;
 		scope = 1;
 	};
 	class ot_ShopClothing
@@ -24,7 +24,7 @@ class CfgMarkers
 		icon = "\overthrow_main\ui\markers\shop-Clothing.paa";
 		color[] = {1, 1, 1, 1};
 		size = 4;
-		shadow = false;
+		shadow = 0;
 		scope = 1;
 	};
 	class ot_ShopElectronics
@@ -33,7 +33,7 @@ class CfgMarkers
 		icon = "\overthrow_main\ui\markers\shop-Electronics.paa";
 		color[] = {1, 1, 1, 1};
 		size = 4;
-		shadow = false;
+		shadow = 0;
 		scope = 1;
 	};
 	class ot_ShopGeneral
@@ -42,7 +42,7 @@ class CfgMarkers
 		icon = "\overthrow_main\ui\markers\shop-General.paa";
 		color[] = {1, 1, 1, 1};
 		size = 4;
-		shadow = false;
+		shadow = 0;
 		scope = 1;
 	};
 	class ot_ShopHardware
@@ -51,7 +51,7 @@ class CfgMarkers
 		icon = "\overthrow_main\ui\markers\shop-Hardware.paa";
 		color[] = {1, 1, 1, 1};
 		size = 4;
-		shadow = false;
+		shadow = 0;
 		scope = 1;
 	};
 	class ot_ShopPharmacy
@@ -60,7 +60,7 @@ class CfgMarkers
 		icon = "\overthrow_main\ui\markers\shop-Pharmacy.paa";
 		color[] = {1, 1, 1, 1};
 		size = 4;
-		shadow = false;
+		shadow = 0;
 		scope = 1;
 	};
 	class ot_ShopPier
@@ -69,7 +69,7 @@ class CfgMarkers
 		icon = "\overthrow_main\ui\markers\shop-Pier.paa";
 		color[] = {1, 1, 1, 1};
 		size = 4;
-		shadow = false;
+		shadow = 0;
 		scope = 1;
 	};
 	class ot_ShopSurplus
@@ -78,7 +78,7 @@ class CfgMarkers
 		icon = "\overthrow_main\ui\markers\shop-Surplus.paa";
 		color[] = {1, 1, 1, 1};
 		size = 4;
-		shadow = false;
+		shadow = 0;
 		scope = 1;
 	};
 	class ot_ShopVehicle
@@ -87,7 +87,7 @@ class CfgMarkers
 		icon = "\overthrow_main\ui\markers\shop-Vehicle.paa";
 		color[] = {1, 1, 1, 1};
 		size = 4;
-		shadow = false;
+		shadow = 0;
 		scope = 1;
 	};
 	class ot_Police
@@ -96,7 +96,7 @@ class CfgMarkers
 		icon = "\overthrow_main\ui\markers\police.paa";
 		color[] = {1, 0, 0, 1};
 		size = 32;
-		shadow = true;
+		shadow = 1;
 		scope = 1;
 	};
 	class ot_Anarchy
@@ -105,7 +105,7 @@ class CfgMarkers
 		icon = "\overthrow_main\ui\markers\anarchy.paa";
 		color[] = {1, 0, 0, 1};
 		size = 32;
-		shadow = true;
+		shadow = 1;
 		scope = 1;
 	};
 	class ot_Warehouse
@@ -114,7 +114,7 @@ class CfgMarkers
 		icon = "\overthrow_main\ui\markers\warehouse.paa";
 		color[] = {1, 0, 0, 1};
 		size = 32;
-		shadow = true;
+		shadow = 1;
 		scope = 1;
 	};
 	class ot_Business
@@ -123,7 +123,7 @@ class CfgMarkers
 		icon = "\overthrow_main\ui\markers\business.paa";
 		color[] = {1, 0, 0, 1};
 		size = 32;
-		shadow = true;
+		shadow = 1;
 		scope = 1;
 	};
 	class ot_Factory
@@ -132,7 +132,7 @@ class CfgMarkers
 		icon = "\overthrow_main\ui\markers\factory.paa";
 		color[] = {1, 0, 0, 1};
 		size = 32;
-		shadow = true;
+		shadow = 1;
 		scope = 1;
 	};
 	class flag_Malden
@@ -141,7 +141,7 @@ class CfgMarkers
 		icon = "\overthrow_main\flags\flag_malden_marker.paa";
 		color[] = {1, 1, 1, 1};
 		size = 32;
-		shadow = true;
+		shadow = 1;
 		scope = 1;
 	};
 	class ot_HQ
@@ -150,7 +150,7 @@ class CfgMarkers
 		icon = "\overthrow_main\ui\markers\hq.paa";
 		color[] = {1, 1, 1, 1};
 		size = 32;
-		shadow = true;
+		shadow = 1;
 		scope = 1;
 	};
 };
