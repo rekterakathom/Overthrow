@@ -13,7 +13,7 @@ OT_NATO_GroundForces = [];
 		// Recon troops are checked here as well, in case specops config doesn't exist
 		// no uav or ugv groups
 		// also try to get the largest possible recon group
-		if ((_name find "recon") > -1 && {((_name find "uav") == -1) && ((_name find "ugv") == -1) && _numTroops > (OT_NATO_Group_Recon # 1)}) then {
+		if ("recon" in _name && {!("uav" in _name) && !("ugv" in _name) && _numTroops > (OT_NATO_Group_Recon # 1)}) then {
 			OT_NATO_Group_Recon = [_x, _numtroops];
 			continue; // We don't want recon guys ending up as regular infantry
 		};
@@ -33,7 +33,7 @@ OT_NATO_Group_Recon set [1, 0];
 		private _name = toLower (configName _x);
 		private _numTroops = count ("true" configClasses _x);
 		// Try to get the largest possible recon group
-		if ((_name find "recon") > -1 && {((_name find "uav") == -1) && ((_name find "ugv") == -1) && _numTroops > (OT_NATO_Group_Recon # 1)}) then {
+		if ("recon" in _name && {!("uav" in _name) && !("ugv" in _name) && _numTroops > (OT_NATO_Group_Recon # 1)}) then {
 			OT_NATO_Group_Recon = [_x, _numTroops];
 		};
 	} forEach ("true" configClasses _config);
@@ -47,7 +47,7 @@ OT_NATO_Group_Recon = (OT_NATO_Group_Recon # 0);
 	private _config = _x;
 	{
 		private _name = toLower (configName _x);
-		if ((_name find "eng") > -1) then {
+		if ("eng" in _name) then {
 			OT_NATO_Group_Engineers = _name;
 		};
 	} forEach ("true" configClasses _config);
@@ -65,18 +65,18 @@ OT_NATO_Units_CTRGSupport = [];
 			params ["_name"];
 			_name = toLower _name;
 			if(
-				(_name find "recon") > -1
-				|| (_name find "story") > -1
-				|| (_name find "lite") > -1
-				|| (_name find "heavygunner") > -1
-				|| (_name find "officer") > -1
-				|| (_name find "crew") > -1
-				|| (_name find "diver") > -1
-				|| (_name find "pilot") > -1
-				|| (_name find "pettka") > -1
-				|| (_name find "captain_jay") > -1
+				"recon" in _name
+				|| "story" in _name
+				|| "lite" in _name
+				|| "heavygunner" in _name
+				|| "officer" in _name
+				|| "crew" in _name
+				|| "diver" in _name
+				|| "pilot" in _name
+				|| "pettka" in _name
+				|| "captain_jay" in _name
 			) exitWith {};
-			if((_name find "_ctrg_") > -1) exitWith {
+			if("_ctrg_" in _name) exitWith {
 				OT_NATO_Units_CTRGSupport pushback _name
 			};
 

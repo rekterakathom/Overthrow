@@ -34,13 +34,13 @@ private _rotorOutH = false;
 private _gunOut = false;
 {
     private _hit = configName _x;
-    if((_hit find "Wheel") > -1) then {
+    if("Wheel" in _hit) then {
         _hasWheels = true;
     	if (_veh getHitPointDamage _hit >= 1) then {
     		_wheelsNeeded = _wheelsNeeded + 1;
     	};
     };
-    if((_hit find "Track") > -1) then {
+    if("Track" in _hit) then {
         _hasTracks = true;
     	if (_veh getHitPointDamage _hit >= 1) then {
     		_tracksNeeded = _tracksNeeded + 1;

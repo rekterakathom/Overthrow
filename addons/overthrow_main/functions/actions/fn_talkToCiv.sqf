@@ -617,14 +617,14 @@ OT_drugQty = 0;
 if (_canSellDrugs) then {
 	{
 		_drugcls = _x;
-		if(((items player) find _x) > -1 && !(_civ getVariable["OT_askedDrugs",false])) then {
+		if(_x in items player && !(_civ getVariable["OT_askedDrugs",false])) then {
 
 			_drugname = _x call OT_fnc_weaponGetName;
 			_options pushBack [format ["Sell %1",_drugname],{
 				OT_drugSelling = _this;
 				_drugcls = _this;
 				_drugname = _drugcls call OT_fnc_weaponGetName;
-				if(((items player) find _drugcls) isEqualTo -1) exitWith {};
+				if(!(_drugcls in items player)) exitWith {};
 				_num = 0;
 				{
 					if(_x select 0 isEqualTo _drugcls) exitWith {_num = _x select 1};
@@ -658,7 +658,7 @@ if (_canSellDrugs) then {
 							[_civ,player,["How much?",format["$%1",_price],"OK"],
 							{
 								private _drugSell = _this select 0;
-								if (((items player) find _drugSell) > -1) then {
+								if (_drugSell in items player) then {
 									player removeItem _drugSell;
 									OT_interactingWith addItem _drugSell;
 									[

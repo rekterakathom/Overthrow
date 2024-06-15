@@ -24,7 +24,7 @@ _returnSurfaceASL = AGLToASL _positionAGL; \
 	} else { \
 		if!((_x select 2) isKindOf "RopeSegment") then { \
 			_objectFileName = str (_x select 2); \
-			if((_objectFileName find " t_") isEqualTo -1 && (_objectFileName find " b_") isEqualTo -1) then { \
+			if(!(" t_" in _objectFileName) && !(" b_" in _objectFileName)) then { \
 				_returnSurfaceASL = _x select 0; \
 				breakOut "surfaceLoop"; \
 			}; \

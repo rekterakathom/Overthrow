@@ -9,7 +9,7 @@ if((_b select 1) isEqualTo "Business") then {
         if(_money >= _price) then {
             [-_price] call OT_fnc_resistanceFunds;
             private _owned = server getVariable ["GEURowned",[]];
-            if(_owned find _name isEqualTo -1) then {
+            if (!(_name in _owned)) then {
                 server setVariable ["GEURowned",_owned + [_name],true];
                 server setVariable [format["%1employ",_name],2];
                 _pos remoteExec ["OT_fnc_resetSpawn",2,false];
@@ -26,7 +26,7 @@ if((_b select 1) isEqualTo "Business") then {
             private _name = "Factory";
 
             private _owned = server getVariable ["GEURowned",[]];
-            if(_owned find _name isEqualTo -1) then {
+            if(!(_name in _owned)) then {
                 private _pos = OT_factoryPos;
                 private _price = _name call OT_fnc_getBusinessPrice;
                 private _err = true;

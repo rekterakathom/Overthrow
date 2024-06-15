@@ -8,7 +8,7 @@ _classes = _this;
 
 _str = "";
 {
-    if((OT_loadedPrices find _x) == -1) then {
+    if (!(_x in OT_loadedPrices)) then {
         _str = _str + format["['%1',%2],",_x,str (cost getVariable _x)];
     };
 } forEach _classes;

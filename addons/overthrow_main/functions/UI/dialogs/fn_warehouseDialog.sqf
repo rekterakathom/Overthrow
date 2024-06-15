@@ -16,7 +16,7 @@ private _numitems = 0;
 		if (_num > 0) then {
 			(_cls call OT_fnc_getClassDisplayInfo) params ["_pic", "_name"];
 
-			if (toLowerANSI _name find toLowerANSI _SearchTerm > -1) then {
+			if (toLowerANSI _SearchTerm in toLowerANSI _name) then {
 				_numitems = _numitems + 1;
 
 				private _idx = lbAdd [1500,format["%1 x %2",_num,_name]];
