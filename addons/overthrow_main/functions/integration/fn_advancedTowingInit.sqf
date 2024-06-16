@@ -129,7 +129,7 @@ SA_Simulate_Towing = {
 	private ["_cargoCenterASL","_surfaceHeight","_surfaceHeight2","_maxSurfaceHeight"];
 
 	_maxVehicleSpeed = getNumber (configFile >> "CfgVehicles" >> typeOf _vehicle >> "maxSpeed");
-	_cargoCanFloat = if( getNumber (configFile >> "CfgVehicles" >> typeOf _cargo >> "canFloat") isEqualTo 1 ) then { true } else { false };
+	_cargoCanFloat = getNumber (configFile >> "CfgVehicles" >> typeOf _cargo >> "canFloat") isEqualTo 1;
 
 	private ["_cargoCenterOfMassAGL","_cargoModelCenterGroundPosition"];
 	SA_Find_Surface_AGL_Under_Model(_cargo,getCenterOfMass _cargo,_cargoCenterOfMassAGL,_cargoCanFloat);

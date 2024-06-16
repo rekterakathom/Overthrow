@@ -92,9 +92,6 @@
 #define MB_BUTTON_CANCEL  2
 #define MB_BUTTON_USER    4
 
-// 3d object
-#define CT_OBJECT 80
-
 //--- New grid for new A3 displays
 #define GUI_GRID_WAbs         ((safezoneW / safezoneH) min 1.2)
 #define GUI_GRID_HAbs         (GUI_GRID_WAbs / 1.2)
