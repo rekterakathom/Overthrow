@@ -1,12 +1,12 @@
-#include "script_mod.hpp"
+#include "script_component.hpp"
 #include "headers\config_macros.hpp"
 
 class CfgPatches
 {
 	class OT_Overthrow_Main
 	{
-		author="ARMAzac";
-		name=COMPONENT_NAME;
+		author=QUOTE(MOD_AUTHOR);
+		name=QUOTE(MOD_NAME - VERSION);
 		url="https://steamcommunity.com/sharedfiles/filedetails/?id=774201744";
 		requiredAddons[]=
 		{

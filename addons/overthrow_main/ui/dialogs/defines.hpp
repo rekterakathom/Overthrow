@@ -106,8 +106,6 @@
 #define GUI_GRID_CENTER_X     (safezoneX + (safezoneW - GUI_GRID_CENTER_WAbs)/2)
 #define GUI_GRID_CENTER_Y     (safezoneY + (safezoneH - GUI_GRID_CENTER_HAbs)/2)
 
-#define QUOTE(var1) #var1
-
 
 class RscText;
 class RscSlider;

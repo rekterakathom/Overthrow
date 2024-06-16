@@ -22,10 +22,6 @@
  *     @see https://github.com/acemod/ACE3/blob/master/LICENSE
  */
 
-// these settings work with CBA_A3 common macros
-
-#define QUOTE(var1) #var1
-
 #define MOD_NAME Overthrow
 
 #define PREFIX overthrow_main
@@ -46,9 +42,3 @@
 
 // MINIMAL required ACE3 version for the addon
 #define REQUIRED_ACE_VERSION {3,15,1}
-
-#define COMPONENT_NAME QUOTE(MOD_NAME - VERSION)
-
-#ifndef VERSION_CONFIG
-    #define VERSION_CONFIG version = VERSION; versionStr = QUOTE(VERSION_STR); versionAr[] = {VERSION_AR}
-#endif
