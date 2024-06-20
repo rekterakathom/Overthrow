@@ -15,12 +15,12 @@ if ((typeOf _veh) != "OT_I_Truck_recovery") exitWith {
 if (isPlayer _user) then {
     _veh enableSimulation false;
     _veh spawn {
-        sleep 20;
+        sleep (_time + 5);
         _this enableSimulation true;
         //Fail safe for user input disabled.
     };
     format ["Looting all bodies within %1m",_range] call OT_fnc_notifyMinor;
-    [5, false] call OT_fnc_progressBar;
+    [_time, false] call OT_fnc_progressBar;
 } else {
     _user globalchat format["Looting bodies within %1m using Recovery vehicle",_range];
 };
