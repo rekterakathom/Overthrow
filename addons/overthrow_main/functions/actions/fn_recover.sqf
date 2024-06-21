@@ -51,13 +51,18 @@ private _weapons = (_veh nearObjects ["WeaponHolder", _range]) + (_veh nearEntit
 //Get the bodies
 private _count_bodies = 0;
 {
-    if !(_x isKindOf "CAManBase") then {continue};
-    if (_x distance _veh < _range) then {
-        [_x, _veh] call OT_fnc_dumpStuff;
-        _count_bodies = _count_bodies + 1;
-        [_x] call OT_fnc_cleanupUnit;
-    };
-} foreach allDeadMen;
+    // Some bodies are inside vehicles, so we search through the crew of every vehicle we find.
+    // Luckily every man is crew of itself so the same code also works for bodies on the ground.
+    private _vehicleOrMan = _x;
+    {
+        private _body = _x;
+        if (!alive _body) then {
+            [_body, _veh] call OT_fnc_dumpStuff;
+            _count_bodies = _count_bodies + 1;
+            [_body] call OT_fnc_cleanupUnit;
+        };
+    } forEach crew _vehicleOrMan;
+} forEach (_veh nearObjects ["AllVehicles", _range]);
 
 if(isPlayer _user) then {
     _veh enableSimulation true;
