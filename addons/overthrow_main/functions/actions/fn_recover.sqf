@@ -101,7 +101,7 @@ private _fnc_transferContainer = {
     {
         // Binocular and disposable launcher magazines cannot be changed in game, so keep them
         // attached. For other weapons, detach all attachments and magazines.
-        if (_x # 0 isKindOf ["Binocular", configFile >> "CfgWeapons"] || !isNull (configFile >> "CBA_DisposableLaunchers" >> _x # 0)) then {
+        if (_x # 0 isKindOf ["Binocular", configFile >> "CfgWeapons"] || isArray (configFile >> "CBA_DisposableLaunchers" >> _x # 0)) then {
             _target addWeaponWithAttachmentsCargoGlobal [_x, 1];
         } else {
             [_x, 1, _target] call _fnc_dumpWeapon;
@@ -158,7 +158,7 @@ private _fnc_dumpLoadoutContainer = {
                 // Weapon in format [["class", "suppressor", "pointer", "optics", ["mag", ammo], ["grenade", ammo], "bipod"], amount]
                 // Binocular and disposable launcher magazines cannot be changed in game, so keep
                 // them attached. For other weapons, detach all attachments and magazines.
-                if ((_x # 0 # 0) isKindOf ["Binocular", configFile >> "CfgWeapons"] || !isNull (configFile >> "CBA_DisposableLaunchers" >> (_x # 0 # 0))) then {
+                if ((_x # 0 # 0) isKindOf ["Binocular", configFile >> "CfgWeapons"] || isArray (configFile >> "CBA_DisposableLaunchers" >> (_x # 0 # 0))) then {
                     _target addWeaponWithAttachmentsCargoGlobal _x;
                 } else {
                     [(_x # 0), (_x # 1), _target] call _fnc_dumpWeapon;
@@ -199,7 +199,7 @@ private _fnc_dumpLoadout = {
     if (count _secondaryWeapon > 0) then {
         // Disposable launcher magazines cannot be changed in game, so keep them attached. For other
         // launchers, detach all attachments and magazines.
-        if (!isNull (configFile >> "CBA_DisposableLaunchers" >> _secondaryWeapon # 0)) then {
+        if (isArray (configFile >> "CBA_DisposableLaunchers" >> _secondaryWeapon # 0)) then {
             _target addWeaponWithAttachmentsCargoGlobal [_secondaryWeapon, 1];
         } else {
             [_secondaryWeapon, 1, _target] call _fnc_dumpWeapon;
@@ -272,9 +272,9 @@ private _countBodies = 0;
     } forEach crew _vehicleOrMan;
 } forEach (_veh nearObjects ["AllVehicles", _range]);
 
-if(isPlayer _user) then {
+if (isPlayer _user) then {
     _veh enableSimulation true;
-    format["Looted %1 weapons and %2 bodies into this truck", _countWeaponHolders, _countBodies] call OT_fnc_notifyMinor;
-}else {
-    _user globalchat format["All done! Looted %1 weapons and %2 bodies", _countWeaponHolders, _countBodies];
+    format["Looted %1 item piles and %2 bodies into this truck", _countWeaponHolders, _countBodies] call OT_fnc_notifyMinor;
+} else {
+    _user globalchat format["All done! Looted %1 item piles and %2 bodies", _countWeaponHolders, _countBodies];
 };
