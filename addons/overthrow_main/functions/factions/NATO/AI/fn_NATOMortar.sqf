@@ -50,7 +50,7 @@ while {sleep (5+(random 5)); ("8Rnd_82mm_Mo_shells" in getArtilleryAmmo[_mortar]
 
             // Make sure we don't shell towns. The safezone around a town depends on the population
             _towndist = _pos distance2D (server getvariable [_town, _pos]);
-            _safezone = 200 + (server getVariable format["population%1", _town] / 2);
+            _safezone = 200 + ((server getVariable format["population%1", _town]) / 2);
 
             if (
                 !(_ty == "H" || _ty == "P" || _ty == "V") 
