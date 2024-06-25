@@ -14,9 +14,10 @@ if ((typeOf _veh) != "OT_I_Truck_recovery") exitWith {
 
 if (isPlayer _user) then {
     _veh enableSimulation false;
-    _veh spawn {
+    [_time, _veh] spawn {
+        params ["_time", "_veh"];
         sleep (_time + 5);
-        _this enableSimulation true;
+        _veh enableSimulation true;
         //Fail safe for user input disabled.
     };
     format ["Looting all bodies within %1m",_range] call OT_fnc_notifyMinor;
@@ -60,8 +61,8 @@ private _fnc_dumpItem = {
     // so right now we have to support both types.
     // https://github.com/acemod/ACE3/commit/59af3e1f6d66ee08a1f8e4fd847efd45bb9ef73e#diff-3962a6b36168378fa5277c4012de0b4510de1122deb8afe38064a6cb574a29cfR25
     // In the future when that commit has been released, this code can be simplified.
-    private _directReplacements;
-    private _typeReplacements;
+    private "_directReplacements";
+    private "_typeReplacements";
     if (ACE_common_itemReplacements isEqualType locationNull) then {
         // ACE_common_itemReplacements is a CBA namespace
         _directReplacements = ACE_common_itemReplacements getVariable _item;
@@ -100,7 +101,7 @@ private _fnc_transferContainer = {
     {
         // Binocular and disposable launcher magazines cannot be changed in game, so keep them
         // attached. For other weapons, detach all attachments and magazines.
-        if (_x # 0 isKindOf "Binocular" || !isNull (configFile >> "CBA_DisposableLaunchers" >> _x # 0)) then {
+        if (_x # 0 isKindOf ["Binocular", configFile >> "CfgWeapons"] || !isNull (configFile >> "CBA_DisposableLaunchers" >> _x # 0)) then {
             _target addWeaponWithAttachmentsCargoGlobal [_x, 1];
         } else {
             [_x, 1, _target] call _fnc_dumpWeapon;
@@ -157,7 +158,7 @@ private _fnc_dumpLoadoutContainer = {
                 // Weapon in format [["class", "suppressor", "pointer", "optics", ["mag", ammo], ["grenade", ammo], "bipod"], amount]
                 // Binocular and disposable launcher magazines cannot be changed in game, so keep
                 // them attached. For other weapons, detach all attachments and magazines.
-                if ((_x # 0 # 0) isKindOf "Binocular" || !isNull (configFile >> "CBA_DisposableLaunchers" >> (_x # 0 # 0))) then {
+                if ((_x # 0 # 0) isKindOf ["Binocular", configFile >> "CfgWeapons"] || !isNull (configFile >> "CBA_DisposableLaunchers" >> (_x # 0 # 0))) then {
                     _target addWeaponWithAttachmentsCargoGlobal _x;
                 } else {
                     [(_x # 0), (_x # 1), _target] call _fnc_dumpWeapon;
@@ -212,7 +213,7 @@ private _fnc_dumpLoadout = {
 
     private _uniform = _loadout # 3;
     if (count _uniform > 0) then {
-        _target addItemCargoGlobal [(_uniform # 0), 1];
+        // Do not loot the uniform itself
         [_uniform # 1, _target] call _fnc_dumpLoadoutContainer;
     };
 
@@ -223,7 +224,7 @@ private _fnc_dumpLoadout = {
     };
 
     private _backpack = _loadout # 5;
-    if (count _vest > 0) then {
+    if (count _backpack > 0) then {
         // Many backpack classes have some default items in their inventory. Call
         // BIS_fnc_basicBackpack to find the corresponding backpack class with no items.
         _target addBackpackCargoGlobal [((_backpack # 0) call BIS_fnc_basicBackpack), 1];
