@@ -55,7 +55,7 @@ while {sleep (5+(random 5)); ("8Rnd_82mm_Mo_shells" in getArtilleryAmmo[_mortar]
             if (
                 !(_ty == "H" || _ty == "P" || _ty == "V") 
                 && _pri > 80 
-                && _towndist > safezone 
+                && _towndist > _safezone 
                 && _distance < 4000 
                 && _distance > 250 
                 //&& _housedist > 75
