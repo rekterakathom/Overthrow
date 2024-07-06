@@ -30,7 +30,11 @@ sleep _time;
 
 // Get loose weapons and items
 private _countWeaponHolders = 0;
-private _weaponHolders = (_veh nearObjects ["WeaponHolder", _range]) + (_veh nearEntities ["WeaponHolderSimulated", _range]);
+// WeaponHolderSimulated = dropped weapons from bodies. Bodies inside the range may drop their
+// weapons outside of it and they would get deleted when the body is looted, so loot dropped weapons
+// 10m further than bodies. It is still possible that the weapon has flown more than 10m outside the
+// range, in which case it is lost.
+private _weaponHolders = (_veh nearObjects ["WeaponHolder", _range]) + (_veh nearEntities ["WeaponHolderSimulated", (_range + 10)]);
 {
     private _weaponHolder = _x;
 
