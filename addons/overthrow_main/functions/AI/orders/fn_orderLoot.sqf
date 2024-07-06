@@ -58,7 +58,7 @@ private _target = _sortedTargets # 0;
                 private _vehicleOrMan = _x;
                 {
                     private _body = _x;
-                    if (!alive _body) then {
+                    if (!alive _body && !(_body getVariable ["OT_looterReserved", false])) then {
                         _sortedBodies pushBack _x;
                     };
                 } forEach crew _vehicleOrMan;
@@ -70,6 +70,7 @@ private _target = _sortedTargets # 0;
                 _looter globalChat format ["%1 bodies to loot", count _sortedBodies];
                 private _body = _sortedBodies # 0;
 
+                _body setVariable ["OT_looterReserved", true, false];
                 _looter doMove ASLtoAGL (getPosASL _body);
                 [_looter, 1] call OT_fnc_experience;
 
@@ -78,6 +79,7 @@ private _target = _sortedTargets # 0;
                 waitUntil {sleep 1; (_looter distance2D _body < 12) || (isNull _body) || (!alive _looter) || (isNull _target) || (_timeout < time)};
                 if ((!alive _looter) || (isNull _target) || (_timeout < time)) then {
                     _looter globalChat "Can't get to a body, cancelling loot order";
+                    _body setVariable ["OT_looterReserved", false, false];
                     breakOut "looting script";
                 };
                 if (isNull _body) then {
@@ -138,7 +140,7 @@ private _target = _sortedTargets # 0;
             } else {
                 // There are no longer any bodies to loot. Loot the nearest item pile.
 
-                private _sortedWeaponHolders = nearestObjects [_target, ["WeaponHolder", "WeaponHolderSimulated"], _range];
+                private _sortedWeaponHolders = nearestObjects [_target, ["WeaponHolder", "WeaponHolderSimulated"], _range] select {!(_x getVariable ["OT_looterReserved", false])};
 
                 if (_sortedWeaponHolders isEqualTo []) then {
                     _looter globalChat "All done!"
@@ -148,6 +150,7 @@ private _target = _sortedTargets # 0;
                 _looter globalChat format ["%1 item piles to loot", count _sortedWeaponHolders];
                 private _weaponHolder = _sortedWeaponHolders # 0;
 
+                _weaponHolder setVariable ["OT_looterReserved", true, false];
                 _looter doMove ASLtoAGL (getPosASL _weaponHolder);
                 [_looter, 1] call OT_fnc_experience;
 
@@ -156,6 +159,7 @@ private _target = _sortedTargets # 0;
                 waitUntil {sleep 1; (_looter distance2D _weaponHolder < 12) || (isNull _weaponHolder) || (!alive _looter) || (isNull _target) || (_timeout < time)};
                 if ((!alive _looter) || (isNull _target) || (_timeout < time)) then {
                     _looter globalChat "Can't get to an item pile, cancelling loot order";
+                    _weaponHolder setVariable ["OT_looterReserved", false, false];
                     breakOut "looting script";
                 };
 
@@ -171,6 +175,7 @@ private _target = _sortedTargets # 0;
                 waitUntil {sleep 1; (_looter distance _target < 12) || (isNull _weaponHolder) || (!alive _looter) || (isNull _target) || (!alive _target) || (_timeout < time)};
                 if ((!alive _looter) || (isNull _target) || (!alive _target) || (_timeout < time)) then {
                     _looter globalChat format ["Can't get back to the %1, cancelling loot order", (typeOf _target) call OT_fnc_vehicleGetName];
+                    _weaponHolder setVariable ["OT_looterReserved", false, false];
                     breakOut "looting script";
                 };
                 if (isNull _weaponHolder) then {
@@ -181,6 +186,7 @@ private _target = _sortedTargets # 0;
                 // Looter has reached the target container.
                 if !([_weaponHolder, _target] call OT_fnc_canDumpContainer) then {
                     _looter globalChat "This vehicle is full, cancelling loot order";
+                    _weaponHolder setVariable ["OT_looterReserved", false, false];
                     breakOut "looting script";
                 };
 
