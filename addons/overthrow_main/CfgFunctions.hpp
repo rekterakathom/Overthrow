@@ -433,6 +433,8 @@ class CfgFunctions
 			class dumpUnitLoadout {};
 			class dumpWeapon {};
 			class dumpItem {};
+			class canDumpUnitLoadout {};
+			class canDumpContainer {};
 		};
 
 		/*
