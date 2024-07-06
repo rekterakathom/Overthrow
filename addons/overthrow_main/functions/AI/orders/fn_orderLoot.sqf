@@ -19,105 +19,176 @@ private _target = _sortedTargets # 0;
 
 {
     [_x, _target] spawn {
+        scopeName "looting script";
 		params ["_looter", "_target"];
-
-        private _active = true;
-        private _car = objectParent _looter;
 
         _looter setBehaviour "SAFE";
         [_looter, ""] remoteExec ["switchMove", 0, false];
-
-        if (!isNull _car) then {
+        if (!isNull objectParent _looter) then {
             doGetOut _looter;
         };
 
-        _looter globalChat format["Looting bodies within %1m into the %2", _range, (typeOf _target) call OT_fnc_vehicleGetName];
-
-        private _canOverload = (_target isKindOf "Truck_F") || (_target isKindOf "ReammoBox_F");
+        _looter globalChat format["Looting bodies and item piles within %1m into the %2", _range, (typeOf _target) call OT_fnc_vehicleGetName];
 
         _looter doMove ASLtoAGL (getPosASL _target);
 
+        // Wait until looter reaches the target container
         private _timeout = time + 30;
-        waitUntil {sleep 1; (!alive _looter) || (isNull _target) || (_looter distance _target < 10) || (_timeout < time) || (unitReady _looter)};
-        if (!alive _looter || (isNull _target) || (_timeout < time)) exitWith {};
-
-        if !([_looter, _target] call OT_fnc_dumpStuff) then {
-            _looter globalchat "This vehicle is full, cancelling loot order";
-            _active = false;
+        waitUntil {sleep 1; (_looter distance _target < 12) || (!alive _looter) || (isNull _target) || (!alive _target) || (_timeout < time)};
+        if ((!alive _looter) || (isNull _target) || (!alive _target) || (_timeout < time)) exitWith {
+            _looter globalChat format ["Can't get to the %1, cancelling loot order", (typeOf _target) call OT_fnc_vehicleGetName];
         };
 
-        if (_active) then {
-            private _weapons = (_target nearObjects ["WeaponHolder", _range]) + (_target nearEntities ["WeaponHolderSimulated", _range]);
-            _looter globalChat format["Looting %1 weapons", count _weapons];
-            {
-                _weapon = _x;
-                _s = (weaponsItems _weapon) select 0;
-                if (!isNil {_s}) then {
-                    _cls = (_s select 0);
-                    _i = _s select 1;
-                    if (_i != "") then {_target addItemCargoGlobal [_i, 1]};
-                    _i = _s select 2;
-                    if (_i != "") then {_target addItemCargoGlobal [_i, 1]};
-                    _i = _s select 3;
-                    if (_i != "") then {_target addItemCargoGlobal [_i, 1]};
-
-                    if (!(_target canAdd (_cls call BIS_fnc_baseWeapon)) && !_canOverload) exitWith {
-                        _looter globalChat "This vehicle is full, cancelling loot order";
-                        _active = false;
-                    };
-                    _target addWeaponCargoGlobal [_cls call BIS_fnc_baseWeapon, 1];
-                    deleteVehicle _weapon;
-                };
-            } forEach (_weapons);
+        // Looter has reached the target container. Dump his loadout to it.
+        if !([_looter, _target] call OT_fnc_canDumpUnitLoadout) exitWith {
+            _looter globalChat "This vehicle is full, cancelling loot order";
         };
 
-        while {_active} do {
-            private _deadguys = [];
+        private _looterOwnUniform = uniform _looter;
+
+        [_looter, _target] call OT_fnc_dumpUnitLoadout;
+        _looter setUnitLoadout [[], [], [], [_looterOwnUniform, []], [], [], "", "", [], ["", "", "", "", "", ""]];
+
+        while {true} do {
+            private _sortedBodies = [];
             {
-                // Some bodies are inside vehicles, so we search through the crew of every vehicle we find.
-                // Luckily every man is crew of itself so the same code also works for bodies on the ground.
+                // Some bodies are inside vehicles, so we search through the crew of every vehicle
+                // we find. Luckily every man is crew of itself so the same code also works for
+                // bodies on the ground.
                 private _vehicleOrMan = _x;
                 {
                     private _body = _x;
                     if (!alive _body) then {
-                        _deadguys pushBack _x;
+                        _sortedBodies pushBack _x;
                     };
                 } forEach crew _vehicleOrMan;
             } forEach (nearestObjects [_target, ["AllVehicles"], _range]);
 
-            if (count _deadguys isEqualTo 0) exitWith {_looter globalChat "All done!"};
-            _looter globalChat format["%1 bodies to loot", count _deadguys];
+            if (_sortedBodies isNotEqualTo []) then {
+                // There are bodies to be looted. Loot the nearest body.
 
-            _timeout = time + 30;
-            private _deadguy = _deadguys # 0;
-            _deadguy setVariable ["OT_looted", true, true];
-            _deadguy setvariable ["OT_lootedAt", time, true];
+                _looter globalChat format ["%1 bodies to loot", count _sortedBodies];
+                private _body = _sortedBodies # 0;
 
-            _looter doMove ASLtoAGL (getPosASL _deadguy);
-            [_looter, 1] call OT_fnc_experience;
+                _looter doMove ASLtoAGL (getPosASL _body);
+                [_looter, 1] call OT_fnc_experience;
 
-            waitUntil {sleep 1; (!alive _looter) || (isNull _target) || (_looter distance2D _deadguy < 12) || (_timeout < time)};
-            if ((!alive _looter) || (_timeout < time)) exitWith {_looter globalChat "Cant get to a body, cancelling loot order"};
+                // Wait until looter reaches the body
+                _timeout = time + 30;
+                waitUntil {sleep 1; (_looter distance2D _body < 12) || (isNull _body) || (!alive _looter) || (isNull _target) || (_timeout < time)};
+                if ((!alive _looter) || (isNull _target) || (_timeout < time)) then {
+                    _looter globalChat "Can't get to a body, cancelling loot order";
+                    breakOut "looting script";
+                };
+                if (isNull _body) then {
+                    _looter globalChat "Body has vanished, skipping";
+                    continue;
+                };
 
-            [_deadguy, _looter] call OT_fnc_takeStuff;
-            sleep 2;
-            [_deadguy] call OT_fnc_cleanupUnit;
-            _timeout = time + 30;
-            _looter doMove ASLtoAGL (getPosASL _target);
-            waitUntil {sleep 1; (!alive _looter) || (isNull _target) || (_looter distance _target < 12) || (_timeout < time)};
-            if ((!alive _looter) || (_timeout < time)) exitWith {};
+                // Looter has reached the body. Transfer its loadout to the looter.
+                private _lootedLoadout = getUnitLoadout _body;
 
-            if !([_looter, _target] call OT_fnc_dumpStuff) exitWith {
-                _looter globalChat "This vehicle is full, cancelling loot order";
-                _active = false;
+                // If the looter has his own uniform, keep it.
+                if (_looterOwnUniform isNotEqualTo "") then {
+                    private _bodyUniformContent = _lootedLoadout # 3 param [1, []];
+                    _lootedLoadout set [3, [_looterOwnUniform, _bodyUniformContent]];
+                };
+
+                // Also take the dropped weapons belonging to the body. The body may have dropped
+                // its weapons outside of the search range and they would get deleted when the body
+                // is deleted, so search for dropped weapons 10m further than bodies. It is still
+                // possible that the weapon has flown more than 10m outside the range, in which case
+                // it is lost. This code can be simplified in Arma 3 version 2.18 with the new
+                // command getCorpseWeaponholders.
+                // https://community.bistudio.com/wiki/getCorpseWeaponholders
+                private _droppedWeaponHolders = (_target nearEntities ["WeaponHolderSimulated", (_range + 10)]);
+                {
+                    if (getCorpse _x isEqualTo _body) then {
+                        private _weapon = weaponsItemsCargo _x # 0;
+                        if (_weapon # 0 isKindOf ["Launcher", configFile >> "CfgWeapons"]) then {
+                            _lootedLoadout set [1, _weapon];
+                        } else {
+                            _lootedLoadout set [0, _weapon];
+                        };
+                    };
+                } forEach _droppedWeaponHolders;
+
+                _looter setUnitLoadout _lootedLoadout;
+                [_body] call OT_fnc_cleanupUnit;
+
+                sleep 2;
+                _looter doMove ASLtoAGL (getPosASL _target);
+
+                // Wait until looter reaches the target container
+                _timeout = time + 30;
+                waitUntil {sleep 1; (_looter distance _target < 12) || (!alive _looter) || (isNull _target) || (!alive _target) || (_timeout < time)};
+                if ((!alive _looter) || (isNull _target) || (!alive _target) || (_timeout < time)) then {
+                    _looter globalChat format ["Can't get back to the %1, cancelling loot order", (typeOf _target) call OT_fnc_vehicleGetName];
+                    breakOut "looting script";
+                };
+
+                // Looter has reached the target container. Dump his loadout to it.
+                if !([_looter, _target] call OT_fnc_canDumpUnitLoadout) then {
+                    _looter globalChat "This vehicle is full, cancelling loot order";
+                    breakOut "looting script";
+                };
+
+                [_looter, _target] call OT_fnc_dumpUnitLoadout;
+                _looter setUnitLoadout [[], [], [], [_looterOwnUniform, []], [], [], "", "", [], ["", "", "", "", "", ""]];
+            } else {
+                // There are no longer any bodies to loot. Loot the nearest item pile.
+
+                private _sortedWeaponHolders = nearestObjects [_target, ["WeaponHolder", "WeaponHolderSimulated"], _range];
+
+                if (_sortedWeaponHolders isEqualTo []) then {
+                    _looter globalChat "All done!"
+                    breakOut "looting script";
+                };
+
+                _looter globalChat format ["%1 item piles to loot", count _sortedWeaponHolders];
+                private _weaponHolder = _sortedWeaponHolders # 0;
+
+                _looter doMove ASLtoAGL (getPosASL _weaponHolder);
+                [_looter, 1] call OT_fnc_experience;
+
+                // Wait until looter reaches the item pile
+                _timeout = time + 30;
+                waitUntil {sleep 1; (_looter distance2D _weaponHolder < 12) || (isNull _weaponHolder) || (!alive _looter) || (isNull _target) || (_timeout < time)};
+                if ((!alive _looter) || (isNull _target) || (_timeout < time)) then {
+                    _looter globalChat "Can't get to an item pile, cancelling loot order";
+                    breakOut "looting script";
+                };
+
+                // Looter has reached the item pile. Its contents may not fit in the looter's
+                // inventory, so fake the looting trip by running back empty handed and dumping the
+                // contents directly to the target container once there.
+
+                sleep 2;
+                _looter doMove ASLtoAGL (getPosASL _target);
+
+                // Wait until looter reaches the target container
+                _timeout = time + 30;
+                waitUntil {sleep 1; (_looter distance _target < 12) || (isNull _weaponHolder) || (!alive _looter) || (isNull _target) || (!alive _target) || (_timeout < time)};
+                if ((!alive _looter) || (isNull _target) || (!alive _target) || (_timeout < time)) then {
+                    _looter globalChat format ["Can't get back to the %1, cancelling loot order", (typeOf _target) call OT_fnc_vehicleGetName];
+                    breakOut "looting script";
+                };
+                if (isNull _weaponHolder) then {
+                    _looter globalChat "Item pile has vanished, skipping";
+                    continue;
+                };
+
+                // Looter has reached the target container.
+                if !([_weaponHolder, _target] call OT_fnc_canDumpContainer) then {
+                    _looter globalChat "This vehicle is full, cancelling loot order";
+                    breakOut "looting script";
+                };
+
+                [_weaponHolder, _target] call OT_fnc_dumpContainer;
+                deleteVehicle _weaponHolder;
             };
 
             sleep 1;
-        };
-
-        if (!isNull _car) then {
-            _looter assignAsCargo _car;
-            [_looter] orderGetIn true;
         };
     };
 } forEach (_selectedUnits);
