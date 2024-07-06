@@ -3,12 +3,12 @@ params ["_user"];
 private _range = 150;
 private _time = 15;
 
-private _veh = vehicle _user;
-if (_veh == _user) exitWith {};
-if ((driver _veh) != _user) exitWith {
+private _veh = objectParent _user;
+if (_veh isEqualTo _user) exitWith {};
+if ((driver _veh) isNotEqualTo _user) exitWith {
     "Loot must be initiated by the driver of this vehicle" call OT_fnc_notifyMinor;
 };
-if ((typeOf _veh) != "OT_I_Truck_recovery") exitWith {
+if !(_veh isKindOf "OT_I_Truck_recovery") exitWith {
     "This command is only available when using a Recovery truck" call OT_fnc_notifyMinor;
 };
 
@@ -20,10 +20,10 @@ if (isPlayer _user) then {
         _veh enableSimulation true;
         //Fail safe for user input disabled.
     };
-    format ["Looting all bodies within %1m",_range] call OT_fnc_notifyMinor;
+    format ["Looting all bodies and item piles within %1m", _range] call OT_fnc_notifyMinor;
     [_time, false] call OT_fnc_progressBar;
 } else {
-    _user globalchat format["Looting bodies within %1m using Recovery vehicle",_range];
+    _user globalchat format["Looting bodies and item piles within %1m using Recovery vehicle", _range];
 };
 
 sleep _time;
@@ -46,7 +46,8 @@ private _weaponHolders = (_veh nearObjects ["WeaponHolder", _range]) + (_veh nea
     _countWeaponHolders = _countWeaponHolders + 1;
 } foreach _weaponHolders;
 
-// Get the bodies
+// Get the bodies. This code can be simplified in Arma 3 version 2.18 with the new syntax 3 of
+// nearEntities. https://community.bistudio.com/wiki/nearEntities
 private _countBodies = 0;
 {
     // Some bodies are inside vehicles, so we search through the crew of every vehicle we find.
