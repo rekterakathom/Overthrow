@@ -17,7 +17,6 @@ private _target = _sortedTargets # 0;
 
 {
     [_x, _target] spawn {
-        scopeName "looting script";
 		params ["_looter", "_target"];
 
         private _range = 100;
@@ -80,7 +79,7 @@ private _target = _sortedTargets # 0;
                 if ((!alive _looter) || (!alive _target) || (_timeout < time)) then {
                     if (alive _looter) then {_looter globalChat "Can't get to a body, cancelling loot order"};
                     _body setVariable ["OT_looterReserved", false, false];
-                    breakOut "looting script";
+                    break;
                 };
                 if (isNull _body) then {
                     _looter globalChat "Body has vanished, skipping";
@@ -126,13 +125,13 @@ private _target = _sortedTargets # 0;
                 waitUntil {sleep 1; (_looter distance _target < 12) || (!alive _looter) || (!alive _target) || (_timeout < time)};
                 if ((!alive _looter) || (!alive _target) || (_timeout < time)) then {
                     if (alive _looter) then {_looter globalChat format ["Can't get back to the %1, cancelling loot order", (typeOf _target) call OT_fnc_vehicleGetName]};
-                    breakOut "looting script";
+                    break;
                 };
 
                 // Looter has reached the target container. Dump his loadout to it.
                 if !([_looter, _target] call OT_fnc_canDumpUnitLoadout) then {
                     _looter globalChat "This vehicle is full, cancelling loot order";
-                    breakOut "looting script";
+                    break;
                 };
 
                 [_looter, _target] call OT_fnc_dumpUnitLoadout;
@@ -144,7 +143,7 @@ private _target = _sortedTargets # 0;
 
                 if (_sortedWeaponHolders isEqualTo []) then {
                     _looter globalChat "All done!";
-                    breakOut "looting script";
+                    break;
                 };
 
                 _looter globalChat format ["%1 item piles to loot", count _sortedWeaponHolders];
@@ -160,7 +159,7 @@ private _target = _sortedTargets # 0;
                 if ((!alive _looter) || (!alive _target) || (_timeout < time)) then {
                     if (alive _looter) then {_looter globalChat "Can't get to an item pile, cancelling loot order"};
                     _weaponHolder setVariable ["OT_looterReserved", false, false];
-                    breakOut "looting script";
+                    break;
                 };
 
                 // Looter has reached the item pile. Its contents may not fit in the looter's
@@ -176,7 +175,7 @@ private _target = _sortedTargets # 0;
                 if ((!alive _looter) || (!alive _target) || (_timeout < time)) then {
                     if (alive _looter) then {_looter globalChat format ["Can't get back to the %1, cancelling loot order", (typeOf _target) call OT_fnc_vehicleGetName]};
                     _weaponHolder setVariable ["OT_looterReserved", false, false];
-                    breakOut "looting script";
+                    break;
                 };
                 if (isNull _weaponHolder) then {
                     _looter globalChat "Item pile has vanished, skipping";
@@ -187,7 +186,7 @@ private _target = _sortedTargets # 0;
                 if !([_weaponHolder, _target] call OT_fnc_canDumpContainer) then {
                     _looter globalChat "This vehicle is full, cancelling loot order";
                     _weaponHolder setVariable ["OT_looterReserved", false, false];
-                    breakOut "looting script";
+                    break;
                 };
 
                 [_weaponHolder, _target] call OT_fnc_dumpContainer;
