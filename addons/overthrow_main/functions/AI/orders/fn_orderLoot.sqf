@@ -20,14 +20,15 @@ private _target = _sortedTargets # 0;
         scopeName "looting script";
 		params ["_looter", "_target"];
 
-        _looter setBehaviour "SAFE";
-        if (!isNull objectParent _looter) then {
-            doGetOut _looter;
-        };
-
         private _range = 100;
 
         _looter globalChat format["Looting bodies and item piles within %1m into the %2", _range, (typeOf _target) call OT_fnc_vehicleGetName];
+
+        _looter setBehaviour "SAFE";
+        if (!isNull objectParent _looter) then {
+            doGetOut _looter;
+            waitUntil {sleep 1; (isNull objectParent _looter) || (!alive _looter)};
+        };
 
         _looter doMove ASLtoAGL (getPosASL _target);
 
