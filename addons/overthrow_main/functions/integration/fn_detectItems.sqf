@@ -103,7 +103,7 @@ private _getprice = {
     {
         _x params ["_category","_types"];
         {
-            if((_cls find _x > -1) || (_name find _x > -1) || (_desc find _x > -1)) exitWith {
+            if(_x in _cls || _x in _name || _x in _desc) exitWith {
                 [_cls,_category] call _categorize;
                 _categorized = true;
                 if(_category != "General") then {

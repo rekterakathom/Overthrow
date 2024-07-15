@@ -523,7 +523,7 @@ OT_allBLURifleMagazines = [];
 	private _m = getNumber(_x >> "mass");
 	private _ignore = getNumber(_x >> "ot_shopignore");
 	if(_ignore != 1) then {
-		if((_name find "Balaclava_TI_") > -1) then {
+		if("Balaclava_TI_" in _name) then {
 			_m = _m * 2;
 		};
 
@@ -536,10 +536,10 @@ OT_allBLURifleMagazines = [];
 			params ["_name","_title"];
 			if(_name == "None") exitWith {};
 			if(_name == "G_Goggles_VR") exitWith {};
-			if((_title find "Tactical") > -1 || (_title find "Diving") > -1 || (_title find "Goggles") > -1) exitWith {
+			if("Tactical" in _title || "Diving" in _title || "Goggles" in _title) exitWith {
 				OT_allGoggles pushback _name;
 			};
-			if((_title find "Balaclava") > -1 || (_title find "Bandana") > -1) exitWith {
+			if("Balaclava" in _title || "Bandana" in _title) exitWith {
 				OT_allFacewear pushback _name;
 			};
 			OT_allGlasses pushback _name;
@@ -583,7 +583,7 @@ OT_allBLURifleMagazines = [];
 								_itemType = ([_cls] call BIS_fnc_itemType) select 1;
 								if(_itemType isEqualTo "MachineGun") exitWith {OT_allBLUMachineGuns pushBackUnique _base};
 								if((_this select [0,7]) == "srifle_" || (_this isKindOf ["Rifle_Long_Base_F", _cfgWeapons])) exitWith {OT_allBLUSniperRifles pushBackUnique _base};
-								if((_this find "_GL_") > -1) exitWith {OT_allBLUGLRifles pushBackUnique _base};
+								if("_GL_" in _this) exitWith {OT_allBLUGLRifles pushBackUnique _base};
 								private _events = "" configClasses (_cfgWeapons >> _base >> "Eventhandlers");
 								_add = true;
 								{
@@ -671,7 +671,7 @@ private _caliberRegex = "(\d*\.\d+)\s*x\s*(\d+)|(\d+)\.(\d+)|\.(\d+)|(\d+)x(\d+)
 
 	private _muzzles = getArray (_cfgWeapons >> _name >> "muzzles");
 	{
-		if((_x find "EGLM") > -1) then {
+		if("EGLM" in _x) then {
 			_haslauncher = true;
 		};
 	}foreach(_muzzles);
@@ -816,7 +816,7 @@ OT_allLegalClothing = [];
 	if(_name isKindOf ["Default",configFile >> "CfgMagazines"] && (_name != "NLAW_F") && !(_name isKindOf ["VehicleMagazine",configFile >> "CfgMagazines"])) then {
 		private _cost = round(_m * 4);
 		private _desc = getText(_x >> "descriptionShort");
-		if((_desc find ".408") > -1) then {
+		if(".408" in _desc) then {
 			_cost = _cost * 4;
 		};
 		private _exp = false;
@@ -825,15 +825,15 @@ OT_allLegalClothing = [];
 		if(getNumber(_x >> "ace_explosives_Placeable") == 1) then {
 			_exp = true;
 		};
-		if((_desc find "Smoke") > -1) then {
+		if("Smoke" in _desc) then {
 			_cost = round(_m * 0.5);
 		}else{
-			if((_desc find "Grenade") > -1) then {
+			if("Grenade" in _desc) then {
 				_cost = round(_m * 2);
 				_exp = true;
 			};
 		};
-		if((_desc find "Flare") > -1 || (_desc find "flare") > -1) then {
+		if("Flare" in _desc || "flare" in _desc) then {
 			_cost = round(_m * 0.6);
 			_exp = false;
 		};

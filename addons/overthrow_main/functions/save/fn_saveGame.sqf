@@ -138,15 +138,7 @@ private _vehicles = (_tocheck) apply {
 		_s pushback ["money",_x getVariable ["money",0]];
 		_s pushback ["password",_x getVariable ["password",""]];
 	};
-	private _simCheck = if (dynamicSimulationEnabled _x) then {
-		true
-	}else{
-		if (simulationEnabled _x) then {
-			true
-		}else{
-			false
-		};
-	};
+	private _simCheck = dynamicSimulationEnabled _x || {simulationEnabled _x};
 	private _params = [
 /* 0 */		_type,
 /* 1 */		[getPosWorld _x,_simCheck, 1],		// 1 stands for the new posWorld format

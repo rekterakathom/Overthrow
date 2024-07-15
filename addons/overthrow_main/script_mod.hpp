@@ -22,8 +22,6 @@
  *     @see https://github.com/acemod/ACE3/blob/master/LICENSE
  */
 
-// these settings work with CBA_A3 common macros
-
 #define MOD_NAME Overthrow
 
 #define PREFIX overthrow_main
@@ -32,21 +30,15 @@
 
 #include "script_version.hpp"
 
-#define VERSION MAJOR.MINOR.PATCHLVL.BUILD
-
+#define VERSION MAJOR.MINOR
+#define VERSION_STR MAJOR.MINOR.PATCHLVL.BUILD
 #define VERSION_AR MAJOR,MINOR,PATCHLVL,BUILD
 
 // MINIMAL required ARMA version for the addon
-#define REQUIRED_VERSION 1.70
+#define REQUIRED_VERSION 2.10
 
 // MINIMAL required CBA_A3 version for the addon
-#define REQUIRED_CBA_VERSION {3,3,0}
+#define REQUIRED_CBA_VERSION {3,15,8}
 
 // MINIMAL required ACE3 version for the addon
-#define REQUIRED_ACE_VERSION {3,9,1}
-
-#define COMPONENT_NAME QUOTE(MOD_NAME - VERSION)
-
-#ifndef VERSION_CONFIG
-    #define VERSION_CONFIG version = VERSION; versionStr = QUOTE(VERSION); versionAr[] = {VERSION_AR}
-#endif
+#define REQUIRED_ACE_VERSION {3,15,1}

@@ -1,12 +1,12 @@
-#include "script_mod.hpp"
+#include "script_component.hpp"
 #include "headers\config_macros.hpp"
 
 class CfgPatches
 {
 	class OT_Overthrow_Main
 	{
-		author="ARMAzac";
-		name=COMPONENT_NAME;
+		author=QUOTE(MOD_AUTHOR);
+		name=QUOTE(MOD_NAME - VERSION);
 		url="https://steamcommunity.com/sharedfiles/filedetails/?id=774201744";
 		requiredAddons[]=
 		{
@@ -28,8 +28,36 @@ class CfgPatches
 		};
 		requiredVersion=REQUIRED_VERSION;
         VERSION_CONFIG;
-		units[] = {"OT_GanjaItem","OT_BlowItem","OT_I_Truck_recovery"};
-		weapons[] = {"OT_Ganja","OT_Blow"};
+		units[] = {
+			"OT_GanjaItem",
+			"OT_BlowItem",
+			"OT_I_Truck_recovery",
+			"B_Gen_Soldier_Heavy_F",
+			"B_Gen_Commander_Heavy_F",
+			"B_Gen_Medic_Heavy_F",
+			"B_W_Recon_Exp_F",
+			"B_W_Recon_JTAC_F",
+			"B_W_Recon_M_F",
+			"B_W_Recon_Medic_F",
+			"B_W_Recon_LAT_F",
+			"B_W_Recon_TL_F",
+			"OT_Flag_Malden_F"
+		};
+		weapons[] = {
+			"OT_Ganja",
+			"OT_Blow",
+			"OT_Wood",
+			"OT_Lumber",
+			"OT_Steel",
+			"OT_Plastic",
+			"OT_Sugarcane",
+			"OT_Sugar",
+			"OT_Grapes",
+			"OT_Wine",
+			"OT_Olives",
+			"OT_Fertilizer",
+			"OT_ammo50cal"
+		};
 	};
 };
 
@@ -43,7 +71,7 @@ class CfgMainMenuSpotlight
 		video = "\a3\Ui_f\Video\spotlight_1_Apex.ogv"; // Video played on mouse hover
 		// First activate "multiplayer" control in main display, then activate "host server" control in "multiplayer" display
 		action = "ctrlactivate ((ctrlparent (_this select 0)) displayctrl 105); ctrlactivate (findDisplay 8 displayctrl 167);";
-		actionText = $STR_A3_RscDisplayMain_Spotlight_Play; // Text displayed in top left corner of on-hover white frame
+		actionText = "$STR_A3_RscDisplayMain_Spotlight_Play"; // Text displayed in top left corner of on-hover white frame
 		condition = "true"; // Condition for showing the spotlight
 	};
 	class AoW_Showcase_Future
