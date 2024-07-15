@@ -329,7 +329,7 @@ private _allVehs = "
 private _mostExpensive = 0;
 {
 	private _cls = configName _x;
-	private _clsConfig = _cfgVehicles >> _cls;
+	private _clsConfig = _x;
 	private _cost = round(getNumber (_clsConfig >> "armor") + (getNumber (_clsConfig >> "enginePower") * 2));
 	_cost = _cost + round(getNumber (_clsConfig >> "maximumLoad") * 0.1);
 
@@ -353,12 +353,11 @@ private _mostExpensive = 0;
 
 //Determine vehicle threats
 _allVehs = "
-	( getNumber ( _x >> ""scope"" ) > 0
+	( getNumber ( _x >> 'scope' ) isEqualTo 2
 	&&
-	{ (getArray ( _x >> ""threat"" ) select 0) > 0}
+	{ (getArray ( _x >> 'threat' ) # 0) > 0}
 	&&
-	{ (getText ( _x >> ""vehicleClass"" ) isEqualTo ""Car"") or
-	 (getText ( _x >> ""vehicleClass"" ) isEqualTo ""Armored"")})
+	{ toLowerANSI getText ( _x >> 'vehicleClass' ) in ['car', 'armored']})
 
 " configClasses ( _cfgVehicles );
 
@@ -367,19 +366,18 @@ _allVehs = "
 }foreach(_allVehs);
 
 private _allHelis = "
-    ( getNumber ( _x >> ""scope"" ) > 1
+    ( getNumber ( _x >> 'scope' ) isEqualTo 2
     &&
-	{ (getArray ( _x >> ""threat"" ) select 0) < 0.5}
+	{ (getArray ( _x >> 'threat' ) select 0) < 0.5}
 	&&
-    { getText ( _x >> ""vehicleClass"" ) isEqualTo ""Air""}
+    { toLowerANSI getText ( _x >> 'vehicleClass' ) isEqualTo 'air'}
 	&&
-    { (getText ( _x >> ""faction"" ) isEqualTo ""CIV_F"") or
-     (getText ( _x >> ""faction"" ) isEqualTo ""IND_F"")})
+    { toLowerANSI getText ( _x >> 'faction' ) in ['civ_f', 'ind_f'] })
 " configClasses ( _cfgVehicles );
 
 {
 	private _cls = configName _x;
-	private _clsConfig = _cfgVehicles >> _cls;
+	private _clsConfig = _x;
 	private _multiply = 3;
 	if(_cls isKindOf "Plane") then {_multiply = 6};
 	private _cost = (getNumber (_clsConfig >> "armor") + getNumber (_clsConfig >> "enginePower")) * _multiply;
@@ -403,17 +401,17 @@ private _allHelis = "
 
 //Determine aircraft threats
 _allHelis = "
-    ( getNumber ( _x >> ""scope"" ) > 0
+    ( getNumber ( _x >> 'scope' ) isEqualTo 2
     &&
-	{ (getArray ( _x >> ""threat"" ) select 0) >= 0.5}
+	{ (getArray ( _x >> 'threat' ) select 0) >= 0.5}
 	&&
-    { getText ( _x >> ""vehicleClass"" ) isEqualTo ""Air""})
+    { toLowerANSI getText ( _x >> 'vehicleClass' ) isEqualTo 'air'})
 " configClasses ( _cfgVehicles );
 
 {
 	private _cls = configName _x;
-	private _clsConfig = _cfgVehicles >> _cls;
-	private _numturrets = count("true" configClasses(_clsConfig >> "Turrets"));
+	// private _clsConfig = _x;
+	// private _numturrets = count("true" configClasses(_clsConfig >> "Turrets"));
 
 	if(_cls isKindOf "Plane") then {
 		OT_allPlaneThreats pushback _cls;
@@ -467,19 +465,19 @@ private _allHelmets = [];
 _filteredWeaponConfigs = nil;
 
 private _allAmmo = "
-    ( getNumber ( _x >> ""scope"" ) isEqualTo 2 )
+    ( getNumber ( _x >> 'scope' ) isEqualTo 2 )
 " configClasses ( configFile >> "cfgMagazines" );
 
 private _allVehicles = "
-    ( getNumber ( _x >> ""scope"" ) > 0 )
+    ( getNumber ( _x >> 'scope' ) > 0 )
 " configClasses ( _cfgVehicles );
 
 private _allFactions = "
-    ( getNumber ( _x >> ""side"" ) < 3 )
+    ( getNumber ( _x >> 'side' ) < 3 )
 " configClasses ( configFile >> "cfgFactionClasses" );
 
 private _allGlasses = "
-    ( getNumber ( _x >> ""scope"" ) isEqualTo 2 )
+    ( getNumber ( _x >> 'scope' ) isEqualTo 2 )
 " configClasses ( configFile >> "CfgGlasses" );
 
 OT_allFactions = [];
@@ -554,9 +552,9 @@ OT_allBLURifleMagazines = [];
 
 {
 	private _name = configName _x;
-	private _title = getText (configFile >> "cfgFactionClasses" >> _name >> "displayName");
-	private _side = getNumber (configFile >> "cfgFactionClasses" >> _name >> "side");
-	private _flag = getText (configFile >> "cfgFactionClasses" >> _name >> "flag");
+	private _title = getText (_x >> "displayName");
+	private _side = getNumber (_x >> "side");
+	private _flag = getText (_x >> "flag");
 	private _numblueprints = 0;
 
 	//736
@@ -604,7 +602,7 @@ OT_allBLURifleMagazines = [];
 					};
 					//Get ammo
 					{
-						if ((!(_x in _blacklist) || _x in OT_allExplosives) && (getNumber (configFile >> "CfgMagazines" >> _x >> "scope") isEqualTo 2)) then {
+						if ((getNumber (configFile >> "CfgMagazines" >> _x >> "scope") isEqualTo 2) && {!(_x in _blacklist) || _x in OT_allExplosives}) then {
 							_weapons pushbackUnique _x
 						};
 					}foreach(getArray(_cfgWeapons >> _base >> "magazines"));
@@ -639,10 +637,9 @@ OT_allBLURifleMagazines = [];
 	};
 }foreach(_allFactions);
 
+private _caliberRegex = "(\d*\.\d+)\s*x\s*(\d+)|(\d+)\.(\d+)|\.(\d+)|(\d+)x(\d+)|(\d+)\s*GA/i";
 {
-	private _name = configName _x;
-	private _caliberRegex = "(\d*\.\d+)\s*x\s*(\d+)|(\d+)\.(\d+)|\.(\d+)|(\d+)x(\d+)|(\d+)\s*GA/i";
-	_name = [_name] call BIS_fnc_baseWeapon;
+	private _name = [configName _x] call BIS_fnc_baseWeapon;
 
 	private _short = getText (_cfgWeapons >> _name >> "descriptionShort");
 
