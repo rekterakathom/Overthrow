@@ -173,14 +173,6 @@ OT_tpl_checkpoint = [] call compileScript ["data\templates\NATOcheckpoint.sqf", 
 	["OT_civilian_cleanup_crew", "time > OT_cleanup_civilian_loop","
 		OT_cleanup_civilian_loop = time + (5*60);
 		private _totalcivs = {!captive _x} count (units civilian);
-		{
-			if(_x getVariable ['OT_Looted',false]) then {
-				private _stock = _x call OT_fnc_unitStock;
-				if((count _stock) isEqualTo 0) then {
-					[_x] call OT_fnc_cleanupUnit;
-				};
-			};
-		}forEach(alldeadmen);
 		if(_totalcivs < 50) exitWith {};
 		{
 			if (!(isPlayer _x) && !(_x getVariable ['shopcheck',false]) && { ({side _x isEqualTo civilian} count (_x nearEntities ['CAManBase',150])) > round(150*OT_spawnCivPercentage) } ) then {

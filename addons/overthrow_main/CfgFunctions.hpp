@@ -429,6 +429,12 @@ class CfgFunctions
 			class vehicleGetName {};
 			class vehicleGetPic {};
 			class getSearchStock {};
+			class dumpContainer {};
+			class dumpUnitLoadout {};
+			class dumpWeapon {};
+			class dumpItem {};
+			class canDumpUnitLoadout {};
+			class canDumpContainer {};
 		};
 
 		/*
