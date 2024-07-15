@@ -1,19 +1,14 @@
 
-# Overthrow: Community Edition
+# ✊ Overthrow: Community Edition
 **The work on Overthrow continues!**
 
-Overthrow: Community Edition is a continuation of the Overthrow Plus project by Nifnat: https://github.com/Nifnat/Overthrow
+Overthrow: Community Edition is a continuation of the Overthrow Plus project by **Nifnat**: https://github.com/Nifnat/Overthrow
 
 The goal of the project is to update the Overthrow codebase to allow for easier modification and enhanced performance, while also adding new features, trying to stay faithful to the original vision of Overthrow.
 
-**The goal is to have all non-gameplay changing performance improvements and security updates be accessible to all Overthrow developers in the perf branch, and maybe have them included in Overthrow Plus as well.**
-
 ![image](https://raw.githubusercontent.com/rekterakathom/Overthrow/master/addons/overthrow_main/campaign/OTCE-splash.jpg)
 
-# Overthrow
-A dynamic and persistent revolution campaign mod for ARMA 3 Apex
-
-# Current Features
+# 💡 Current Features
 * GTA-inspired wanted/stealth system
 * Dynamic political system with regional stability affecting presence of 2 different opposing factions to the player (BLUFOR and criminal elements)
 * Buy and sell just about in any-game item/vehicle/weapon for currency at local shops and gun dealers
@@ -26,16 +21,15 @@ A dynamic and persistent revolution campaign mod for ARMA 3 Apex
 * Recruit civilians simply just to loot for you
 * Designed to work in both multiplayer and solo on a LAN server
 
-# Required DLC
-* APEX
+# 💰 Required DLC
+* None, but Apex **highly** recommended (mod has been designed with Apex in mind)
 
-# Included Addons
-* VCOM AI by genesis92x https://forums.bistudio.com/topic/166374-vcom-ai-v20-ai-overhaul/
-* Advanced Towing by Duda http://www.armaholic.com/page.php?id=30575
-
-# Required Addons
+# 🔍 Required Addons
 * ACE3 (Fully integrated) [(Steam Workshop)](https://steamcommunity.com/sharedfiles/filedetails/?id=463939057)
 
-# To install
-* Overthrow is available on the [Steam Workshop](http://steamcommunity.com/sharedfiles/filedetails/?id=2824471652)
-* or from [Github](https://github.com/ArmaOverthrow/Overthrow.Tanoa/releases/latest)
+# 🔨 To install
+* Overthrow CE is available on the [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=2824471652) (Recommended way to play)
+* or from [Github](https://github.com/rekterakathom/Overthrow/releases) (May not always be up-to-date with Steam Workshop)
+
+# 💬 Join the Official Overthrow Discord Server!
+## https://discord.com/invite/R3ghxge
