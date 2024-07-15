@@ -30,6 +30,12 @@ class CfgVehicles {
 	class ThingX;
 	class CargoNet_01_ammo_base_F;
 
+    // Kamaz MRL fix, can be removed if BI fixes this - https://feedback.bistudio.com/T138393
+    class Truck_02_MRL_base_F;
+    class I_Truck_02_MRL_F : Truck_02_MRL_base_F {
+        threat[] = {0.8, 0.6, 0}; 
+    };
+
 	//Overthrow Vehicles
 	class I_Truck_02_box_F;
 	class OT_I_Truck_recovery : I_Truck_02_box_F {
