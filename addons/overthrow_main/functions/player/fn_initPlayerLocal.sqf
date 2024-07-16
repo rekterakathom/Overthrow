@@ -447,6 +447,15 @@ player call OT_fnc_mapSystem;
     };
 }foreach(server getVariable ["bases",[]]);
 
+// ZEN integration
+if (isClass (configFile >> "CfgPatches" >> "zen_common")) then {
+	systemChat "Zeus Enhanced has been detected, Overthrow specific functionality has been added to Zeus";
+	["Overthrow", "Change Town Stability", {_this call OT_fnc_zenSetStability}] call zen_custom_modules_fnc_register;
+	["Overthrow", "Change Town Support", {_this call OT_fnc_zenChangeSupport}] call zen_custom_modules_fnc_register;
+} else {
+	systemChat "Zeus Enhanced not detected, consider adding it to your modlist for Overthrow specific functionality";
+};
+
 [] call OT_fnc_setupPlayer;
 _introcam cameraEffect ["Terminate", "BACK" ];
 camDestroy _introcam;
