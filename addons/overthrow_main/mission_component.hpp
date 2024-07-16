@@ -154,3 +154,15 @@ class Params {
         default = 1;
     };
 };
+
+// ZEN integration
+// This will do nothing if ZEN is loaded
+class zen_context_menu_actions {
+    class ot_setmoney {
+        displayName = "Overthrow: Set Money";
+        icon = "\overthrow_main\ui\markers\shop-General.paa";
+        statement = "[_hoveredEntity] call OT_fnc_zenSetMoney";
+        condition = "_hoveredEntity isKindOf 'CAManBase' && {isPlayer _hoveredEntity}";
+        priority = 50;
+    };  
+};
