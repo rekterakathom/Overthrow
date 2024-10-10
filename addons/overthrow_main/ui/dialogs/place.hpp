@@ -86,7 +86,7 @@ class OT_dialog_input
 		{
 			idc = 1400;
 
-			onKeyDown = "_key = _this select 1;_name = ctrltext 1400;if(_key == 28 && _name != """") then {[] call inputHandler;closeDialog 0;}";
+			onKeyDown = "_key = _this select 1;_name = ctrltext 1400;if(_key == 28 && _name != """") then {[] call OT_inputHandler;closeDialog 0;}";
 			text = ""; //--- ToDo: Localize;
 			x = "0.37625 * safezoneW + safezoneX";
 			y = "0.412 * safezoneH + safezoneY";
@@ -107,7 +107,7 @@ class OT_dialog_input
 		class RscButton_1600: RscOverthrowButton
 		{
 			idc = 1600;
-			action = "_this call OT_inputHandler;closeDialog 0;";
+			onButtonClick = "_this call OT_inputHandler;closeDialog 0;";
 			text = "OK"; //--- ToDo: Localize;
 			x = "0.577344 * safezoneW + safezoneX";
 			y = "0.478 * safezoneH + safezoneY";
