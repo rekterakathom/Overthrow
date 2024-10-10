@@ -127,5 +127,5 @@ if(count _cost > 0) then {
 
 ((findDisplay 8000) displayCtrl 1100) ctrlSetStructuredText parseText format["
 	<t align='center' size='0.9'>%1</t><br/>
-	%3
-",_txt,_desc,_recipe];
+	%2
+",_txt,_recipe];

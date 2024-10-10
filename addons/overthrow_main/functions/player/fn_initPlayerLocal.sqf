@@ -2,7 +2,7 @@ if (!hasInterface) exitWith {};
 
 if !(isClass (configFile >> "CfgPatches" >> "OT_Overthrow_Main")) exitWith {
 	[
-        format ["<t size='0.5' color='#000000'>Overthrow addon not detected, you must add @Overthrow to your -mod commandline</t>",_this],
+        format ["<t size='0.5' color='#000000'>Overthrow addon not detected, you must add @Overthrow to your -mod commandline</t>"],
         0,
         0.2,
         30,

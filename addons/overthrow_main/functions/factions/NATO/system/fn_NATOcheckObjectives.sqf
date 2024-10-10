@@ -23,7 +23,7 @@ private _abandoned = server getVariable ["NATOabandoned", []];
 
 		// Check if an objective is under attack
 		if ([_pos] call OT_fnc_inSpawnDistance) then {
-			private _numGarrison = server getVariable [format ["garrison%1"], 0];
+			private _numGarrison = server getVariable [format ["garrison%1",_name], 0];
 			private _numMil = {side _x isEqualTo west} count (_pos nearEntities ["CAManBase",500]);
 			private _numRes = {side _x isEqualTo resistance || captive _x} count (_pos nearEntities ["CAManBase",100]);
 

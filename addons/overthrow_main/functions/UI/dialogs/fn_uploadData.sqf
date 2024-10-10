@@ -22,5 +22,5 @@ _editData = [_editData,",any]",",nil]"] call OT_fnc_findReplace;
 _editBox ctrlSetText _editData;
 _editBox ctrlSetTooltip "Copy & Paste this data to load from a string.";
 
-_legalText ctrlSetStructuredText parseText format["<t font='PuristaMedium'>Use the data above to share your save or externally backup your mission.<br/>To load a mission from this data copy and paste it into the text box provided when selecting 'Load Game' in the mission menu. This data does contain your Steam ID and can be used to identify you.</t>",getPlayerUID player];
+_legalText ctrlSetStructuredText parseText format["<t font='PuristaMedium'>Use the data above to share your save or externally backup your mission.<br/>To load a mission from this data copy and paste it into the text box provided when selecting 'Load Game' in the mission menu. This data does contain your Steam ID and can be used to identify you.</t>"];
 [_legalText] call BIS_fnc_ctrlFitToTextHeight;

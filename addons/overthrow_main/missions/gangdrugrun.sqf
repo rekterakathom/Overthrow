@@ -90,8 +90,8 @@ private _title = format["Deliver %2 x Ganja for %1",_gangname,_numitems];
                 _reward,
                 format[
                     "Delivered %1 x Ganja",
-                    _numitems,
-                    _gang select 8
+                    _numitems
+                    //,_gang select 8
                 ]
             ] remoteExec ["OT_fnc_money",_player,false];
             [_player,_gangid,5] call OT_fnc_gangRep;

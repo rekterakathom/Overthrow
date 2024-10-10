@@ -34,15 +34,12 @@ if(!dialog) then {
 					waitUntil {uiSleep 1; visibleMap};
 
 					hint format[
-						"Holding RMB will pan the map, zoom with the scrollwheel. When you are finished exploring the map, close it with the Esc key.",
-						"Action" call OT_fnc_getAssignedKey
+						"Holding RMB will pan the map, zoom with the scrollwheel. When you are finished exploring the map, close it with the Esc key."
 					];
 					sleep 3;
 					[format [
 						"<t align='left'><t size='0.7' color='#000000'>Stability</t><br/>
-						<t size='0.6' color='#000000'>Yellow areas indicate towns where stability is lowest.Blue icons indicate known NATO installations.</t><br/><br/>
-						<t size='0.5' color='#101010'>%3</t>",
-						OT_tutorial_backstoryText
+						<t size='0.6' color='#000000'>Yellow areas indicate towns where stability is lowest.Blue icons indicate known NATO installations.</t><br/><br/>"
 					], -0.5, 0.5, 240, 1, 0, 2] call OT_fnc_dynamicText;
 
 					waitUntil {uiSleep 1; !visibleMap};
@@ -192,8 +189,7 @@ if(!dialog) then {
 											"No problem! See you around."
 										],
 										{
-											hint format["Wrecked vehicles can be salvaged with a toolkit, there should be one in your ammo crate at home. Shops on your map are marked with a circle and icon representing what they buy/sell. Towns with lower stability and population will pay higher prices for all items.",
-												"Gear" call OT_fnc_getAssignedKey
+											hint format["Wrecked vehicles can be salvaged with a toolkit, there should be one in your ammo crate at home. Shops on your map are marked with a circle and icon representing what they buy/sell. Towns with lower stability and population will pay higher prices for all items."
 											];
 											[{
 												playSound "3DEN_notificationDefault";

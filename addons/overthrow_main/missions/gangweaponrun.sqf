@@ -87,8 +87,8 @@ private _title = format["Deliver %2 for %1",_gangname,_gunname];
                 _reward,
                 format[
                     "Delivered %1",
-                    _guncls call OT_fnc_weaponGetName,
-                    _gang select 8
+                    _guncls call OT_fnc_weaponGetName
+                    //,_gang select 8
                 ]
             ] remoteExec ["OT_fnc_money",_player,false];
             [_player,_gangid,5] call OT_fnc_gangRep;

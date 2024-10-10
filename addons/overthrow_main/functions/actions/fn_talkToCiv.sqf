@@ -156,7 +156,7 @@ if (_canGangJob) then {
 										[
 											player,
 											_civ,
-											["What if I gave you $5000?",format["Yeah, OK.",_name]],
+											["What if I gave you $5000?",format["Yeah, OK."]],
 											{
 												params ["_civ","_gangid"];
 												[_civ,_gangid,player] call OT_fnc_gangJoinResistance;
@@ -332,7 +332,7 @@ if (_canTute) then {
 						server setVariable ["revealedGangs",_revealed,true];
 					};
 				}else{
-					_talk pushback format["I do, but I doubt they'd like it if I told you where they were",_name];
+					_talk pushback format["I do, but I doubt they'd like it if I told you where they were"];
 					_code = {
 						params ["_town","_gangid","_gang","_name"];
 						_gangoptions = [];

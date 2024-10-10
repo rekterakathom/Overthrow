@@ -263,7 +263,7 @@ if(_b isEqualType []) then {
 
 					_buildingTxt = format["
 						<t align='left' size='0.8'>Barracks</t><br/>
-					",_ownername];
+					"];
 				};
 			};
 		};

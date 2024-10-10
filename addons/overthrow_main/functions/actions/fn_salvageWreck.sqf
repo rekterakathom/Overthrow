@@ -72,7 +72,7 @@ private _doSalvage = {
     };
     if(_plastic > 0 && ((_veh isKindOf "Truck_F" || _veh isKindOf "ReammoBox_F") || (_veh canAdd "OT_Plastic"))) then {
         _veh addItemCargoGlobal ["OT_Plastic", _plastic];
-        format["Salvaged: %1 x Steel, %1 x Plastic",_done,_plastic] call OT_fnc_notifyMinor;
+        format["Salvaged: %1 x Steel, %2 x Plastic",_done,_plastic] call OT_fnc_notifyMinor;
     }else{
         format["Salvaged: %1 x Steel",_done] call OT_fnc_notifyMinor;
     };

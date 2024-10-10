@@ -20,5 +20,5 @@ _legalText = ((findDisplay 49558) displayCtrl 5);
 
 _editBox ctrlSetText _str;
 
-_legalText ctrlSetStructuredText parseText format["<t font='PuristaMedium'>For use in /overthrow_main/data/prices.sqf. Will only show items that are not already in the file, so you can append mod items etc.</t>",getPlayerUID player];
+_legalText ctrlSetStructuredText parseText format["<t font='PuristaMedium'>For use in /overthrow_main/data/prices.sqf. Will only show items that are not already in the file, so you can append mod items etc.</t>"];
 [_legalText] call BIS_fnc_ctrlFitToTextHeight;
