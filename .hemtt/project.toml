@@ -18,3 +18,6 @@ reuse_private_key = false
 key_name = "overthrow-community-{{version}}"
 authority = "overthrow-community-{{version}}"
 sig_version = 3
+
+[hemtt.release]
+folder = "Overthrow-Community-Edition"
