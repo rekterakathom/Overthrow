@@ -15,7 +15,7 @@
 
 3. Open the command prompt in the Overthrow directory (P:/Overthrow)
 
-4. Run 'hemtt build --release'
+4. Run 'hemtt release'
 
 5. The built addon can now be found in P:/Overthrow/Releases
 
