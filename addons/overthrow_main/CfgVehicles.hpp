@@ -200,79 +200,79 @@ class CfgVehicles {
     class Land_Workshop_03_F;
     class Land_Slum_01_F: House_Small_F {
         ot_isPlayerHouse = 1;
-        ot_template = '[["Land_MetalCase_01_small_F", [-0.746442,-0.078261,0.594079],0.418328,1,0,[0,0],"","",true,false],["Land_CampingChair_V2_F",[1.22725,1.2502,0.594079],199.447,1,0,[0,0],"","",true,false],["Mapboard_tanoa_F",[-0.340959,1.65805,0.59408],327.71,1,0,[0,0],"","",true,false],["OfficeTable_01_new_F",[1.54124,1.92773,0.59408],0,1,0,[0,0],"","",true,false],["Land_Workbench_01_F",[2.70912,-1.90632,0.594079],180,1,0,[0,0],"","",true,false],["B_CargoNet_01_ammo_F",[4.56925,1.31465,0.59408],0,1,0,[0,0],"","",true,false]]';
+        ot_template = "[['Land_MetalCase_01_small_F', [-0.746442,-0.078261,0.594079],0.418328,1,0,[0,0],'','',true,false],['Land_CampingChair_V2_F',[1.22725,1.2502,0.594079],199.447,1,0,[0,0],'','',true,false],['Mapboard_tanoa_F',[-0.340959,1.65805,0.59408],327.71,1,0,[0,0],'','',true,false],['OfficeTable_01_new_F',[1.54124,1.92773,0.59408],0,1,0,[0,0],'','',true,false],['Land_Workbench_01_F',[2.70912,-1.90632,0.594079],180,1,0,[0,0],'','',true,false],['B_CargoNet_01_ammo_F',[4.56925,1.31465,0.59408],0,1,0,[0,0],'','',true,false]]";
     };
     class Land_Slum_02_F: House_Small_F {
         ot_isPlayerHouse = 1;
-        ot_template = '[["Land_MetalCase_01_small_F", [-2.58489,-0.659296,0.559122],0.418328,1,0,[0,0],"","",true,false],["Land_Workbench_01_F",[2.247,2.4636,0.559122],90,1,0,[0,-0],"","",true,false],["Land_CampingChair_V2_F",[-1.65537,3.79657,0.559121],199.447,1,0,[0,0],"","",true,false],["B_CargoNet_01_ammo_F",[-1.74631,-3.67237,0.559122],0,1,0,[0,0],"","",true,false],["Mapboard_tanoa_F",[1.75104,-3.70061,0.559122],155.874,1,0,[0,-0],"","",true,false],["OfficeTable_01_new_F",[-1.34138,4.4741,0.559122],0,1,0,[0,0],"","",true,false]]';
+        ot_template = "[['Land_MetalCase_01_small_F', [-2.58489,-0.659296,0.559122],0.418328,1,0,[0,0],'','',true,false],['Land_Workbench_01_F',[2.247,2.4636,0.559122],90,1,0,[0,-0],'','',true,false],['Land_CampingChair_V2_F',[-1.65537,3.79657,0.559121],199.447,1,0,[0,0],'','',true,false],['B_CargoNet_01_ammo_F',[-1.74631,-3.67237,0.559122],0,1,0,[0,0],'','',true,false],['Mapboard_tanoa_F',[1.75104,-3.70061,0.559122],155.874,1,0,[0,-0],'','',true,false],['OfficeTable_01_new_F',[-1.34138,4.4741,0.559122],0,1,0,[0,0],'','',true,false]]";
     };
 	class Land_House_Native_01_F: House_Small_F {
 		ot_isPlayerHouse = 1;
-        ot_template = '[["Land_CampingChair_V2_F", [2.26438,-2.22928,0.2],17.5159,1,0,[0,0],"","",true,false],["OfficeTable_01_new_F",[1.97339,-2.917,0.2],178.069,1,0,[0,-0],"","",true,false],["Land_Workbench_01_F",[-2.34453,2.75383,0.200001],0,1,0,[0,0],"","",true,false],["B_CargoNet_01_ammo_F",[-3.88622,-2.36955,0.200001],0,1,0,[0,0],"","",true,false],["Mapboard_tanoa_F",[4.03968,2.56928,0.200001],32.4555,1,0,[0,0],"","",true,false],["Land_MetalCase_01_small_F",[4.28656,-2.64937,0.2],212.206,1,0,[0,0],"","",true,false]]';
+        ot_template = "[['Land_CampingChair_V2_F', [2.26438,-2.22928,0.2],17.5159,1,0,[0,0],'','',true,false],['OfficeTable_01_new_F',[1.97339,-2.917,0.2],178.069,1,0,[0,-0],'','',true,false],['Land_Workbench_01_F',[-2.34453,2.75383,0.200001],0,1,0,[0,0],'','',true,false],['B_CargoNet_01_ammo_F',[-3.88622,-2.36955,0.200001],0,1,0,[0,0],'','',true,false],['Mapboard_tanoa_F',[4.03968,2.56928,0.200001],32.4555,1,0,[0,0],'','',true,false],['Land_MetalCase_01_small_F',[4.28656,-2.64937,0.2],212.206,1,0,[0,0],'','',true,false]]";
 	};
     class Land_House_Native_02_F: House_Small_F {
         ot_isPlayerHouse = 1;
-        ot_template = '[["Land_CampingChair_V2_F", [0.0907892,-1.587,0.103002],17.5159,1,0,[0,0],"","",true,false],["OfficeTable_01_new_F",[-0.200199,-2.27472,0.103003],178.069,1,0,[0,-0],"","",true,false],["Mapboard_tanoa_F",[1.78568,2.06457,0.103003],32.4555,1,0,[0,0],"","",true,false],["Land_MetalCase_01_small_F",[2.12703,-2.08529,0.103003],212.206,1,0,[0,0],"","",true,false],["Land_Workbench_01_F",[-2.40922,2.34683,0.103003],0,1,0,[0,0],"","",true,false],["B_CargoNet_01_ammo_F",[-3.11908,-1.7698,0.103003],0,1,0,[0,0],"","",true,false]]';
+        ot_template = "[['Land_CampingChair_V2_F', [0.0907892,-1.587,0.103002],17.5159,1,0,[0,0],'','',true,false],['OfficeTable_01_new_F',[-0.200199,-2.27472,0.103003],178.069,1,0,[0,-0],'','',true,false],['Mapboard_tanoa_F',[1.78568,2.06457,0.103003],32.4555,1,0,[0,0],'','',true,false],['Land_MetalCase_01_small_F',[2.12703,-2.08529,0.103003],212.206,1,0,[0,0],'','',true,false],['Land_Workbench_01_F',[-2.40922,2.34683,0.103003],0,1,0,[0,0],'','',true,false],['B_CargoNet_01_ammo_F',[-3.11908,-1.7698,0.103003],0,1,0,[0,0],'','',true,false]]";
     };
 	//Houses (Altis)
 	class Land_i_House_Small_02_V1_F: House_Small_F {
 		ot_isPlayerHouse = 1;
-        ot_template = '[["Land_MetalCase_01_small_F", [1.76559,-2.99125,0.417622],284.311,1,0,[-0.071722,-0.0182958],"","",true,false],["Land_Workbench_01_F",[3.2372,2.27116,0.422988],0,1,0,[0.195835,0],"","",true,false],["Land_CampingChair_V2_F",[4.94837,-2.23044,0.421724],19.8195,1,0,[0.0250966,-0.0696343],"","",true,false],["OfficeTable_01_new_F",[4.62998,-2.90591,0.421724],180.373,1,0,[-0.000481725,0.0740172],"","",true,false],["B_CargoNet_01_ammo_F",[6.60879,-0.956271,0.423864],0,1,0,[0,-0.0740187],"","",true,false],["MapBoard_altis_F",[6.69212,1.92874,0.423972],57.5222,1,0,[0.0624422,-0.039746],"","",true,false]]';
+        ot_template = "[['Land_MetalCase_01_small_F', [1.76559,-2.99125,0.417622],284.311,1,0,[-0.071722,-0.0182958],'','',true,false],['Land_Workbench_01_F',[3.2372,2.27116,0.422988],0,1,0,[0.195835,0],'','',true,false],['Land_CampingChair_V2_F',[4.94837,-2.23044,0.421724],19.8195,1,0,[0.0250966,-0.0696343],'','',true,false],['OfficeTable_01_new_F',[4.62998,-2.90591,0.421724],180.373,1,0,[-0.000481725,0.0740172],'','',true,false],['B_CargoNet_01_ammo_F',[6.60879,-0.956271,0.423864],0,1,0,[0,-0.0740187],'','',true,false],['MapBoard_altis_F',[6.69212,1.92874,0.423972],57.5222,1,0,[0.0624422,-0.039746],'','',true,false]]";
 	};
 	class Land_i_Stone_Shed_V1_F: House_Small_F {
         ot_isPlayerHouse = 1;
-        ot_template = '[["OfficeTable_01_new_F", [0.161512,-0.0919862,0.26],180.373,1,0,[0,0],"","",true,false],["Land_CampingChair_V2_F",[0.479908,0.583482,0.26],19.8195,1,0,[0,0],"","",true,false],["B_CargoNet_01_ammo_F",[-3.03811,0.542177,0.26],0,1,0,[0,0],"","",true,false],["Land_MetalCase_01_small_F",[0.197573,4.06797,0.26],92.8353,1,0,[0,-0],"","",true,false],["Land_Workbench_01_F",[-2.11435,3.83624,0.26],0,1,0,[0,0],"","",true,false],["MapBoard_altis_F",[2.26796,3.73339,0.26],57.5223,1,0,[0,0],"","",true,false]]';
+        ot_template = "[['OfficeTable_01_new_F', [0.161512,-0.0919862,0.26],180.373,1,0,[0,0],'','',true,false],['Land_CampingChair_V2_F',[0.479908,0.583482,0.26],19.8195,1,0,[0,0],'','',true,false],['B_CargoNet_01_ammo_F',[-3.03811,0.542177,0.26],0,1,0,[0,0],'','',true,false],['Land_MetalCase_01_small_F',[0.197573,4.06797,0.26],92.8353,1,0,[0,-0],'','',true,false],['Land_Workbench_01_F',[-2.11435,3.83624,0.26],0,1,0,[0,0],'','',true,false],['MapBoard_altis_F',[2.26796,3.73339,0.26],57.5223,1,0,[0,0],'','',true,false]]";
     };
 	class Land_Slum_House02_F: House_Small_F {
         ot_isPlayerHouse = 1;
-        ot_template = '[["Land_Workbench_01_F", [-1.36485,0.870917,0],90,1,0,[0,-0],"","",true,false],["Land_MetalCase_01_small_F",[1.28859,-1.0394,0.23],92.8353,1,0,[0,-0],"","",true,false],["OfficeTable_01_new_F",[2.5086,-1.0345,0.23],180.373,1,0,[0,0],"","",true,false],["Land_CampingChair_V2_F",[2.71048,-0.444679,0.23],7.55273,1,0,[0,0],"","",true,false],["B_CargoNet_01_ammo_F",[1.61679,-2.76766,0],0,1,0,[0,0],"","",true,false],["MapBoard_altis_F",[2.48146,2.91809,0.23],41.3345,1,0,[0,0],"","",true,false]]';
+        ot_template = "[['Land_Workbench_01_F', [-1.36485,0.870917,0],90,1,0,[0,-0],'','',true,false],['Land_MetalCase_01_small_F',[1.28859,-1.0394,0.23],92.8353,1,0,[0,-0],'','',true,false],['OfficeTable_01_new_F',[2.5086,-1.0345,0.23],180.373,1,0,[0,0],'','',true,false],['Land_CampingChair_V2_F',[2.71048,-0.444679,0.23],7.55273,1,0,[0,0],'','',true,false],['B_CargoNet_01_ammo_F',[1.61679,-2.76766,0],0,1,0,[0,0],'','',true,false],['MapBoard_altis_F',[2.48146,2.91809,0.23],41.3345,1,0,[0,0],'','',true,false]]";
     };
 
 	//Houses (Malden)
-	class i_House_Small_02_b_base_F : House_Small_f {
+	class i_House_Small_02_b_base_F : House_Small_F {
 		ot_isPlayerHouse = 1;
-        ot_template = '[["Land_Workbench_01_F", [-1.36485,0.870917,0],90,1,0,[0,-0],"","",true,false],["Land_MetalCase_01_small_F",[1.28859,-1.0394,0.23],92.8353,1,0,[0,-0],"","",true,false],["OfficeTable_01_new_F",[2.5086,-1.0345,0.23],180.373,1,0,[0,0],"","",true,false],["Land_CampingChair_V2_F",[2.71048,-0.444679,0.23],7.55273,1,0,[0,0],"","",true,false],["B_CargoNet_01_ammo_F",[1.61679,-2.76766,0],0,1,0,[0,0],"","",true,false],["MapBoard_altis_F",[2.48146,2.91809,0.23],41.3345,1,0,[0,0],"","",true,false]]';
+        ot_template = "[['Land_Workbench_01_F', [-1.36485,0.870917,0],90,1,0,[0,-0],'','',true,false],['Land_MetalCase_01_small_F',[1.28859,-1.0394,0.23],92.8353,1,0,[0,-0],'','',true,false],['OfficeTable_01_new_F',[2.5086,-1.0345,0.23],180.373,1,0,[0,0],'','',true,false],['Land_CampingChair_V2_F',[2.71048,-0.444679,0.23],7.55273,1,0,[0,0],'','',true,false],['B_CargoNet_01_ammo_F',[1.61679,-2.76766,0],0,1,0,[0,0],'','',true,false],['MapBoard_altis_F',[2.48146,2.91809,0.23],41.3345,1,0,[0,0],'','',true,false]]";
 	};
 
 	//Houses (CUP)
 	class Land_House_C_5_EP1: House_Small_F {
 		ot_isPlayerHouse = 1;
-        ot_template = '[["Land_MetalCase_01_small_F",[-0.507421,-0.278264,0.377357],0,1,0,[],"","",true,false], ["B_CargoNet_01_ammo_F",[-1.09897,-1.48947,0.377357],0,1,0,[],"","",true,false], ["Land_Workbench_01_F",[-4.09043,2.20817,0.324941],270,1,0,[],"","",true,false], ["Land_MapBoard_F",[-4.07916,-4.87537,0.325],210,1,0,[],"","",true,false] ]';
+        ot_template = "[['Land_MetalCase_01_small_F',[-0.507421,-0.278264,0.377357],0,1,0,[],'','',true,false], ['B_CargoNet_01_ammo_F',[-1.09897,-1.48947,0.377357],0,1,0,[],'','',true,false], ['Land_Workbench_01_F',[-4.09043,2.20817,0.324941],270,1,0,[],'','',true,false], ['Land_MapBoard_F',[-4.07916,-4.87537,0.325],210,1,0,[],'','',true,false] ]";
 	};
 
     //Houses (Livonia)
     class Land_Workshop_03_grey_F: Land_Workshop_03_F {
         ot_isPlayerHouse = 1;
-        ot_template = '[]';
+        ot_template = "[]";
     };
 
     //Shops (Tanoa)
     class Land_FuelStation_01_shop_F: House_F {
         ot_isShop = 1;
-        ot_template = '[["Land_CashDesk_F",[-0.746313,-1.1316,0.277551],0,1,0,[],"","",true,false]]';
+        ot_template = "[['Land_CashDesk_F',[-0.746313,-1.1316,0.277551],0,1,0,[],'','',true,false]]";
     };
     class Land_Shop_City_02_F: House_F {
         ot_isShop = 1;
-        ot_template = '[["Land_CashDesk_F",[7.16479,-4.60961,0.0704632],0,1,0,[],"","",true,false]]';
+        ot_template = "[['Land_CashDesk_F',[7.16479,-4.60961,0.0704632],0,1,0,[],'','',true,false]]";
     };
     class Land_Shop_Town_01_F: House_F {
         ot_isShop = 1;
-        ot_template = '[["Land_CashDesk_F",[1.46089,-3.41939,0.131084],90,1,0,[],"","",true,false]]';
+        ot_template = "[['Land_CashDesk_F',[1.46089,-3.41939,0.131084],90,1,0,[],'','',true,false]]";
     };
     class Land_Shop_Town_03_F: House_F {
         ot_isShop = 1;
-        ot_template = '[["Land_CashDesk_F",[2.77324,-4.32109,0.141195],0,1,0,[],"","",true,false]]';
+        ot_template = "[['Land_CashDesk_F',[2.77324,-4.32109,0.141195],0,1,0,[],'','',true,false]]";
     };
     class Land_Supermarket_01_F: House_F {
         ot_isShop = 1;
-        ot_template = '[]';
+        ot_template = "[]";
         ot_shopPos = 14;
     };
 
 	//Shops (Altis)
 	class Land_i_Shop_02_V1_F: House_F {
         ot_isShop = 1;
-        ot_template = '[]';
+        ot_template = "[]";
     };
 	class Land_u_Shop_02_V1_F: Land_i_Shop_02_V1_F {
         ot_isShop = 0;
@@ -281,11 +281,11 @@ class CfgVehicles {
 	//Shops (Malden)
 	class i_Shop_02_b_base_f : House_F {
 		ot_isShop = 1;
-        ot_template = '[]';
+        ot_template = "[]";
 	};
 	class Land_i_Shop_02_V3_F: Land_i_Shop_02_V1_F {
         ot_isShop = 1;
-        ot_template = '[]';
+        ot_template = "[]";
     };
 	class Land_u_Shop_02_V3_F: Land_i_Shop_02_V3_F {
         ot_isShop = 0;
@@ -294,23 +294,23 @@ class CfgVehicles {
 	//Shops (CUP)
 	class Land_A_GeneralStore_01: House_F {
         ot_isShop = 1;
-        ot_template = '[["Land_CashDesk_F",[-6.93629,2.99194,0],180.686,1,0,[],"","",true,false]]';
+        ot_template = "[['Land_CashDesk_F',[-6.93629,2.99194,0],180.686,1,0,[],'','',true,false]]";
     };
 
     //Car Dealers (Altis)
 	class Land_CarService_F: House_F {
         ot_isCarDealer = 1;
-        ot_template = '[]';
+        ot_template = "[]";
     };
 
     //Car Dealers (Tanoa)
     class Land_FuelStation_01_workshop_F: House_F {
         ot_isCarDealer = 1;
-        ot_template = '[["Land_CashDesk_F",[2.87972,-3.57524,0.277551],0,1,0,[],"","",true,false]]';
+        ot_template = "[['Land_CashDesk_F',[2.87972,-3.57524,0.277551],0,1,0,[],'','',true,false]]";
     };
     class Land_FuelStation_02_workshop_F: Land_CarService_F {
         ot_isCarDealer = 1;
-        ot_template = '[["Land_CashDesk_F",[2.21226,0.566814,0.53],0,1,0,[],"","",true,false]]';
+        ot_template = "[['Land_CashDesk_F',[2.21226,0.566814,0.53],0,1,0,[],'','',true,false]]";
     };
 
 	//Unlocks uniforms (ace_nouniformrestrictions)
@@ -572,17 +572,17 @@ class CfgVehicles {
 
     // Custom clothing, backpacks etc
     /// Equipment list macros definition ///
-    #define MAG_XX(a,b) class _xx_##a {magazine = a; count = b;}
-    #define WEAP_XX(a,b) class _xx_##a {weapon = a; count = b;}
-    #define ITEM_XX(a,b) class _xx_##a {name = a; count = b;}
+    #define MAG_XX(a,b) class _xx_##a {magazine = #a; count = b;}
+    #define WEAP_XX(a,b) class _xx_##a {weapon = #a; count = b;}
+    #define ITEM_XX(a,b) class _xx_##a {name = #a; count = b;}
 
     // Black backpack for medic unit
     class B_AssaultPack_blk;
     class OT_B_AssaultPack_blk_MEDIC: B_AssaultPack_blk {
         scope = 1;
         class TransportItems {
-            ITEM_XX(FirstAidKit, 5);
-            ITEM_XX(Medikit, 1);
+            ITEM_XX(FirstAidKit,5);
+            ITEM_XX(Medikit,1);
         };
     };
 
@@ -605,31 +605,31 @@ class CfgVehicles {
         // Which backpack the character is wearing.
         backpack = "";
         // Which weapons the character has.
-        weapons[] = {arifle_SPAR_01_blk_ACO_Pointer_F, hgun_P07_blk_F, Throw, Put};
+        weapons[] = {"arifle_SPAR_01_blk_ACO_Pointer_F", "hgun_P07_blk_F", "Throw", "Put"};
         // Which weapons the character respawns with.
-        respawnWeapons[] = {arifle_SPAR_01_blk_ACO_Pointer_F, hgun_P07_blk_F, Throw, Put};
+        respawnWeapons[] = {"arifle_SPAR_01_blk_ACO_Pointer_F", "hgun_P07_blk_F", "Throw", "Put"};
         // Which items the character has.
-        Items[] = {FirstAidKit, FirstAidKit};
+        Items[] = {"FirstAidKit", "FirstAidKit"};
         // Which items the character respawns with.
-        RespawnItems[] = {FirstAidKit, FirstAidKit};
+        RespawnItems[] = {"FirstAidKit", "FirstAidKit"};
         // What ammunition the character has.
-        magazines[] = {MAG_5(30Rnd_556x45_Stanag),MAG_3(16Rnd_9x21_Mag), SmokeShell, SmokeShellGreen, Chemlight_green, Chemlight_green, HandGrenade, ACE_M84};
+        magazines[] = {MAG_5("30Rnd_556x45_Stanag"),MAG_3("16Rnd_9x21_Mag"), "SmokeShell", "SmokeShellGreen", "Chemlight_green", "Chemlight_green", "HandGrenade", "ACE_M84"};
         // What ammunition the character respawns with.
-        respawnMagazines[] = {MAG_5(30Rnd_556x45_Stanag),MAG_3(16Rnd_9x21_Mag), SmokeShell, SmokeShellGreen, Chemlight_green, Chemlight_green, HandGrenade, ACE_M84};
+        respawnMagazines[] = {MAG_5("30Rnd_556x45_Stanag"),MAG_3("16Rnd_9x21_Mag"), "SmokeShell", "SmokeShellGreen", "Chemlight_green", "Chemlight_green", "HandGrenade", "ACE_M84"};
         // Which items the character has.
-        linkedItems[] = {V_PlateCarrier2_blk, H_PASGT_basic_blue_F, G_Balaclava_TI_G_blk_F, ItemMap, ItemCompass, ItemWatch, ItemRadio, NVGoggles_OPFOR};
+        linkedItems[] = {"V_PlateCarrier2_blk", "H_PASGT_basic_blue_F", "G_Balaclava_TI_G_blk_F", "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio", "NVGoggles_OPFOR"};
         // Which items the character respawns with.
-        respawnLinkedItems[] = {V_PlateCarrier2_blk, H_PASGT_basic_blue_F, G_Balaclava_TI_G_blk_F, ItemMap, ItemCompass, ItemWatch, ItemRadio, NVGoggles_OPFOR};
+        respawnLinkedItems[] = {"V_PlateCarrier2_blk", "H_PASGT_basic_blue_F", "G_Balaclava_TI_G_blk_F", "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio", "NVGoggles_OPFOR"};
     };
 
     class B_Gen_Commander_Heavy_F: B_Gen_Soldier_Heavy_F
     {
         displayName = "Gendarmerie Commander (Heavy)";
         icon = "iconManLeader";
-        weapons[] = {arifle_SPAR_01_blk_ACO_Pointer_F, hgun_P07_blk_F, Throw, Put, Binocular};
-        respawnWeapons[] = {arifle_SPAR_01_blk_ACO_Pointer_F, hgun_P07_blk_F, Throw, Put, Binocular};
-        linkedItems[] = {V_PlateCarrier2_blk, H_Beret_gen_F, ItemMap, ItemCompass, ItemWatch, ItemRadio, NVGoggles_OPFOR};
-        respawnLinkedItems[] = {V_PlateCarrier2_blk, H_Beret_gen_F, ItemMap, ItemCompass, ItemWatch, ItemRadio, NVGoggles_OPFOR};
+        weapons[] = {"arifle_SPAR_01_blk_ACO_Pointer_F", "hgun_P07_blk_F", "Throw", "Put", "Binocular"};
+        respawnWeapons[] = {"arifle_SPAR_01_blk_ACO_Pointer_F", "hgun_P07_blk_F", "Throw", "Put", "Binocular"};
+        linkedItems[] = {"V_PlateCarrier2_blk", "H_Beret_gen_F", "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio", "NVGoggles_OPFOR"};
+        respawnLinkedItems[] = {"V_PlateCarrier2_blk", "H_Beret_gen_F", "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio", "NVGoggles_OPFOR"};
     };
 
     class B_Gen_Medic_Heavy_F: B_Gen_Soldier_Heavy_F
@@ -642,10 +642,10 @@ class CfgVehicles {
         role = "CombatLifeSaver";
         textPlural = "medics";
         textSingular = "medic";
-        weapons[] = {arifle_SPAR_01_blk_ACO_Pointer_F, hgun_P07_blk_F, Throw, Put, Binocular};
-        respawnWeapons[] = {arifle_SPAR_01_blk_ACO_Pointer_F, hgun_P07_blk_F, Throw, Put, Binocular};
-        linkedItems[] = {V_PlateCarrierSpec_blk, H_PASGT_basic_white_F, G_Balaclava_TI_G_blk_F, ItemMap, ItemCompass, ItemWatch, ItemRadio, NVGoggles_OPFOR};
-        respawnLinkedItems[] = {V_PlateCarrierSpec_blk, H_PASGT_basic_white_F, G_Balaclava_TI_G_blk_F, ItemMap, ItemCompass, ItemWatch, ItemRadio, NVGoggles_OPFOR};
+        weapons[] = {"arifle_SPAR_01_blk_ACO_Pointer_F", "hgun_P07_blk_F", "Throw", "Put", "Binocular"};
+        respawnWeapons[] = {"arifle_SPAR_01_blk_ACO_Pointer_F", "hgun_P07_blk_F", "Throw", "Put", "Binocular"};
+        linkedItems[] = {"V_PlateCarrierSpec_blk", "H_PASGT_basic_white_F", "G_Balaclava_TI_G_blk_F", "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio", "NVGoggles_OPFOR"};
+        respawnLinkedItems[] = {"V_PlateCarrierSpec_blk", "H_PASGT_basic_white_F", "G_Balaclava_TI_G_blk_F", "ItemMap", "ItemCompass", "ItemWatch", "ItemRadio", "NVGoggles_OPFOR"};
     };
 
     // Recon units for woodland NATO, based on existing recon units for Altis and Pacific and regular woodland NATO infantry.

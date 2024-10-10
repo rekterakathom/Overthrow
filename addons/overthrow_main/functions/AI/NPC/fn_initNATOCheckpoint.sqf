@@ -31,7 +31,7 @@ while {!(isNil "_group") && count (units _group) > 0} do {
 			_iscar = true;
 			_f = false;
 
-			if (_vehs find _x isEqualTo -1) then {
+			if (!(_x in _vehs)) then {
 				_vehs pushBack _x;
 			};
 		};

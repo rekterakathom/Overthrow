@@ -13,7 +13,7 @@ if (_dist < 250 && _name in (server getVariable ["NATOabandoned",[]])) then {
     		if (call OT_fnc_playerIsGeneral) then {
     			_name = "Factory";
     			_owned = server getVariable ["GEURowned",[]];
-    			if(_owned find _name isEqualTo -1) then {
+    			if(!(_name in _owned)) then {
                     [] call OT_fnc_buyBusiness;
                 }else{
                     [] call OT_fnc_factoryDialog;

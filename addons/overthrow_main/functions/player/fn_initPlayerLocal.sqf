@@ -93,7 +93,7 @@ OT_gangResourceCap = ["ot_gangresourcecap", 0] call BIS_fnc_getParamValue;
 waitUntil {sleep 1;!isNil "OT_NATOInitDone"};
 
 private _aplayers = players_NS getVariable ["OT_allplayers",[]];
-if ((_aplayers find (getplayeruid player)) isEqualTo -1) then {
+if (!(getplayeruid player in _aplayers)) then {
 	_aplayers pushback (getplayeruid player);
 	players_NS setVariable ["OT_allplayers",_aplayers,true];
 };

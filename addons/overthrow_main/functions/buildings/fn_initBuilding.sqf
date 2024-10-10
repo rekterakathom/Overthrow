@@ -5,16 +5,16 @@ if((_fnc select [0,6]) != "OT_fnc") then {
     //Legacy building Init
 
     private _code = {};
-    if((_fnc find "policeStation") > -1) then {
+    if("policeStation" in _fnc) then {
         _code = OT_fnc_initPoliceStation;
     };
-    if((_fnc find "trainingCamp") > -1) then {
+    if("trainingCamp" in _fnc) then {
         _code = OT_fnc_initTrainingCamp;
     };
-    if((_fnc find "warehouse") > -1) then {
+    if("warehouse" in _fnc) then {
         _code = OT_fnc_initWarehouse;
     };
-    if((_fnc find "workshop") > -1) then {
+    if("workshop" in _fnc) then {
         _code = OT_fnc_initWorkshop;
     };
     [_pos,_veh] spawn _code;
