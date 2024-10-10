@@ -6,7 +6,7 @@
 #include "\overthrow_main\script_component.hpp"
 
 author=QUOTE(MOD_AUTHOR);
-OnLoadMission=QUOTE(VERSION - Read the wiki at overthrow.fandom.com for more information);
+OnLoadMission=QUOTE(VERSION_STR - Read the wiki at overthrow.fandom.com for more information);
 
 onLoadMissionTime = 1;
 allowSubordinatesTakeWeapons = 1;
