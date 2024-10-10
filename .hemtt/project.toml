@@ -18,36 +18,3 @@ reuse_private_key = false
 key_name = "overthrow-community-{{version}}"
 authority = "overthrow-community-{{version}}"
 sig_version = 3
-
-check = [
-    "!remove_compiled_scripts",
-    "!compile_scripts"
-]
-
-postbuild = [
-    "!remove_compiled_scripts"
-]
-
-[scripts.compile_scripts]
-steps_windows = [
-    "echo 'Compile Arma Scripts'",
-    "ArmaScriptCompiler.exe"
-]
-
-steps_linux = [
-    "echo 'Compiling Arma Scripts does not work yet on Linux'"
-]
-only_release = true
-show_output = false
-
-[scripts.remove_compiled_scripts]
-steps_windows = [
-    "echo 'Remove compiled Arma Scripts'",
-    "python sqfc_cleanup.py"
-]
-
-steps_linux = [
-    "python sqfc_cleanup.py"
-]
-only_release = true
-show_output = false
