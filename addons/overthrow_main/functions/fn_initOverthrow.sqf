@@ -93,10 +93,6 @@ call OT_fnc_initVirtualization;
 
 OT_tpl_checkpoint = [] call compileScript ["data\templates\NATOcheckpoint.sqf", true];
 
-//Advanced towing script, credits to Duda http://www.armaholic.com/page.php?id=30575
-// Disabled due to ACE towing
-//[] spawn OT_fnc_advancedTowingInit;
-
 [] spawn {
 	if (false/*isDedicated && profileNamespace getVariable ["OT_autoload",false]*/) then {
 		diag_log "== OVERTHROW == Mission autoloaded as per settings. Toggle in the options menu in-game to disable.";
