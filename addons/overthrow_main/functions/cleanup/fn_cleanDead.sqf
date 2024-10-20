@@ -4,12 +4,12 @@
         if (!alive _x) then {
             [_x] call OT_fnc_cleanupUnit;
         };
-    } foreach crew _veh;
+    } forEach crew _veh;
     if (!alive _x) then {
         [_x] call OT_fnc_cleanupVehicle;
     };
-} foreach vehicles;
+} forEach vehicles;
 
 {
     [_x] call OT_fnc_cleanupUnit;
-} foreach allDeadMen;
+} forEach allDeadMen;

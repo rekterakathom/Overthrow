@@ -61,4 +61,4 @@ createDialog "OT_dialog_buy";
 		lbSetData [1500,_idx,_cls];
 		lbSetValue [1500,_idx,_price];
 	};
-}foreach(_items);
+}forEach(_items);

@@ -1,7 +1,7 @@
 private ["_unit"];
 
 _unit = _this select 0;
-_unit setskill ["courage",1];
+_unit setSkill ["courage",1];
 
 private _identity = call OT_fnc_randomLocalIdentity;
 _identity set [1, selectRandom OT_clothes_priest];
@@ -23,6 +23,6 @@ _unit addEventHandler ["FiredNear", {
 		_u setBehaviour "COMBAT";
 		_by = _this select 1;
 		_u allowFleeing 1;
-		_u setskill ["courage",0];
+		_u setSkill ["courage",0];
 	};
 }];

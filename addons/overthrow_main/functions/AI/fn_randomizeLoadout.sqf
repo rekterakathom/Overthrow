@@ -21,13 +21,13 @@ private _removeMagazines = {
         if !(_x isEqualTo "this") then {
             _magazines = _magazines + getArray (_cfgWeapons >> _forcls >> _x >> "magazines")
         };
-    }foreach(getArray (_cfgWeapons >> _forcls >> "muzzles"));
+    }forEach(getArray (_cfgWeapons >> _forcls >> "muzzles"));
     //from uniform
     private _items = (_newloadout select 3) select 1;
     {
         _x params ["_cls","_num"];
         if(_cls in _magazines) then {_x set [1,0]};
-    }foreach(_items);
+    }forEach(_items);
 
     //from vest
     if(_hasVest) then {
@@ -35,7 +35,7 @@ private _removeMagazines = {
         {
             _x params ["_cls","_num"];
             if(_cls in _magazines) then {_x set [1,0]};
-        }foreach(_items);
+        }forEach(_items);
     };
 
     if(_hasBackpack) then {
@@ -44,7 +44,7 @@ private _removeMagazines = {
         {
             _x params ["_cls","_num"];
             if(_cls in _magazines) then {_x set [1,0]};
-        }foreach(_items);
+        }forEach(_items);
     };
 };
 
@@ -88,7 +88,7 @@ if(_hasPrimary) then {
     {
         _scope = getNumber (_cfgMagazines >> _x >> "scope");
         if(_scope > 1) exitWith {_mag = _x};
-    }foreach(_magazines call BIS_fnc_arrayShuffle);
+    }forEach(_magazines call BIS_fnc_arrayShuffle);
 
     private _count = getNumber(_cfgMagazines >> _mag >> "count");
     (_newloadout select 0) set [4,[_mag,_count]];
@@ -105,14 +105,14 @@ if(_hasPrimary) then {
         if !(_x isEqualTo "this") then {
             _secondmags = _secondmags + getArray (_cfgWeapons >> _wpn >> _x >> "magazines")
         };
-    }foreach(getArray (_cfgWeapons >> _wpn >> "muzzles"));
+    }forEach(getArray (_cfgWeapons >> _wpn >> "muzzles"));
     if((count _secondmags) > 0) then {
         if(_hasBackpack) then {
             //add all of them to backpack
             {
                 private _count = getNumber(_cfgMagazines >> _x >> "count");
                 ((_newloadout select 5) select 1) pushBack [_x,4,_count];
-            }foreach(_secondmags);
+            }forEach(_secondmags);
         }else{
             //add the first one to vest
             if(_hasVest) then {
@@ -154,7 +154,7 @@ if(_hasLauncher) then {
                     _c = _c + 1;
                 };
                 if(_c isEqualTo 2) exitWith {};
-            }foreach(_magazines call BIS_fnc_arrayShuffle);
+            }forEach(_magazines call BIS_fnc_arrayShuffle);
         };
     };
 };

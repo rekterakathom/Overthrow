@@ -40,7 +40,7 @@ private _total = 0;
 			if(_thiscls isEqualTo _cls) exitWith {
 				_ncqty = _thisqty;
 			};
-		}foreach(_noncontaineritems);
+		}forEach(_noncontaineritems);
 		if(_ncqty > 0) then {
 			if !([_target, _cls, _ncqty] call CBA_fnc_removeItemCargo) then {
 				if !([_target, _cls, _ncqty] call CBA_fnc_removeWeaponCargo) then {
@@ -62,7 +62,7 @@ private _total = 0;
 						[_item, _cls, _q] call CBA_fnc_removeItemCargo;
 						_qty = _qty - _q;
 					};
-				}foreach((itemCargo _item) call BIS_fnc_consolidateArray);
+				}forEach((itemCargo _item) call BIS_fnc_consolidateArray);
 				if(_qty > 0) then {
 					{
 						_x params ["_c","_q"];
@@ -70,7 +70,7 @@ private _total = 0;
 							[_item, _cls, _q] call CBA_fnc_removeWeaponCargo;
 							_qty = _qty - _q;
 						};
-					}foreach((weaponCargo _item) call BIS_fnc_consolidateArray);
+					}forEach((weaponCargo _item) call BIS_fnc_consolidateArray);
 				};
 				if(_qty > 0) then {
 					{
@@ -79,11 +79,11 @@ private _total = 0;
 							[_item, _cls, _q] call CBA_fnc_removeMagazineCargo;
 							_qty = _qty - _q;
 						};
-					}foreach((magazineCargo _item) call BIS_fnc_consolidateArray);
+					}forEach((magazineCargo _item) call BIS_fnc_consolidateArray);
 				};
-			}foreach(everyContainer _target);
+			}forEach(everyContainer _target);
 		};
 	};
-}foreach(_target call OT_fnc_unitStock);
+}forEach(_target call OT_fnc_unitStock);
 
 [_total] call OT_fnc_money;

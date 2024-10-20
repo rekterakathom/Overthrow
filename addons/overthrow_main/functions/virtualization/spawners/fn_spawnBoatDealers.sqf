@@ -1,5 +1,5 @@
 private ["_town","_id","_pos","_building","_tracked","_civs","_vehs","_group","_groups","_all","_shopkeeper"];
-if (!isServer) exitwith {};
+if (!isServer) exitWith {};
 
 sleep random 0.5;
 
@@ -10,7 +10,7 @@ _count = 0;
 
 _posTown = server getVariable _town;
 
-_shopkeeper = objNULL;
+_shopkeeper = objNull;
 
 
 _group = createGroup civilian;
@@ -32,6 +32,6 @@ _groups = [_group];
 	[_shopkeeper] call OT_fnc_initHarbor;
 	_shopkeeper setVariable ["harbor",true,true];
 	sleep 0.5;
-}foreach(_activeshops);
+}forEach(_activeshops);
 
-spawner setvariable [_spawnid,(spawner getvariable [_spawnid,[]]) + _groups,false];
+spawner setVariable [_spawnid,(spawner getVariable [_spawnid,[]]) + _groups,false];

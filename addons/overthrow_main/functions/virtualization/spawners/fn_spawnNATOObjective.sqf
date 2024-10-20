@@ -26,18 +26,18 @@ if(_supplypos isEqualType []) then {
 	clearMagazineCargoGlobal _box;
 	clearBackpackCargoGlobal _box;
 	_box setVariable ["NATOsupply",_name,true];
-	_groups pushback _box;
+	_groups pushBack _box;
 	//put stuff in it
 	(spawner getVariable [format["NATOsupplyitems%1",_name],[[],[],[]]]) params ["_items","_wpns","_mags"];
 	{
 		[_box,_x#0,_x#1] call CBA_fnc_addItemCargo;
-	}foreach(_items);
+	}forEach(_items);
 	{
 		[_box,_x#0,_x#1] call CBA_fnc_addWeaponCargo;
-	}foreach(_wpns);
+	}forEach(_wpns);
 	{
 		[_box,_x#0,_x#1] call CBA_fnc_addMagazineCargo;
-	}foreach(_mags);
+	}forEach(_mags);
 	sleep 0.5;
 };
 
@@ -102,19 +102,19 @@ if(_name in OT_allComms) then {
 }else{
 	//put up a flag
 	private _flag =  OT_flag_NATO createVehicle _posTown;
-	_groups pushback _flag;
+	_groups pushBack _flag;
 	[_flag,[format["Capture %1",_name], {call OT_fnc_triggerBattle},nil,0,false,true,"","true",5]] remoteExec ["addAction",0,_flag];
 };
 
 //Garrison any buildings
 if(_numNATO > 0) then {
-	private _garrisongroup = creategroup [blufor,true];
-	_groups pushback _garrisongroup;
+	private _garrisongroup = createGroup [blufor,true];
+	_groups pushBack _garrisongroup;
 	private _buildings = nearestObjects [_posTown, OT_garrisonBuildings, 350];
 	{
 		private _addedVehicles = _x call {
 			private _building = _this;
-			private _type = typeof _this;
+			private _type = typeOf _this;
 			if((damage _building) > 0.95) exitWith {[]};
 			if(([
 				"Land_Cargo_HQ_V1_F",
@@ -170,11 +170,11 @@ if(_numNATO > 0) then {
 			{
 				[_x] joinSilent _garrisongroup;
 				_x setVariable ["garrison",_name,false];
-			}foreach(crew _x);
-		}foreach(_addedVehicles);
+			}forEach(crew _x);
+		}forEach(_addedVehicles);
 
 		if(_numNATO <= 0) exitWith {};
-	}foreach(_buildings);
+	}forEach(_buildings);
 };
 
 sleep 0.5;
@@ -216,7 +216,7 @@ while {_count < _numNATO} do {
 	};
 	{
 		_x addCuratorEditableObjects[units _group,false];
-	}foreach(allcurators);
+	}forEach(allCurators);
 
 	[_group,_posTown,_range,6] call CBA_fnc_taskPatrol;
 	_range = _range + 50;
@@ -226,12 +226,12 @@ while {_count < _numNATO} do {
 
 private _pos = [];
 private _dir = 0;
-private _terminal = nearestobjects [_posTown,OT_airportTerminals,350];
+private _terminal = nearestObjects [_posTown,OT_airportTerminals,350];
 if(count _terminal > 0) then {
-	private _tp = getpos (_terminal select 0);
-	_dir = getdir (_terminal select 0);
+	private _tp = getPos (_terminal select 0);
+	_dir = getDir (_terminal select 0);
 	private _dist = 35;
-	if(typeof (_terminal select 0) == "Land_Hangar_F") then {
+	if(typeOf (_terminal select 0) == "Land_Hangar_F") then {
 		_dir = _dir + 180;
 		_dist = 50;
 	};
@@ -256,15 +256,15 @@ private _airgarrison = server getVariable [format["airgarrison%1",_name],[]];
 	_veh setVariable ["airgarrison",_name,false];
 	_veh setDir _dir;
 	sleep 0.5;
-	_groups pushback _veh;
-}foreach(_airgarrison);
+	_groups pushBack _veh;
+}forEach(_airgarrison);
 
 private _vehgarrison = server getVariable [format["vehgarrison%1",_name],[]];
 _pos = [];
 private _road = objNull;
 {
-	private _vgroup = creategroup blufor;
-	_groups pushback _vgroup;
+	private _vgroup = createGroup blufor;
+	_groups pushBack _vgroup;
 	private _vehtype = _x;
 	private _got = false;
 	private _pos = _posTown findEmptyPosition [10,250,_vehtype];
@@ -285,14 +285,14 @@ private _road = objNull;
 			//put sandbags
 			private _p = _pos getPos [1.5, _dir];
 			_veh =  OT_NATO_Sandbag_Curved createVehicle _p;
-			_veh setpos _p;
+			_veh setPos _p;
 			_veh setDir (_dir-180);
-			_groups pushback _veh;
+			_groups pushBack _veh;
 			_p = _pos getPos [-1.5, _dir];
 			_veh =  OT_NATO_Sandbag_Curved createVehicle _p;
-			_veh setpos _p;
+			_veh setPos _p;
 			_veh setDir (_dir);
-			_groups pushback _veh;
+			_groups pushBack _veh;
 		};
 
 		private _veh =  _vehtype createVehicle _pos;
@@ -304,17 +304,17 @@ private _road = objNull;
 			createVehicleCrew _veh;
 		};
 		sleep 0.5;
-		_groups pushback _veh;
+		_groups pushBack _veh;
 		{
 			[_x] joinSilent _vgroup;
 			_x setVariable ["garrison","HQ",false];
-		}foreach(crew _veh);
+		}forEach(crew _veh);
 		_vgroup setVariable ["Vcm_Disable",true,false];
 		{
 			_x addCuratorEditableObjects [[_veh]];
-		}foreach(allcurators);
+		}forEach(allCurators);
 	};
-}foreach(_vehgarrison);
+}forEach(_vehgarrison);
 
 //HVTs
 {
@@ -327,9 +327,9 @@ private _road = objNull;
 		if (count _vpos == 0) then {_vpos = _posTown findEmptyPosition [0,100,OT_NATO_Vehicle_HVT]};
 		//His empty APC
 		private _veh =  OT_NATO_Vehicle_HVT createVehicle _vpos;
-		_veh setpos _vpos;
+		_veh setPos _vpos;
 		_veh setVariable ["vehgarrison","HQ",false];
-		_groups pushback _veh;
+		_groups pushBack _veh;
 		sleep 0.5;
 
 		private _pos = _vpos findEmptyPosition [2,50,OT_NATO_Unit_HVT];
@@ -352,8 +352,8 @@ private _road = objNull;
 		_wp setWaypointType "CYCLE";
 		{
 			_x addCuratorEditableObjects[units _group,false];
-		}foreach(allcurators);
+		}forEach(allCurators);
 	};
-}foreach(OT_NATOhvts);
+}forEach(OT_NATOhvts);
 
-spawner setvariable [_spawnid,_groups,false];
+spawner setVariable [_spawnid,_groups,false];

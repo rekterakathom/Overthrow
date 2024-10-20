@@ -13,8 +13,8 @@ private _iswarehouse = false;
 
 if(!_notvehicle) then {
 	{
-		if!(_x isEqualTo _target) then {_objects pushback _x};
-	}foreach(player nearEntities [["Car","ReammoBox_F","Air","Ship"],20]);
+		if!(_x isEqualTo _target) then {_objects pushBack _x};
+	}forEach(player nearEntities [["Car","ReammoBox_F","Air","Ship"],20]);
 };
 
 
@@ -27,16 +27,16 @@ if(count _objects isEqualTo 1) then {
 }else{
 	private _options = [];
 	{
-		_options pushback [
+		_options pushBack [
 			format[
 				"%1 (%2m)",
-				(typeof _x) call OT_fnc_vehicleGetName,
+				(typeOf _x) call OT_fnc_vehicleGetName,
 				round (_x distance player)
 			],
 			OT_fnc_transferHelper,
 			[vehicle player, _x]
 		];
-	}foreach(_objects);
+	}forEach(_objects);
 	"Transfer to which container?" call OT_fnc_notifyBig;
 	_options call OT_fnc_playerDecision;
 };

@@ -1,4 +1,4 @@
-if (!isServer) exitwith {};
+if (!isServer) exitWith {};
 if(count(vehicles) > 200) exitWith {};
 if(OT_spawnVehiclePercentage isEqualTo 0) exitWith {};
 sleep random 1;
@@ -39,7 +39,7 @@ while {(_count < _numVeh) && (_loops < 50)} do {
 		};
 		if !(_vehtype in OT_vehTypes_civignore) then {
 			_dirveh = 0;
-			_roadscon = roadsConnectedto _road;
+			_roadscon = roadsConnectedTo _road;
 			if (count _roadscon isEqualTo 2) then {
 				_dirveh = (_road getDir (_roadscon select 0));
 				if(isNil "_dirveh") then {_dirveh = random 359};
@@ -60,10 +60,10 @@ while {(_count < _numVeh) && (_loops < 50)} do {
 					_veh setDir _dirveh;
 					_count = _count + 1;
 
-					if((random 100) > 90 && (count allunits < 300)) then {
-						_group = createGroup CIVILIAN;
+					if((random 100) > 90 && (count allUnits < 300)) then {
+						_group = createGroup civilian;
 						_group setVariable ["lambs_danger_disableGroupAI", true];
-						_groups pushback _group;
+						_groups pushBack _group;
 						_civ = _group createUnit [OT_civType_local, _pos, [],0, "NONE"];
 						_civ setBehaviour "SAFE";
 						[_civ] call OT_fnc_initCivilian;
@@ -100,4 +100,4 @@ while {(_count < _numVeh) && (_loops < 50)} do {
 	};
 	_loops = _loops + 1;
 };
-spawner setvariable [_spawnid,(spawner getvariable [_spawnid,[]]) + _groups,false];
+spawner setVariable [_spawnid,(spawner getVariable [_spawnid,[]]) + _groups,false];

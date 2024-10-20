@@ -8,5 +8,5 @@ if(_item in OT_illegalItems) then {
 			_x setCaptive false;
 			[_x] call OT_fnc_revealToNATO;
 		};
-	}foreach(_pos nearentities ["CAManBase", 30]);
+	}forEach(_pos nearEntities ["CAManBase", 30]);
 };

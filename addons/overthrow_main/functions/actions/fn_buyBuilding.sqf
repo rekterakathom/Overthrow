@@ -8,7 +8,7 @@ if(_b isEqualType []) then {
 		_handled = true;
 	}else{
 		private _owner = _building call OT_fnc_getOwner;
-		if(_owner isEqualTo getplayeruid player) then {
+		if(_owner isEqualTo getPlayerUID player) then {
 			_home = player getVariable "home";
 			if(_home distance _building < 5) exitWith {"You cannot sell your home" call OT_fnc_notifyMinor;_err = true};
 			_type = "sell";
@@ -19,7 +19,7 @@ if(_b isEqualType []) then {
 if(_handled) then {
 	_b params ["_building","_price","_sell","_lease","_totaloccupants"];
 
-	if(typeof _building isEqualTo OT_flag_IND) exitWith {
+	if(typeOf _building isEqualTo OT_flag_IND) exitWith {
 		[] call OT_fnc_garrisonDialog;
 	};
 
@@ -46,13 +46,13 @@ if(_handled) then {
 		};
 
 		buildingpositions setVariable [_id,position _building,true];
-		_owned pushback _id;
-		[player,"Building Purchased",format["Bought: %1 in %2 for $%3",(typeof _building) call OT_fnc_getClassDisplayName,_building call OT_fnc_nearestTown,_price]] call BIS_fnc_createLogRecord;
+		_owned pushBack _id;
+		[player,"Building Purchased",format["Bought: %1 in %2 for $%3",(typeOf _building) call OT_fnc_getClassDisplayName,_building call OT_fnc_nearestTown,_price]] call BIS_fnc_createLogRecord;
 		_building addEventHandler ["Dammaged",OT_fnc_buildingDamagedHandler];
 	}else{
 		// Fetch the list of buildable houses
 		private _buildableHouses = (OT_Buildables param [9, []]) param [2, []];
-		if((typeof _building) in OT_allRealEstate or {((typeOf _building) in _buildableHouses)}) then {
+		if((typeOf _building) in OT_allRealEstate or {((typeOf _building) in _buildableHouses)}) then {
 			private _id = [_building] call OT_fnc_getBuildID;
 			[_building,nil] call OT_fnc_setOwner;
 			private _leased = player getVariable ["leased",[]];
@@ -66,7 +66,7 @@ if(_handled) then {
 
 			deleteMarker _mrkid;
 			_owned deleteAt (_owned find _id);
-			[player,"Building Sold",format["Sold: %1 in %2 for $%3",(typeof _building) call OT_fnc_getClassDisplayName,_building call OT_fnc_nearestTown,_sell]] call BIS_fnc_createLogRecord;
+			[player,"Building Sold",format["Sold: %1 in %2 for $%3",(typeOf _building) call OT_fnc_getClassDisplayName,_building call OT_fnc_nearestTown,_sell]] call BIS_fnc_createLogRecord;
 			[_sell] call OT_fnc_money;
 
 		// Fallback for unknown buildings

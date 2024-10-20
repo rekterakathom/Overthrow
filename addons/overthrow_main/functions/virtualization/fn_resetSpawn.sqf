@@ -5,4 +5,4 @@ private _pars = _this;
         _id = _x select 0;
         OT_allSpawned deleteAt (OT_allSpawned find _id);
     };
-}foreach(OT_allSpawners);
+}forEach(OT_allSpawners);

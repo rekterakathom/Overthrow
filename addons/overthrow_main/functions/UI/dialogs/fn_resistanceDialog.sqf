@@ -23,13 +23,13 @@ lbClear 1500;
     };
     _col = [0.8,0.8,0.8,1];
     {
-        if(getplayeruid _x isEqualTo _uid) exitWith {_col = [1,1,1,1]};
-    }foreach(allplayers);
+        if(getPlayerUID _x isEqualTo _uid) exitWith {_col = [1,1,1,1]};
+    }forEach(allPlayers);
 
     lbSetColor [1500, _idx, _col]
     lbSetPicture [1500,_idx,_pic];
     lbSetData [1500,_idx,_uid];
-}foreach(players_NS getVariable ["OT_allplayers",[]]);
+}forEach(players_NS getVariable ["OT_allplayers",[]]);
 
 lbClear 1501;
 {
@@ -39,7 +39,7 @@ lbClear 1501;
         _idx = lbAdd [1501,format["%1",_name]];
         lbSetData [1501,_idx,_name];
     };
-}foreach(OT_economicData);
+}forEach(OT_economicData);
 
 _tax = server getVariable ["taxrate",0];
 _damaged = owners getVariable ["damagedBuildings",[]];
@@ -51,7 +51,7 @@ private _lease = 0;
         _tl = (_data select 2);
         _lease = _lease + _tl;
     };
-}foreach(player getVariable ["leasedata",[]]);
+}forEach(player getVariable ["leasedata",[]]);
 
 if(_lease > 0) then {
     _tt = 0;
@@ -85,19 +85,19 @@ private _income = 0;
             _income = _income + ((_num * 200) * 6);
         };
     };
-}foreach(server getVariable ["GEURowned",[]]);
+}forEach(server getVariable ["GEURowned",[]]);
 
 _balance = _totax - _wages;
 _text = "<t align='center' size='0.7'>Balance Sheet (per 6 hrs)</t><br/>";
 
-if((getplayeruid player) in (server getVariable ["generals",[]])) then {
+if((getPlayerUID player) in (server getVariable ["generals",[]])) then {
     _text = _text + format["<t align='left' size='0.65'>Resistance Funds: $%1</t><br/>",[server getVariable ["money",0], 1, 0, true] call CBA_fnc_formatNumber];
 };
 
 _text = _text + format["<t size='0.65'>Lease Income: $%1</t><br/>",[_lease, 1, 0, true] call CBA_fnc_formatNumber];
 
 _text = _text + format["<t size='0.65'>Civilian Income: $%1 ($%2 per player)</t><br/>",[_taxtotal-_totax, 1, 0, true] call CBA_fnc_formatNumber,[_taxper-_totaxper, 1, 0, true] call CBA_fnc_formatNumber];
-if((getplayeruid player) in (server getVariable ["generals",[]])) then {
+if((getPlayerUID player) in (server getVariable ["generals",[]])) then {
     _text = _text + format["<t size='0.65'>Resistance Tax (%1%2): $%3 ($%4 per player)</t><br/>",_tax,"%",[_totax, 1, 0, true] call CBA_fnc_formatNumber,[_totaxper, 1, 0, true] call CBA_fnc_formatNumber];
 };
 _text = _text + format["<t size='0.65'>Business Income: $%1 (6 hrs)</t><br/>",[_income, 1, 0, true] call CBA_fnc_formatNumber];

@@ -3,7 +3,7 @@ params ["_leader","_gangid","_player"];
 private _gang = OT_civilians getVariable [format["gang%1",_gangid],[]];
 if(count _gang isEqualTo 0) exitWith {diag_log "Overthrow Error: gang not found (OT_fnc_gangJoinResistance)"};
 
-private _group = creategroup resistance;
+private _group = createGroup resistance;
 private _name = _gang select 8;
 private _town = _gang select 2;
 
@@ -25,12 +25,12 @@ private _gangGroup = spawner getVariable [format["gangspawn%1",_gangid],grpNull]
     [_x,getPlayerUID player] call OT_fnc_setOwner;
     _x setVariable ["OT_spawntrack",true,true];
 	player reveal [_x,4];
-}foreach(units _gangGroup);
+}forEach(units _gangGroup);
 
 _player setVariable ["OT_squadcount",_cc,true];
 
 private _recruits = server getVariable ["squads",[]];
-_recruits pushback [getplayeruid _player,_gangid,_group,[]];
+_recruits pushBack [getPlayerUID _player,_gangid,_group,[]];
 server setVariable ["squads",_recruits,true];
 
 OT_civilians setVariable [format["gangsin%1",_town],[],true];

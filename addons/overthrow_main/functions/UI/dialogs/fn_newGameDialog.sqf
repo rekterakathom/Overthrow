@@ -1,6 +1,6 @@
 disableSerialization;
 
-server setVariable ["generals",[getplayeruid player],true];
+server setVariable ["generals",[getPlayerUID player],true];
 
 private _diff = server getVariable ["OT_difficulty",1];
 private _ft = server getVariable ["OT_fastTravelType",1];

@@ -5,7 +5,7 @@ if(_force) exitWith {
 		if !(_x call OT_fnc_hasOwner) then {
 			deleteVehicle _x;
 		};
-	}foreach(crew _vehicle);
+	}forEach(crew _vehicle);
 	if !(_vehicle call OT_fnc_hasOwner) then {
 		deleteVehicle _vehicle;
 	};
@@ -22,10 +22,10 @@ if(_vehicle isEqualType grpNull) exitWith {
 			if !(_x call OT_fnc_hasOwner) then {
 				[_x] call OT_fnc_cleanupUnit;
 			};
-		}foreach(units _vehicle);
+		}forEach(units _vehicle);
 		{
 			[_x] call OT_fnc_cleanupVehicle;
-		}foreach(_vehs);
+		}forEach(_vehs);
 		deleteGroup _vehicle;
 	}, [(units _vehicle) select 0,_vehicle]] call CBA_fnc_waitUntilAndExecute;
 };
@@ -47,7 +47,7 @@ if(OT_adminMode) then {
 			if !(_x call OT_fnc_hasOwner) then {
 				[_x] call OT_fnc_cleanupUnit;
 			};
-		}foreach(crew _vehicle);
+		}forEach(crew _vehicle);
 	};
 	if !(_vehicle call OT_fnc_hasOwner) then {
 		deleteVehicle _vehicle;

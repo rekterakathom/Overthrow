@@ -6,14 +6,14 @@ player setVariable ["OT_tutesDone",_done,true];
 
 private _targets = [];
 private _destination = [];
-private _thistown = (getposAtl player) call OT_fnc_nearestTown;
+private _thistown = (getPosATL player) call OT_fnc_nearestTown;
 
 //Is there some already spawned within spawn distance?
 {
     if(side _x isEqualTo civilian && !(captive _x) && !(_x getVariable ["gundealer",false]) && !(_x call OT_fnc_hasOwner)) then {
-        _targets pushback _x;
+        _targets pushBack _x;
     };
-}foreach(player nearEntities ["CAManBase", OT_spawnDistance]);
+}forEach(player nearEntities ["CAManBase", OT_spawnDistance]);
 
 
 //No? well where is the closest town?

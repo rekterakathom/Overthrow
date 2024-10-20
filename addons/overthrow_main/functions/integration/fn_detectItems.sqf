@@ -6,9 +6,9 @@ private _categorize = {
             (_x select 1) pushBackUnique _c;
             _done = true;
         };
-    }foreach(OT_items);
+    }forEach(OT_items);
     if !(_done) then {
-        OT_items pushback [_cat,[_c]];
+        OT_items pushBack [_cat,[_c]];
     };
 };
 
@@ -110,17 +110,17 @@ private _getprice = {
                     _primaryCategory = _category;
                 };
             };
-        }foreach(_types);
-    }foreach(OT_itemCategoryDefinitions);
+        }forEach(_types);
+    }forEach(OT_itemCategoryDefinitions);
 
     if(_categorized) then {
         if(isServer && isNil {cost getVariable _cls}) then {
             cost setVariable [_cls,[_x,_primaryCategory] call _getprice,true];
         };
 
-        OT_allItems pushback _cls;
+        OT_allItems pushBack _cls;
     };
-}foreach("
+}forEach("
     (getNumber (_x >> 'scope') isEqualTo 2) &&
     {(configName _x call BIS_fnc_itemType) # 0 isEqualTo 'Item'}
 " configClasses ( configFile >> "CfgWeapons" ));
@@ -133,7 +133,7 @@ private _getprice = {
         private _mass = getNumber (_x >> "mass");
         cost setVariable [_cls,[_mass,0,0,1],true]; // the price of a bag is its mass, unless otherwise stated in prices.sqf.
     };
-}foreach("
+}forEach("
     (getNumber (_x >> 'scope') isEqualTo 2) &&
     {
         _parents = ([_x,true] call BIS_fnc_returnParents);
@@ -150,12 +150,12 @@ private _getprice = {
     private _cls = configName _x;
     private _recipe = call compileFinal getText (_x >> "ot_craftRecipe");
     private _qty = getNumber ( _x >> "ot_craftQuantity" );
-    OT_craftableItems pushback [_cls,_recipe,_qty];
-}foreach("getNumber (_x >> ""ot_craftable"") isEqualTo 1" configClasses ( configFile >> "CfgMagazines" ));
+    OT_craftableItems pushBack [_cls,_recipe,_qty];
+}forEach("getNumber (_x >> ""ot_craftable"") isEqualTo 1" configClasses ( configFile >> "CfgMagazines" ));
 //add craftable weapons
 {
     private _cls = configName _x;
     private _recipe = call compileFinal getText (_x >> "ot_craftRecipe");
     private _qty = getNumber ( _x >> "ot_craftQuantity" );
-    OT_craftableItems pushback [_cls,_recipe,_qty];
-}foreach("getNumber (_x >> ""ot_craftable"") isEqualTo 1" configClasses ( configFile >> "CfgWeapons" ));
+    OT_craftableItems pushBack [_cls,_recipe,_qty];
+}forEach("getNumber (_x >> ""ot_craftable"") isEqualTo 1" configClasses ( configFile >> "CfgWeapons" ));

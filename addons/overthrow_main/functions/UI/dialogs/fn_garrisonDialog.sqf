@@ -4,11 +4,11 @@ disableSerialization;
 _b = player call OT_fnc_nearestRealEstate;
 _name = "Base";
 if(_b isEqualType []) then {
-	if(typeof (_b select 0) isEqualTo OT_flag_IND) then {
+	if(typeOf (_b select 0) isEqualTo OT_flag_IND) then {
         _name = "";
         {
             if((_x select 0) distance (_b select 0) < 10) exitWith {_name = _x select 1};
-        }foreach(server getVariable ["bases",[]]);
+        }forEach(server getVariable ["bases",[]]);
     };
 }else{
     _ob = player call OT_fnc_nearestObjective;

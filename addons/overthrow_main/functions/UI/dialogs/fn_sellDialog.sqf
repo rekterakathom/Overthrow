@@ -22,6 +22,6 @@ private _numitems = 0;
 		lbSetData [1500,_idx,_cls];
 		_numitems = _numitems + 1;
 	};
-}foreach(_playerstock);
+}forEach(_playerstock);
 if(_cursel >= _numitems) then {_cursel = 0};
 lbSetCurSel [1500, _cursel];

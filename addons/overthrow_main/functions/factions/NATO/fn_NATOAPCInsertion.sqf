@@ -4,7 +4,7 @@ private _vehtype = selectRandom OT_NATO_Vehicles_APC;
 private _squadtype = selectRandom OT_NATO_GroundForces;
 
 // Spawn a group to be seated in a transport vehicle
-private _group1 = [_frompos, WEST, _squadtype] call BIS_fnc_spawnGroup;
+private _group1 = [_frompos, west, _squadtype] call BIS_fnc_spawnGroup;
 _group1 deleteGroupWhenEmpty true;
 private _group2 = "";
 private _tgroup = false;
@@ -14,7 +14,7 @@ private _allunits = [];
 private _veh = false;
 
 //Transport
-private _tgroup = creategroup blufor;
+private _tgroup = createGroup blufor;
 
 private _dir = _frompos getDir _ao;
 private _pos = _frompos findEmptyPosition [10,100,_vehtype];
@@ -34,7 +34,7 @@ createVehicleCrew _veh;
 	[_x] joinSilent _tgroup;
 	_x setVariable ["garrison","HQ",false];
 	_x setVariable ["NOAI",true,false];
-}foreach(crew _veh);
+}forEach(crew _veh);
 _allunits = (units _tgroup);
 sleep 1;
 
@@ -43,10 +43,10 @@ sleep 1;
 		_x moveInCargo _veh;
 	};
 	[_x] joinSilent _group1;
-	_allunits pushback _x;
+	_allunits pushBack _x;
 	_x setVariable ["garrison","HQ",false];
 	_x setVariable ["VCOM_NOPATHING_Unit",true,false];
-}foreach(units _group1);
+}forEach(units _group1);
 
 {
 	_x addCuratorEditableObjects [[_veh]+(units _group1),true];
@@ -59,12 +59,12 @@ spawner setVariable ["NATOattackforce",(spawner getVariable ["NATOattackforce",[
 sleep 15;
 
 if(_tgroup isEqualType grpNull) then {
-	_veh setdamage 0;
+	_veh setDamage 0;
 	_dir = _attackpos getDir _frompos;
 	_roads = _ao nearRoads 150;
 	private _dropos = _ao;
 	if(count _roads > 0) then {
-		_dropos = ASLtoAGL (getPosASL (_roads select (count _roads - 1)));
+		_dropos = ASLToAGL (getPosASL (_roads select (count _roads - 1)));
 	};
 	_move = _tgroup addWaypoint [_dropos,0];
 	_move setWaypointBehaviour "SAFE";
@@ -98,13 +98,13 @@ if(_tgroup isEqualType grpNull) then {
 		params ["_veh","_tgroup","_frompos"];
 		private _done = false;
 		private _stillfor = 0;
-		private _lastpos = getpos _veh;
+		private _lastpos = getPos _veh;
 		while{sleep 10;!_done} do {
 			if(isNull _veh) exitWith {};
 			if(isNull _tgroup) exitWith {};
 			if(!alive _veh) exitWith {};
 			private _eject = false;
-			if((damage _veh) > 0 && ((getpos _veh) select 2) < 2) then {
+			if((damage _veh) > 0 && ((getPos _veh) select 2) < 2) then {
 				//Vehicle damaged (and on the ground)
 				_eject = true;
 			};
@@ -125,7 +125,7 @@ if(_tgroup isEqualType grpNull) then {
 				{
 					unassignVehicle _x;
 					commandGetOut _x;
-				}foreach((crew _veh) - (units _tgroup));
+				}forEach((crew _veh) - (units _tgroup));
 				_done = true;
 
 				_wp = _tgroup addWaypoint [_frompos,0];

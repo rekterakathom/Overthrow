@@ -19,12 +19,12 @@ _fail = {
 	format["Resistance has captured %1 (+100 Influence) %2",_objective,_effect] remoteExec ["OT_fnc_notifyGood",0,false];
 	100 remoteExec ["OT_fnc_influenceSilent",0,false];
 	private _posTown = getMarkerPos _objective;
-	_flag = _posTown nearobjects [OT_flag_NATO,500];
+	_flag = _posTown nearObjects [OT_flag_NATO,500];
 	if(count _flag > 0) then{
 		deleteVehicle (_flag select 0);
 	};
 	_abandoned = server getVariable "NATOabandoned";
-	_abandoned pushback _objective;
+	_abandoned pushBack _objective;
 	server setVariable ["NATOabandoned",_abandoned,true];
 	format["%1_restrict",_objective] setMarkerAlpha 0;
 };

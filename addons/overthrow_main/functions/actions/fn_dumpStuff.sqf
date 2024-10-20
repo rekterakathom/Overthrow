@@ -76,7 +76,7 @@ if(_full) exitWith {false};
 		};
 		_count = _count + 1;
 	};
-}foreach(_unit call OT_fnc_unitStock);
+}forEach(_unit call OT_fnc_unitStock);
 
 if(_full) exitWith {false};
 
@@ -123,7 +123,7 @@ if(primaryWeapon _unit != "") then {
 	};
 	{
 		_t addItemCargoGlobal [_x,1];
-	}foreach(primaryWeaponItems _unit);
+	}forEach(primaryWeaponItems _unit);
 	_t addWeaponCargoGlobal [(primaryWeapon _unit) call BIS_fnc_baseWeapon,1];
 	_unit removeWeaponGlobal primaryWeapon _unit;
 };
@@ -135,7 +135,7 @@ if(secondaryWeapon _unit != "") then {
 	};
 	{
 		_t addItemCargoGlobal [_x,1];
-	}foreach(secondaryWeaponItems _unit);
+	}forEach(secondaryWeaponItems _unit);
 	_t addWeaponCargoGlobal [secondaryWeapon _unit,1];
 	_unit removeWeaponGlobal secondaryWeapon _unit;
 };
@@ -148,13 +148,13 @@ if(handgunWeapon _unit != "") then {
 	};
 	{
 		_t addItemCargoGlobal [_x,1];
-	}foreach(handgunItems _unit);
+	}forEach(handgunItems _unit);
 	_t addWeaponCargoGlobal [handgunWeapon _unit,1];
 	_unit removeWeaponGlobal handgunWeapon _unit;
 };
 if(_full) exitWith {false};
 
-if((!isplayer _unit) || _linkedItems) then {
+if((!isPlayer _unit) || _linkedItems) then {
 	{
 		if !(_x isEqualTo "ItemMap") then {
 			if (!(_t canAdd _x) && !_isTruck) exitWith {
@@ -168,7 +168,7 @@ if((!isplayer _unit) || _linkedItems) then {
 			};
 			_t addItemCargoGlobal [_x,1];
 		};
-	}foreach(assignedItems _unit);
+	}forEach(assignedItems _unit);
 };
 
 if(_full) exitWith {false};

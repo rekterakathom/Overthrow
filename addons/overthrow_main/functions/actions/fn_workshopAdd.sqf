@@ -14,8 +14,8 @@ if(!alive _veh) exitWith {};
 
 private _item = [];
 {
-	if((_x select 4) == _cls && (typeof _veh) == (_x select 1)) exitWith {_item = _x};
-}foreach(OT_workshop);
+	if((_x select 4) == _cls && (typeOf _veh) == (_x select 1)) exitWith {_item = _x};
+}forEach(OT_workshop);
 
 if(count _item > 0) then {
 	private _free = _item select 3;
@@ -36,7 +36,7 @@ disableUserInput true;
 
 		_money = player getVariable ["money",0];
 		_money = _money - _price;
-		player setvariable ["money",_money,true];
+		player setVariable ["money",_money,true];
 
 		_veh setVariable ["OT_attachedClass",_cls,true];
 		[_veh] call OT_fnc_initAttached;

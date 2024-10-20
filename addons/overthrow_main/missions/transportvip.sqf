@@ -2,9 +2,9 @@
 params ["_jobid","_jobparams"];
 _jobparams params ["_faction"];
 
-private _factionName = server getvariable format["factionname%1",_faction];
+private _factionName = server getVariable format["factionname%1",_faction];
 private _pickupTown = "";
-private _startpos = getpos player;
+private _startpos = getPos player;
 private _pickup = [];
 private _destinationTown = "";
 private _type = "";
@@ -24,7 +24,7 @@ private _abandoned = server getVariable ["NATOabandoned",[]];
             _pickup = _posTown findEmptyPosition [5,100,OT_civType_local];
         };
     };
-}foreach([OT_allTowns,[],{random 100},"ASCEND"] call BIS_fnc_SortBy);
+}forEach([OT_allTowns,[],{random 100},"ASCEND"] call BIS_fnc_SortBy);
 
 //Find a destination town
 {
@@ -38,7 +38,7 @@ private _abandoned = server getVariable ["NATOabandoned",[]];
             _destination = _posTown findEmptyPosition [5,100,OT_civType_local];
         };
     };
-}foreach([OT_allTowns,[],{random 100},"ASCEND"] call BIS_fnc_SortBy);
+}forEach([OT_allTowns,[],{random 100},"ASCEND"] call BIS_fnc_SortBy);
 
 //Give our VIP an identity
 private _identity = call OT_fnc_randomLocalIdentity;
@@ -78,7 +78,7 @@ private _title = format["Operative transport for %1",_factionName];
         _civ addItem "ItemRadio";
 
         //Save him for access later
-        _this pushback _civ;
+        _this pushBack _civ;
         true
     },
     {
@@ -106,7 +106,7 @@ private _title = format["Operative transport for %1",_factionName];
             [
                 {
                     params ["_faction"];
-                    private _factionName = server getvariable format["factionname%1",_faction];
+                    private _factionName = server getVariable format["factionname%1",_faction];
                     format ["Incoming message from %1: Thank you for delivering our operative. (+5 %1)",_factionName] remoteExec ["OT_fnc_notifyMinor",0,false];
                     server setVariable [format["standing%1",_faction],(server getVariable [format["standing%1",_faction],0]) + 5,true];
                     [250] call OT_fnc_money;
@@ -115,7 +115,7 @@ private _title = format["Operative transport for %1",_factionName];
                 2
             ] call CBA_fnc_waitAndExecute;
         }else{
-            private _factionName = server getvariable format["factionname%1",_faction];
+            private _factionName = server getVariable format["factionname%1",_faction];
             format ["Incoming message from %1: What happened?!? (-10 %1)",_factionName] remoteExec ["OT_fnc_notifyMinor",0,false];
             server setVariable [format["standing%1",_faction],(server getVariable [format["standing%1",_faction],0]) - 10,true];
         };

@@ -15,6 +15,6 @@ if ((typeOf _shooter) isKindOf "CAManBase") then {
     if (!isNull objectParent _shooter) then {
         {
             _x setCaptive false;
-        }foreach(crew objectParent _shooter);
+        }forEach(crew objectParent _shooter);
     };
 };

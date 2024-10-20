@@ -32,4 +32,4 @@ for "_i" from 0 to _objectCount do {
 	_spawnedObjs pushBack _obj;
 };
 
-spawner setvariable [_spawnid, (spawner getvariable [_spawnid,[]]) + _spawnedObjs, false];
+spawner setVariable [_spawnid, (spawner getVariable [_spawnid,[]]) + _spawnedObjs, false];

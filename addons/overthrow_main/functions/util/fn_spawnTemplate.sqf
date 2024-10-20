@@ -38,7 +38,7 @@ _template = templates getVariable typeOf(_building);
 if(isNil "_template") exitWith {[[]]};
 
 
-_buildingpos = getposatl _building;
+_buildingpos = getPosATL _building;
 
 _offset = [0,0,0];
 _buildingpos = [(_buildingpos select 0)+(_offset select 0),(_buildingpos select 1)+(_offset select 1),(_buildingpos select 2)+(_offset select 2)];
@@ -82,7 +82,7 @@ _objects = [];
 		};
 		_objects pushBack _o;
 	};
-}foreach(_template);
+}forEach(_template);
 
 _building setVariable ["furniture",_objects,false];
 

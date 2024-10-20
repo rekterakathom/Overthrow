@@ -19,7 +19,7 @@ if(OT_hasTFAR) then {
 	if((_c select 0) == "tf") then {
 		{
 			if((_x find _cls) isEqualTo 0) exitWith {_cls = _x};
-		}foreach(items player);
+		}forEach(items player);
 	};
 };
 private _target = player;
@@ -35,7 +35,7 @@ if((player getVariable ["OT_shopTarget","Self"]) == "Vehicle") then {
 						if(_cls in (itemCargo _item)) exitWith {[_item, _cls, 1] call CBA_fnc_removeItemCargo};
 						if(_cls in (weaponCargo _item)) exitWith {[_item, _cls, 1] call CBA_fnc_removeWeaponCargo};
 						if(_cls in (magazineCargo _item)) exitWith {[_item, _cls, 1] call CBA_fnc_removeMagazineCargo};
-					}foreach(everyContainer _target);
+					}forEach(everyContainer _target);
 				};
 			};
 		};

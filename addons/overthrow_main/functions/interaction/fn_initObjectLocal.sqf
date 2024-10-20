@@ -25,7 +25,7 @@ private _currentObject = typeOf _this;
 if(_currentObject isEqualTo OT_item_Map) then {
 	_this addAction ["Town Info", OT_fnc_mapInfoDialog,nil,0,false,true,"",""];
 	_this addAction ["Reset UI", {
-		closedialog 0;
+		closeDialog 0;
 		[] spawn OT_fnc_setupPlayer;
 	},nil,0,false,true,"",""];
 	_this enableDynamicSimulation true;

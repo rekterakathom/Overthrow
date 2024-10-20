@@ -1,4 +1,4 @@
-OT_Map_EachFrameLastTownCheckPos = getposATL player;
+OT_Map_EachFrameLastTownCheckPos = getPosATL player;
 OT_Map_EachFrameLastTown = player call OT_fnc_nearestTown;
 
 player call OT_fnc_statsSystem;

@@ -13,7 +13,7 @@ spawner setVariable [_i,[],false];
                 [_x] call OT_fnc_cleanupUnit;
                 sleep 0.1;
             };
-        }foreach(_units);
+        }forEach(_units);
         continue;
     };
 

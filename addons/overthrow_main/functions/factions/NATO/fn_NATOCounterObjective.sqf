@@ -21,7 +21,7 @@ _success = {
 	[_tskid, "FAILED",true] spawn BIS_fnc_taskSetState;
 	_abandoned = server getVariable "NATOabandoned";
 	_abandoned deleteAt (_abandoned find _objective);
-	_count = {(_x getVariable ["garrison",""]) isEqualTo _objective} count (allunits);
+	_count = {(_x getVariable ["garrison",""]) isEqualTo _objective} count (allUnits);
 	server setVariable [format["garrison%1",_objective],_count,true];
 	if(_objective isEqualTo OT_NATO_HQ) then {
 		_objective setMarkerType "ot_HQ";

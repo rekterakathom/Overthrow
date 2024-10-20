@@ -6,10 +6,10 @@ if(isNull(_old)) exitWith {};
 
 //remove last body from spawn distance check
 {
-	if (!(_x isEqualTo _old) && (getplayeruid player) isEqualTo (_x getVariable ["player_uid",false])) then {
+	if (!(_x isEqualTo _old) && (getPlayerUID player) isEqualTo (_x getVariable ["player_uid",false])) then {
 		_x setVariable ["player_uid",false,true];
 	};
-}foreach(alldeadmen);
+}forEach(allDeadMen);
 
 titleText ["", "BLACK FADED", 0];
 
@@ -17,7 +17,7 @@ waitUntil {alive player};
 player setCaptive true;
 player allowDamage false;
 
-_group = creategroup resistance;
+_group = createGroup resistance;
 [player] joinSilent nil;
 [player] joinSilent _group;
 _recruits = server getVariable ["recruits",[]];
@@ -26,7 +26,7 @@ _newrecruits = [];
 	_owner = _x select 0;
 	_name = _x select 1;
 	_civ = _x select 2;
-	if(_owner isEqualTo (getplayeruid player)) then {
+	if(_owner isEqualTo (getPlayerUID player)) then {
 		if(_civ isEqualType objNull) then {
 			if(_civ call OT_fnc_playerIsOwner) then {
 				[_civ] joinSilent (group player);
@@ -34,7 +34,7 @@ _newrecruits = [];
 			};
 		};
 	};
-}foreach (_recruits);
+}forEach (_recruits);
 
 private _money = player getVariable ["money",0];
 private _take = floor(_money * 0.05);
@@ -54,14 +54,14 @@ player addWeaponGlobal "ItemMap";
 
 _housepos = _old getVariable "home";
 _town = _housepos call OT_fnc_nearestTown;
-player setPos (_housepos findEmptyPosition [1,20,typeof _new]);
+player setPos (_housepos findEmptyPosition [1,20,typeOf _new]);
 _clothes = uniform _old;
 player forceAddUniform _clothes;
 [] spawn OT_fnc_setupPlayer;
 
 call {
 	disableSerialization;
-	_display = uiNameSpace getVariable "OT_statsHUD";
+	_display = uiNamespace getVariable "OT_statsHUD";
 	if(isNil "_display") exitWith{};
 	_setText = _display displayCtrl 1001;
 	_setText ctrlSetStructuredText (parseText "");

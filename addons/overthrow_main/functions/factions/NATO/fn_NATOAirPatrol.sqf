@@ -15,13 +15,13 @@ if !(_frombase in _abandoned) then {
     private _pos = _frompos findEmptyPosition [15,100,_vehtype];
     if (count _pos == 0) then {_pos = _frompos findEmptyPosition [8,100,_vehtype]};
 
-    private _group = creategroup blufor;
+    private _group = createGroup blufor;
     private _veh = _vehtype createVehicle _pos;
     _veh setVariable ["garrison","HQ",false];
 
     {
         _x addCuratorEditableObjects [[_veh]];
-    }foreach(allCurators);
+    }forEach(allCurators);
 
     clearWeaponCargoGlobal _veh;
     clearMagazineCargoGlobal _veh;
@@ -34,7 +34,7 @@ if !(_frombase in _abandoned) then {
     	[_x] joinSilent _group;
     	_x setVariable ["garrison","HQ",false];
     	_x setVariable ["NOAI",true,false];
-    }foreach(crew _veh);
+    }forEach(crew _veh);
     sleep 1;
 
     {
@@ -43,7 +43,7 @@ if !(_frombase in _abandoned) then {
         _wp setWaypointBehaviour "SAFE";
         _wp setWaypointSpeed "FULL";
         _wp setWaypointTimeout [300,300,300];
-    }foreach(_waypoints);
+    }forEach(_waypoints);
 
     _timeout = time + ((count _waypoints) * 300);
 
@@ -70,7 +70,7 @@ if !(_frombase in _abandoned) then {
         };
         _veh land "LAND";
         // Sometimes helicopters land just briefly and take off again, so checking this every second
-        waitUntil{sleep 1;(getpos _veh)#2 < 2};
+        waitUntil{sleep 1;(getPos _veh)#2 < 2};
     };
     _veh call OT_fnc_cleanup;
     _group call OT_fnc_cleanup;

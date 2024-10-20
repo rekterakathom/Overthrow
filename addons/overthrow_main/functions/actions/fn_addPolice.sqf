@@ -9,7 +9,7 @@ private _price = _soldier select 0;
 
 if(_money < (_amt * _price)) exitWith {"You cannot afford that" call OT_fnc_notifyMinor};
 
-if !(_town in (server getvariable ["NATOabandoned",[]])) exitWith {"This police station is under NATO control" call OT_fnc_notifyMinor};
+if !(_town in (server getVariable ["NATOabandoned",[]])) exitWith {"This police station is under NATO control" call OT_fnc_notifyMinor};
 
 [_town,5 * _amt] call OT_fnc_support;
 

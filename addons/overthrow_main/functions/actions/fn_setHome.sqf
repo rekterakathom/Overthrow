@@ -3,13 +3,13 @@ private _building = objNull;
 if(_b isEqualType []) then {
 	_building = (_b select 0);
 };
-if((typeof _building) in OT_allRepairableRuins) exitWith {
+if((typeOf _building) in OT_allRepairableRuins) exitWith {
 	private _ruins = [];
-	private _type = (typeof _building);
+	private _type = (typeOf _building);
 	{
 		_x params ["_ruinClass"];
 		if(_type isEqualTo _ruinClass) exitWith {_ruins = _x};
-	}foreach(OT_repairableRuins);
+	}forEach(OT_repairableRuins);
 
 	if((count _ruins) > 0) then {
 		_ruins params ["_ruinClass","_buildClass","_price"];
@@ -35,7 +35,7 @@ if((typeof _building) in OT_allRepairableRuins) exitWith {
 		};
 	};
 };
-if(typeof _building isEqualTo OT_warehouse) exitWith {
+if(typeOf _building isEqualTo OT_warehouse) exitWith {
 	_price =  round((_b select 1) * 0.25);
 	_money = player getVariable ["money",0];
 	if(_money >= _price) then {
@@ -56,9 +56,9 @@ if !(captive player) exitWith {"You cannot set home while wanted" call OT_fnc_no
 private _handled = false;
 private _owner = _building call OT_fnc_getOwner;
 if(!isNil "_owner") then {
-	if ((typeof _building) in OT_allBuyableBuildings && _owner isEqualTo getplayerUID player) exitWith {
+	if ((typeOf _building) in OT_allBuyableBuildings && _owner isEqualTo getPlayerUID player) exitWith {
 		_handled = true;
-		player setVariable ["home",getpos _building,true];
+		player setVariable ["home",getPos _building,true];
 		"This is now your home" call OT_fnc_notifyMinor;
 	};
 };

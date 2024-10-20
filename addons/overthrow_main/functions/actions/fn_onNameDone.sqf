@@ -1,4 +1,4 @@
-private _name = ctrltext 1400;
+private _name = ctrlText 1400;
 if(_name != "") then {
     closeDialog 0;
 
@@ -7,7 +7,7 @@ if(_name != "") then {
     private _bases = server getVariable ["bases",[]];
     private _basePos = getPosASL _base;
     _basePos set [2, 0];
-    _bases pushback [_basePos,_name,getplayeruid player];
+    _bases pushBack [_basePos,_name,getPlayerUID player];
     server setVariable ["bases",_bases,true];
     _base setVariable ["name",_name];
     private _mrkid = format["%1-base",_basePos];
@@ -24,7 +24,7 @@ if(_name != "") then {
             format["New Base: %1",_name],
             format["%1 created a new base for resistance efforts %2",_builder,_basePos call BIS_fnc_locationDescription]
         ] call BIS_fnc_createLogRecord;
-    }foreach([] call CBA_fnc_players);
+    }forEach([] call CBA_fnc_players);
 } else {
     closeDialog 0;
     private _base = (player nearObjects [OT_flag_IND,50]) select 0;

@@ -8,4 +8,4 @@ _end = _this select 2;
         _x set[1,_start];
         _x set[2,_end];
     };
-}foreach(OT_allspawners);
+}forEach(OT_allspawners);

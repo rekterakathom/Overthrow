@@ -7,6 +7,6 @@ _ret = [];
 	if(_x inArea _region) then {
 		_ret pushBack _x;
 	};
-}foreach (_things);
+}forEach (_things);
 
 [_ret,_this select 1] call BIS_fnc_nearestPosition

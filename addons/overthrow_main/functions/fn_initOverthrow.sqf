@@ -147,7 +147,7 @@ OT_tpl_checkpoint = [] call compileScript ["data\templates\NATOcheckpoint.sqf", 
 	{
 		_x params ["_cls","_loadout"];
 		[_cls call OT_fnc_vehicleGetName, _loadout] call ace_arsenal_fnc_addDefaultLoadout;
-	}foreach(OT_Recruitables);
+	}forEach(OT_Recruitables);
 	["Police", OT_Loadout_Police] call ace_arsenal_fnc_addDefaultLoadout;
 
 	//Subscribe to events

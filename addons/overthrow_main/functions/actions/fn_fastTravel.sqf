@@ -12,14 +12,14 @@ _foundweapon = false;
 if((vehicle player) != player && _ftrules > 0) then {
 	{
 		if(!((primaryWeapon _x) isEqualTo "" && (secondaryWeapon _x) isEqualTo "" && (handgunWeapon _x) isEqualTo "")) exitWith {_foundweapon = true};
-	}foreach(crew vehicle player);
+	}forEach(crew vehicle player);
 };
 if(_foundweapon) exitWith {hint "A passenger is holding a weapon"};
 
 private _hasdrugs = false;
 {
 	if(_x in OT_allDrugs) exitWith {_hasdrugs = true};
-}foreach(items player);
+}forEach(items player);
 
 if(_hasdrugs && _ftrules > 0) exitWith {"You cannot fast travel while carrying drugs" call OT_fnc_notifyMinor};
 
@@ -27,7 +27,7 @@ private _exit = false;
 if((vehicle player) != player) then {
 	{
 		if(_x in OT_allDrugs) exitWith {_hasdrugs = true};
-	}foreach(itemCargo vehicle player);
+	}forEach(itemCargo vehicle player);
 
 	if(_hasdrugs && _ftrules > 0) exitWith {hint "You cannot fast travel while carrying drugs";_exit=true};
 	if (driver (vehicle player) != player)  exitWith {hint "You are not the driver of this vehicle";_exit=true};
@@ -119,7 +119,7 @@ OT_FastTravel_MapSingleClickEHId = addMissionEventHandler ["MapSingleClick", {
 							if (count _roads < 1) then {_tam = _tam + 10};
 							if (count _roads > 0) exitWith {};
 						};
-						{_x allowDamage false} foreach (crew _vehicle);
+						{_x allowDamage false} forEach (crew _vehicle);
 						private _road = _roads select 0;
 						_pos = getPosATL _road findEmptyPosition [10,120,typeOf _vehicle];
 						if (count _pos == 0) then {_pos = getPosATL _road findEmptyPosition [0,120,typeOf _vehicle]};
@@ -135,7 +135,7 @@ OT_FastTravel_MapSingleClickEHId = addMissionEventHandler ["MapSingleClick", {
 					_pos = _pos findEmptyPosition [1,100];
 
 					if (count _pos > 0) then {
-						player setpos _pos;
+						player setPos _pos;
 						if (_cost > 0) then {[-_cost] call OT_fnc_money};
 					} else {
 						hint "Not enough space for a human in the destination";
@@ -146,7 +146,7 @@ OT_FastTravel_MapSingleClickEHId = addMissionEventHandler ["MapSingleClick", {
 				cutText ["","BLACK IN",3];
 
 				if(_vehicle != player) then {
-					{_x allowDamage true} foreach (crew _vehicle);
+					{_x allowDamage true} forEach (crew _vehicle);
 				};
 				player allowDamage true;
 				openMap false;

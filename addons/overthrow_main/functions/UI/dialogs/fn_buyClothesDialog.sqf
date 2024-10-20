@@ -13,4 +13,4 @@ lbClear 1500;
 	lbSetValue [1500,_idx,_price];
 	lbSetData [1500,_idx,_cls];
 
-}foreach(OT_allLegalClothing + ["V_RebreatherIA"] + OT_allGlasses + OT_allGoggles + OT_allFacewear);
+}forEach(OT_allLegalClothing + ["V_RebreatherIA"] + OT_allGlasses + OT_allGoggles + OT_allFacewear);

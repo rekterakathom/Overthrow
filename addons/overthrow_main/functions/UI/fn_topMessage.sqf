@@ -21,17 +21,17 @@ if !(hasInterface) exitWith {
 
 private _display = findDisplay 46;
 private _ctrl = _display ctrlCreate ["RscStructuredText",-1];
-_ctrl ctrlSetPosition [0 * safezoneW + safezoneX,-1 * safezoneH + safezoneY,1 * safezoneW,0.066 * safezoneH];
+_ctrl ctrlSetPosition [0 * safeZoneW + safeZoneX,-1 * safeZoneH + safeZoneY,1 * safeZoneW,0.066 * safeZoneH];
 _ctrl ctrlSetStructuredText parseText _text2show;
 _ctrl ctrlCommit 0;
 [_ctrl] call BIS_fnc_CtrlFitToTextHeight;
 private _origPos = ctrlPosition _ctrl;
 
-_ctrl ctrlSetPosition [(ctrlPosition _ctrl)#0,(-0.05-(ctrlPosition _ctrl)#3) * safezoneH + safezoneY,(ctrlPosition _ctrl)#2,(ctrlPosition _ctrl)#3];
+_ctrl ctrlSetPosition [(ctrlPosition _ctrl)#0,(-0.05-(ctrlPosition _ctrl)#3) * safeZoneH + safeZoneY,(ctrlPosition _ctrl)#2,(ctrlPosition _ctrl)#3];
 _ctrl ctrlCommit 0;
 
 
-_ctrl ctrlSetPosition [0 * safezoneW + safezoneX,0 * safezoneH + safezoneY];
+_ctrl ctrlSetPosition [0 * safeZoneW + safeZoneX,0 * safeZoneH + safeZoneY];
 _ctrl ctrlCommit 0.25;
 
 if (_playSound) then {
@@ -40,7 +40,7 @@ if (_playSound) then {
 
 uiSleep (_time );
 
-_ctrl ctrlSetPosition [(ctrlPosition _ctrl)#0,(((ctrlPosition _ctrl)#3) * -1) * safezoneH + safezoneY,(ctrlPosition _ctrl)#2,(ctrlPosition _ctrl)#3];
+_ctrl ctrlSetPosition [(ctrlPosition _ctrl)#0,(((ctrlPosition _ctrl)#3) * -1) * safeZoneH + safeZoneY,(ctrlPosition _ctrl)#2,(ctrlPosition _ctrl)#3];
 _ctrl ctrlCommit 0.25;
 
 uiSleep 0.35;

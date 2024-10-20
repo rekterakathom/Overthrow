@@ -45,7 +45,7 @@ private _typecls = _this;
 				nil
 			]
 		};
-	}foreach(OT_Placeables);
+	}forEach(OT_Placeables);
 }) params [
 	["_attachAt", [0,2,1]],
 	["_modeValues", []],
@@ -62,7 +62,7 @@ modeCancelled = false;
 private _money = player getVariable "money";
 if(_cost > _money) exitWith {format["You cannot afford that, you need $%1",_cost] call OT_fnc_notifyMinor};
 
-if !([getpos player,_typecls] call OT_fnc_canPlace) exitWith {
+if !([getPos player,_typecls] call OT_fnc_canPlace) exitWith {
 	if(_typecls == "Camp") exitWith {
 		"Camps cannot be near another building" call OT_fnc_notifyMinor;
 	};
@@ -76,7 +76,7 @@ if(isNil "modeValue") then {
 	modeValue = 0;
 };
 
-modeTarget = objNULL;
+modeTarget = objNull;
 modeRedo = false;
 if(isNil "modeRotation") then {
 	modeRotation = 180;
@@ -204,14 +204,14 @@ if(_cost > 0) then {
 		detach modeTarget;
 		deleteVehicle modeTarget;
 	}else{
-		if ([getpos player,_typecls] call OT_fnc_canPlace) then {
+		if ([getPos player,_typecls] call OT_fnc_canPlace) then {
 			[-_cost] call OT_fnc_money;
 			modeTarget setPosATL [getPosATL modeTarget select 0,getPosATL modeTarget select 1,getPosATL player select 2];
 			[modeTarget,getPlayerUID player] call OT_fnc_setOwner;
 			modeTarget remoteExec["OT_fnc_initObjectLocal",0,modeTarget];
 			if(_typecls == "Base" || _typecls == "Camp") then {
 				// @todo remove this when done
-				createVehicle ["Land_ClutterCutter_large_F", (getpos modeTarget), [], 0, "CAN_COLLIDE"];
+				createVehicle ["Land_ClutterCutter_large_F", (getPos modeTarget), [], 0, "CAN_COLLIDE"];
 			};
 
 			if(_typecls isEqualTo "Base") then {
@@ -219,21 +219,21 @@ if(_cost > 0) then {
 				ctrlSetText [1400,"Base"];
 			};
 			if(_typecls == "Camp") then {
-				private _mrkid = format["%1-camp",getplayeruid player];
-				createMarkerLocal [_mrkid,getpos modeTarget];
-				_mrkid setMarkerPosLocal (getpos modeTarget);
+				private _mrkid = format["%1-camp",getPlayerUID player];
+				createMarkerLocal [_mrkid,getPos modeTarget];
+				_mrkid setMarkerPosLocal (getPos modeTarget);
 				private _camp = player getVariable["camp",[]];
 				if(count _camp > 0) then {
 					{
-						private _t = typeof _x;
-						if((_x call OT_fnc_getOwner) == getplayeruid player) then {
+						private _t = typeOf _x;
+						if((_x call OT_fnc_getOwner) == getPlayerUID player) then {
 							if(_t == OT_item_Tent || _t == "Land_ClutterCutter_large_F") then {
 								deleteVehicle _x;
 							};
 						};
-					}foreach(_camp nearObjects 10);
+					}forEach(_camp nearObjects 10);
 				};
-				player setVariable ["camp",getpos modeTarget];
+				player setVariable ["camp",getPos modeTarget];
 				_mrkid setMarkerShapeLocal "ICON";
 				_mrkid setMarkerTypeLocal "ot_Camp";
 				_mrkid setMarkerColorLocal "ColorWhite";
@@ -241,9 +241,9 @@ if(_cost > 0) then {
 				_mrkid setMarkerText format ["Camp %1",name player];
 				_builder = name player;
 				{
-					_desc = (getpos modeTarget) call BIS_fnc_locationDescription;
+					_desc = (getPos modeTarget) call BIS_fnc_locationDescription;
 					[_x,format["New Camp %1",_desc],format["%1 placed a camp %2",_builder,_desc]] call BIS_fnc_createLogRecord;
-				}foreach([] call CBA_fnc_players);
+				}forEach([] call CBA_fnc_players);
 			};
 		}else{
 			detach modeTarget;

@@ -28,7 +28,7 @@ if (_price > -1) then {
             private _name = _cls call OT_fnc_getClassDisplayName;
             private _cost = (([OT_nation,_cls,30] call OT_fnc_getPrice) * _qty);
             _desc = format["%1%2 x %3 = $%4<br/>",_desc,_qty,_name,[_cost, 1, 0, true] call CBA_fnc_formatNumber];
-        } foreach (_bought);
+        } forEach (_bought);
 
         if (_desc isEqualTo "") then {
             _desc = "All items required for this unit are available in the warehouse";

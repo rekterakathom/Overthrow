@@ -12,19 +12,19 @@ if(_trackcounter > 5) then {
 			_x setVariable ["OT_newplayer",false,true];
 		};
 		[_x] call OT_fnc_savePlayerData;
-	}foreach(allPlayers - (entities "HeadlessClient_F"));
+	}forEach(allPlayers - (entities "HeadlessClient_F"));
 
 	_track = [];
 	{
 		if(_x getVariable ["OT_spawntrack",false]) then {
-			_track pushback _x;
+			_track pushBack _x;
 		};
-	}foreach(allunits);
+	}forEach(allUnits);
 	{
 		if(_x getVariable ["OT_spawntrack",false]) then {
-			_track pushback _x;
+			_track pushBack _x;
 		};
-	}foreach(vehicles);
+	}forEach(vehicles);
 	spawner setVariable ["track",_track,false];
 };
 
@@ -36,9 +36,9 @@ if(_trackcounter > 5) then {
 			_x setBehaviour "SAFE";
 		};
 	};
-}foreach (groups civilian);
+}forEach (groups civilian);
 
-private _dead = count alldeadmen;
+private _dead = count allDeadMen;
 if(_dead > 150) then {
 	format["There are %1 dead bodies, loot them or clean via options",_dead] remoteExec ["OT_fnc_notifyMinor",0,false];
 };
@@ -51,18 +51,18 @@ if(_dead > 150) then {
 		};
 		{
 			[_x] call OT_fnc_cleanupUnit;
-		}foreach(_units);
+		}forEach(_units);
 	};
 	if (_x isEqualType objNull) then {
 		[_x] call OT_fnc_cleanupUnit;
 	};
-}foreach(spawner getVariable ["_noid_",[]]);
+}forEach(spawner getVariable ["_noid_",[]]);
 
 {
 	if((_x isKindOf "Air") && {(alive _x)} && ((side _x) isEqualTo west) && (_x call OT_fnc_isRadarInRange) && {(count crew _x > 0)}) then {
 		[_x,2500] call OT_fnc_revealToResistance;
 	};
-}foreach(entities "Air");
+}forEach(entities "Air");
 
 if ((date select 3) != _lasthr) then {
 	_lasthr = date select 3;
@@ -120,8 +120,8 @@ if ((date select 3) != _lasthr) then {
 										_income = _income + (_sellprice * _amt);
 									};
 								};
-							}foreach(_stock);
-						}foreach(_pos nearObjects [OT_item_CargoContainer, 50]);
+							}forEach(_stock);
+						}forEach(_pos nearObjects [OT_item_CargoContainer, 50]);
 						[_income] call OT_fnc_resistanceFunds;
 					};
 					if(count _data isEqualTo 4) then {
@@ -153,8 +153,8 @@ if ((date select 3) != _lasthr) then {
 											_inputnum = _inputnum + _amt;
 										};
 									};
-								}foreach(_c call OT_fnc_unitStock);
-							}foreach(_pos nearObjects [OT_item_CargoContainer, 50]);
+								}forEach(_c call OT_fnc_unitStock);
+							}forEach(_pos nearObjects [OT_item_CargoContainer, 50]);
 							_outnum = round (_outnum * (_inputnum / _intotal));
 						};
 						if(_output != "" && _outnum > 0) then {
@@ -168,9 +168,9 @@ if ((date select 3) != _lasthr) then {
 											[_c, _cls, 1] call CBA_fnc_removeItemCargo;
 											_foundFertilizer = true;
 										};
-									}foreach(_c call OT_fnc_unitStock);
+									}forEach(_c call OT_fnc_unitStock);
 									if(_foundFertilizer) exitWith {};
-								}foreach(_pos nearObjects [OT_item_CargoContainer, 50]);
+								}forEach(_pos nearObjects [OT_item_CargoContainer, 50]);
 								if(_foundFertilizer) then {
 									_output = round(_output * 1.5);
 								};
@@ -183,7 +183,7 @@ if ((date select 3) != _lasthr) then {
 				format["Resistance was unable to pay wages at %1",_x] remoteExec ["OT_fnc_notifyMinor",0,false];
 			};
 		};
-	}foreach(server getVariable ["GEURowned",[]]);
+	}forEach(server getVariable ["GEURowned",[]]);
 };
 
 if ((date select 4) != _lastmin) then {
@@ -202,7 +202,7 @@ if ((date select 4) != _lastmin) then {
 		private _town = _pos call OT_fnc_nearestTown;
 		_support = [_town] call OT_fnc_support;
 		if (!(_id in _revealed) && (_support > (random 2000))) then {
-			_revealed pushback _id;
+			_revealed pushBack _id;
 			_mrkid = createMarkerLocal [format["natofob%1",_id],_pos];
 			_mrkid setMarkerShapeLocal "ICON";
 		    _mrkid setMarkerTypeLocal "mil_Flag";
@@ -210,7 +210,7 @@ if ((date select 4) != _lastmin) then {
 		    _mrkid setMarkerAlpha 1;
 			format["Citizens of %1 have revealed intelligence of a nearby NATO FOB",_town] remoteExec ["OT_fnc_notifyMinor",0,false];
 		};
-	}foreach(server getVariable ["NATOfobs",[]]);
+	}forEach(server getVariable ["NATOfobs",[]]);
 	server setVariable ["revealedFOBs",_revealed,false];
 
 	_stabcounter = _stabcounter + 1;
@@ -220,7 +220,7 @@ if ((date select 4) != _lastmin) then {
 		_stabcounter = 0;
 		{
 			_town = _x;
-			_townpos = server getvariable _x;
+			_townpos = server getVariable _x;
 			if !(_town in _abandoned) then {
 				if([_townpos] call OT_fnc_inSpawnDistance) then {
 					if((_townpos nearEntities ["CAManBase",600]) findIf {side _x isEqualTo west} != -1) then {
@@ -241,7 +241,7 @@ if ((date select 4) != _lastmin) then {
 					[_town,_stabchange] call OT_fnc_stability;
 				};
 			};
-		}foreach(OT_allTowns);
+		}forEach(OT_allTowns);
 	};
 
 	if("Chemical Plant" in _abandoned) then {
@@ -353,7 +353,7 @@ if ((date select 4) != _lastmin) then {
 						if(_item select 1 > 1) then {
 							_item set [1,(_item select 1)-1];
 						}else{
-							_queue deleteat 0;
+							_queue deleteAt 0;
 						};
 						server setVariable ["factoryQueue",_queue,true];
 					};
@@ -424,7 +424,7 @@ if ((date select 4) != _lastmin) then {
 		_x params ["_owner","_name","_unit","_rank"];
 		if(_unit isEqualType objNull) then {
 			_xp = _unit getVariable ["OT_xp",0];
-			_player = spawner getvariable [_owner,objNULL];
+			_player = spawner getVariable [_owner,objNull];
 			if(_rank == "PRIVATE" && _xp > (OT_rankXP select 0)) then {
 				_x set [3,"CORPORAL"];
 				_unit setRank "CORPORAL";
@@ -456,6 +456,6 @@ if ((date select 4) != _lastmin) then {
 				_unit setSkill 0.8 + (random 0.2);
 			};
 		};
-	}foreach(server getVariable ["recruits",[]]);
+	}forEach(server getVariable ["recruits",[]]);
 };
 GUER_faction_loop_data = [_lastmin,_lasthr,_currentProduction,_stabcounter,_trackcounter];

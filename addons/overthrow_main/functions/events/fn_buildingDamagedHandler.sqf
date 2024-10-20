@@ -4,9 +4,9 @@ if(damage _obj isEqualTo 1) then {
     _damaged = owners getVariable ["damagedBuildings",[]];
     _id = [_obj] call OT_fnc_getBuildID;
     if !(_id in _damaged) then {
-        _damaged pushback _id;
+        _damaged pushBack _id;
         owners setVariable ["damagedBuildings",_damaged,true];
-        _ty = typeof _obj;
+        _ty = typeOf _obj;
 
         if(_ty isEqualTo OT_warehouseBuilding) then {
             format ["Warehouse damaged %1",_obj call BIS_fnc_locationDescription] remoteExec ["OT_fnc_notifyMinor",0,false];

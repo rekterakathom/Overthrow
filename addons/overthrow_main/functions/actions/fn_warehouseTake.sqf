@@ -21,7 +21,7 @@ if(_veh isEqualTo player) then {
 	_b = OT_warehouseTarget call OT_fnc_nearestRealEstate;
 	if(_b isEqualType []) then {
 		_building = _b select 0;
-		if((typeof _building) == OT_warehouse && _building call OT_fnc_hasOwner) then {
+		if((typeOf _building) == OT_warehouse && _building call OT_fnc_hasOwner) then {
 			_iswarehouse = true;
 			_veh = OT_warehouseTarget;
 		};

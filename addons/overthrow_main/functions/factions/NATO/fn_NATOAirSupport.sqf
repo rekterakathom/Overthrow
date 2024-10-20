@@ -11,14 +11,14 @@ private _pos = false;
 	//check if theres anything on it
 	private _on = ASLToAGL getPosASL _x nearEntities ["Air",15];
 	if((count _on) isEqualTo 0) exitWith {_pos = getPosASL _x;_dir = getDir _x};
-}foreach(_helipads);
+}forEach(_helipads);
 
 if !(_pos isEqualType []) then {
 	_pos = _frompos findEmptyPosition [15,100,_vehtype];
 	if (count _pos == 0) then {_pos = _frompos findEmptyPosition [8,100,_vehtype]};
 };
 
-private _group = creategroup blufor;
+private _group = createGroup blufor;
 private _veh = createVehicle [_vehtype, _pos, [], 0,""];
 _veh setVariable ["garrison","HQ",false];
 
@@ -34,13 +34,13 @@ createVehicleCrew _veh;
 	[_x] joinSilent _group;
 	_x setVariable ["garrison","HQ",false];
 	_x setVariable ["NOAI",true,false];
-}foreach(crew _veh);
+}forEach(crew _veh);
 _allunits = (units _group);
 sleep 1;
 
 {
 	_x addCuratorEditableObjects [[_veh]];
-}foreach(allCurators);
+}forEach(allCurators);
 
 _topos = _attackpos getPos [random 200, random 360];
 

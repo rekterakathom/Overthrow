@@ -7,8 +7,8 @@ private _done = false;
         _done=true;
         _x set [1,_value];
     };
-}foreach(_params);
+}forEach(_params);
 if(!_done) then {
-    _params pushback [_attr,_value];
+    _params pushBack [_attr,_value];
 };
 players_NS setVariable [_uid,_params,true];

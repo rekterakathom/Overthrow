@@ -3,7 +3,7 @@ params ["_ctrl","_index"];
 
 private _netId = _ctrl lbData _index;
 private _veh = _netId call BIS_fnc_objectFromNetId;
-private _cls = typeof _veh;
+private _cls = typeOf _veh;
 
 ([_cls, true] call OT_fnc_getClassDisplayInfo) params ["_pic", "_name"];
 
@@ -113,14 +113,14 @@ if(_gunOut) then {
 };
 
 private _totalAmmo = 0;
-private _turrets = "!((configName _x) select [0,5] == ""Cargo"") && !((count getArray (_x >> ""magazines"")) isEqualTo 0)" configClasses (configfile >> "CfgVehicles" >> _cls >> "Turrets");
+private _turrets = "!((configName _x) select [0,5] == ""Cargo"") && !((count getArray (_x >> ""magazines"")) isEqualTo 0)" configClasses (configFile >> "CfgVehicles" >> _cls >> "Turrets");
 private _hasAmmo = (count _turrets) > 0;
 private _ammotxt = "";
 {
     _x params ["_ammocls","_num"];
     _totalAmmo = _totalAmmo + _num;
     _ammotxt = format["%1%2 x %3<br/>",_ammotxt,_num,_ammocls call OT_fnc_getClassDisplayName];
-}foreach(magazinesAmmo _veh);
+}forEach(magazinesAmmo _veh);
 
 if(_totalAmmo > 0) then {
     _txt = format["%1<br/>Ammo:<br/>%2",_txt,_ammotxt];

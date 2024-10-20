@@ -44,22 +44,22 @@ private _fobs = server getVariable ["NATOfobs", []];
 	if (!("Mortar" in _upgrades) && {(_spend > 300)} && {(random 100 > _chance)}) exitWith {
 		_spend = _spend - 300;
 		_resources = _resources - 300;
-		_upgrades pushback "Mortar";
+		_upgrades pushBack "Mortar";
 		[_pos,["Mortar"]] spawn OT_fnc_NATOupgradeFOB;
 	};
 	if (!("Barriers" in _upgrades) && {(_spend > 50)} && {(random 100 > _chance)}) exitWith {
 		_spend = _spend - 50;
 		_resources = _resources - 50;
-		_upgrades pushback "Barriers";
+		_upgrades pushBack "Barriers";
 		[_pos,["Barriers"]] spawn OT_fnc_NATOupgradeFOB;
 	};
 	if (!("HMG" in _upgrades) && {(_spend > 150)} && {(random 100 > _chance)}) exitWith {
 		_spend = _spend - 150;
 		_resources = _resources - 150;
-		_upgrades pushback "HMG";
+		_upgrades pushBack "HMG";
 		[_pos,["HMG"]] spawn OT_fnc_NATOupgradeFOB;
 	};
-}foreach(_fobs);
+}forEach(_fobs);
 
 server setVariable ["NATOresources", _resources];
 

@@ -19,7 +19,7 @@ if !(job_system_counter < 12) then {
             if((random 100) < _chance) then {
               private _numAbandoned = count(server getVariable ["NATOabandoned",[]]);
               if(([_numAbandoned] call _condition) && !(_id in _completed) && !(_id in _activeJobs)) then {
-                _activeJobs pushback _id;
+                _activeJobs pushBack _id;
                 spawner setVariable ["OT_activeJobIds",_activeJobs,false];
                 [_id,_jobdef,[]] call OT_fnc_assignJob;
               };
@@ -34,7 +34,7 @@ if !(job_system_counter < 12) then {
                   if !(isNil "_p2") then {
                       private _id = format["%1-%2",_name,_missionid];
                       if(([_mission,_numAbandoned] call _condition) && !(_id in _completed) && !(_id in _activeJobs)) then {
-                        _activeJobs pushback _id;
+                        _activeJobs pushBack _id;
                         spawner setVariable ["OT_activeJobIds",_activeJobs,false];
                         [_id,_jobdef,[_x]] call OT_fnc_assignJob;
                       };
@@ -52,7 +52,7 @@ if !(job_system_counter < 12) then {
                 if(([_inSpawnDistance,_stability,_x] call _condition) && !(_id in _completed) && !(_id in _activeJobs)) exitWith {
                   [_id,_jobdef,[_x]] call OT_fnc_assignJob;
                 };
-              }foreach(OT_allTowns);
+              }forEach(OT_allTowns);
             };
           };
           case "base": {
@@ -66,7 +66,7 @@ if !(job_system_counter < 12) then {
                 if(([_inSpawnDistance,_base,_stability] call _condition) && !(_id in _completed) && !(_id in _activeJobs)) exitWith {
                   [_id,_jobdef,[_base,_loc]] call OT_fnc_assignJob;
                 };
-              }foreach(OT_objectiveData + OT_airportData);
+              }forEach(OT_objectiveData + OT_airportData);
             };
           };
           case "hvt": {
@@ -84,9 +84,9 @@ if !(job_system_counter < 12) then {
                           [_id,_jobdef,[_base,_hvtid]] call OT_fnc_assignJob;
                         };
                 	};
-                }foreach(OT_NATOhvts);
+                }forEach(OT_NATOhvts);
                 if(_done) exitWith {};
-              }foreach(OT_objectiveData + OT_airportData);
+              }forEach(OT_objectiveData + OT_airportData);
             };
           };
           case "faction": {
@@ -109,10 +109,10 @@ if !(job_system_counter < 12) then {
                   };
                 };
                 if(_done) exitWith {};
-              }foreach(OT_allFactions);
+              }forEach(OT_allFactions);
             };
           };
         };
     };
-  }foreach(OT_allJobs);
+  }forEach(OT_allJobs);
 };

@@ -7,7 +7,7 @@
         (units _x) orderGetIn true;
         {
             _x assignAsCargo _veh;
-        }foreach(units _squad);
+        }forEach(units _squad);
     };
     player hcSelectGroup [_squad,false];
-}foreach(hcSelected player);
+}forEach(hcSelected player);

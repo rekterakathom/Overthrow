@@ -22,7 +22,7 @@ if(count _primary > 0) then {
 			if([_ammobox,_x,1] call CBA_fnc_removeItemCargo) then {
 				_unit addPrimaryWeaponItem _x;
 			};
-		}foreach(_pItems);
+		}forEach(_pItems);
 	};
 };
 
@@ -42,7 +42,7 @@ if(count _secondary > 0) then {
 			if([_ammobox,_x,1] call CBA_fnc_removeItemCargo) then {
 				_unit addSecondaryWeaponItem _x;
 			};
-		}foreach(_sItems);
+		}forEach(_sItems);
 	};
 };
 
@@ -94,7 +94,7 @@ if(count _vest > 0) then {
 				_count = _count + 1;
 			};
 
-		}foreach(_vestItems);
+		}forEach(_vestItems);
 	};
 };
 
@@ -126,7 +126,7 @@ if(count _backpack > 0) then {
 				_count = _count + 1;
 			};
 
-		}foreach(_bpItems);
+		}forEach(_bpItems);
 	};
 };
 
@@ -164,7 +164,7 @@ if (count _uniform > 0) then {
 		_count = _count + 1;
 	};
 
-}foreach(_uniformItems);
+}forEach(_uniformItems);
 
 if([_ammobox,_headgear,1] call CBA_fnc_removeItemCargo) then {
 	_unit addHeadgear _headgear;
@@ -178,4 +178,4 @@ if([_ammobox,_goggles,1] call CBA_fnc_removeItemCargo) then {
 	if([_ammobox,_x,1] call CBA_fnc_removeItemCargo) then {
 		_unit linkItem _x;
 	};
-}foreach(_assigned);
+}forEach(_assigned);

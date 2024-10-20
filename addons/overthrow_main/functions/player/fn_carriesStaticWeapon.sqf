@@ -3,4 +3,4 @@
 		true
 	};
 	false
-}foreach(attachedObjects _this)
+}forEach(attachedObjects _this)

@@ -1,5 +1,5 @@
 private _player = _this;
-private _data = players_NS getvariable (getplayeruid _player);
+private _data = players_NS getVariable (getPlayerUID _player);
 private _newplayer = isNil "_data";
 if !(_newplayer) then {
     {
@@ -10,13 +10,13 @@ if !(_newplayer) then {
                 _player setVariable [_key,_val,true];
             };
         };
-    }foreach(_data);
+    }forEach(_data);
 
 };
 _player setVariable ["OT_newplayer",_newplayer,true];
 
-private _loadout = players_NS getvariable format["loadout%1",getplayeruid _player];
+private _loadout = players_NS getVariable format["loadout%1",getPlayerUID _player];
 if !(isNil "_loadout") then {
-    _player setunitloadout _loadout;
+    _player setUnitLoadout _loadout;
 };
 _player setVariable ["OT_loaded",true,true];

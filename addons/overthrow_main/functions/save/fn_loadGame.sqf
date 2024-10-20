@@ -34,9 +34,9 @@ private _cc = 0;
 			if(!(toLower (_subkey select [0,4]) in ["cba_","bis_"])) then {
 				server setVariable [_subkey,_subval,true];
 			};
-		}foreach(_val);
+		}forEach(_val);
 	};
-}foreach(_data);
+}forEach(_data);
 
 sleep 0.3;
 
@@ -72,11 +72,11 @@ private _hasList_buildableHouses = false;
 								};
 							};
 						};
-					}foreach(_subval);
+					}forEach(_subval);
 				};
 				players_NS setVariable [_subkey,_subval,true];
 			};
-		}foreach(_val);
+		}forEach(_val);
 		_set = false;
 		continue;
 	};
@@ -87,7 +87,7 @@ private _hasList_buildableHouses = false;
 			if!(toLower (_subkey select [0,4]) in ["ace_","cba_","bis_"]) then {
 				OT_civilians setVariable [_subkey,_subval,true];
 			};
-		}foreach(_val);
+		}forEach(_val);
 		_set = false;
 		continue;
 	};
@@ -98,7 +98,7 @@ private _hasList_buildableHouses = false;
 			if!(toLower (_subkey select [0,4]) in ["ace_","cba_","bis_"]) then {
 				buildingpositions setVariable [_subkey,_subval,true];
 			};
-		}foreach(_val);
+		}forEach(_val);
 		_set = false;
 		continue;
 	};
@@ -121,7 +121,7 @@ private _hasList_buildableHouses = false;
 			_mrkid setMarkerColorLocal "ColorWhite";
 			_mrkid setMarkerAlphaLocal 1;
 			_mrkid setMarkerText _name;
-		}foreach(_val);
+		}forEach(_val);
 
 		// todo _set = false?
 		continue;
@@ -155,7 +155,7 @@ private _hasList_buildableHouses = false;
 						};
 						continue;
 					};
-				}foreach(_val);
+				}forEach(_val);
 			};
 			default {
 				{
@@ -168,7 +168,7 @@ private _hasList_buildableHouses = false;
 							warehouse setVariable [format["item_%1",_itemClassL],_itemData,true];
 						};
 					};
-				}foreach(_val select {!(((toLower (_x#0)) select [0,4]) in ["cba_","bis_"])});
+				}forEach(_val select {!(((toLower (_x#0)) select [0,4]) in ["cba_","bis_"])});
 			};
 		};
 		_set = false;
@@ -197,7 +197,7 @@ private _hasList_buildableHouses = false;
 					_warehouse setVariable [format["item_%1",_itemClass],[_itemClass,_itemCount],true];
 				};
 			};
-		}foreach(_val);
+		}forEach(_val);
 		continue;
 	};
 	if(_key == "vehicles") then {
@@ -243,7 +243,7 @@ private _hasList_buildableHouses = false;
 							if(_d > 0) then {
 								_veh setHitPointDamage [_x, _d, false];
 							};
-						}foreach(_dmg select 0);
+						}forEach(_dmg select 0);
 						if(count (_x select 7) > 2) then {
 							//ACE refuel (fuel trucks)
 							[_veh, (_x select 7) select 2] call ace_refuel_fnc_setFuel;
@@ -257,7 +257,7 @@ private _hasList_buildableHouses = false;
 							_ammo = (_x select 7) select 4;
 							{
 								_veh setAmmo [_x select 0,_x select 1];
-							}foreach((_x select 7) select 4);
+							}forEach((_x select 7) select 4);
 						};
 						if(count (_x select 7) > 5) then {
 							//Attached
@@ -356,12 +356,12 @@ private _hasList_buildableHouses = false;
 						};
 						_veh addItemCargoGlobal _x;
 					};
-				}foreach(_stock);
+				}forEach(_stock);
 
 				if(count _x > 6) then {
 					_code = (_x select 6);
 					if(_code != "") then {
-						[_veh,getpos _veh,_code] call OT_fnc_initBuilding;
+						[_veh,getPos _veh,_code] call OT_fnc_initBuilding;
 					};
 					_veh setVariable ["OT_init",_code,true];
 				};
@@ -392,14 +392,14 @@ private _hasList_buildableHouses = false;
 					_mrkid setMarkerTypeLocal "ot_Camp";
 					_mrkid setMarkerColorLocal "ColorWhite";
 					_mrkid setMarkerAlphaLocal 1;
-					_mrkid setMarkerText format ["Camp %1",players_NS getvariable [format["name%1",_owner],""]];
+					_mrkid setMarkerText format ["Camp %1",players_NS getVariable [format["name%1",_owner],""]];
 				};
 			};
 			if(_ccc isEqualTo 10) then {
 				_ccc = 0;
 				sleep 0.3;
 			};
-		}foreach(_val);
+		}forEach(_val);
 		continue;
 	};
 	if(_key == "recruits") then {
@@ -431,9 +431,9 @@ private _hasList_buildableHouses = false;
 			{
 				_x params ["_c","_l"];
 				if(_c == _cls) exitWith {_done = true;_x set [1,_loadout]};
-			}foreach(OT_Recruitables);
-		}foreach(_val);
-		if !(_done) then {OT_Recruitables pushback [_cls,_loadout]};
+			}forEach(OT_Recruitables);
+		}forEach(_val);
+		if !(_done) then {OT_Recruitables pushBack [_cls,_loadout]};
 		publicVariable "OT_Recruitables";
 		_set = false;
 		continue;
@@ -456,7 +456,7 @@ private _hasList_buildableHouses = false;
 		_cc = 0;
 		sleep 0.3;
 	};
-}foreach(_data);
+}forEach(_data);
 sleep 0.3;
 
 {
@@ -465,7 +465,7 @@ sleep 0.3;
 	_code = format["fob%1",_pos];
 	_garrison = server getVariable [format["resgarrison%1",_code],[]];
 	if(count _garrison > 0) then {
-		_group = creategroup resistance;
+		_group = createGroup resistance;
 		spawner setVariable [format["resgarrison%1",_code],_group,true];
 		{
 			_x params ["_cls","_loadout"];
@@ -481,7 +481,7 @@ sleep 0.3;
 				[_pos,_cls,false] call OT_fnc_addGarrison;
 			};
 			sleep 0.1;
-		}foreach(_garrison);
+		}forEach(_garrison);
 	};
 	private _mrkid = format["%1-base",_pos];
     createMarkerLocal [_mrkid,_pos];
@@ -492,7 +492,7 @@ sleep 0.3;
     _mrkid setMarkerText (_x select 1);
 	_veh = OT_flag_IND createVehicle _pos;
 	[_veh,(server getVariable ["generals",[getPlayerUID player]]) select 0] call OT_fnc_setOwner;
-}foreach(server getvariable ["bases",[]]);
+}forEach(server getVariable ["bases",[]]);
 
 {
 	if (isNil "_x") then {continue};
@@ -500,7 +500,7 @@ sleep 0.3;
 	_code = _x select 1;
 	_garrison = server getVariable [format["resgarrison%1",_code],[]];
 	if(count _garrison > 0) then {
-		_group = creategroup resistance;
+		_group = createGroup resistance;
 		spawner setVariable [format["resgarrison%1",_code],_group,true];
 		{
 			_x params ["_cls","_loadout"];
@@ -515,9 +515,9 @@ sleep 0.3;
 				[_pos,_cls,false] call OT_fnc_addGarrison;
 			};
 			sleep 0.1;
-		}foreach(_garrison);
+		}forEach(_garrison);
 	};
-}foreach(OT_objectiveData + OT_airportData);
+}forEach(OT_objectiveData + OT_airportData);
 
 //reveal gang camps
 private _revealed = server getVariable ["revealedGangs",[]];
@@ -531,7 +531,7 @@ private _revealed = server getVariable ["revealedGangs",[]];
 		_mrkid setMarkerTypeLocal "ot_Camp";
 		_mrkid setMarkerColor "colorOPFOR";
 	};
-}foreach(_revealed);
+}forEach(_revealed);
 
 private _built = (allMissionObjects "Static");
 {
@@ -567,27 +567,27 @@ private _built = (allMissionObjects "Static");
 						_bdg addEventHandler ["Dammaged",OT_fnc_buildingDamagedHandler];
 					};
 					if(_x in _leased) then {
-						_leasedata pushback [_x,typeof _bdg,_pos,_pos call OT_fnc_nearestTown];
+						_leasedata pushBack [_x,typeOf _bdg,_pos,_pos call OT_fnc_nearestTown];
 						_leasedNew pushBack _x;
 					};
 				};
-			}foreach(_val);
+			}forEach(_val);
 		};
-	}foreach(_vars);
+	}forEach(_vars);
 
 	// Add the built houses
 	{
 		if (isNil "_x") then {continue};
 		private _ID = [_x] call OT_fnc_getBuildID;
 		private _pos = position _x;
-		_leasedata pushBack [_ID, typeof _x,_pos,_pos call OT_fnc_nearestTown];
+		_leasedata pushBack [_ID, typeOf _x,_pos,_pos call OT_fnc_nearestTown];
 		_leasedNew pushBack _ID;
 	} forEach ([_uid,"leasedBuilt",[]] call OT_fnc_getOfflinePlayerAttribute);
 
 	[_uid,"leasedata",_leasedata] call OT_fnc_setOfflinePlayerAttribute;
 	[_uid,"leased",_leasedNew] call OT_fnc_setOfflinePlayerAttribute;		// Overwrite the "leased" data to get rid of the IDs that point to buildings which no longer exist (player-built houses)
 	[_uid,"leasedBuilt",[]] call OT_fnc_setOfflinePlayerAttribute;
-}foreach(players_NS getvariable ["OT_allPlayers",[]]);
+}forEach(players_NS getVariable ["OT_allPlayers",[]]);
 
 OT_autoSave_last_time = (time + (OT_autoSave_time*60)) + 60;
 

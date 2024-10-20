@@ -2,16 +2,16 @@ params ["_vehicle", ["_chuteheight", 100]];
 
 sleep 5; //Give the helicopter a chance to stop/slow Down
 
-private _paras = assignedcargo _vehicle;
+private _paras = assignedCargo _vehicle;
 private _dir = direction _vehicle;
 
 {
-	spawner setvariable [format["eject_%1",[_x] call OT_fnc_getBuildID],getUnitLoadout _x,false];
+	spawner setVariable [format["eject_%1",[_x] call OT_fnc_getBuildID],getUnitLoadout _x,false];
 	removeBackpackGlobal _x;
 	_x disableCollisionWith _vehicle;// Sometimes units take damage when being ejected.
 	_x addBackpackGlobal "B_parachute";
-	unassignvehicle _x;
-	moveout _x;
+	unassignVehicle _x;
+	moveOut _x;
 	_x setDir (_dir + 90);// Exit the chopper at right angles.
 	sleep 1;
 } forEach _paras;
@@ -39,8 +39,8 @@ private _dir = direction _vehicle;
 		sleep 2;
 		private _inv = name _unit;
 		private _id = [_unit] call OT_fnc_getBuildID;
-		_unit setUnitLoadout (spawner getvariable [format["eject_%1",_id],[]]);
-		spawner setvariable [format["eject_%1",_id],nil,false];
+		_unit setUnitLoadout (spawner getVariable [format["eject_%1",_id],[]]);
+		spawner setVariable [format["eject_%1",_id],nil,false];
 		_unit allowDamage true;
 	};
 } forEach _paras;

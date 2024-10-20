@@ -26,7 +26,7 @@ private _numitems = 0;
 			};
 		};
 	};
-}foreach(_itemVars);
+}forEach(_itemVars);
 
 if(_cursel >= _numitems) then {_cursel = 0};
 lbSetCurSel [1500, _cursel];

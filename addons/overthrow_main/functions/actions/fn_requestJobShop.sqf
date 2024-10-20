@@ -28,7 +28,7 @@ private _expiry = 0;
         };
     };
     if(_gotjob) exitWith {};
-}foreach([OT_allJobs,[],{random 100},"ASCEND",{_x select 7}] call BIS_fnc_SortBy);
+}forEach([OT_allJobs,[],{random 100},"ASCEND",{_x select 7}] call BIS_fnc_SortBy);
 
 if !(_gotjob) exitWith {
     [OT_interactingWith,player,["I don't have any more jobs at the moment, I'm sorry. Maybe try a different town?"]] spawn OT_fnc_doConversation;
@@ -38,7 +38,7 @@ private _job = [_id,_params] call _jobcode;
 OT_jobShowing = _job;
 OT_jobShowingID = _id;
 OT_jobShowingExpiry = _expiry;
-OT_jobsOffered pushback _id;
+OT_jobsOffered pushBack _id;
 if(count _job isEqualTo 0) exitWith {call OT_fnc_requestJobShop};
 _job params ["_info","_markerPos","_setup","_fail","_success","_end","_jobparams"];
 

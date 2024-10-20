@@ -1,5 +1,5 @@
 private ["_town","_posTown","_groups","_group","_numNATO","_pop","_count","_range"];
-if (!isServer) exitwith {};
+if (!isServer) exitWith {};
 sleep random 0.2;
 
 
@@ -49,4 +49,4 @@ while {_count < _numNATO} do {
 
 
 
-spawner setvariable [_spawnid,(spawner getvariable [_spawnid,[]]) + _groups,false];
+spawner setVariable [_spawnid,(spawner getVariable [_spawnid,[]]) + _groups,false];

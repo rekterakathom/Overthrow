@@ -10,7 +10,7 @@ if(_cls in (OT_allWeapons + OT_allMagazines) && (_town in OT_allTowns)) then {
 	_stock = server getVariable format["gunstock%1",_town];
 	{
 		if((_x select 0) isEqualTo _cls) exitWith {_price = _x select 1};
-	}foreach(_stock);
+	}forEach(_stock);
 }else{
 	_cost = cost getVariable [_cls,[10,0,0,0]];
 	_baseprice = _cost select 0;

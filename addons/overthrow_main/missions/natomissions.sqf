@@ -34,7 +34,7 @@ private _markerPos = _p2 select 0;
         _topos = _p2 select 0;
         _failed = false;
         if(!isNil "_group" && (count units _group) > 0) then {
-            _pos = getpos(leader _group);
+            _pos = getPos(leader _group);
             if((_pos distance2D _topos) < 50) exitWith {_failed = true};
         };
 

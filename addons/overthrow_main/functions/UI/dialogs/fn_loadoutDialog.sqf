@@ -9,5 +9,5 @@ lbClear 1500;
 	_idx = lbAdd [1500,_cls];
 	lbSetValue [1500,_idx,0];
 	lbSetData [1500,_idx,_cls];
-}foreach(profilenamespace getvariable ["OT_loadouts",[]]);
+}forEach(profileNamespace getVariable ["OT_loadouts",[]]);
 

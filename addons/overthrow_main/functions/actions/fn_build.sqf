@@ -3,7 +3,7 @@ _base = player call OT_fnc_nearestBase;
 _closest = "";
 _isbase = false;
 _isobj = false;
-_center = getpos player;
+_center = getPos player;
 modeMax = 350;
 _buildlocation = "base";
 if !(isNil "_base") then {
@@ -51,7 +51,7 @@ if ((!_isbase) && !(_closest in (server getVariable ["NATOabandoned",[]]))) exit
 if((player distance _center) > modeMax) exitWith {format ["You need to be within %1m of the %2.",modeMax,_buildlocation] call OT_fnc_notifyMinor};
 
 openMap false;
-_playerpos = (getpos player);
+_playerpos = (getPos player);
 
 _campos = [(_playerpos select 0)+35,(_playerpos select 1)+35,(_playerpos select 2)+70];
 _start = [_playerpos select 0, _playerpos select 1, 2];
@@ -103,7 +103,7 @@ buildOnMouseMove = {
 		modeTarget setDir buildRotation;
 
 		if(modeMode == 0) then {
-			if(surfaceIsWater modeValue || (modeTarget distance modeCenter > modeMax) || ((nearestObjects [modeTarget,[],10]) findIf {!(_x isKindOf "CAManBase") && (typeof _x != OT_flag_IND) && !(_x isEqualTo modeTarget) && !(_x isEqualTo modeVisual)} != -1)) then {
+			if(surfaceIsWater modeValue || (modeTarget distance modeCenter > modeMax) || ((nearestObjects [modeTarget,[],10]) findIf {!(_x isKindOf "CAManBase") && (typeOf _x != OT_flag_IND) && !(_x isEqualTo modeTarget) && !(_x isEqualTo modeVisual)} != -1)) then {
 				if (canBuildHere) then {
 					canBuildHere = false;
 					modeVisual setObjectTexture [0,'#(argb,8,8,3)color(1,0,0,0.5)'];
@@ -269,7 +269,7 @@ buildOnMouseUp = {
 	if(_btn isEqualTo 2) then {
 		buildCamRotating = false;
 	};
-	if(_btn isEqualTo 0 && _sx > (safezoneX + (0.1 * safezoneW)) && _sx < (safezoneX + (0.9 * safezoneW))) then {
+	if(_btn isEqualTo 0 && _sx > (safeZoneX + (0.1 * safeZoneW)) && _sx < (safeZoneX + (0.9 * safeZoneW))) then {
 		//Click LMB
 		if(!isNull modeTarget && canBuildHere) then {
 			_money = player getVariable "money";
@@ -277,7 +277,7 @@ buildOnMouseUp = {
 				"You cannot afford that" call OT_fnc_notifyMinor;
 			}else{
 
-				_created = objNULL;
+				_created = objNull;
 				playSound "3DEN_notificationDefault";
 				player setVariable ["money",_money-modePrice,true];
 				if(modeMode isEqualTo 0) then {
@@ -287,21 +287,21 @@ buildOnMouseUp = {
 						clearMagazineCargoGlobal _x;
 						clearBackpackCargoGlobal _x;
 						clearItemCargoGlobal _x;
-						[_x,getplayeruid player] call OT_fnc_setOwner;
+						[_x,getPlayerUID player] call OT_fnc_setOwner;
 						_x call OT_fnc_initObjectLocal;
 
-					}foreach(_objects);
+					}forEach(_objects);
 					_created = _objects select 0;
 					deleteVehicle modeTarget;
 				}else{
 					_created = modeTarget;
-					[modeTarget,getplayeruid player] call OT_fnc_setOwner;
+					[modeTarget,getPlayerUID player] call OT_fnc_setOwner;
 					modeTarget = objNull;
 				};
 
 				// If the object is a house, mark it as being player-built (will be used to save the leasing status)
 				private _buildableHouses = (OT_Buildables param [9, []]) param [2, []];
-				if ((typeof _created) in _buildableHouses) then {
+				if ((typeOf _created) in _buildableHouses) then {
 					_created setVariable ["OT_house_isPlayerBuilt", true, true];
 				};
 
@@ -315,7 +315,7 @@ buildOnMouseUp = {
 					_created setVariable ["OT_init",modeCode,true];
 					[_created,modeValue,modeCode] remoteExec ["OT_fnc_initBuilding",2];
 				};
-				_clu = createVehicle ["Land_ClutterCutter_large_F", (getpos modeTarget), [], 0, "CAN_COLLIDE"];
+				_clu = createVehicle ["Land_ClutterCutter_large_F", (getPos modeTarget), [], 0, "CAN_COLLIDE"];
 				_clu enableDynamicSimulation true;
 			};
 			deleteVehicle modeVisual;
@@ -358,7 +358,7 @@ build = {
 	_def = [];
 	{
 		if((_x select 0) isEqualTo modeSelected) exitWith {_def = _x};
-	}foreach(OT_Buildables);
+	}forEach(OT_Buildables);
 	modeIndex = 0;
 	_name = _def select 0;
 	_description = _def select 5;
@@ -384,7 +384,7 @@ build = {
 	{
 		modeTarget disableCollisionWith _x;
 		modeVisual disableCollisionWith _x;
-	}foreach(vehicles + allUnits);
+	}forEach(vehicles + allUnits);
 
 	modeVisual setVectorDirAndUp [[0,0,-1],[0,1,0]];
 	modeVisual setObjectTexture [0,'#(argb,8,8,3)color(1,0,0,0.5)'];

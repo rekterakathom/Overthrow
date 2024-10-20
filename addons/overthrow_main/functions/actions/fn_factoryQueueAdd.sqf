@@ -24,7 +24,7 @@ if(count _queue > 0) then {
 _queueitem set [1, (_queueitem select 1) + _qty];
 
 if(_doadd) then {
-    _queue pushback _queueitem;
+    _queue pushBack _queueitem;
 };
 
 server setVariable ["factoryQueue",_queue,true];

@@ -1,7 +1,7 @@
 private ["_unit"];
 
 _unit = _this select 0;
-_unit setskill ["courage",1];
+_unit setSkill ["courage",1];
 
 removeAllWeapons _unit;
 removeAllAssignedItems _unit;

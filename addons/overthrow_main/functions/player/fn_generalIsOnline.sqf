@@ -1,7 +1,7 @@
 private _online = false;
 {
-    if((getPlayerUID _x) in (server getvariable ["generals",[]])) exitWith {
+    if((getPlayerUID _x) in (server getVariable ["generals",[]])) exitWith {
             _online = true;
     };
-}foreach(allPlayers - (entities "HeadlessClient_F"));
+}forEach(allPlayers - (entities "HeadlessClient_F"));
 _online;

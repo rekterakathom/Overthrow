@@ -7,6 +7,6 @@ private _veh = _this;
     		_canMove = false;
     	};
     };
-} forEach (configProperties [configFile >> "CfgVehicles" >> (typeof _veh) >> "HitPoints"]);
+} forEach (configProperties [configFile >> "CfgVehicles" >> (typeOf _veh) >> "HitPoints"]);
 if((fuel _veh) isEqualTo 0) then {_canMove = false};
 _canMove

@@ -6,14 +6,14 @@ player setVariable ["OT_tutesDone",_done,true];
 
 private _targets = [];
 private _destination = [];
-private _thistown = (getposATL player) call OT_fnc_nearestTown;
+private _thistown = (getPosATL player) call OT_fnc_nearestTown;
 
 //Is there some already spawned within spawn distance?
 {
     if(side _x isEqualTo west) then {
-        _targets pushback _x;
+        _targets pushBack _x;
     };
-}foreach(player nearEntities ["CAManBase", OT_spawnDistance]);
+}forEach(player nearEntities ["CAManBase", OT_spawnDistance]);
 
 //No? well where is a town that they control
 if(count _targets isEqualTo 0) exitWith {
@@ -22,13 +22,13 @@ if(count _targets isEqualTo 0) exitWith {
     private _done = false;
     {
         _x params ["_pos","_t"];
-        if !((_t in (server getvariable ["NATOabandoned",[]])) || (_t == _thistown)) exitWith {
+        if !((_t in (server getVariable ["NATOabandoned",[]])) || (_t == _thistown)) exitWith {
             _destination = _pos;
             _town = _t;
             _done = true;
         };
         if(_done) exitWith {};
-    }foreach(_towns);
+    }forEach(_towns);
 
     if(count _destination > 0) then {
         //give waypoint

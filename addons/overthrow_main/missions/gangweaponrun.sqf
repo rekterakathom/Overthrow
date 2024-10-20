@@ -2,7 +2,7 @@ params ["_jobid","_jobparams"];
 _jobparams params ["_gangid"];
 private _gang = OT_civilians getVariable [format["gang%1",_gangid],[]];
 
-private _startpos = getpos player;
+private _startpos = getPos player;
 private _destination = [];
 private _destinationName = "";
 private _gangname = _gang select 8;
@@ -21,7 +21,7 @@ private _gunname = _guncls call OT_fnc_weaponGetName;
             _destination = _posTown findEmptyPosition [5,100,OT_civType_local];
         };
     };
-}foreach([OT_allTowns,[],{random 100},"ASCEND",{!(_x isEqualTo _gangtown)}] call BIS_fnc_SortBy);
+}forEach([OT_allTowns,[],{random 100},"ASCEND",{!(_x isEqualTo _gangtown)}] call BIS_fnc_SortBy);
 
 _reward = floor((_startpos distance2D _destination) * 0.04);
 
@@ -57,7 +57,7 @@ private _title = format["Deliver %2 for %1",_gangname,_gunname];
         [_civ] joinSilent _group;
         _civ setVariable ["NOAI",true,false];
         _group setVariable ["Vcm_Disable",true,true];
-        _this pushback _civ;
+        _this pushBack _civ;
 
         //give the items to the player
         player addItem _guncls;

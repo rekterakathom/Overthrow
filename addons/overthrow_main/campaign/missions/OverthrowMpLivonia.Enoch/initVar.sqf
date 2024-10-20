@@ -151,10 +151,10 @@ OT_NATO_Vehicles_JetGarrison = [
 ];
 
 if(OT_hasJetsDLC) then {
-	OT_NATO_Vehicles_JetGarrison pushback ["B_Plane_Fighter_01_F",1];
-	OT_NATO_Vehicles_JetGarrison pushback ["B_Plane_Fighter_01_Stealth_F",1];
-	OT_NATO_Vehicles_StaticAAGarrison pushback "B_Radar_System_01_F";
-	OT_NATO_Vehicles_StaticAAGarrison pushback "B_SAM_System_03_F";
+	OT_NATO_Vehicles_JetGarrison pushBack ["B_Plane_Fighter_01_F",1];
+	OT_NATO_Vehicles_JetGarrison pushBack ["B_Plane_Fighter_01_Stealth_F",1];
+	OT_NATO_Vehicles_StaticAAGarrison pushBack "B_Radar_System_01_F";
+	OT_NATO_Vehicles_StaticAAGarrison pushBack "B_SAM_System_03_F";
 };
 
 OT_NATO_StaticGarrison_LevelOne = ["B_HMG_01_high_F"];

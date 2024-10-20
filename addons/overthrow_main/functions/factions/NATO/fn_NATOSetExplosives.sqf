@@ -10,7 +10,7 @@ _expert = objNull;
         _gotexp = true;
         _expert = _x;
     };
-}foreach(units _group);
+}forEach(units _group);
 
 if(_gotexp) then {
     _p = _targetPos;

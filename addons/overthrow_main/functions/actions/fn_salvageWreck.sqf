@@ -5,7 +5,7 @@ private _doSalvage = {
     private _wreck = OT_salvageVehicle;
     private _steel = 3;
     private _plastic = 0;
-    private _cost = cost getVariable [typeof _wreck,[100,0,0,0]];
+    private _cost = cost getVariable [typeOf _wreck,[100,0,0,0]];
     if((_cost select 2) > 10) then {
         _steel = 4;
     };
@@ -24,7 +24,7 @@ private _doSalvage = {
 
 
     closeDialog 0;
-	private _toname = (typeof _veh) call OT_fnc_vehicleGetName;
+	private _toname = (typeOf _veh) call OT_fnc_vehicleGetName;
 	format["Salvaging wreck into %1",_toname] call OT_fnc_notifyMinor;
     player playMove "AinvPknlMstpSnonWnonDnon_medic_1";
 	[14,false] call OT_fnc_progressBar;
@@ -83,8 +83,8 @@ private _doSalvage = {
 private _objects = player nearEntities [["Car","ReammoBox_F","Air","Ship"],20];
 _filtered = [];
 {
-    if !(_x isEqualTo OT_salvageVehicle) then {_filtered pushback _x};
-}foreach(_objects);
+    if !(_x isEqualTo OT_salvageVehicle) then {_filtered pushBack _x};
+}forEach(_objects);
 
 if((count _filtered) isEqualTo 1) then {
 	(_filtered select 0) call _doSalvage;
@@ -92,8 +92,8 @@ if((count _filtered) isEqualTo 1) then {
     if(count _filtered > 1) then {
     	private _options = [];
     	{
-            _options pushback [format["%1 (%2m)",(typeof _x) call OT_fnc_vehicleGetName,round (_x distance player)],_doSalvage,_x];
-    	}foreach(_filtered);
+            _options pushBack [format["%1 (%2m)",(typeOf _x) call OT_fnc_vehicleGetName,round (_x distance player)],_doSalvage,_x];
+    	}forEach(_filtered);
     	"Salvage to which container?" call OT_fnc_notifyBig;
     	_options call OT_fnc_playerDecision;
     }else{

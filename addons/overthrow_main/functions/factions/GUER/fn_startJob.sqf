@@ -51,7 +51,7 @@ if !(_jobparams call _setup) exitWith {
                 };
                 false
             }) then {
-                _jobparams pushback _wassuccess;
+                _jobparams pushBack _wassuccess;
                 _jobparams call _end;
                 _active = spawner getVariable ["OT_activeJobs",[]];
                 private _idx = -1;
@@ -81,7 +81,7 @@ if !(_jobparams call _setup) exitWith {
                 if !(_remains <= 0) then {
                     if(_repeat < 1) then {
                         _completed = server getVariable ["OT_completedJobIds",[]];
-                        _completed pushback _id;
+                        _completed pushBack _id;
                         server setVariable ["OT_completedJobIds",_completed];
                     };
                 };

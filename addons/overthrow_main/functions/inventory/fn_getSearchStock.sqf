@@ -11,21 +11,21 @@ if(_this isKindOf "CAManBase") then {
 	_myitems = (itemCargo _this) + (weaponCargo _this) + (magazineCargo _this) + (backpackCargo _this);
 	{
 		_myitems = _myitems append ((items _this) + (magazines _this));
-	}foreach(units _this);		
+	}forEach(units _this);		
 };
 if !(isNil "_myitems") then {
 	{
 		if !(_x in _done) then {
-			_done pushback _x;
-			_items pushback [_x,1];
+			_done pushBack _x;
+			_items pushBack [_x,1];
 		}else {
 			_cls = _x;
 			{
 				if((_x select 0) isEqualTo _cls) then {
 					_x set [1,(_x select 1)+1];				
 				};
-			}foreach(_items);
+			}forEach(_items);
 		};
-	}foreach(_myitems);
+	}forEach(_myitems);
 };
 _items;

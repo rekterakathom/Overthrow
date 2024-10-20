@@ -20,7 +20,7 @@ for "_i" from 1 to _amount do {
 
 _group call OT_fnc_initPolicePatrol;
 
-private _spawnid = spawner getvariable [format["townspawnid%1", _town], -1];
-private _groups = spawner getvariable [_spawnid, []];
+private _spawnid = spawner getVariable [format["townspawnid%1", _town], -1];
+private _groups = spawner getVariable [_spawnid, []];
 _groups pushBack _group;
-spawner setvariable [_spawnid, _groups, false];
+spawner setVariable [_spawnid, _groups, false];

@@ -4,7 +4,7 @@ _jobparams params ["_destinationName"];
 private _roads = (server getVariable [_destinationName,[]]) nearRoads 75;
 private _destination = [];
 if(count _roads > 0) then {
-    _destination = getpos(_roads select 0);
+    _destination = getPos(_roads select 0);
 }else{
     _destination = server getVariable [_destinationName,[]];
 };
@@ -13,7 +13,7 @@ private _items = [];
 {
     _x params ["_cat","_i"];
     if(_cat isEqualTo "Pharmacy") exitWith {_items = _i};
-}foreach(OT_items);
+}forEach(OT_items);
 private _itemcls = selectRandom _items;
 private _itemName = _itemcls call OT_fnc_weaponGetName;
 private _cost = (cost getVariable [_itemcls,[1]]) select 0;
@@ -59,10 +59,10 @@ private _title = format["%1 needs %2 x %3",_destinationName,_numitems,_itemName]
                     if(_cls == _itemcls && _amt >= _numitems) exitWith {
                         _found = true;
                     };
-                }foreach(_c call OT_fnc_unitStock);
+                }forEach(_c call OT_fnc_unitStock);
             };
             if(_found) exitWith {};
-        }foreach(_destination nearObjects ["AllVehicles", 15]);
+        }forEach(_destination nearObjects ["AllVehicles", 15]);
 
         _found
     },
@@ -85,10 +85,10 @@ private _title = format["%1 needs %2 x %3",_destinationName,_numitems,_itemName]
                             _found = true;
                             [_c, _cls, _numitems] call CBA_fnc_removeItemCargo;
                         };
-                    }foreach(_c call OT_fnc_unitStock);
+                    }forEach(_c call OT_fnc_unitStock);
                 };
                 if(_found) exitWith {};
-            }foreach(_destination nearObjects ["AllVehicles", 15]);
+            }forEach(_destination nearObjects ["AllVehicles", 15]);
 
             //apply stability and support
             [

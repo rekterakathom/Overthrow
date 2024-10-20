@@ -5,7 +5,7 @@ private _dir = (_frompos getDir _attackpos);
 _pos = _frompos findEmptyPosition [50,200,OT_NATO_Vehicle_Boat_Small];
 if (count _pos == 0) then {_pos = _frompos findEmptyPosition [20,200,OT_NATO_Vehicle_Boat_Small]};
 
-_group = creategroup blufor;
+_group = createGroup blufor;
 _veh = createVehicle [OT_NATO_Vehicle_Boat_Small, _pos, [], 0,""];
 _veh setVariable ["garrison","HQ",false];
 _veh setDir (_dir);
@@ -15,11 +15,11 @@ createVehicleCrew _veh;
     [_x] joinSilent _group;
     _x setVariable ["garrison","HQ",false];
     _x setVariable ["NOAI",true,false];
-}foreach(crew _veh);
+}forEach(crew _veh);
 _allunits = (units _group);
 sleep 1;
 
-_wp = _group addWaypoint [asltoatl _attackpos,20];
+_wp = _group addWaypoint [ASLToATL _attackpos,20];
 _wp setWaypointType "SAD";
 _wp setWaypointBehaviour "COMBAT";
 _wp setWaypointSpeed "FULL";

@@ -3,7 +3,7 @@ private _idx = lbCurSel 1500;
 private _uid = lbData [1500,_idx];
 
 private _generals = server getVariable ["generals",[]];
-_generals pushback _uid;
+_generals pushBack _uid;
 server setVariable ["generals",_generals,true];
 
 disableSerialization;
@@ -14,8 +14,8 @@ _isonline = false;
 _on = "Offline";
 _player = objNull;
 {
-    if(getplayeruid _x isEqualTo _uid) exitWith {_isonline = true;_on = "Online";_player = _x};
-}foreach(allplayers);
+    if(getPlayerUID _x isEqualTo _uid) exitWith {_isonline = true;_on = "Online";_player = _x};
+}forEach(allPlayers);
 
 _money = 0;
 if(_isonline) then {

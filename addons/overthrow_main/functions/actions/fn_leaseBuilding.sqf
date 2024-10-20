@@ -19,10 +19,10 @@ if(damage _building isEqualTo 1) exitWith {
 		format["You need $%1",[_price, 1, 0, true] call CBA_fnc_formatNumber];
 	};
 };
-if(typeof _building == OT_policeStation) exitWith {[] call OT_fnc_policeDialog};
-if((typeof _building == OT_barracks) || (typeof _building == OT_trainingCamp)) exitWith {[] call OT_fnc_recruitDialog};
-if(typeof _building == OT_refugeeCamp) exitWith {[] call OT_fnc_recruitSpawnCiv};
-if(typeof _building == OT_warehouse) exitWith {[] call OT_fnc_buyVehicleDialog};
+if(typeOf _building == OT_policeStation) exitWith {[] call OT_fnc_policeDialog};
+if((typeOf _building == OT_barracks) || (typeOf _building == OT_trainingCamp)) exitWith {[] call OT_fnc_recruitDialog};
+if(typeOf _building == OT_refugeeCamp) exitWith {[] call OT_fnc_recruitSpawnCiv};
+if(typeOf _building == OT_warehouse) exitWith {[] call OT_fnc_buyVehicleDialog};
 
 if !(_b isEqualType []) exitWith {
 	private _ob = player call OT_fnc_nearestObjective;
@@ -47,7 +47,7 @@ if(_b isEqualType []) then {
 		_handled = true;
 	}else{
 		_owner = _building call OT_fnc_getOwner;
-		if(_owner isEqualTo getplayeruid player) then {
+		if(_owner isEqualTo getPlayerUID player) then {
 			_home = player getVariable "home";
 			if((_home distance _building) < 5) exitWith {"You cannot lease your home" call OT_fnc_notifyMinor;_err = true};
 			_handled = true;
@@ -63,13 +63,13 @@ if(_handled) then {
 	};
 
 	private _id = ([_building] call OT_fnc_getBuildID);
-	_leased = player getvariable ["leased",[]];
-	_leased pushback _id;
-	player setvariable ["leased",_leased,true];
+	_leased = player getVariable ["leased",[]];
+	_leased pushBack _id;
+	player setVariable ["leased",_leased,true];
 
-	_leasedata = player getvariable ["leasedata",[]];
-	_leasedata pushback [_id,typeof _building,getpos _building,_building call OT_fnc_nearestTown];
-	player setvariable ["leasedata",_leasedata,true];
+	_leasedata = player getVariable ["leasedata",[]];
+	_leasedata pushBack [_id,typeOf _building,getPos _building,_building call OT_fnc_nearestTown];
+	player setVariable ["leasedata",_leasedata,true];
 
 	_mrkid = format["bdg-%1",_building];
 	_mrkid setMarkerAlphaLocal 0.3;

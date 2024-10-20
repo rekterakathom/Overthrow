@@ -1,10 +1,10 @@
 params ["_jobid","_jobparams"];
 _jobparams params ["_faction"];
 
-private _factionName = server getvariable format["factionname%1",_faction];
+private _factionName = server getVariable format["factionname%1",_faction];
 
 //Here is where we might randomize the parameters a bit
-private _reppos = server getVariable [format["factionrep%1",_faction],getpos player];
+private _reppos = server getVariable [format["factionrep%1",_faction],getPos player];
 private _currentTown = _reppos call OT_fnc_nearestTown;
 private _abandoned = server getVariable ["NATOabandoned",[]];
 private _outofspawndistance = [];
@@ -12,10 +12,10 @@ private _outofspawndistance = [];
     if !([(server getVariable _x)] call OT_fnc_inSpawnDistance) then {
         private _stability = server getVariable [format ["stability%1", _x], 100];
         if !(_x in _abandoned || _x == _currentTown || _stability < 50) then {
-            _outofspawndistance pushback _x;
+            _outofspawndistance pushBack _x;
         };
     };
-}foreach(OT_allTowns);
+}forEach(OT_allTowns);
 private _destinationName = selectRandom _outofspawndistance;
 private _posTown = server getVariable [_destinationName,[]];
 
@@ -42,7 +42,7 @@ private _difficulty = 1.8;
         params ["_faction","_destination","_destinationName","_jobid"];
 
         //Spawn the dude
-        private _group = creategroup blufor;
+        private _group = createGroup blufor;
         _group deleteGroupWhenEmpty true;
         private _civ = _group createUnit [OT_civType_gunDealer, _destination, [],0, "NONE"];
         _civ setVariable ["notalk",true,true]; //Tells Overthrow this guy cannot be recruited etc
@@ -69,7 +69,7 @@ private _difficulty = 1.8;
         //Goons
         private _numGoons = 1+round(random 4);
         private _count = 0;
-        private _bgroup = creategroup [blufor,true];
+        private _bgroup = createGroup [blufor,true];
         _bgroup setVariable ["VCM_TOUGHSQUAD",true,true];
         _bgroup setVariable ["VCM_NORESCUE",true,true];
         while {(_count < _numGoons)} do {
@@ -107,11 +107,11 @@ private _difficulty = 1.8;
                 _x setCaptive false;
                 _alerted = true;
             };
-        }foreach(_destination nearEntities ["CAManBase",15]);
+        }forEach(_destination nearEntities ["CAManBase",15]);
 
         if(_alerted and !_alreadyAlerted) then {
             _civ enableAI "MOVE";
-            private _factionName = server getvariable format["factionname%1",_faction];
+            private _factionName = server getVariable format["factionname%1",_faction];
             format ["Incoming message from %1: Traitor has been alerted.",_factionName] remoteExec ["OT_fnc_notifyMinor",0,false];
             private _wp = group _civ addWaypoint [[[[_destination,500]]] call BIS_fnc_randomPos,0];
             _wp setWaypointSpeed "FULL";
@@ -134,7 +134,7 @@ private _difficulty = 1.8;
 					
 					[2500] call OT_fnc_resistanceFunds;
 					
-                    private _factionName = server getvariable format["factionname%1",_faction];
+                    private _factionName = server getVariable format["factionname%1",_faction];
                     format ["Incoming message from %1: Traitor neutralized. Sending our regards and $2500 to the resistance. (+20 %1)",_factionName] remoteExec ["OT_fnc_notifyMinor",0,false];
                     server setVariable [format["standing%1",_faction],(server getVariable [format["standing%1",_faction],0]) + 20,true];
                 },

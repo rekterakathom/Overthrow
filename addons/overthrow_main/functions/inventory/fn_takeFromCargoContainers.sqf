@@ -10,6 +10,6 @@ _gotit = false;
            [_c, _cls, _num] call CBA_fnc_removeItemCargo;
            _gotit = true;
        };
-   }foreach(_c call OT_fnc_unitStock);
-}foreach(_pos nearObjects [OT_item_CargoContainer, 50]);
+   }forEach(_c call OT_fnc_unitStock);
+}forEach(_pos nearObjects [OT_item_CargoContainer, 50]);
 _gotit

@@ -92,7 +92,7 @@ if !(crim_counter < 12) then {
                         _mrk = createMarkerLocal [_mrkid, _gang select 4];
                         _mrkid setMarkerTypeLocal "ot_Camp";
                         _mrkid setMarkerColor "colorOPFOR";
-                        _revealed pushback _gangid;
+                        _revealed pushBack _gangid;
                     };
                 };
 
@@ -111,6 +111,6 @@ if !(crim_counter < 12) then {
             };
         };
 
-    }foreach(OT_allTowns);
+    }forEach(OT_allTowns);
     server setVariable ["revealedGangs",_revealed,true];
 };

@@ -56,7 +56,7 @@ private _abandoned = server getVariable ["NATOabandoned", []];
 					if (_o isEqualTo _obj) then {
 						_added = true;
 					};
-				}foreach(_knownTargets);
+				}forEach(_knownTargets);
 
 				if !(_added) then {
 					_knownTargets pushBack [_ty,_pos,_pri,_obj, false, time];

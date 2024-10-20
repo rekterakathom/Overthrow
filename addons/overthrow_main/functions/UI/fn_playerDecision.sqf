@@ -1,4 +1,4 @@
-closedialog 0;
+closeDialog 0;
 openMap false;
 createDialog "OT_dialog_choose";
 
@@ -20,7 +20,7 @@ private _idc = 1600;
 
 	_idc = _idc + 1;
 	if(_idc > 1605) exitWith {};
-}foreach(OT_choices);
+}forEach(OT_choices);
 
 if(_idc < 1606) then {
 	while{_idc < 1606} do {

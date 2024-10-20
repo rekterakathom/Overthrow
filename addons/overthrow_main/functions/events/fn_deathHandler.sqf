@@ -29,17 +29,17 @@ if(isPlayer _me) exitWith {
 	_me setCaptive true;
 };
 
-_civ = _me getvariable "civ";
-_garrison = _me getvariable "garrison";
-_employee = _me getvariable "employee";
-_vehgarrison = _me getvariable "vehgarrison";
-_polgarrison = _me getvariable "polgarrison";
-_airgarrison = _me getvariable "airgarrison";
-_criminal = _me getvariable "criminal";
-_crimleader = _me getvariable "crimleader";
-_mobster = _me getvariable "mobster";
-_mobboss = _me getvariable "mobboss";
-_hvt = _me getvariable "hvt_id";
+_civ = _me getVariable "civ";
+_garrison = _me getVariable "garrison";
+_employee = _me getVariable "employee";
+_vehgarrison = _me getVariable "vehgarrison";
+_polgarrison = _me getVariable "polgarrison";
+_airgarrison = _me getVariable "airgarrison";
+_criminal = _me getVariable "criminal";
+_crimleader = _me getVariable "crimleader";
+_mobster = _me getVariable "mobster";
+_mobboss = _me getVariable "mobboss";
+_hvt = _me getVariable "hvt_id";
 _reveal = false;
 
 _standingChange = 0;
@@ -64,15 +64,15 @@ call {
 		{
 			if((_x select 0) isEqualTo _hvt) exitWith {};
 			_idx = _idx + 1;
-		}foreach(OT_NATOhvts);
+		}forEach(OT_NATOhvts);
 		OT_NATOhvts deleteAt _idx;
 		format["A high-ranking NATO officer has been killed"] remoteExec ["OT_fnc_notifyMinor",0,false];
-		private _resources = server getvariable ["NATOresources",0];
+		private _resources = server getVariable ["NATOresources",0];
 		_resources = _resources - 500;
 		if(_diff isEqualTo 1) then {_resources = _resources - 500};
 		if(_diff isEqualTo 0) then {_resources = _resources - 1000};
 		if(_resources < 250) then {_resources = 250};
-		server setvariable ["NATOresources",_resources,true];
+		server setVariable ["NATOresources",_resources,true];
 		[_killer,250] call OT_fnc_experience;
 	};
 	if(!isNil "_employee") exitWith {
@@ -182,13 +182,13 @@ call {
 
 		if(!isNil "_vehgarrison") then {
 			_vg = server getVariable format["vehgarrison%1",_vehgarrison];
-			_vg deleteAt (_vg find (typeof _me));
+			_vg deleteAt (_vg find (typeOf _me));
 			server setVariable [format["vehgarrison%1",_vehgarrison],_vg,false];
 		};
 
 		if(!isNil "_airgarrison") then {
 			_vg = server getVariable format["airgarrison%1",_airgarrison];
-			_vg deleteAt (_vg find (typeof _me));
+			_vg deleteAt (_vg find (typeOf _me));
 			server setVariable [format["airgarrison%1",_airgarrison],_vg,false];
 		};
 	}else{
@@ -212,7 +212,7 @@ if((_killer call OT_fnc_unitSeen) || (_standingChange < -9)) then {
 	if(!isNull objectParent _killer) then {
 		{
 			_x setCaptive false;
-		}foreach(crew objectParent _killer);
+		}forEach(crew objectParent _killer);
 	};
 };
 if(isPlayer _killer) then {

@@ -1,15 +1,15 @@
 params ["_vehtypes","_hvts","_from","_to",["_missionid","CONVOY"]];
 
-private _abandoned = server getvariable ["NATOabandoned",[]];
+private _abandoned = server getVariable ["NATOabandoned",[]];
 if(_from in _abandoned) exitWith {};
 
-private _frompos = server getvariable _from;
+private _frompos = server getVariable _from;
 private _fromregion = _frompos call OT_fnc_getRegion;
-private _topos = server getvariable _to;
+private _topos = server getVariable _to;
 
 private _dir = (_frompos getDir _topos);
 
-private _group = creategroup blufor;
+private _group = createGroup blufor;
 spawner setVariable [format["spawn%1",_missionid],_group,false];
 _group setFormation "COLUMN";
 private _track = objNull;
@@ -18,7 +18,7 @@ if ([_topos,_fromregion] call OT_fnc_regionIsConnected) then {
     _convoypos = _frompos getPos [120, random 360];
     private _road = [_convoypos, 150] call BIS_fnc_nearestRoad;
     if (!isNull _road) then {
-        _roadscon = roadsConnectedto _road;
+        _roadscon = roadsConnectedTo _road;
         if (count _roadscon isEqualTo 2) then {
             _convoypos = getPosATL _road;
             _dir = (_road getDir (_roadscon select 0));
@@ -39,14 +39,14 @@ if ([_topos,_fromregion] call OT_fnc_regionIsConnected) then {
     	{
     		[_x] joinSilent _group;
     		_x setVariable ["garrison","HQ",false];
-    	}foreach(crew _veh);
+    	}forEach(crew _veh);
         _driver assignAsCommander _veh;
         _convoypos = _convoypos getPos [20,_dir+180];
         {
             _x addCuratorEditableObjects [[_veh]];
-        }foreach(allCurators);
+        }forEach(allCurators);
     	sleep 0.3;
-    }foreach(_vehtypes);
+    }forEach(_vehtypes);
 
     {
         _pos = _convoypos findEmptyPosition [10,100,OT_NATO_Vehicle_HVT];
@@ -64,7 +64,7 @@ if ([_topos,_fromregion] call OT_fnc_regionIsConnected) then {
     	{
     		[_x] joinSilent _group;
     		_x setVariable ["garrison","HQ",false];
-    	}foreach(crew _veh);
+    	}forEach(crew _veh);
         _driver assignAsCommander _veh;
         _driver setVariable ["hvt",true,true];
         _driver setVariable ["hvt_id",_x select 0,true];
@@ -75,7 +75,7 @@ if ([_topos,_fromregion] call OT_fnc_regionIsConnected) then {
 
     	sleep 0.3;
         _x set [2,"CONVOY"];
-    }foreach(_hvts);
+    }forEach(_hvts);
 
     private _numsupport = 2;
 
@@ -96,7 +96,7 @@ if ([_topos,_fromregion] call OT_fnc_regionIsConnected) then {
         	{
         		[_x] joinSilent _group;
         		_x setVariable ["garrison","HQ",false];
-        	}foreach(crew _veh);
+        	}forEach(crew _veh);
             _driver assignAsCommander _veh;
             _convoypos = _convoypos getPos [20,-_dir];
             _count = _count + 1;
@@ -104,7 +104,7 @@ if ([_topos,_fromregion] call OT_fnc_regionIsConnected) then {
         };
     };
     sleep 5;
-    _wp = _group addWaypoint [asltoatl _topos,50];
+    _wp = _group addWaypoint [ASLToATL _topos,50];
     _wp setWaypointType "MOVE";
     _wp setWaypointFormation "COLUMN";
     _wp setWaypointBehaviour "SAFE";
@@ -125,5 +125,5 @@ if(alive _track) then {
     {
         _x set [2,""];
         _x set [1,_to];
-    }foreach(_hvts);
+    }forEach(_hvts);
 };

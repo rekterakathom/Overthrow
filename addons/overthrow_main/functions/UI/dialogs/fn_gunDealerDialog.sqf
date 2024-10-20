@@ -5,7 +5,7 @@ if(isNil "_stock") then {
 	private _numguns = round(random 7)+3;
 	private _count = 0;
 	_stock = [[OT_item_BasicGun,0],[OT_item_BasicAmmo,0]];
-	_stock pushback [OT_ammo_50cal,0];
+	_stock pushBack [OT_ammo_50cal,0];
 
 	private _p = (cost getVariable "I_HMG_01_high_weapon_F") select 0;
 	_p = _p + ((cost getVariable "I_HMG_01_support_high_F") select 0);
@@ -13,13 +13,13 @@ if(isNil "_stock") then {
 	_p = _p + _quad;
 	_p = _p + 50; //Convenience cost
 
-	_stock pushback ["Set_HMG",_p];
-	_stock pushback ["C_Quadbike_01_F",_quad];
+	_stock pushBack ["Set_HMG",_p];
+	_stock pushBack ["C_Quadbike_01_F",_quad];
 
 	{
 		// name price
 		_stock pushBack [_x,0];
-	}foreach(OT_allStaticBackpacks);
+	}forEach(OT_allStaticBackpacks);
 
 	private _tostock = [];
 	while {_count < _numguns} do {
@@ -41,11 +41,11 @@ if(isNil "_stock") then {
 	{
 		// name, price
 		_stock pushBack [_x, 0];
-	}foreach(OT_allOptics);
+	}forEach(OT_allOptics);
 
 	{
 		_stock pushBack [_x,_price];
-	}foreach(OT_allDrugs);
+	}forEach(OT_allDrugs);
 
 	server setVariable [format["gunstock%1",_town],_stock,true];
 };
@@ -72,4 +72,4 @@ createDialog "OT_dialog_buy";
 		lbSetValue [1500,_idx,_price];
 		lbSetPicture [1500,_idx,_pic];
 	};
-}foreach(_stock);
+}forEach(_stock);

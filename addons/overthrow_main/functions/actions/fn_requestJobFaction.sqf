@@ -7,9 +7,9 @@ private _completed = server getVariable ["OT_completedJobIds",[]];
 private _params = [];
 private _id = "";
 private _jobcode = {};
-private _faction = OT_interactingWith getvariable ["faction",""];
+private _faction = OT_interactingWith getVariable ["faction",""];
 private _expiry = 0;
-private _pos = getpos player;
+private _pos = getPos player;
 private _standing = server getVariable [format["standing%1",_faction],0];
 private _inSpawnDistance = true;
 private _town = _pos call OT_fnc_nearestTown;
@@ -31,7 +31,7 @@ private _population = server getVariable [format["population%1",_town],50];
         };
     };
     if(_gotjob) exitWith {};
-}foreach([OT_allJobs,[],{random 100},"ASCEND",{_x select 7}] call BIS_fnc_SortBy);
+}forEach([OT_allJobs,[],{random 100},"ASCEND",{_x select 7}] call BIS_fnc_SortBy);
 
 if !(_gotjob) exitWith {
     [OT_interactingWith,player,["We don't have any more jobs at the moment."]] spawn OT_fnc_doConversation;
@@ -41,7 +41,7 @@ private _job = [_id,_params] call _jobcode;
 OT_jobShowing = _job;
 OT_jobShowingID = _id;
 OT_jobShowingExpiry = _expiry;
-OT_jobsOffered pushback _id;
+OT_jobsOffered pushBack _id;
 if(count _job isEqualTo 0) exitWith {call OT_fnc_requestJobGang};
 _job params ["_info","_markerPos","_setup","_fail","_success","_end","_jobparams"];
 

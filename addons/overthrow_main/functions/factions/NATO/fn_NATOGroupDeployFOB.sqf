@@ -8,7 +8,7 @@ _near = false;
 
 {
     unassignVehicle _x;
-}foreach(units _group);
+}forEach(units _group);
 (units _group) allowGetIn false;
 
 sleep 10;
@@ -23,11 +23,11 @@ private _fobs = server getVariable ["NATOfobs",[]];
     if(_pb distance _targetPos < 500) then {
         _near = true;
     };
-}foreach(_fobs);
+}forEach(_fobs);
 if(_near) exitWith {};
 
 _flag = OT_flag_NATO createVehicle _targetPos;
 
-_fobs pushback [_targetPos,count units _group,[]];
+_fobs pushBack [_targetPos,count units _group,[]];
 server setVariable ["NATOfobs",_fobs,true];
 _group call OT_fnc_initMilitaryPatrol;

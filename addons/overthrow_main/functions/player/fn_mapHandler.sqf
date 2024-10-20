@@ -17,13 +17,13 @@ if(OT_showPlayerMarkers) then {
 				getPosASL _x,
 				24,
 				24,
-				getdir _x,
+				getDir _x,
 				name _x
 			];
 		}else{
 			_vehs pushBackUnique _veh;
 		};
-	}foreach(allPlayers - (entities "HeadlessClient_F"));
+	}forEach(allPlayers - (entities "HeadlessClient_F"));
 };
 
 //Draw indepenent units
@@ -77,7 +77,7 @@ private _grpUnits = groupSelectedUnits player;
 			_vehs pushBackUnique _veh;
 		};
 	};
-}foreach(units independent);
+}forEach(units independent);
 
 //Draw captive units
 {
@@ -91,7 +91,7 @@ private _grpUnits = groupSelectedUnits player;
 			getDir _x
 		];
 	};
-}foreach(units civilian);
+}forEach(units civilian);
 
 //Draw player vehicles on map only
 if (visibleMap) then {
@@ -105,19 +105,19 @@ if (visibleMap) then {
 					_passengers = format["%1 %2",_passengers,name _x];
 				};
 				if !(captive _x) then {_color = [0,0.2,0,1];};
-			}foreach(crew _x);
+			}forEach(crew _x);
 
 			_mapCtrl drawIcon [
-				getText(_cfgVeh >> (typeof _x) >> "icon"),
+				getText(_cfgVeh >> (typeOf _x) >> "icon"),
 				_color,
 				_pos,
 				24,
 				24,
-				getdir _x,
+				getDir _x,
 				_passengers
 			];
 		};
-	}foreach(_vehs);
+	}forEach(_vehs);
 };
 
 //Draw NATO Mortars
@@ -132,13 +132,13 @@ private _mortars = spawner getVariable ["NATOmortars",[]];
 		0,
 		""
 	];
-}foreach(_mortars);
+}forEach(_mortars);
 
 //Draw known Radar hits
 {
 	private _i = "\A3\ui_f\data\map\markers\nato\b_air.paa";
 	if(_x isKindOf "Plane") then {_i = "\A3\ui_f\data\map\markers\nato\b_plane.paa"};
-	if((_x isKindOf "UAV") || (typeof _x isEqualTo OT_NATO_Vehicles_ReconDrone)) then {_i = "\A3\ui_f\data\map\markers\nato\b_uav.paa"};
+	if((_x isKindOf "UAV") || (typeOf _x isEqualTo OT_NATO_Vehicles_ReconDrone)) then {_i = "\A3\ui_f\data\map\markers\nato\b_uav.paa"};
 	_mapCtrl drawIcon [
 		_i,
 		[0,0.3,0.59,1],
@@ -147,7 +147,7 @@ private _mortars = spawner getVariable ["NATOmortars",[]];
 		30,
 		0
 	];
-}foreach(OT_mapcache_radar);
+}forEach(OT_mapcache_radar);
 
 //Draw enemy groups on map - Mission Parameter
 if(OT_showEnemyGroups) then {
@@ -160,10 +160,10 @@ if(OT_showEnemyGroups) then {
 					_u = _x;
 					_alive=true;
 				};
-			}foreach(units _x);
+			}forEach(units _x);
 		};
 		if(_alive) then {
-			private _ka = resistance knowsabout _u;
+			private _ka = resistance knowsAbout _u;
 			if(_ka > 1.4) then {
 				_mapCtrl drawIcon [
 					"\A3\ui_f\data\map\markers\nato\b_inf.paa",
@@ -175,7 +175,7 @@ if(OT_showEnemyGroups) then {
 				];
 			};
 		};
-	}foreach(groups west);
+	}forEach(groups west);
 	{
 		private _u = leader _x;
 		private _alive = alive _u;
@@ -185,10 +185,10 @@ if(OT_showEnemyGroups) then {
 					_u = _x;
 					_alive=true;
 				};
-			}foreach(units _x);
+			}forEach(units _x);
 		};
 		if(_alive) then {
-			private _ka = resistance knowsabout _u;
+			private _ka = resistance knowsAbout _u;
 			if(_ka > 1.4) then {
 				_mapCtrl drawIcon [
 					"\A3\ui_f\data\map\markers\nato\b_inf.paa",
@@ -200,7 +200,7 @@ if(OT_showEnemyGroups) then {
 				];
 			};
 		};
-	}foreach(groups east);
+	}forEach(groups east);
 };
 
 //If zoomed in draw shop, owned properties, faction rep, corpse cache and vehicle cache
@@ -209,7 +209,7 @@ if(_scale < 0.1) then {
 	private _mousepos = [0,0,0];
 	private _drawDist = 0;
 	if !(visibleMap) then {
-		_mousepos = getpos player;
+		_mousepos = getPos player;
 		_drawDist = 1000;
 	}else{
 		_mousepos = _mapCtrl ctrlMapScreenToWorld getMousePosition;
@@ -220,7 +220,7 @@ if(_scale < 0.1) then {
 	{
 		_x setMarkerAlphaLocal 1;
 		_x setMarkerSizeLocal [(0.1/_scale),(0.1/_scale)];
-	} foreach (OT_allShopMarkers);
+	} forEach (OT_allShopMarkers);
 
 	//Draw owned properties
 	{
@@ -234,7 +234,7 @@ if(_scale < 0.1) then {
 				_x select 5
 			];
 		};
-	}foreach(OT_mapcache_properties);
+	}forEach(OT_mapcache_properties);
 
 	//Draw faction reps and Gun dealers
 	{
@@ -248,7 +248,7 @@ if(_scale < 0.1) then {
 				_x select 5
 			];
 		};
-	}foreach(OT_mapcache_factions);
+	}forEach(OT_mapcache_factions);
 
 	if(visibleMap) then {
 		//Draw corpse markers
@@ -263,7 +263,7 @@ if(_scale < 0.1) then {
 					_x select 5
 				];
 			};
-		}foreach(OT_mapcache_bodies);
+		}forEach(OT_mapcache_bodies);
 
 		//Draw owned vehicle map cache
 		{
@@ -281,13 +281,13 @@ if(_scale < 0.1) then {
 					_mapCtrl drawIcon _x;
 				};
 			};
-		}foreach(OT_mapcache_vehicles);
+		}forEach(OT_mapcache_vehicles);
 	};
 } else {
 	//hide shop markers
 	{
 		_x setMarkerAlphaLocal 0;
-	} foreach (OT_allShopMarkers);
+	} forEach (OT_allShopMarkers);
 };
 
 //Draw QRF regions
@@ -325,12 +325,12 @@ if(!isNil "_qrf") then {
 };
 
 //Draw no-fly zones if player is in the air
-if(((getpos player) select 2) > 30) then {
+if(((getPos player) select 2) > 30) then {
 	private _abandoned = server getVariable ["NATOabandoned",[]];
 	{
 		if !(_x in _abandoned) then {
 			_mapCtrl drawEllipse [
-				server getvariable _x,
+				server getVariable _x,
 				2000,
 				2000,
 				0,
@@ -338,11 +338,11 @@ if(((getpos player) select 2) > 30) then {
 				"\A3\ui_f\data\map\markerbrushes\bdiagonal_ca.paa"
 			];
 		};
-	}foreach(OT_allAirports);
+	}forEach(OT_allAirports);
 	private _attack = server getVariable ["NATOattacking",""];
 	if(_attack != "") then {
 		_mapCtrl drawEllipse [
-			server getvariable [_attack, [0,0]],
+			server getVariable [_attack, [0,0]],
 			2000,
 			2000,
 			0,
@@ -363,5 +363,5 @@ if(_scale > 0.16) then {
 			[0,0.7,0,0.4],
 			"\A3\ui_f\data\map\markerbrushes\fdiagonal_ca.paa"
 		];
-	}foreach(spawner getVariable ["GUERradarPositions",[]]);
+	}forEach(spawner getVariable ["GUERradarPositions",[]]);
 };

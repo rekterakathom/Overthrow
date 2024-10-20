@@ -6,4 +6,4 @@ params["_unit",["_dis",800]];
 			_lead reveal [_unit,1.5];					
 		};
 	};
-}foreach(groups west);
+}forEach(groups west);

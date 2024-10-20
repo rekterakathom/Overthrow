@@ -7,10 +7,10 @@ private _outofspawndistance = [];
     if !([(server getVariable _x)] call OT_fnc_inSpawnDistance) then {
         private _stability = server getVariable [format ["stability%1", _x], 100];
         if !(_x in _abandoned || _stability < 50) then {
-            _outofspawndistance pushback _x;
+            _outofspawndistance pushBack _x;
         };
     };
-}foreach(OT_allTowns);
+}forEach(OT_allTowns);
 private _destinationName = selectRandom _outofspawndistance;
 private _posTown = server getVariable [_destinationName,[]];
 
@@ -38,7 +38,7 @@ private _difficulty = 1.8;
         params ["_destination","_destinationName","_jobid"];
 
         //Spawn the dude
-        private _group = creategroup [blufor, true];
+        private _group = createGroup [blufor, true];
         private _civ = _group createUnit [OT_civType_gunDealer, _destination, [],0, "NONE"];
         _civ setVariable ["notalk",true,true]; //Tells Overthrow this guy cannot be recruited etc
 
@@ -64,7 +64,7 @@ private _difficulty = 1.8;
         //Goons
         private _numGoons = 1+round(random 4);
         private _count = 0;
-        private _bgroup = creategroup [blufor, true];
+        private _bgroup = createGroup [blufor, true];
         _bgroup setVariable ["VCM_TOUGHSQUAD",true,true];
         _bgroup setVariable ["VCM_NORESCUE",true,true];
         while {(_count < _numGoons)} do {
@@ -102,7 +102,7 @@ private _difficulty = 1.8;
                 _x setCaptive false;
                 _alerted = true;
             };
-        }foreach(_destination nearEntities ["CAManBase",15]);
+        }forEach(_destination nearEntities ["CAManBase",15]);
 
         if(_alerted && !_alreadyAlerted) then {
             _civ enableAI "MOVE";

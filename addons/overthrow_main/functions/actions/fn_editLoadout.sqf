@@ -14,10 +14,10 @@ if (_warehouse == objNull) exitWith {hint "No warehouse near by!"};
     if(_x select [0,5] isEqualTo "item_") then {
         private _d = _warehouse getVariable [_x,[_x select [5],0,[0]]];
         if(_d isEqualType []) then {
-            _items pushback _d#0;
+            _items pushBack _d#0;
         };
     };
-}foreach(allVariables _warehouse);
+}forEach(allVariables _warehouse);
 
 if((count _items) isEqualTo 0) exitWith {hint "Cannot edit loadout, no items in warehouse"};
 
@@ -39,7 +39,7 @@ if(_clothes != "") then {
 	_civ forceAddUniform _clothes;
 };
 
-_civ setskill ["courage",1];
+_civ setSkill ["courage",1];
 
 removeAllWeapons _civ;
 removeAllAssignedItems _civ;
@@ -84,7 +84,7 @@ if ((_civ getVariable ["cba_projectile_firedEhId", -1]) != -1) then {
     {
         _x params ["_c"];
         if(_c isEqualTo _cls) exitWith {_x set [1,_loadout]};
-    }foreach(OT_Recruitables);
+    }forEach(OT_Recruitables);
     publicVariable "OT_Recruitables";
 
     [_cls call OT_fnc_vehicleGetName, _loadout] remoteExec ["ace_arsenal_fnc_addDefaultLoadout",0,false];

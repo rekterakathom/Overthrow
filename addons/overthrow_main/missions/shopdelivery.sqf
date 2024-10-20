@@ -5,7 +5,7 @@ private _civ = OT_interactingWith;
 
 private _cat = _civ getVariable "OT_shopCategory";
 
-private _startpos = getpos player;
+private _startpos = getPos player;
 private _starttown = _startpos call OT_fnc_nearestTown;
 private _destination = [];
 private _destinationName = "";
@@ -23,7 +23,7 @@ if(_cat isEqualTo "Clothing") then {
         if((_x select 0) isEqualTo _cat) exitWith {
             _itemcls = selectRandom (_x select 1);
         };
-    }foreach(OT_items);
+    }forEach(OT_items);
 };
 private _worth = [_itemcls,OT_Nation,100,100] call OT_fnc_getPrice;
 if(_worth > 20) then {
@@ -44,7 +44,7 @@ private _itemname = _itemcls call OT_fnc_weaponGetName;
             _destination = _posTown findEmptyPosition [5,100,OT_civType_local];
         };
     };
-}foreach([OT_allTowns,[],{random 100},"ASCEND"] call BIS_fnc_SortBy);
+}forEach([OT_allTowns,[],{random 100},"ASCEND"] call BIS_fnc_SortBy);
 
 
 _reward = floor((_startpos distance2D _destination) * 0.005 * _numitems);
@@ -81,7 +81,7 @@ private _title = format["Deliver %1 x %2 for %3 store in %4",_numitems,_itemname
         [_civ] joinSilent _group;
         _civ setVariable ["NOAI",true,false];
         _group setVariable ["Vcm_Disable",true,true];
-        _this pushback _civ;
+        _this pushBack _civ;
 
         //give the items to the player
         _count = 0;

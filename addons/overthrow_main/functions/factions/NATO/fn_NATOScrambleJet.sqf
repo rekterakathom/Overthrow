@@ -12,7 +12,7 @@ if !(OT_NATO_HQ in _abandoned) then {
     private _pos = _frompos findEmptyPosition [20,100,_vehtype];
     if (count _pos == 0) then {_pos = _frompos findEmptyPosition [10,100,_vehtype]};
 
-    private _group = creategroup blufor;
+    private _group = createGroup blufor;
     private _veh = _vehtype createVehicle _pos;
     _veh setVariable ["garrison","HQ",false];
 
@@ -20,7 +20,7 @@ if !(OT_NATO_HQ in _abandoned) then {
 
     {
         _x addCuratorEditableObjects [[_veh]];
-    }foreach(allCurators);
+    }forEach(allCurators);
 
     clearWeaponCargoGlobal _veh;
     clearMagazineCargoGlobal _veh;
@@ -33,7 +33,7 @@ if !(OT_NATO_HQ in _abandoned) then {
     	[_x] joinSilent _group;
     	_x setVariable ["garrison","HQ",false];
     	_x setVariable ["NOAI",true,false];
-    }foreach(crew _veh);
+    }forEach(crew _veh);
     sleep 1;
 
     private _dir = (_targetpos getDir OT_NATO_JetPos);

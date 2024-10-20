@@ -30,7 +30,7 @@ if(hmd _unit != "") then {
 		};
 		_count = _count + 1;
 	};
-}foreach(_unit call OT_fnc_unitStock);
+}forEach(_unit call OT_fnc_unitStock);
 
 if(vest _unit != "") then {
 	removeVest _unit;
@@ -52,7 +52,7 @@ if(handgunWeapon _unit != "") then {
 	_t addWeaponGlobal handgunWeapon _unit;
 	{
 		_t addItem _x;
-	}foreach(handgunItems _unit);
+	}forEach(handgunItems _unit);
 	_unit removeWeaponGlobal handgunWeapon _unit;
 };
 {
@@ -67,4 +67,4 @@ if(handgunWeapon _unit != "") then {
 			_t linkItem _x;
 		};
 	};
-}foreach(assignedItems _unit);
+}forEach(assignedItems _unit);

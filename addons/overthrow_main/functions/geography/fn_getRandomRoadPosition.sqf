@@ -5,7 +5,7 @@ if(_test isEqualType "") then {
     if ((_test in OT_capitals) || (_test in OT_sprawling)) then {
         _msize = 500;
     };
-    _test = server getvariable _test;
+    _test = server getVariable _test;
 };
 
 if (!assert !(isNil "_test")) exitWith {diag_log "Overthrow: Nil test position"; []};

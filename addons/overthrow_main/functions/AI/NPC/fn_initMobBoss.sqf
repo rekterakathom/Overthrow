@@ -60,7 +60,7 @@ _unit addMagazine _magazine;
 _unit addMagazine _magazine;
 _unit addWeaponGlobal _weapon;
 
-_config = configfile >> "CfgWeapons" >> _weapon >> "WeaponSlotsInfo";
+_config = configFile >> "CfgWeapons" >> _weapon >> "WeaponSlotsInfo";
 _numslots = count(_config);
 for "_i" from 0 to (_numslots-1) do {
 	if (isClass (_config select _i)) then {
@@ -69,7 +69,7 @@ for "_i" from 0 to (_numslots-1) do {
 		_items = [];
 		if (isClass (_com)) then {
 			for "_t" from 0 to (count(_com)-1) do {
-				_items pushback (configName(_com select _t));
+				_items pushBack (configName(_com select _t));
 			};
 		}else{
 			_items = getArray(_com);

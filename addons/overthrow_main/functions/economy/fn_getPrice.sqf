@@ -1,7 +1,7 @@
 params ["_town","_cls",["_standing",0]];
 private _price = 0;
 
-private _trade = player getvariable ["OT_trade",1];
+private _trade = player getVariable ["OT_trade",1];
 private _discount = 0;
 if(_trade > 1) then {
 	_discount = 0.02 * (_trade - 1);

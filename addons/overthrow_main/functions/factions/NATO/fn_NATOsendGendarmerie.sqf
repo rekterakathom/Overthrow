@@ -27,7 +27,7 @@ private _attacking = server getVariable["NATOattacking",""];
 			};
 		};
 	};
-}foreach(OT_NATOobjectives);
+}forEach(OT_NATOobjectives);
 
 if(!isNil "_close") then {
 	_current = server getVariable [format ["garrison%1",_town],0];
@@ -36,8 +36,8 @@ if(!isNil "_close") then {
 
 	// Group may not be moved into a vehicle, so it also needs space to spawn
 	_start = [_close,50,200, 1, 0, 0, 0] call BIS_fnc_findSafePos;
-	_group = creategroup blufor;
-	_groups pushback _group;
+	_group = createGroup blufor;
+	_groups pushBack _group;
 	_usecar = false;
 	_veh = objNull;
 
@@ -48,7 +48,7 @@ if(!isNil "_close") then {
 		_veh setDir (random 360);
 		_group addVehicle _veh;
 		_usecar = true;
-		_groups pushback _veh;
+		_groups pushBack _veh;
 	};
 
 	_civ = _group createUnit [OT_NATO_Unit_PoliceCommander_Heavy, _start, [],0, "NONE"];
@@ -81,7 +81,7 @@ if(!isNil "_close") then {
 	if(_usecar) then {
 		{
 			_x moveInAny _veh;
-		}foreach(units _group);
+		}forEach(units _group);
 
 		_drop = (([_townPos, 50, 350, 1, 0, 0, 0] call BIS_fnc_findSafePos) nearRoads 500) select 0;
 

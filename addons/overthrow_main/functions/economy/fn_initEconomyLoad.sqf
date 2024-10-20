@@ -1,4 +1,4 @@
-{_x setMarkerAlpha 0} foreach OT_regions;
+{_x setMarkerAlpha 0} forEach OT_regions;
 
 //Find NATO HQ
 {
@@ -6,7 +6,7 @@
     if(_name isEqualTo OT_NATO_HQ) then {
         OT_NATO_HQPos = _pos;
     };
-}foreach (OT_objectiveData + OT_airportData);
+}forEach (OT_objectiveData + OT_airportData);
 
 private _allActiveShops = [];
 private _allActiveCarShops = [];
@@ -35,14 +35,14 @@ diag_log format["Overthrow: Economy version is %1",_version];
             _towndist = (server getVariable _town) distance _pos;
             _control = _pos call OT_fnc_nearestCheckpoint;
             // If there are no checkpoints (Malden), use one million as distance.
-    		_cdist = if (!isNil "_control") then {(getmarkerpos _control) distance _pos} else {1000000};
+    		_cdist = if (!isNil "_control") then {(getMarkerPos _control) distance _pos} else {1000000};
 
     		if(_obdist > 800 and _towndist > 200 and _cdist > 500) then {
-                _allpos pushback _pos;
+                _allpos pushBack _pos;
             };
         };
         if((count _allpos) > 10) exitWith{};
-    }foreach(_possible);
+    }forEach(_possible);
     spawner setVariable [format["gangpositions%1",_town],_allpos,false];
 
     if((server getVariable "StartupType") == "NEW") then {
@@ -60,7 +60,7 @@ diag_log format["Overthrow: Economy version is %1",_version];
     _mrkid = format["%1-police",_town];
     _mrkid setMarkerText format["%1",_garrison];
 
-}foreach(OT_allTowns);
+}forEach(OT_allTowns);
 
 if(_version < OT_economyVersion) then {
     diag_log "Overthrow: Economy version is old, regenerating towns";
@@ -72,7 +72,7 @@ if(_version < OT_economyVersion) then {
             _reppos = server getVariable [format["factionrep%1",_cls],false];
             if !(_reppos isEqualType []) then {
                 _town = selectRandom OT_allTowns;
-                if(_cls isEqualTo OT_spawnFaction) then {_town = server getvariable "spawntown"};
+                if(_cls isEqualTo OT_spawnFaction) then {_town = server getVariable "spawntown"};
                 _posTown = server getVariable _town;
                 _building = [_posTown,OT_allHouses] call OT_fnc_getRandomBuilding;
                 _pos = _posTown;
@@ -80,7 +80,7 @@ if(_version < OT_economyVersion) then {
             		_pos = selectRandom (_building call BIS_fnc_buildingPositions);
             		[_building,"system"] call OT_fnc_setOwner;
                     if(isNil "_pos") then {
-                        _pos = [[[getpos _building,20]]] call BIS_fnc_randomPos;
+                        _pos = [[[getPos _building,20]]] call BIS_fnc_randomPos;
                     };
             	}else{
             		_pos = [[[_posTown,200]]] call BIS_fnc_randomPos;
@@ -89,7 +89,7 @@ if(_version < OT_economyVersion) then {
                 server setVariable [format["factionname%1",_cls],_name,true];
             };
         };
-    }foreach(OT_allFactions);
+    }forEach(OT_allFactions);
     diag_log "Overthrow: Economy Load Complete";
 };
 
@@ -100,7 +100,7 @@ if(_version < OT_economyVersion) then {
     if(_n isEqualTo "") then {
         server setVariable [format["factionname%1",_cls],_name,true];
     };
-}foreach(OT_allFactions);
+}forEach(OT_allFactions);
 
 //Stability markers
 {
@@ -160,7 +160,7 @@ if(_version < OT_economyVersion) then {
 
 	_piers = server getVariable [format["activepiersin%1",_x],[]];
 	_allActivePiers append _piers;
-}foreach(OT_allTowns);
+}forEach(OT_allTowns);
 
 //Business Markers
 OT_allEconomic = [];
@@ -172,10 +172,10 @@ OT_allEconomic = [];
     _mrk setMarkerColorLocal "ColorWhite";
     if(_name in (server getVariable["GEURowned",[]])) then {_mrk setMarkerColorLocal "ColorGUER"};
     _mrk setMarkerAlpha 0.8;
-	OT_allEconomic pushback _name;
+	OT_allEconomic pushBack _name;
     server setVariable [_name,_pos,true];
     cost setVariable [_name,_x,true];
-}foreach(OT_economicData);
+}forEach(OT_economicData);
 
 //Factory Marker
 _mrk = createMarkerLocal ["Factory",OT_factoryPos];

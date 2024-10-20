@@ -1,6 +1,6 @@
 
 
-closedialog 0;
+closeDialog 0;
 createDialog "OT_dialog_main";
 
 openMap false;
@@ -32,7 +32,7 @@ private _standing = [_town] call OT_fnc_support;
 private _rep = server getVariable ["rep",0];
 private _extra = "";
 
-if((getplayeruid player) in (server getVariable ["generals",[]])) then {
+if((getPlayerUID player) in (server getVariable ["generals",[]])) then {
 	_extra = format[
 		"<t align='left' size='0.65'>Resistance Funds: $%1 (Tax Rate %2%3)</t>",
 		[server getVariable ["money",0], 1, 0, true] call CBA_fnc_formatNumber,
@@ -104,7 +104,7 @@ if(_b isEqualType []) then {
 			",_ownername,round((damage _building) * 100),"%"];
 		};
 
-		if(_owner isEqualTo getplayerUID player) then {
+		if(_owner isEqualTo getPlayerUID player) then {
 			_leased = player getVariable ["leased",[]];
 			_id = [_building] call OT_fnc_getBuildID;
 			if(_id in _leased) then {
@@ -208,7 +208,7 @@ if(_b isEqualType []) then {
 			_base = [];
 			{
 				if((_x select 0) distance _building < 5) exitWith {_base = _x};
-			}foreach(server getvariable ["bases",[]]);
+			}forEach(server getVariable ["bases",[]]);
 
 			_ownername = players_NS getVariable [format["name%1",_base select 2], ""];
 			ctrlSetText [1608,"Sell"];
@@ -225,7 +225,7 @@ if(_b isEqualType []) then {
 		};
 
 		if(damage _building isEqualTo 1) then {
-			if((_owner isEqualTo getplayerUID player) || (call OT_fnc_playerIsGeneral)) then {
+			if((_owner isEqualTo getPlayerUID player) || (call OT_fnc_playerIsGeneral)) then {
 				ctrlEnable [1608,false]; //Not allowed to sell
 				ctrlSetText [1609,"Repair"]; //Replace lease/manage with repair
 				ctrlEnable [1609,true];

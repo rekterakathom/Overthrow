@@ -1,7 +1,7 @@
 params ["_town","_spawnid"];
 sleep random 0.2;
 
-spawner setvariable [format["townspawnid%1",_town],_spawnid,false];
+spawner setVariable [format["townspawnid%1",_town],_spawnid,false];
 
 private _hometown = _town;
 private _groups = [];
@@ -56,7 +56,7 @@ if(_numCiv > 16) then {_pergroup = 4};
 private _mayorpos = _town call OT_fnc_getRandomRoadPosition;
 private _group = createGroup [civilian,true];
 _group setBehaviour "SAFE";
-_groups pushback _group;
+_groups pushBack _group;
 _mayor = _group createUnit ["C_Man_formal_1_F", _mayorpos, [],0, "NONE"];
 _mayor setBehaviour "CARELESS";
 _mayor setVariable ["hometown",_hometown,true];
@@ -69,7 +69,7 @@ while {_count < _numCiv} do {
 	private _groupCount = 0;
 	private _group = createGroup [civilian,true];
 	_group setBehaviour "SAFE";
-	_groups pushback _group;
+	_groups pushBack _group;
 
 	private _home = _town call OT_fnc_getRandomRoadPosition;
 	while {(_groupcount < _pergroup) && (_count < _numCiv)} do {
@@ -96,17 +96,17 @@ private _gangs = OT_civilians getVariable [format["gangs%1",_town],[]];
 	_gang params ["_members"];
 
 	if (!isNil "_members" && {_members isEqualType []}) then {
-		private _group = creategroup [opfor,true];
+		private _group = createGroup [opfor,true];
 		_group setVariable ["VCM_TOUGHSQUAD",true,true];
 		_group setVariable ["VCM_NORESCUE",true,true];
-		_groups pushback _group;
+		_groups pushBack _group;
 		spawner setVariable [format["gangspawn%1",_gangid],_group,true];
 		if(count _gang > 4) then { //Filter out old gangs
 			private _home = _gang select 4; //camp position
 
 			//Spawn the camp
 			_veh = createVehicle ["Campfire_burning_F",_home,[],0,"CAN_COLLIDE"];
-			_groups pushback _veh;
+			_groups pushBack _veh;
 
 			_numtents = 2 + round(random 3);
 			_count = 0;
@@ -118,12 +118,12 @@ private _gangs = OT_civilians getVariable [format["gangs%1",_town],[]];
 				_p = _p findEmptyPosition [1,40,"Land_TentDome_F"];
 				_veh = createVehicle ["Land_TentDome_F",_p,[],0,"CAN_COLLIDE"];
 				_veh setDir _d;
-				_groups pushback _veh;
+				_groups pushBack _veh;
 				_count = _count + 1;
 			};
 
 			//And the gang leader in his own group
-			private _leaderGroup = creategroup [opfor,true];
+			private _leaderGroup = createGroup [opfor,true];
 			_leaderGroup setVariable ["VCM_TOUGHSQUAD",true,true];
 			_leaderGroup setVariable ["VCM_NORESCUE",true,true];
 			private _pos = _home getPos [10, random 360];
@@ -142,11 +142,11 @@ private _gangs = OT_civilians getVariable [format["gangs%1",_town],[]];
 			_wp = _leaderGroup addWaypoint [_home,0];
 	        _wp setWaypointType "CYCLE";
 
-			_groups pushback _leaderGroup;
+			_groups pushBack _leaderGroup;
 
 			{
 				_x addCuratorEditableObjects [[_civ]];
-			}foreach(allCurators);
+			}forEach(allCurators);
 
 			{
 				private _civid = _x;
@@ -167,13 +167,13 @@ private _gangs = OT_civilians getVariable [format["gangs%1",_town],[]];
 
 				{
 					_x addCuratorEditableObjects [[_civ]];
-				}foreach(allCurators);
+				}forEach(allCurators);
 
 				sleep 0.3;
-			}foreach(_members);
+			}forEach(_members);
 			[_group,_posTown] call OT_fnc_initCriminalGroup;
 		};
 	};
-}foreach(_gangs);
+}forEach(_gangs);
 
-spawner setvariable [_spawnid,(spawner getvariable [_spawnid,[]]) + _groups,false];
+spawner setVariable [_spawnid,(spawner getVariable [_spawnid,[]]) + _groups,false];

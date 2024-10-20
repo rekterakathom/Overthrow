@@ -21,15 +21,15 @@ if((count _possible) > 0) then {
     private _name = format[selectRandom OT_gangNames,_town,OT_nation];
 
     OT_civilians setVariable [format["gang%1",_gangid],[[],-1,_town,_vest,_home,_loadout,0,1,_name],true];
-    _gangs pushback _gangid;
+    _gangs pushBack _gangid;
 
     if(_spawn && [_townpos] call OT_fnc_inSpawnDistance) then {
         //Spawn the camp
         private _veh = createVehicle ["Campfire_burning_F",_home,[],0,"CAN_COLLIDE"];
 
-        private _spawnid = spawner getvariable [format["townspawnid%1",_town],-1];
-        private _groups = spawner getvariable [str _spawnid,[]];
-        _groups pushback _veh;
+        private _spawnid = spawner getVariable [format["townspawnid%1",_town],-1];
+        private _groups = spawner getVariable [str _spawnid,[]];
+        _groups pushBack _veh;
 
         _numtents = 2 + round(random 3);
         _count = 0;
@@ -42,12 +42,12 @@ if((count _possible) > 0) then {
             _veh = createVehicle ["Land_TentDome_F",_p,[],0,"CAN_COLLIDE"];
             _veh enableDynamicSimulation true;
             _veh setDir _d;
-            _groups pushback _veh;
+            _groups pushBack _veh;
             _count = _count + 1;
         };
 
         //And the gang leader in his own group
-        private _leaderGroup = creategroup [opfor,true];
+        private _leaderGroup = createGroup [opfor,true];
         _leaderGroup setVariable ["VCM_TOUGHSQUAD",true,true];
 		_leaderGroup setVariable ["VCM_NORESCUE",true,true];
         _leaderGroup setVariable ["lambs_danger_disableGroupAI", true];
@@ -66,19 +66,19 @@ if((count _possible) > 0) then {
         _wp = _leaderGroup addWaypoint [_home,0];
         _wp setWaypointType "CYCLE";
 
-        private _group = creategroup [opfor,true];
+        private _group = createGroup [opfor,true];
         _group setVariable ["VCM_TOUGHSQUAD",true,true];
 		_group setVariable ["VCM_NORESCUE",true,true];
         spawner setVariable [format["gangspawn%1",_gangid],_group,true];
-        _groups pushback _group;
-        _groups pushback _leaderGroup;
+        _groups pushBack _group;
+        _groups pushBack _leaderGroup;
         //spawner setvariable [_spawnid,_groups,false];
 
         [_group,_townpos] call OT_fnc_initCriminalGroup;
 
         {
             _x addCuratorEditableObjects [[_civ]];
-        }foreach(allCurators);
+        }forEach(allCurators);
     };
     OT_civilians setVariable [format["gangs%1",_town],_gangs,true];
 };

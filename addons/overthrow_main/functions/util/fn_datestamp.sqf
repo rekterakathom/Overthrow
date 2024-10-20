@@ -7,7 +7,7 @@ private _stamp = 0;
 {
     if(_forEachIndex isEqualTo (_month - 1)) exitWith {};
     _stamp = _stamp + (_x * 1440);
-}foreach(_daysInMonth);
+}forEach(_daysInMonth);
 
 //add up completed days in month
 _stamp = _stamp + ((_day - 1) * 1440);

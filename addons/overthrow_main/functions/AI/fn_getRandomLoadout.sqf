@@ -4,7 +4,7 @@ private _index = "";
 if(_unit isEqualType "") then {
     _index = _unit;
 }else{
-    _index = typeof _unit;
+    _index = typeOf _unit;
 };
 
 private _loadouts = spawner getVariable [format["loadouts_%1",_index],[]];

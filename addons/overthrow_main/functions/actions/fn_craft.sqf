@@ -7,7 +7,7 @@ _def = [];
 {
     _x params ["_c","_r","_q"];
     if(_cls == _c && _q isEqualTo _qty) exitWith {_def = _x};
-}foreach(OT_craftableItems);
+}forEach(OT_craftableItems);
 
 if(count _def > 0) then {
     private _err = false;
@@ -40,10 +40,10 @@ if(count _def > 0) then {
                         _good = true;
                     };
                 };
-            }foreach(_stock);
+            }forEach(_stock);
 
             if !(_good) exitWith {_err = true;"Required ingredients not in closest ammobox" call OT_fnc_notifyMinor};
-        }foreach(_recipe);
+        }forEach(_recipe);
 
         if !(_err) then {
             {
@@ -56,8 +56,8 @@ if(count _def > 0) then {
                     if(_c isKindOf [_needed,configFile >> "CfgWeapons"]) exitWith {
                         [_container, _c, _qtyneeded] call CBA_fnc_removeItemCargo;
                     };
-                }foreach(_stock);
-            }foreach(_recipe);
+                }forEach(_stock);
+            }forEach(_recipe);
 
             _container addItemCargoGlobal [_cls, _qty];
 

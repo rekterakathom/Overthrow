@@ -6,4 +6,4 @@
         (units _x) orderGetIn true;
     };
     player hcSelectGroup [_x,false];
-}foreach(hcSelected player);
+}forEach(hcSelected player);

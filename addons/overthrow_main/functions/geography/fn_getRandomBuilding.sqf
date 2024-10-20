@@ -11,10 +11,10 @@ while {!_found && _range < 1200} do {
 	_possible = [];
 	if(count _houses > 0) then {
 		{
-			if (!(_x call OT_fnc_hasOwner) && (typeof _x) in _types) then {
-				_possible pushback _x
+			if (!(_x call OT_fnc_hasOwner) && (typeOf _x) in _types) then {
+				_possible pushBack _x
 			};
-		}foreach(_houses);
+		}forEach(_houses);
 
 		if(count _possible > 0) then {
 			_house = selectRandom _possible;

@@ -1,9 +1,9 @@
-closedialog 0;
+closeDialog 0;
 createDialog "OT_dialog_logistics";
 lbClear 1500;
 {
     private _veh = _x;
-    private _cls = typeof _veh;
+    private _cls = typeOf _veh;
     if((_veh call OT_fnc_hasOwner) && ((_cls isKindOf "LandVehicle") || (_cls isKindOf "Air") || (_cls isKindOf "Ship"))) then {
 
         (_cls call OT_fnc_getClassDisplayInfo) params ["_pic", "_name"];
@@ -21,12 +21,12 @@ lbClear 1500;
         private _color = [0.9,0.9,0.9,1];
 
         private _totalAmmo = 0;
-        private _turrets = "!((configName _x) select [0,5] == ""Cargo"") && !((count getArray (_x >> ""magazines"")) isEqualTo 0)" configClasses (configfile >> "CfgVehicles" >> _cls >> "Turrets");
+        private _turrets = "!((configName _x) select [0,5] == ""Cargo"") && !((count getArray (_x >> ""magazines"")) isEqualTo 0)" configClasses (configFile >> "CfgVehicles" >> _cls >> "Turrets");
         private _hasAmmo = (count _turrets) > 0;
         {
             _x params ["_ammocls","_num"];
             _totalAmmo = _totalAmmo + _num;
-        }foreach(magazinesAmmo _veh);
+        }forEach(magazinesAmmo _veh);
 
         private _lowFuel = (fuel _veh) < 0.2;
 
@@ -42,4 +42,4 @@ lbClear 1500;
 
         lbSetColor [1500,_idx,_color];
     };
-}foreach([vehicles,[],{_x distance player},"ASCEND"] call BIS_fnc_SortBy);
+}forEach([vehicles,[],{_x distance player},"ASCEND"] call BIS_fnc_SortBy);

@@ -17,10 +17,10 @@ if(_this isEqualType []) then {
 	{
 		if((_x select 0) isEqualTo _category) exitWith {
 			{
-				_categoryItems pushback _x;
-			}foreach(_x select 1);
+				_categoryItems pushBack _x;
+			}forEach(_x select 1);
 		};
-	}foreach(OT_items);
+	}forEach(OT_items);
 };
 
 private _allCargo = {
@@ -33,19 +33,19 @@ private _allCargo = {
 				if(_x isEqualType "") then {
 					if (!(_x isEqualTo "") && !(_x isEqualTo (binocular _target))) then {
 						if(_forEachIndex isEqualTo 0) then {
-							_myitems pushback (_x call BIS_fnc_baseWeapon);
+							_myitems pushBack (_x call BIS_fnc_baseWeapon);
 						}else{
-							_myitems pushback _x;
+							_myitems pushBack _x;
 						};
 					};
 				};
 				if(_x isEqualType []) then {
 					if (!(_x#0 isEqualTo "") && !(_x#0 isEqualTo (binocular _target))) then {
-						_myitems pushback (_x select 0);
+						_myitems pushBack (_x select 0);
 					};
 				};
-			}foreach(_x);
-		}foreach(weaponsItems _target);
+			}forEach(_x);
+		}forEach(weaponsItems _target);
 	}else{
 		_myitems = (itemCargo _target) + (magazineCargo _target) + (backpackCargo _target);
 		{
@@ -53,25 +53,25 @@ private _allCargo = {
 				if(_x isEqualType "") then {
 					if !(_x isEqualTo "") then {
 						if(_forEachIndex isEqualTo 0) then {
-							_myitems pushback (_x call BIS_fnc_baseWeapon);
+							_myitems pushBack (_x call BIS_fnc_baseWeapon);
 						}else{
-							_myitems pushback _x;
+							_myitems pushBack _x;
 						};
 					};
 				};
 				if(_x isEqualType []) then {
 					if !((_x select 0) isEqualTo "") then {
-						_myitems pushback (_x select 0);
+						_myitems pushBack (_x select 0);
 					};
 				};
-			}foreach(_x);
-		}foreach(weaponsItemsCargo _target);
+			}forEach(_x);
+		}forEach(weaponsItemsCargo _target);
 		{
 			_x params ["_itemcls","_item"];
 			_myitems = _myitems + (itemCargo _item) + (magazineCargo _item) + (backpackCargo _item) + (weaponCargo _item);
-		}foreach(everyContainer _target);
+		}forEach(everyContainer _target);
 	};
-	if(isnil "_myitems") then {_myitems = []};
+	if(isNil "_myitems") then {_myitems = []};
 	_myitems = _myitems - OT_noCopyMags;
 	_myitems
 };
@@ -92,7 +92,7 @@ if !(isNil "_theseitems") then {
 						if(_forEachIndex != 0) then {
 							_cls = format["%1_%2",_cls,_x];
 						};
-					}foreach(_c);
+					}forEach(_c);
 				};
 			};
 
@@ -100,7 +100,7 @@ if !(isNil "_theseitems") then {
 		} else {
 			_theseItems set [_forEachIndex, objNull];
 		};
-	}foreach(_theseitems);
+	}forEach(_theseitems);
 	
 	_theseitems = _theseitems - [objNull];
 	_items = _theseitems call BIS_fnc_consolidateArray;

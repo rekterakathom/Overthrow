@@ -13,7 +13,7 @@
 */
 
 if (isNil "OT_townsSortedByPopulation") then {
-	OT_townsSortedByPopulation = [OT_allTowns, [], {server getvariable format["population%1",_x]}, "DESCEND"] call BIS_fnc_SortBy;
+	OT_townsSortedByPopulation = [OT_allTowns, [], {server getVariable format["population%1",_x]}, "DESCEND"] call BIS_fnc_SortBy;
 };
 
 private _countered = false;

@@ -6,14 +6,14 @@ if(_byair) then {
 };
 private _squadtype = selectRandom OT_NATO_GroundForces;
 private _spawnpos = _frompos;
-private _group1 = [_spawnpos, WEST, _squadtype] call BIS_fnc_spawnGroup;
+private _group1 = [_spawnpos, west, _squadtype] call BIS_fnc_spawnGroup;
 _group1 deleteGroupWhenEmpty true;
 private _group2 = "";
 private _tgroup = false;
 if !(_byair) then {
 	sleep 0.3;
 	private _squadtype = selectRandom OT_NATO_GroundForces;
-	_group2 = [_spawnpos, WEST, _squadtype] call BIS_fnc_spawnGroup;
+	_group2 = [_spawnpos, west, _squadtype] call BIS_fnc_spawnGroup;
 	_group2 deleteGroupWhenEmpty true;
 };
 sleep 0.5;
@@ -22,7 +22,7 @@ private _veh = false;
 private _pos = false;
 
 //Transport
-private _tgroup = creategroup blufor;
+private _tgroup = createGroup blufor;
 private _dir = 0;
 
 if(_byair) then {
@@ -32,7 +32,7 @@ if(_byair) then {
 		//check if theres anything on it
 		private _on = (ASLToAGL (getPosASL _x)) nearEntities [["Air", "LandVehicle", "Ship"], 15];
 		if(_on isEqualTo []) exitWith {_pos = getPosASL _x;_dir = getDir _x};
-	}foreach(_helipads);
+	}forEach(_helipads);
 
 	if !(_pos isEqualType []) then {
 		_pos = _frompos findEmptyPosition [15,100,_vehtype];
@@ -61,7 +61,7 @@ createVehicleCrew _veh;
 	[_x] joinSilent _tgroup;
 	_x setVariable ["garrison","HQ",false];
 	_x setVariable ["NOAI",true,false];
-}foreach(crew _veh);
+}forEach(crew _veh);
 _allunits = (units _tgroup);
 {
 	_x addCuratorEditableObjects [(units _tgroup) + [_veh],true];
@@ -75,13 +75,13 @@ _tgroup deleteGroupWhenEmpty true;
 		_x moveInCargo _veh;
 	};
 	[_x] joinSilent _group1;
-	_allunits pushback _x;
+	_allunits pushBack _x;
 	_x setVariable ["garrison","HQ",false];
 	_x setVariable ["VCOM_NOPATHING_Unit",true,false];
 
 	[_x] call OT_fnc_initMilitary;
 
-}foreach(units _group1);
+}forEach(units _group1);
 
 {
 	_x addCuratorEditableObjects [units _group1,true];
@@ -96,11 +96,11 @@ if !(_byair) then {
 		};
 		[_x] joinSilent _group2;
 		_x setVariable ["VCOM_NOPATHING_Unit",true,false];
-		_allunits pushback _x;
+		_allunits pushBack _x;
 		_x setVariable ["garrison","HQ",false];
 		[_x] call OT_fnc_initMilitary;
 
-	}foreach(units _group2);
+	}forEach(units _group2);
 	{
 		_x addCuratorEditableObjects [units _group2,true];
 	} forEach allCurators;
@@ -135,16 +135,16 @@ if(_byair && _tgroup isEqualType grpNull) then {
 	_wp setWaypointTimeout [20,20,20];
 }else{
 	if(_tgroup isEqualType grpNull) then {
-		_veh setdamage 0;
+		_veh setDamage 0;
 		_dir = (_attackpos getDir _frompos);
 		_roads = _ao nearRoads 150;
 		private _dropos = _ao;
 
 		//Try to make sure drop position is on a bigger road
 		{
-			private _pos = ASLtoAGL (getPosASL _x);
+			private _pos = ASLToAGL (getPosASL _x);
 			if(isOnRoad _pos) exitWith {_dropos = _pos};
-		}foreach(_roads);
+		}forEach(_roads);
 
 		_move = _tgroup addWaypoint [_dropos,0];
 		_move setWaypointBehaviour "CARELESS";
@@ -204,13 +204,13 @@ if(_tgroup isEqualType grpNull) then {
 		params ["_veh","_tgroup","_frompos","_byair"];
 		private _done = false;
 		private _stillfor = 0;
-		private _lastpos = getpos _veh;
+		private _lastpos = getPos _veh;
 		while{sleep 10;!_done} do {
 			if(isNull _veh) exitWith {};
 			if(isNull _tgroup) exitWith {};
 			if(!alive _veh) exitWith {};
 			private _eject = false;
-			if((damage _veh) > 0.5 && ((getpos _veh) select 2) < 2) then {
+			if((damage _veh) > 0.5 && ((getPos _veh) select 2) < 2) then {
 				//Vehicle damaged (and on the ground)
 				_eject = true;
 			};
@@ -231,7 +231,7 @@ if(_tgroup isEqualType grpNull) then {
 				{
 					unassignVehicle _x;
 					commandGetOut _x;
-				}foreach(crew _veh);
+				}forEach(crew _veh);
 				_done = true;
 				waitUntil {sleep 2;(count crew _veh) isEqualTo 0};
 				[_veh] call OT_fnc_cleanup;

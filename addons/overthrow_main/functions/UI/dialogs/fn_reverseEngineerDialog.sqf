@@ -15,11 +15,11 @@ private _blueprints = server getVariable ["GEURblueprints",[]];
 		lbSetData [1500,_idx,_cls];
 		_numitems = _numitems + 1;
 	};
-}foreach(_playerstock);
+}forEach(_playerstock);
 
 {
 	if (!(_x isKindOf "Animal") && !(_x isKindOf "CaManBase") && alive _x && (damage _x) isEqualTo 0) then {
-		private _cls = typeof _x;
+		private _cls = typeOf _x;
 		(_cls call OT_fnc_getClassDisplayInfo) params ["_pic", "_name"];
 
 		private _idx = lbAdd [1500,_name];
@@ -27,7 +27,7 @@ private _blueprints = server getVariable ["GEURblueprints",[]];
 		lbSetData [1500,_idx,_cls];
 		_numitems = _numitems + 1;
 	};
-}foreach(OT_factoryPos nearObjects ["AllVehicles", 100]);
+}forEach(OT_factoryPos nearObjects ["AllVehicles", 100]);
 
 if(_cursel >= _numitems) then {_cursel = 0};
 lbSetCurSel [1500, _cursel];

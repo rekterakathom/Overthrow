@@ -10,7 +10,7 @@ private _def = [];
 {
     _x params ["_c","_r","_q"];
     if(_cls == _c && _q == _qty) exitWith {_def = _x};
-}foreach(OT_craftableItems);
+}forEach(OT_craftableItems);
 
 if(count _def > 0) then {
     _def params ["_cls","_recipe","_qty"];
@@ -28,7 +28,7 @@ if(count _def > 0) then {
             _rcls call OT_fnc_getClassDisplayName
         };
         _recipeText = _recipeText + format["%1 x %2<br/>",_rqty,_name];
-    }foreach(_recipe);
+    }forEach(_recipe);
 
     ([_cls, true] call OT_fnc_getClassDisplayInfo) params ["_pic", "_itemName", "_desc"];
 

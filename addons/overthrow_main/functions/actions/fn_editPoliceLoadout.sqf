@@ -12,10 +12,10 @@ if (_warehouse == objNull) exitWith {hint "No warehouse near by!"};
     if(_x select [0,5] isEqualTo "item_") then {
         private _d = _warehouse getVariable [_x,[_x select [5],0,[0]]];
         if(_d isEqualType []) then {
-            _items pushback _d#0;
+            _items pushBack _d#0;
         };
     };
-}foreach(allVariables _warehouse);
+}forEach(allVariables _warehouse);
 
 if((count _items) isEqualTo 0) exitWith {hint "Cannot edit loadout, no items in warehouse"};
 
@@ -37,7 +37,7 @@ if(_clothes != "") then {
 	_civ forceAddUniform _clothes;
 };
 
-_civ setskill ["courage",1];
+_civ setSkill ["courage",1];
 
 removeAllWeapons _civ;
 removeAllAssignedItems _civ;

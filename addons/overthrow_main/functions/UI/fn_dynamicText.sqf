@@ -1,4 +1,4 @@
-disableserialization;
+disableSerialization;
 
 params ["_text",["_x",-1],["_y",-1],["_delay",4],["_fade",1],["_moveY",0],["_layer",[] call bis_fnc_rscLayer]];
 _delay = 0 max _delay;
@@ -16,13 +16,13 @@ if (_y isEqualType []) then {
 	_y = _y select 0;
 };
 
-_layer cutrsc ["rscDynamicText","plain"];
+_layer cutRsc ["rscDynamicText","plain"];
 
-private _display = uinamespace getvariable "BIS_dynamicText";
-private _control = _display displayctrl 9999;
-_control ctrlsetfade 1;
-_control ctrlcommit 0;
-private _pos = ctrlposition _control;
+private _display = uiNamespace getVariable "BIS_dynamicText";
+private _control = _display displayCtrl 9999;
+_control ctrlSetFade 1;
+_control ctrlCommit 0;
+private _pos = ctrlPosition _control;
 if !(_x isEqualTo -1) then {_pos set [0,_x]};
 if !(_y isEqualTo -1) then {_pos set [1,_y]};
 if !(_w isEqualTo -1) then {_pos set [2,_w]};
@@ -39,16 +39,16 @@ if (!isNull (_display displayCtrl OT_dynamicTextIdCounter)) then {
 OT_dynamicTextIdCounter = (OT_dynamicTextIdCounter + 1) % 11000;
 
 _control = _display ctrlCreate [/*ctrlClassName _control*/ "OTRscDynamicText",OT_dynamicTextIdCounter];
-_control ctrlsetposition _pos;
+_control ctrlSetPosition _pos;
 if (_text isEqualType "") then {
-	_control ctrlsetstructuredtext parseText _text;
+	_control ctrlSetStructuredText parseText _text;
 } else {
-	_control ctrlsetstructuredtext _text;
+	_control ctrlSetStructuredText _text;
 };
-_control ctrlsetfade 1;
-_control ctrlcommit 0;
-_control ctrlsetfade 0;
-_control ctrlcommit _fade;
+_control ctrlSetFade 1;
+_control ctrlCommit 0;
+_control ctrlSetFade 0;
+_control ctrlCommit _fade;
 
 [
 	{
@@ -57,7 +57,7 @@ _control ctrlcommit _fade;
 		isNil "_ctrl" || {isNull _ctrl || ctrlCommitted _ctrl}
 	},
 	{
-		disableserialization;
+		disableSerialization;
 		params ["_control","_delay","","_moveY"];
 
 		if (isNil "_control" || {isNull _control}) exitWith {};
@@ -65,8 +65,8 @@ _control ctrlcommit _fade;
 		private _pos = ctrlPosition _control;
 		if !(_moveY isEqualTo 0) then {
 			_pos set [1,(_pos select 1) + _moveY];
-			_control ctrlsetposition _pos;
-			_control ctrlcommit _delay;
+			_control ctrlSetPosition _pos;
+			_control ctrlCommit _delay;
 		} else {
 			_this pushBack (time + _delay);
 		};
@@ -83,12 +83,12 @@ _control ctrlcommit _fade;
 				};
 			},
 			{
-				disableserialization;
+				disableSerialization;
 				params ["_control","","","","_layer"];
 				if (isNil "_control" || {isNull _control}) exitWith {};
 
-				_control ctrlsetfade 1;
-				_control ctrlcommit 1;
+				_control ctrlSetFade 1;
+				_control ctrlCommit 1;
 
 				[
 					{
@@ -97,10 +97,10 @@ _control ctrlcommit _fade;
 						isNil "_control" || {isNull _control || ctrlCommitted _control}
 					},
 					{
-						disableserialization;
+						disableSerialization;
 						params ["_control","","","","_layer"];
 						if (isNil "_control" || {isNull _control}) exitWith {};
-						_layer cuttext ["","plain"];
+						_layer cutText ["","plain"];
 					}
 				] call CBA_fnc_waitUntilAndExecute;
 			},

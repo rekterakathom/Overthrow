@@ -5,7 +5,7 @@ diag_log "Overthrow: Virtualization start";
 	_p = _x select 0;
 	_i = _x select 1;
 	[_p,OT_fnc_spawnBusinessEmployees,[_p,_i]] call OT_fnc_registerSpawner;
-}foreach(OT_economicData);
+}forEach(OT_economicData);
 
 diag_log format["Overthrow: %1 businesses virtualized",count OT_economicData];
 
@@ -19,7 +19,7 @@ _count = 0;
 		_count = _count + 1;
 		[_pos,OT_fnc_spawnFactionRep,[_cls,_name]] call OT_fnc_registerSpawner;
     }
-}foreach(OT_allFactions);
+}forEach(OT_allFactions);
 
 diag_log format["Overthrow: %1 faction reps virtualized",_count];
 
@@ -28,14 +28,14 @@ private _allobs = OT_NATOobjectives + OT_NATOcomms;
 	_name = _x select 1;
 	_pos = _x select 0;
 	[_pos,OT_fnc_spawnNATOObjective,[_pos,_name]] call OT_fnc_registerSpawner;
-}foreach(_allobs);
+}forEach(_allobs);
 
 diag_log format["Overthrow: %1 objectives virtualized",count _allobs];
 
 {
 	_pos = getMarkerPos _x;
 	[_pos,OT_fnc_spawnNATOCheckpoint,[_pos,_x]] call OT_fnc_registerSpawner;
-}foreach(OT_NATO_control);
+}forEach(OT_NATO_control);
 
 diag_log format["Overthrow: %1 checkpoints virtualized",count OT_NATO_control];
 
@@ -58,9 +58,9 @@ OT_townSpawners = [
 			params ["_spawntown","_spawnid"];
 			{
 				_hdl = [_spawntown,_spawnid] spawn _x;
-			}foreach(OT_townSpawners);
+			}forEach(OT_townSpawners);
 	},[_town]] call OT_fnc_registerSpawner;
-}foreach(OT_allTowns);
+}forEach(OT_allTowns);
 
 diag_log format["Overthrow: %1 towns virtualized",count OT_allTowns];
 

@@ -7,14 +7,14 @@ player setVariable ["OT_tutesDone",_done,true];
 private _actualMission = {
     private _targets = [];
     private _destination = [];
-    private _thistown = (getposATL player) call OT_fnc_nearestTown;
+    private _thistown = (getPosATL player) call OT_fnc_nearestTown;
 
     //Is there some already spawned within spawn distance?
     {
         if(damage _x > 0.9) then {
-            _targets pushback _x;
+            _targets pushBack _x;
         };
-    }foreach(player nearObjects ["Car", OT_spawnDistance]);
+    }forEach(player nearObjects ["Car", OT_spawnDistance]);
 
 
     //No? well where is the closest town?

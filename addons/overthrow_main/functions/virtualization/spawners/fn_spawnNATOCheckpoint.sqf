@@ -20,7 +20,7 @@ if((count _start) isEqualTo 0 || _start#1 isEqualTo 0) exitWith {diag_log format
 
 private _vehtype = selectRandom OT_vehTypes_civ;
 
-private _roadscon = roadsConnectedto _road;
+private _roadscon = roadsConnectedTo _road;
 private _dir = (_road getDir (_roadscon select 0));
 if(isNil "_dir") then {_dir = 90};
 
@@ -57,8 +57,8 @@ sleep 0.5;
 		(units _x) joinSilent _group;
 		sleep 0.5;
 	};
-	_groups pushback _x;
-}foreach(_vehs);
+	_groups pushBack _x;
+}forEach(_vehs);
 
 _count = _count + 1;
 sleep 0.3;
@@ -80,6 +80,6 @@ while {_count < _numNATO} do {
 _group spawn OT_fnc_initNATOCheckpoint;
 {
 	_x addCuratorEditableObjects [units _group];
-}foreach(allcurators);
+}forEach(allCurators);
 
-spawner setvariable [_spawnid,_groups,false];
+spawner setVariable [_spawnid,_groups,false];

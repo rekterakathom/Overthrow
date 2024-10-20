@@ -24,13 +24,13 @@ private _ignore = ["ItemMap"];
                 if (binocular _unit isEqualTo _cls) exitWith {
                     if (_correct) then {_unit removeWeapon _cls};
                     _count = 0;
-                    _missing pushback _cls;
+                    _missing pushBack _cls;
                 };
 
                 if (_cls in primaryWeaponItems _unit) exitWith {
                      if (_correct) then {_unit removePrimaryWeaponItem _cls};
                     _count = 0;
-                    _missing pushback _cls;
+                    _missing pushBack _cls;
                 };
 
                 if (primaryWeapon _unit isEqualTo _cls) exitWith {
@@ -39,13 +39,13 @@ private _ignore = ["ItemMap"];
                         _unit removeWeapon _cls;
                     };
                     _count = 0;
-                    _missing pushback _cls;
+                    _missing pushBack _cls;
                 };
 
                 if (_cls in secondaryWeaponItems _unit) exitWith {
                     if (_correct) then {_unit removeSecondaryWeaponItem _cls};
                     _count = 0;
-                    _missing pushback _cls;
+                    _missing pushBack _cls;
                 };
 
                 if (secondaryWeapon _unit isEqualTo _cls) exitWith {
@@ -54,59 +54,59 @@ private _ignore = ["ItemMap"];
                         _unit removeWeapon _cls;
                     };
                     _count = 0;
-                    _missing pushback _cls;
+                    _missing pushBack _cls;
                 };
 
                 if (_cls in handgunItems _unit) exitWith {
                     if (_correct) then {_unit removeHandgunItem _cls};
                     _count = 0;
-                    _missing pushback _cls;
+                    _missing pushBack _cls;
                 };
 
                 if (handgunWeapon _unit isEqualTo _cls) exitWith {
                     if (_correct) then {_unit removeWeapon _cls};
                     _count = 0;
-                    _missing pushback _cls;
+                    _missing pushBack _cls;
                 };
 
                 if (backpack _unit == _cls) exitWith {
                     if (_correct) then {
                         {
                             [_x, 1] call OT_fnc_addToWarehouse;
-                        } foreach (backpackItems _unit);
+                        } forEach (backpackItems _unit);
                         removeBackpack _unit;
                     };
                     _count = 0;
-                    _missing pushback _cls;
+                    _missing pushBack _cls;
                 };
 
                 if (vest _unit == _cls) exitWith {
                     if (_correct) then {
                         {
                             [_x, 1] call OT_fnc_addToWarehouse;
-                        } foreach (vestItems _unit);
+                        } forEach (vestItems _unit);
                         removeVest _unit;
                     };
                     _count = 0;
-                    _missing pushback _cls;
+                    _missing pushBack _cls;
                 };
 
                 if (headgear _unit == _cls) exitWith {
                     if(_correct) then {removeHeadgear _unit};
                     _count = 0;
-                    _missing pushback _cls;
+                    _missing pushBack _cls;
                 };
 
                 if (goggles _unit == _cls) exitWith {
                     if(_correct) then {removeGoggles _unit};
                     _count = 0;
-                    _missing pushback _cls;
+                    _missing pushBack _cls;
                 };
 
                 if (_cls in assignedItems _unit) exitWith {
                     if(_correct) then {_unit unlinkItem _cls};
                     _count = 0;
-                    _missing pushback _cls;
+                    _missing pushBack _cls;
                 };
 
                 _totake = _count - _boxAmount;
@@ -114,13 +114,13 @@ private _ignore = ["ItemMap"];
                     while {_count > _boxAmount} do {
                         _count = _count - 1;
                         if (_correct) then {_unit removeMagazine _cls};
-                        _missing pushback _cls;
+                        _missing pushBack _cls;
                     };
                 };
                 while {_count > _boxAmount} do {
                     _count = _count - 1;
                     if (_correct) then {_unit removeItem _cls};
-                    _missing pushback _cls;
+                    _missing pushBack _cls;
                 };
             };
         };

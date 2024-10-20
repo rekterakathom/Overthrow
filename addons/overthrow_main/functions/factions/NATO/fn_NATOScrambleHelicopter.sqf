@@ -8,27 +8,27 @@ private _from = nil;
 	if !((_name in _abandoned) || (_obpos distance _targetpos) < 300) exitWith {
 		_from = _x;
 	};
-}foreach([OT_airportData,[],{_targetpos distance (_x select 0)},"ASCEND"] call BIS_fnc_SortBy);
+}forEach([OT_airportData,[],{_targetpos distance (_x select 0)},"ASCEND"] call BIS_fnc_SortBy);
 
 if !(isNil "_from") then {
     if(_delay > 0) then {sleep _delay};
     diag_log "Overthrow: NATO Scrambling Helicopter";
 
     private _vehtype = selectRandom OT_NATO_Vehicles_AirSupport_Small;
-    if((typeof _target) isKindOf "Tank") then {_vehtype = selectRandom OT_NATO_Vehicles_AirSupport};
+    if((typeOf _target) isKindOf "Tank") then {_vehtype = selectRandom OT_NATO_Vehicles_AirSupport};
 
     private _frompos = _from select 0;
 
     private _pos = _frompos findEmptyPosition [15,100,_vehtype];
     if (count _pos == 0) then {_pos = _frompos findEmptyPosition [8,100,_vehtype]};
 
-    private _group = creategroup blufor;
+    private _group = createGroup blufor;
     private _veh = _vehtype createVehicle _pos;
     _veh setVariable ["garrison","HQ",false];
 
     {
         _x addCuratorEditableObjects [[_veh]];
-    }foreach(allCurators);
+    }forEach(allCurators);
 
     clearWeaponCargoGlobal _veh;
     clearMagazineCargoGlobal _veh;
@@ -41,7 +41,7 @@ if !(isNil "_from") then {
     	[_x] joinSilent _group;
     	_x setVariable ["garrison","HQ",false];
     	_x setVariable ["NOAI",true,false];
-    }foreach(crew _veh);
+    }forEach(crew _veh);
     sleep 1;
 
     private _dir = (_targetpos getDir _frompos);
@@ -76,7 +76,7 @@ if !(isNil "_from") then {
         };
         _veh land "LAND";
         // Sometimes helicopters land just briefly and take off again, so checking this every second
-        waitUntil{sleep 1;(getpos _veh)#2 < 2};
+        waitUntil{sleep 1;(getPos _veh)#2 < 2};
     };
     _veh call OT_fnc_cleanup;
     _group call OT_fnc_cleanup;

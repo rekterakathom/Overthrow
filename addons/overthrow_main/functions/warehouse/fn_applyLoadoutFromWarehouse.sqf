@@ -15,6 +15,6 @@ if(_charge) then {
     private _cost = 0;
     {
         _cost = _cost + [OT_nation,_x,[OT_nation] call OT_fnc_support] call OT_fnc_getPrice;
-    }foreach(_missing);
+    }forEach(_missing);
     [-_cost] call OT_fnc_money;
 };

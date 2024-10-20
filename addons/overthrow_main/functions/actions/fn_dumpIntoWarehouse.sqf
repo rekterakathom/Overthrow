@@ -52,7 +52,7 @@ if(hmd _unit != "") then {
 		[_cls,1] call OT_fnc_addToWarehouse;
 		_count = _count + 1;
 	};
-}foreach(_unit call OT_fnc_unitStock);
+}forEach(_unit call OT_fnc_unitStock);
 
 if(headgear _unit != "") then {
 	[headgear _unit,1] call OT_fnc_addToWarehouse;
@@ -77,7 +77,7 @@ if(goggles _unit != "") then {
 if(primaryWeapon _unit != "") then {
 	{
 		[_x,1] call OT_fnc_addToWarehouse;
-	}foreach(primaryWeaponItems _unit);
+	}forEach(primaryWeaponItems _unit);
 	removeAllPrimaryWeaponItems _unit;
 	[(primaryWeapon _unit) call BIS_fnc_baseWeapon,1] call OT_fnc_addToWarehouse;
 	_unit removeWeapon primaryWeapon _unit;
@@ -92,7 +92,7 @@ if(secondaryWeapon _unit != "") then {
 if(handgunWeapon _unit != "") then {
 	{
 		[_x,1] call OT_fnc_addToWarehouse;
-	}foreach(handgunItems _unit);
+	}forEach(handgunItems _unit);
 	removeAllHandgunItems _unit;
 	[handgunWeapon _unit,1] call OT_fnc_addToWarehouse;
 	_unit removeWeapon handgunWeapon _unit;
@@ -109,7 +109,7 @@ if(_linkedItems) then {
 			};
 			[_x,1] call OT_fnc_addToWarehouse;
 		};
-	}foreach(assignedItems _unit);
+	}forEach(assignedItems _unit);
 };
 
 true

@@ -21,7 +21,7 @@ if(!isNil "_civ" && _civ getVariable ["factionrep",false] && !((_cls isKindOf "L
 	if !(_faction isEqualTo "") then {
 		_increase = floor (_price / 1000);
 		if(_increase > 0) then {
-			private _factionName = server getvariable format["factionname%1",_faction];
+			private _factionName = server getVariable format["factionname%1",_faction];
 			server setVariable [format["standing%1",_faction],(server getVariable [format["standing%1",_faction],0]) + _increase,true];
 			format["+%1 %2",_increase,_factionName] call OT_fnc_notifyMinor;
 		};
@@ -49,7 +49,7 @@ if(_cls == "Set_HMG") exitWith {
 if(OT_interactingWith getVariable ["factionrep",false] && ((_cls isKindOf "Land") || (_cls isKindOf "Air") || (_cls isKindOf "Ship"))) exitWith {
 	private _blueprints = server getVariable ["GEURblueprints",[]];
 	if !(_cls in _blueprints) then {
-		_blueprints pushback _cls;
+		_blueprints pushBack _cls;
 		[-_price] call OT_fnc_money;
 		server setVariable ["GEURblueprints",_blueprints,true];
 		_factionName = OT_interactingWith getVariable ["factionrepname",""];
@@ -74,7 +74,7 @@ if(_cls == OT_item_UAV) exitWith {
 	private _crew = createVehicleCrew _veh;
 	{
 		[_x,getPlayerUID player] call OT_fnc_setOwner;
-	}foreach(crew _veh);
+	}forEach(crew _veh);
 
 	[_veh,getPlayerUID player] call OT_fnc_setOwner;
 
@@ -170,9 +170,9 @@ if(
 	{
 		private _owner = _x call OT_fnc_getOwner;
 		if(!isNil "_owner") then {
-			if(_owner == getplayerUID player) exitWith {_box = _x};
+			if(_owner == getPlayerUID player) exitWith {_box = _x};
 		};
-	}foreach(nearestObjects [player, [OT_item_Storage],1200]);
+	}forEach(nearestObjects [player, [OT_item_Storage],1200]);
 
 	// @todo probably add to box if possible
 	player addWeaponGlobal _cls;

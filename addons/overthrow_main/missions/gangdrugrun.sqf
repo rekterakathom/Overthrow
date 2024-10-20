@@ -2,7 +2,7 @@ params ["_jobid","_jobparams"];
 _jobparams params ["_gangid"];
 private _gang = OT_civilians getVariable [format["gang%1",_gangid],[]];
 
-private _startpos = getpos player;
+private _startpos = getPos player;
 private _destination = [];
 private _destinationName = "";
 private _gangname = _gang select 8;
@@ -19,7 +19,7 @@ private _gangtown = _gang select 2;
             _destination = _posTown findEmptyPosition [5,100,OT_civType_local];
         };
     };
-}foreach([OT_allTowns,[],{random 100},"ASCEND",{!(_x isEqualTo _gangtown)}] call BIS_fnc_SortBy);
+}forEach([OT_allTowns,[],{random 100},"ASCEND",{!(_x isEqualTo _gangtown)}] call BIS_fnc_SortBy);
 
 _numitems = floor(2 + random 4);
 _reward = floor((_startpos distance2D _destination) * 0.01 * _numitems);
@@ -56,7 +56,7 @@ private _title = format["Deliver %2 x Ganja for %1",_gangname,_numitems];
         [_civ] joinSilent _group;
         _civ setVariable ["NOAI",true,false];
         _group setVariable ["Vcm_Disable",true,true];
-        _this pushback _civ;
+        _this pushBack _civ;
 
         //give the items to the player
         _count = 0;

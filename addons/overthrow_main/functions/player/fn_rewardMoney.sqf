@@ -9,7 +9,7 @@ if(isPlayer _who) then {
         if(_perPlayer > 0) then {
             {
                 [_perPlayer] remoteExec ["OT_fnc_money",_x,false];
-            }foreach(allPlayers - (entities "HeadlessClient_F"));
+            }forEach(allPlayers - (entities "HeadlessClient_F"));
         };
     };
 };

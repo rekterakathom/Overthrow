@@ -7,7 +7,7 @@ private _job = [];
 {
     _x params ["_jobid","_j"];
     if(_jobid isEqualTo _id) exitWith {_job = _j};
-}foreach(spawner getVariable ["OT_activeJobs",[]]);
+}forEach(spawner getVariable ["OT_activeJobs",[]]);
 
 if(count _job > 0) then {
     _job params ["_info","_markerPos"];

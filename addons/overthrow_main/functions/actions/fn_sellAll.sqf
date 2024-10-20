@@ -25,7 +25,7 @@ private _qty = 0;
 {
 	private _c = _x select 0;
 	if(_c == _sellcls) exitWith {_qty = _x select 1};
-}foreach(_target call OT_fnc_unitStock);
+}forEach(_target call OT_fnc_unitStock);
 
 private _total = (_price*_qty);
 [_total] call OT_fnc_money;
@@ -41,7 +41,7 @@ if((player getVariable ["OT_shopTarget","Self"]) isEqualTo "Vehicle") then {
 		if(_thiscls isEqualTo _sellcls) exitWith {
 			_ncqty = _thisqty;
 		};
-	}foreach(_noncontaineritems);
+	}forEach(_noncontaineritems);
 
 	if(_ncqty > 0) then {
 		if !([_target, _sellcls, _ncqty] call CBA_fnc_removeItemCargo) then {
@@ -65,7 +65,7 @@ if((player getVariable ["OT_shopTarget","Self"]) isEqualTo "Vehicle") then {
 					[_item, _sellcls, _q] call CBA_fnc_removeItemCargo;
 					_qty = _qty - _q;
 				};
-			} foreach ((itemCargo _item) call OT_fnc_consolidateArray);
+			} forEach ((itemCargo _item) call OT_fnc_consolidateArray);
 
 			if (_qty > 0) then {
 				{
@@ -75,7 +75,7 @@ if((player getVariable ["OT_shopTarget","Self"]) isEqualTo "Vehicle") then {
 						[_item, _sellcls, _q] call CBA_fnc_removeWeaponCargo;
 						_qty = _qty - _q;
 					};
-				} foreach ((weaponCargo _item) call OT_fnc_consolidateArray);
+				} forEach ((weaponCargo _item) call OT_fnc_consolidateArray);
 			};
 
 			if(_qty > 0) then {
@@ -86,9 +86,9 @@ if((player getVariable ["OT_shopTarget","Self"]) isEqualTo "Vehicle") then {
 						[_item, _sellcls, _q] call CBA_fnc_removeMagazineCargo;
 						_qty = _qty - _q;
 					};
-				} foreach ((magazineCargo _item) call OT_fnc_consolidateArray);
+				} forEach ((magazineCargo _item) call OT_fnc_consolidateArray);
 			};
-		} foreach (everyContainer _target);
+		} forEach (everyContainer _target);
 	};
 }else{
 	for "_i" from 0 to _qty do {
@@ -97,7 +97,7 @@ if((player getVariable ["OT_shopTarget","Self"]) isEqualTo "Vehicle") then {
 			if((_c select 0) == "tf") then {
 				{
 					if((_x find _ocls) isEqualTo 0) exitWith {_sellcls = _x};
-				}foreach(items player);
+				}forEach(items player);
 			};
 		};
 		player removeItem _sellcls;

@@ -30,23 +30,23 @@ while {sleep 10; alive _drone} do {
 
                 if ((_x isKindOf "StaticWeapon") && {(side _x != west)}) exitWith {
                     if (([_drone, "VIEW"] checkVisibility [getPosASL _drone, _position]) > 0.01) then {
-                        _targets pushBack ["SW", ASLtoAGL _position, 100, _x];
+                        _targets pushBack ["SW", ASLToAGL _position, 100, _x];
                     };
                 };
 
                 if (_type isEqualTo OT_warehouse) exitWith {
                     if (_x call OT_fnc_hasOwner) then {
-                        _targets pushBack ["WH", ASLtoAGL _position, 80, _x];
+                        _targets pushBack ["WH", ASLToAGL _position, 80, _x];
                     };
                 };
 
                 if (_type isEqualTo OT_flag_IND) exitWith {
-                    _targets pushBack ["FOB", ASLtoAGL _position, 50, _x];
+                    _targets pushBack ["FOB", ASLToAGL _position, 50, _x];
                 };
 
                 if (_type isEqualTo OT_item_Storage) exitWith {
                     if (([_drone, "VIEW"] checkVisibility [getPosASL _drone, _position]) > 0.01) then {
-                        _targets pushBack ["AMMO", ASLtoAGL _position, 25, _x];
+                        _targets pushBack ["AMMO", ASLToAGL _position, 25, _x];
                     };
                 };
 
@@ -78,7 +78,7 @@ while {sleep 10; alive _drone} do {
                                 };
                             };
 
-                            _targets pushBack [_targetType, ASLtoAGL _position, _threat, _x];
+                            _targets pushBack [_targetType, ASLToAGL _position, _threat, _x];
                         };
                     };
                 };

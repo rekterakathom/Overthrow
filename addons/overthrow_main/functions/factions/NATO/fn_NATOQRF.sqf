@@ -30,7 +30,7 @@ private _region = server getVariable format["region_%1",_town];
 
 _ground = [];
 _air = [];
-_abandoned = server getvariable ["NATOabandoned",[]];
+_abandoned = server getVariable ["NATOabandoned",[]];
 
 ([_pos] call OT_fnc_NATOGetAttackVectors) params ["_ground","_air"];
 
@@ -58,7 +58,7 @@ private _count = 0;
 			diag_log format["Overthrow: NATO Sent extra ground forces from %1 %2",_name,str _obpos];
 		};
 		if(_strength <=0) exitWith {};
-	}foreach(_ground);
+	}forEach(_ground);
 
 sleep 2;
 
@@ -82,7 +82,7 @@ if(_strength >= 150) then {
 		_count = _count + 1;
 
 		if(_strength <=0 || _count isEqualTo 4) exitWith {};
-	}foreach(_air);
+	}forEach(_air);
 };
 sleep 2;
 
@@ -150,7 +150,7 @@ if(_popControl > 1000) then {
 			diag_log format["Overthrow: NATO Sent APC reinforcements from %1",_name];
 			_strength = _strength - 200;
 		};
-	}foreach(_ground);
+	}forEach(_ground);
 };
 sleep 2;
 
@@ -266,7 +266,7 @@ if(_progress > 0) then {
 						if([_lead] call OT_fnc_inSpawnDistance) then {
 							{
 								_x setVariable ["garrison",_garrison,true];
-							}foreach(units _x);
+							}forEach(units _x);
 						}else{
 							[_x] call OT_fnc_cleanup;
 						};
@@ -276,14 +276,14 @@ if(_progress > 0) then {
 				deleteGroup _x;
 			};
 		};
-	}foreach(groups west);
+	}forEach(groups west);
 	{
 		if(side _x isEqualTo west) then {
 			if(_x getVariable ["garrison",""] isEqualTo "HQ") then {
 				[_x] call OT_fnc_cleanup;
 			};
 		}
-	}foreach(vehicles);
+	}forEach(vehicles);
 	//Nato gets pushed back
 	server setVariable ["NATOresourceGain",0,true];
 	server setVariable ["NATOresources",-_strength,true];

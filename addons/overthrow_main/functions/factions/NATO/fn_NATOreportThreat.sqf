@@ -9,7 +9,7 @@ private _target = nil;
         _added = true;
         _target = _x;
     };
-}foreach(_targets);
+}forEach(_targets);
 
 if(_added) exitWith {
     //Already know this threat, update it's position if it's old
@@ -23,7 +23,7 @@ if(_added) exitWith {
 //determine threat
 private _targetType = "V";
 private _threat = 0;
-private _ty = typeof _veh;
+private _ty = typeOf _veh;
 
 call {
     if(_ty in OT_allVehicleThreats) exitWith {
@@ -42,5 +42,5 @@ call {
     };
 };
 
-_targets pushback [_targetType,position _veh,_threat,_veh,false,time];
+_targets pushBack [_targetType,position _veh,_threat,_veh,false,time];
 spawner setVariable ["NATOknownTargets",_targets,true];

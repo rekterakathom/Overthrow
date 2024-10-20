@@ -1,12 +1,12 @@
 private ["_town","_id","_pos","_building","_tracked","_civs","_vehs","_group","_groups","_all","_shopkeeper"];
-if (!isServer) exitwith {};
+if (!isServer) exitWith {};
 
 
 _count = 0;
 params ["_town","_spawnid"];
 _posTown = server getVariable _town;
 sleep random 0.2;
-_shopkeeper = objNULL;
+_shopkeeper = objNull;
 private _activeshops = server getVariable [format["activecarshopsin%1",_town],[]];
 
 
@@ -19,7 +19,7 @@ private _groups = [];
 	//create group for car dealer
 	_group = createGroup civilian;
 	_group setBehaviour "CARELESS";
-	_groups pushback _group;
+	_groups pushBack _group;
 
 	//set start location based on building config
 	private _start = _building buildingPos getNumber(configFile >> "CfgVehicles" >> typeOf(_building) >> "ot_shopPos");
@@ -35,8 +35,8 @@ private _groups = [];
 			_start = _x getRelPos [0.8, 0]; 
 			_facing = getDir _x - 180;
 		};
-		_groups pushback _x;
-	}foreach(_vehs);
+		_groups pushBack _x;
+	}forEach(_vehs);
 
 	//create shopkeeper as member of group
 	_shopkeeper = _group createUnit [OT_civType_carDealer, _start, [],0, "CAN_COLLIDE"];
@@ -52,7 +52,7 @@ private _groups = [];
 	[_shopkeeper] call OT_fnc_initCarDealer;
 
 	sleep 0.5;
-}foreach(_activeshops);
+}forEach(_activeshops);
 
 
-spawner setvariable [_spawnid,(spawner getvariable [_spawnid,[]]) + _groups,false];
+spawner setVariable [_spawnid,(spawner getVariable [_spawnid,[]]) + _groups,false];

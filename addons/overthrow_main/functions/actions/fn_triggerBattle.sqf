@@ -14,7 +14,7 @@ private _cost = 350;
 {
     _x params ["","_name","_pri"];
     if(_name isEqualTo _obname) exitWith {_cost = _pri};
-}foreach(OT_objectiveData + OT_airportData);
+}forEach(OT_objectiveData + OT_airportData);
 
 private _m = 1;
 if(_popControl > 1000) then {_m = 2};

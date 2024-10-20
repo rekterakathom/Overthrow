@@ -9,9 +9,9 @@ _unit addEventHandler ["Take", {
 
 	if (captive _me) then {
 		//Looting dead bodies is illegal
-		if(!alive _container && {typeof _container isKindOf ["CAManBase",configFile>>"CfgVehicles"]}) then {
-			_container setvariable ["OT_looted",true,true];
-			_container setvariable ["OT_lootedAt",time,true];
+		if(!alive _container && {typeOf _container isKindOf ["CAManBase",configFile>>"CfgVehicles"]}) then {
+			_container setVariable ["OT_looted",true,true];
+			_container setVariable ["OT_lootedAt",time,true];
 			if (!(_container call OT_fnc_hasOwner) && (_me call OT_fnc_unitSeen)) then {
 				_me setCaptive false;
 				[_me] call OT_fnc_revealToNATO;
@@ -72,7 +72,7 @@ if((isPlayer _unit) && isNil "OT_ACEunconsciousChangedEHId") then {
 
 		//Look for a medic
 		private _havepi = "ACE_epinephrine" in (items player);
-		private _nearbyUnits = player nearentities["CAManBase",50];
+		private _nearbyUnits = player nearEntities["CAManBase",50];
 		{
 			if (
 				!isPlayer _x

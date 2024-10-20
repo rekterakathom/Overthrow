@@ -54,11 +54,11 @@ if(!dialog) then {
 
 					sleep 20;
 					_gundealer = spawner getVariable format["gundealer%1",player call OT_fnc_nearestTown];
-					[player,getpos _gundealer,"Gun Dealer"] call OT_fnc_givePlayerWaypoint;
+					[player,getPos _gundealer,"Gun Dealer"] call OT_fnc_givePlayerWaypoint;
 					sleep 3;
 					hint "Go and speak to the local gun dealer. Head towards the marked location, you have nothing to worry about as long as you are not carrying/wearing any illegal items.";
 
-					waitUntil {uiSleep 1; (player distance2d getPosASL _gundealer) < 5};
+					waitUntil {uiSleep 1; (player distance2D getPosASL _gundealer) < 5};
 
 
 					_lines = [
@@ -212,12 +212,12 @@ if(!dialog) then {
 			if(hcShownBar && count (hcSelected player) > 0) exitWith {
 				createDialog "OT_dialog_squad";
 			};
-			if(!hcShownBar && ((groupSelectedUnits player) findIf {!isplayer _x} != -1)) exitWith {
+			if(!hcShownBar && ((groupSelectedUnits player) findIf {!isPlayer _x} != -1)) exitWith {
 				{
 					if(isPlayer _x) then {
 						player groupSelectUnit [_x,false];
 					};
-				}foreach(groupSelectedUnits player);
+				}forEach(groupSelectedUnits player);
 				createDialog "OT_dialog_command";
 			};
 			if(vehicle player != player) exitWith {
@@ -246,8 +246,8 @@ if(!dialog) then {
 							moveOut _x;
 							_x allowDamage false;
 							_x setPos _p;
-							_e pushback _x;
-						} foreach(crew vehicle player);
+							_e pushBack _x;
+						} forEach(crew vehicle player);
 						sleep 2;
 						disableUserInput false;
 						cutText ["","BLACK IN",3];
@@ -255,7 +255,7 @@ if(!dialog) then {
 						[_driver] call OT_fnc_cleanupUnit;
 						{
 							_x allowDamage true;
-						}foreach(_e);
+						}forEach(_e);
 					};
 				};
 				call {
@@ -277,7 +277,7 @@ if(!dialog) then {
 			};
 
 			private _cTarget = cursorTarget;
-			if((_cTarget isKindOf "CAManBase") && (alive _cTarget) && (!isplayer _cTarget) && !(side _cTarget isEqualTo west) && (_cTarget distance player) < 10) exitWith {
+			if((_cTarget isKindOf "CAManBase") && (alive _cTarget) && (!isPlayer _cTarget) && !(side _cTarget isEqualTo west) && (_cTarget distance player) < 10) exitWith {
 				_cTarget call OT_fnc_talkToCiv;
 			};
 			[] spawn OT_fnc_mainMenu;

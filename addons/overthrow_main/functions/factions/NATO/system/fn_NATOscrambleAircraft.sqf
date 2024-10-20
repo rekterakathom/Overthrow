@@ -44,7 +44,7 @@ private _countered = false;
 				_resources = _resources - 350;
 				_x set [4,true];
 				if (([OT_nation] call OT_fnc_support) > (random 250)) then {
-					format ["Intel reports that NATO has scrambled a helicopter to intercept %1", (typeof _target) call OT_fnc_vehicleGetName]
+					format ["Intel reports that NATO has scrambled a helicopter to intercept %1", (typeOf _target) call OT_fnc_vehicleGetName]
 				};
 				_countered = true;
 			};

@@ -102,7 +102,7 @@ if !(captive _unit) then {
 						//Set the whole car wanted
 						{
 							_x setCaptive false;
-						}foreach(crew objectParent _unit);
+						}forEach(crew objectParent _unit);
 						[vehicle _unit] call OT_fnc_revealToCRIM;
 					};
 
@@ -120,7 +120,7 @@ if !(captive _unit) then {
 	}else{
 		if(_unit call OT_fnc_unitSeenNATO && !_gottem) then {
 			// smoking
-			if(_unit getvariable ["ot_isSmoking",false]) exitWith {
+			if(_unit getVariable ["ot_isSmoking",false]) exitWith {
 				_unit setCaptive false;
 				[_unit] call OT_fnc_revealToNATO;
 				if(isPlayer _unit) then {
@@ -136,9 +136,9 @@ if !(captive _unit) then {
 			};
 			if ((!isNull objectParent _unit) && { _unit call OT_fnc_illegalInCar }) exitWith {
 				//Set the whole car wanted
-				_unit setcaptive false;
+				_unit setCaptive false;
 				{
-					_x setcaptive false;
+					_x setCaptive false;
 				}forEach(crew objectParent _unit);
 				[objectParent _unit] call OT_fnc_revealToNATO;
 

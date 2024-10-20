@@ -32,7 +32,7 @@ private _abandoned = server getVariable ["NATOabandoned", []];
 			_max = 32;
 		};
 		if ((_garrison < _max) && {(_spend > 150)} && {(random 100 > _chance)} && {!([_pos] call OT_fnc_inSpawnDistance)}) then {
-			server setvariable [format["garrison%1",_name], _garrison + 4, true];
+			server setVariable [format["garrison%1",_name], _garrison + 4, true];
 			_spend = _spend - 150;
 			_resources = _resources - 150;
 		};

@@ -5,7 +5,7 @@ private _num = 1+floor(_strength / 200);
 
 private _count = 0;
 
-private _group = creategroup blufor;
+private _group = createGroup blufor;
 
 while {_count < _num} do {
 	private _vehtype = selectRandom OT_NATO_Vehicles_TankSupport;
@@ -29,13 +29,13 @@ while {_count < _num} do {
 		[_x] joinSilent _group;
 		_x setVariable ["garrison","HQ",false];
 		_x setVariable ["NOAI",true,false];
-	}foreach(crew _veh);
+	}forEach(crew _veh);
 	_count = _count + 1;
 	sleep 0.3;
 
 	{
         _x addCuratorEditableObjects [[_veh]];
-    }foreach(allCurators);
+    }forEach(allCurators);
 };
 
 _wp = _group addWaypoint [_attackpos,100];

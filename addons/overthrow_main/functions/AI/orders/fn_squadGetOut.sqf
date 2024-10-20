@@ -1,7 +1,7 @@
 {
     private _squad = _x;
     private _leader = leader _x;
-    private _pos = getpos _leader;
+    private _pos = getPos _leader;
     if(_pos#2 > 150) then {
         //Parachute
         private _vehicle = vehicle _leader;
@@ -11,7 +11,7 @@
         _paras allowGetIn false;
 
         {
-        	spawner setvariable [format["eject_%1",[_x] call OT_fnc_getBuildID],getUnitLoadout _x,false];
+        	spawner setVariable [format["eject_%1",[_x] call OT_fnc_getBuildID],getUnitLoadout _x,false];
         	removeBackpackGlobal _x;
         	_x disableCollisionWith _vehicle;// Sometimes units take damage when being ejected.
         	_x addBackpackGlobal "B_parachute";
@@ -45,8 +45,8 @@
         		sleep 1;
         		private _inv = name _unit;
         		private _id = [_unit] call OT_fnc_getBuildID;
-        		_unit setUnitLoadout (spawner getvariable [format["eject_%1",_id],[]]);
-        		spawner setvariable [format["eject_%1",_id],nil,false];
+        		_unit setUnitLoadout (spawner getVariable [format["eject_%1",_id],[]]);
+        		spawner setVariable [format["eject_%1",_id],nil,false];
         		_unit allowDamage true;
         	};
         } forEach _paras;
@@ -59,4 +59,4 @@
         (units _squad) allowGetIn false;
     };
     player hcSelectGroup [_squad,false];
-}foreach(hcSelected player);
+}forEach(hcSelected player);

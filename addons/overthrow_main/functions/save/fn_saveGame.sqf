@@ -6,7 +6,7 @@ if(OT_saving) exitWith {
 	};
 };
 
-if((count alldeadmen) > 300) exitWith {
+if((count allDeadMen) > 300) exitWith {
 	if !(_quiet) then {
 		"Too many dead bodies, please clean first" remoteExecCall ["OT_fnc_notifyAndLog",0,false];
 	};
@@ -18,7 +18,7 @@ if (isNil "OT_NATOInitDone") exitWith {
 	};
 };
 
-missionNameSpace setVariable ["OT_saving",true,true];
+missionNamespace setVariable ["OT_saving",true,true];
 
 {
 	_x setVariable ["OT_newplayer",false,true];
@@ -61,7 +61,7 @@ private _server = (allVariables server select {
 
 	// dont abondon current attacks
 	if(_x isEqualTo "natoabandoned") then {
-		_val deleteAt (_val find (server getvariable ["NATOattacking",""]))
+		_val deleteAt (_val find (server getVariable ["NATOattacking",""]))
 	};
 
 	[_x,_val]
@@ -83,7 +83,7 @@ private _nilFilter = {
 private _poses = ((allVariables buildingpositions select _prefixFilter) select {[buildingpositions, _x] call _nilFilter}) apply {
 	[_x,buildingpositions getVariable _x];
 };
-_data pushback ["buildingpositions",_poses];
+_data pushBack ["buildingpositions",_poses];
 
 if !(_quiet) then {
 	"Step 3/11 - Saving civilians" remoteExecCall ["OT_fnc_notifyAndLog",0,false];
@@ -92,7 +92,7 @@ if !(_quiet) then {
 private _civs = ((allVariables OT_civilians select _prefixFilter) select {[OT_civilians, _x] call _nilFilter}) apply {
 	[_x,OT_civilians getVariable _x];
 };
-_data pushback ["civilians",_civs];
+_data pushBack ["civilians",_civs];
 
 if !(_quiet) then {
 	"Step 4/11 - Saving player data" remoteExecCall ["OT_fnc_notifyAndLog",0,false];
@@ -101,7 +101,7 @@ if !(_quiet) then {
 //get all online player data
 {
 	[_x] call OT_fnc_savePlayerData;
-}foreach([] call CBA_fnc_players);
+}forEach([] call CBA_fnc_players);
 
 private _players = ((allVariables players_NS) select {[players_NS, _x] call _nilFilter}) apply {
 	[_x, players_NS getVariable _x];
@@ -111,7 +111,7 @@ _data pushBack ["players",_players];
 private _cfgVeh = configFile >> "CfgVehicles";
 private _tocheck = ((allMissionObjects "Static") + vehicles) select {
 	(alive _x)
-	&& {(typeof _x != OT_flag_IND)}
+	&& {(typeOf _x != OT_flag_IND)}
 	&& {!(typeOf _x isKindOf ["CAManBase", _cfgVeh])}
 	&& {(_x call OT_fnc_hasOwner) or (_x getVariable ["OT_forceSaveUnowned", false])}
 	&& {(_x getVariable["OT_garrison",false]) isEqualTo false}
@@ -135,8 +135,8 @@ private _vehicles = (_tocheck) apply {
 	private _type = typeOf _x;
 
 	if(_type == OT_item_safe) then {
-		_s pushback ["money",_x getVariable ["money",0]];
-		_s pushback ["password",_x getVariable ["password",""]];
+		_s pushBack ["money",_x getVariable ["money",0]];
+		_s pushBack ["password",_x getVariable ["password",""]];
 	};
 	private _simCheck = dynamicSimulationEnabled _x || {simulationEnabled _x};
 	private _params = [
@@ -171,7 +171,7 @@ private _vehicles = (_tocheck) apply {
 	};
 	_params
 };
-_data pushback ["vehicles",_vehicles];
+_data pushBack ["vehicles",_vehicles];
 
 if !(_quiet) then {
 	"Step 6/11 - Saving warehouse" remoteExecCall ["OT_fnc_notifyAndLog",0,false];
@@ -194,9 +194,9 @@ private _warehouselist = warehouse getVariable ["owned", []];
 
 private _warehouselistsave = _warehouselist apply {getPosATL _x};
 
-_data pushback ["warehouse",_warehouse];
-_data pushback ["warehouselist", _warehouselistsave];
-_data pushback ["warehouseshared", ((allVariables warehouse_shared) select {(toLower _x select [0,5]) isEqualTo "item_"} apply {warehouse_shared getVariable [_x, ["", 0]]})];
+_data pushBack ["warehouse",_warehouse];
+_data pushBack ["warehouselist", _warehouselistsave];
+_data pushBack ["warehouseshared", ((allVariables warehouse_shared) select {(toLower _x select [0,5]) isEqualTo "item_"} apply {warehouse_shared getVariable [_x, ["", 0]]})];
 
 if !(_quiet) then {
 	"Step 7/11 - Saving recruits" remoteExecCall ["OT_fnc_notifyAndLog",0,false];
@@ -218,7 +218,7 @@ private _recruits = ((server getVariable ["recruits",[]]) select {
 
 	_d
 };
-_data pushback ["recruits",_recruits];
+_data pushBack ["recruits",_recruits];
 
 if !(_quiet) then {
 	"Step 8/11 - Saving squads" remoteExecCall ["OT_fnc_notifyAndLog",0,false];
@@ -234,12 +234,12 @@ private _squads = ((server getVariable ["squads",[]]) select {
 	_units = [];
 	{
 		if(alive _x) then {
-			_units pushback [typeof _x,position _x,getUnitLoadout _x];
+			_units pushBack [typeOf _x,position _x,getUnitLoadout _x];
 		};
-	}foreach(units _group);
+	}forEach(units _group);
 	[_owner,_cls,"Not a group, pls recreate",_units,groupId _group]
 };
-_data pushback ["squads",_squads];
+_data pushBack ["squads",_squads];
 
 if !(_quiet) then {
 	"Step 9/11 - Saving bases" remoteExecCall ["OT_fnc_notifyAndLog",0,false];
@@ -251,9 +251,9 @@ private _getGroupSoldiers = {
 		alive _x && { _veh isEqualTo _x || {(someAmmo _veh && toLower typeOf _veh in ["i_hmg_01_high_f","i_gmg_01_high_f"])} }
 	}) apply {
 		if(isNull objectParent _x) then {
-			[typeof _x,getUnitLoadout _x];
+			[typeOf _x,getUnitLoadout _x];
 		}else{
-			if(typeof objectParent _x == "I_HMG_01_high_F") then {["HMG",[]]} else {["GMG",[]]};
+			if(typeOf objectParent _x == "I_HMG_01_high_F") then {["HMG",[]]} else {["GMG",[]]};
 		};
 	};
 };
@@ -261,14 +261,14 @@ private _getGroupSoldiers = {
 {
 	_x params ["_pos"];
 	private _code = format["fob%1",_pos];
-	private _group = spawner getvariable [format["resgarrison%1",_code],grpNull];
+	private _group = spawner getVariable [format["resgarrison%1",_code],grpNull];
 	if !(isNull _group) then {
 		private _soldiers = _group call _getGroupSoldiers;
 		if(count _soldiers > 0) then {
-			_server pushback [format["resgarrison%1",_code],_soldiers];
+			_server pushBack [format["resgarrison%1",_code],_soldiers];
 		};
 	};
-}foreach(server getVariable ["bases",[]]);
+}forEach(server getVariable ["bases",[]]);
 
 if !(_quiet) then {
 	"Step 10/11 - Saving garrisons" remoteExecCall ["OT_fnc_notifyAndLog",0,false];
@@ -277,18 +277,18 @@ if !(_quiet) then {
 {
 	_pos = _x select 0;
 	_code = _x select 1;
-	private _group = spawner getvariable [format["resgarrison%1",_code],grpNull];
+	private _group = spawner getVariable [format["resgarrison%1",_code],grpNull];
 	if !(isNull _group) then {
 		private _soldiers = _group call _getGroupSoldiers;
 		if(count _soldiers > 0) then {
-			_server pushback [format["resgarrison%1",_code],_soldiers];
+			_server pushBack [format["resgarrison%1",_code],_soldiers];
 		};
 	};
-}foreach(OT_objectiveData + OT_airportData);
+}forEach(OT_objectiveData + OT_airportData);
 
 _data pushBack ["server",_server];
-_data pushback ["timedate",date];
-_data pushback ["autosave",[OT_autoSave_time,OT_autoSave_last_time]];
+_data pushBack ["timedate",date];
+_data pushBack ["autosave",[OT_autoSave_time,OT_autoSave_last_time]];
 _data pushBack ["recruitables",OT_Recruitables];
 _data pushBack ["policeLoadout",OT_Loadout_Police];
 
@@ -313,4 +313,4 @@ if (!_autoSave && !(_user isEqualTo objNull)) then {
 	[_data] remoteExec ["OT_fnc_uploadData",_user,false];
 };
 
-missionNameSpace setVariable ["OT_saving",false,true];
+missionNamespace setVariable ["OT_saving",false,true];

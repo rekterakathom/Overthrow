@@ -1,4 +1,4 @@
-closedialog 0;
+closeDialog 0;
 createDialog "OT_dialog_char";
 openMap false;
 

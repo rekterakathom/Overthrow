@@ -1,4 +1,4 @@
-if (!isServer) exitwith {};
+if (!isServer) exitWith {};
 OT_NATO_Group_Recon = ["", 0]; // 2nd param used to keep track of group size, see below
 OT_NATO_Group_Engineers = "";
 OT_NATO_GroundForces = [];
@@ -77,7 +77,7 @@ OT_NATO_Units_CTRGSupport = [];
 				|| "captain_jay" in _name
 			) exitWith {};
 			if("_ctrg_" in _name) exitWith {
-				OT_NATO_Units_CTRGSupport pushback _name
+				OT_NATO_Units_CTRGSupport pushBack _name
 			};
 
 			private _leader = getText (_x >> "icon") == "iconManLeader";
@@ -94,7 +94,7 @@ OT_NATO_Units_CTRGSupport = [];
 			private _loadout = getUnitLoadout _unitCfg;
 			private _loadouts = [];
 			for "_i" from 1 to 5 do {
-				_loadouts pushback ([_loadout] call OT_fnc_randomizeLoadout);
+				_loadouts pushBack ([_loadout] call OT_fnc_randomizeLoadout);
 			};
 			spawner setVariable [format["loadouts_%1",_name],_loadouts,false];
 		};
@@ -105,14 +105,14 @@ OT_NATO_Units_CTRGSupport = [];
 private _loadout = getUnitLoadout OT_NATO_Unit_Police;
 private _loadouts = [];
 for "_i" from 1 to 5 do {
-	_loadouts pushback ([_loadout,OT_allBLUSMG] call OT_fnc_randomizeLoadout);
+	_loadouts pushBack ([_loadout,OT_allBLUSMG] call OT_fnc_randomizeLoadout);
 };
 spawner setVariable [format["loadouts_%1",OT_NATO_Unit_Police],_loadouts,false];
 
 private _loadout = getUnitLoadout OT_NATO_Unit_PoliceCommander;
 private _loadouts = [];
 for "_i" from 1 to 5 do {
-	_loadouts pushback ([_loadout,OT_allBLUSMG] call OT_fnc_randomizeLoadout);
+	_loadouts pushBack ([_loadout,OT_allBLUSMG] call OT_fnc_randomizeLoadout);
 };
 spawner setVariable [format["loadouts_%1",OT_NATO_Unit_PoliceCommander],_loadouts,false];
 
@@ -139,9 +139,9 @@ if((server getVariable "StartupType") == "NEW" || (server getVariable ["NATOvers
 	{
 		private _stability = server getVariable format ["stability%1",_x];
 		if(_stability < 11 && !(_x in _abandoned)) then {
-			_abandoned pushback _x;
+			_abandoned pushBack _x;
 		};
-	}foreach (OT_allTowns);
+	}forEach (OT_allTowns);
 	server setVariable ["NATOabandoned",_abandoned,true];
 	private _startingResources = 500;
 	if(_diff isEqualTo 1) then {_startingResources = 1500};
@@ -184,7 +184,7 @@ if((server getVariable "StartupType") == "NEW" || (server getVariable ["NATOvers
 			if((random 150) < ((count _groundvehs)+_base)) then {
 				_veh = (selectRandom _groundvehs);
 				diag_log format["Adding %1 to %2",_veh call OT_fnc_vehicleGetName,_name];
-				_statics pushbackUnique _veh;
+				_statics pushBackUnique _veh;
 			};
 			private _garrison = floor(_base + random(8));
 
@@ -197,9 +197,9 @@ if((server getVariable "StartupType") == "NEW" || (server getVariable ["NATOvers
 					_count = 0;
 					while {_count < _num} do {
 						_count = _count + 1;
-						_garr pushback _class;
+						_garr pushBack _class;
 					};
-				}foreach(OT_NATO_Vehicles_JetGarrison);
+				}forEach(OT_NATO_Vehicles_JetGarrison);
 				server setVariable [format ["airgarrison%1",_name],_garr,true];
 				OT_NATO_HQPos = _pos;
 				if((count OT_NATO_HQ_garrisonPos) isEqualTo 0) then {
@@ -218,19 +218,19 @@ if((server getVariable "StartupType") == "NEW" || (server getVariable ["NATOvers
 		if !(_name in OT_allAirports) then {
 			private _helipads = (_pos nearObjects ["Land_HelipadCircle_F", 400]) + (_pos nearObjects ["Land_HelipadSquare_F", 400]);
 			if((count _helipads) > 0) then {
-				OT_NATOHelipads pushbackUnique _x;
+				OT_NATOHelipads pushBackUnique _x;
 			};
 		};
-	}foreach (OT_objectiveData + OT_airportData);
+	}forEach (OT_objectiveData + OT_airportData);
 
 	private _count = 0;
 	private _done = [];
 	while {_count < _numHVTs} do {
 		private _ob = selectRandom (OT_NATOobjectives - ([[OT_NATO_HQ,OT_NATO_HQPos]] + _done));
 		private _name = _ob select 1;
-		_done pushback _ob;
+		_done pushBack _ob;
 		private _id = format["%1%2",_name,round(random 99999)];
-		OT_NATOhvts pushback [_id,_name,""];
+		OT_NATOhvts pushBack [_id,_name,""];
 		_count = _count + 1;
 	};
 
@@ -240,7 +240,7 @@ if((server getVariable "StartupType") == "NEW" || (server getVariable ["NATOvers
 		OT_NATOcomms pushBack [_pos,_name];
 		private _garrison = floor(4 + random(4));
 		server setVariable [format ["garrison%1",_name],_garrison,true];
-	}foreach (OT_commsData);
+	}forEach (OT_commsData);
 
 	server setVariable ["NATOobjectives",OT_NATOobjectives,true];
 	server setVariable ["NATOcomms",OT_NATOcomms,true];
@@ -252,18 +252,18 @@ if((server getVariable "StartupType") == "NEW" || (server getVariable ["NATOvers
     {
         _x params ["_pos","_name","_worth"];
 		if(_name != OT_NATO_HQ) then {
-	        _prilist pushback _name;
+	        _prilist pushBack _name;
 			if(_worth > 900) then {
-	            _prilist pushback _name;
+	            _prilist pushBack _name;
 	        };
 	        if(_worth > 1200) then {
-	            _prilist pushback _name;
+	            _prilist pushBack _name;
 	        };
 	        if(_worth > 2500) then {
-	            _prilist pushback _name;
+	            _prilist pushBack _name;
 	        };
 		};
-    }foreach(OT_airportData);
+    }forEach(OT_airportData);
 
 	if((count _prilist) > 0) then {
 		{
@@ -272,11 +272,11 @@ if((server getVariable "StartupType") == "NEW" || (server getVariable ["NATOvers
 			while {_count < _num} do {
 				private _name = selectRandom _prilist;
 				private _garrison = server getVariable [format["airgarrison%1",_name],[]];
-				_garrison pushback _type;
+				_garrison pushBack _type;
 				_count = _count + 1;
 				server setVariable [format ["airgarrison%1",_name],_garrison,true];
 			};
-		}foreach(OT_NATO_Vehicles_AirGarrison);
+		}forEach(OT_NATO_Vehicles_AirGarrison);
 
 		//Distribute some random Air vehicles
 		private _airvehs = OT_allBLUOffensiveVehicles select {getText (configFile >> "CfgVehicles" >> _x >> "faction") == OT_faction_NATO && {_x isKindOf "Air"}};
@@ -288,10 +288,10 @@ if((server getVariable "StartupType") == "NEW" || (server getVariable ["NATOvers
 			if((random 200) < (count _airvehs)) then {
 				_type = selectRandom _airvehs;
 				private _garrison = server getVariable [format["airgarrison%1",_name],[]];
-				_garrison pushback _type;
+				_garrison pushBack _type;
 				server setVariable [format ["airgarrison%1",_name],_garrison,true];
 			};
-		}foreach(_prilist);
+		}forEach(_prilist);
 	};
 
 	//Distribute static AA to airfields
@@ -300,7 +300,7 @@ if((server getVariable "StartupType") == "NEW" || (server getVariable ["NATOvers
 		_vehs = server getVariable [format ["vehgarrison%1",_name],[]];
 		_vehs = _vehs + OT_NATO_Vehicles_StaticAAGarrison;
 		server setVariable [format ["vehgarrison%1",_name],_vehs,true];
-	}foreach(OT_airportData);
+	}forEach(OT_airportData);
 
 	diag_log "Overthrow: Setting up NATO checkpoints";
 	{
@@ -314,7 +314,7 @@ if((server getVariable "StartupType") == "NEW" || (server getVariable ["NATOvers
 			_x setMarkerAlpha 0;
 			server setVariable [format ["garrison%1",_x],_garrison,true];
 		};
-	}foreach (OT_NATO_control);
+	}forEach (OT_NATO_control);
 
 	diag_log "Overthrow: Garrisoning towns";
 	{
@@ -331,7 +331,7 @@ if((server getVariable "StartupType") == "NEW" || (server getVariable ["NATOvers
 			};
 		};
 		server setVariable [format ["garrison%1",_x],_garrison,true];
-	}foreach (OT_allTowns);
+	}forEach (OT_allTowns);
 };
 diag_log "Overthrow: NATO Init Done";
 
@@ -368,14 +368,14 @@ diag_log "Overthrow: NATO Init Done";
 
 	server setVariable [_name,_pos,true];
 
-	OT_allObjectives pushback _name;
+	OT_allObjectives pushBack _name;
 
 	//Check for helipads
 	if !((server getVariable "StartupType") == "NEW" || (server getVariable ["NATOversion",0]) < OT_NATOversion) then {
 		if !(_name in OT_allAirports) then {
 			private _helipads = (_pos nearObjects ["Land_HelipadCircle_F", 400]) + (_pos nearObjects ["Land_HelipadSquare_F", 400]);
 			if((count _helipads) > 0) then {
-				OT_NATOHelipads pushbackUnique _x;
+				OT_NATOHelipads pushBackUnique _x;
 			};
 		};
 	};
@@ -406,37 +406,37 @@ diag_log "Overthrow: NATO Init Done";
 			if(_this > 90) exitWith {
 				//Add some radios (10% chance)
 				_done = _done + 25;
-				_items pushback ["ItemRadio",(2-_diff)+(round(random (5-_diff)))];
+				_items pushBack ["ItemRadio",(2-_diff)+(round(random (5-_diff)))];
 			};
 			if(_this > 89) exitWith {
 				//Add a random launcher (1% chance)
 				_done = _done + 100;
 				_wpn = selectRandom OT_allBLULaunchers;
-				_wpns pushback [_wpn,1+(round(random (2-_diff)))];
-				_mags pushback [(getArray (configFile >> "CfgWeapons" >> _wpn >> "magazines")) select 0,5];
+				_wpns pushBack [_wpn,1+(round(random (2-_diff)))];
+				_mags pushBack [(getArray (configFile >> "CfgWeapons" >> _wpn >> "magazines")) select 0,5];
 			};
 			if(_this > 85) exitWith {
 				//Add a random rifle (4% chance)
 				_done = _done + 50;
 				_wpn = selectRandom OT_allBLURifles;
-				_wpns pushback [_wpn,1+(round(random (2-_diff)))];
-				_mags pushback [(getArray (configFile >> "CfgWeapons" >> _wpn >> "magazines")) select 0,5];
+				_wpns pushBack [_wpn,1+(round(random (2-_diff)))];
+				_mags pushBack [(getArray (configFile >> "CfgWeapons" >> _wpn >> "magazines")) select 0,5];
 			};
 			if(_this > 75) exitWith {
 				//Add a random pistol (10% chance)
 				_done = _done + 25;
 				_wpn = selectRandom OT_allBLUPistols;
-				_wpns pushback [_wpn,1+(round(random (3-_diff)))];
-				_mags pushback [(getArray (configFile >> "CfgWeapons" >> _wpn >> "magazines")) select 0,5];
+				_wpns pushBack [_wpn,1+(round(random (3-_diff)))];
+				_mags pushBack [(getArray (configFile >> "CfgWeapons" >> _wpn >> "magazines")) select 0,5];
 			};
 			if(_this > 50) exitWith {
 				//Add random ammunition (25% chance)
 				_done = _done + 20;
-				_mags pushback [selectRandom OT_allBLURifleMagazines,3+(round(random (4-_diff)) * 2)];
+				_mags pushBack [selectRandom OT_allBLURifleMagazines,3+(round(random (4-_diff)) * 2)];
 			};
 			//Add some meds (50% chance)
 			_done = _done + 40;
-			_items pushback [selectRandom ["ACE_fieldDressing","ACE_fieldDressing","ACE_morphine"],(2-_diff)+(round(random (5-_diff)))];
+			_items pushBack [selectRandom ["ACE_fieldDressing","ACE_fieldDressing","ACE_morphine"],(2-_diff)+(round(random (5-_diff)))];
 		};
 	};
 	spawner setVariable [format["NATOsupplyitems%1",_name],[_items,_wpns,_mags],false];
@@ -459,8 +459,8 @@ publicVariable "OT_allObjectives";
 		_mrk setMarkerColor "ColorBLUFOR";
 	};
 	server setVariable [_name,_pos,true];
-	OT_allComms pushback _name;
-	OT_allObjectives pushback _name;
+	OT_allComms pushBack _name;
+	OT_allObjectives pushBack _name;
 
 	_mrk = createMarkerLocal [_name+"_restrict",_pos];
 	_mrk setMarkerShapeLocal "ELLIPSE";
@@ -482,7 +482,7 @@ private _revealed = server getVariable ["revealedFOBs",[]];
 	OT_flag_NATO createVehicle _pos;
 
 	private _count = 0;
-	private _group = creategroup blufor;
+	private _group = createGroup blufor;
 	while {_count < _garrison} do {
 		private _start = [[[_pos,50]]] call BIS_fnc_randomPos;
 

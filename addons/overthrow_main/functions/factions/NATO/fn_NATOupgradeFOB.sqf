@@ -83,10 +83,10 @@ params ["_pos","_upgrades"];
             _x disableAI "AUTOCOMBAT";
             _x setVariable ["NOAI",true,false];
             _g = group _x;
-        }foreach(crew _v);
+        }forEach(crew _v);
         _g setCombatMode "BLUE";
         [_v,_g] spawn OT_fnc_NATOMortar;
     };
 
     sleep 0.3;
-}foreach(_upgrades);
+}forEach(_upgrades);

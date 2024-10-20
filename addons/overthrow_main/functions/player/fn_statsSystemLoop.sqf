@@ -53,7 +53,7 @@ private _txt = format [
 	_qrf
 ];
 
-private _setText = (uiNameSpace getVariable "OT_statsHUD") displayCtrl 1001;
+private _setText = (uiNamespace getVariable "OT_statsHUD") displayCtrl 1001;
 _setText ctrlSetStructuredText (parseText format ["%1", _txt]);
 _setText ctrlCommit 0;
 

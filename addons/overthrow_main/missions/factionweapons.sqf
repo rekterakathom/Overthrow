@@ -1,11 +1,11 @@
 params ["_jobid","_jobparams"];
 _jobparams params ["_faction"];
 
-private _reppos = server getVariable [format["factionrep%1",_faction],getpos player];
+private _reppos = server getVariable [format["factionrep%1",_faction],getPos player];
 private _roads = _reppos nearRoads 75;
 private _destination = [];
 if(count _roads > 0) then {
-    _destination = getpos(_roads select 0);
+    _destination = getPos(_roads select 0);
 }else{
     _destination = _reppos;
 };
@@ -19,7 +19,7 @@ private _numitems = floor(5 + random 15);
 
 private _params = [_destination,_faction,_itemcls,_numitems];
 private _markerPos = _destination;
-private _factionName = server getvariable format["factionname%1",_faction];
+private _factionName = server getVariable format["factionname%1",_faction];
 
 //Build a mission description and title
 private _description = format["%1 requests %2 x %3. Deliver them to the marked location using any vehicle, just pull up with the weapons in the inventory and you will be paid for them, including any extras of the same type. </t><br/><br/><t size='0.9'>Reward: +5 (%1), export value of weapons",_factionName,_numitems,_itemName];
@@ -50,9 +50,9 @@ private _title = format["%1 requests %2 x %3",_factionName,_numitems,_itemName];
                     if(_cls == _itemcls) then {
                         _numavailable = _numavailable + _amt;
                     };
-                }foreach(_c call OT_fnc_unitStock);
+                }forEach(_c call OT_fnc_unitStock);
             };
-        }foreach(_destination nearObjects ["AllVehicles", 30]);
+        }forEach(_destination nearObjects ["AllVehicles", 30]);
 
         _numavailable >= _numitems
     },
@@ -75,9 +75,9 @@ private _title = format["%1 requests %2 x %3",_factionName,_numitems,_itemName];
                             [_c, _cls, _amt] call CBA_fnc_removeWeaponCargo;
                             _numavailable = _numavailable + _amt;
                         };
-                    }foreach(_c call OT_fnc_unitStock);
+                    }forEach(_c call OT_fnc_unitStock);
                 };
-            }foreach(_destination nearObjects ["AllVehicles", 30]);
+            }forEach(_destination nearObjects ["AllVehicles", 30]);
 
             //apply standing and pay money
             private _topay = ([OT_nation,_itemcls,0] call OT_fnc_getSellPrice) * _numavailable;
@@ -87,7 +87,7 @@ private _title = format["%1 requests %2 x %3",_factionName,_numitems,_itemName];
                     "Delivered %1 x %2 (+5 %3)",
                     _numitems,
                     _itemcls call OT_fnc_weaponGetName,
-                    server getvariable format["factionname%1",_faction]
+                    server getVariable format["factionname%1",_faction]
                 ]
             ] remoteExec ["OT_fnc_money",_driver,false];
             server setVariable [format["standing%1",_faction],(server getVariable [format["standing%1",_faction],0]) + 5,true];

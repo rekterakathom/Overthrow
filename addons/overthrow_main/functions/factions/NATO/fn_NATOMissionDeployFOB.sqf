@@ -15,7 +15,7 @@ private _abandoned = server getVariable["NATOabandoned",[]];
 			_closest = _name;
 		};
 	};
-}foreach(OT_NATOobjectives);
+}forEach(OT_NATOobjectives);
 _isAir = false;
 if(isNil "_close") then {
 	_isAir = true;
@@ -24,10 +24,10 @@ if(isNil "_close") then {
 		if !(_name in _abandoned) exitWith {
 			_close = _obpos;
 		};
-	}foreach(OT_airportData call BIS_fnc_arrayShuffle);
+	}forEach(OT_airportData call BIS_fnc_arrayShuffle);
 };
 
-_group = [_close, WEST,  (configFile >> "CfgGroups" >> "West" >> OT_faction_NATO >> "Support" >> OT_NATO_Group_Engineers)] call BIS_fnc_spawnGroup;
+_group = [_close, west,  (configFile >> "CfgGroups" >> "West" >> OT_faction_NATO >> "Support" >> OT_NATO_Group_Engineers)] call BIS_fnc_spawnGroup;
 
 sleep 0.5;
 
@@ -51,7 +51,7 @@ if(_isAir) then {
 	};
 	_attackdir = _attackdir - 45;
 	_ao = _posTarget getPos [(350 + random 150), (_attackdir + random 90)];
-	_tgroup = creategroup blufor;
+	_tgroup = createGroup blufor;
 
 	_spawnpos = _close findEmptyPosition [15,100,OT_NATO_Vehicle_AirTransport_Small];
     if (count _spawnpos == 0) then {_spawnpos = _close findEmptyPosition [8,100,OT_NATO_Vehicle_AirTransport_Small]};
@@ -66,12 +66,12 @@ if(_isAir) then {
 		[_x] joinSilent _tgroup;
 		_x setVariable ["garrison","HQ",false];
 		_x setVariable ["NOAI",true,false];
-	}foreach(crew _veh);
+	}forEach(crew _veh);
 
 	{
 		_x moveInCargo _veh;
 		_x setVariable ["garrison","HQ",false];
-	}foreach(units _group);
+	}forEach(units _group);
 
 	sleep 2;
 
@@ -119,7 +119,7 @@ if(_isAir) then {
     _convoypos = _close getPos [120, random 360];
     private _road = [_convoypos, 150] call BIS_fnc_nearestRoad;
     if (!isNull _road) then {
-        _convoypos = (getpos _road);
+        _convoypos = (getPos _road);
     };
     _spawnpos = _convoypos findEmptyPosition [10,100,OT_NATO_Vehicle_Transport_Light];
     if (count _spawnpos == 0) then {_spawnpos = _convoypos findEmptyPosition [0,100,OT_NATO_Vehicle_Transport_Light]};
@@ -128,7 +128,7 @@ if(_isAir) then {
 
     {
         _x moveInAny _veh;
-    }foreach(units _group);
+    }forEach(units _group);
 };
 {
 	_x addCuratorEditableObjects [units _group,true];
@@ -139,7 +139,7 @@ sleep 2;
 {
 	_x setVariable ["VCOM_NOPATHING_Unit",true,false];
 	_x setVariable ["OT_targetPos",_posTarget,true];
-}foreach(units _group);
+}forEach(units _group);
 
 _wp = _group addWaypoint [_posTarget,0];
 _wp setWaypointType "MOVE";

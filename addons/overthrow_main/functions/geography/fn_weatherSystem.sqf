@@ -54,7 +54,7 @@ if((server getVariable "StartupType") == "NEW" || (server getVariable ["weatherv
 	_weather = _mode call ot_weather_getWeather;
 	_newOvercast = _weather select 0;
 
-	skiptime -24;
+	skipTime -24;
 	86400 setOvercast _newOvercast;
 	86400 setFog 0;
 	86400 setWaves (_weather select 2);
@@ -63,7 +63,7 @@ if((server getVariable "StartupType") == "NEW" || (server getVariable ["weatherv
 	86400 setGusts _newOvercast;
 	86400 setRain (_weather select 3);
 	86400 setWindDir (85 + random 10); //https://en.wikipedia.org/wiki/Trade_winds
-	skiptime 24;
+	skipTime 24;
 
 	simulWeatherSync;
 	(_weather select 3) spawn {
@@ -79,7 +79,7 @@ if((server getVariable "StartupType") == "NEW" || (server getVariable ["weatherv
 	ot_weather_change_forecast = server getVariable ["forecast","Clear"];
 	_weather = ot_weather_change_forecast call ot_weather_getWeather;
 	_newOvercast = _weather select 0;
-	skiptime -24;
+	skipTime -24;
 	86400 setOvercast _newOvercast;
 	86400 setFog 0;
 	86400 setWaves (_weather select 2);
@@ -88,7 +88,7 @@ if((server getVariable "StartupType") == "NEW" || (server getVariable ["weatherv
 	86400 setWindForce (_newOvercast * 0.3);
 	86400 setGusts _newOvercast;
 	86400 setWindDir (85 + random 10); //https://en.wikipedia.org/wiki/Trade_winds
-	skiptime 24;
+	skipTime 24;
 
 	(_weather select 3) spawn {
 		sleep 2;
@@ -96,8 +96,8 @@ if((server getVariable "StartupType") == "NEW" || (server getVariable ["weatherv
 	};
 
 	_date = server getVariable ["timedate",OT_startDate];
-	setdate _date;
-	120 setfog 0; //Tanoa fog wtf
+	setDate _date;
+	120 setFog 0; //Tanoa fog wtf
 	forceWeatherChange;
 	simulWeatherSync;
 };
@@ -105,7 +105,7 @@ if((server getVariable "StartupType") == "NEW" || (server getVariable ["weatherv
 ot_weather_change_time = 350 + (random 600);
 
 //Fog killer
-[{100 setfog 0;}, [], 100] call CBA_fnc_waitAndExecute;
+[{100 setFog 0;}, [], 100] call CBA_fnc_waitAndExecute;
 
 ["unique_ID","(ot_weather_change_time - time) <= 0","
 private _month = date select 1;

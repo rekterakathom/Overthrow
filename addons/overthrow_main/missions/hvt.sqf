@@ -27,7 +27,7 @@ private _markerPos = server getVariable _base;
         _found = false;
         {
 			if((_x select 0) isEqualTo _id) exitWith {_found = true};
-		}foreach(OT_NATOhvts);
+		}forEach(OT_NATOhvts);
 
         !_found
     },

@@ -5,7 +5,7 @@ private _d = [];
 	if(_name == _cls) exitWith {
 		_d = _x;
 	};
-}foreach(OT_Squadables);
+}forEach(OT_Squadables);
 
 _d params ["_name","_comp","_shortname"];
 private _soldiers = [];
@@ -14,8 +14,8 @@ private _totalitems = [];
 {
 	_soldier = _x call OT_fnc_getSoldier;
 	_totalitems = _totalitems + _soldier#4;
-	_soldiers pushback _soldier;
-}foreach(_comp);
+	_soldiers pushBack _soldier;
+}forEach(_comp);
 private _bought = [];
 {
 	_x params ["_cls","_num"];
@@ -23,8 +23,8 @@ private _bought = [];
 	if(_whqty < _num) then {_num = _num - _whqty} else {_num = 0};
 	if(_num > 0) then {
 		_cost = _cost + (([OT_nation,_cls,30] call OT_fnc_getPrice) * _num);
-		_bought pushback [_cls,_num];
+		_bought pushBack [_cls,_num];
 	};
-}foreach(_totalitems call BIS_fnc_consolidateArray);
+}forEach(_totalitems call BIS_fnc_consolidateArray);
 
 [_cost,_soldiers,_bought,_shortname]

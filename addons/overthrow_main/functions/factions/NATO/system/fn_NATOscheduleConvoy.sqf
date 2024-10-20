@@ -37,7 +37,7 @@ if (_end isNotEqualTo []) then {
 		spawner setVariable ["NATOlastconvoy",time,false];
 		_spend = _spend - 500;
 		_resources = _resources - 500;
-		_schedule pushback [_id, "CONVOY", _start, _end, _hour];
+		_schedule pushBack [_id, "CONVOY", _start, _end, _hour];
 	};
 };
 

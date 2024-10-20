@@ -12,7 +12,7 @@ private _groups = [];
 
 private _group = createGroup civilian;
 _group setBehaviour "CARELESS";
-_groups pushback _group;
+_groups pushBack _group;
 
 _shopkeeper = _group createUnit [OT_civType_shopkeeper, _pos, [],0, "NONE"];
 
@@ -37,4 +37,4 @@ _shopkeeper setVariable ["factionrepname",_name,true];
 [_shopkeeper,"self"] call OT_fnc_setOwner;
 _shopkeeper setVariable ["shopcheck",true,true];
 
-spawner setvariable [_spawnid,(spawner getvariable [_spawnid,[]]) + _groups,false];
+spawner setVariable [_spawnid,(spawner getVariable [_spawnid,[]]) + _groups,false];

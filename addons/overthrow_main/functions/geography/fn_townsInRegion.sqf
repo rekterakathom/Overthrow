@@ -6,6 +6,6 @@ private _ret = [];
 	if(_p inArea _region ) then {
 		_ret pushBack _x;
 	};
-}foreach (OT_allTowns);
+}forEach (OT_allTowns);
 
 _ret

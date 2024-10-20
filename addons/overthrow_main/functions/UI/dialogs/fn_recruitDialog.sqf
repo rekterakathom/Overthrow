@@ -7,24 +7,24 @@ disableSerialization;
 
 private _base = nil;
 private _good = true;
-if(typeof _building isEqualTo OT_barracks) then {
+if(typeOf _building isEqualTo OT_barracks) then {
 	_base = player call OT_fnc_nearestObjective;
-	if !((_base select 1) in (server getvariable "NATOabandoned")) then {
+	if !((_base select 1) in (server getVariable "NATOabandoned")) then {
 		_good = false;
 	}
 };
-if ((typeof _building == OT_barracks) && isNil "_base") exitWith {};
-if ((typeof _building == OT_barracks) && !_good) exitWith {"This barracks is under NATO control" call OT_fnc_notifyMinor};
+if ((typeOf _building == OT_barracks) && isNil "_base") exitWith {};
+if ((typeOf _building == OT_barracks) && !_good) exitWith {"This barracks is under NATO control" call OT_fnc_notifyMinor};
 
 createDialog "OT_dialog_recruit";
 ctrlSetText [1600,"Recruit"];
 lbClear 1500;
-if (typeof _building isEqualTo OT_barracks) then {
+if (typeOf _building isEqualTo OT_barracks) then {
 	{
 		_x params ["_cls","_comp"];
 		private _idx = lbAdd [1500,_cls];
 		lbSetData [1500,_idx,_cls];
-	}foreach(OT_Squadables);
+	}forEach(OT_Squadables);
 };
 {
 	_x params ["_cls"];
@@ -32,4 +32,4 @@ if (typeof _building isEqualTo OT_barracks) then {
 
 	private _idx = lbAdd [1500,_name];
 	lbSetData [1500,_idx,_cls];
-}foreach(OT_Recruitables);
+}forEach(OT_Recruitables);

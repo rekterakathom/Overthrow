@@ -1,5 +1,5 @@
 private _veh = vehicle player;
-if((_veh call OT_fnc_getOwner) != (getplayeruid player)) exitWith {};
+if((_veh call OT_fnc_getOwner) != (getPlayerUID player)) exitWith {};
 if(_veh getVariable ["OT_locked",false]) then {
     _veh setVariable ["OT_locked",false,true];
     "Vehicle unlocked" call OT_fnc_notifyMinor;

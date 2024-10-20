@@ -19,7 +19,7 @@ private _ignore = [];
                 if(binocular _unit isEqualTo _cls) exitWith {
                     if(_correct) then {_unit removeWeapon _cls};
                     _count = 0;
-                    _missing pushback _cls;
+                    _missing pushBack _cls;
                 };
                 if(primaryWeapon _unit isEqualTo _cls) exitWith {
                     if(_correct) then {
@@ -27,7 +27,7 @@ private _ignore = [];
                         _unit removeWeapon _cls;_unit removeWeapon _cls;
                     };
                     _count = 0;
-                    _missing pushback _cls;
+                    _missing pushBack _cls;
                 };
                 if(secondaryWeapon _unit isEqualTo _cls) exitWith {
                     if(_correct) then {
@@ -35,25 +35,25 @@ private _ignore = [];
                         _unit removeWeapon _cls;
                     };
                     _count = 0;
-                    _missing pushback _cls;
+                    _missing pushBack _cls;
                 };
                 if(handgunWeapon _unit isEqualTo _cls) exitWith {
                     if(_correct) then {_unit removeWeapon _cls};
                     _count = 0;
-                    _missing pushback _cls;
+                    _missing pushBack _cls;
                 };
                 _totake = _count - _boxAmount;
                 if(_cls isKindOf ["Default",configFile >> "CfgMagazines"]) exitWith {
                     while{_count > _boxAmount} do {
                         _count = _count - 1;
                         if(_correct) then {_unit removeMagazine _cls};
-                        _missing pushback _cls;
+                        _missing pushBack _cls;
                     };
                 };
                 while{_count > _boxAmount} do {
                     _count = _count - 1;
                     if(_correct) then {_unit removeItem _cls};
-                    _missing pushback _cls;
+                    _missing pushBack _cls;
                 };
             }
         };
@@ -62,26 +62,26 @@ private _ignore = [];
             [_cls, _count] call OT_fnc_removeFromWarehouse;
         };
     };
-}foreach(_unit call OT_fnc_unitStock);
+}forEach(_unit call OT_fnc_unitStock);
 
 {
     if !(_x isEqualTo "ItemMap") then {
         if !([_x, 1] call OT_fnc_removeFromWarehouse) then {
             if(_correct) then {_unit unlinkItem _x};
-            _missing pushback _x;
+            _missing pushBack _x;
         };
     };
-}foreach(assignedItems _unit);
+}forEach(assignedItems _unit);
 
 private _backpack = backpack _unit;
 if !(_backpack isEqualTo "") then {
     if !([_backpack, 1] call OT_fnc_removeFromWarehouse) then {
-        _missing pushback _backpack;
+        _missing pushBack _backpack;
         if(_correct) then {
             //Put the items from the backpack back in the warehouse
             {
                 [_x, 1] call OT_fnc_addToWarehouse;
-            }foreach(backpackItems _unit);
+            }forEach(backpackItems _unit);
             removeBackpack _unit;
         };
     };
@@ -90,12 +90,12 @@ if !(_backpack isEqualTo "") then {
 private _vest = vest _unit;
 if !(_vest isEqualTo "") then {
     if !([_vest, 1] call OT_fnc_removeFromWarehouse) then {
-        _missing pushback _vest;
+        _missing pushBack _vest;
         if(_correct) then {
             //Put the items from the vest back in the warehouse
             {
                 [_x, 1] call OT_fnc_addToWarehouse;
-            }foreach(vestItems _unit);
+            }forEach(vestItems _unit);
             removeVest _unit;
         };
     };
@@ -104,7 +104,7 @@ if !(_vest isEqualTo "") then {
 private _helmet = headgear _unit;
 if !(_helmet isEqualTo "") then {
     if !([_helmet, 1] call OT_fnc_removeFromWarehouse) then {
-        _missing pushback _helmet;
+        _missing pushBack _helmet;
         if(_correct) then {removeHeadgear _unit};
     };
 };
@@ -112,7 +112,7 @@ if !(_helmet isEqualTo "") then {
 private _goggles = goggles _unit;
 if !(_goggles isEqualTo "") then {
     if !([_goggles, 1] call OT_fnc_removeFromWarehouse) then {
-        _missing pushback _goggles;
+        _missing pushBack _goggles;
         if(_correct) then {removeGoggles _unit};
     };
 };

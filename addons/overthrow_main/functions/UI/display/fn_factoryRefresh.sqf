@@ -67,7 +67,7 @@ lbClear 1501;
 	_x params ["_cls","_qty"];
 	_idx = lbAdd [1501,format["%1 x %2",_qty,_cls call OT_fnc_getClassDisplayName]];
 	lbSetData [1501,_idx,_cls];
-}foreach(server getVariable ["factoryQueue",[]]);
+}forEach(server getVariable ["factoryQueue",[]]);
 
 private _index = lbCurSel 1500;
 private _cls = lbData [1500,_index];

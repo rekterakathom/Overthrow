@@ -1,4 +1,4 @@
-if (!isServer) exitwith {};
+if (!isServer) exitWith {};
 
 params ["_town","_spawnid"];
 
@@ -69,8 +69,8 @@ while {_count < _numNATO} do {
 
 		{
 			_x addCuratorEditableObjects[units _group,false];
-		}foreach(allcurators);
+		}forEach(allCurators);
 	};
 };
 
-spawner setvariable [_spawnid,(spawner getvariable [_spawnid,[]]) + _groups,false];
+spawner setVariable [_spawnid,(spawner getVariable [_spawnid,[]]) + _groups,false];

@@ -9,6 +9,6 @@ _gotit = false;
        if(_cls == _input && _amt >= _num) exitWith {
            _gotit = true;
        };
-   }foreach(_c call OT_fnc_unitStock);
-}foreach(_pos nearObjects [OT_item_CargoContainer, 50]);
+   }forEach(_c call OT_fnc_unitStock);
+}forEach(_pos nearObjects [OT_item_CargoContainer, 50]);
 _gotit

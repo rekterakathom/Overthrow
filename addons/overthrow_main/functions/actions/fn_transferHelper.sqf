@@ -13,9 +13,9 @@ _this spawn {
 	};
 
 	private _veh = _dest;
-	private _toname = (typeof _veh) call OT_fnc_vehicleGetName;
+	private _toname = (typeOf _veh) call OT_fnc_vehicleGetName;
 	private _iswarehouse = false;
-	if((typeof _veh) == OT_warehouse) then {
+	if((typeOf _veh) == OT_warehouse) then {
 		_toname = "Warehouse";
 		_iswarehouse = true;
 	};
@@ -46,7 +46,7 @@ _this spawn {
 	clearMagazineCargoGlobal _target;
 	{
 		_target addMagazineCargoGlobal[_x, 1];
-	}foreach(_mags);
+	}forEach(_mags);
 
 	if(_iswarehouse) then {
 		private _warehouse = [player] call OT_fnc_nearestWarehouse;
@@ -59,7 +59,7 @@ _this spawn {
 				_in =  _d select 1;
 				_warehouse setVariable[format["item_%1",_cls],[_cls,_in + _num],true];
 			};
-		}foreach(_target call OT_fnc_unitStock);
+		}forEach(_target call OT_fnc_unitStock);
 		clearMagazineCargoGlobal _target;
 		clearWeaponCargoGlobal _target;
 		clearBackpackCargoGlobal _target;
@@ -121,7 +121,7 @@ _this spawn {
 				[_target, _cls, _count] call CBA_fnc_removeItemCargo;
 			};
 			if(_full) exitWith {hint "The vehicle is full, use a truck or ammobox for more storage"};
-		}foreach(_target call OT_fnc_unitStock);
+		}forEach(_target call OT_fnc_unitStock);
 	};
 
 	waitUntil {time > _end};

@@ -2,7 +2,7 @@ private ["_buildings","_building","_gotbuilding","_price","_lease","_sell","_tot
 
 private _buildings =  _this nearObjects ["Building",30];
 private _gotbuilding = false;
-private _building = objNULL;
+private _building = objNull;
 
 private _sorted = [_buildings,[_this],{_x distance _input0},"ASCEND"] call BIS_fnc_SortBy;
 
@@ -11,11 +11,11 @@ if(!isNil "modeTarget") then {
 };
 
 {
-	if ((typeof _x) in (OT_allBuyableBuildings + OT_allRepairableRuins + OT_warehouses)) exitWith {
+	if ((typeOf _x) in (OT_allBuyableBuildings + OT_allRepairableRuins + OT_warehouses)) exitWith {
 		_building = _x;
 		_gotbuilding = true;
 	};
-}foreach(_sorted);
+}forEach(_sorted);
 _ret = false;
 if(_gotbuilding) then {
 	_ret = _building call OT_fnc_getRealEstateData;

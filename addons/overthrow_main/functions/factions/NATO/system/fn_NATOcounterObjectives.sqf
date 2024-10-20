@@ -13,7 +13,7 @@
 */
 
 if (isNil "OT_townsSortedByPopulation") then {
-	OT_townsSortedByPopulation = [OT_allTowns, [], {server getvariable format["population%1",_x]}, "DESCEND"] call BIS_fnc_SortBy;
+	OT_townsSortedByPopulation = [OT_allTowns, [], {server getVariable format["population%1",_x]}, "DESCEND"] call BIS_fnc_SortBy;
 };
 
 private _countered = false;
@@ -64,7 +64,7 @@ private _lastCounter = server getVariable ["NATOlastcounter", ""];
 				if ((_townPos distance _pos) < 3000 && {[_townPos] call OT_fnc_inSpawnDistance}) then {
 					private _stability = server getVariable format["stability%1", _town];
 					if ((_town in _abandoned) || (_stability < 50)) then {
-						_targets pushback _townPos;
+						_targets pushBack _townPos;
 					};
 				};
 			} forEach OT_townsSortedByPopulation;
@@ -73,7 +73,7 @@ private _lastCounter = server getVariable ["NATOlastcounter", ""];
 				_x params ["_p","_name"];
 				if((_p distance _pos) < 3000) then {
 					if (_name in _abandoned && {[_p] call OT_fnc_inSpawnDistance}) then {
-						_targets pushback _p;
+						_targets pushBack _p;
 					};
 				};
 			} forEach (OT_objectiveData + OT_NATOComms);
@@ -81,7 +81,7 @@ private _lastCounter = server getVariable ["NATOlastcounter", ""];
 			{
 				_x params ["_ty","_p"];
 				if (((toUpperANSI _ty) isEqualTo "FOB") && {(_p distance _pos) < 3000} && {[_p] call OT_fnc_inSpawnDistance}) then {
-					_targets pushback _p;
+					_targets pushBack _p;
 				};
 			} forEach (_knownTargets);
 

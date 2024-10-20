@@ -10,8 +10,8 @@ _isonline = false;
 _on = "Offline";
 _player = objNull;
 {
-    if(getplayeruid _x isEqualTo _uid) exitWith {_isonline = true;_on = "Online";_player = _x};
-}foreach(allplayers);
+    if(getPlayerUID _x isEqualTo _uid) exitWith {_isonline = true;_on = "Online";_player = _x};
+}forEach(allPlayers);
 
 _money = 0;
 if(_isonline) then {
@@ -34,7 +34,7 @@ if(_amgen) then {
 _textctrl = (findDisplay 8000) displayCtrl 1102;
 _textctrl ctrlSetStructuredText parseText _text;
 
-if(_amgen && _uid != (getplayeruid player)) then {
+if(_amgen && _uid != (getPlayerUID player)) then {
     ctrlEnable [1601,true];
     if !(_uid in (server getVariable ["generals",[]])) then {
         ctrlEnable [1600,true];

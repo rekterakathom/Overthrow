@@ -17,5 +17,5 @@ private _inf = 0;
         };
         _total = _total + _add;
     };
-}foreach(server getVariable ["NATOabandoned",[]]);
+}forEach(server getVariable ["NATOabandoned",[]]);
 [_total,_inf];

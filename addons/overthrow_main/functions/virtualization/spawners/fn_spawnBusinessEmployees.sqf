@@ -8,7 +8,7 @@ if(_numCiv isEqualTo 0) exitWith {[]};
 
 private _group = createGroup resistance;
 _group setBehaviour "SAFE";
-_groups pushback _group;
+_groups pushBack _group;
 
 while {_count < _numCiv} do {
 	_pos = [[[_pos,50]]] call BIS_fnc_randomPos;
@@ -25,7 +25,7 @@ spawner setVariable [format["employees%1",_name],_group,false];
 
 private _dest = _pos getPos [random 100, random 360];
 private _bdg = [_pos,["Building"]] call OT_fnc_getRandomBuilding;
-if !(_bdg isEqualType true) then { _dest = getpos(_bdg)};
+if !(_bdg isEqualType true) then { _dest = getPos(_bdg)};
 
 private _wp = _group addWaypoint [_dest,0];
 private _start = _dest;
@@ -36,7 +36,7 @@ _wp setWaypointTimeout [0, 4, 8];
 
 _dest = _pos getPos [random 100, random 360];
 _bdg = [_start,["Building"]] call OT_fnc_getRandomBuilding;
-if !(_bdg isEqualType true) then { _dest = getpos(_bdg)};
+if !(_bdg isEqualType true) then { _dest = getPos(_bdg)};
 
 _wp = _group addWaypoint [_dest,0];
 _wp setWaypointType "MOVE";
@@ -47,4 +47,4 @@ _wp setWaypointTimeout [20, 40, 80];
 _wp = _group addWaypoint [_start,0];
 _wp setWaypointType "CYCLE";
 
-spawner setvariable [_spawnid,(spawner getvariable [_spawnid,[]]) + _groups,false];
+spawner setVariable [_spawnid,(spawner getVariable [_spawnid,[]]) + _groups,false];

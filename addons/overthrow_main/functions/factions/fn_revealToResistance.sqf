@@ -8,4 +8,4 @@ params["_unit",["_dis",800]];
 			};
 		};
 	};
-}foreach(groups resistance);
+}forEach(groups resistance);

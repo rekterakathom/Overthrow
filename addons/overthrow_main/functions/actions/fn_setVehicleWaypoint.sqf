@@ -6,5 +6,5 @@ private _id = lbData [1500, _sel];
 private _veh = _id call BIS_fnc_objectFromNetId;
 
 if(!isNil "_veh") then {
-    [player,getpos _veh,(typeof _veh) call OT_fnc_vehicleGetName] call OT_fnc_givePlayerWaypoint;
+    [player,getPos _veh,(typeOf _veh) call OT_fnc_vehicleGetName] call OT_fnc_givePlayerWaypoint;
 };

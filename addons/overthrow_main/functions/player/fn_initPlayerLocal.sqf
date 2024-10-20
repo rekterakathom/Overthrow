@@ -21,11 +21,11 @@ enableSaving [false,false];
 enableEnvironment [false,true,0.5]; // Wind volume to 50%
 
 if(isServer) then {
-	missionNameSpace setVariable ["OT_HOST", player, true];
+	missionNamespace setVariable ["OT_HOST", player, true];
 };
 
 if(isNil {server getVariable "generals"}) then {
-	server setVariable ["generals",[getplayeruid player]]
+	server setVariable ["generals",[getPlayerUID player]]
 };
 
 OT_centerPos = getArray (configFile >> "CfgWorlds" >> worldName >> "centerPosition");
@@ -53,20 +53,20 @@ if(!isServer) then {
 
 private _highCommandModule = (createGroup sideLogic) createUnit ["HighCommand",[0,0,0],[],0,"NONE"];
 _highCommandModule synchronizeObjectsAdd [player];
-missionNameSpace setVariable [format["%1_hc_module",getPlayerUID player],_highCommandModule,true];
+missionNamespace setVariable [format["%1_hc_module",getPlayerUID player],_highCommandModule,true];
 
 private _start = OT_startCameraPos;
 private _introcam = "camera" camCreate _start;
 _introcam camSetTarget OT_startCameraTarget;
 _introcam cameraEffect ["internal", "BACK"];
 _introcam camSetFocus [15, 1];
-_introcam camsetfov 1.1;
+_introcam camSetFov 1.1;
 _introcam camCommit 0;
 waitUntil {camCommitted _introcam};
 showCinemaBorder false;
 
 if((isServer || count ([] call CBA_fnc_players) == 1) && (server getVariable ["StartupType",""] isEqualTo "")) then {
-    waitUntil {!(isnull (findDisplay 46)) && OT_varInitDone};
+    waitUntil {!(isNull (findDisplay 46)) && OT_varInitDone};
 
 	if (isServer || count ([] call CBA_fnc_players) == 1) then {
 		sleep 1;
@@ -93,13 +93,13 @@ OT_gangResourceCap = ["ot_gangresourcecap", 0] call BIS_fnc_getParamValue;
 waitUntil {sleep 1;!isNil "OT_NATOInitDone"};
 
 private _aplayers = players_NS getVariable ["OT_allplayers",[]];
-if (!(getplayeruid player in _aplayers)) then {
-	_aplayers pushback (getplayeruid player);
+if (!(getPlayerUID player in _aplayers)) then {
+	_aplayers pushBack (getPlayerUID player);
 	players_NS setVariable ["OT_allplayers",_aplayers,true];
 };
-players_NS setVariable [format["name%1",getplayeruid player],name player,true];
-players_NS setVariable [format["uid%1",name player],getplayeruid player,true];
-spawner setVariable [format["%1",getplayeruid player],player,true];
+players_NS setVariable [format["name%1",getPlayerUID player],name player,true];
+players_NS setVariable [format["uid%1",name player],getPlayerUID player,true];
+spawner setVariable [format["%1",getPlayerUID player],player,true];
 
 player forceAddUniform (selectRandom OT_clothes_locals);
 // clear player
@@ -128,7 +128,7 @@ if (player getVariable["home",false] isEqualType []) then {
 
 
 //ensure player is in own group, not one someone else left
-private  _group = creategroup resistance;
+private  _group = createGroup resistance;
 [player] joinSilent _group;
 
 if(!_newplayer) then {
@@ -139,10 +139,10 @@ if(!_newplayer) then {
 	{
 		if(_x call OT_fnc_hasOwner) then {
 			if ((_x call OT_fnc_playerIsOwner) && !(_x isKindOf "LandVehicle") && !(_x isKindOf "Building")) then {
-				_furniture pushback _x
+				_furniture pushBack _x
 			};
 		};
-	}foreach(_housepos nearObjects 50);
+	}forEach(_housepos nearObjects 50);
 };
 
 (group player) setVariable ["VCM_Disable",true];
@@ -157,11 +157,11 @@ _newrecruits = [];
 	_loadout = _x select 4;
 	_type = _x select 5;
 	_xp = _x select 6;
-	if(_owner isEqualTo (getplayeruid player)) then {
+	if(_owner isEqualTo (getPlayerUID player)) then {
 		if(_civ isEqualType []) then {
 			_pos = _civ findEmptyPosition [1,20,_type];
 			_civ =  group player createUnit [_type,_pos,[],0,"NONE"];
-			[_civ,getplayeruid player] call OT_fnc_setOwner;
+			[_civ,getPlayerUID player] call OT_fnc_setOwner;
 			_civ setVariable ["OT_xp",_xp,true];
 			_civ setVariable ["NOAI",true,true];
 			_civ setRank _rank;
@@ -188,8 +188,8 @@ _newrecruits = [];
 			};
 		};
 	};
-	_newrecruits pushback [_owner,_name,_civ,_rank,_loadout,_type];
-}foreach (_recruits);
+	_newrecruits pushBack [_owner,_name,_civ,_rank,_loadout,_type];
+}forEach (_recruits);
 server setVariable ["recruits",_newrecruits,true];
 
 _squads = server getVariable ["squads",[]];
@@ -199,7 +199,7 @@ _cc = 1;
 hcRemoveAllGroups player;
 {
 	_x params ["_owner","_cls","_group","_units"];
-	if(_owner isEqualTo (getplayeruid player)) then {
+	if(_owner isEqualTo (getPlayerUID player)) then {
 		if !(_group isEqualType grpNull) then {
 			_name = _cls;
 			if(count _x > 4) then {
@@ -209,9 +209,9 @@ hcRemoveAllGroups player;
 					if((_x select 0) isEqualTo _cls) then {
 						_name = _x select 2;
 					};
-				}foreach(OT_Squadables);
+				}forEach(OT_Squadables);
 			};
-			_group = creategroup resistance;
+			_group = createGroup resistance;
 			_group setGroupIdGlobal [_name];
 			{
 				_x params ["_type","_pos","_loadout"];
@@ -221,13 +221,13 @@ hcRemoveAllGroups player;
 				[_civ, (selectRandom OT_faces_local)] remoteExecCall ["setFace", 0, _civ];
 				[_civ, (selectRandom OT_voices_local)] remoteExecCall ["setSpeaker", 0, _civ];
 				_civ setVariable ["OT_spawntrack",true,true];
-			}foreach(_units);
+			}forEach(_units);
 		};
 		player hcSetGroup [_group,groupId _group,"teamgreen"];
 		_cc = _cc + 1;
 	};
-	_newsquads pushback [_owner,_cls,_group,[]];
-}foreach (_squads);
+	_newsquads pushBack [_owner,_cls,_group,[]];
+}forEach (_squads);
 player setVariable ["OT_squadcount",_cc,true];
 server setVariable ["squads",_newsquads,true];
 
@@ -244,14 +244,14 @@ if (_newplayer) then {
 		_money = 0;
 	};
     player setVariable ["money",_money,true];
-    [player,getplayeruid player] call OT_fnc_setOwner;
+    [player,getPlayerUID player] call OT_fnc_setOwner;
 
     _town = server getVariable "spawntown";
     if(OT_randomSpawnTown) then {
         _town = selectRandom OT_spawnTowns;
     };
 	_house = _town call OT_fnc_getPlayerHome;
-    _housepos = getpos _house;
+    _housepos = getPos _house;
 
     //Put a light on at home
     _light = "#lightpoint" createVehicle [_housepos select 0,_housepos select 1,(_housepos select 2)+2.2];
@@ -273,20 +273,20 @@ if (_newplayer) then {
 		player reveal _veh;
 	};
 
-    [_house,getplayeruid player] call OT_fnc_setOwner;
+    [_house,getPlayerUID player] call OT_fnc_setOwner;
     player setVariable ["home",_housepos,true];
 
     _furniture = (_house call OT_fnc_spawnTemplate) select 0;
 
     {
-		if(typeof _x isEqualTo OT_item_Storage) then {
+		if(typeOf _x isEqualTo OT_item_Storage) then {
             _x addItemCargoGlobal ["ToolKit", 1];
 			_x addBackpackCargoGlobal ["B_AssaultPack_khk", 1];
 			_x addItemCargoGlobal ["NVGoggles_INDEP", 1];
 			_x addItemCargoGlobal ["ACRE_PRC343", 1];
         };
-        [_x,getplayeruid player] call OT_fnc_setOwner;
-    }foreach(_furniture);
+        [_x,getPlayerUID player] call OT_fnc_setOwner;
+    }forEach(_furniture);
     player setVariable ["owned",[[_house] call OT_fnc_getBuildID],true];
 
 };
@@ -302,12 +302,12 @@ _count = 0;
 		titleText ["Loading... please wait", "BLACK FADED", 0];
 	};
 	_count = _count + 1;
-}foreach((allMissionObjects "Building") + vehicles);
+}forEach((allMissionObjects "Building") + vehicles);
 
 waitUntil {!isNil "OT_SystemInitDone"};
 titleText ["Loading Session", "BLACK FADED", 0];
 player setCaptive true;
-player setPos (_housepos findEmptyPosition [1,20,typeof player]);
+player setPos (_housepos findEmptyPosition [1,20,typeOf player]);
 if !("ItemMap" in (assignedItems player)) then {
 	player linkItem "ItemMap";
 };
@@ -327,7 +327,7 @@ if !("ItemMap" in (assignedItems player)) then {
 	} else {
 		player setVariable ["OT_tute_trigger",false,true];
 	};
-	[[[format["%1, %2",(getpos player) call OT_fnc_nearestTown,OT_nation],"align = 'center' size = '0.7' font='PuristaBold'"],["","<br/>"],[format["%1/%2/%3",date#2,date#1,date#0]],["","<br/>"],[format["%1",[daytime,"HH:MM"] call BIS_fnc_timeToString],"align = 'center' size = '0.7'"],["s","<br/>"]]] spawn BIS_fnc_typeText2;
+	[[[format["%1, %2",(getPos player) call OT_fnc_nearestTown,OT_nation],"align = 'center' size = '0.7' font='PuristaBold'"],["","<br/>"],[format["%1/%2/%3",date#2,date#1,date#0]],["","<br/>"],[format["%1",[dayTime,"HH:MM"] call BIS_fnc_timeToString],"align = 'center' size = '0.7'"],["s","<br/>"]]] spawn BIS_fnc_typeText2;
 };
 
 [] spawn {
@@ -338,13 +338,13 @@ if !("ItemMap" in (assignedItems player)) then {
 player addEventHandler ["WeaponAssembled",{
 	params ["_me","_wpn"];
 	private _pos = getPosATL _wpn;
-	if(typeof _wpn in OT_staticWeapons) then {
+	if(typeOf _wpn in OT_staticWeapons) then {
 		if(_me call OT_fnc_unitSeen) then {
 			_me setCaptive false;
 		};
 	};
-	if(isplayer _me) then {
-		[_wpn,getplayeruid player] call OT_fnc_setOwner;
+	if(isPlayer _me) then {
+		[_wpn,getPlayerUID player] call OT_fnc_setOwner;
 	};
 }];
 
@@ -367,11 +367,11 @@ player addEventHandler ["GetInMan",{
 	call OT_fnc_notifyVehicle;
 
 	if !(_veh call OT_fnc_hasOwner) then {
-		[_veh,getplayeruid player] call OT_fnc_setOwner;
+		[_veh,getPlayerUID player] call OT_fnc_setOwner;
 		_veh setVariable ["stolen",true,true];
 		if((_veh getVariable ["ambient",false]) && (random 100) > 30) then {
 			["play", _veh] call BIS_fnc_carAlarm;
-			[(getpos player) call OT_fnc_nearestTown,-5,"Stolen vehicle",player] call OT_fnc_support;
+			[(getPos player) call OT_fnc_nearestTown,-5,"Stolen vehicle",player] call OT_fnc_support;
 			//does anyone hear the alarm?
 			if((_veh nearEntities ["CAManBase",200]) findIf {side _x isEqualTo west} != -1) then {
 				player setCaptive false;
@@ -402,23 +402,23 @@ player addEventHandler ["GetInMan",{
 	_g = _veh getVariable ["vehgarrison",false];
 	if(_g isEqualType "") then {
 		_vg = server getVariable format["vehgarrison%1",_g];
-		_vg deleteAt (_vg find (typeof _veh));
+		_vg deleteAt (_vg find (typeOf _veh));
 		server setVariable [format["vehgarrison%1",_g],_vg,false];
 		_veh setVariable ["vehgarrison",nil,true];
 		{
 			_x setCaptive false;
-		}foreach(crew _veh);
+		}forEach(crew _veh);
 		[_veh] call OT_fnc_revealToNATO;
 	};
 	_g = _veh getVariable ["airgarrison",false];
 	if(_g isEqualType "") then {
 		_vg = server getVariable format["airgarrison%1",_g];
-		_vg deleteAt (_vg find (typeof _veh));
+		_vg deleteAt (_vg find (typeOf _veh));
 		server setVariable [format["airgarrison%1",_g],_vg,false];
 		_veh setVariable ["airgarrison",nil,true];
 		{
 			_x setCaptive false;
-		}foreach(crew _veh);
+		}forEach(crew _veh);
 		[_veh] call OT_fnc_revealToNATO;
 	};
 }];
@@ -430,7 +430,7 @@ player addEventHandler ["GetInMan",{
 		_pos = position _bdg;
 		buildingpositions setVariable [_x,_pos,true];
 	};
-}foreach(player getvariable ["owned",[]]);
+}forEach(player getVariable ["owned",[]]);
 
 player addEventHandler ["Respawn",OT_fnc_respawnHandler];
 
@@ -443,9 +443,9 @@ player call OT_fnc_mapSystem;
     private _base = _pos nearObjects [OT_flag_IND,5];
     if((count _base) > 0) then {
         _base = _base#0;
-        _base addAction ["Set As Home", {player setVariable ["home",getpos (_this select 0),true];"This FOB is now your home" call OT_fnc_notifyMinor},nil,0,false,true];
+        _base addAction ["Set As Home", {player setVariable ["home",getPos (_this select 0),true];"This FOB is now your home" call OT_fnc_notifyMinor},nil,0,false,true];
     };
-}foreach(server getVariable ["bases",[]]);
+}forEach(server getVariable ["bases",[]]);
 
 // ZEN integration
 if (isClass (configFile >> "CfgPatches" >> "zen_common")) then {

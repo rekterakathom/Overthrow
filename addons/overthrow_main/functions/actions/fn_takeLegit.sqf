@@ -23,6 +23,6 @@ sleep 5;
 	if !([_veh, _cls, _added] call CBA_fnc_removeItemCargo) then {
 		[_veh, _cls, _added] call CBA_fnc_removeWeaponCargo;
 	};
-}foreach(_veh call OT_fnc_unitStock);
+}forEach(_veh call OT_fnc_unitStock);
 
 "Inventory Transfer done" call OT_fnc_notifyMinor;

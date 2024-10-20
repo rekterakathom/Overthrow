@@ -1,4 +1,4 @@
-closedialog 0;
+closeDialog 0;
 createDialog "OT_dialog_recruits";
 openMap false;
 
@@ -13,11 +13,11 @@ refreshRecruits = {
 	{
 		_recruit = _x;
 		if !(isPlayer _x) then {
-			_idx = lbadd [1500,format["%1. %2 (%3) [%4/%5]",_t,name _x,rank _x,_recruit getVariable ["OT_xp",0],OT_rankXP select (rankId _recruit)]];
+			_idx = lbAdd [1500,format["%1. %2 (%3) [%4/%5]",_t,name _x,rank _x,_recruit getVariable ["OT_xp",0],OT_rankXP select (rankId _recruit)]];
 			lbSetValue [1500,_idx,_t];
 		};
 		_t = _t + 1;
-	}foreach(units(group player));
+	}forEach(units(group player));
 };
 
 recruitSelected = {

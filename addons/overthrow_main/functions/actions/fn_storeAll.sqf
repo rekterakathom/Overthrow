@@ -11,9 +11,9 @@ private _b = player call OT_fnc_nearestRealEstate;
 private _iswarehouse = false;
 if(_b isEqualType []) then {
 	private _building = _b select 0;
-	if((typeof _building) == OT_warehouse && _building call OT_fnc_hasOwner) then {
+	if((typeOf _building) == OT_warehouse && _building call OT_fnc_hasOwner) then {
 		_iswarehouse = true;
-		_objects pushback _building;
+		_objects pushBack _building;
 	};
 };
 

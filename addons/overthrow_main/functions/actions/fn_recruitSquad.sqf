@@ -18,7 +18,7 @@ if(_money < _cost) exitWith {
 
 [-_cost] call OT_fnc_money;
 
-private _group = creategroup resistance;
+private _group = createGroup resistance;
 private _leader = false;
 {
 	_civ = [_x,_pos,_group] call OT_fnc_createSoldier;
@@ -29,7 +29,7 @@ private _leader = false;
 		[_civ,getPlayerUID player] call OT_fnc_setOwner;
 		_leader=true;
 	};
-}foreach(_soldiers);
+}forEach(_soldiers);
 
 _group setGroupIdGlobal [format["%1-%2",_shortname,_cc]];
 _cc = _cc + 1;
@@ -38,7 +38,7 @@ player hcSetGroup [_group,groupId _group,"teamgreen"];
 player setVariable ["OT_squadcount",_cc,true];
 
 private _recruits = server getVariable ["squads",[]];
-_recruits pushback [getplayeruid player,_cls,_group,[]];
+_recruits pushBack [getPlayerUID player,_cls,_group,[]];
 server setVariable ["squads",_recruits,true];
 
 "Squad recruited, use ctrl + space to command" call OT_fnc_notifyMinor;

@@ -1,7 +1,7 @@
 params ["_unit"];
 
-private _source = "logic" createVehicleLocal (ASLtoAGL (getPosASL _unit));
-private _fog = "#particleSource" createVehicleLocal ASLtoAGL (getPosASL _source);
+private _source = "logic" createVehicleLocal (ASLToAGL (getPosASL _unit));
+private _fog = "#particleSource" createVehicleLocal ASLToAGL (getPosASL _source);
 _fog setParticleParams ["\A3\data_f\cl_basic",
 "",
 "Billboard",

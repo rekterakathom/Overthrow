@@ -10,8 +10,8 @@ if(!isNull objectParent _unit) then {
 }else{
     private _objects = [];
     {
-    	if!(_x isEqualTo _unit) then {_objects pushback _x};
-    }foreach(_unit nearEntities [["Car","ReammoBox_F","Air","Ship"],5]);
+    	if!(_x isEqualTo _unit) then {_objects pushBack _x};
+    }forEach(_unit nearEntities [["Car","ReammoBox_F","Air","Ship"],5]);
 	if(count _objects isEqualTo 0) exitWith {
 		_unit action ["Gear",objNull];
 	};
@@ -24,7 +24,7 @@ if((count _sorted) isEqualTo 0) exitWith {
 
 private _target = _sorted select 0;
 
-_unit globalchat format["Opening %1",(typeof _target) call OT_fnc_vehicleGetName];
+_unit globalChat format["Opening %1",(typeOf _target) call OT_fnc_vehicleGetName];
 
 if(alive _unit) then {
 	_unit action ["Gear",_target];

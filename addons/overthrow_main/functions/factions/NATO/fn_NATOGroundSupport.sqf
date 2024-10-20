@@ -6,7 +6,7 @@ private _num = 1+floor(_strength / 200);
 private _count = 0;
 
 while {_count < _num} do {
-	private _group = creategroup blufor;
+	private _group = createGroup blufor;
 	private _vehtype = selectRandom OT_NATO_Vehicles_GroundSupport;
 
 	private _dir = (_frompos getDir _attackpos);
@@ -28,7 +28,7 @@ while {_count < _num} do {
 		[_x] joinSilent _group;
 		_x setVariable ["garrison","HQ",false];
 		_x setVariable ["NOAI",true,false];
-	}foreach(crew _veh);
+	}forEach(crew _veh);
 	_count = _count + 1;
 	sleep 0.3;
 
@@ -36,12 +36,12 @@ while {_count < _num} do {
 
 	{
         _x addCuratorEditableObjects [[_veh]];
-    }foreach(allCurators);
+    }forEach(allCurators);
 
 	_attackpos = _attackpos findEmptyPosition [50,200,_vehtype];
 	_roads = _attackpos nearRoads 150;
 	if(count _roads > 0) then {
-		_attackpos = ASLtoAGL (getPosASL (selectRandom _roads));
+		_attackpos = ASLToAGL (getPosASL (selectRandom _roads));
 	};
 
 	_wp = _group addWaypoint [_attackpos,0];

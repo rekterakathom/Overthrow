@@ -1,4 +1,4 @@
-if (!isServer) exitwith {};
+if (!isServer) exitWith {};
 
 //automatically determinine the population of each town/city on the map
 //For each city and/or town
@@ -22,24 +22,24 @@ OT_allShops = [];
     private _allshops = [];
 
     {
-        _low pushback (getpos _x);
-    }foreach(nearestObjects [_pos, OT_lowPopHouses, _mSize]);
+        _low pushBack (getPos _x);
+    }forEach(nearestObjects [_pos, OT_lowPopHouses, _mSize]);
 
     {
-        _med pushback (getpos _x);
-    }foreach(nearestObjects [_pos, OT_medPopHouses, _mSize]);
+        _med pushBack (getPos _x);
+    }forEach(nearestObjects [_pos, OT_medPopHouses, _mSize]);
 
     {
-        _hi pushback (getpos _x);
-    }foreach(nearestObjects [_pos, OT_highPopHouses, _mSize]);
+        _hi pushBack (getPos _x);
+    }forEach(nearestObjects [_pos, OT_highPopHouses, _mSize]);
 
     {
-        _huge pushback (getpos _x);
-    }foreach(nearestObjects [_pos, OT_hugePopHouses, _mSize]);
+        _huge pushBack (getPos _x);
+    }forEach(nearestObjects [_pos, OT_hugePopHouses, _mSize]);
 
     {
-        _allshops pushback (getpos _x);
-    }foreach(nearestObjects [_pos, OT_shops + OT_offices + OT_warehouses + OT_carShops + OT_portBuildings, _mSize]);
+        _allshops pushBack (getPos _x);
+    }forEach(nearestObjects [_pos, OT_shops + OT_offices + OT_warehouses + OT_carShops + OT_portBuildings, _mSize]);
     /*
     {
 		if (_x in OT_lowPopHouses) then {_low pushBack (getPos _x); continue};
@@ -76,9 +76,9 @@ OT_allShops = [];
 
     {
         if(_pos inArea _x) exitWith {server setVariable [format["region_%1",_name],_x,true]};
-    }foreach(OT_regions);
+    }forEach(OT_regions);
     //sleep 0.1;
-}foreach (OT_allTowns);
+}forEach (OT_allTowns);
 private _spawn = selectRandom OT_spawnTowns;
 diag_log format["Overthrow: Spawn town is %1",_spawn];
 server setVariable ["spawntown",_spawn,true];
@@ -87,7 +87,7 @@ server setVariable ["spawntown",_spawn,true];
 
     private _towns = [_x] call OT_fnc_townsInRegion;
     server setVariable [format ["towns_%1",_x],_towns,true];
-}foreach(OT_regions);
+}forEach(OT_regions);
 
 OT_allShops = nil; //Clean this up we dont need it anymore
 

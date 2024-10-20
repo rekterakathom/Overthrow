@@ -1,1 +1,1 @@
-(getPlayerUID player) in (server getvariable ["generals",[]])
+(getPlayerUID player) in (server getVariable ["generals",[]])

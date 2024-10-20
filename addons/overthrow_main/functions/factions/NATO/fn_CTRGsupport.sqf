@@ -38,17 +38,17 @@ _group = createGroup blufor;
 	_type = _x;
 	_civ = _group createUnit [_type, OT_NATO_HQPos, [],0, "NONE"];
 	_civ setRank "CAPTAIN";
-}foreach(OT_NATO_Units_CTRGSupport);
+}forEach(OT_NATO_Units_CTRGSupport);
 
 sleep 0.3;
 
 //Transport
-_tgroup = creategroup blufor;
+_tgroup = createGroup blufor;
 private _emptypos = _pos findEmptyPosition [15,100,OT_NATO_Vehicle_CTRGTransport];
 if (count _emptypos == 0) then {_emptypos = _pos findEmptyPosition [8,100,OT_NATO_Vehicle_CTRGTransport]};
 sleep 0.3;
 _veh = createVehicle [OT_NATO_Vehicle_CTRGTransport, _emptypos, [], 0,""];
-_vehs pushback _veh;
+_vehs pushBack _veh;
 
 
 _veh setDir (_dir);
@@ -58,14 +58,14 @@ createVehicleCrew _veh;
 	[_x] joinSilent _tgroup;
 	_x setVariable ["NOAI",1,false];
 	_x setVariable ["garrison","HQ",false];
-}foreach(crew _veh);
+}forEach(crew _veh);
 
 {
 	_x moveInCargo _veh;
-	_soldiers pushback _x;
+	_soldiers pushBack _x;
 	_x setVariable ["garrison","HQ",false];
 	_x setVariable ["VCOM_NOPATHING_Unit",1,false];
-}foreach(units _group);
+}forEach(units _group);
 
 sleep 1;
 

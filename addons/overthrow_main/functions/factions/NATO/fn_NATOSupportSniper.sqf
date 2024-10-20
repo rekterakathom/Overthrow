@@ -19,23 +19,23 @@ private _region = server getVariable format["region_%1",_town];
 			_closest = _name;
 		};
 	};
-}foreach(OT_NATOobjectives);
+}forEach(OT_NATOobjectives);
 _isHQ = false;
 if(isNil "_close") then {
 	_isHQ = true;
 	_close = OT_NATO_HQPos;
 };
 _start = [_close,50,200, 1, 0, 0, 0] call BIS_fnc_findSafePos;
-_group = [_start, WEST,  (configFile >> "CfgGroups" >> "West" >> OT_faction_NATO >> "Infantry" >> OT_NATO_Group_Recon)] call BIS_fnc_spawnGroup;
+_group = [_start, west,  (configFile >> "CfgGroups" >> "West" >> OT_faction_NATO >> "Infantry" >> OT_NATO_Group_Recon)] call BIS_fnc_spawnGroup;
 
 sleep 0.5;
 
 _dir = (_close getDir _posTown);
 
-_ao = getpos(nearestLocation[_posTown, "Hill"]);
+_ao = getPos(nearestLocation[_posTown, "Hill"]);
 
 if(_isHQ) then {
-	_tgroup = creategroup blufor;
+	_tgroup = createGroup blufor;
 
 	_spawnpos = OT_NATO_HQPos findEmptyPosition [15,100,OT_NATO_Vehicle_AirTransport_Small];
 	if (count _spawnpos == 0) then {_spawnpos = OT_NATO_HQPos findEmptyPosition [8,100,OT_NATO_Vehicle_AirTransport_Small]};
@@ -50,12 +50,12 @@ if(_isHQ) then {
 		[_x] joinSilent _tgroup;
 		_x setVariable ["garrison","HQ",false];
 		_x setVariable ["NOAI",true,false];
-	}foreach(crew _veh);
+	}forEach(crew _veh);
 
 	{
 		_x moveInCargo _veh;
 		_x setVariable ["garrison","HQ",false];
-	}foreach(units _group);
+	}forEach(units _group);
 
 	sleep 2;
 
@@ -114,7 +114,7 @@ sleep 2;
 //This squad operates in stealth mode, therefore does not respond to calls for help from other units
 {
 	_x setVariable ["VCOM_NOPATHING_Unit",true,false];
-}foreach(units _group);
+}forEach(units _group);
 
 _wp = _group addWaypoint [_ao,10];
 _wp setWaypointType "SAD";

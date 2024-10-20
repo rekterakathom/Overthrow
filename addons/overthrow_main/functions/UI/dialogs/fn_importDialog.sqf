@@ -22,7 +22,7 @@ _SearchTerm = ctrlText 1700;
 			_price = [OT_nation,_cls,100] call OT_fnc_getPrice;
 
 			if(_price > 0) then {
-				_done pushback _cls;
+				_done pushBack _cls;
 
 				(_cls call OT_fnc_getClassDisplayInfo) params ["_pic", "_name"];
 
@@ -33,7 +33,7 @@ _SearchTerm = ctrlText 1700;
 			};
 		};
 	};
-}foreach(_items);
+}forEach(_items);
 
 if(_cursel >= count _done) then {_cursel = 0};
 lbSetCurSel [1500, _cursel];

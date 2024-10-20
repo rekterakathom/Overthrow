@@ -2,7 +2,7 @@ closeDialog 0;
 private _idx = lbCurSel 1500;
 inputData = lbData [1500,_idx];
 OT_inputHandler = {
-	_input = ctrltext 1400;
+	_input = ctrlText 1400;
 	if (_input isEqualType "" && count _input > 64) exitWith {hint "You can't send that much!"};
 	_val = parseNumber _input;
 	_cash = server getVariable ["money",0];
@@ -12,15 +12,15 @@ OT_inputHandler = {
 		_player = objNull;
 		private _uid = inputData;
 		{
-		    if(getplayeruid _x isEqualTo _uid) exitWith {_player = _x};
-		}foreach(allplayers);
+		    if(getPlayerUID _x isEqualTo _uid) exitWith {_player = _x};
+		}forEach(allPlayers);
 		if !(isNull _player) then {
 			[_val] remoteExec ["OT_fnc_money",_player,false];
 		}else{
 			private _money = [_uid,"money"] call OT_fnc_getOfflinePlayerAttribute;
 			[_uid,"money",_money+_val] call OT_fnc_setOfflinePlayerAttribute;
 		};
-		format["Transferred $%1 resistance funds to %2",[_val, 1, 0, true] call CBA_fnc_formatNumber,players_NS getvariable [format["name%1",_uid],"player"]] call OT_fnc_notifyMinor;
+		format["Transferred $%1 resistance funds to %2",[_val, 1, 0, true] call CBA_fnc_formatNumber,players_NS getVariable [format["name%1",_uid],"player"]] call OT_fnc_notifyMinor;
 	};
 };
 

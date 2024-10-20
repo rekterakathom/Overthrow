@@ -1,5 +1,5 @@
 params ["","_key"];
-private _name = ctrltext 1400;
+private _name = ctrlText 1400;
 
 // Esc key, don't allow
 if (_key == 1) exitWith {

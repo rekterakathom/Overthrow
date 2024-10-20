@@ -5,11 +5,11 @@ private _hasGanja = false;
 
 {
     if(_x isEqualTo "OT_Ganja") exitWith {_hasGanja = true};
-}foreach(items player);
+}forEach(items player);
 if !(_hasGanja) exitWith {"You don't have enough weed to smoke a spliff" call OT_fnc_notifyMinor};
 
 if(player call OT_fnc_unitSeenNATO) then {
-    player setcaptive false;
+    player setCaptive false;
 };
 player removeItem "OT_Ganja";
 // player addItem "murshun_cigs_cigpack";

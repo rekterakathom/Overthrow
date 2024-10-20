@@ -30,9 +30,9 @@ private _title = format["Recon of %1",_base];
         private _players = [];
         {
             if(isPlayer _x && alive _x) then {
-                _players pushback _x;
+                _players pushBack _x;
             };
-        }foreach(_loc nearEntities ["Man",OT_spawnDistance]);
+        }forEach(_loc nearEntities ["Man",OT_spawnDistance]);
         _players = _players apply {[_x distance _loc, _x]};
         _players sort true;
 
@@ -50,12 +50,12 @@ private _title = format["Recon of %1",_base];
         _missedOne = false;
         {
             private _group = _x;
-            if ((typename _group isEqualTo "GROUP") && !isNull (leader _group)) then {
+            if ((typeName _group isEqualTo "GROUP") && !isNull (leader _group)) then {
                 if((vehicle leader _group) == leader _group) then {
                     if((resistance knowsAbout (leader _x)) <= 1.2) then {_missedOne = true} else {_count = _count + (count units _group)}; //does the resistance know about the leader of this group?
                 } //Removed check for vehicles as static guns are sometimes unspottable
             };
-        }foreach(_groups);
+        }forEach(_groups);
 
         if(_oldcount < _count) then {
             format["%2 units spotted at %1",_base,_count] remoteExec ["systemChat",_players select 0,false];
@@ -73,9 +73,9 @@ private _title = format["Recon of %1",_base];
             private _players = [];
             {
                 if(isPlayer _x && alive _x) then {
-                    _players pushback _x;
+                    _players pushBack _x;
                 };
-            }foreach(_loc nearEntities ["Man",OT_spawnDistance]);
+            }forEach(_loc nearEntities ["Man",OT_spawnDistance]);
             _players = _players apply {[_x distance _loc, _x]};
             _players sort true;
 
@@ -90,7 +90,7 @@ private _title = format["Recon of %1",_base];
             {
                 _x params ["_cls","_num"];
                 _report = _report + format["%1 x %2<br/>",_num,_cls call OT_fnc_vehicleGetName];
-            }foreach(_allVehs call BIS_fnc_consolidateArray);
+            }forEach(_allVehs call BIS_fnc_consolidateArray);
             _report remoteExec ["OT_fnc_notifyMinor",0,false];
         };
     },

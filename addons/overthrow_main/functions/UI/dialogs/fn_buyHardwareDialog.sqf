@@ -7,10 +7,10 @@ private _s = [
 {
     if((_x select 0) isEqualTo "Hardware") exitWith {
         {
-            _s pushback [_x,-1];
-        }foreach(_x select 1);
+            _s pushBack [_x,-1];
+        }forEach(_x select 1);
     };
-}foreach(OT_items);
+}forEach(OT_items);
 
 player setVariable ["OT_shopTarget","Vehicle",false];
 

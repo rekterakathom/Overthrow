@@ -12,7 +12,7 @@ _group setBehaviour "CARELESS";
 _group setGroupIdGlobal [format ["Shops %1", _town]];
 _group setVariable ["VCM_Disable", true];
 _group setVariable ["lambs_danger_disableGroupAI", true];
-_groups pushback _group;
+_groups pushBack _group;
 
 if(count _activeshops > 0) exitWith {
 	{
@@ -35,8 +35,8 @@ if(count _activeshops > 0) exitWith {
 				_start = _x getRelPos [0.8, 0]; 
 				_facing = getDir _x - 180;
 			};
-			_groups pushback _x;
-		}foreach(_vehs);
+			_groups pushBack _x;
+		}forEach(_vehs);
 
 		//create shopkeeper as member of group
 		_shopkeeper = _group createUnit [OT_civType_shopkeeper, _start, [], 0, "CAN_COLLIDE"];
@@ -56,14 +56,14 @@ if(count _activeshops > 0) exitWith {
 		_light setLightBrightness 0.13;
 		_light setLightAmbient[.9, .9, .6];
 		_light setLightColor[.5, .5, .4];
-		_groups pushback _light;
+		_groups pushBack _light;
 		sleep 0.5;
-	}foreach(_activeshops);
+	}forEach(_activeshops);
 
 	// High command fix
 	if (hcLeader _group isNotEqualTo objNull) then {
 		(hcLeader _group) hcRemoveGroup _group;
 	};
 
-	spawner setvariable [_spawnid,(spawner getvariable [_spawnid,[]]) + _groups,false];
+	spawner setVariable [_spawnid,(spawner getVariable [_spawnid,[]]) + _groups,false];
 };

@@ -42,25 +42,25 @@ private _target = _sorted select 0;
 
 		_t = _this select 1;
 
-        _unit globalchat format["Looting bodies within 100m into the %1",(typeof _t) call OT_fnc_vehicleGetName];
+        _unit globalChat format["Looting bodies within 100m into the %1",(typeOf _t) call OT_fnc_vehicleGetName];
 
         private _istruck = true;
         if(count _this isEqualTo 2) then {
         	_istruck = (_t isKindOf "Truck_F") || (_t isKindOf "ReammoBox_F");
         };
 
-		_unit doMove ASLtoAGL (getPosASL _t);
+		_unit doMove ASLToAGL (getPosASL _t);
 
 		_timeout = time + 30;
 		waitUntil {sleep 1; (!alive _unit) || (isNull _t) || (_unit distance _t < 10) || (_timeOut < time) || (unitReady _unit)};
 		if(!alive _unit || (isNull _t) || (_timeOut < time)) exitWith {};
 
 		if !([_unit,_t] call OT_fnc_dumpStuff) then {
-			_unit globalchat "This vehicle is full, cancelling loot order";
+			_unit globalChat "This vehicle is full, cancelling loot order";
 			_active = false;
 		};
         private _weapons = (_t nearObjects ["WeaponHolder", 100]) + (_t nearEntities ["WeaponHolderSimulated", 100]);
-        _unit globalchat format["Looting %1 weapons",count _weapons];
+        _unit globalChat format["Looting %1 weapons",count _weapons];
         {
             _weapon = _x;
             _s = (weaponsItems _weapon) select 0;
@@ -74,48 +74,48 @@ private _target = _sorted select 0;
     			if(_i != "") then {_t addItemCargoGlobal [_i,1]};
 
                 if (!(_t canAdd (_cls call BIS_fnc_baseWeapon)) && !_istruck) exitWith {
-    				_unit globalchat "This vehicle is full, cancelling loot order";
+    				_unit globalChat "This vehicle is full, cancelling loot order";
     				_active = false;
     			};
                 _t addWeaponCargoGlobal [_cls call BIS_fnc_baseWeapon,1];
     			deleteVehicle _weapon;
             };
-        }foreach(_weapons);
+        }forEach(_weapons);
 
 		while {_active} do {
 			_deadguys = [];
 			{
 				if !(_x isKindOf "CAManBase") then {continue};
 				if (_x distance _t < 100) then {
-					_deadguys pushback _x;
+					_deadguys pushBack _x;
 				};
 			} forEach allDeadMen;
 
-			if(count _deadguys isEqualTo 0) exitWith {_unit globalchat "All done!"};
-            _unit globalchat format["%1 bodies to loot",count _deadguys];
+			if(count _deadguys isEqualTo 0) exitWith {_unit globalChat "All done!"};
+            _unit globalChat format["%1 bodies to loot",count _deadguys];
 			_sorted = [_deadguys,[],{_x distance _t},"ASCEND"] call BIS_fnc_SortBy;
 
 			_timeout = time + 30;
 			_deadguy = _sorted select 0;
 			_deadguy setVariable ["OT_looted",true,true];
-			_deadguy setvariable ["OT_lootedAt",time,true];
+			_deadguy setVariable ["OT_lootedAt",time,true];
 
-			_unit doMove ASLtoAGL (getPosASL _deadguy);
+			_unit doMove ASLToAGL (getPosASL _deadguy);
 			[_unit,1] call OT_fnc_experience;
 
 			waitUntil {sleep 1; (!alive _unit) || (isNull _t) || (_unit distance2D _deadguy < 12) || (_timeOut < time)};
-			if((!alive _unit) || (_timeOut < time)) exitWith {_unit globalchat "Cant get to a body, cancelling loot order"};
+			if((!alive _unit) || (_timeOut < time)) exitWith {_unit globalChat "Cant get to a body, cancelling loot order"};
 
 			[_deadguy,_unit] call OT_fnc_takeStuff;
 			sleep 2;
 			[_deadguy] call OT_fnc_cleanupUnit;
 			_timeout = time + 30;
-			_unit doMove ASLtoAGL (getPosASL _t);
+			_unit doMove ASLToAGL (getPosASL _t);
 			waitUntil {sleep 1; (!alive _unit) || (isNull _t) || (_unit distance _t < 12) || (_timeOut < time)};
 			if((!alive _unit) || (_timeOut < time)) exitWith {};
 
 			if !([_unit,_t] call OT_fnc_dumpStuff) exitWith {
-				_unit globalchat "This vehicle is full, cancelling loot order";
+				_unit globalChat "This vehicle is full, cancelling loot order";
 				_active = false;
 			};
 
@@ -128,4 +128,4 @@ private _target = _sorted select 0;
 			[_unit] orderGetIn true;
 		};
 	};
-}foreach(_myunits);
+}forEach(_myunits);
