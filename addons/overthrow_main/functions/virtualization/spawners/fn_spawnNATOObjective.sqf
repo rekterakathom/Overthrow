@@ -139,7 +139,7 @@ if(_numNATO > 0) then {
 				"Land_Cargo_Patrol_V4_F"
 			] findIf {_x == _type}) != -1) exitWith {
 				private _ang = (getDir _building) - 190;
-				private _p = (_building buildingPos 1) getPos [2.3, _ang];
+				private _p = [_building buildingPos 1, 2.3, _ang] call BIS_fnc_relPos; // Not equivalent to getPos alt syntax!
 				private _veh = createVehicle [OT_NATO_HMG, _p, [], 0, "CAN_COLLIDE"];
 				_veh setPosATL _p;
 				_veh setDir (getDir _building) - 180;
