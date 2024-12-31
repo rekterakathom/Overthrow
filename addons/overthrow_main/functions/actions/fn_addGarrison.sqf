@@ -44,10 +44,12 @@ if(_create isEqualType 1) then {
                 private _type = typeOf _building;
     			if((damage _building) > 0.95) exitWith { []; };
     			if(
-                    (_type == "Land_Cargo_HQ_V1_F")
-                    || (_type == "Land_Cargo_HQ_V2_F")
-                    || (_type == "Land_Cargo_HQ_V3_F")
-                    || (_type == "Land_Cargo_HQ_V4_F")
+                    _type in [
+                        "Land_Cargo_HQ_V1_F",
+                        "Land_Cargo_HQ_V2_F",
+                        "Land_Cargo_HQ_V3_F",
+                        "Land_Cargo_HQ_V4_F"
+                    ]
                 ) exitWith {
                     private _p = (_building buildingPos 8);
                     private _guns = ({alive _x} count (nearestObjects [_p, ["I_HMG_01_high_F","I_GMG_01_high_F"], 5]));
@@ -57,11 +59,14 @@ if(_create isEqualType 1) then {
                         [];
                     };
                 };
+
                 if(
-                    (_type == "Land_Cargo_Patrol_V1_F")
-                    || (_type == "Land_Cargo_Patrol_V2_F")
-                    || (_type == "Land_Cargo_Patrol_V3_F")
-                    || (_type == "Land_Cargo_Patrol_V4_F")
+                    _type in [
+                        "Land_Cargo_Patrol_V1_F",
+                        "Land_Cargo_Patrol_V2_F",
+                        "Land_Cargo_Patrol_V3_F",
+                        "Land_Cargo_Patrol_V4_F"
+                    ]
                 ) exitWith {
                     private _ang = (getDir _building) - 190;
                     private _p = [_building buildingPos 1, 2.3, _ang] call BIS_fnc_relPos; // Not equivalent to getPos alt syntax!
