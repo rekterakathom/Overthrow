@@ -14,13 +14,15 @@ params [
 	["_group", grpNull, [grpNull]]
 ];
 
+// Incorrect arguments or group got auto-deleted
+if (isNull _group) exitWith {};
+
 // Group must be deleted on the machine where it is local. The locality of a group can be found out
 // only on server. Therefore we need to call the server to find out the machine where the group is
 // local, and the server needs to call that machine to delete the group.
-[
-    _group,
-    {
-        private _groupOwner = groupOwner _this;
-        _this remoteExecCall ["deleteGroup", _groupOwner, false];
-    }
-] remoteExecCall ["call", 2, false];
+if !(isServer) exitWith {
+    [_group] remoteExecCall ["OT_fnc_cleanupEmptyGroup", 2, false];
+};
+
+private _groupOwner = groupOwner _group;
+_group remoteExec ["deleteGroup", _groupOwner, false];
