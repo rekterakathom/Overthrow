@@ -46,11 +46,13 @@ private _server = (allVariables server select {
 	} else {
 
 		_x = toLower _x;
-		!(_x in ["startuptype","recruits","squads"])
-		&& {(_x select [0,5]) != "marta_"}
+		!(_x in ["startuptype","recruits","squads","marta_reveal"])
+		&& {!("diwako_dui" in _x)} // Diwako DUI
+		&& {!("bettinv_" in _x)} // Better Inventory..?
+		&& {!("emr_main" in _x)} // Enhanced Movement rework
 		&& {(_x select [0,11]) != "resgarrison"}
-		&& {(_x select [0,9]) != "seencache"}
-		&& {!((_x select [0,4]) in ["ace_","cba_","bis_"])}
+		&& {!((_x select [0,9]) in ["seencache", "essp_core"])} // Enhanced soundscape plus
+		&& {!((_x select [0,4]) in ["ace_","cba_","bis_","l_es"])} // Enhanced soundscape
 		&& {!((_x select [0,7]) in ["@attack","@counte","@assaul"])}
 	};
 }) apply {

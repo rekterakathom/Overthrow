@@ -28,11 +28,14 @@ private _data = [];
 	};
 }forEach(allVariables _player select {
 	_x = toLower _x;
-	!(_x in ["ot_loaded", "morale", "player_uid", "hiding", "randomValue", "saved3deninventory", "babe_em_vars"])
-	&& { !((_x select [0,4]) in ["ace_", "cba_", "bis_", "aur_"]) }
+	!(_x in ["ot_loaded", "morale", "player_uid", "hiding", "randomValue", "saved3deninventory", "babe_em_vars", "marta_reveal"])
+	&& {!("diwako_dui" in _x)} // Diwako DUI
+	&& {!("bettinv_" in _x)} // Better Inventory..?
+	&& {!("emr_main" in _x)} // Enhanced Movement rework
+	&& { !((_x select [0,4]) in ["ace_", "cba_", "bis_", "aur_", "l_es"]) }
 	&& { !((_x select [0,3]) in ["sa_", "ar_"]) }
 	&& { (_x select [0,11]) != "missiondata" }
-	&& { (_x select [0,9]) != "seencache"}
+	&& {!((_x select [0,9]) in ["seencache", "essp_core"])}
 });
 
 players_NS setVariable [_uid,_data,true];
