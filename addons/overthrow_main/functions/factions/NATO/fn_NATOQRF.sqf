@@ -216,20 +216,14 @@ while {sleep 5; !_over} do {
 	_alive = 0;
 	_enemy = 0;
 
+	private _unitsAO = [_pos, 200, 200, 0, false] nearEntities [["CAManBase"], false, true, true] select {!(_x getVariable ["ace_isunconscious", false])};
+	_alive = west countSide _unitsAO;
 	{
-		if(_x distance _pos < 200) then {
-			if (_x getVariable ["ace_isunconscious", false]) then {continue}; // Don't count unconscious units
-			if ("UAV_AI" in (typeOf _x)) then {continue}; // UAV's don't count
-			if (side _x isEqualTo west) then {
-				_alive = _alive + 1;
-				continue;
-			};
-			if (side _x isEqualTo resistance || captive _x) then {
-				// Players count twice
-				_enemy = _enemy + ([1, 2] select (isPlayer _x));
-			};
+		if (side _x isEqualTo resistance || captive _x) then {
+			// Players count twice
+			_enemy = _enemy + ([1, 2] select (isPlayer _x));
 		};
-	} forEach allUnits;
+	} forEach _unitsAO;
 
 	if(_alive isEqualTo 0) then {_enemy = _enemy * 8}; //If no NATO present, cap it faster
 
