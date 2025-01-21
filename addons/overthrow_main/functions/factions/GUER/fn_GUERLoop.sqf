@@ -46,8 +46,8 @@ if(_dead > 150) then {
 {
 	if (_x isEqualType grpNull) then {
 		private _units = units _x;
-		if (count _units isEqualTo 0) then {
-			_x call OT_fnc_cleanupEmptyGroup;
+		if (_units isEqualTo []) then {
+			[_x] call OT_fnc_cleanupEmptyGroup;
 		};
 		{
 			[_x] call OT_fnc_cleanupUnit;
