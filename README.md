@@ -31,5 +31,9 @@ The goal of the project is to update the Overthrow codebase to allow for easier 
 * Overthrow CE is available on the [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=2824471652) (Recommended way to play)
 * or from [Github](https://github.com/rekterakathom/Overthrow/releases) (May not always be up-to-date with Steam Workshop)
 
+# 🔨 To unpack / modify / build
+* Please read **BUILDING.md** for instructions on how to obtain the source files and build this mod. PBO managers, Mikero's tools etc **WILL NOT WORK!**
+* You will **not** get the source files properly by unpacking the PBO! Follow the instructions.
+
 # 💬 Join the Official Overthrow Discord Server!
 ## https://discord.com/invite/R3ghxge
