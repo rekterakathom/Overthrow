@@ -30,8 +30,8 @@ if (isNull _unitObjectParent) exitWith {
 	deleteVehicle _unit;
 
 	// If unit's group becomes empty, delete the group too.
-	if (count units _group isEqualTo 0) then {
-		_group call OT_fnc_cleanupEmptyGroup;
+	if ((units _group) isEqualTo []) then {
+		[_group] call OT_fnc_cleanupEmptyGroup;
 	};
 	true;
 };
@@ -43,8 +43,8 @@ if (local _unitObjectParent) exitWith {
 	_unitObjectParent deleteVehicleCrew _unit;
 
 	// If unit's group becomes empty, delete the group too.
-	if (count units _group isEqualTo 0) then {
-		_group call OT_fnc_cleanupEmptyGroup;
+	if ((units _group) isEqualTo []) then {
+		[_group] call OT_fnc_cleanupEmptyGroup;
 	};
 	true;
 };

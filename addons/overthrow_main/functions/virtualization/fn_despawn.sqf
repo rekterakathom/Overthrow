@@ -5,8 +5,8 @@ spawner setVariable [_i,[],false];
     // Cleanup a group
     if (_x isEqualType grpNull) then {
 		private _units = units _x;
-        if (count _units isEqualTo 0) then {
-            _x call OT_fnc_cleanupEmptyGroup;
+        if (_units isEqualTo []) then {
+            [_x] call OT_fnc_cleanupEmptyGroup;
         };
         {
             if !(_x call OT_fnc_hasOwner) then {
