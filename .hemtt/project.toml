@@ -9,7 +9,7 @@ path = "addons/overthrow_main/script_version.hpp"
 [files] 
 include = [
     "BUILDING.md",
-    "LICENSE",
+    "LICENSE.md",
     "mod.cpp",
     "README.md",
     "logo_overthrow.paa"
