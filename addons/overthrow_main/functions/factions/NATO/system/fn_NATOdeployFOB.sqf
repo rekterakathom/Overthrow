@@ -42,7 +42,12 @@ if (_lowest isNotEqualTo "") then {
 			};
 		} forEach (_fobs);
 
-		if (!_fobsNear && {(_pos distance2D _bpos) > 400} && {(_pos distance2D _townPos) > 250}) exitWith {
+		if (
+			!_fobsNear
+			&& {!(surfaceIsWater _pos)}
+			&& {(_pos distance2D _bpos) > 400}
+			&& {(_pos distance2D _townPos) > 250}
+		) exitWith {
 			_gotPos = _pos;
 		};
 	} forEach (selectBestPlaces [_pp, 1000, "(1 - forest - trees) * (1 - houses) * (1 - sea)", 5, 4]);
