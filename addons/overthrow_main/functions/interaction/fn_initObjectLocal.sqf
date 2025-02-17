@@ -1,26 +1,14 @@
-if (isNil "OT_item_Map") then {
-	OT_item_Map = "Mapboard_tanoa_F";
-};
-if (isNil "OT_item_Storage") then {
-	OT_item_Storage = "B_CargoNet_01_ammo_F";
-};
-if (isNil "OT_item_Desk") then {
-	OT_item_Desk = "OfficeTable_01_new_F";
-};
-if (isNil "OT_item_Radio") then {
-	OT_item_Radio = "Land_PortableLongRangeRadio_F";
-};
-if (isNil "OT_item_Tent") then {
-	OT_item_Tent = "Land_TentDome_F";
-};
-if (isNil "OT_item_Safe") then {
-	OT_item_Safe = "Land_MetalCase_01_small_F";
-};
-if (isNil "OT_item_Workbench") then {
-	OT_item_Workbench = "Land_Workbench_01_F";
-};
-
 private _currentObject = typeOf _this;
+
+// The player doesn't have the vars -> wait until they do
+if (isNil "OT_localPlayerInitDone" || {!(isNil "OT_localPlayerInitDone") && {!(OT_localPlayerInitDone)}}) exitWith {
+	[
+		{!(isNil "OT_localPlayerInitDone") && {OT_localPlayerInitDone}},
+		{_this call OT_initObjectLocal},
+		_currentObject,
+		60 // 60s timeout to avoid eternal loop
+	] call CBA_fnc_waitUntilAndExecute;
+};
 
 if(_currentObject isEqualTo OT_item_Map) then {
 	_this addAction ["Town Info", OT_fnc_mapInfoDialog,nil,0,false,true,"",""];
