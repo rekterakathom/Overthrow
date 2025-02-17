@@ -154,9 +154,9 @@ if(OT_showEnemyGroups) then {
 	{
 		private _u = leader _x;
 		private _alive = alive _u;
-		if(!_alive) then {
+		if(!_alive || isNull _u) then {
 			{
-				if(alive _x) exitWith {
+				if(alive _x && !isNull _x) exitWith {
 					_u = _x;
 					_alive=true;
 				};
@@ -164,11 +164,16 @@ if(OT_showEnemyGroups) then {
 		};
 		if(_alive) then {
 			private _ka = resistance knowsAbout _u;
-			if(_ka > 1.4) then {
+			if(_ka > 2) then {
+				private _approxPos = player getHideFrom _u;
+				if (_approxPos isEqualTo [0,0,0]) then {
+					continue;
+				};
+
 				_mapCtrl drawIcon [
 					"\A3\ui_f\data\map\markers\nato\b_inf.paa",
-					[0,0.3,0.59,((_ka-1.4) / 1) min 1],
-					getPosASL _u,
+					[0,0.3,0.6,((_ka-2) / 1) min 1],
+					_approxPos,
 					30,
 					30,
 					0
@@ -179,9 +184,9 @@ if(OT_showEnemyGroups) then {
 	{
 		private _u = leader _x;
 		private _alive = alive _u;
-		if(!_alive) then {
+		if(!_alive || isNull _u) then {
 			{
-				if(alive _x) exitWith {
+				if(alive _x && !isNull _x) exitWith {
 					_u = _x;
 					_alive=true;
 				};
@@ -189,11 +194,16 @@ if(OT_showEnemyGroups) then {
 		};
 		if(_alive) then {
 			private _ka = resistance knowsAbout _u;
-			if(_ka > 1.4) then {
+			if(_ka > 2) then {
+				private _approxPos = player getHideFrom _u;
+				if (_approxPos isEqualTo [0,0,0]) then {
+					continue;
+				};
+
 				_mapCtrl drawIcon [
 					"\A3\ui_f\data\map\markers\nato\b_inf.paa",
-					[0.5,0,0,((_ka-1.4) / 1) min 1],
-					getPosASL _u,
+					[0.5,0,0,((_ka-2) / 1) min 1],
+					_approxPos,
 					30,
 					30,
 					0
