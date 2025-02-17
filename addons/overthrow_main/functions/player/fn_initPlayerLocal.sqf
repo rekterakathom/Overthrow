@@ -12,6 +12,8 @@ if !(isClass (configFile >> "CfgPatches" >> "OT_Overthrow_Main")) exitWith {
     ] spawn BIS_fnc_dynamicText;
 };
 
+OT_localPlayerInitDone = false;
+
 waitUntil {!isNull player && player isEqualTo player && !isNil "server" && {!isNull server}};
 
 ace_interaction_EnableTeamManagement = false; //Disable group switching
@@ -150,13 +152,19 @@ if(!_newplayer) then {
 _recruits = server getVariable ["recruits",[]];
 _newrecruits = [];
 {
-	_owner = _x select 0;
-	_name = _x select 1;
-	_civ = _x select 2;
-	_rank = _x select 3;
-	_loadout = _x select 4;
-	_type = _x select 5;
-	_xp = _x select 6;
+	if !(_x params [
+		["_owner", ""],
+		["_name", ""],
+		["_civ", []],
+		["_rank", "PRIVATE"],
+		["_loadout", []],
+		["_type", ""],
+		["_xp", 0]
+	]) then {
+		diag_log format ["Overthrow: Failed to load recruit data: %1 %2 %3 %4 %5 %6 %7", _owner, _name, _civ, _rank, _loadout, _type, _xp];
+		continue;
+	};
+	
 	if(_owner isEqualTo (getPlayerUID player)) then {
 		if(_civ isEqualType []) then {
 			_pos = _civ findEmptyPosition [1,20,_type];
@@ -459,3 +467,5 @@ if (isClass (configFile >> "CfgPatches" >> "zen_common")) then {
 [] call OT_fnc_setupPlayer;
 _introcam cameraEffect ["Terminate", "BACK" ];
 camDestroy _introcam;
+
+OT_localPlayerInitDone = true;
