@@ -42,11 +42,13 @@ private _charges = [];
 	_demoExpert commandMove _pos;
 	waitUntil {unitReady _demoExpert};
 	if (alive _demoExpert) then {
-		_demoExpert removeMagazineGlobal "DemoCharge_Remote_Mag";
-		private _charge = "DemoCharge_Remote_Ammo" createVehicle _pos;
-		_charge setPosATL _pos;
-		_charges pushBack _charge;
-		sleep 1; // Time it takes to "plant the bomb"
+		if (_demoExpert distance _pos < 10) then {
+			_demoExpert removeMagazineGlobal "DemoCharge_Remote_Mag";
+			private _charge = "DemoCharge_Remote_Ammo" createVehicle _pos;
+			_charge setPosATL _pos;
+			_charges pushBack _charge;
+			sleep 1; // Time it takes to "plant the bomb"
+		};
 	} else {
 		// He is dead
 		break;
