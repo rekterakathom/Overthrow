@@ -534,8 +534,16 @@ OT_allBLURifleMagazines = [];
 
 		[_name,_title] call {
 			params ["_name","_title"];
-			if(_name == "None") exitWith {};
-			if(_name == "G_Goggles_VR") exitWith {};
+			_name = toLowerANSI _name;
+			if(_name == "none") exitWith {};
+			if(_name == "g_goggles_vr") exitWith {};
+
+			if (
+				"respirator" in _name
+				|| "blindfold" in _name
+				|| "regulator" in _name
+			) exitWith {};
+
 			if("Tactical" in _title || "Diving" in _title || "Goggles" in _title) exitWith {
 				OT_allGoggles pushBack _name;
 			};
@@ -788,7 +796,7 @@ OT_allLegalClothing = [];
 		OT_allClothing pushBack _name;
 
 		private _side = _c select 1;
-		if((_name == "V_RebreatherIA" || _side == "C" || _side == "I") && (_c select (count _c - 1) != "VR")) then {
+		if((_name == "V_RebreatherIA" || (!isNil "_side" && {_side == "C" || _side == "I"})) && (_c select (count _c - 1) != "VR")) then {
 			OT_allLegalClothing pushBack _name;
 		};
 		if (isServer && isNil {cost getVariable _name}) then {
