@@ -169,6 +169,23 @@ OT_mapcache_bodies = [];
 			];
 		};
 	}forEach(allDeadMen);
+
+	//Cache Gun Dealer map icons
+	{
+		_x params ["_tpos","_tname"];
+		private _townPos = server getVariable format["gundealer%1",_tname];
+		if!(isNil "_townPos") then {
+			OT_mapcache_factions pushBackUnique [
+				OT_flagImage,
+				[1,1,1,1],
+				_townPos,
+				0.3,
+				0.3,
+				0
+			];
+		};
+	}forEach(OT_townData);
+
 	OT_mapcache_properties = _properties;
 	OT_mapcache_vehicles = _vehs;
 	OT_mapcache_radar = _radar;
@@ -196,23 +213,6 @@ OT_mapcache_bodies = [];
 			};
 		};
 	}forEach(OT_allFactions);
-
-	//Cache Gun Dealer map icons
-	// server is probably done with them by now...?
-	{
-		_x params ["_tpos","_tname"];
-		private _townPos = server getVariable format["gundealer%1",_tname];
-		if!(isNil "_townPos") then {
-			OT_mapcache_factions pushBack [
-				OT_flagImage,
-				[1,1,1,1],
-				_townPos,
-				0.3,
-				0.3,
-				0
-			];
-		};
-	}forEach(OT_townData);
 };
 
 [{
