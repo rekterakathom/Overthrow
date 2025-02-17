@@ -16,7 +16,7 @@ private _posTown = server getVariable [_destinationName,[]];
 
 private _building = [_posTown,OT_allHouses] call OT_fnc_getRandomBuilding;
 private _destination = (_building call BIS_fnc_buildingPositions) call BIS_fnc_selectRandom;
-if(_destination isEqualTo [0,0,0]) then {
+if (isNil "_destination" || _destination isEqualTo [0,0,0]) then {
     _destination = _posTown getPos [random 600, random 360];
 };
 private _params = [_destination,_destinationName,_jobid];
