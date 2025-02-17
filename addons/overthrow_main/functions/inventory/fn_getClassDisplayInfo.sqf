@@ -35,7 +35,7 @@ if (isClass _config) exitWith {
         [_pic, _name, _desc]
     } else {
         // non-backpack vehicles
-        private _pic = getText (_config >> if (_largePic) then {"editorPreview"} else {"picture"});
+        private _pic = getText (_config >> ["picture", "editorPreview"] select (_largePic));
 	    private _name = getText (_config >> "displayName");
         private _desc = getText (_config >> "Library" >> "libTextDesc");
         [_pic, _name, _desc]
