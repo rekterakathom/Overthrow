@@ -1,16 +1,17 @@
-private _currentObject = typeOf _this;
-
 // The player doesn't have the vars -> wait until they do
 if (isNil "OT_localPlayerInitDone" || {!(isNil "OT_localPlayerInitDone") && {!(OT_localPlayerInitDone)}}) exitWith {
 	[
 		{!(isNil "OT_localPlayerInitDone") && {OT_localPlayerInitDone}},
-		{_this call OT_initObjectLocal},
-		_currentObject,
+		{_this call OT_fnc_initObjectLocal},
+		_this,
 		60 // 60s timeout to avoid eternal loop
 	] call CBA_fnc_waitUntilAndExecute;
 };
 
-if(_currentObject isEqualTo OT_item_Map) then {
+private _currentObject = _this;
+private _currentObjectType = typeOf _this;
+
+if(_currentObjectType == OT_item_Map) then {
 	_this addAction ["Town Info", OT_fnc_mapInfoDialog,nil,0,false,true,"",""];
 	_this addAction ["Reset UI", {
 		closeDialog 0;
@@ -19,7 +20,7 @@ if(_currentObject isEqualTo OT_item_Map) then {
 	_this enableDynamicSimulation true;
 };
 
-if(_currentObject isEqualTo OT_item_Storage) then {
+if(_currentObjectType == OT_item_Storage) then {
 	_this addAction ["Open Arsenal (This Ammobox)", {[_this select 0,player] call OT_fnc_openArsenal},nil,0,false,true,"","!(call OT_fnc_playerIsAtWarehouse)"];
 	_this addAction ["Open Arsenal (Warehouse)", {["WAREHOUSE",player,_this select 0] call OT_fnc_openArsenal},nil,0,false,true,"","call OT_fnc_playerIsAtWarehouse"];
 	_this addAction ["Take From Warehouse", {
@@ -60,14 +61,14 @@ if(_currentObject isEqualTo OT_item_Storage) then {
 	_this enableDynamicSimulation true;
 };
 
-if(_currentObject isEqualTo OT_item_Safe) then {
+if(_currentObjectType == OT_item_Safe) then {
 	_this addAction ["Put Money", OT_fnc_safePutMoney,nil,0,false,true,"",""];
 	_this addAction ["Take Money", OT_fnc_safeTakeMoney,nil,0,false,true,"",""];
 	_this addAction ["Set Password", OT_fnc_safeSetPassword,nil,0,false,true,"","(_target getVariable ['owner','']) isEqualTo getplayeruid _this"];
 	_this enableDynamicSimulation true;
 };
 
-if(_currentObject isEqualTo "Land_Cargo_House_V4_F") then {
+if(_currentObjectType == "Land_Cargo_House_V4_F") then {
 	[_this] call ace_repair_fnc_moduleAssignRepairFacility;
 	_this enableDynamicSimulation true;
 };
@@ -80,7 +81,7 @@ if(_this isKindOf "CAManBase" || _this isKindOf "FlagCarrier") exitWith {};
 if(_this isKindOf "Building" || _this isKindOf "LandVehicle") exitWith{};
 
 _dir = 0;
-if(_currentObject isEqualTo "C_Rubberboat") then {
+if(_currentObjectType == "C_Rubberboat") then {
 	_dir = 90;
 };
 [_this, true, [0, 2, 0.4],_dir] call ace_dragging_fnc_setCarryable;
