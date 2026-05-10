@@ -13,8 +13,8 @@ if (_price > -1) then {
     // Special cases
     if (_cls == "Set_HMG") exitWith {
         _pic = getText (configFile >> "CfgVehicles" >> "C_Quadbike_01_F" >> "editorPreview");
-        _txt = "Quad Bike w/ HMG Backpacks";
-        _desc = "A Quad-bike containing the backpacks required to set up a Static HMG";
+        _txt = localize "STR_DISPLAY_DISPLAY_SHOP_PIC_01";
+        _desc = localize "STR_DISPLAY_DISPLAY_SHOP_PIC_02";
     };
     if (_cls isKindOf "CAManBase") exitWith {
         private _soldier = _cls call OT_fnc_getSoldier;
@@ -31,9 +31,9 @@ if (_price > -1) then {
         } forEach (_bought);
 
         if (_desc isEqualTo "") then {
-            _desc = "All items required for this unit are available in the warehouse";
+            _desc = localize "STR_DISPLAY_DISPLAY_SHOP_PIC_03";
         } else {
-            _desc = format ["These items are not in the warehouse and must be purchased:<br/>%1", _desc];
+            _desc = format [localize "STR_DISPLAY_DISPLAY_SHOP_PIC_04", _desc];
         };
     };
     if (_cls in OT_allSquads) exitWith {
@@ -42,7 +42,7 @@ if (_price > -1) then {
         ctrlEnable [1601, false];
 
         _txt = _cls;
-        _desc = "Will recruit this squad into your High-Command bar, accessible with ctrl-space.";
+        _desc = localize "STR_DISPLAY_DISPLAY_SHOP_PIC_05";
     };
 
     // General case
@@ -52,16 +52,16 @@ if (_price > -1) then {
     _desc = _rDesc;
 
     if (_cls isEqualTo "C_Quadbike_01_F") exitWith {
-        _desc = "Gets you from A to B, not guaranteed to stay upright.";
+        _desc = localize "STR_DISPLAY_DISPLAY_SHOP_PIC_06";
     };
     if (_cls in OT_allExplosives) then {
         private _cost = cost getVariable _cls;
         private _chems = server getVariable ["reschems", 0];
-        _desc = format ["Required: %1 x chemicals (%2 available)<br/>%3", _cost select 3, _chems, _desc];
+        _desc = format [localize "STR_DISPLAY_DISPLAY_SHOP_PIC_07", _cost select 3, _chems, _desc];
     };
 } else {
     ctrlEnable [1600, false];
-    _txt = "Not Available";
+    _txt = localize "STR_DISPLAY_DISPLAY_SHOP_PIC_08";
     _desc = _cls;
     _price = "";
 };

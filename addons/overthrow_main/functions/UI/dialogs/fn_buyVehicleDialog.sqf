@@ -50,7 +50,7 @@ createDialog "OT_dialog_buy";
             _price = _p;
 
             _pic = "C_Quadbike_01_F" call OT_fnc_vehicleGetPic;
-            _name = "Quad Bike w/ HMG Backpacks";
+            _name = localize "STR_DISPLAY_DISPLAY_SHOP_PIC_01";
         };
         if (_cls == OT_item_UAV) then {
             _name = "Quadcopter";

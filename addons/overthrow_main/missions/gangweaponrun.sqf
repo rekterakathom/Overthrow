@@ -29,8 +29,8 @@ private _markerPos = _destination;
 private _params = [_destination, _gangid, _guncls, _reward];
 
 //Build a mission description and title
-private _description = format ["We need someone to deliver a %1 to a customer in %2. You have 6 hours.</t><br/><br/><t size='0.9' align='center'>Reward: +5 rep (%3), $%4", _gunname, _destinationName, _gangname, _reward];
-private _title = format ["Deliver %2 for %1", _gangname, _gunname];
+private _description = format [localize "STR_MISSION_GANG_WEAPON_RUN_01", _gunname, _destinationName, _gangname, _reward];
+private _title = format [localize "STR_MISSION_GANG_WEAPON_RUN_02", _gangname, _gunname];
 
 //The data below is what is returned to the gun dealer/faction rep, _markerPos is where to put the mission marker, the code in {} brackets is the actual mission code, only run if the player accepts
 [
@@ -39,7 +39,7 @@ private _title = format ["Deliver %2 for %1", _gangname, _gunname];
     {
         params ["_destination", "", "_guncls"];
         if !(player canAdd _guncls) exitWith {
-            "You don't have enough room in your inventory for the gun" call OT_fnc_notifyMinor;
+            localize "STR_MISSION_GANG_WEAPON_RUN_03" call OT_fnc_notifyMinor;
             false;
         };
         private _group = createGroup civilian;
@@ -61,7 +61,7 @@ private _title = format ["Deliver %2 for %1", _gangname, _gunname];
 
         //give the items to the player
         player addItem _guncls;
-        format ["%1 added to inventory", _guncls call OT_fnc_weaponGetName] call OT_fnc_notifyMinor;
+        format [localize "STR_MISSION_GANG_WEAPON_RUN_04", _guncls call OT_fnc_weaponGetName] call OT_fnc_notifyMinor;
         true;
     },
     {
@@ -85,7 +85,7 @@ private _title = format ["Deliver %2 for %1", _gangname, _gunname];
             [
                 _reward,
                 format [
-                    "Delivered %1",
+                    localize "STR_MISSION_GANG_WEAPON_RUN_05",
                     _guncls call OT_fnc_weaponGetName
                     //,_gang select 8
                 ]
@@ -97,7 +97,7 @@ private _title = format ["Deliver %2 for %1", _gangname, _gunname];
             _gang set [6, _resources + 100];
             OT_civilians setVariable [format ["gang%1", _gangid], _gang, true];
         } else {
-            [_player, _gangid, -5, format ["Failed delivery of %1", _guncls call OT_fnc_weaponGetName]] call OT_fnc_gangRep;
+            [_player, _gangid, -5, format [localize "STR_MISSION_GANG_WEAPON_RUN_06", _guncls call OT_fnc_weaponGetName]] call OT_fnc_gangRep;
         };
     },
     _params

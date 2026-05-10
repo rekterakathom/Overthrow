@@ -11,7 +11,7 @@ if (_this isEqualTo []) then {
 };
 _data = _name call OT_fnc_getBusinessData;
 
-private _anum = server getVariable [format ["%1employ", _name], 0];
+private _anum = server getVariable [format [localize "STR_DISPLAY_DISPLAY_BUSINESS_INFO_01", _name], 0];
 private _num = _anum;
 if (_num > 20) then {
     _num = 20;
@@ -27,8 +27,8 @@ private _outnum = _num * 2;
 private _amgen = (getPlayerUID player) in (server getVariable ["generals", []]);
 
 private _text = format ["<t size='0.8'>%1</t><br/>", _name];
-_text = _text + format ["<t size='0.65'>Employees: %1</t><br/>", _anum];
-_text = _text + format ["<t size='0.65'>Wages: $%1 /hr</t><br/>", _wages];
+_text = _text + format [localize "STR_DISPLAY_DISPLAY_BUSINESS_INFO_02", _anum];
+_text = _text + format [localize "STR_DISPLAY_DISPLAY_BUSINESS_INFO_03", _wages];
 
 _amgen = (getPlayerUID player) in (server getVariable ["generals", []]);
 private _nexthr = ((date select 3) + 1);
@@ -43,18 +43,18 @@ if (count _data > 2) then {
     private _input = _data select 2;
     private _output = _data select 3;
     if (_input != "") then {
-        _text = _text + format ["<t size='0.65'>Input: %1 x %2 /hr</t><br/>", _innum, _input call OT_fnc_weaponGetName];
+        _text = _text + format [localize "STR_DISPLAY_DISPLAY_BUSINESS_INFO_04", _innum, _input call OT_fnc_weaponGetName];
     };
     if (_output != "") then {
-        _text = _text + format ["<t size='0.65'>Output: %1 x %2 /hr</t><br/>", _outnum, _output call OT_fnc_weaponGetName];
+        _text = _text + format [localize "STR_DISPLAY_DISPLAY_BUSINESS_INFO_05", _outnum, _output call OT_fnc_weaponGetName];
     } else {
         private _sellprice = round (([OT_nation, _input, 0] call OT_fnc_getSellPrice) * 1.2);
-        _text = _text + format ["<t size='0.65'>Income: $%1 /hr</t><br/>", round (_innum * _sellprice)];
+        _text = _text + format [localize "STR_DISPLAY_DISPLAY_BUSINESS_INFO_06", round (_innum * _sellprice)];
     };
 } else {
-    _text = _text + format ["<t size='0.65'>Income: $%1 /hr</t><br/>", round (_num * 200)];
+    _text = _text + format [localize "STR_DISPLAY_DISPLAY_BUSINESS_INFO_06", round (_num * 200)];
 };
-_text = _text + format ["<t size='0.65'>Next cycle: %1:00</t><br/>", _nexthr];
+_text = _text + format [localize "STR_DISPLAY_DISPLAY_BUSINESS_INFO_07", _nexthr];
 
 private _textctrl = (findDisplay 8000) displayCtrl 1104;
 _textctrl ctrlSetStructuredText parseText _text;

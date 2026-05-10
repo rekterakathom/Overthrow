@@ -59,7 +59,7 @@ createDialog "OT_dialog_buy";
         // special case
         if (_cls == "Set_HMG") then {
             _pic = "C_Quadbike_01_F" call OT_fnc_vehicleGetPic;
-            _txt = "Quadbike w/ HMG Backpacks";
+            _txt = localize "STR_DISPLAY_DISPLAY_SHOP_PIC_01";
         };
 
         if (_cls in OT_allDrugs) then {

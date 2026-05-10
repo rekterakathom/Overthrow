@@ -21,5 +21,5 @@ private _nearPlayers = (_vehicle nearEntities ["CAManBase", 10]) select { isPlay
         //case independent: {_x setCaptive false; [_x] call OT_fnc_revealToResistance};
         default { diag_log format ["Overthrow: Couldn't find a side for %1", _vehicle] };
     };
-    "You have been seen tampering with a vehicle" remoteExec ["OT_fnc_notifyMinor", _x, false];
+    localize "STR_EVENT_WHEEL_STATE_HANDLER_01" remoteExec ["OT_fnc_notifyMinor", _x, false];
 } forEach _nearPlayers;

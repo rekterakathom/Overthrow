@@ -33,7 +33,7 @@ if (isPlayer _itemUser && { side _itemUser != side _target }) then {
     if !(_usedItem in ["ACE_epinephrine", "ACE_morphine", "ACE_adenosine"]) exitWith {};
     _itemUser setCaptive false;
     _target reveal _itemUser;
-    "You have been seen drugging people" remoteExec ["OT_fnc_notifyMinor", _itemUser, false];
+    localize "STR_EVENT_HEALED_HANDLER_01" remoteExec ["OT_fnc_notifyMinor", _itemUser, false];
 };
 
 true;

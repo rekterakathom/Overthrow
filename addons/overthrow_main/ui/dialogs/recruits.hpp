@@ -38,7 +38,7 @@ class OT_dialog_recruits {
         };
         class RscButton_1600: RscOverthrowButton {
             idc = 1600;
-            text = "Dismiss"; //--- ToDo: Localize;
+            text = "$STR_STATISTICS_DISMISS";
             x = "0.711406 * safeZoneW + safeZoneX";
             y = "0.599 * safeZoneH + safeZoneY";
             w = "0.0825 * safeZoneW";

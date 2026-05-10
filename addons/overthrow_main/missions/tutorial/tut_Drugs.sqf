@@ -24,7 +24,7 @@ if (_targets isEqualTo []) exitWith {
         //give waypoint
         [player, _destination, _town] call OT_fnc_givePlayerWaypoint;
 
-        format ["There doesnt seem to be any civilians nearby. Head to %1, you should be able to find some there. It's marked on your map", _town] call OT_fnc_notifyMinor;
+        format [localize "STR_MISSION_TUTORIAL_DRUGS_01", _town] call OT_fnc_notifyMinor;
 
         [
             {
@@ -46,7 +46,7 @@ if (_targets isEqualTo []) exitWith {
     };
 };
 
-"There is a civilian nearby, their position has been marked on your map." call OT_fnc_notifyMinor;
+localize "STR_MISSION_TUTORIAL_DRUGS_02" call OT_fnc_notifyMinor;
 //pick the closest group and reveal
 
 private _sorted = [_targets, [], { _x distance player }, "ASCEND"] call BIS_fnc_sortBy;
@@ -64,10 +64,7 @@ private _loopCode = {
         _wp setWaypointPosition [OT_missionMarker, 0];
     };
     if (player distance (leader _group) < 30) then {
-        "Use your interaction key on the civilian to talk to them
-        and see if they wanna buy your Ganja.
-        Not everyone is into the sweet herb,
-        but just keep trying until you get lucky." call OT_fnc_notifyMinor;
+        localize "STR_MISSION_TUTORIAL_DRUGS_03" call OT_fnc_notifyMinor;
 
         call OT_fnc_clearPlayerWaypoint;
     } else {

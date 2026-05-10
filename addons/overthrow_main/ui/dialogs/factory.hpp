@@ -29,7 +29,7 @@ class OT_dialog_factoryold {
         };
         class RscStructuredText_1100: RscOverthrowStructuredText {
             idc = 1100;
-            text = "<t size='1.5' align='center'>Factory</t><br/><t size='0.8' align='center'>Currently producing</t>"; //--- ToDo: Localize;
+            text = "$STR_UI_DIAG_FACTORY_01";
             x = "0.29375 * safeZoneW + safeZoneX";
             y = "0.225 * safeZoneH + safeZoneY";
             w = "0.4125 * safeZoneW";
@@ -47,7 +47,7 @@ class OT_dialog_factoryold {
         };
         class RscStructuredText_1101: RscOverthrowStructuredText {
             idc = 1101;
-            text = "<t size='0.8' align='center'>Change production</t>"; //--- ToDo: Localize;
+            text = "$STR_UI_DIAG_FACTORY_02";
             x = "0.29375 * safeZoneW + safeZoneX";
             y = "0.533 * safeZoneH + safeZoneY";
             w = "0.4125 * safeZoneW";
@@ -75,7 +75,7 @@ class OT_dialog_factoryold {
         };
         class RscButton_1600: RscOverthrowButton {
             idc = 1600;
-            text = "Clear"; //--- ToDo: Localize;
+            text = "$STR_UI_DIAG_FACTORY_03"; //--- this is a different "Clear" meaning
             x = "0.298906 * safeZoneW + safeZoneX";
             y = "0.72 * safeZoneH + safeZoneY";
             w = "0.103125 * safeZoneW";
@@ -84,7 +84,7 @@ class OT_dialog_factoryold {
         };
         class RscButton_1601: RscOverthrowButton {
             idc = 1601;
-            text = "Set"; //--- ToDo: Localize;
+            text = "$STR_UI_DIAG_FACTORY_04";
             x = "0.597969 * safeZoneW + safeZoneX";
             y = "0.72 * safeZoneH + safeZoneY";
             w = "0.103125 * safeZoneW";
@@ -93,7 +93,7 @@ class OT_dialog_factoryold {
         };
         class RscButton_1602: RscOverthrowButton {
             idc = 1602;
-            text = "Reverse-Engineer"; //--- ToDo: Localize;
+            text = "$STR_UI_DIAG_FACTORY_05";
             x = "0.448438 * safeZoneW + safeZoneX";
             y = "0.72 * safeZoneH + safeZoneY";
             w = "0.103125 * safeZoneW";
@@ -143,7 +143,7 @@ class OT_dialog_factory {
 
         class RscStructuredText_1104: RscOverthrowStructuredText {
             idc = 1104;
-            text = "<t align='center' size='1.8'>Factory</t>"; //--- ToDo: Localize;
+            text = "$STR_UI_DIAG_FACTORY_06";
             x = "0.381406 * safeZoneW + safeZoneX";
             y = "0.104 * safeZoneH + safeZoneY";
             w = "0.232031 * safeZoneW";
@@ -152,7 +152,7 @@ class OT_dialog_factory {
         };
         class RscButton_1608: RscOverthrowButton {
             idc = 1608;
-            text = "Reverse-Engineer"; //--- ToDo: Localize;
+            text = "$STR_UI_DIAG_FACTORY_05";
             x = "0.432969 * safeZoneW + safeZoneX";
             y = "0.797 * safeZoneH + safeZoneY";
             w = "0.128906 * safeZoneW";
@@ -211,7 +211,7 @@ class OT_dialog_factory {
         };
         class RscStructuredText_1101: RscOverthrowStructuredText {
             idc = 1101;
-            text = "<t size='0.9'>Build Queue</t>"; //--- ToDo: Localize;
+            text = "$STR_UI_DIAG_FACTORY_07";
             x = "0.438125 * safeZoneW + safeZoneX";
             y = "0.291 * safeZoneH + safeZoneY";
             w = "0.113437 * safeZoneW";
@@ -220,7 +220,7 @@ class OT_dialog_factory {
         };
         class RscStructuredText_1102: RscOverthrowStructuredText {
             idc = 1102;
-            text = "<t size='0.9'>Blueprints</t>"; //--- ToDo: Localize;
+            text = "$STR_UI_DIAG_FACTORY_08";
             x = "0.216406 * safeZoneW + safeZoneX";
             y = "0.148 * safeZoneH + safeZoneY";
             w = "0.113437 * safeZoneW";
@@ -229,7 +229,7 @@ class OT_dialog_factory {
         };
         class RscButton_1606: RscOverthrowButton {
             idc = 1606;
-            text = "Remove"; //--- ToDo: Localize;
+            text = "$STR_UI_DIAG_FACTORY_09";
             x = "0.701094 * safeZoneW + safeZoneX";
             y = "0.324 * safeZoneH + safeZoneY";
             w = "0.0670312 * safeZoneW";
@@ -238,7 +238,7 @@ class OT_dialog_factory {
         };
         class RscButton_1607: RscOverthrowButton {
             idc = 1607;
-            text = "Remove All"; //--- ToDo: Localize;
+            text = "$STR_UI_DIAG_FACTORY_10";
             x = "0.701094 * safeZoneW + safeZoneX";
             y = "0.39 * safeZoneH + safeZoneY";
             w = "0.0670312 * safeZoneW";
@@ -289,7 +289,7 @@ class OT_dialog_reverse {
             idc = 1601;
             action = "closeDialog 0;";
 
-            text = "Close"; //--- ToDo: Localize;
+            text = "$STR_STATISTICS_CLOSE";
             x = "0.29375 * safeZoneW + safeZoneX";
             y = "0.786 * safeZoneH + safeZoneY";
             w = "0.0928125 * safeZoneW";
@@ -299,7 +299,7 @@ class OT_dialog_reverse {
             idc = 1600;
             action = "[] call OT_fnc_reverseEngineer;";
 
-            text = "Reverse-Engineer"; //--- ToDo: Localize;
+            text = "$STR_UI_DIAG_FACTORY_05";
             x = "0.613437 * safeZoneW + safeZoneX";
             y = "0.786 * safeZoneH + safeZoneY";
             w = "0.0928125 * safeZoneW";
@@ -352,7 +352,7 @@ class OT_dialog_craft {
         };
         class RscButton_1600: RscOverthrowButton {
             idc = 1600;
-            text = "Craft"; //--- ToDo: Localize;
+            text = "$STR_UI_DIAG_FACTORY_11";
             x = "0.752656 * safeZoneW + safeZoneX";
             y = "0.676 * safeZoneH + safeZoneY";
             w = "0.139219 * safeZoneW";

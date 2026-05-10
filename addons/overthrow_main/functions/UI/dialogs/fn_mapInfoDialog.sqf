@@ -1,7 +1,7 @@
 if (visibleMap) exitWith {};
 if (!isNil "OT_MapSingleClickEHId" || !isNil "OT_MapEHId") exitWith {};
 
-hint "Click on a location";
+hint localize "STR_DISPLAY_DISPLAY_MAP_INFO_DIAG_01";
 
 OT_MapSingleClickEHId = addMissionEventHandler [
     "MapSingleClick",
@@ -15,12 +15,12 @@ OT_MapSingleClickEHId = addMissionEventHandler [
                 private _town = _name;
                 private _pop = server getVariable format ["population%1", _town];
                 private _stability = server getVariable format ["stability%1", _town];
-                private _abandon = "Under NATO Control";
+                private _abandon = localize "STR_DISPLAY_DISPLAY_MAP_INFO_DIAG_02";
                 if (_town in (server getVariable ["NATOabandoned", []])) then {
                     if (_stability < 50) then {
-                        _abandon = "Anarchy";
+                        _abandon = localize "STR_DISPLAY_DISPLAY_MAP_INFO_DIAG_03";
                     } else {
-                        _abandon = "Under Resistance Control";
+                        _abandon = localize "STR_DISPLAY_DISPLAY_MAP_INFO_DIAG_04";
                     };
                 };
                 private _rep = [_town] call OT_fnc_support;
@@ -29,7 +29,7 @@ OT_MapSingleClickEHId = addMissionEventHandler [
                     _plusmin = "+";
                 };
                 _txt = format [
-                    "<t size='1.2' color='#222222'>%1</t><br/><t size='0.5' color='#222222'>Status: %7</t><br/><t size='0.5' color='#222222'>Population: %2</t><br/><t size='0.5' color='#222222'>Stability: %3%4</t><br/><t size='0.5' color='#222222'>Resistance Support: %5%6</t>",
+                    localize "STR_DISPLAY_DISPLAY_MAP_INFO_DIAG_05",
                     _town,
                     [_pop, 1, 0, true] call CBA_fnc_formatNumber,
                     _stability,
@@ -40,23 +40,23 @@ OT_MapSingleClickEHId = addMissionEventHandler [
                 ];
             };
             if (_type in ["Objective", "Radio Tower", "Airport"]) exitWith {
-                private _abandon = "Under NATO Control";
+                private _abandon = localize "STR_DISPLAY_DISPLAY_MAP_INFO_DIAG_02";
                 if (_name in (server getVariable ["NATOabandoned", []])) then {
-                    _abandon = "Under Resistance Control";
+                    _abandon = localize "STR_DISPLAY_DISPLAY_MAP_INFO_DIAG_04";
                 };
                 _txt = format [
-                    "<t size='1.2' color='#222222'>%1</t><br/><t size='0.5' color='#222222'>Status: %2</t>",
+                    localize "STR_DISPLAY_DISPLAY_MAP_INFO_DIAG_06",
                     _name,
                     _abandon
                 ];
             };
             if (_type == "Business") exitWith {
-                private _abandon = "Inactive";
+                private _abandon = localize "STR_DISPLAY_DISPLAY_MAP_INFO_DIAG_08";
                 if (_name in (server getVariable ["GEURowned", []])) then {
-                    _abandon = "Owned";
+                    _abandon = localize "STR_DISPLAY_DISPLAY_MAP_INFO_DIAG_08";
                 };
                 _txt = format [
-                    "<t size='1.2' color='#222222'>%1</t><br/><t size='0.5' color='#222222'>Status: %2</t>",
+                    localize "STR_DISPLAY_DISPLAY_MAP_INFO_DIAG_06",
                     _name,
                     _abandon
                 ];

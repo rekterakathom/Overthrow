@@ -23,14 +23,14 @@ private _numitems = floor (2 + random (400 / _cost));
 private _params = [_destination, _destinationName, _itemcls, _numitems];
 private _markerPos = _destination;
 
-private _effect = "Stability in the town will decrease and the local community will support the resistance more (+25 support).";
+private _effect = localize "STR_MISSION_MEDICAL_SUPPLIES_01";
 if (_destinationName in (server getVariable ["NATOabandoned", []])) then {
-    _effect = "Stability in the town will increase and the local community will support the resistance more (+25 support).";
+    _effect = localize "STR_MISSION_MEDICAL_SUPPLIES_02";
 };
 
 //Build a mission description and title
-private _description = format ["%1 is in need of medical supplies. Deliver %2 x %3 to the marked location using any vehicle, just pull up with the items in the inventory. <br/><br/>%4", _destinationName, _numitems, _itemName, _effect];
-private _title = format ["%1 needs %2 x %3", _destinationName, _numitems, _itemName];
+private _description = format [localize "STR_MISSION_MEDICAL_SUPPLIES_03", _destinationName, _numitems, _itemName, _effect];
+private _title = format [localize "STR_MISSION_MEDICAL_SUPPLIES_04", _destinationName, _numitems, _itemName];
 
 //The data below is what is returned to the gun dealer/faction rep, _markerPos is where to put the mission marker, the code in {} brackets is the actual mission code, only run if the player accepts
 [
@@ -92,7 +92,7 @@ private _title = format ["%1 needs %2 x %3", _destinationName, _numitems, _itemN
             [
                 _destinationName,
                 25,
-                format ["Delivered %1 x %2 medical supplies", _numitems, _itemcls call OT_fnc_weaponGetName],
+                format [localize "STR_MISSION_MEDICAL_SUPPLIES_05", _numitems, _itemcls call OT_fnc_weaponGetName],
                 _driver
             ] call OT_fnc_support;
 

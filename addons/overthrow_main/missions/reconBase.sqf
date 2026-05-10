@@ -3,11 +3,11 @@ _jobparams params ["_base", "_markerPos"];
 
 private _count = 0;
 private _params = [_base, _count];
-private _effect = "<t size='0.9'>Reward: $500 to player closest to base</t>";
+private _effect = localize "STR_MISSION_RECON_BASE_01";
 
 //Build a mission description and title
-private _description = format ["Get information on the NATO forces and vehicles garrisoned at %1. A pair of Binoculars or Rangefinder may come in handy. Be careful not to get too close as NATO bases are restricted areas.<br/><br/>%2", _base, _effect];
-private _title = format ["Recon of %1", _base];
+private _description = format [localize "STR_MISSION_RECON_BASE_02", _base, _effect];
+private _title = format [localize "STR_MISSION_RECON_BASE_03", _base];
 
 //The data below is what is returned to the gun dealer/faction rep, _markerPos is where to put the mission marker, the code in {} brackets is the actual mission code, only run if the player accepts
 [
@@ -55,7 +55,7 @@ private _title = format ["Recon of %1", _base];
         } forEach (_groups);
 
         if (_oldcount < _count) then {
-            format ["%2 units spotted at %1", _base, _count] remoteExec ["systemChat", _players select 0, false];
+            format [localize "STR_MISSION_RECON_BASE_04", _base, _count] remoteExec ["systemChat", _players select 0, false];
         };
 
         _this set [1, _count];
@@ -81,8 +81,8 @@ private _title = format ["Recon of %1", _base];
             };
 
             //Broadcast full recon report
-            private _report = format ["Recon report (%1)<br/>", _base];
-            _report = _report + format ["%1 x Soldiers<br/>", server getVariable [format ["garrison%1", _base], 0]];
+            private _report = format [localize "STR_MISSION_RECON_BASE_05", _base];
+            _report = _report + format [localize "STR_MISSION_RECON_BASE_06", server getVariable [format ["garrison%1", _base], 0]];
             private _allVehs = (server getVariable [format ["vehgarrison%1", _base], []]) + (server getVariable [format ["airgarrison%1", _base], []]);
             {
                 _x params ["_cls", "_num"];

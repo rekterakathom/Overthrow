@@ -19,7 +19,7 @@ if (_job isNotEqualTo []) then {
     if !(_noexpire) then {
         private _hrs = floor (_remains / 60);
         private _mins = _remains - (_hrs * 60);
-        _remainTxt = format ["Expires in %1 hrs %2 mins", _hrs, _mins];
+        _remainTxt = format [localize "STR_DISPLAY_DISPLAY_JOB_DETAILS", _hrs, _mins];
     };
 
     private _textctrl = (findDisplay 8000) displayCtrl 1100;

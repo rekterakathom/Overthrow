@@ -8,7 +8,7 @@ private _cls = typeOf _veh;
 ([_cls, true] call OT_fnc_getClassDisplayInfo) params ["_pic", "_name"];
 
 private _owner = players_NS getVariable ("name" + (_veh call OT_fnc_getOwner));
-if (isNil "_owner") then { _owner = "Someone" };
+if (isNil "_owner") then { _owner = localize "STR_DISPLAY_DISPLAY_LOGISTICS_DETAILS" };
 
 ctrlSetText [1200, _pic];
 
@@ -74,42 +74,42 @@ private _gunOut = false;
 } forEach (configProperties [configFile >> "CfgVehicles" >> _cls >> "HitPoints"]);
 
 if !(_cls isKindOf "StaticWeapon") then {
-    _txt = format ["%1Fuel: %2%3<br/>", _txt, _fuel, "%"];
-    _txt = format ["%1Load: %2kg<br/>", _txt, _loadKg];
+    _txt = format [localize "STR_DISPLAY_DISPLAY_LOGISTICS_DETAILS_PARSED_01", _txt, _fuel, "%"];
+    _txt = format [localize "STR_DISPLAY_DISPLAY_LOGISTICS_DETAILS_PARSED_02", _txt, _loadKg];
     if (_hasWheels) then {
         if (_wheelsNeeded isEqualTo 0) then {
-            _txt = format ["%1All wheels OK<br/>", _txt];
+            _txt = format [localize "STR_DISPLAY_DISPLAY_LOGISTICS_DETAILS_PARSED_03", _txt];
         } else {
-            _txt = format ["%1Need %2 wheels<br/>", _txt, _wheelsNeeded];
+            _txt = format [localize "STR_DISPLAY_DISPLAY_LOGISTICS_DETAILS_PARSED_04", _txt, _wheelsNeeded];
         };
     };
 
     if (_hasTracks) then {
         if (_tracksNeeded isEqualTo 0) then {
-            _txt = format ["%1All tracks OK<br/>", _txt];
+            _txt = format [localize "STR_DISPLAY_DISPLAY_LOGISTICS_DETAILS_PARSED_05", _txt];
         } else {
-            _txt = format ["%1Need %2 tracks<br/>", _txt, _tracksNeeded];
+            _txt = format [localize "STR_DISPLAY_DISPLAY_LOGISTICS_DETAILS_PARSED_06", _txt, _tracksNeeded];
         };
     };
 
     if (_engineOut) then {
-        _txt = format ["%1Engine disabled<br/>", _txt];
+        _txt = format [localize "STR_DISPLAY_DISPLAY_LOGISTICS_DETAILS_PARSED_07", _txt];
     };
 
     if (_fuelTankOut) then {
-        _txt = format ["%1Fuel tank ruptured<br/>", _txt];
+        _txt = format [localize "STR_DISPLAY_DISPLAY_LOGISTICS_DETAILS_PARSED_08", _txt];
     };
 
     if (_rotorOutV) then {
-        _txt = format ["%1Main rotor disabled<br/>", _txt];
+        _txt = format [localize "STR_DISPLAY_DISPLAY_LOGISTICS_DETAILS_PARSED_09", _txt];
     };
     if (_rotorOutH) then {
-        _txt = format ["%1Tail rotor disabled<br/>", _txt];
+        _txt = format [localize "STR_DISPLAY_DISPLAY_LOGISTICS_DETAILS_PARSED_10", _txt];
     };
 };
 
 if (_gunOut) then {
-    _txt = format ["%1Gun disabled<br/>", _txt];
+    _txt = format [localize "STR_DISPLAY_DISPLAY_LOGISTICS_DETAILS_PARSED_11", _txt];
 };
 
 private _totalAmmo = 0;
@@ -123,21 +123,17 @@ private _ammotxt = "";
 } forEach (magazinesAmmo _veh);
 
 if (_totalAmmo > 0) then {
-    _txt = format ["%1<br/>Ammo:<br/>%2", _txt, _ammotxt];
+    _txt = format [localize "STR_DISPLAY_DISPLAY_LOGISTICS_DETAILS_PARSED_12", _txt, _ammotxt];
 } else {
     if (_hasAmmo) then {
-        _txt = format ["%1<br/>Out Of Ammo<br/>", _txt];
+        _txt = format [localize "STR_DISPLAY_DISPLAY_LOGISTICS_DETAILS_PARSED_13", _txt];
     };
 };
 
 private _textctrl = (findDisplay 8000) displayCtrl 1100;
 
 _textctrl ctrlSetStructuredText parseText format [
-    "
-	<t align='center' size='1.2'>%1</t><br/>
-	<t align='center' size='1'>Owner: %2</t><br/>
-	<t align='left' size='0.7'>%3</t>
-",
+    localize "STR_DISPLAY_DISPLAY_LOGISTICS_DETAILS_PARSED_14",
     _name,
     _owner,
     _txt

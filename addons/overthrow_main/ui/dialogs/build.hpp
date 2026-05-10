@@ -16,7 +16,7 @@ class OT_dialog_buildbase {
             idc = 1600;
             action = "closeDialog 0; [] call cancelBuild;";
 
-            text = "Close"; //--- ToDo: Localize;
+            text = "$STR_STATISTICS_CLOSE"; //--- ToDo: Localize;
             x = "0.0204687 * safeZoneW + safeZoneX";
             y = "0.324 * safeZoneH + safeZoneY";
             w = "0.0876563 * safeZoneW";
@@ -124,7 +124,7 @@ class OT_dialog_buildobjective {
             idc = 1600;
             action = "closeDialog 0; [] call cancelBuild;";
 
-            text = "Close"; //--- ToDo: Localize;
+            text = "$STR_STATISTICS_CLOSE";
             x = "0.0204687 * safeZoneW + safeZoneX";
             y = "0.324 * safeZoneH + safeZoneY";
             w = "0.0876563 * safeZoneW";
@@ -134,51 +134,51 @@ class OT_dialog_buildobjective {
             idc = 1601;
             action = "'Walls' call build";
 
-            text = "Walls"; //--- ToDo: Localize;
+            text = "$STR_UI_DIAG_BUILD_01";
             x = "0.0204687 * safeZoneW + safeZoneX";
             y = "0.588 * safeZoneH + safeZoneY";
             w = "0.0876563 * safeZoneW";
             h = "0.077 * safeZoneH";
-            tooltip = "Stop people (or tanks) from getting in"; //--- ToDo: Localize;
+            tooltip = "$STR_UI_DIAG_BUILD_02";
         };
         class RscButton_1602: RscOverthrowButton {
             idc = 1602;
             action = "'Observation Post' call build";
 
-            text = "Observation Post"; //--- ToDo: Localize;
+            text = "$STR_UI_DIAG_BUILD_03";
             x = "0.0204687 * safeZoneW + safeZoneX";
             y = "0.412 * safeZoneH + safeZoneY";
             w = "0.0876563 * safeZoneW";
             h = "0.077 * safeZoneH";
-            tooltip = "A small tower that will garrison static weapons"; //--- ToDo: Localize;
+            tooltip = "$STR_UI_DIAG_BUILD_04";
         };
         class RscButton_1603: RscOverthrowButton {
             idc = 1603;
             action = "'Bunkers' call build";
 
-            text = "Bunkers"; //--- ToDo: Localize;
+            text = "$STR_UI_DIAG_BUILD_05";
             x = "0.0204687 * safeZoneW + safeZoneX";
             y = "0.5 * safeZoneH + safeZoneY";
             w = "0.0876563 * safeZoneW";
             h = "0.077 * safeZoneH";
-            tooltip = "Small defensive structures"; //--- ToDo: Localize;
+            tooltip = "$STR_UI_DIAG_BUILD_06";
         };
         class RscButton_1604: RscOverthrowButton {
             idc = 1604;
             action = "'Warehouse' call build";
 
-            text = "Warehouse"; //--- ToDo: Localize;
+            text = "$STR_UI_DIAG_BUILD_07";
             x = "0.0204687 * safeZoneW + safeZoneX";
             y = "0.676 * safeZoneH + safeZoneY";
             w = "0.0876563 * safeZoneW";
             h = "0.077 * safeZoneH";
-            tooltip = "Stores and retrieves items from all warehouses"; //--- ToDo: Localize;
+            tooltip = "$STR_UI_DIAG_BUILD_08";
         };
         class RscButton_1605: RscOverthrowButton {
             idc = 1605;
             action = "'Barracks' call build";
 
-            text = "Barracks"; //--- ToDo: Localize;
+            text = "$STR_UI_DIAG_BUILD_09";
             x = "0.891875 * safeZoneW + safeZoneX";
             y = "0.324 * safeZoneH + safeZoneY";
             w = "0.0876563 * safeZoneW";
@@ -188,45 +188,45 @@ class OT_dialog_buildobjective {
             idc = 1606;
             action = "'Workshop' call build";
 
-            text = "Workshop"; //--- ToDo: Localize;
+            text = "$STR_UI_DIAG_BUILD_10";
             x = "0.891875 * safeZoneW + safeZoneX";
             y = "0.412 * safeZoneH + safeZoneY";
             w = "0.0876563 * safeZoneW";
             h = "0.077 * safeZoneH";
-            tooltip = "Modify vehicles"; //--- ToDo: Localize;
+            tooltip = "$STR_UI_DIAG_BUILD_11";
         };
         class RscButton_1607: RscOverthrowButton {
             idc = 1607;
             action = "'Helipad' call build";
 
-            text = "Helipad"; //--- ToDo: Localize;
+            text = "$STR_UI_DIAG_BUILD_12";
             x = "0.891875 * safeZoneW + safeZoneX";
             y = "0.5 * safeZoneH + safeZoneY";
             w = "0.0876563 * safeZoneW";
             h = "0.077 * safeZoneH";
-            tooltip = "Apparently helicopters need a place to land"; //--- ToDo: Localize;
+            tooltip = "$STR_UI_DIAG_BUILD_13";
         };
         class RscButton_1608: RscOverthrowButton {
             idc = 1608;
             action = "'Guard Tower' call build";
 
-            text = "Guard Tower"; //--- ToDo: Localize;
+            text = "$STR_UI_DIAG_BUILD_14";
             x = "0.891875 * safeZoneW + safeZoneX";
             y = "0.588 * safeZoneH + safeZoneY";
             w = "0.0876563 * safeZoneW";
             h = "0.077 * safeZoneH";
-            tooltip = "A huge tower. Will garrison static weapons"; //--- ToDo: Localize;
+            tooltip = "$STR_UI_DIAG_BUILD_15";
         };
         class RscButton_1609: RscOverthrowButton {
             idc = 1609;
             action = "'Radar' call build";
 
-            text = "Radar"; //--- ToDo: Localize;
+            text = "$STR_UI_DIAG_BUILD_16";
             x = "0.891875 * safeZoneW + safeZoneX";
             y = "0.676 * safeZoneH + safeZoneY";
             w = "0.0876563 * safeZoneW";
             h = "0.077 * safeZoneH";
-            tooltip = "Reveals all drones, helicopters and planes within a 2.5km radius."; //--- ToDo: Localize;
+            tooltip = "$STR_UI_DIAG_BUILD_17";
         };
         ////////////////////////////////////////////////////////
         // GUI EDITOR OUTPUT END
@@ -253,7 +253,7 @@ class OT_dialog_buildtown {
             idc = 1600;
             action = "closeDialog 0; [] call cancelBuild;";
 
-            text = "Close"; //--- ToDo: Localize;
+            text = "$STR_STATISTICS_CLOSE";
             x = "0.0204687 * safeZoneW + safeZoneX";
             y = "0.324 * safeZoneH + safeZoneY";
             w = "0.0876563 * safeZoneW";
@@ -263,45 +263,45 @@ class OT_dialog_buildtown {
             idc = 1601;
             action = "'Workshop' call build";
 
-            text = "Workshop"; //--- ToDo: Localize;
+            text = "$STR_UI_DIAG_BUILD_10";
             x = "0.0204687 * safeZoneW + safeZoneX";
             y = "0.588 * safeZoneH + safeZoneY";
             w = "0.0876563 * safeZoneW";
             h = "0.077 * safeZoneH";
-            tooltip = "Modify vehicles"; //--- ToDo: Localize;
+            tooltip = "$STR_UI_DIAG_BUILD_11";
         };
         class RscButton_1602: RscOverthrowButton {
             idc = 1602;
             action = "'House' call build";
 
-            text = "House"; //--- ToDo: Localize;
+            text = "$STR_UI_DIAG_BUILD_18";
             x = "0.0204687 * safeZoneW + safeZoneX";
             y = "0.412 * safeZoneH + safeZoneY";
             w = "0.0876563 * safeZoneW";
             h = "0.077 * safeZoneH";
-            tooltip = "4 Walls, a roof, maybe a door that opens if you're lucky."; //--- ToDo: Localize;
+            tooltip = "$STR_UI_DIAG_BUILD_19";
         };
         class RscButton_1603: RscOverthrowButton {
             idc = 1603;
             action = "'Warehouse' call build";
 
-            text = "Warehouse"; //--- ToDo: Localize;
+            text = "$STR_UI_DIAG_BUILD_07";
             x = "0.0204687 * safeZoneW + safeZoneX";
             y = "0.5 * safeZoneH + safeZoneY";
             w = "0.0876563 * safeZoneW";
             h = "0.077 * safeZoneH";
-            tooltip = "Store items"; //--- ToDo: Localize;
+            tooltip = "$STR_UI_DIAG_BUILD_08";
         };
         class RscButton_1604: RscOverthrowButton {
             idc = 1601;
             action = "'Police Station' call build";
 
-            text = "Police Station"; //--- ToDo: Localize;
+            text = "$STR_UI_DIAG_BUILD_20";
             x = "0.0204687 * safeZoneW + safeZoneX";
             y = "0.676 * safeZoneH + safeZoneY";
             w = "0.0876563 * safeZoneW";
             h = "0.077 * safeZoneH";
-            tooltip = "Increase stability and keep the peace"; //--- ToDo: Localize;
+            tooltip = "$STR_UI_DIAG_BUILD_21";
         };
         ////////////////////////////////////////////////////////
         // GUI EDITOR OUTPUT END
@@ -317,7 +317,7 @@ class OT_dialog_police {
         class RscStructuredText_1100: RscOverthrowStructuredText {
             idc = 1100;
 
-            text = "<t size='2' align='center'>Blah Police Station</t>"; //--- ToDo: Localize;
+            text = "$STR_UI_DIAG_BUILD_22";
             x = "0.288594 * safeZoneW + safeZoneX";
             y = "0.214 * safeZoneH + safeZoneY";
             w = "0.422812 * safeZoneW";
@@ -334,7 +334,7 @@ class OT_dialog_police {
         class RscStructuredText_1101: RscOverthrowStructuredText {
             idc = 1101;
 
-            text = "<t size='1.5' align='center'>Police: 2</t>"; //--- ToDo: Localize;
+            text = "$STR_UI_DIAG_BUILD_23";
             x = "0.29375 * safeZoneW + safeZoneX";
             y = "0.28 * safeZoneH + safeZoneY";
             w = "0.4125 * safeZoneW";
@@ -366,7 +366,7 @@ class OT_dialog_police {
         class RscStructuredText_1103: RscOverthrowStructuredText {
             idc = 1103;
 
-            text = "<t align='center'>Hire police</t>"; //--- ToDo: Localize;
+            text = "$STR_UI_DIAG_BUILD_24";
             x = "0.288594 * safeZoneW + safeZoneX";
             y = "0.467 * safeZoneH + safeZoneY";
             w = "0.422812 * safeZoneW";
@@ -377,7 +377,7 @@ class OT_dialog_police {
         class RscStructuredText_1104: RscOverthrowStructuredText {
             idc = 1104;
 
-            text = "<t size='1.2' align='center'>Effects</t><br/><br/><t size='0.8' align='center'>+1 Stability/10 mins</t>"; //--- ToDo: Localize;
+            text = "$STR_UI_DIAG_BUILD_25";
             x = "0.4175 * safeZoneW + safeZoneX";
             y = "0.632 * safeZoneH + safeZoneY";
             w = "0.170156 * safeZoneW";
@@ -388,7 +388,7 @@ class OT_dialog_police {
         class RscButton_1608: RscOverthrowButton {
             idc = 1608;
 
-            text = "Edit Loadout"; //--- ToDo: Localize;
+            text = "$STR_UI_DIAG_BUILD_26";
             x = "0.4175 * safeZoneW + safeZoneX";
             y = "0.73 * safeZoneH + safeZoneY";
             w = "0.170156 * safeZoneW";

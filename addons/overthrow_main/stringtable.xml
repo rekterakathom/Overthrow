@@ -1,0 +1,1933 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project name="Overthrow">
+    <Package name="Overthrow">
+        <Container name="Display">
+            <Key ID="STR_DISPLAY_CRAFTITEM">
+                <Original>&lt;t align='center' size='1.1'&gt;%1 x %2&lt;/t&gt;&lt;br/&gt;&lt;t align='center' size='0.7'&gt;%3&lt;/t&gt;&lt;br/&gt;&lt;br/&gt;&lt;t align='center' size='0.8'&gt;Recipe:&lt;/t&gt;&lt;br/&gt;&lt;t align='center' size='0.7'&gt;%4&lt;/t&gt;&lt;br/&gt;</Original>
+                <Portuguese>&lt;t align='center' size='1.1'&gt;%1 x %2&lt;/t&gt;&lt;br/&gt;&lt;t align='center' size='0.7'&gt;%3&lt;/t&gt;&lt;br/&gt;&lt;br/&gt;&lt;t align='center' size='0.8'&gt;Receita:&lt;/t&gt;&lt;br/&gt;&lt;t align='center' size='0.7'&gt;%4&lt;/t&gt;&lt;br/&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_BUSINESS_INFO_01">
+                <Original>%1employ</Original>
+                <Portuguese>%1contratar</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_BUSINESS_INFO_02">
+                <Original>&lt;t size='0.65'&gt;Employees: %1&lt;/t&gt;&lt;br/&gt;</Original>
+                <Portuguese>&lt;t size='0.65'&gt;Empregados: %1&lt;/t&gt;&lt;br/&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_BUSINESS_INFO_03">
+                <Original>&lt;t size='0.65'&gt;Wages: $%1 /hr&lt;/t&gt;&lt;br/&gt;</Original>
+                <Portuguese>&lt;t size='0.65'&gt;Salários: $%1 /hr&lt;/t&gt;&lt;br/&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_BUSINESS_INFO_04">
+                <Original>&lt;t size='0.65'&gt;Input: %1 x %2 /hr&lt;/t&gt;&lt;br/&gt;</Original>
+                <Portuguese>&lt;t size='0.65'&gt;Entrada: %1 x %2 /hr&lt;/t&gt;&lt;br/&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_BUSINESS_INFO_05">
+                <Original>&lt;t size='0.65'&gt;Output: %1 x %2 /hr&lt;/t&gt;&lt;br/&gt;</Original>
+                <Portuguese>&lt;t size='0.65'&gt;Saída: %1 x %2 /hr&lt;/t&gt;&lt;br/&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_BUSINESS_INFO_06">
+                <Original>&lt;t size='0.65'&gt;Income: $%1 /hr&lt;/t&gt;&lt;br/&gt;</Original>
+                <Portuguese>&lt;t size='0.65'&gt;Renda: $%1 /hr&lt;/t&gt;&lt;br/&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_BUSINESS_INFO_07">
+                <Original>&lt;t size='0.65'&gt;Next cycle: %1:00&lt;/t&gt;&lt;br/&gt;</Original>
+                <Portuguese>&lt;t size='0.65'&gt;Próximo cliclo: %1:00&lt;/t&gt;&lt;br/&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_CHAR_SHEET_DIAG_01">
+                <Original>&lt;t size='2'&gt;Fitness&lt;/t&gt;&lt;br/&gt;&lt;t size='1.1'&gt;Level %1&lt;/t&gt;&lt;br/&gt;&lt;t size='0.7'&gt;Increases the distance you can sprint&lt;/t&gt;</Original>
+                <Portuguese>&lt;t size='2'&gt;Fitness&lt;/t&gt;&lt;br/&gt;&lt;t size='1.1'&gt;Level %1&lt;/t&gt;&lt;br/&gt;&lt;t size='0.7'&gt;Aumenta a distancia que consegue correr&lt;/t&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_CHAR_SHEET_DIAG_02">
+                <Original>&lt;t size='2'&gt;Trade&lt;/t&gt;&lt;br/&gt;&lt;t size='1.1'&gt;Level %1&lt;/t&gt;&lt;br/&gt;&lt;t size='0.7'&gt;Ability to negotiate better purchasing prices&lt;/t&gt;</Original>
+                <Portuguese>&lt;t size='2'&gt;Trocas&lt;/t&gt;&lt;br/&gt;&lt;t size='1.1'&gt;Level %1&lt;/t&gt;&lt;br/&gt;&lt;t size='0.7'&gt;Abilidade para negociar preços melhores&lt;/t&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_CHAR_SHEET_DIAG_03">
+                <Original>&lt;t size='2'&gt;Stealth&lt;/t&gt;&lt;br/&gt;&lt;t size='1.1'&gt;Level %1&lt;/t&gt;&lt;br/&gt;&lt;t size='0.7'&gt;Less chance of NATO finding illegal items&lt;/t&gt;</Original>
+                <Portuguese>&lt;t size='2'&gt;Furtividade&lt;/t&gt;&lt;br/&gt;&lt;t size='1.1'&gt;Level %1&lt;/t&gt;&lt;br/&gt;&lt;t size='0.7'&gt;Chance menor da NATO encontrar items ilegais&lt;/t&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_CHAR_SHEET_DIAG_04">
+                <Original>Increase Level (-%1 Influence)</Original>
+                <Portuguese>Aumenta Level (-%1 influencia)</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_CHAR_SHEET_DIAG_05">
+                <Original>You do not have enough influence</Original>
+                <Portuguese>Você não tem influencia o suficiente</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_CHAR_SHEET_DIAG_06">
+                <Original>&lt;t size='2'&gt;Stealth&lt;/t&gt;&lt;br/&gt;&lt;t size='1.1'&gt;Level %1&lt;/t&gt;&lt;br/&gt;&lt;t size='0.7'&gt;Less chance of people recognizing you or finding illegal items&lt;/t&gt;</Original>
+                <Portuguese>&lt;t size='2'&gt;Furtividade&lt;/t&gt;&lt;br/&gt;&lt;t size='1.1'&gt;Level %1&lt;/t&gt;&lt;br/&gt;&lt;t size='0.7'&gt;Chance menor de ser reconhecido ou encontrarem items ilegais&lt;/t&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_FACTORY_REFRESH_01">
+                <Original>&lt;t size='0.8' align='center'&gt;Factory is not currently producing anything. Add to the queue above or Reverse-Engineer nearby items to gain blueprints.&lt;/t&gt;&lt;br/&gt;</Original>
+                <Portuguese>&lt;t size='0.8' align='center'&gt;Atualmente a fábrica não está produzindo nada. Adicione itens à fila acima ou realize engenharia reversa em itens próximos para obter blueprints.&lt;/t&gt;&lt;br/&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_FACTORY_REFRESH_02">
+                <Original>&lt;t size='0.8' align='center'&gt;Currently Producing&lt;/t&gt;&lt;br/&gt;&lt;t size='1.1' align='center'&gt;%1&lt;/t&gt;&lt;br/&gt;&lt;br/&gt;</Original>
+                <Portuguese>&lt;t size='0.8' align='center'&gt;Produzindo Atualmente&lt;/t&gt;&lt;br/&gt;&lt;t size='1.1' align='center'&gt;%1&lt;/t&gt;&lt;br/&gt;&lt;br/&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_FACTORY_REFRESH_03">
+                <Original>&lt;t size='0.65' align='center'&gt;Input: $%1 + &lt;/t&gt;</Original>
+                <Portuguese>&lt;t size='0.65' align='center'&gt;Entrada: $%1 + &lt;/t&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_FACTORY_REFRESH_04">
+                <Original>%1 x wood </Original>
+                <Portuguese>%1 x madeira </Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_FACTORY_REFRESH_05">
+                <Original>%1 x steel </Original>
+                <Portuguese>%1 x aço </Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_FACTORY_REFRESH_06">
+                <Original>%1 x plastic</Original>
+                <Portuguese>%1 x plástico</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_FACTORY_REFRESH_07">
+                <Original>Time: %1 of %2 mins&lt;br/&gt;</Original>
+                <Portuguese>Tempo: %1 de %2 mins&lt;br/&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_FACTORY_REFRESH_08">
+                <Original>Output: %1 x %2&lt;br/&gt;&lt;/t&gt;</Original>
+                <Portuguese>Saída: %1 x %2&lt;br/&gt;&lt;/t&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_FACTORY_REFRESH_09">
+                <Original>&lt;t size='0.65' align='center'&gt;Input: $%1 + &lt;/t&gt;</Original>
+                <Portuguese>&lt;t size='0.65' align='center'&gt;Entrada: $%1 + &lt;/t&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_FACTORY_REFRESH_10">
+                <Original>Time: %1 mins&lt;br/&gt;</Original>
+                <Portuguese>Tempo: %1 mins&lt;br/&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_IMPORT_DIAG_01">
+                <Original>Only legal items may be imported while NATO controls %1</Original>
+                <Portuguese>Apenas items legalizados podem ser importando enquanto estiver sobre controle da NATO %1</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_JOB_DETAILS">
+                <Original>Expires in %1 hrs %2 mins</Original>
+                <Portuguese>Expira em %1 hrs %2 mins</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_LOGISTICS_DETAILS">
+                <Original>Someone</Original>
+                <Portuguese>Alguém</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_LOGISTICS_DETAILS_PARSED_01">
+                <Original>%1Fuel: %2%3&lt;br/&gt;</Original>
+                <Portuguese>%1Combustível: %2%3&lt;br/&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_LOGISTICS_DETAILS_PARSED_02">
+                <Original>%1Load: %2kg&lt;br/&gt;</Original>
+                <Portuguese>%1Carga: %2kg&lt;br/&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_LOGISTICS_DETAILS_PARSED_03">
+                <Original>%1All wheels OK&lt;br/&gt;</Original>
+                <Portuguese>%1Rodas OK&lt;br/&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_LOGISTICS_DETAILS_PARSED_04">
+                <Original>%1Need %2 wheels&lt;br/&gt;</Original>
+                <Portuguese>%1Precisa %2 rodas&lt;br/&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_LOGISTICS_DETAILS_PARSED_05">
+                <Original>%1All tracks OK&lt;br/&gt;</Original>
+                <Portuguese>%1Esteiras OK&lt;br/&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_LOGISTICS_DETAILS_PARSED_06">
+                <Original>%1Need %2 tracks&lt;br/&gt;</Original>
+                <Portuguese>%1Precisa %2 esteiras&lt;br/&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_LOGISTICS_DETAILS_PARSED_07">
+                <Original>%1Engine disabled&lt;br/&gt;</Original>
+                <Portuguese>%1Motor desativado&lt;br/&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_LOGISTICS_DETAILS_PARSED_08">
+                <Original>%1Fuel tank ruptured&lt;br/&gt;</Original>
+                <Portuguese>%1Tanque de combustível furado&lt;br/&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_LOGISTICS_DETAILS_PARSED_09">
+                <Original>%1Main rotor disabled&lt;br/&gt;</Original>
+                <Portuguese>%1Rotor principal desativado&lt;br/&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_LOGISTICS_DETAILS_PARSED_10">
+                <Original>%1Tail rotor disabled&lt;br/&gt;</Original>
+                <Portuguese>%1Rotor traseiro desativado&lt;br/&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_LOGISTICS_DETAILS_PARSED_11">
+                <Original>%1Gun disabled&lt;br/&gt;</Original>
+                <Portuguese>%1Armamento desativado&lt;br/&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_LOGISTICS_DETAILS_PARSED_12">
+                <Original>%1&lt;br/&gt;Ammo:&lt;br/&gt;%2</Original>
+                <Portuguese>%1&lt;br/&gt;Munição:&lt;br/&gt;%2</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_LOGISTICS_DETAILS_PARSED_13">
+                <Original>%1&lt;br/&gt;Out Of Ammo&lt;br/&gt;</Original>
+                <Portuguese>%1&lt;br/&gt;Sem munição&lt;br/&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_LOGISTICS_DETAILS_PARSED_14">
+                <Original>&lt;t align='center' size='1.2'&gt;%1&lt;/t&gt;&lt;br/&gt;&lt;t align='center' size='1'&gt;Owner: %2&lt;/t&gt;&lt;br/&gt;&lt;t align='left' size='0.7'&gt;%3&lt;/t&gt;</Original>
+                <Portuguese>&lt;t align='center' size='1.2'&gt;%1&lt;/t&gt;&lt;br/&gt;&lt;t align='center' size='1'&gt;Dono: %2&lt;/t&gt;&lt;br/&gt;&lt;t align='left' size='0.7'&gt;%3&lt;/t&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_MAIN_MENU_01">
+                <Original>Clear</Original>
+                <Portuguese>Limpo</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_MAIN_MENU_02">
+                <Original>Cloudy</Original>
+                <Portuguese>Nublado</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_MAIN_MENU_03">
+                <Original>Rain</Original>
+                <Portuguese>Chuvendo</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_MAIN_MENU_04">
+                <Original>Storm</Original>
+                <Portuguese>Tempestade</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_MAIN_MENU_05">
+                <Original>&lt;t align='left' size='0.65'&gt;Resistance Funds: $%1 (Tax Rate %2%3)&lt;/t&gt;</Original>
+                <Portuguese>&lt;t align='left' size='0.65'&gt;Fundos da Resistencia: $%1 (Taxa do Imposto %2%3)&lt;/t&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_MAIN_MENU_06">
+                <Original>&lt;t align='left' size='0.65'&gt;Resistance Support: %1 (%2%3) %4 (%5%6)&lt;/t&gt;&lt;br/&gt;&lt;t align='left' size='0.65'&gt;Influence: %7&lt;/t&gt;&lt;br/&gt;&lt;t align='left' size='0.65'&gt;Weather: %8 (Forecast: %9)&lt;/t&gt;&lt;br/&gt;&lt;t align='left' size='0.65'&gt;Fuel Price: $%10/L&lt;/t&gt;&lt;br/&gt;%11</Original>
+                <Portuguese>&lt;t align='left' size='0.65'&gt;Suporte á Resistencia: %1 (%2%3) %4 (%5%6)&lt;/t&gt;&lt;br/&gt;&lt;t align='left' size='0.65'&gt;Influencia: %7&lt;/t&gt;&lt;br/&gt;&lt;t align='left' size='0.65'&gt;Clima: %8 (Previsão: %9)&lt;/t&gt;&lt;br/&gt;&lt;t align='left' size='0.65'&gt;Custo do Combustivel: $%10/L&lt;/t&gt;&lt;br/&gt;%11</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_MAIN_MENU_07">
+                <Original>&lt;t align='left' size='0.8'&gt;Warehouse&lt;/t&gt;&lt;br/&gt;&lt;t align='left' size='0.65'&gt;Owned by %1&lt;/t&gt;&lt;br/&gt;&lt;t align='left' size='0.65'&gt;Damage: %2%3&lt;/t&gt;</Original>
+                <Portuguese>&lt;t align='left' size='0.8'&gt;Armzazem&lt;/t&gt;&lt;br/&gt;&lt;t align='left' size='0.65'&gt;Propriedade de %1&lt;/t&gt;&lt;br/&gt;&lt;t align='left' size='0.65'&gt;Dano: %2%3&lt;/t&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_MAIN_MENU_08">
+                <Original>&lt;t align='left' size='0.8'&gt;Camp&lt;/t&gt;&lt;br/&gt;&lt;t align='left' size='0.65'&gt;Owned by %1&lt;/t&gt;</Original>
+                <Portuguese>&lt;t align='left' size='0.8'&gt;Acampamento&lt;/t&gt;&lt;br/&gt;&lt;t align='left' size='0.65'&gt;Propriedade de %1&lt;/t&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_MAIN_MENU_09">
+                <Original>Sell ($%1)</Original>
+                <Portuguese>Vender ($%1)</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_MAIN_MENU_10">
+                <Original>&lt;t align='left' size='0.8'&gt;%1&lt;/t&gt;&lt;br/&gt;&lt;t align='left' size='0.65'&gt;Owned by %2&lt;/t&gt;&lt;br/&gt;&lt;t align='left' size='0.65'&gt;Lease Value: $%3/6hrs&lt;/t&gt;&lt;br/&gt;&lt;t align='left' size='0.65'&gt;Damage: %4%5&lt;/t&gt;</Original>
+                <Portuguese>&lt;t align='left' size='0.8'&gt;%1&lt;/t&gt;&lt;br/&gt;&lt;t align='left' size='0.65'&gt;Propriedade de %2&lt;/t&gt;&lt;br/&gt;&lt;t align='left' size='0.65'&gt;Valor do Aluguel: $%3/6hrs&lt;/t&gt;&lt;br/&gt;&lt;t align='left' size='0.65'&gt;Dano: %4%5&lt;/t&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_MAIN_MENU_11">
+                <Original>&lt;t align='left' size='0.8'&gt;%1&lt;/t&gt;&lt;br/&gt;&lt;t align='left' size='0.65'&gt;Owned by %2&lt;/t&gt;&lt;br/&gt;&lt;t align='left' size='0.65'&gt;Damage: %3%4&lt;/t&gt;</Original>
+                <Portuguese>&lt;t align='left' size='0.8'&gt;%1&lt;/t&gt;&lt;br/&gt;&lt;t align='left' size='0.65'&gt;Propiedade de %2&lt;/t&gt;&lt;br/&gt;&lt;t align='left' size='0.65'&gt;Dano: %3%4&lt;/t&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_MAIN_MENU_12">
+                <Original>&lt;t align='left' size='0.8'&gt;Barracks&lt;/t&gt;&lt;br/&gt;&lt;t align='left' size='0.65'&gt;Built by %1&lt;/t&gt;&lt;br/&gt;&lt;t align='left' size='0.65'&gt;Damage: %2%3&lt;/t&gt;</Original>
+                <Portuguese>&lt;t align='left' size='0.8'&gt;Quartel&lt;/t&gt;&lt;br/&gt;&lt;t align='left' size='0.65'&gt;Construido por %1&lt;/t&gt;&lt;br/&gt;&lt;t align='left' size='0.65'&gt;Dano: %2%3&lt;/t&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_MAIN_MENU_13">
+                <Original>&lt;t align='left' size='0.8'&gt;Training Camp&lt;/t&gt;&lt;br/&gt;&lt;t align='left' size='0.65'&gt;Built by %1&lt;/t&gt;&lt;br/&gt;&lt;t align='left' size='0.65'&gt;Damage: %2%3&lt;/t&gt;</Original>
+                <Portuguese>&lt;t align='left' size='0.8'&gt;Campo de treinamento&lt;/t&gt;&lt;br/&gt;&lt;t align='left' size='0.65'&gt;Construido por %1&lt;/t&gt;&lt;br/&gt;&lt;t align='left' size='0.65'&gt;Dano: %2%3&lt;/t&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_MAIN_MENU_14">
+                <Original>&lt;t align='left' size='0.8'&gt;Refugee Camp&lt;/t&gt;&lt;br/&gt;&lt;t align='left' size='0.65'&gt;Built by %1&lt;/t&gt;&lt;br/&gt;&lt;t align='left' size='0.65'&gt;Damage: %2%3&lt;/t&gt;</Original>
+                <Portuguese>&lt;t align='left' size='0.8'&gt;Campo de refugiados&lt;/t&gt;&lt;br/&gt;&lt;t align='left' size='0.65'&gt;Construido por %1&lt;/t&gt;&lt;br/&gt;&lt;t align='left' size='0.65'&gt;Dano: %2%3&lt;/t&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_MAIN_MENU_15">
+                <Original>&lt;t align='left' size='0.8'&gt;%1&lt;/t&gt;&lt;br/&gt;&lt;t align='left' size='0.65'&gt;Founded by %2&lt;/t&gt;</Original>
+                <Portuguese>&lt;t align='left' size='0.8'&gt;%1&lt;/t&gt;&lt;br/&gt;&lt;t align='left' size='0.65'&gt;Fundado por %2&lt;/t&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_MAIN_MENU_16">
+                <Original>&lt;t align='left' size='0.8'&gt;%1&lt;/t&gt;&lt;br/&gt;&lt;t align='left' size='0.65'&gt;Lease Value: $%2/6hrs&lt;/t&gt;</Original>
+                <Portuguese>&lt;t align='left' size='0.8'&gt;%1&lt;/t&gt;&lt;br/&gt;&lt;t align='left' size='0.65'&gt;Valor do Aluguel: $%2/6hrs&lt;/t&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_MAIN_MENU_17">
+                <Original>&lt;t align='left' size='0.8'&gt;Barracks&lt;/t&gt;&lt;br/&gt;</Original>
+                <Portuguese>&lt;t align='left' size='0.8'&gt;Quartel&lt;/t&gt;&lt;br/&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_MAIN_MENU_18">
+                <Original>&lt;t align='left' size='0.8'&gt;Police Station&lt;/t&gt;&lt;br/&gt;&lt;t align='left' size='0.65'&gt;Built by %1&lt;/t&gt;</Original>
+                <Portuguese>&lt;t align='left' size='0.8'&gt;Estação Policial&lt;/t&gt;&lt;br/&gt;&lt;t align='left' size='0.65'&gt;Construido por %1&lt;/t&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_MAIN_MENU_19">
+                <Original>&lt;t align='left' size='0.8'&gt;Workshop&lt;/t&gt;&lt;br/&gt;&lt;t align='left' size='0.65'&gt;Built by %1&lt;/t&gt;</Original>
+                <Portuguese>&lt;t align='left' size='0.8'&gt;Oficina&lt;/t&gt;&lt;br/&gt;&lt;t align='left' size='0.65'&gt;Construido por %1&lt;/t&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_MAIN_MENU_20">
+                <Original>&lt;t align='left' size='0.8'&gt;%1&lt;/t&gt;&lt;br/&gt;&lt;t align='left' size='0.65'&gt;Under resistance control&lt;/t&gt;</Original>
+                <Portuguese>&lt;t align='left' size='0.8'&gt;%1&lt;/t&gt;&lt;br/&gt;&lt;t align='left' size='0.65'&gt;Sob controle da Resistencia&lt;/t&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_MAIN_MENU_21">
+                <Original>&lt;t align='left' size='0.8'&gt;%1&lt;/t&gt;&lt;br/&gt;&lt;t align='left' size='0.65'&gt;Under resistance control&lt;/t&gt;</Original>
+                <Portuguese>&lt;t align='left' size='0.8'&gt;%1&lt;/t&gt;&lt;br/&gt;&lt;t align='left' size='0.65'&gt;Sob controle da NATO&lt;/t&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_MAIN_MENU_22">
+                <Original>&lt;t align='left' size='0.8'&gt;%1&lt;/t&gt;&lt;br/&gt;&lt;t align='left' size='0.65'&gt;Operational&lt;/t&gt;&lt;br/&gt;&lt;t align='left' size='0.65'&gt;(see resistance screen)&lt;/t&gt;&lt;br/&gt;</Original>
+                <Portuguese>&lt;t align='left' size='0.8'&gt;%1&lt;/t&gt;&lt;br/&gt;&lt;t align='left' size='0.65'&gt;Operacional&lt;/t&gt;&lt;br/&gt;&lt;t align='left' size='0.65'&gt;(confira painel da resistencia)&lt;/t&gt;&lt;br/&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_MAIN_MENU_23">
+                <Original>&lt;t align='left' size='0.8'&gt;%1&lt;/t&gt;&lt;br/&gt;&lt;t align='left' size='0.65'&gt;Out Of Operation&lt;/t&gt;&lt;br/&gt;&lt;t align='left' size='0.65'&gt;$%2&lt;/t&gt;</Original>
+                <Portuguese>&lt;t align='left' size='0.8'&gt;%1&lt;/t&gt;&lt;br/&gt;&lt;t align='left' size='0.65'&gt;Fora de Operação&lt;/t&gt;&lt;br/&gt;&lt;t align='left' size='0.65'&gt;$%2&lt;/t&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_MAIN_MENU_24">
+                <Original>&lt;t align='left' size='0.8'&gt;%1&lt;/t&gt;&lt;br/&gt;&lt;t align='left' size='0.65'&gt;Operational&lt;/t&gt;</Original>
+                <Portuguese>&lt;t align='left' size='0.8'&gt;%1&lt;/t&gt;&lt;br/&gt;&lt;t align='left' size='0.65'&gt;Operacional&lt;/t&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_MANAGE_RECRUIT_DIAG_01">
+                <Original>&lt;t align='center' size='1.3'&gt;%1&lt;/t&gt;&lt;br/&gt;&lt;br/&gt;&lt;t align='left' size='0.7'&gt;Location: %2&lt;/t&gt;&lt;br/&gt;&lt;t align='left' size='0.7'&gt;Rank: %3&lt;/t&gt;&lt;br/&gt;&lt;t align='left' size='0.7'&gt;XP: %4/%5&lt;/t&gt;</Original>
+                <Portuguese>&lt;t align='center' size='1.3'&gt;%1&lt;/t&gt;&lt;br/&gt;&lt;br/&gt;&lt;t align='left' size='0.7'&gt;Local: %2&lt;/t&gt;&lt;br/&gt;&lt;t align='left' size='0.7'&gt;Patente: %3&lt;/t&gt;&lt;br/&gt;&lt;t align='left' size='0.7'&gt;XP: %4/%5&lt;/t&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_MAP_INFO_DIAG_01">
+                <Original>Click on a location</Original>
+                <Portuguese>Clique em um local</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_MAP_INFO_DIAG_02">
+                <Original>Under NATO Control</Original>
+                <Portuguese>Sob controle da NATO</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_MAP_INFO_DIAG_03">
+                <Original>Anarchy</Original>
+                <Portuguese>Anarquia</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_MAP_INFO_DIAG_04">
+                <Original>Under Resistance Control</Original>
+                <Portuguese>Sob controle da Resistencia</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_MAP_INFO_DIAG_05">
+                <Original>&lt;t size='1.2' color='#222222'&gt;%1&lt;/t&gt;&lt;br/&gt;&lt;t size='0.5' color='#222222'&gt;Status: %7&lt;/t&gt;&lt;br/&gt;&lt;t size='0.5' color='#222222'&gt;Population: %2&lt;/t&gt;&lt;br/&gt;&lt;t size='0.5' color='#222222'&gt;Stability: %3%4&lt;/t&gt;&lt;br/&gt;&lt;t size='0.5' color='#222222'&gt;Resistance Support: %5%6&lt;/t&gt;</Original>
+                <Portuguese>&lt;t size='1.2' color='#222222'&gt;%1&lt;/t&gt;&lt;br/&gt;&lt;t size='0.5' color='#222222'&gt;Status: %7&lt;/t&gt;&lt;br/&gt;&lt;t size='0.5' color='#222222'&gt;População: %2&lt;/t&gt;&lt;br/&gt;&lt;t size='0.5' color='#222222'&gt;Estabilidade: %3%4&lt;/t&gt;&lt;br/&gt;&lt;t size='0.5' color='#222222'&gt;Suporte da Resistencia: %5%6&lt;/t&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_MAP_INFO_DIAG_06">
+                <Original>&lt;t size='1.2' color='#222222'&gt;%1&lt;/t&gt;&lt;br/&gt;&lt;t size='0.5' color='#222222'&gt;Status: %2&lt;/t&gt;</Original>
+                <Portuguese>&lt;t size='1.2' color='#222222'&gt;%1&lt;/t&gt;&lt;br/&gt;&lt;t size='0.5' color='#222222'&gt;Status: %2&lt;/t&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_MAP_INFO_DIAG_08">
+                <Original>Owned</Original>
+                <Portuguese>Controlado</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_MEMBER_INFO_01">
+                <Original> (General)</Original>
+                <Portuguese> (General)</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_POLICE_DIAG_01">
+                <Original>This police station is under NATO control</Original>
+                <Portuguese>Esta estação policial está sob controle da NATO</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_POLICE_DIAG_02">
+                <Original>None</Original>
+                <Portuguese>Nenhum</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_POLICE_DIAG_03">
+                <Original>+%1 Stability/10 mins</Original>
+                <Portuguese>+%1 Estabilidade/10 mins</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_POLICE_DIAG_04">
+                <Original>&lt;t size='2' align='center'&gt;%1 Police Station&lt;/t&gt;</Original>
+                <Portuguese>&lt;t size='2' align='center'&gt;%1 Estação Policial&lt;/t&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_POLICE_DIAG_05">
+                <Original>&lt;t align='center'&gt;Hire police ($-%1)&lt;/t&gt;</Original>
+                <Portuguese>&lt;t align='center'&gt;Contratar policia ($-%1)&lt;/t&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_POLICE_DIAG_06">
+                <Original>&lt;t size='1.5' align='center'&gt;Police: %1&lt;/t&gt;</Original>
+                <Portuguese>&lt;t size='1.5' align='center'&gt;Policia: %1&lt;/t&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_POLICE_DIAG_07">
+                <Original>&lt;t size='1.2' align='center'&gt;Effects&lt;/t&gt;&lt;br/&gt;&lt;br/&gt;&lt;t size='0.8' align='center'&gt;%1&lt;/t&gt;</Original>
+                <Portuguese>&lt;t size='1.2' align='center'&gt;Efeitos&lt;/t&gt;&lt;br/&gt;&lt;br/&gt;&lt;t size='0.8' align='center'&gt;%1&lt;/t&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_RECRUIT_DIAG_01">
+                <Original>Must repair before you can recruit</Original>
+                <Portuguese>Repare antes de recrutar</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_RECRUIT_DIAG_02">
+                <Original>This barracks is under NATO control</Original>
+                <Portuguese>Este quartel está sob controle da NATO</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_RESISTANCE_DIAG_01">
+                <Original>&lt;t align='center' size='0.7'&gt;Balance Sheet (per 6 hrs)&lt;/t&gt;&lt;br/&gt;</Original>
+                <Portuguese>&lt;t align='center' size='0.7'&gt;Balança Patrimonial (por 6 hrs)&lt;/t&gt;&lt;br/&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_RESISTANCE_DIAG_02">
+                <Original>&lt;t align='left' size='0.65'&gt;Resistance Funds: $%1&lt;/t&gt;&lt;br/&gt;</Original>
+                <Portuguese>&lt;t align='left' size='0.65'&gt;Fundos da Resistencia: $%1&lt;/t&gt;&lt;br/&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_RESISTANCE_DIAG_03">
+                <Original>&lt;t size='0.65'&gt;Lease Income: $%1&lt;/t&gt;&lt;br/&gt;</Original>
+                <Portuguese>&lt;t size='0.65'&gt;Renda de Aluguel: $%1&lt;/t&gt;&lt;br/&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_RESISTANCE_DIAG_04">
+                <Original>&lt;t size='0.65'&gt;Civilian Income: $%1 ($%2 per player)&lt;/t&gt;&lt;br/&gt;</Original>
+                <Portuguese>&lt;t size='0.65'&gt;Renda Civil: $%1 ($%2 por player)&lt;/t&gt;&lt;br/&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_RESISTANCE_DIAG_05">
+                <Original>&lt;t size='0.65'&gt;Resistance Tax (%1%2): $%3 ($%4 per player)&lt;/t&gt;&lt;br/&gt;</Original>
+                <Portuguese>&lt;t size='0.65'&gt;Taxa da Resistencia (%1%2): $%3 ($%4 por player)&lt;/t&gt;&lt;br/&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_RESISTANCE_DIAG_06">
+                <Original>&lt;t size='0.65'&gt;Business Income: $%1 (6 hrs)&lt;/t&gt;&lt;br/&gt;</Original>
+                <Portuguese>&lt;t size='0.65'&gt;Renda Empresarial: $%1 (6 hrs)&lt;/t&gt;&lt;br/&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_RESISTANCE_DIAG_07">
+                <Original>&lt;t size='0.65'&gt;Wages: $%1%2 (6 hrs)&lt;/t&gt;&lt;br/&gt;</Original>
+                <Portuguese>&lt;t size='0.65'&gt;Salários: $%1%2 (6 hrs)&lt;/t&gt;&lt;br/&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_RESISTANCE_DIAG_08">
+                <Original>&lt;t size='0.8'&gt;Balance (Resistance): $%1&lt;/t&gt;&lt;br/&gt;</Original>
+                <Portuguese>&lt;t size='0.8'&gt;Balança (Resistencia): $%1&lt;/t&gt;&lt;br/&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_RESISTANCE_DIAG_09">
+                <Original>&lt;t size='0.8'&gt;Balance (You): $%1&lt;/t&gt;&lt;br/&gt;</Original>
+                <Portuguese>&lt;t size='0.8'&gt;Balança (Você): $%1&lt;/t&gt;&lt;br/&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_SHOP_PIC_01">
+                <Original>Quad Bike w/ HMG Backpacks</Original>
+                <Portuguese>Quadriciculo com mochila HMG</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_SHOP_PIC_02">
+                <Original>A Quad-bike containing the backpacks required to set up a Static HMG</Original>
+                <Portuguese>Um quadriciculo com as mochilas para montar uma metralhadora estatica</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_SHOP_PIC_03">
+                <Original>All items required for this unit are available in the warehouse</Original>
+                <Portuguese>Todos os items requeridos para está unidade estão disponiveis no armazem</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_SHOP_PIC_04">
+                <Original>These items are not in the warehouse and must be purchased:&lt;br/&gt;%1</Original>
+                <Portuguese>Esses items não estão no armazem e precisam ser comprados:&lt;br/&gt;%1</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_SHOP_PIC_05">
+                <Original>Will recruit this squad into your High-Command bar, accessible with ctrl-space.</Original>
+                <Portuguese>Vai recrutar esta unidade para a sua barra de Alto comando, acessivel com ctrl-espaço.</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_SHOP_PIC_06">
+                <Original>Gets you from A to B, not guaranteed to stay upright.</Original>
+                <Portuguese>Te leva do ponto A ao B, não é garantido se manter estável.</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_SHOP_PIC_07">
+                <Original>Required: %1 x chemicals (%2 available)&lt;br/&gt;%3</Original>
+                <Portuguese>Requer: %1 x quimicos (%2 disponivel)&lt;br/&gt;%3</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_SHOP_PIC_08">
+                <Original>Not Available</Original>
+                <Portuguese>Não disponivel</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_UPLOAD_DIAG_01">
+                <Original>Copy And Paste this data to load from a string.</Original>
+                <Portuguese>Copie e cole estes dados para carregar de uma string.</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_UPLOAD_DIAG_02">
+                <Original>&lt;t font='PuristaMedium'&gt;Use the data above to share your save or externally backup your mission.&lt;br/&gt;To load a mission from this data copy and paste it into the text box provided when selecting 'Load Game' in the mission menu. This data does contain your Steam ID and can be used to identify you.&lt;/t&gt;</Original>
+                <Portuguese>&lt;t font='PuristaMedium'&gt;Utilize os dados acima para compartilhar seu arquivo de jogo salvo ou fazer backup externo da sua missão.&lt;br/&gt;Para carregar uma missão a partir desses dados, copie e cole o código na caixa de texto fornecida ao selecionar "Carregar Jogo" no menu de missões. Esses dados contêm seu ID do Steam e podem ser usados ​​para identificá-lo.&lt;/t&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_DISPLAY_DISPLAY_WAREHOUSE_PIC_01">
+                <Original>&lt;t align='center' size='1.5'&gt;%1&lt;/t&gt;&lt;br/&gt;&lt;t align='center' size='1.2'&gt;%3 in stock&lt;/t&gt;&lt;br/&gt;&lt;br/&gt;&lt;t align='center' size='0.8'&gt;%2&lt;/t&gt;</Original>
+                <Portuguese>&lt;t align='center' size='1.5'&gt;%1&lt;/t&gt;&lt;br/&gt;&lt;t align='center' size='1.2'&gt;%3 em estoque&lt;/t&gt;&lt;br/&gt;&lt;br/&gt;&lt;t align='center' size='0.8'&gt;%2&lt;/t&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_BUILD_01">
+                <Original>Walls</Original>
+                <Portuguese>Paredes</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_BUILD_02">
+                <Original>Stop people (or tanks) from getting in</Original>
+                <Portuguese>Impeça a entrada de pessoas (ou tanques)</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_BUILD_03">
+                <Original>Observation Post</Original>
+                <Portuguese>Posto de Observação</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_BUILD_04">
+                <Original>A small tower that will garrison static weapons</Original>
+                <Portuguese>Uma pequena torre que abrigará armas estáticas</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_BUILD_05">
+                <Original>Bunkers</Original>
+                <Portuguese>Bunkers</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_BUILD_06">
+                <Original>Small defensive structures</Original>
+                <Portuguese>Pequenas estruturas defensivas</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_BUILD_07">
+                <Original>Warehouse</Original>
+                <Portuguese>Armazém</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_BUILD_08">
+                <Original>Stores and retrieves items from all warehouses</Original>
+                <Portuguese>Armazena e recolhe itens de todos os armazéns</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_BUILD_09">
+                <Original>Barracks</Original>
+                <Portuguese>Quartel</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_BUILD_10">
+                <Original>Workshop</Original>
+                <Portuguese>Oficina</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_BUILD_11">
+                <Original>Modify vehicles</Original>
+                <Portuguese>Modifique veiculos</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_BUILD_12">
+                <Original>Helipad</Original>
+                <Portuguese>Heliporto</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_BUILD_13">
+                <Original>Apparently helicopters need a place to land</Original>
+                <Portuguese>Aparentemente os helicópteros precisam de um lugar para pousar</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_BUILD_14">
+                <Original>Guard Tower</Original>
+                <Portuguese>Torre Guarda</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_BUILD_15">
+                <Original>A huge tower. Will garrison static weapons</Original>
+                <Portuguese>Uma torre enorme. Irá guarnecer armas estáticas.</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_BUILD_16">
+                <Original>Radar</Original>
+                <Portuguese>Radar</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_BUILD_17">
+                <Original>Reveals all drones, helicopters and planes within a 2.5km radius.</Original>
+                <Portuguese>Revela todos os drones, helicópteros e aviões num raio de 2.5 km</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_BUILD_18">
+                <Original>House</Original>
+                <Portuguese>Casa</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_BUILD_19">
+                <Original>4 Walls, a roof, maybe a door that opens if you're lucky.</Original>
+                <Portuguese>4 paredes, um teto e, com sorte, uma porta que se abra.</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_BUILD_20">
+                <Original>Police Station</Original>
+                <Portuguese>Estação Policial</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_BUILD_21">
+                <Original>Increase stability and keep the peace</Original>
+                <Portuguese>Aumenta a estabilidade e mantem a paz</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_BUILD_22">
+                <Original>&lt;t size='2' align='center'&gt;Blah Police Station&lt;/t&gt;</Original>
+                <Portuguese>&lt;t size='2' align='center'&gt;Blah Estação Policial&lt;/t&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_BUILD_23">
+                <Original>&lt;t size='1.5' align='center'&gt;Police: 2&lt;/t&gt;</Original>
+                <Portuguese>&lt;t size='1.5' align='center'&gt;Policia: 2&lt;/t&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_BUILD_24">
+                <Original>&lt;t align='center'&gt;Hire police&lt;/t&gt;</Original>
+                <Portuguese>&lt;t align='center'&gt;Contratar policia&lt;/t&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_BUILD_25">
+                <Original>&lt;t size='1.2' align='center'&gt;Effects&lt;/t&gt;&lt;br/&gt;&lt;br/&gt;&lt;t size='0.8' align='center'&gt;+1 Stability/10 mins&lt;/t&gt;</Original>
+                <Portuguese>&lt;t size='1.2' align='center'&gt;Effects&lt;/t&gt;&lt;br/&gt;&lt;br/&gt;&lt;t size='0.8' align='center'&gt;+1 Estabilidade/10 mins&lt;/t&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_BUILD_26">
+                <Original>Edit Loadout</Original>
+                <Portuguese>Editar Loadout</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_FACTORY_01">
+                <Original>&lt;t size='1.5' align='center'&gt;Factory&lt;/t&gt;&lt;br/&gt;&lt;t size='0.8' align='center'&gt;Currently producing&lt;/t&gt;</Original>
+                <Portuguese>&lt;t size='1.5' align='center'&gt;Factory&lt;/t&gt;&lt;br/&gt;&lt;t size='0.8' align='center'&gt;Atualmente produzindo&lt;/t&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_FACTORY_02">
+                <Original>&lt;t size='0.8' align='center'&gt;Change production&lt;/t&gt;</Original>
+                <Portuguese>&lt;t size='0.8' align='center'&gt;Alterar produção&lt;/t&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_FACTORY_03">
+                <Original>Clear</Original>
+                <Portuguese>Limpar</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_FACTORY_04">
+                <Original>Set</Original>
+                <Portuguese>Setar</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_FACTORY_05">
+                <Original>Reverse-Engineer</Original>
+                <Portuguese>Engenharia-reversa</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_FACTORY_06">
+                <Original>&lt;t align='center' size='1.8'&gt;Factory&lt;/t&gt;</Original>
+                <Portuguese>&lt;t align='center' size='1.8'&gt;Fabrica&lt;/t&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_FACTORY_07">
+                <Original>&lt;t size='0.9'&gt;Build Queue&lt;/t&gt;</Original>
+                <Portuguese>&lt;t size='0.9'&gt;Fila em Construção&lt;/t&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_FACTORY_08">
+                <Original>&lt;t size='0.9'&gt;Blueprints&lt;/t&gt;</Original>
+                <Portuguese>&lt;t size='0.9'&gt;Plantas&lt;/t&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_FACTORY_09">
+                <Original>Remove</Original>
+                <Portuguese>Remover</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_FACTORY_10">
+                <Original>Remove All</Original>
+                <Portuguese>Remover Tudo</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_FACTORY_11">
+                <Original>Craft</Original>
+                <Portuguese>Fabricar</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_PLACE_01">
+                <Original>Enter a name for your new base</Original>
+                <Portuguese>Insira um nome para sua nova base</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_PLACE_02">
+                <Original>Done</Original>
+                <Portuguese>Finalizar</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_PLACE_03">
+                <Original>OK</Original>
+                <Portuguese>OK</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_PLACE_04">
+                <Original>Sandbags</Original>
+                <Portuguese>Saco de Areia</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_PLACE_05">
+                <Original>Light defense</Original>
+                <Portuguese>Defesa leve</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_PLACE_06">
+                <Original>Camo Nets</Original>
+                <Portuguese>Redes Camufladas</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_PLACE_07">
+                <Original>Hide from the helicopters</Original>
+                <Portuguese>Esconde de helicopteros</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_PLACE_08">
+                <Original>Barriers</Original>
+                <Portuguese>Barreiras</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_PLACE_09">
+                <Original>Medium defense</Original>
+                <Portuguese>Defesa média</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_PLACE_10">
+                <Original>Camp</Original>
+                <Portuguese>Acampamento</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_PLACE_11">
+                <Original>Creates a fast travel destination</Original>
+                <Portuguese>Cria um destino de viagem rápida</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_PLACE_12">
+                <Original>Ammobox</Original>
+                <Portuguese>Caixa de munição</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_PLACE_13">
+                <Original>An empty ammobox</Original>
+                <Portuguese>Uma caixa de munição vazia</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_PLACE_14">
+                <Original>Misc</Original>
+                <Portuguese>Misc</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_PLACE_15">
+                <Original>Miscellaneous (but useful) items</Original>
+                <Portuguese>Itens diversos (mas úteis)</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_PLACE_16">
+                <Original>FOB</Original>
+                <Portuguese>FOB</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_PLACE_17">
+                <Original>Creates a fast travel destination, allows building of light military structures</Original>
+                <Portuguese>Cria um destino de viagens rápidas e permite a construção de estruturas militares leves.</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_PLACE_18">
+                <Original>Map</Original>
+                <Portuguese>Mapa</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_PLACE_19">
+                <Original>A map</Original>
+                <Portuguese>um mapa</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_PLACE_20">
+                <Original>Safe</Original>
+                <Portuguese>Cofre</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_PLACE_21">
+                <Original>Store and retrieve money</Original>
+                <Portuguese>Armazene e retire dinheiro</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_RESISTANCE_01">
+                <Original>&lt;t align='center' size='2'&gt;Resistance&lt;/t&gt;</Original>
+                <Portuguese>&lt;t align='center' size='2'&gt;Resistencia&lt;/t&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_RESISTANCE_02">
+                <Original>Make General</Original>
+                <Portuguese>Fazer General</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_RESISTANCE_03">
+                <Original>Transfer funds</Original>
+                <Portuguese>Transferir fundos</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_RESISTANCE_04">
+                <Original>&lt;t align='center' size='1.2'&gt;Businesses&lt;/t&gt;</Original>
+                <Portuguese>&lt;t align='center' size='1.2'&gt;Empresas&lt;/t&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_RESISTANCE_05">
+                <Original>Fire</Original>
+                <Portuguese>Demitir</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_RESISTANCE_06">
+                <Original>Hire</Original>
+                <Portuguese>Contratar</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_RESISTANCE_07">
+                <Original>Give funds</Original>
+                <Portuguese>Doar fundos</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_RESISTANCE_08">
+                <Original>Take funds</Original>
+                <Portuguese>Pegar fundos</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_RESISTANCE_09">
+                <Original>&lt;t size='1.5' align='center'&gt;Base&lt;/t&gt;</Original>
+                <Portuguese>&lt;t size='1.5' align='center'&gt;Base&lt;/t&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_RESISTANCE_10">
+                <Original>+1 Rifleman</Original>
+                <Portuguese>+1 Fuzileiro</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_RESISTANCE_11">
+                <Original>+1 Autorifleman</Original>
+                <Portuguese>+1 uzileiro Automático</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_RESISTANCE_12">
+                <Original>+1 Grenadier</Original>
+                <Portuguese>+1 Granadeiro</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_RESISTANCE_13">
+                <Original>+1 Medic</Original>
+                <Portuguese>+1 Médico</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_RESISTANCE_14">
+                <Original>+1 Anti-Tank</Original>
+                <Portuguese>+1 Anti-Tanque</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_RESISTANCE_15">
+                <Original>+1 Anti-Air</Original>
+                <Portuguese>+1 Anti-Aereo</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_RESISTANCE_16">
+                <Original>+1 HMG</Original>
+                <Portuguese>+1 HMG</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_RESISTANCE_17">
+                <Original>+1 GMG</Original>
+                <Portuguese>+1 GMG</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_RESISTANCE_18">
+                <Original>Set Waypoint</Original>
+                <Portuguese>Setar Waypoint</Portuguese>
+            </Key>
+            <Key ID="STR_UI_DIAG_RESISTANCE_19">
+                <Original>Clear Waypoint</Original>
+                <Portuguese>Remover Waypoint</Portuguese>
+            </Key>
+        </Container>
+        <Container name="Events">
+            <Key ID="STR_EVENT_BUILDING_DAMAGED_01">
+                <Original>Warehouse damaged %1</Original>
+                <Portuguese>Armazém danificado %1</Portuguese>
+            </Key>
+            <Key ID="STR_EVENT_BUILDING_DAMAGED_02">
+                <Original>Police station destroyed in %1</Original>
+                <Portuguese>Delegacia polícial destruída em %1</Portuguese>
+            </Key>
+            <Key ID="STR_EVENT_DEATH_HANDLER_01">
+                <Original>A high-ranking NATO officer has been killed</Original>
+                <Portuguese>Um oficial de alta patente da NATO foi morto.</Portuguese>
+            </Key>
+            <Key ID="STR_EVENT_DEATH_HANDLER_02">
+                <Original>An employee of %1 has died</Original>
+                <Portuguese>Um funcionário de %1 morreu</Portuguese>
+            </Key>
+            <Key ID="STR_EVENT_DEATH_HANDLER_03">
+                <Original>The leader of %2 in %1 has been eliminated</Original>
+                <Portuguese>O líder de %2 em %1 foi eliminado</Portuguese>
+            </Key>
+            <Key ID="STR_EVENT_DEATH_HANDLER_04">
+                <Original>A police officer has been killed in %1</Original>
+                <Portuguese>Um policial foi morto em %1</Portuguese>
+            </Key>
+            <Key ID="STR_EVENT_DEATH_HANDLER_05">
+                <Original>You killed a civilian</Original>
+                <Portuguese>Você matou um civil</Portuguese>
+            </Key>
+            <Key ID="STR_EVENT_EXPLOSIVES_PLACED_HANDLER_01">
+                <Original>You have been seen placing an explosive</Original>
+                <Portuguese>Você foi visto plantando um explosivo</Portuguese>
+            </Key>
+            <Key ID="STR_EVENT_HEALED_HANDLER_01">
+                <Original>You have been seen drugging people</Original>
+                <Portuguese>Você foi visto drogando pessoas</Portuguese>
+            </Key>
+            <Key ID="STR_EVENT_KEY_HANDLER_01">
+                <Original>Take some time to explore the main menu, when you're finished open the map (%1 key)</Original>
+                <Portuguese>Reserve um tempo para explorar o menu principal e, quando terminar, abra o mapa (tecla %1)</Portuguese>
+            </Key>
+            <Key ID="STR_EVENT_KEY_HANDLER_02">
+                <Original>&lt;t align='center'&gt;&lt;t size='0.6' color='#ffffff'&gt;Main Menu&lt;/t&gt;&lt;br/&gt;&lt;br/&gt;&lt;t size='0.5' color='#ffffff'&gt;From here you can perform basic actions such as recruiting civilians or fast travelling to buildings you own, friendly bases and camps that you place. As you can see on the bottom right, this shack is owned by you, so you can therefore fast travel back here when you need to, but not while wanted.&lt;br/&gt;&lt;br/&gt;To continue, close this menu (Esc) and open the map (%1 key)&lt;/t&gt;</Original>
+                <Portuguese>&lt;t align='center'&gt;&lt;t size='0.6' color='#ffffff'&gt;Menu Principal&lt;/t&gt;&lt;br/&gt;&lt;br/&gt;&lt;t size='0.5' color='#ffffff'&gt;A partir daqui, você pode realizar ações básicas, como recrutar civis ou viajar rapidamente para edifícios de sua propriedade, bases aliadas e acampamentos que você construir. Como você pode ver no canto inferior direito, esta cabana é sua, portanto, você pode viajar rapidamente de volta para cá quando precisar, mas não enquanto estiver sendo procurado.&lt;br/&gt;&lt;br/&gt;Para continuar, feche este menu (Esc) e abra o mapa (tecla %1)&lt;/t&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_EVENT_KEY_HANDLER_03">
+                <Original>Holding RMB will pan the map, zoom with the scrollwheel. When you are finished exploring the map, close it with the Esc key.</Original>
+                <Portuguese>Ao pressionar e segurar o botão direito do mouse, você poderá mover o mapa, use a roda do mouse para dar zoom. Quando terminar de explorar o mapa, feche-o com a tecla Esc.</Portuguese>
+            </Key>
+            <Key ID="STR_EVENT_KEY_HANDLER_04">
+                <Original>&lt;t align='left'&gt;&lt;t size='0.7' color='#000000'&gt;Stability&lt;/t&gt;&lt;br/&gt;&lt;t size='0.6' color='#000000'&gt;Yellow areas indicate towns where stability is lowest.Blue icons indicate known NATO installations.&lt;/t&gt;&lt;br/&gt;&lt;br/&gt;</Original>
+                <Portuguese>&lt;t align='left'&gt;&lt;t size='0.7' color='#000000'&gt;Estabilidade&lt;/t&gt;&lt;br/&gt;&lt;t size='0.6' color='#000000'&gt;As áreas amarelas indicam cidades com menor estabilidade. Os ícones azuis indicam instalações conhecidas da NATO.&lt;/t&gt;&lt;br/&gt;&lt;br/&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_EVENT_KEY_HANDLER_05">
+                <Original>&lt;t align='center'&gt;&lt;t size='0.6' color='#ffffff'&gt;Interaction&lt;/t&gt;&lt;br/&gt;&lt;t size='0.5' color='#ffffff'&gt;Some objects, including most of the ones in your shack, have actions that you can perform on them directly. Try it out by moving towards the ammo crate and using your Interact key (%1). Move the mouse over 'Open' and then release the key to perform that action.&lt;/t&gt;&lt;br/&gt;&lt;br/&gt;</Original>
+                <Portuguese>&lt;t align='center'&gt;&lt;t size='0.6' color='#ffffff'&gt;Interação&lt;/t&gt;&lt;br/&gt;&lt;t size='0.5' color='#ffffff'&gt;Alguns objetos, incluindo a maioria dos que estão no seu barraco, possuem ações que você pode realizar diretamente neles. Experimente movendo-se em direção à caixa de munição e usando a tecla de interação (%1). Mova o cursor sobre 'Abrir' e solte a tecla para realizar a ação.&lt;/t&gt;&lt;br/&gt;&lt;br/&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_EVENT_KEY_HANDLER_06">
+                <Original>Go and speak to the local gun dealer. Head towards the marked location, you have nothing to worry about as long as you are not carrying/wearing any illegal items.</Original>
+                <Portuguese>Vá até o vendedor de armas local e fale com ele. Dirija-se ao local indicado; você não precisa se preocupar com nada, contanto que não esteja portando ou vestindo nenhum item ilegal.</Portuguese>
+            </Key>
+            <Key ID="STR_EVENT_KEY_HANDLER_07">
+                <Original>Hello? Do I know you?</Original>
+                <Portuguese>Olá? Eu te conheço?</Portuguese>
+            </Key>
+            <Key ID="STR_EVENT_KEY_HANDLER_08">
+                <Original>No you don't. My name is %1 and I heard that you might be able to help me</Original>
+                <Portuguese>Não, você não precisa. Meu nome é %1 e ouvi dizer que você talvez possa me ajudar.</Portuguese>
+            </Key>
+            <Key ID="STR_EVENT_KEY_HANDLER_09">
+                <Original>Oh, really? Well that depends. With what?</Original>
+                <Portuguese>Ah, é mesmo? Bem, isso depende. De quê?</Portuguese>
+            </Key>
+            <Key ID="STR_EVENT_KEY_HANDLER_10">
+                <Original>I am sick of NATO pushing us around, what can I do about it?</Original>
+                <Portuguese>Estou farto da NATO nos oprimindo, o que posso fazer a respeito?</Portuguese>
+            </Key>
+            <Key ID="STR_EVENT_KEY_HANDLER_11">
+                <Original>I hear you. I bet it was even them who shot the protester... I tell you what, take this spare pistol I have laying around.</Original>
+                <Portuguese>Entendo. Aposto que foram eles que atiraram no manifestante... Quer saber? Pegue esta pistola reserva que tenho aqui.</Portuguese>
+            </Key>
+            <Key ID="STR_EVENT_KEY_HANDLER_12">
+                <Original>What am I supposed to do with this?</Original>
+                <Portuguese>O que devo fazer com isso?</Portuguese>
+            </Key>
+            <Key ID="STR_EVENT_KEY_HANDLER_13">
+                <Original>I don't know. But every other guy that's come in here recently that was angry with NATO wanted a gun, and I won't ask questions.</Original>
+                <Portuguese>Não sei. Mas todos os outros caras que entraram aqui recentemente, irritados com a NATO, queriam uma arma, e eu não vou fazer perguntas.</Portuguese>
+            </Key>
+            <Key ID="STR_EVENT_KEY_HANDLER_14">
+                <Original>Um.. thanks I guess</Original>
+                <Portuguese>Hum... obrigado, eu acho.</Portuguese>
+            </Key>
+            <Key ID="STR_EVENT_KEY_HANDLER_15">
+                <Original>No problem, anything you can do to help me stay under their radar is great, I'll pay you $250 if you can take care of them.</Original>
+                <Portuguese>Sem problema, qualquer coisa que você possa fazer para me ajudar a passar despercebido por eles é ótimo, eu te pago $250 se você conseguir dar um jeito neles.</Portuguese>
+            </Key>
+            <Key ID="STR_EVENT_KEY_HANDLER_16">
+                <Original>The gun is in your pocket, you can equip it in your inventory (%1 key) by dragging it to your hands. But be careful, if NATO sees any weapons they will open fire on you, so best to keep it where it is until you uh... 'need' it</Original>
+                <Portuguese>A arma está no seu bolso; você pode equipá-la no seu inventário (tecla %1) arrastando-a para as suas mãos. Mas tenha cuidado, se a NATO vir alguma arma, eles abrirão fogo contra você, então é melhor mantê-la onde está até que você... 'precise' dela.</Portuguese>
+            </Key>
+            <Key ID="STR_EVENT_KEY_HANDLER_17">
+                <Original>You have completed the tutorial. Good luck on your future journey!</Original>
+                <Portuguese>Você concluiu o tutorial. Boa sorte em sua jornada!</Portuguese>
+            </Key>
+            <Key ID="STR_EVENT_KEY_HANDLER_18">
+                <Original>There's too much crime in %1, and NATO isn't doing anything about it</Original>
+                <Portuguese>Há muita criminalidade em %1, e a NATO não está fazendo nada a respeito.</Portuguese>
+            </Key>
+            <Key ID="STR_EVENT_KEY_HANDLER_19">
+                <Original>I agree. I bet it was even them who shot the protester, they would much rather keep this nation in turmoil...</Original>
+                <Portuguese>Concordo. Aposto que foram eles que atiraram no manifestante; preferem manter o país em turbulência...</Portuguese>
+            </Key>
+            <Key ID="STR_EVENT_KEY_HANDLER_20">
+                <Original>I know, right</Original>
+                <Portuguese>Pois é cara</Portuguese>
+            </Key>
+            <Key ID="STR_EVENT_KEY_HANDLER_21">
+                <Original>I tell you what, take this spare pistol I have laying around.</Original>
+                <Portuguese>Quer saber? Pegue essa pistola reserva que tenho por aí.</Portuguese>
+            </Key>
+            <Key ID="STR_EVENT_KEY_HANDLER_22">
+                <Original>Local businessmen are always setting bounties on the gangs around %1, go and claim a few!</Original>
+                <Portuguese>Empresários locais estão sempre oferecendo recompensas pelas gangues em torno de %1, vá lá e reivindique algumas!</Portuguese>
+            </Key>
+            <Key ID="STR_EVENT_KEY_HANDLER_23">
+                <Original>Alright.. thanks</Original>
+                <Portuguese>Certo... obrigado</Portuguese>
+            </Key>
+            <Key ID="STR_EVENT_KEY_HANDLER_24">
+                <Original>No problem, just come back if you need more ammunition or anything else the stores won't sell you.</Original>
+                <Portuguese>Sem problema, volte se precisar de mais munição ou qualquer outra coisa que as lojas não vendam.</Portuguese>
+            </Key>
+            <Key ID="STR_EVENT_KEY_HANDLER_25">
+                <Original>The gun is in your pocket, you can equip it in your inventory (%1 key) by dragging it to your hands. But be careful, if NATO sees any weapons they will open fire on you.</Original>
+                <Portuguese>A arma está no seu bolso; você pode equipá-la no seu inventário (tecla %1) arrastando-a para as suas mãos. Mas tenha cuidado, se a NATO vir alguma arma, eles abrirão fogo contra você.</Portuguese>
+            </Key>
+            <Key ID="STR_EVENT_KEY_HANDLER_26">
+                <Original>I want to make some cash, and I don't care about breaking the law</Original>
+                <Portuguese>Quero ganhar uma grana, e eu não ligo se eu quebrar a lei</Portuguese>
+            </Key>
+            <Key ID="STR_EVENT_KEY_HANDLER_27">
+                <Original>Probably a good idea with everything that's happening. I tell you what, take this spare bud I have laying around.</Original>
+                <Portuguese>Essa é uma boa ideia com tudo isso que ta rolando. Quer saber, pega esse baseado que eu tenho aqui.</Portuguese>
+            </Key>
+            <Key ID="STR_EVENT_KEY_HANDLER_28">
+                <Original>Sell it to some of the civilians round here, maybe it will calm them down</Original>
+                <Portuguese>Vendo para uns civis por aqui, talvez isso vai acalmar eles</Portuguese>
+            </Key>
+            <Key ID="STR_EVENT_KEY_HANDLER_29">
+                <Original>No problem, just come back if you need more, or anything else the stores won't sell you.</Original>
+                <Portuguese>Sem problemas, volta ai se você precisar de mais, ou alguma outra parada que as lojas não vendem.</Portuguese>
+            </Key>
+            <Key ID="STR_EVENT_KEY_HANDLER_30">
+                <Original>The drugs are in your pocket, you can see it in your inventory (%1 key).</Original>
+                <Portuguese>As drogas estão no seu bolso, você pode acessar elas no seu inventário (%1 key).</Portuguese>
+            </Key>
+            <Key ID="STR_EVENT_KEY_HANDLER_31">
+                <Original>I want to make some cash, legally</Original>
+                <Portuguese>Quero ganhar uma grana, legalmente.</Portuguese>
+            </Key>
+            <Key ID="STR_EVENT_KEY_HANDLER_32">
+                <Original>Well I'm not really the guy to help you there, but there are usually some wrecked vehicles around town, maybe you can salvage some useful resources from them?</Original>
+                <Portuguese>Bem eu não sou o cara pra isso mas vou te ajudar, tem uns veiculos quebrados pela cidade, talvez tu pode desmontar eles pra pegar uns bagulho pra vender?</Portuguese>
+            </Key>
+            <Key ID="STR_EVENT_KEY_HANDLER_33">
+                <Original>OK, thanks.</Original>
+                <Portuguese>OK, valeu.</Portuguese>
+            </Key>
+            <Key ID="STR_EVENT_KEY_HANDLER_34">
+                <Original>No problem! See you around.</Original>
+                <Portuguese>Sem problemas! Te vejo por ai.</Portuguese>
+            </Key>
+            <Key ID="STR_EVENT_KEY_HANDLER_35">
+                <Original>Wrecked vehicles can be salvaged with a toolkit, there should be one in your ammo crate at home. Shops on your map are marked with a circle and icon representing what they buy/sell. Towns with lower stability and population will pay higher prices for all items.</Original>
+                <Portuguese>Destroços de veiculos podem ser desmontados utilizando um kit de ferramentas, confira no seu arsenal em casa que deve ter por lá. Lojas no seu mapa são marcados com um circulo e um icone represantando o que vendem/compram. Cidades com estabilidade baixa e população vão pagar mais caro por todos os items.</Portuguese>
+            </Key>
+            <Key ID="STR_EVENT_KEY_HANDLER_36">
+                <Original>You cannot afford that!</Original>
+                <Portuguese>Você não consegue pagar isso!</Portuguese>
+            </Key>
+            <Key ID="STR_EVENT_REFUEL_HANDLER_01">
+                <Original>You cannot afford fuel</Original>
+                <Portuguese>Você não consegue pagar pelo combustivel</Portuguese>
+            </Key>
+            <Key ID="STR_EVENT_WHEEL_STATE_HANDLER_01">
+                <Original>You have been seen tampering with a vehicle</Original>
+                <Portuguese>Você foi pego mexendo em um veiculo</Portuguese>
+            </Key>
+        </Container>
+        <Container name="Functions">
+            <Key ID="STR_FNC_NOTIFY_VEHICLE_01">
+                <Original>&lt;t align='left' size='1.2' color='#ffffff'&gt;%1&lt;/t&gt;&lt;br/&gt;&lt;t size='0.5' color='#bbbbbb' align='left'&gt;Owner: %2&lt;/t&gt;</Original>
+                <Portuguese>&lt;t align='left' size='1.2' color='#ffffff'&gt;%1&lt;/t&gt;&lt;br/&gt;&lt;t size='0.5' color='#bbbbbb' align='left'&gt;Dono: %2&lt;/t&gt;</Portuguese>
+            </Key>
+        </Container>
+        <Container name="Missions">
+            <Key ID="STR_MISSION_CAPTURE_TOWN_01">
+                <Original>The town will get a small boost in stability as %1 helps quell the populace.&lt;br/&gt;&lt;t size='0.9'&gt;Reward: $2,500 resistance funds, +10 (%1)&lt;/t&gt;</Original>
+                <Portuguese>A cidade receberá um pequeno impulso em estabilidade, já que %1 ajuda a acalmar a população.&lt;br/&gt;&lt;t size='0.9'&gt;Recompensa: $2.500 em fundos de resistência, +10 (%1)&lt;/t&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_MISSION_CAPTURE_TOWN_02">
+                <Original>%1 would prefer if %2 was controlled by the resistance. Drop stability in that town by killing Gendarmerie or doing other jobs until it reaches %0. &lt;br/&gt;&lt;br/&gt;%3</Original>
+                <Portuguese>%1 preferiria que %2 fosse controlada pela resistência. Diminua a estabilidade dessa cidade matando policiais ou realizando outras tarefas até que ela chegue a %0. &lt;br/&gt;&lt;br/&gt;%3</Portuguese>
+            </Key>
+            <Key ID="STR_MISSION_CAPTURE_TOWN_03">
+                <Original>Capture %1 for %2</Original>
+                <Portuguese>Capture %1 para %2</Portuguese>
+            </Key>
+            <Key ID="STR_MISSION_CAPTURE_TOWN_04">
+                <Original>Incoming message from %1: %2 captured. Donating $2500 to the resistance and will help with efforts to ease the local populace. (+10 stability, +10 %1)</Original>
+                <Portuguese>Mensagem recebida de %1: %2 capturado. Doando $2500 para a resistência, o que ajudará nos esforços para aliviar a situação da população local. (+10 de estabilidade, +10 %1)</Portuguese>
+            </Key>
+            <Key ID="STR_MISSION_FACTION_WEAPONS_01">
+                <Original>%1 requests %2 x %3. Deliver them to the marked location using any vehicle, just pull up with the weapons in the inventory and you will be paid for them, including any extras of the same type. &lt;/t&gt;&lt;br/&gt;&lt;br/&gt;&lt;t size='0.9'&gt;Reward: +5 (%1), export value of weapons</Original>
+                <Portuguese>%1 solicita %2 x %3. Entregue-os no local marcado usando qualquer veículo; basta chegar com as armas no inventário e você será pago por elas, incluindo quaisquer extras do mesmo tipo. &lt;/t&gt;&lt;br/&gt;&lt;br/&gt;&lt;t size='0.9'&gt;Recompensa: +5 (%1), valor de exportação das armas</Portuguese>
+            </Key>
+            <Key ID="STR_MISSION_FACTION_WEAPONS_02">
+                <Original>%1 requests %2 x %3</Original>
+                <Portuguese>%1 solicita %2 x %3</Portuguese>
+            </Key>
+            <Key ID="STR_MISSION_FUGITIVE_01">
+                <Original>A traitor of %1 has fled here and is hiding in %2 under NATO protection. %1 will pay handsomely and be very grateful if you could just.. make them disappear. &lt;br/&gt;&lt;br/&gt;Reward: +20 (%1), $2500</Original>
+                <Portuguese>Um traidor de %1 fugiu para cá e está se escondendo em %2 sob proteção da NATO. %1 pagará generosamente e ficará muito grato se você puder... fazê-lo desaparecer. &lt;br/&gt;&lt;br/&gt;Recompensa: +20 (%1), $2500</Portuguese>
+            </Key>
+            <Key ID="STR_MISSION_FUGITIVE_02">
+                <Original>%1 Traitor in %2</Original>
+                <Portuguese>%1 Traidor em %2</Portuguese>
+            </Key>
+            <Key ID="STR_MISSION_FUGITIVE_03">
+                <Original>Incoming message from %1: Traitor has been alerted.</Original>
+                <Portuguese>Mensagem recebida de %1: O traidor foi alertado.</Portuguese>
+            </Key>
+            <Key ID="STR_MISSION_FUGITIVE_04">
+                <Original>Incoming message from %1: Traitor neutralized. Sending our regards and $2500 to the resistance. (+20 %1)</Original>
+                <Portuguese>Mensagem recebida de %1: Traidor neutralizado. Nossos cumprimentos e $2500 para a resistência. (+20 %1)</Portuguese>
+            </Key>
+            <Key ID="STR_MISSION_GANG_DRUG_RUN_01">
+                <Original>We need someone to deliver %1 x Ganja to a customer in %2. You have 6 hours.&lt;/t&gt;&lt;br/&gt;&lt;br/&gt;&lt;t size='0.9' align='center'&gt;Reward: +5 rep (%3), $%4</Original>
+                <Portuguese>Precisamos de alguém para entregar %1 x Ganja a um cliente em %2. Você tem 6 horas.&lt;/t&gt;&lt;br/&gt;&lt;br/&gt;&lt;t size='0.9' align='center'&gt;Recompensa: +5 de reputação (%3), $%4</Portuguese>
+            </Key>
+            <Key ID="STR_MISSION_GANG_DRUG_RUN_02">
+                <Original>Deliver %2 x Ganja for %1</Original>
+                <Portuguese>Entregue %2 x Ganja para %1</Portuguese>
+            </Key>
+            <Key ID="STR_MISSION_GANG_DRUG_RUN_03">
+                <Original>You don't have enough room in your inventory for the Ganja</Original>
+                <Portuguese>Você não tem espaço suficiente no seu inventário para a Ganja</Portuguese>
+            </Key>
+            <Key ID="STR_MISSION_GANG_DRUG_RUN_04">
+                <Original>%1 x Ganja added to inventory</Original>
+                <Portuguese>%1 x Ganja adicionado ao inventário</Portuguese>
+            </Key>
+            <Key ID="STR_MISSION_GANG_DRUG_RUN_05">
+                <Original>Delivered %1 x Ganja</Original>
+                <Portuguese>Entregou %1 x Ganja</Portuguese>
+            </Key>
+            <Key ID="STR_MISSION_GANG_DRUG_RUN_06">
+                <Original>Failed delivery of %1 x Ganja</Original>
+                <Portuguese>Entrega de %1 x Ganja não realizada</Portuguese>
+            </Key>
+            <Key ID="STR_MISSION_GANG_WEAPON_RUN_01">
+                <Original>We need someone to deliver a %1 to a customer in %2. You have 6 hours.&lt;/t&gt;&lt;br/&gt;&lt;br/&gt;&lt;t size='0.9' align='center'&gt;Reward: +5 rep (%3), $%4</Original>
+                <Portuguese>Precisamos de alguém para entregar %1 a um cliente em %2. Você tem 6 horas.&lt;/t&gt;&lt;br/&gt;&lt;br/&gt;&lt;t size='0.9' align='center'&gt;Recompensa: +5 de reputação (%3), $%4</Portuguese>
+            </Key>
+            <Key ID="STR_MISSION_GANG_WEAPON_RUN_02">
+                <Original>Deliver %2 for %1</Original>
+                <Portuguese>Entregue %2 para %1</Portuguese>
+            </Key>
+            <Key ID="STR_MISSION_GANG_WEAPON_RUN_03">
+                <Original>You don't have enough room in your inventory for the gun</Original>
+                <Portuguese>Você não tem espaço suficiente no seu inventário para a arma</Portuguese>
+            </Key>
+            <Key ID="STR_MISSION_GANG_WEAPON_RUN_04">
+                <Original>%1 added to inventory</Original>
+                <Portuguese>%1 adicionado ao inventário</Portuguese>
+            </Key>
+            <Key ID="STR_MISSION_GANG_WEAPON_RUN_05">
+                <Original>Delivered %1</Original>
+                <Portuguese>Entregou %1</Portuguese>
+            </Key>
+            <Key ID="STR_MISSION_GANG_WEAPON_RUN_06">
+                <Original>Failed delivery of %1</Original>
+                <Portuguese>Falha na entrega de %1</Portuguese>
+            </Key>
+            <Key ID="STR_MISSION_HVT_01">
+                <Original>We have received intel that a NATO officer is currently stationed at %1.&lt;br/&gt;&lt;br/&gt;If this officer is killed, NATO's resources will be low for some time, reducing the severity of any QRF deployments.</Original>
+                <Portuguese>Recebemos informações de que um oficial da NATO está atualmente destacado em %1.&lt;br/&gt;&lt;br/&gt;Se este oficial for morto, os recursos da NATO ficarão escassos por algum tempo, reduzindo a intensidade de quaisquer destacamentos da Força de Resposta Rápida.</Portuguese>
+            </Key>
+            <Key ID="STR_MISSION_HVT_02">
+                <Original>NATO Officer at %1</Original>
+                <Portuguese>Oficial da NATO em %1</Portuguese>
+            </Key>
+            <Key ID="STR_MISSION_INFORMANT_01">
+                <Original>A defector from the resistance is hiding in %1 under NATO protection and giving them sensitive information. He needs to be silenced. &lt;br/&gt;&lt;br/&gt;Reward: $1500</Original>
+                <Portuguese>Um desertor da resistência está escondido em %1 sob proteção da NATO e fornecendo informações confidenciais. Ele precisa ser silenciado. &lt;br/&gt;&lt;br/&gt;Recompensa: $1500</Portuguese>
+            </Key>
+            <Key ID="STR_MISSION_INFORMANT_02">
+                <Original>NATO informant in %1</Original>
+                <Portuguese>Informante da NATO em %1</Portuguese>
+            </Key>
+            <Key ID="STR_MISSION_INFORMANT_03">
+                <Original>NATO Informant has been alerted.</Original>
+                <Portuguese>Informante da NATO foi alertado.</Portuguese>
+            </Key>
+            <Key ID="STR_MISSION_INFORMANT_04">
+                <Original>NATO Informant in %1 has been taken care of</Original>
+                <Portuguese>O informante da NATO em %1 foi neutralizado.</Portuguese>
+            </Key>
+            <Key ID="STR_MISSION_KILL_01">
+                <Original>Kill NATO</Original>
+                <Portuguese>Elimine NATO</Portuguese>
+            </Key>
+            <Key ID="STR_MISSION_KILL_02">
+                <Original>Nothing spurs on the resistance more than just killing some blues. There is a group of %1 NATO within 300m of here, go find them and take care of them.&lt;br/&gt;&lt;br/&gt;Reward: $%2</Original>
+                <Portuguese>Nada motiva mais a resistência do que matar alguns azuis. Há um grupo de %1 da NATO a 300 metros daqui, encontre-os e acabe com eles.&lt;br/&gt;&lt;br/&gt;Recompensa: $%2</Portuguese>
+            </Key>
+            <Key ID="STR_MISSION_KILL_03">
+                <Original>Kills %1/%2</Original>
+                <Portuguese>Mortes %1/%2</Portuguese>
+            </Key>
+            <Key ID="STR_MISSION_MEDICAL_SUPPLIES_01">
+                <Original>Stability in the town will decrease and the local community will support the resistance more (+25 support).</Original>
+                <Portuguese>A estabilidade na cidade diminuirá e a comunidade local apoiará mais a resistência (+25 de apoio).</Portuguese>
+            </Key>
+            <Key ID="STR_MISSION_MEDICAL_SUPPLIES_02">
+                <Original>Stability in the town will increase and the local community will support the resistance more (+25 support).</Original>
+                <Portuguese>A estabilidade na cidade aumentará e a comunidade local apoiará mais a resistência (+25 de apoio).</Portuguese>
+            </Key>
+            <Key ID="STR_MISSION_MEDICAL_SUPPLIES_03">
+                <Original>%1 is in need of medical supplies. Deliver %2 x %3 to the marked location using any vehicle, just pull up with the items in the inventory. &lt;br/&gt;&lt;br/&gt;%4</Original>
+                <Portuguese>%1 precisa de suprimentos médicos. Entregue %2 x %3 no local indicado usando qualquer veículo, basta chegar com os itens do inventário. &lt;br/&gt;&lt;br/&gt;%4</Portuguese>
+            </Key>
+            <Key ID="STR_MISSION_MEDICAL_SUPPLIES_04">
+                <Original>%1 needs %2 x %3</Original>
+                <Portuguese>%1 precisa %2 x %3</Portuguese>
+            </Key>
+            <Key ID="STR_MISSION_MEDICAL_SUPPLIES_05">
+                <Original>Delivered %1 x %2 medical supplies</Original>
+                <Portuguese>Entregaram %1 x %2 suprimentos médicos</Portuguese>
+            </Key>
+            <Key ID="STR_MISSION_NATO_MISSIONS_01">
+                <Original>We have received intel that NATO will be running a convoy from %1 to %2 at approximately %3:00 today.</Original>
+                <Portuguese>Recebemos informações de que a NATO realizará um comboio de %1 para %2 por volta das %3:00 de hoje.</Portuguese>
+            </Key>
+            <Key ID="STR_MISSION_NATO_MISSIONS_02">
+                <Original>NATO Convoy from %1 to %2</Original>
+                <Portuguese>Comboio da NATO de %1 para %2</Portuguese>
+            </Key>
+            <Key ID="STR_MISSION_RECON_BASE_01">
+                <Original>&lt;t size='0.9'&gt;Reward: $500 to player closest to base&lt;/t&gt;</Original>
+                <Portuguese>&lt;t size='0.9'&gt;Recompensa: $500 ao jogador mais próximo da base&lt;/t&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_MISSION_RECON_BASE_02">
+                <Original>Get information on the NATO forces and vehicles garrisoned at %1. A pair of Binoculars or Rangefinder may come in handy. Be careful not to get too close as NATO bases are restricted areas.&lt;br/&gt;&lt;br/&gt;%2</Original>
+                <Portuguese>Obtenha informações sobre as forças e veículos da NATO estacionados em %1. Um par de binóculos ou um telêmetro podem ser úteis. Tenha cuidado para não se aproximar demais, pois as bases da NATO são áreas restritas.&lt;br/&gt;&lt;br/&gt;%2</Portuguese>
+            </Key>
+            <Key ID="STR_MISSION_RECON_BASE_03">
+                <Original>Recon of %1</Original>
+                <Portuguese>Reconhecimento de %1</Portuguese>
+            </Key>
+            <Key ID="STR_MISSION_RECON_BASE_04">
+                <Original>%2 units spotted at %1</Original>
+                <Portuguese>%2 unidades detectadas em %1</Portuguese>
+            </Key>
+            <Key ID="STR_MISSION_RECON_BASE_05">
+                <Original>Recon report (%1)&lt;br/&gt;</Original>
+                <Portuguese>Relatório de reconhecimento (%1)&lt;br/&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_MISSION_RECON_BASE_06">
+                <Original>%1 x Soldiers&lt;br/&gt;</Original>
+                <Portuguese>%1 x Soldados&lt;br/&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_MISSION_SHOP_DELIVERY_01">
+                <Original>I need someone to deliver %1 x %2 to a customer in %3. You have 6 hours.&lt;/t&gt;&lt;br/&gt;&lt;br/&gt;&lt;t size='0.9' align='center'&gt;Reward: $%4, +2 Resistance Support</Original>
+                <Portuguese>Preciso de alguém para entregar %1 x %2 a um cliente em %3. Você tem 6 horas.&lt;/t&gt;&lt;br/&gt;&lt;br/&gt;&lt;t size='0.9' align='center'&gt;Recompensa: $%4, +2 de Suporte de Resistência</Portuguese>
+            </Key>
+            <Key ID="STR_MISSION_SHOP_DELIVERY_02">
+                <Original>Deliver %1 x %2 for %3 store in %4</Original>
+                <Portuguese>Entregue %1 x %2 para %3 loja em %4</Portuguese>
+            </Key>
+            <Key ID="STR_MISSION_SHOP_DELIVERY_03">
+                <Original>You don't have enough room in your inventory for the items</Original>
+                <Portuguese>Você não tem espaço suficiente no seu inventário para os itens</Portuguese>
+            </Key>
+            <Key ID="STR_MISSION_SHOP_DELIVERY_04">
+                <Original>%1 x %2 added to inventory</Original>
+                <Portuguese>%1 x %2 adicionado ao inventário</Portuguese>
+            </Key>
+            <Key ID="STR_MISSION_SHOP_DELIVERY_05">
+                <Original>Delivered %1 x %2</Original>
+                <Portuguese>Entregou %1 x %2</Portuguese>
+            </Key>
+            <Key ID="STR_MISSION_SHOP_DELIVERY_06">
+                <Original>Failed Delivery of %1 x %2</Original>
+                <Portuguese>Falhou Entrega de %1 x %2</Portuguese>
+            </Key>
+            <Key ID="STR_MISSION_TAGGING_01">
+                <Original>Stability in the town will drop 10%, Reward: $200, +5 Resistance Support</Original>
+                <Portuguese>A estabilidade na cidade cairá 10%. Recompensa: $200, +5 de Apoio à Resistência</Portuguese>
+            </Key>
+            <Key ID="STR_MISSION_TAGGING_02">
+                <Original>It's time to tell NATO what we think of them and get the public behind the resistance in %1. Do 5 tags in the town. Spraypaint can be purchased from General stores marked with a ($) icon and used on walls with the ACE self-interact key (Ctrl + Windows key by default)&lt;br/&gt;&lt;br/&gt;%2</Original>
+                <Portuguese>Chegou a hora de dizer à NATO o que pensamos deles e conseguir o apoio do público à resistência em %1. Faça 5 pichações na cidade. A tinta spray pode ser comprada em lojas gerais marcadas com um ícone ($) e usada nas paredes com a tecla de interação ACE (Ctrl + Windows por padrão)&lt;br/&gt;&lt;br/&gt;%2</Portuguese>
+            </Key>
+            <Key ID="STR_MISSION_TAGGING_03">
+                <Original>Graffiti in %1</Original>
+                <Portuguese>Grafite em %1</Portuguese>
+            </Key>
+            <Key ID="STR_MISSION_TRANSFORMER_01">
+                <Original>A transformer in %1 has broken down and they are without electricity. Donate 4000$ to the mayor so they can get a new one. &lt;br/&gt;&lt;br/&gt;%2</Original>
+                <Portuguese>Um transformador em %1 quebrou e eles estão sem energia elétrica. Doe 4000$ ao prefeito para que eles possam comprar um novo. &lt;br/&gt;&lt;br/&gt;%2</Portuguese>
+            </Key>
+            <Key ID="STR_MISSION_TRANSFORMER_02">
+                <Original>%1 needs electricity</Original>
+                <Portuguese>%1 precisa de energia elétrica</Portuguese>
+            </Key>
+            <Key ID="STR_MISSION_TRANSFORMER_03">
+                <Original>Donated 4000$ to %1</Original>
+                <Portuguese>Doou 4000% para %1</Portuguese>
+            </Key>
+            <Key ID="STR_MISSION_TRANSPORT_VIP_01">
+                <Original>Our intelligence operative %1 is in need of transport from %2 to %3. He is of local descent so you should have no problems passing through NATO checkpoints unnoticed. Please take care of it within 12 hrs.&lt;br/&gt;&lt;br/&gt;Reward: +5 (%4), $250</Original>
+                <Portuguese>Nosso agente de inteligência %1 precisa de transporte de %2 para %3. Ele é de ascendência local, então você não deve ter problemas para passar pelos postos de controle da NATO sem ser notado. Por favor, providencie isso em até 12 horas.&lt;br/&gt;&lt;br/&gt;Recompensa: +5 (%4), $250</Portuguese>
+            </Key>
+            <Key ID="STR_MISSION_TRANSPORT_VIP_02">
+                <Original>Operative transport for %1</Original>
+                <Portuguese>Transportar Agente para %1</Portuguese>
+            </Key>
+            <Key ID="STR_MISSION_TRANSPORT_VIP_03">
+                <Original>Incoming message from %1: Thank you for delivering our operative. (+5 %1)</Original>
+                <Portuguese>Mensagem recebida de %1: Obrigado por entregar nosso agente. (+5 %1)</Portuguese>
+            </Key>
+            <Key ID="STR_MISSION_TRANSPORT_VIP_04">
+                <Original>Incoming message from %1: What happened?!? (-10 %1)</Original>
+                <Portuguese>Mensagem recebida de %1: O que aconteceu?!? (-10 %1)</Portuguese>
+            </Key>
+        </Container>
+        <Container name="Paramters and Statistics">
+            <Key ID="STR_DIALOG_MAIN_ASSIGN_VEHICLE">
+                <Original>Assign Vehicle</Original>
+                <Portuguese>Entregar Veiculo</Portuguese>
+            </Key>
+            <Key ID="STR_DIALOG_MAIN_ASSIGN_VEHICLE_AI_DESC">
+                <Original>Assigns vehicle you are looking at to squad</Original>
+                <Portuguese>Entrega o veiculo que você está olhando para o esquadrão</Portuguese>
+            </Key>
+            <Key ID="STR_DIALOG_MAIN_BUY_DESC">
+                <Original>Buy from this store</Original>
+                <Portuguese>Comprar dessa loja</Portuguese>
+            </Key>
+            <Key ID="STR_DIALOG_MAIN_BUY_HARDWARE_STORE">
+                <Original>Buy from this hardware store</Original>
+                <Portuguese>Comprar dessa loja de hardware</Portuguese>
+            </Key>
+            <Key ID="STR_DIALOG_MAIN_CREATE_SQUAD">
+                <Original>Create Squad</Original>
+                <Portuguese>Criar Esquadrão</Portuguese>
+            </Key>
+            <Key ID="STR_DIALOG_MAIN_CREATE_SQUAD_AI_DESC">
+                <Original>Splits selected units off into a new squad</Original>
+                <Portuguese>Cria um novo esquadrão com as unidades selecionadas</Portuguese>
+            </Key>
+            <Key ID="STR_DIALOG_MAIN_GET_IN">
+                <Original>Get In</Original>
+                <Portuguese>Entrem</Portuguese>
+            </Key>
+            <Key ID="STR_DIALOG_MAIN_GET_IN_AI_DESC">
+                <Original>Orders squad to board assigned vehicle</Original>
+                <Portuguese>Ordena o esquadrão a entrar no veiculo entregue</Portuguese>
+            </Key>
+            <Key ID="STR_DIALOG_MAIN_GET_IN_MY_VEHICLE">
+                <Original>Get In My Vehicle</Original>
+                <Portuguese>Entrem no meu veiculo</Portuguese>
+            </Key>
+            <Key ID="STR_DIALOG_MAIN_GET_IN_MY_VEHICLE_AI_DESC">
+                <Original>Orders squad to board your vehicle</Original>
+                <Portuguese>Ordena o esquadrão a entrar no seu veiculo</Portuguese>
+            </Key>
+            <Key ID="STR_DIALOG_MAIN_GET_OUT">
+                <Original>Get Out</Original>
+                <Portuguese>Desembarquem</Portuguese>
+            </Key>
+            <Key ID="STR_DIALOG_MAIN_GET_OUT_AI_DESC">
+                <Original>Orders squad to disembark vehicle</Original>
+                <Portuguese>Ordena o esquadrão a desembarcar do veiculo</Portuguese>
+            </Key>
+            <Key ID="STR_DIALOG_MAIN_IMPORT_DESC">
+                <Original>Import items from the global market</Original>
+                <Portuguese>Importar items do mercado global</Portuguese>
+            </Key>
+            <Key ID="STR_DIALOG_MAIN_LOCK_VEHICLE">
+                <Original>Lock Vehicle</Original>
+                <Portuguese>Trancar Veículo</Portuguese>
+            </Key>
+            <Key ID="STR_DIALOG_MAIN_LOCK_VEHICLE_DESC">
+                <Original>Locks this car so only you can drive it or access it's inventory</Original>
+                <Portuguese>Tranque este veiculo para apenas você poder dirigir ou acessar o inventário</Portuguese>
+            </Key>
+            <Key ID="STR_DIALOG_MAIN_LOOT_AI_DESC">
+                <Original>Commands all selected units to loot bodies and fill closest container to them</Original>
+                <Portuguese>Comanda todas as unidades selecionadas para lootear os corpos e guardar no armazem mais proximo deles</Portuguese>
+            </Key>
+            <Key ID="STR_DIALOG_MAIN_LOOT_DESC">
+                <Original>Loot bodies within 150m</Original>
+                <Portuguese>Looteia corpos dentro de 150m</Portuguese>
+            </Key>
+            <Key ID="STR_DIALOG_MAIN_OPEN_ARSENAL">
+                <Original>Open Arsenal</Original>
+                <Portuguese>Abrir Arsenal</Portuguese>
+            </Key>
+            <Key ID="STR_DIALOG_MAIN_OPEN_ARSENAL_AI_DESC">
+                <Original>Commands first unit selected to walk to and open the closest ammobox arsenal, uses warehouse if ammobox is at a warehouse</Original>
+                <Portuguese>Comanda a primeira unidade selecionada para ir e abrir o arsenal mais próximo, usa o armazem se a ammobox estiver dentro do mesmo</Portuguese>
+            </Key>
+            <Key ID="STR_DIALOG_MAIN_OPEN_INVENTORY">
+                <Original>Open Inventory</Original>
+                <Portuguese>Abrir Inventário</Portuguese>
+            </Key>
+            <Key ID="STR_DIALOG_MAIN_OPEN_INVENTORY_AI_DESC">
+                <Original>Commands first unit selected to open inventory</Original>
+                <Portuguese>Comanda a primeira unidade selecionada a abrir o inventário</Portuguese>
+            </Key>
+            <Key ID="STR_DIALOG_MAIN_OPTIONS">
+                <Original>Options</Original>
+                <Portuguese>Opções</Portuguese>
+            </Key>
+            <Key ID="STR_DIALOG_MAIN_SELL">
+                <Original>Sell to this store</Original>
+                <Portuguese>Vender para esta loja</Portuguese>
+            </Key>
+            <Key ID="STR_DIALOG_MAIN_SELL_HARDWARE_STORE">
+                <Original>Sell to this hardware store</Original>
+                <Portuguese>Vender para esta loja de hardware</Portuguese>
+            </Key>
+            <Key ID="STR_DIALOG_MAIN_STORE_ALL">
+                <Original>Store All</Original>
+                <Portuguese>Guardar Tudo</Portuguese>
+            </Key>
+            <Key ID="STR_DIALOG_MAIN_STORE_ALL_DESC">
+                <Original>Stores the contents of this vehicle in the warehouse</Original>
+                <Portuguese>Guardar Tudo deste veiculo para o armazem</Portuguese>
+            </Key>
+            <Key ID="STR_DIALOG_MAIN_TAKE_LEGIT">
+                <Original>Take Legit</Original>
+                <Portuguese>Pegar items Legalizados</Portuguese>
+            </Key>
+            <Key ID="STR_DIALOG_MAIN_TAKE_LEGIT_DESC">
+                <Original>Takes legal (sellable) items from the vehicle into your inventory</Original>
+                <Portuguese>Pegar apenas os items legais (vendiveis) deste veiculo para o seu inventário</Portuguese>
+            </Key>
+            <Key ID="STR_DIALOG_MAIN_TRANSFER_FROM">
+                <Original>Transfer From</Original>
+                <Portuguese>Transferir de</Portuguese>
+            </Key>
+            <Key ID="STR_DIALOG_MAIN_TRANSFER_FROM_DESC">
+                <Original>Transfers the contents of the closest container into this vehicle</Original>
+                <Portuguese>Transfere items do inventário mais proximo para este veiculo</Portuguese>
+            </Key>
+            <Key ID="STR_DIALOG_MAIN_TRANSFER_FROM_DESC_WAREHOUSE">
+                <Original>Take from the warehouse</Original>
+                <Portuguese>Pegar do Armazem</Portuguese>
+            </Key>
+            <Key ID="STR_DIALOG_MAIN_TRANSFER_LEGIT">
+                <Original>Transfer Legit</Original>
+                <Portuguese>Transferir items Legalizados</Portuguese>
+            </Key>
+            <Key ID="STR_DIALOG_MAIN_TRANSFER_LEGIT_DESC">
+                <Original>Transfers only legal (sellable) items from the closest container into this vehicle</Original>
+                <Portuguese>Transfere apenas os items legais (vendiveis) do inventario mais próximo para este veiculo</Portuguese>
+            </Key>
+            <Key ID="STR_DIALOG_MAIN_TRANSFER_LEGIT_DESC_WAREHOUSE">
+                <Original>Takes all legal (sellable) items from the warehouse</Original>
+                <Portuguese>Pegar todos os items legais (vendiveis) do armazem</Portuguese>
+            </Key>
+            <Key ID="STR_DIALOG_MAIN_TRANSFER_TO">
+                <Original>Transfer To</Original>
+                <Portuguese>Transferir para</Portuguese>
+            </Key>
+            <Key ID="STR_DIALOG_MAIN_TRANSFER_TO_DESC">
+                <Original>Transfers the contents of this vehicle into the closest container</Original>
+                <Portuguese>Transfere os items deste veiculo para o inventário mais próximo</Portuguese>
+            </Key>
+            <Key ID="STR_MAIN_CLOSE_MENU">
+                <Original>&lt;t align='center' font='PuristaBold' color='#FFFFFF'&gt;CLOSE MENU&lt;/t&gt;</Original>
+                <Portuguese>&lt;t align='center' font='PuristaBold' color='#FFFFFF'&gt;FECHAR MENU&lt;/t&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_MAIN_FAST_TRAVEL">
+                <Original>&lt;t size='1.5'&gt;Fast Travel&lt;/t&gt;</Original>
+                <Portuguese>&lt;t size='1.5'&gt;Viagem Rápida&lt;/t&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_MAIN_FAST_TRAVEL_RULES">
+                <Original>&lt;t size='1.5'&gt;Fast Travel Rules&lt;/t&gt;</Original>
+                <Portuguese>&lt;t size='1.5'&gt;Regras de Viagem Rápida&lt;/t&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_PARAMTERS_ACE_BLOOD">
+                <Original>ACE Blood</Original>
+                <Portuguese>Sangue ACE</Portuguese>
+            </Key>
+            <Key ID="STR_PARAMTERS_ACE_MEDICAL_LEVEL">
+                <Original>ACE Medical Level</Original>
+                <Portuguese>Nivel de medicina ACE</Portuguese>
+            </Key>
+            <Key ID="STR_PARAMTERS_AUTO_LOAD_TOGGLE">
+                <Original>Toggle Autoloading</Original>
+                <Portuguese>Ativar/Desativar carregamento automático</Portuguese>
+            </Key>
+            <Key ID="STR_PARAMTERS_AUTO_LOAD_TOGGLE_DESC">
+                <Original>Autoload mission if on a dedicated server</Original>
+                <Portuguese>Carregar missão automaticamente se estiver em um servidor dedicado.</Portuguese>
+            </Key>
+            <Key ID="STR_PARAMTERS_CHAR_SHEET">
+                <Original>Character Sheet</Original>
+                <Portuguese>Ficha do Personagem</Portuguese>
+            </Key>
+            <Key ID="STR_PARAMTERS_CHAR_SHEET_DESC">
+                <Original>Upgrade your character</Original>
+                <Portuguese>Melhore o seu personagem</Portuguese>
+            </Key>
+            <Key ID="STR_PARAMTERS_CIV_DECREASE">
+                <Original>Civ % --</Original>
+                <Portuguese>Civ % --o</Portuguese>
+            </Key>
+            <Key ID="STR_PARAMTERS_CIV_DECREASE_DESC">
+                <Original>Decreases the amount of civilians that spawn in towns</Original>
+                <Portuguese>Diminui a quantidade de civis que aparecem nas cidades.</Portuguese>
+            </Key>
+            <Key ID="STR_PARAMTERS_CIV_INCREASE">
+                <Original>Civ % ++</Original>
+                <Portuguese>Civ % ++</Portuguese>
+            </Key>
+            <Key ID="STR_PARAMTERS_CIV_INCREASE_DESC">
+                <Original>Increases the amount of civilians that spawn in towns</Original>
+                <Portuguese>Aumenta a quantidade de civis que aparecem nas cidades.</Portuguese>
+            </Key>
+            <Key ID="STR_PARAMTERS_CLEAR_DEAD">
+                <Original>Clean bodies/wrecks</Original>
+                <Portuguese>Limpar mortos/destroços</Portuguese>
+            </Key>
+            <Key ID="STR_PARAMTERS_CLEAR_DEAD_DESC">
+                <Original>Will completely destroy all dead bodies, wrecks and vehicles that cannot move</Original>
+                <Portuguese>Destruirá completamente todos os cadáveres, destroços e veículos que não puderem se mover.</Portuguese>
+            </Key>
+            <Key ID="STR_PARAMTERS_CLEAR_FOG">
+                <Original>Clean fog</Original>
+                <Portuguese>Limpar neblina</Portuguese>
+            </Key>
+            <Key ID="STR_PARAMTERS_CLEAR_FOG_DESC">
+                <Original>Clears fog</Original>
+                <Portuguese>Limpa a neblina</Portuguese>
+            </Key>
+            <Key ID="STR_PARAMTERS_DIFFICULTY">
+                <Original>&lt;t size='1.5'&gt;Difficulty&lt;/t&gt;</Original>
+                <Portuguese>&lt;t size='1.5'&gt;Dificuldade&lt;/t&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_PARAMTERS_ENEMY_FACTION_TITLE">
+                <Original>Occupying faction</Original>
+                <Portuguese>Facção Ocupante</Portuguese>
+            </Key>
+            <Key ID="STR_PARAMTERS_FACTORY_MULTI">
+                <Original>Factory Production Multiplier</Original>
+                <Portuguese>Multiplicador de produção de Fábrica</Portuguese>
+            </Key>
+            <Key ID="STR_PARAMTERS_FAST_TRAVEL">
+                <Original>Fast Travel</Original>
+                <Portuguese>Viagem Rápida</Portuguese>
+            </Key>
+            <Key ID="STR_PARAMTERS_FAST_TRAVEL_TOOLTIP">
+                <Original>Fast travels this vehicle and it's occupants</Original>
+                <Portuguese>Viagem Rápida com este veiculo e os seus passageiros</Portuguese>
+            </Key>
+            <Key ID="STR_PARAMTERS_FAST_TRAVEL_TOOLTIP2">
+                <Original>Fast travel will not cost anything</Original>
+                <Portuguese>A viagem rápida não custará nada</Portuguese>
+            </Key>
+            <Key ID="STR_PARAMTERS_FAST_TRAVEL_TOOLTIP3">
+                <Original>Fast travel will cost money</Original>
+                <Portuguese>A viagem rápida custará dinheiro</Portuguese>
+            </Key>
+            <Key ID="STR_PARAMTERS_FAST_TRAVEL_TOOLTIP4">
+                <Original>Fast travel will be disabled</Original>
+                <Portuguese>A viagem rápida será desabilitada</Portuguese>
+            </Key>
+            <Key ID="STR_PARAMTERS_FAST_TRAVEL_TOOLTIP5">
+                <Original>No rules for fast travel</Original>
+                <Portuguese>Sem regras para Viagem Rápida</Portuguese>
+            </Key>
+            <Key ID="STR_PARAMTERS_FAST_TRAVEL_TOOLTIP6">
+                <Original>Cannot fast travel while holding a weapon or carrying drugs</Original>
+                <Portuguese>Proibido Viagem Rápida enquanto estiver com armas ou drogas</Portuguese>
+            </Key>
+            <Key ID="STR_PARAMTERS_FAST_TRAVEL_TOOLTIP7">
+                <Original>Cannot fast travel while holding a weapon, carrying drugs, or in an offensive vehicle</Original>
+                <Portuguese>Proibido viagem rapida com armas, drogas, ou em um veiculo armado</Portuguese>
+            </Key>
+            <Key ID="STR_PARAMTERS_FAST_TRAVEL_TOOLTIP_INSTA">
+                <Original>Instantly travel to various controlled location</Original>
+                <Portuguese>Instantaneamente viaje para vários locais controlados </Portuguese>
+            </Key>
+            <Key ID="STR_PARAMTERS_GANG_MAX_RESOURCE">
+                <Original>Gang Maximum Resources</Original>
+                <Portuguese>Tamanho Maximo dos Recursos de Gang</Portuguese>
+            </Key>
+            <Key ID="STR_PARAMTERS_GANG_MAX_SIZE">
+                <Original>Gang Maximum Size</Original>
+                <Portuguese>Tamanho Maximo de Gangs</Portuguese>
+            </Key>
+            <Key ID="STR_PARAMTERS_GARRISON">
+                <Original>Garrison</Original>
+                <Portuguese>Guarnição</Portuguese>
+            </Key>
+            <Key ID="STR_PARAMTERS_LEASE">
+                <Original>Lease</Original>
+                <Portuguese>Alugar</Portuguese>
+            </Key>
+            <Key ID="STR_PARAMTERS_LEASE_DESC">
+                <Original>Lease this building</Original>
+                <Portuguese>Alugue esta construção</Portuguese>
+            </Key>
+            <Key ID="STR_PARAMTERS_LEVEL_BUY">
+                <Original>Increase Level (-10 Influence)</Original>
+                <Portuguese>Aumentar Nivel (-10 influencia)</Portuguese>
+            </Key>
+            <Key ID="STR_PARAMTERS_MANAGE_RECRUITS">
+                <Original>Manage Recruits</Original>
+                <Portuguese>Gerenciar Recrutas</Portuguese>
+            </Key>
+            <Key ID="STR_PARAMTERS_MANAGE_RECRUITS_DESC">
+                <Original>Manage recruits in your group</Original>
+                <Portuguese>Gerencie recrutas em seu grupo</Portuguese>
+            </Key>
+            <Key ID="STR_PARAMTERS_MAP_INFO">
+                <Original>Map Info</Original>
+                <Portuguese>Informação do Mapa</Portuguese>
+            </Key>
+            <Key ID="STR_PARAMTERS_MAP_INFO_DESC">
+                <Original>Retrieve information on town stability and more</Original>
+                <Portuguese>Obtenha informações sobre a estabilidade da cidade e muito mais</Portuguese>
+            </Key>
+            <Key ID="STR_PARAMTERS_MISSION_EXPORT">
+                <Original>OVERTHROW MISSION EXPORT</Original>
+                <Portuguese>OVERTHROW EXPORTAR MISSÃO</Portuguese>
+            </Key>
+            <Key ID="STR_PARAMTERS_PERSISTENT_AUTO_SAVE">
+                <Original>Autosave Toggle</Original>
+                <Portuguese>Ativar/Desativar salvamento automático</Portuguese>
+            </Key>
+            <Key ID="STR_PARAMTERS_PERSISTENT_AUTO_SAVE_DESC">
+                <Original>Toggle between (0/5/10/15/30/45/60) minute autosaves.\n0 will disable autosaving!</Original>
+                <Portuguese>Alterne entre os intervalos de salvamento automático de (0/5/10/15/30/45/60) minutos.\n0 desativará o salvamento automático!</Portuguese>
+            </Key>
+            <Key ID="STR_PARAMTERS_PERSISTENT_SAVE">
+                <Original>Persistent Save</Original>
+                <Portuguese>Save Persistente</Portuguese>
+            </Key>
+            <Key ID="STR_PARAMTERS_PERSISTENT_SAVE_DESC">
+                <Original>A more secure save than default, this will work across updates of both Arma and Overthrow. To load this just restart the mission and choose "load persistent"</Original>
+                <Portuguese>Uma opção de salvamento mais segura que a padrão, que funcionará em todas as atualizações de Arma e Overthrow. Para carregar este salvamento, basta reiniciar a missão e escolher 'carregar persistente'.</Portuguese>
+            </Key>
+            <Key ID="STR_PARAMTERS_PERSISTENT_SAVE_DESC1">
+                <Original>Persistent save, clear bodies/fog and more</Original>
+                <Portuguese>Salvamento persistente, limpeza de corpos/névoa e muito mais</Portuguese>
+            </Key>
+            <Key ID="STR_PARAMTERS_PROCUREMENT">
+                <Original>Procurement</Original>
+                <Portuguese>Aquisições</Portuguese>
+            </Key>
+            <Key ID="STR_PARAMTERS_RANDOM_NATO_GEAR">
+                <Original>Randomize NATO loadouts</Original>
+                <Portuguese>Randomizar equipamentos da NATO</Portuguese>
+            </Key>
+            <Key ID="STR_PARAMTERS_RESISTENCE">
+                <Original>Resistance</Original>
+                <Portuguese>Resistencia</Portuguese>
+            </Key>
+            <Key ID="STR_PARAMTERS_RESISTENCE_DESC">
+                <Original>Manage owned businesses and resistance funds</Original>
+                <Portuguese>Gerir empresas próprias e fundos de resistência.</Portuguese>
+            </Key>
+            <Key ID="STR_PARAMTERS_SET_HOME">
+                <Original>Set Home</Original>
+                <Portuguese>Setar Casa</Portuguese>
+            </Key>
+            <Key ID="STR_PARAMTERS_SET_HOME_DESC">
+                <Original>Make this your home (respawn point)</Original>
+                <Portuguese>Faça deste lugar o seu lar (ponto de reaparecimento)</Portuguese>
+            </Key>
+            <Key ID="STR_PARAMTERS_SHOW_ENEMY_MARKERS">
+                <Original>Show known enemy groups on map</Original>
+                <Portuguese>Mostrar Marcadores de grupos Inimigos conhecidos no mapa</Portuguese>
+            </Key>
+            <Key ID="STR_PARAMTERS_SHOW_PLAYERS_MARKERS">
+                <Original>Show Player Markers on HUD</Original>
+                <Portuguese>Mostrar Marcadores de Jogadores na HUD</Portuguese>
+            </Key>
+            <Key ID="STR_PARAMTERS_START_AUTOLOAD">
+                <Original>Autoload a save or start a new gamey</Original>
+                <Portuguese>Carregar save ou começar um novo jogo</Portuguese>
+            </Key>
+            <Key ID="STR_PARAMTERS_START_DIFFICULTY">
+                <Original>Game difficulty (Only with autoload)</Original>
+                <Portuguese>Dificuldade do jogo (Apenas com Auto carregamento)</Portuguese>
+            </Key>
+            <Key ID="STR_PARAMTERS_START_FAST_TRAVEL">
+                <Original>Fast Travel (Only with autoload)</Original>
+                <Portuguese>Viagem Rápida (Apenas com Auto carregamento)</Portuguese>
+            </Key>
+            <Key ID="STR_PARAMTERS_START_FAST_TRAVEL_RULES">
+                <Original>Fast Travel Rules (Only with autoload)</Original>
+                <Portuguese>Regras de viagem rápida (Apenas com Auto carregamento)</Portuguese>
+            </Key>
+            <Key ID="STR_PARAMTERS_TAX_DECREASE">
+                <Original>Tax % --</Original>
+                <Portuguese>Taxa % --</Portuguese>
+            </Key>
+            <Key ID="STR_PARAMTERS_TAX_DECREASE_DESC">
+                <Original>Decreases the resistance tax rate</Original>
+                <Portuguese>Reduz a taxa de imposto da resistência.</Portuguese>
+            </Key>
+            <Key ID="STR_PARAMTERS_TAX_INCREASE">
+                <Original>Tax % ++</Original>
+                <Portuguese>Taxa % ++</Portuguese>
+            </Key>
+            <Key ID="STR_PARAMTERS_TAX_INCREASE_DESC">
+                <Original>Increases the resistance tax rate</Original>
+                <Portuguese>Aumenta a taxa de imposto da resistência</Portuguese>
+            </Key>
+            <Key ID="STR_PARAMTERS_VEHICLE">
+                <Original>Vehicles</Original>
+                <Portuguese>Veiculos</Portuguese>
+            </Key>
+            <Key ID="STR_PARAMTERS_VEHICLE_DESC">
+                <Original>List of all military vehicles and their state</Original>
+                <Portuguese>Lista de todos os veículos militares e seus respectivos estados.</Portuguese>
+            </Key>
+            <Key ID="STR_PARAMTERS_ZEUS_TOGGLE">
+                <Original>Toggle Zeus</Original>
+                <Portuguese>Alternar Zeus</Portuguese>
+            </Key>
+            <Key ID="STR_PARAMTERS_ZEUS_TOGGLE_DESC">
+                <Original>Toggle between zeus access as the host</Original>
+                <Portuguese>Alternar entre o acesso Zeus como host</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_ACCEPT">
+                <Original>Accept</Original>
+                <Portuguese>Aceitar</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_ADD">
+                <Original>Add</Original>
+                <Portuguese>Adicionar</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_ADVANCED">
+                <Original>Advanced</Original>
+                <Portuguese>Avançado</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_ALL">
+                <Original>All</Original>
+                <Portuguese>Todos</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_BASIC">
+                <Original>Basic</Original>
+                <Portuguese>Básico</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_BUILD">
+                <Original>Build</Original>
+                <Portuguese>Construir Grandes</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_BUILD_DESC">
+                <Original>Build structures in towns and at bases</Original>
+                <Portuguese>Construir estruturas em cidades ou em bases</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_BUY">
+                <Original>Buy</Original>
+                <Portuguese>Comprar</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_CANCEL">
+                <Original>Cancel</Original>
+                <Portuguese>Cancelar</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_CLOSE">
+                <Original>Close</Original>
+                <Portuguese>Fechar</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_CONTINUE_PREVIOUS_GAME">
+                <Original>Continue previous save</Original>
+                <Portuguese>Continue o Ultimo Save</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_COSTS">
+                <Original>Costs</Original>
+                <Portuguese>Custos</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_DELETE">
+                <Original>Delete</Original>
+                <Portuguese>Deletar</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_DENY">
+                <Original>Deny</Original>
+                <Portuguese>Rejeitar</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_DISABLED">
+                <Original>Disabled</Original>
+                <Portuguese>Desabilitado</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_DISMISS">
+                <Original>Dismiss</Original>
+                <Portuguese>Dispensar</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_EASY">
+                <Original>Easy</Original>
+                <Portuguese>Fácil</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_EDIT">
+                <Original>Edit</Original>
+                <Portuguese>Editar</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_EXPORT_ALL">
+                <Original>Export All</Original>
+                <Portuguese>Exportar Tudo</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_EXPORT_ALL_DESC">
+                <Original>Exports the contents of this vehicle</Original>
+                <Portuguese>Exportar Tudo deste veiculo</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_FREE">
+                <Original>Free</Original>
+                <Portuguese>Grátis</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_HARD">
+                <Original>Hard</Original>
+                <Portuguese>Difícil</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_HIGH">
+                <Original>High</Original>
+                <Portuguese>Alto</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_IMPORT">
+                <Original>Import</Original>
+                <Portuguese>Importar</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_IMPORT_10">
+                <Original>Import 10</Original>
+                <Portuguese>Importar 10</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_IMPORT_100">
+                <Original>Import 100</Original>
+                <Portuguese>Importar 100</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_IMPORT_1000">
+                <Original>Import 1000</Original>
+                <Portuguese>Importar 1000</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_IMPORT_SAVE">
+                <Original>Import Save</Original>
+                <Portuguese>Importar Save</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_JOBS">
+                <Original>Jobs</Original>
+                <Portuguese>Trabalhos</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_JOBS_DESC">
+                <Original>Jobs and tasks currently available</Original>
+                <Portuguese>Vagas e tarefas disponíveis no momento</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_KILLS">
+                <Original>Kills: %1/%2</Original>
+                <Portuguese>Mortes: %1/%2</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_LOAD_PREVIOUS_GAME">
+                <Original>Load Previous Save</Original>
+                <Portuguese>Carregar Ultimo Save</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_LOAD_SAVE">
+                <Original>Load Save (Original)</Original>
+                <Portuguese>Carregar Save (Original)</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_LOAD_STRING_SAVE">
+                <Original>Load string as a save</Original>
+                <Portuguese>Carregar texto como save</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_LOOT">
+                <Original>Loot</Original>
+                <Portuguese>Loot</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_LOW">
+                <Original>Low</Original>
+                <Portuguese>Baixo</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_MANAGE">
+                <Original>Manage</Original>
+                <Portuguese>Gerenciar</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_MEDIUM">
+                <Original>Medium</Original>
+                <Portuguese>Médio</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_NEW_GAME">
+                <Original>New Game</Original>
+                <Portuguese>Novo Jogo</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_NEW_GAME_TOOLTIP">
+                <Original>Starts a new game (Please note, saving will overwrite any previous games)</Original>
+                <Portuguese>Começar um Novo Jogo (Atenção que vai apagar o save anterior)</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_NO">
+                <Original>No</Original>
+                <Portuguese>Não</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_NONE">
+                <Original>None</Original>
+                <Portuguese>Nenhum</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_NORMAL">
+                <Original>Normal</Original>
+                <Portuguese>Normal</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_NO_WEAPONS">
+                <Original>No Weapons</Original>
+                <Portuguese>Sem Armas</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_OPEN">
+                <Original>Open</Original>
+                <Portuguese>Aberto</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_OVERTHROW_SET_MONEY">
+                <Original>Overthrow: Set Money</Original>
+                <Portuguese>Overthrow: Setar Dinheiro</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_PLACE">
+                <Original>Place</Original>
+                <Portuguese>Construir Pequenos</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_PLACE_DESC">
+                <Original>Place smaller items around houses you own or at friendly bases</Original>
+                <Portuguese>Construir items pequenos perto de casas que você tem ou em bases aliadas</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_PLAYERS_ONLY">
+                <Original>Players Only</Original>
+                <Portuguese>Apenas Jogadores</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_RECRUIT">
+                <Original>Recruit</Original>
+                <Portuguese>Recruit</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_REPAIR">
+                <Original>Repair</Original>
+                <Portuguese>Reparar</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_RESTORE">
+                <Original>Restore</Original>
+                <Portuguese>Restaurar</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_RESTRICTED">
+                <Original>Restricted</Original>
+                <Portuguese>Restrito</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_SELL">
+                <Original>Sell</Original>
+                <Portuguese>Vender</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_SELL_1">
+                <Original>Sell 1</Original>
+                <Portuguese>Vender 1</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_SELL_ALL">
+                <Original>Sell All</Original>
+                <Portuguese>Vender Tudo</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_SLEEP">
+                <Original>SLEEP</Original>
+                <Portuguese>DORMIR</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_SLEEP_ASK">
+                <Original>HOW LONG WOULD YOU LIKE TO SLEEP?</Original>
+                <Portuguese>POR QUANTO TEMPO VOCÊ GOSTARIA DE DORMIR?</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_SLEEP_HOURS">
+                <Original>X Hour(s)</Original>
+                <Portuguese>X Hora(s)</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_SPEED1">
+                <Original>100% Speed</Original>
+                <Portuguese>100% de Velocidade</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_SPEED10">
+                <Original>1000% Speed</Original>
+                <Portuguese>1000% de Velocidade</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_SPEED2">
+                <Original>150% Speed</Original>
+                <Portuguese>150% de Velocidade</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_SPEED3">
+                <Original>200% Speed</Original>
+                <Portuguese>200% de Velocidade</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_SPEED4">
+                <Original>250% Speed</Original>
+                <Portuguese>250% de Velocidade</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_SPEED5">
+                <Original>300% Speed</Original>
+                <Portuguese>300% de Velocidade</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_SPEED6">
+                <Original>350% Speed</Original>
+                <Portuguese>350% de Velocidade</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_SPEED7">
+                <Original>400% Speed</Original>
+                <Portuguese>400% de Velocidade</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_SPEED8">
+                <Original>450% Speed</Original>
+                <Portuguese>450% de Velocidade</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_SPEED9">
+                <Original>500% Speed</Original>
+                <Portuguese>500% de Velocidade</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_START_GAME">
+                <Original>Start Game</Original>
+                <Portuguese>Começar Jogo</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_TAKE_1">
+                <Original>Take 1</Original>
+                <Portuguese>Pegar 1</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_TAKE_10">
+                <Original>Take 10</Original>
+                <Portuguese>Pegar 10</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_TAKE_100">
+                <Original>Take 100</Original>
+                <Portuguese>Pegar 100</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_TAKE_ALL">
+                <Original>Take All</Original>
+                <Portuguese>Pegar Tudo</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_VERY_HIGH">
+                <Original>Very High</Original>
+                <Portuguese>Muito Alto</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_WORKSHOP">
+                <Original>&lt;t size='2' align='center'&gt;Workshop&lt;/t&gt;</Original>
+                <Portuguese>&lt;t size='2' align='center'&gt;Oficina&lt;/t&gt;</Portuguese>
+            </Key>
+            <Key ID="STR_STATISTICS_YES">
+                <Original>Yes</Original>
+                <Portuguese>Sim</Portuguese>
+            </Key>
+        </Container>
+        <Container name="Tutorials">
+            <Key ID="STR_MISSION_TUTORIAL_01">
+                <Original>There doesnt seem to be any NATO nearby. Head to %1, you should be able to find some NATO there. It's marked on your map</Original>
+                <Portuguese>Não parece haver nenhuma base da NATO por perto. Vá para %1, você deve conseguir encontrar alguma base da NATO lá. Está marcada no seu mapa</Portuguese>
+            </Key>
+            <Key ID="STR_MISSION_TUTORIAL_02">
+                <Original>There is a group of NATO nearby, their position has been marked on your map. Let's show them we've had enough.</Original>
+                <Portuguese>Há um grupo da NATO por perto; a posição deles está marcada no seu mapa. Vamos mostrar a eles que já chega.</Portuguese>
+            </Key>
+            <Key ID="STR_MISSION_TUTORIAL_DRUGS_01">
+                <Original>There doesnt seem to be any civilians nearby. Head to %1, you should be able to find some there. It's marked on your map</Original>
+                <Portuguese>Não parece haver civis por perto. Vá para %1, você deve conseguir encontrar alguns lá. Está marcado no seu mapa.</Portuguese>
+            </Key>
+            <Key ID="STR_MISSION_TUTORIAL_DRUGS_02">
+                <Original>There is a civilian nearby,&lt;br/&gt;their position has been marked on your map.</Original>
+                <Portuguese>Há um civil nas proximidades,&lt;br/&gt;a posição dele foi marcada no seu mapa.</Portuguese>
+            </Key>
+            <Key ID="STR_MISSION_TUTORIAL_DRUGS_03">
+                <Original>Use your interaction key on the civilian to talk to them&lt;br/&gt;and see if they wanna buy your Ganja. Not everyone is into the sweet herb,&lt;br/&gt;but just keep trying until you get lucky.</Original>
+                <Portuguese>Use a tecla de interação com o civil para falar com ele&lt;br/&gt;e ver se ele quer comprar sua ganja. Nem todo mundo curte a erva,&lt;br/&gt;mas continue tentando até ter sorte.</Portuguese>
+            </Key>
+            <Key ID="STR_MISSION_TUTORIAL_ECONOMY_01">
+                <Original>There doesnt seem to be any wrecks nearby.&lt;br/&gt;Head to %1, you should be able to find some there. It's marked on your map</Original>
+                <Portuguese>Não parece haver nenhum destroço por perto. Vá para %1,&lt;br/&gt;você deve conseguir encontrar alguns lá. Está marcado no seu mapa</Portuguese>
+            </Key>
+            <Key ID="STR_MISSION_TUTORIAL_ECONOMY_02">
+                <Original>There is a wreck nearby.&lt;br/&gt;Use the toolkit to salvage it</Original>
+                <Portuguese>Há um destroço por perto.&lt;br/&gt;Use o kit de ferramentas para recuperá-lo</Portuguese>
+            </Key>
+            <Key ID="STR_MISSION_TUTORIAL_ECONOMY_03">
+                <Original>Use your interaction key on the wreck to talk to salvage it.&lt;br/&gt;The items you get can be sold at any Hardware store,&lt;br/&gt;just drive up to it and press 'Y'</Original>
+                <Portuguese>Use a tecla de interação no destroço para falar com ele e recuperá-lo.&lt;br/&gt;Os itens que você conseguir podem ser vendidos em qualquer loja de ferragens,&lt;br/&gt;basta dirigir até lá e pressionar 'Y'.</Portuguese>
+            </Key>
+            <Key ID="STR_MISSION_TUTORIAL_ECONOMY_04">
+                <Original>Go and grab the toolkit from your ammobox at home,&lt;br/&gt;you'll need a backpack to carry it</Original>
+                <Portuguese>Vá buscar o kit de ferramentas na sua caixa de munição em casa,&lt;br/&gt;você vai precisar de uma mochila para carregá-lo.</Portuguese>
+            </Key>
+            <Key ID="STR_TUTORIAL_POP_UP">
+                <Original>Would you like a quick tutorial? (You will receive free items)</Original>
+                <Portuguese>Você gostaria de um breve tutorial? (Você receberá itens gratuitos)</Portuguese>
+            </Key>
+            <Key ID="STR_TUTORIAL_TOOLTIP_01">
+                <Original>Recommended for beginners playing solo</Original>
+                <Portuguese>Recomendado para iniciantes que jogam solo</Portuguese>
+            </Key>
+            <Key ID="STR_TUTORIAL_TOOLTIP_02">
+                <Original>Recommended for beginners playing in groups or experienced players solo</Original>
+                <Portuguese>Recomendado para iniciantes que jogam em grupo ou jogadores experientes que jogam sozinhos</Portuguese>
+            </Key>
+            <Key ID="STR_TUTORIAL_TOOLTIP_03">
+                <Original>For the hardcore</Original>
+                <Portuguese>Para os hardcore</Portuguese>
+            </Key>
+        </Container>
+    </Package>
+</Project>

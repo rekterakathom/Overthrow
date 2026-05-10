@@ -27,8 +27,8 @@ private _params = [_faction, _destination, _destinationName, _jobid];
 private _markerPos = _destination; //randomize the marker position a bit
 
 //Build a mission description and title
-private _description = format ["A traitor of %1 has fled here and is hiding in %2 under NATO protection. %1 will pay handsomely and be very grateful if you could just.. make them disappear. <br/><br/>Reward: +20 (%1), $2500", _factionName, _destinationName];
-private _title = format ["%1 Traitor in %2", _factionName, _destinationName];
+private _description = format [localize "STR_MISSION_FUGITIVE_01", _factionName, _destinationName];
+private _title = format [localize "STR_MISSION_FUGITIVE_02", _factionName, _destinationName];
 
 //The data below is what is returned to the gun dealer/faction rep, _markerPos is where to put the mission marker, the code in {} brackets is the actual mission code, only run if the player accepts
 [
@@ -115,7 +115,7 @@ private _title = format ["%1 Traitor in %2", _factionName, _destinationName];
         if (_alerted && !_alreadyAlerted) then {
             _civ enableAI "MOVE";
             private _factionName = server getVariable format ["factionname%1", _faction];
-            format ["Incoming message from %1: Traitor has been alerted.", _factionName] remoteExec ["OT_fnc_notifyMinor", 0, false];
+            format [localize "STR_MISSION_FUGITIVE_03", _factionName] remoteExec ["OT_fnc_notifyMinor", 0, false];
             private _wp = group _civ addWaypoint [[[[_destination, 500]]] call BIS_fnc_randomPos, 0];
             _wp setWaypointSpeed "FULL";
             _wp setWaypointCombatMode "COMBAT";
@@ -138,7 +138,7 @@ private _title = format ["%1 Traitor in %2", _factionName, _destinationName];
                     [2500] call OT_fnc_resistanceFunds;
 
                     private _factionName = server getVariable format ["factionname%1", _faction];
-                    format ["Incoming message from %1: Traitor neutralized. Sending our regards and $2500 to the resistance. (+20 %1)", _factionName] remoteExec ["OT_fnc_notifyMinor", 0, false];
+                    format [localize "STR_MISSION_FUGITIVE_04", _factionName] remoteExec ["OT_fnc_notifyMinor", 0, false];
                     server setVariable [format ["standing%1", _faction], (server getVariable [format ["standing%1", _faction], 0]) + 20, true];
                 },
                 [_faction],

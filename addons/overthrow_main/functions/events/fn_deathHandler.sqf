@@ -63,7 +63,7 @@ call {
             _idx = _idx + 1;
         } forEach (OT_NATOhvts);
         OT_NATOhvts deleteAt _idx;
-        format ["A high-ranking NATO officer has been killed"] remoteExec ["OT_fnc_notifyMinor", 0, false];
+        format [localize "STR_EVENT_DEATH_HANDLER_01"] remoteExec ["OT_fnc_notifyMinor", 0, false];
         private _resources = server getVariable ["NATOresources", 0];
         _resources = _resources - 500;
         if (_diff isEqualTo 1) then { _resources = _resources - 500 };
@@ -78,7 +78,7 @@ call {
         if (_pop > 0) then {
             server setVariable [format ["employ%1", _mobsterid], _pop - 1, true];
         };
-        format ["An employee of %1 has died", _employee] remoteExec ["OT_fnc_notifyMinor", 0, false];
+        format [localize "STR_EVENT_DEATH_HANDLER_02", _employee] remoteExec ["OT_fnc_notifyMinor", 0, false];
     };
     if (!isNil "_criminal") exitWith {
         _killer setVariable ["OPFkills", (_killer getVariable ["OPFkills", 0]) + 1, true];
@@ -123,7 +123,7 @@ call {
                 private _gangs = OT_civilians getVariable [format ["gangs%1", _hometown], []];
                 _gangs deleteAt (_gangs find _gangid);
                 OT_civilians setVariable [format ["gangs%1", _hometown], _gangs, true];
-                format ["The leader of %2 in %1 has been eliminated", _hometown, _name] remoteExec ["OT_fnc_notifyMinor", 0, false];
+                format [localize "STR_EVENT_DEATH_HANDLER_03", _hometown, _name] remoteExec ["OT_fnc_notifyMinor", 0, false];
                 spawner setVariable [format ["nogang%1", _hometown], time + 3600, false]; //No gangs in this town for 1 hr real-time
                 private _mrkid = format ["gang%1", _hometown];
                 deleteMarker _mrkid;
@@ -140,7 +140,7 @@ call {
         if (_pop > 0) then {
             _pop = _pop - 1;
             server setVariable [format ["police%1", _polgarrison], _pop, true];
-            format ["A police officer has been killed in %1", _polgarrison] remoteExec ["OT_fnc_notifyMinor", 0, false];
+            format [localize "STR_EVENT_DEATH_HANDLER_04", _polgarrison] remoteExec ["OT_fnc_notifyMinor", 0, false];
         };
         [_town, -2] call OT_fnc_stability;
         private _mrkid = format ["%1-police", _polgarrison];
@@ -211,7 +211,7 @@ if ((_killer call OT_fnc_unitSeen) || (_standingChange < -9)) then {
 };
 if (isPlayer _killer) then {
     if (_standingChange isEqualTo -50) then {
-        [_town, _standingChange, "You killed a civilian", _killer] call OT_fnc_support;
+        [_town, _standingChange, localize "STR_EVENT_DEATH_HANDLER_05", _killer] call OT_fnc_support;
     } else {
         [_town, _standingChange] call OT_fnc_support;
     };

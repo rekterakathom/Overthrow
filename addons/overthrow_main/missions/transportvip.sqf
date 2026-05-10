@@ -50,8 +50,8 @@ private _params = [_faction, _pickup, _destination, _identity];
 private _markerPos = _destination;
 
 //Build a mission description and title
-private _description = format ["Our intelligence operative %1 is in need of transport from %2 to %3. He is of local descent so you should have no problems passing through NATO checkpoints unnoticed. Please take care of it within 12 hrs.<br/><br/>Reward: +5 (%4), $250", _fullname, _pickupTown, _destinationTown, _factionName];
-private _title = format ["Operative transport for %1", _factionName];
+private _description = format [localize "STR_MISSION_TRANSPORT_VIP_01", _fullname, _pickupTown, _destinationTown, _factionName];
+private _title = format [localize "STR_MISSION_TRANSPORT_VIP_02", _factionName];
 
 //The data below is what is returned to the gun dealer/faction rep, _markerPos is where to put the mission marker, the code in {} brackets is the actual mission code, only run if the player accepts
 [
@@ -105,7 +105,7 @@ private _title = format ["Operative transport for %1", _factionName];
                 {
                     params ["_faction"];
                     private _factionName = server getVariable format ["factionname%1", _faction];
-                    format ["Incoming message from %1: Thank you for delivering our operative. (+5 %1)", _factionName] remoteExec ["OT_fnc_notifyMinor", 0, false];
+                    format [localize "STR_MISSION_TRANSPORT_VIP_03", _factionName] remoteExec ["OT_fnc_notifyMinor", 0, false];
                     server setVariable [format ["standing%1", _faction], (server getVariable [format ["standing%1", _faction], 0]) + 5, true];
                     [250] call OT_fnc_money;
                 },
@@ -114,7 +114,7 @@ private _title = format ["Operative transport for %1", _factionName];
             ] call CBA_fnc_waitAndExecute;
         } else {
             private _factionName = server getVariable format ["factionname%1", _faction];
-            format ["Incoming message from %1: What happened?!? (-10 %1)", _factionName] remoteExec ["OT_fnc_notifyMinor", 0, false];
+            format [localize "STR_MISSION_TRANSPORT_VIP_04", _factionName] remoteExec ["OT_fnc_notifyMinor", 0, false];
             server setVariable [format ["standing%1", _faction], (server getVariable [format ["standing%1", _faction], 0]) - 10, true];
         };
     },

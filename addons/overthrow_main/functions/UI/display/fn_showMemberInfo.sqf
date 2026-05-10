@@ -25,7 +25,7 @@ if (_isonline) then {
 };
 
 if (_uid in (server getVariable ["generals", []])) then {
-    _on = _on + " (General)";
+    _on = _on + format[localize "STR_DISPLAY_DISPLAY_MEMBER_INFO_01"];
 };
 
 private _text = format ["<t size='0.8'>%1</t><br/>", _ctrl lbText _index];

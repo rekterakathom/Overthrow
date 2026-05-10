@@ -9,8 +9,8 @@ private _description = "";
 private _title = "";
 
 if (_missiontype == "CONVOY") then {
-    _description = format ["We have received intel that NATO will be running a convoy from %1 to %2 at approximately %3:00 today.", _p1 select 1, _p2 select 1, _hour];
-    _title = format ["NATO Convoy from %1 to %2", _p1 select 1, _p2 select 1];
+    _description = format [localize "STR_MISSION_NATO_MISSIONS_01", _p1 select 1, _p2 select 1, _hour];
+    _title = format [localize "STR_MISSION_NATO_MISSIONS_02", _p1 select 1, _p2 select 1];
     //notify the players
     _description remoteExec ["OT_fnc_notifyMinor", 0, false];
 };

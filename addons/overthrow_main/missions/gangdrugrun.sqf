@@ -28,8 +28,8 @@ private _markerPos = _destination;
 private _params = [_destination, _gangid, _numitems, _reward];
 
 //Build a mission description and title
-private _description = format ["We need someone to deliver %1 x Ganja to a customer in %2. You have 6 hours.</t><br/><br/><t size='0.9' align='center'>Reward: +5 rep (%3), $%4", _numitems, _destinationName, _gangname, _reward];
-private _title = format ["Deliver %2 x Ganja for %1", _gangname, _numitems];
+private _description = format [localize "STR_MISSION_GANG_DRUG_RUN_01", _numitems, _destinationName, _gangname, _reward];
+private _title = format [localize "STR_MISSION_GANG_DRUG_RUN_02", _gangname, _numitems];
 
 //The data below is what is returned to the gun dealer/faction rep, _markerPos is where to put the mission marker, the code in {} brackets is the actual mission code, only run if the player accepts
 [
@@ -38,7 +38,7 @@ private _title = format ["Deliver %2 x Ganja for %1", _gangname, _numitems];
     {
         params ["_destination", "", "_numitems"];
         if !(player canAdd ["OT_Ganja", _numitems]) exitWith {
-            "You don't have enough room in your inventory for the Ganja" call OT_fnc_notifyMinor;
+            localize "STR_MISSION_GANG_DRUG_RUN_03" call OT_fnc_notifyMinor;
             false;
         };
         private _group = createGroup civilian;
@@ -64,7 +64,7 @@ private _title = format ["Deliver %2 x Ganja for %1", _gangname, _numitems];
             player addItem "OT_Ganja";
             _count = _count + 1;
         };
-        format ["%1 x Ganja added to inventory", _numitems] call OT_fnc_notifyMinor;
+        format [localize "STR_MISSION_GANG_DRUG_RUN_04", _numitems] call OT_fnc_notifyMinor;
         true;
     },
     {
@@ -88,7 +88,7 @@ private _title = format ["Deliver %2 x Ganja for %1", _gangname, _numitems];
             [
                 _reward,
                 format [
-                    "Delivered %1 x Ganja",
+                    localize "STR_MISSION_GANG_DRUG_RUN_05",
                     _numitems
                     //,_gang select 8
                 ]
@@ -100,7 +100,7 @@ private _title = format ["Deliver %2 x Ganja for %1", _gangname, _numitems];
             _gang set [6, _resources + 100];
             OT_civilians setVariable [format ["gang%1", _gangid], _gang, true];
         } else {
-            [_player, _gangid, -5, format ["Failed delivery of %1 x Ganja", _numitems]] call OT_fnc_gangRep;
+            [_player, _gangid, -5, format [localize "STR_MISSION_GANG_DRUG_RUN_06", _numitems]] call OT_fnc_gangRep;
         };
     },
     _params

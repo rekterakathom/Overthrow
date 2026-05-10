@@ -41,7 +41,7 @@ class RscTitles {
             };
             class RscButton_1600: RscOverthrowButton {
                 idc = 1600;
-                text = "Buy"; //--- ToDo: Localize;
+                text = "$STR_STATISTICS_BUY";
                 x = "0.752656 * safeZoneW + safeZoneX";
                 y = "0.676 * safeZoneH + safeZoneY";
                 w = "0.139219 * safeZoneW";

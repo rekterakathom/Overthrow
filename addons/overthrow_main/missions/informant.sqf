@@ -23,8 +23,8 @@ private _params = [_destination, _destinationName, _jobid];
 private _markerPos = _destination; //randomize the marker position a bit
 
 //Build a mission description and title
-private _description = format ["A defector from the resistance is hiding in %1 under NATO protection and giving them sensitive information. He needs to be silenced. <br/><br/>Reward: $1500", _destinationName];
-private _title = format ["NATO informant in %1", _destinationName];
+private _description = format [localize "STR_MISSION_INFORMANT_01", _destinationName];
+private _title = format [localize "STR_MISSION_INFORMANT_02", _destinationName];
 
 //The data below is what is returned to the gun dealer/faction rep, _markerPos is where to put the mission marker, the code in {} brackets is the actual mission code, only run if the player accepts
 [
@@ -109,7 +109,7 @@ private _title = format ["NATO informant in %1", _destinationName];
 
         if (_alerted && !_alreadyAlerted) then {
             _civ enableAI "MOVE";
-            format ["NATO Informant has been alerted."] remoteExec ["OT_fnc_notifyMinor", 0, false];
+            format [localize "STR_MISSION_INFORMANT_03"] remoteExec ["OT_fnc_notifyMinor", 0, false];
             private _wp = (group _civ) addWaypoint [[[[_destination, 500]]] call BIS_fnc_randomPos, 0];
             _wp setWaypointSpeed "FULL";
             _wp setWaypointCombatMode "COMBAT";
@@ -125,7 +125,7 @@ private _title = format ["NATO informant in %1", _destinationName];
 
         //If mission was a success
         if (_wassuccess) then {
-            [{ format ["NATO Informant in %1 has been taken care of", _destination call OT_fnc_nearestTown] remoteExec ["OT_fnc_notifyMinor", 0, false] }, 0, 2] call CBA_fnc_waitAndExecute;
+            [{ format [localize "STR_MISSION_INFORMANT_04", _destination call OT_fnc_nearestTown] remoteExec ["OT_fnc_notifyMinor", 0, false] }, 0, 2] call CBA_fnc_waitAndExecute;
         };
         //Clean up
         spawner setVariable [format ["informant%1", _jobid], nil, false];

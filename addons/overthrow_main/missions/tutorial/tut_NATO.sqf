@@ -35,7 +35,7 @@ if (_targets isEqualTo []) exitWith {
         [player, _destination, _town] call OT_fnc_givePlayerWaypoint;
 
         format [
-            "There doesnt seem to be any NATO nearby. Head to %1, you should be able to find some NATO there. It's marked on your map",
+            localize "STR_MISSION_TUTORIAL_01",
             _town
         ] call OT_fnc_notifyMinor;
 
@@ -61,7 +61,7 @@ if (_targets isEqualTo []) exitWith {
     };
 };
 
-"There is a group of NATO nearby, their position has been marked on your map. Let's show them we've had enough." call OT_fnc_notifyMinor;
+localize "STR_MISSION_TUTORIAL_02" call OT_fnc_notifyMinor;
 //pick the closest group and reveal
 
 private _sorted = [_targets, [], { _x distance player }, "ASCEND"] call BIS_fnc_sortBy;
@@ -87,7 +87,7 @@ private _loopCode = {
     } else {
         private _num = _total - ({ alive _x } count units _group);
         _done = _num >= _total;
-        hintSilent format ["Kills: %1/%2", _num, _total];
+        hintSilent format [localize "STR_STATISTICS_KILLS", _num, _total];
     };
 
     if !(_done) then {

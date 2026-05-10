@@ -39,7 +39,7 @@ class OT_dialog_buy {
         };
         class RscButton_1600: RscOverthrowButton {
             idc = 1600;
-            text = "Buy"; //--- ToDo: Localize;
+            text = "$STR_STATISTICS_BUY";
             x = "0.752656 * safeZoneW + safeZoneX";
             y = "0.676 * safeZoneH + safeZoneY";
             w = "0.139219 * safeZoneW";
@@ -116,7 +116,7 @@ class OT_dialog_recruit {
             idc = 1600;
             action = "[] call OT_fnc_buy";
 
-            text = "Recruit"; //--- ToDo: Localize;
+            text = "$STR_STATISTICS_RECRUIT";
             x = "0.840312 * safeZoneW + safeZoneX";
             y = "0.676 * safeZoneH + safeZoneY";
             w = "0.0515625 * safeZoneW";
@@ -127,7 +127,7 @@ class OT_dialog_recruit {
             idc = 1601;
             action = "[] call OT_fnc_editLoadout";
 
-            text = "Edit"; //--- ToDo: Localize;
+            text = "$STR_STATISTICS_EDIT";
             x = "0.778437 * safeZoneW + safeZoneX";
             y = "0.676 * safeZoneH + safeZoneY";
             w = "0.0567187 * safeZoneW";
@@ -182,7 +182,7 @@ class OT_dialog_sell {
             idc = 1600;
             action = "[] call OT_fnc_sell;";
 
-            text = "Sell 1"; //--- ToDo: Localize;
+            text = "$STR_STATISTICS_SELL_1";
             x = "0.515469 * safeZoneW + safeZoneX";
             y = "0.786 * safeZoneH + safeZoneY";
             w = "0.0928125 * safeZoneW";
@@ -192,7 +192,7 @@ class OT_dialog_sell {
             idc = 1601;
             action = "closeDialog 0;";
 
-            text = "Close"; //--- ToDo: Localize;
+            text = "$STR_STATISTICS_CLOSE";
             x = "0.29375 * safeZoneW + safeZoneX";
             y = "0.786 * safeZoneH + safeZoneY";
             w = "0.0928125 * safeZoneW";
@@ -202,7 +202,7 @@ class OT_dialog_sell {
             idc = 1600;
             action = "[] call OT_fnc_sellAll;";
 
-            text = "Sell All"; //--- ToDo: Localize;
+            text = "$STR_STATISTICS_SELL_ALL";
             x = "0.613437 * safeZoneW + safeZoneX";
             y = "0.786 * safeZoneH + safeZoneY";
             w = "0.0928125 * safeZoneW";
@@ -258,7 +258,7 @@ class OT_dialog_workshop {
             idc = 1600;
             action = "[] call OT_fnc_workshopAdd;";
 
-            text = "Add"; //--- ToDo: Localize;
+            text = "$STR_STATISTICS_ADD";
             x = "0.752656 * safeZoneW + safeZoneX";
             y = "0.676 * safeZoneH + safeZoneY";
             w = "0.139219 * safeZoneW";
@@ -276,7 +276,7 @@ class OT_dialog_workshop {
         };
         class RscStructuredText_1101: RscOverthrowStructuredText {
             idc = 1101;
-            text = "<t size='2' align='center'>Workshop</t>"; //--- ToDo: Localize;
+            text = "$STR_STATISTICS_WORKSHOP";
             x = "0.2525 * safeZoneW + safeZoneX";
             y = "0.159 * safeZoneH + safeZoneY";
             w = "0.391875 * safeZoneW";
@@ -352,7 +352,7 @@ class OT_dialog_warehouse {
             idc = 1600;
             action = "[-1] call OT_fnc_warehouseTake;";
 
-            text = "Take All"; //--- ToDo: Localize;
+            text = "$STR_STATISTICS_TAKE_ALL";
             x = "0.840312 * safeZoneW + safeZoneX";
             y = "0.676 * safeZoneH + safeZoneY";
             w = "0.0515625 * safeZoneW";
@@ -372,7 +372,7 @@ class OT_dialog_warehouse {
             idc = 1600;
             action = "[100] call OT_fnc_warehouseTake;";
 
-            text = "Take 100"; //--- ToDo: Localize;
+            text = "$STR_STATISTICS_TAKE_100";
             x = "0.778437 * safeZoneW + safeZoneX";
             y = "0.676 * safeZoneH + safeZoneY";
             w = "0.0567187 * safeZoneW";
@@ -383,7 +383,7 @@ class OT_dialog_warehouse {
             idc = 1600;
             action = "[10] call OT_fnc_warehouseTake;";
 
-            text = "Take 10"; //--- ToDo: Localize;
+            text = "$STR_STATISTICS_TAKE_10";
             x = "0.716563 * safeZoneW + safeZoneX";
             y = "0.676 * safeZoneH + safeZoneY";
             w = "0.0567187 * safeZoneW";
@@ -394,7 +394,7 @@ class OT_dialog_warehouse {
             idc = 1600;
             action = "[1] call OT_fnc_warehouseTake;";
 
-            text = "Take 1"; //--- ToDo: Localize;
+            text = "$STR_STATISTICS_TAKE_1";
             x = "0.654688 * safeZoneW + safeZoneX";
             y = "0.676 * safeZoneH + safeZoneY";
             w = "0.0567187 * safeZoneW";
@@ -467,7 +467,7 @@ class OT_dialog_import {
             idc = 1600;
             action = "[1000] call OT_fnc_import;";
 
-            text = "Import 1000"; //--- ToDo: Localize;
+            text = "$STR_STATISTICS_IMPORT_1000";
             x = "0.840312 * safeZoneW + safeZoneX";
             y = "0.676 * safeZoneH + safeZoneY";
             w = "0.0515625 * safeZoneW";
@@ -487,7 +487,7 @@ class OT_dialog_import {
             idc = 1600;
             action = "[100] call OT_fnc_import;";
 
-            text = "Import 100"; //--- ToDo: Localize;
+            text = "$STR_STATISTICS_IMPORT_100";
             x = "0.778437 * safeZoneW + safeZoneX";
             y = "0.676 * safeZoneH + safeZoneY";
             w = "0.0567187 * safeZoneW";
@@ -498,7 +498,7 @@ class OT_dialog_import {
             idc = 1600;
             action = "[10] call OT_fnc_import;";
 
-            text = "Import 10"; //--- ToDo: Localize;
+            text = "$STR_STATISTICS_IMPORT_10";
             x = "0.716563 * safeZoneW + safeZoneX";
             y = "0.676 * safeZoneH + safeZoneY";
             w = "0.0567187 * safeZoneW";
@@ -541,7 +541,7 @@ class OT_dialog_loadout {
             idc = 1600;
             action = "[player, OT_context, lbData [1500, lbCurSel 1500]] call OT_fnc_restoreLoadout";
 
-            text = "Restore"; //--- ToDo: Localize;
+            text = "$STR_STATISTICS_RESTORE";
             x = "0.12875 * safeZoneW + safeZoneX";
             y = "0.511 * safeZoneH + safeZoneY";
             w = "0.149531 * safeZoneW";
@@ -552,7 +552,7 @@ class OT_dialog_loadout {
             idc = 1601;
             action = "[lbData [1500, lbCurSel 1500]] call OT_fnc_removeLoadout";
 
-            text = "Delete"; //--- ToDo: Localize;
+            text = "$STR_STATISTICS_DELETE";
             x = "0.12875 * safeZoneW + safeZoneX";
             y = "0.61 * safeZoneH + safeZoneY";
             w = "0.149531 * safeZoneW";

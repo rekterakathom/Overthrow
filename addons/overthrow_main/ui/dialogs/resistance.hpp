@@ -21,7 +21,7 @@ class OT_dialog_resistance {
 
         class RscStructuredText_1101: RscOverthrowStructuredText {
             idc = 1101;
-            text = "<t align='center' size='2'>Resistance</t>"; //--- ToDo: Localize;
+            text = "$STR_UI_DIAG_RESISTANCE_01";
             x = "0.242187 * safeZoneW + safeZoneX";
             y = "0.181 * safeZoneH + safeZoneY";
             w = "0.515625 * safeZoneW";
@@ -48,7 +48,7 @@ class OT_dialog_resistance {
         };
         class RscButton_1600: RscOverthrowButton {
             idc = 1600;
-            text = "Make General"; //--- ToDo: Localize;
+            text = "$STR_UI_DIAG_RESISTANCE_02";
             x = "0.628906 * safeZoneW + safeZoneX";
             y = "0.357 * safeZoneH + safeZoneY";
             w = "0.0721875 * safeZoneW";
@@ -57,7 +57,7 @@ class OT_dialog_resistance {
         };
         class RscButton_1601: RscOverthrowButton {
             idc = 1601;
-            text = "Transfer funds"; //--- ToDo: Localize;
+            text = "$STR_UI_DIAG_RESISTANCE_03";
             x = "0.546406 * safeZoneW + safeZoneX";
             y = "0.357 * safeZoneH + safeZoneY";
             w = "0.0721875 * safeZoneW";
@@ -66,7 +66,7 @@ class OT_dialog_resistance {
         };
         class RscStructuredText_1103: RscOverthrowStructuredText {
             idc = 1103;
-            text = "<t align='center' size='1.2'>Businesses</t>"; //--- ToDo: Localize;
+            text = "$STR_UI_DIAG_RESISTANCE_04";
             x = "0.242187 * safeZoneW + safeZoneX";
             y = "0.412 * safeZoneH + safeZoneY";
             w = "0.515625 * safeZoneW";
@@ -93,7 +93,7 @@ class OT_dialog_resistance {
         };
         class RscButton_1602: RscOverthrowButton {
             idc = 1602;
-            text = "Fire"; //--- ToDo: Localize;
+            text = "$STR_UI_DIAG_RESISTANCE_05";
             x = "0.546406 * safeZoneW + safeZoneX";
             y = "0.566 * safeZoneH + safeZoneY";
             w = "0.0721875 * safeZoneW";
@@ -102,7 +102,7 @@ class OT_dialog_resistance {
         };
         class RscButton_1603: RscOverthrowButton {
             idc = 1603;
-            text = "Hire"; //--- ToDo: Localize;
+            text = "$STR_UI_DIAG_RESISTANCE_06";
             x = "0.628906 * safeZoneW + safeZoneX";
             y = "0.566 * safeZoneH + safeZoneY";
             w = "0.0721875 * safeZoneW";
@@ -121,7 +121,7 @@ class OT_dialog_resistance {
         };
         class RscButton_1604: RscOverthrowButton {
             idc = 1604;
-            text = "Give funds"; //--- ToDo: Localize;
+            text = "$STR_UI_DIAG_RESISTANCE_07";
             x = "0.402031 * safeZoneW + safeZoneX";
             y = "0.643 * safeZoneH + safeZoneY";
             w = "0.0979687 * safeZoneW";
@@ -130,7 +130,7 @@ class OT_dialog_resistance {
         };
         class RscButton_1605: RscOverthrowButton {
             idc = 1605;
-            text = "Take funds"; //--- ToDo: Localize;
+            text = "$STR_UI_DIAG_RESISTANCE_08";
             x = "0.510313 * safeZoneW + safeZoneX";
             y = "0.643 * safeZoneH + safeZoneY";
             w = "0.0979687 * safeZoneW";
@@ -176,7 +176,7 @@ class OT_dialog_garrison {
 
         class RscStructuredText_1100: RscOverthrowStructuredText {
             idc = 1100;
-            text = "<t size='1.5' align='center'>Base</t>"; //--- ToDo: Localize;
+            text = "$STR_UI_DIAG_RESISTANCE_09";
             x = "0.298906 * safeZoneW + safeZoneX";
             y = "0.236 * safeZoneH + safeZoneY";
             w = "0.402187 * safeZoneW";
@@ -185,7 +185,7 @@ class OT_dialog_garrison {
         };
         class RscButton_1600: RscOverthrowButton {
             idc = 1600;
-            text = "+1 Rifleman"; //--- ToDo: Localize;
+            text = "$STR_UI_DIAG_RESISTANCE_10";
             x = "0.37625 * safeZoneW + safeZoneX";
             y = "0.291 * safeZoneH + safeZoneY";
             w = "0.0567187 * safeZoneW";
@@ -194,7 +194,7 @@ class OT_dialog_garrison {
         };
         class RscButton_1601: RscOverthrowButton {
             idc = 1601;
-            text = "+1 Autorifleman"; //--- ToDo: Localize;
+            text = "$STR_UI_DIAG_RESISTANCE_11";
             x = "0.438125 * safeZoneW + safeZoneX";
             y = "0.291 * safeZoneH + safeZoneY";
             w = "0.0567187 * safeZoneW";
@@ -203,7 +203,7 @@ class OT_dialog_garrison {
         };
         class RscButton_1602: RscOverthrowButton {
             idc = 1602;
-            text = "+1 Grenadier"; //--- ToDo: Localize;
+            text = "$STR_UI_DIAG_RESISTANCE_12";
             x = "0.5 * safeZoneW + safeZoneX";
             y = "0.291 * safeZoneH + safeZoneY";
             w = "0.0567187 * safeZoneW";
@@ -212,7 +212,7 @@ class OT_dialog_garrison {
         };
         class RscButton_1603: RscOverthrowButton {
             idc = 1603;
-            text = "+1 Medic"; //--- ToDo: Localize;
+            text = "$STR_UI_DIAG_RESISTANCE_13";
             x = "0.561875 * safeZoneW + safeZoneX";
             y = "0.291 * safeZoneH + safeZoneY";
             w = "0.0567187 * safeZoneW";
@@ -221,7 +221,7 @@ class OT_dialog_garrison {
         };
         class RscButton_1604: RscOverthrowButton {
             idc = 1604;
-            text = "+1 Anti-Tank"; //--- ToDo: Localize;
+            text = "$STR_UI_DIAG_RESISTANCE_14";
             x = "0.37625 * safeZoneW + safeZoneX";
             y = "0.379 * safeZoneH + safeZoneY";
             w = "0.0567187 * safeZoneW";
@@ -230,7 +230,7 @@ class OT_dialog_garrison {
         };
         class RscButton_1605: RscOverthrowButton {
             idc = 1605;
-            text = "+1 Anti-Air"; //--- ToDo: Localize;
+            text = "$STR_UI_DIAG_RESISTANCE_15";
             x = "0.438125 * safeZoneW + safeZoneX";
             y = "0.379 * safeZoneH + safeZoneY";
             w = "0.0567187 * safeZoneW";
@@ -239,7 +239,7 @@ class OT_dialog_garrison {
         };
         class RscButton_1606: RscOverthrowButton {
             idc = 1606;
-            text = "+1 HMG"; //--- ToDo: Localize;
+            text = "$STR_UI_DIAG_RESISTANCE_16";
             x = "0.5 * safeZoneW + safeZoneX";
             y = "0.379 * safeZoneH + safeZoneY";
             w = "0.0567187 * safeZoneW";
@@ -248,7 +248,7 @@ class OT_dialog_garrison {
         };
         class RscButton_1607: RscOverthrowButton {
             idc = 1607;
-            text = "+1 GMG"; //--- ToDo: Localize;
+            text = "$STR_UI_DIAG_RESISTANCE_17";
             x = "0.561875 * safeZoneW + safeZoneX";
             y = "0.379 * safeZoneH + safeZoneY";
             w = "0.0567187 * safeZoneW";
@@ -310,7 +310,7 @@ class OT_dialog_jobs {
         };
         class RscButton_1600: RscOverthrowButton {
             idc = 1600;
-            text = "Set Waypoint"; //--- ToDo: Localize;
+            text = "$STR_UI_DIAG_RESISTANCE_18";
             x = "0.840312 * safeZoneW + safeZoneX";
             y = "0.676 * safeZoneH + safeZoneY";
             w = "0.0515625 * safeZoneW";
@@ -320,7 +320,7 @@ class OT_dialog_jobs {
         };
         class RscButton_1601: RscOverthrowButton {
             idc = 1601;
-            text = "Clear Waypoint"; //--- ToDo: Localize;
+            text = "$STR_UI_DIAG_RESISTANCE_19";
             x = "0.778437 * safeZoneW + safeZoneX";
             y = "0.676 * safeZoneH + safeZoneY";
             w = "0.0567187 * safeZoneW";
@@ -395,7 +395,7 @@ class OT_dialog_logistics {
         };
         class RscButton_1600: RscOverthrowButton {
             idc = 1600;
-            text = "Set Waypoint"; //--- ToDo: Localize;
+            text = "$STR_UI_DIAG_RESISTANCE_18";
             x = "0.840312 * safeZoneW + safeZoneX";
             y = "0.676 * safeZoneH + safeZoneY";
             w = "0.0515625 * safeZoneW";
@@ -405,7 +405,7 @@ class OT_dialog_logistics {
         };
         class RscButton_1601: RscOverthrowButton {
             idc = 1601;
-            text = "Clear Waypoint"; //--- ToDo: Localize;
+            text = "$STR_UI_DIAG_RESISTANCE_19";
             x = "0.778437 * safeZoneW + safeZoneX";
             y = "0.676 * safeZoneH + safeZoneY";
             w = "0.0567187 * safeZoneW";
@@ -461,7 +461,7 @@ class OT_dialog_joboffer {
         ////////////////////////////////////////////////////////
         class RscButton_1600: RscOverthrowGreenButton {
             idc = 1600;
-            text = "Accept"; //--- ToDo: Localize;
+            text = "$STR_STATISTICS_ACCEPT";
             x = "0.592812 * safeZoneW + safeZoneX";
             y = "0.522 * safeZoneH + safeZoneY";
             w = "0.0773437 * safeZoneW";
@@ -471,7 +471,7 @@ class OT_dialog_joboffer {
         };
         class RscButton_1601: RscOverthrowButton {
             idc = 1601;
-            text = "Deny"; //--- ToDo: Localize;
+            text = "$STR_STATISTICS_DENY";
             x = "0.510312 * safeZoneW + safeZoneX";
             y = "0.522 * safeZoneH + safeZoneY";
             w = "0.0773437 * safeZoneW";
@@ -481,7 +481,7 @@ class OT_dialog_joboffer {
         };
         class RscButton_1602: RscOverthrowButton {
             idc = 1602;
-            text = "Cancel"; //--- ToDo: Localize;
+            text = "$STR_STATISTICS_CANCEL";
             x = "0.335 * safeZoneW + safeZoneX";
             y = "0.522 * safeZoneH + safeZoneY";
             w = "0.0773437 * safeZoneW";

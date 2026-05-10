@@ -49,8 +49,8 @@ private _markerPos = _destination;
 private _params = [_destination, _itemcls, _numitems, _reward, _starttown];
 
 //Build a mission description and title
-private _description = format ["I need someone to deliver %1 x %2 to a customer in %3. You have 6 hours.</t><br/><br/><t size='0.9' align='center'>Reward: $%4, +2 Resistance Support", _numitems, _itemname, _destinationName, _reward];
-private _title = format ["Deliver %1 x %2 for %3 store in %4", _numitems, _itemname, _cat, _starttown];
+private _description = format [localize "STR_MISSION_SHOP_DELIVERY_01", _numitems, _itemname, _destinationName, _reward];
+private _title = format [localize "STR_MISSION_SHOP_DELIVERY_02", _numitems, _itemname, _cat, _starttown];
 
 //The data below is what is returned to the gun dealer/faction rep, _markerPos is where to put the mission marker, the code in {} brackets is the actual mission code, only run if the player accepts
 [
@@ -59,7 +59,7 @@ private _title = format ["Deliver %1 x %2 for %3 store in %4", _numitems, _itemn
     {
         params ["_destination", "_itemcls", "_numitems"];
         if !(player canAdd [_itemcls, _numitems]) exitWith {
-            "You don't have enough room in your inventory for the items" call OT_fnc_notifyMinor;
+            localize "STR_MISSION_SHOP_DELIVERY_03" call OT_fnc_notifyMinor;
             false;
         };
         private _group = createGroup civilian;
@@ -85,7 +85,7 @@ private _title = format ["Deliver %1 x %2 for %3 store in %4", _numitems, _itemn
             player addItem _itemcls;
             _count = _count + 1;
         };
-        format ["%1 x %2 added to inventory", _numitems, _itemcls call OT_fnc_weaponGetName] call OT_fnc_notifyMinor;
+        format [localize "STR_MISSION_SHOP_DELIVERY_04", _numitems, _itemcls call OT_fnc_weaponGetName] call OT_fnc_notifyMinor;
         true;
     },
     {
@@ -110,14 +110,14 @@ private _title = format ["Deliver %1 x %2 for %3 store in %4", _numitems, _itemn
             [
                 _reward,
                 format [
-                    "Delivered %1 x %2",
+                    localize "STR_MISSION_SHOP_DELIVERY_05",
                     _numitems,
                     _itemcls call OT_fnc_weaponGetName
                 ]
             ] remoteExec ["OT_fnc_money", _player, false];
             [_starttown, 2] call OT_fnc_support;
         } else {
-            [_starttown, -10, format ["Failed Delivery of %1 x %2", _numitems, _itemcls call OT_fnc_weaponGetName]] call OT_fnc_support;
+            [_starttown, -10, format [localize "STR_MISSION_SHOP_DELIVERY_06", _numitems, _itemcls call OT_fnc_weaponGetName]] call OT_fnc_support;
         };
     },
     _params

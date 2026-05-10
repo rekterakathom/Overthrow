@@ -32,13 +32,8 @@ if (_def isNotEqualTo []) then {
 
     ([_cls, true] call OT_fnc_getClassDisplayInfo) params ["_pic", "_itemName", "_desc"];
 
-    _textctrl ctrlSetStructuredText parseText format [
-        "
-    	<t align='center' size='1.1'>%1 x %2</t><br/>
-        <t align='center' size='0.7'>%3</t><br/><br/>
-        <t align='center' size='0.8'>Recipe:</t><br/>
-        <t align='center' size='0.7'>%4</t><br/>
-    ",
+    _textctrl ctrlSetStructuredText parseText format [ 
+        localize "STR_DISPLAY_CRAFTITEM",
         _qty,
         _itemName,
         _desc,

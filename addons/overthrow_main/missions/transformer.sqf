@@ -10,14 +10,14 @@ private _lamps = nearestObjects [_destination, ["Lamps_base_F", "PowerLines_base
 private _params = [_destination, _destinationName];
 private _markerPos = _destination;
 
-private _effect = "Stability in the town will decrease and the local community will support the resistance more (+25 support).";
+private _effect = localize "STR_MISSION_MEDICAL_SUPPLIES_01"; // yes this is the correct string, both use the same phrase
 if (_destinationName in (server getVariable ["NATOabandoned", []])) then {
-    _effect = "Stability in the town will increase and the local community will support the resistance more (+25 support).";
+    _effect = localize "STR_MISSION_MEDICAL_SUPPLIES_02"; // yes this is the correct string, both use the same phrase
 };
 
 //Build a mission description and title
-private _description = format ["A transformer in %1 has broken down and they are without electricity. Donate 4000$ to the mayor so they can get a new one. <br/><br/>%2", _destinationName, _effect];
-private _title = format ["%1 needs electricity", _destinationName];
+private _description = format [localize "STR_MISSION_TRANSFORMER_01", _destinationName, _effect];
+private _title = format [localize "STR_MISSION_TRANSFORMER_02", _destinationName];
 
 // Set variables
 private _paidVariable = _destinationName + "transformerpaid";
@@ -54,7 +54,7 @@ server_nosave setVariable [_paidVariable, false, true];
             [
                 _destinationName,
                 25,
-                format ["Donated 4000$ to %1", _destinationName]
+                format [localize "STR_MISSION_TRANSFORMER_03", _destinationName]
             ] call OT_fnc_support;
 
             if (_destinationName in (server getVariable ["NATOabandoned", []])) then {

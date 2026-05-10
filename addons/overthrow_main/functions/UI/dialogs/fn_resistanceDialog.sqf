@@ -86,25 +86,25 @@ private _income = 0;
 } forEach (server getVariable ["GEURowned", []]);
 
 private _balance = _totax - _wages;
-private _text = "<t align='center' size='0.7'>Balance Sheet (per 6 hrs)</t><br/>";
+private _text = localize "STR_DISPLAY_DISPLAY_RESISTANCE_DIAG_01";
 
 if ((getPlayerUID player) in (server getVariable ["generals", []])) then {
-    _text = _text + format ["<t align='left' size='0.65'>Resistance Funds: $%1</t><br/>", [server getVariable ["money", 0], 1, 0, true] call CBA_fnc_formatNumber];
+    _text = _text + format [localize "STR_DISPLAY_DISPLAY_RESISTANCE_DIAG_02", [server getVariable ["money", 0], 1, 0, true] call CBA_fnc_formatNumber];
 };
 
-_text = _text + format ["<t size='0.65'>Lease Income: $%1</t><br/>", [_lease, 1, 0, true] call CBA_fnc_formatNumber];
+_text = _text + format [localize "STR_DISPLAY_DISPLAY_RESISTANCE_DIAG_03", [_lease, 1, 0, true] call CBA_fnc_formatNumber];
 
-_text = _text + format ["<t size='0.65'>Civilian Income: $%1 ($%2 per player)</t><br/>", [_taxtotal - _totax, 1, 0, true] call CBA_fnc_formatNumber, [_taxper - _totaxper, 1, 0, true] call CBA_fnc_formatNumber];
+_text = _text + format [localize "STR_DISPLAY_DISPLAY_RESISTANCE_DIAG_04", [_taxtotal - _totax, 1, 0, true] call CBA_fnc_formatNumber, [_taxper - _totaxper, 1, 0, true] call CBA_fnc_formatNumber];
 if ((getPlayerUID player) in (server getVariable ["generals", []])) then {
-    _text = _text + format ["<t size='0.65'>Resistance Tax (%1%2): $%3 ($%4 per player)</t><br/>", _tax, "%", [_totax, 1, 0, true] call CBA_fnc_formatNumber, [_totaxper, 1, 0, true] call CBA_fnc_formatNumber];
+    _text = _text + format [localize "STR_DISPLAY_DISPLAY_RESISTANCE_DIAG_05", _tax, "%", [_totax, 1, 0, true] call CBA_fnc_formatNumber, [_totaxper, 1, 0, true] call CBA_fnc_formatNumber];
 };
-_text = _text + format ["<t size='0.65'>Business Income: $%1 (6 hrs)</t><br/>", [_income, 1, 0, true] call CBA_fnc_formatNumber];
+_text = _text + format [localize "STR_DISPLAY_DISPLAY_RESISTANCE_DIAG_06", [_income, 1, 0, true] call CBA_fnc_formatNumber];
 
 private _minus = "";
 if (_wages > 0) then { _minus = "-" };
-_text = _text + format ["<t size='0.65'>Wages: $%1%2 (6 hrs)</t><br/>", _minus, [_wages, 1, 0, true] call CBA_fnc_formatNumber];
-_text = _text + format ["<t size='0.8'>Balance (Resistance): $%1</t><br/>", [_balance + _income, 1, 0, true] call CBA_fnc_formatNumber];
-_text = _text + format ["<t size='0.8'>Balance (You): $%1</t><br/>", [_lease + (_taxper - _totaxper), 1, 0, true] call CBA_fnc_formatNumber];
+_text = _text + format [localize "STR_DISPLAY_DISPLAY_RESISTANCE_DIAG_07", _minus, [_wages, 1, 0, true] call CBA_fnc_formatNumber];
+_text = _text + format [localize "STR_DISPLAY_DISPLAY_RESISTANCE_DIAG_08", [_balance + _income, 1, 0, true] call CBA_fnc_formatNumber];
+_text = _text + format [localize "STR_DISPLAY_DISPLAY_RESISTANCE_DIAG_09", [_lease + (_taxper - _totaxper), 1, 0, true] call CBA_fnc_formatNumber];
 
 disableSerialization;
 private _textctrl = (findDisplay 8000) displayCtrl 1106;
