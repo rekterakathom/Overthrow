@@ -133,13 +133,25 @@ if (_delivery isNotEqualTo []) then {
                             [player, _itemcls] call {
                                 params ["_unit", "_cls"];
                                 if (_cls isKindOf ["Rifle", configFile >> "CfgWeapons"]) exitWith {
-                                    _unit removeWeapon _cls;
+                                    if (_unit hasWeapon _cls) then {
+                                        _unit removeWeapon _cls;
+                                    } else {
+                                        _unit removeItem _cls;
+                                    }
                                 };
                                 if (_cls isKindOf ["Launcher", configFile >> "CfgWeapons"]) exitWith {
-                                    _unit removeWeapon _cls;
+                                    if (_unit hasWeapon _cls) then {
+                                        _unit removeWeapon _cls;
+                                    } else {
+                                        _unit removeItem _cls;
+                                    }
                                 };
                                 if (_cls isKindOf ["Pistol", configFile >> "CfgWeapons"]) exitWith {
-                                    _unit removeWeapon _cls;
+                                    if (_unit hasWeapon _cls) then {
+                                        _unit removeWeapon _cls;
+                                    } else {
+                                        _unit removeItem _cls;
+                                    }
                                 };
                                 if (_cls isKindOf ["Binocular", configFile >> "CfgWeapons"]) exitWith {
                                     _unit removeItem _cls;
