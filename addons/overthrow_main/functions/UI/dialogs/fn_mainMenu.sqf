@@ -474,7 +474,7 @@ if (_obpos distance player < 250) then {
             };
         } else {
             private _base = player call OT_fnc_nearestBase;
-            if !(isNil "_base" && { (_base select 0) distance player < 100 }) then {
+            if (!isNil "_base" && { (_base select 0) distance player < 100 }) then {
                 ctrlEnable [1621, true];
             } else {
                 ctrlEnable [1621, false];
