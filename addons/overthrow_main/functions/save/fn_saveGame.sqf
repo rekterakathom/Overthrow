@@ -224,6 +224,7 @@ private _recruits = ((server getVariable ["recruits", []]) select {
     if (_unitOrPos isEqualType objNull) then {
         _d set [4, getUnitLoadout _unitOrPos];
         _d set [2, getPosATL _unitOrPos];
+        _d set [3, rank _unitOrPos];
         _d set [6, _unitOrPos getVariable ["OT_xp", 0]];
     };
 
