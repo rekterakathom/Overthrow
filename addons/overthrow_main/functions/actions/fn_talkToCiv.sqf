@@ -698,6 +698,7 @@ if (_isShop) then {
         format ["Do you have any jobs for me?"],
         {
             OT_jobsOffered = [];
+            private _town = player call OT_fnc_nearestTown;
             private _support = [_town] call OT_fnc_support;
             if (_support < 0) then {
                 format ["Resistance Support in this town is too low (%1)", _support] call OT_fnc_notifyMinor;
