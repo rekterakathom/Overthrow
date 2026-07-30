@@ -1,5 +1,4 @@
 params ["_town", "_cls", ["_standing", 0]];
-private _price = 0;
 
 private _trade = player getVariable ["OT_trade", 1];
 private _discount = 0;
@@ -30,7 +29,7 @@ if (_standing isEqualTo 0) then { _standing = 1 };
 _standing = (_standing / 100);
 _discount = _discount + (_standing * 0.2);
 
-_price = _baseprice + (_baseprice + (_baseprice * _stability * _population) * (1 + OT_standardMarkup));
+private _price = _baseprice + (_baseprice + (_baseprice * _stability * _population) * (1 + OT_standardMarkup));
 if (_cls isEqualTo "FUEL") then {
     _price = _price - 9;
 };

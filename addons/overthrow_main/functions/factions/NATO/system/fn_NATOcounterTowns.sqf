@@ -5,9 +5,9 @@
     NATO checks if it can try to capture a town for itself
 
     Parameters:
-        -
+        _chance - The current random threshold
 
-    Usage: [] call OT_fnc_NATOcounterTowns;
+    Usage: [_chance] call OT_fnc_NATOcounterTowns;
 
     Returns: Boolean - was a town counter-attacked
 */
@@ -21,6 +21,7 @@ if (isNil "OT_townsSortedByPopulation") then {
 };
 
 private _countered = false;
+private _popControl = call OT_fnc_getControlledPopulation;
 private _lastCounter = server getVariable ["NATOlastcounter", ""];
 private _abandoned = server getVariable ["NATOabandoned", []];
 private _resources = server getVariable ["NATOresources", 2000];

@@ -86,6 +86,10 @@ if (_isAir) then {
         _x setVariable ["garrison", "HQ", false];
     } forEach (units _group);
 
+    {
+        _x addCuratorEditableObjects [[_veh], true];
+    } forEach allCurators;
+
     sleep 2;
 
     private _moveto = _close getPos [500, _dir];
@@ -124,10 +128,6 @@ if (_isAir) then {
     _wp = _tgroup addWaypoint [_moveto, 0];
     _wp setWaypointType "SCRIPTED";
     _wp setWaypointStatements ["true", "[vehicle this] call OT_fnc_cleanup"];
-
-    {
-        _x addCuratorEditableObjects [units _tgroup, true];
-    } forEach allCurators;
 };
 {
     _x addCuratorEditableObjects [units _group, true];

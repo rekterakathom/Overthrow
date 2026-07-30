@@ -4,7 +4,7 @@ if !(local _me) exitWith {}; //Only run this on the machine where unit is local
 
 if ((isNull _killer) || { _killer == _me }) then {
     private _aceSource = _me getVariable ["ace_medical_lastDamageSource", objNull];
-    if ((!isNull _aceSource) && { _aceSource != _unit }) then {
+    if ((!isNull _aceSource) && { _aceSource != _me }) then {
         _killer = _aceSource;
     };
 };
@@ -74,9 +74,9 @@ call {
     };
     if (!isNil "_employee") exitWith {
         _killer setVariable ["CIVkills", (_killer getVariable ["CIVkills", 0]) + 1, true];
-        private _pop = server getVariable format ["employ%1", _employee];
+        private _pop = server getVariable format ["%1employ", _employee];
         if (_pop > 0) then {
-            server setVariable [format ["employ%1", _mobsterid], _pop - 1, true];
+            server setVariable [format ["%1employ", _employee], _pop - 1, true];
         };
         format ["An employee of %1 has died", _employee] remoteExec ["OT_fnc_notifyMinor", 0, false];
     };

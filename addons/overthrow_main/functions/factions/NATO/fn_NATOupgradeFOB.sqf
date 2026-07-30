@@ -31,6 +31,9 @@ params ["_pos", "_upgrades"];
         private _v = _gun createVehicle _p;
         _v setDir 45;
         createVehicleCrew _v;
+        {
+            _x addCuratorEditableObjects [[_v], true];
+        } forEach (allCurators);
 
         sleep 0.3;
 
@@ -42,6 +45,9 @@ params ["_pos", "_upgrades"];
         _v = _gun createVehicle _p;
         _v setDir 135;
         createVehicleCrew _v;
+        {
+            _x addCuratorEditableObjects [[_v], true];
+        } forEach (allCurators);
 
         sleep 0.3;
 
@@ -53,6 +59,9 @@ params ["_pos", "_upgrades"];
         _v = _gun createVehicle _p;
         _v setDir 225;
         createVehicleCrew _v;
+        {
+            _x addCuratorEditableObjects [[_v], true];
+        } forEach (allCurators);
 
         sleep 0.3;
 
@@ -64,6 +73,9 @@ params ["_pos", "_upgrades"];
         _v = _gun createVehicle _p;
         _v setDir 315;
         createVehicleCrew _v;
+        {
+            _x addCuratorEditableObjects [[_v], true];
+        } forEach (allCurators);
 
         sleep 0.3;
 
@@ -75,6 +87,9 @@ params ["_pos", "_upgrades"];
         private _p = _pos findEmptyPosition [3, 50, OT_NATO_Mortar];
         private _v = OT_NATO_Mortar createVehicle _p;
         createVehicleCrew _v;
+        {
+            _x addCuratorEditableObjects [[_v], true];
+        } forEach (allCurators);
 
         private _g = grpNull;
         {

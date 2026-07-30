@@ -115,6 +115,7 @@ private _title = format ["NATO informant in %1", _destinationName];
             _wp setWaypointCombatMode "COMBAT";
             _civ setVariable ["OT_informantAlerted", true, false];
         };
+        false;
     },
     {
         //Success.. easy.. if target is dedded
@@ -125,7 +126,14 @@ private _title = format ["NATO informant in %1", _destinationName];
 
         //If mission was a success
         if (_wassuccess) then {
-            [{ format ["NATO Informant in %1 has been taken care of", _destination call OT_fnc_nearestTown] remoteExec ["OT_fnc_notifyMinor", 0, false] }, 0, 2] call CBA_fnc_waitAndExecute;
+            [
+                {
+                    params ["_destination"];
+                    format ["NATO Informant in %1 has been taken care of", _destination call OT_fnc_nearestTown] remoteExec ["OT_fnc_notifyMinor", 0, false];
+                },
+                [_destination],
+                2
+            ] call CBA_fnc_waitAndExecute;
         };
         //Clean up
         spawner setVariable [format ["informant%1", _jobid], nil, false];

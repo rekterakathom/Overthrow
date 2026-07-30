@@ -7,6 +7,7 @@ params ["_unit", "_newItems", ["_correct", true]];
 private _warehouse = [_unit] call OT_fnc_nearestWarehouse;
 if (_warehouse == objNull) exitWith { hint "No warehouse near by!" };
 
+private _missing = [];
 private _ignore = ["ItemMap"];
 {
     _x params [["_cls", ""], ["_count", 0]];

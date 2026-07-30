@@ -9,8 +9,6 @@ private _magazines = [];
 private _items = ["ItemMap"];
 private _backpacks = [];
 
-private _missing = [];
-
 if (_target isEqualType "") then {
     private _warehouse = [_unit] call OT_fnc_nearestWarehouse;
     if (_warehouse == objNull) exitWith { hint "No warehouse near by!" };
@@ -109,36 +107,30 @@ if (_target isEqualType "") then {
                             if (binocular _unit isEqualTo _cls) exitWith {
                                 _unit removeWeapon _cls;
                                 _count = 0;
-                                _missing pushBack _cls;
                             };
                             if (primaryWeapon _unit isEqualTo _cls) exitWith {
                                 _ignore append primaryWeaponItems _unit;
                                 _unit removeWeapon _cls;
                                 _count = 0;
-                                _missing pushBack _cls;
                             };
                             if (secondaryWeapon _unit isEqualTo _cls) exitWith {
                                 _ignore append secondaryWeaponItems _unit;
                                 _unit removeWeapon _cls;
                                 _count = 0;
-                                _missing pushBack _cls;
                             };
                             if (handgunWeapon _unit isEqualTo _cls) exitWith {
                                 _unit removeWeapon _cls;
                                 _count = 0;
-                                _missing pushBack _cls;
                             };
                             if (_cls isKindOf ["Default", configFile >> "CfgMagazines"]) exitWith {
                                 while { _count > _boxAmount } do {
                                     _count = _count - 1;
                                     _unit removeMagazine _cls;
-                                    _missing pushBack _cls;
                                 };
                             };
                             while { _count > _boxAmount } do {
                                 _count = _count - 1;
                                 _unit removeItem _cls;
-                                _missing pushBack _cls;
                             };
                         };
                     };
@@ -170,7 +162,6 @@ if (_target isEqualType "") then {
                 if (_x isNotEqualTo "ItemMap") then {
                     if !([_ammobox, _x, 1] call CBA_fnc_removeItemCargo) then {
                         _unit unlinkItem _x;
-                        _missing pushBack _x;
                     };
                 };
             } forEach (assignedItems _unit);
@@ -178,7 +169,6 @@ if (_target isEqualType "") then {
             private _backpack = backpack _unit;
             if (_backpack isNotEqualTo "") then {
                 if !(_backpack in backpackCargo _ammobox) then {
-                    _missing pushBack _backpack;
                     //Put the items from the backpack back in the ammobox
                     {
                         call {
@@ -209,7 +199,6 @@ if (_target isEqualType "") then {
             private _vest = vest _unit;
             if (_vest isNotEqualTo "") then {
                 if !(_vest in itemCargo _ammobox) then {
-                    _missing pushBack _vest;
                     //Put the items from the vest back in the ammobox
                     {
                         call {
@@ -240,7 +229,6 @@ if (_target isEqualType "") then {
             private _helmet = headgear _unit;
             if (_helmet isNotEqualTo "") then {
                 if !(_helmet in itemCargo _ammobox) then {
-                    _missing pushBack _helmet;
                     removeHeadgear _unit;
                 } else {
                     [_ammobox, _helmet, 1] call CBA_fnc_removeItemCargo;
@@ -250,7 +238,6 @@ if (_target isEqualType "") then {
             private _goggles = goggles _unit;
             if (_goggles isNotEqualTo "") then {
                 if !(_goggles in itemCargo _ammobox) then {
-                    _missing pushBack _goggles;
                     removeGoggles _unit;
                 } else {
                     [_ammobox, _goggles, 1] call CBA_fnc_removeItemCargo;

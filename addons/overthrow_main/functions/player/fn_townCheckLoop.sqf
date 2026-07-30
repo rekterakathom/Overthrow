@@ -1,17 +1,17 @@
 if (!alive _this) exitWith {};
 
 private _pos = getPosASL _this;
-if (OT_Map_EachFrameLastTownCheckPos distance2D _pos < 50) exitWith {
-    [OT_fnc_townCheckLoop, _this, 5] call CBA_fnc_waitAndExecute;
+if (OT_Map_LastTownCheckPos distance2D _pos < 100) exitWith {
+    [OT_fnc_townCheckLoop, _this, 3] call CBA_fnc_waitAndExecute;
 };
-OT_Map_EachFrameLastTownCheckPos = _pos;
+OT_Map_LastTownCheckPos = _pos;
 
 private _town = _pos call OT_fnc_nearestTown;
-if (!isNil "_town" && { OT_Map_EachFrameLastTown != _town }) then {
-    OT_Map_EachFrameLastTown = _town;
-    private _pop = server getVariable format ["population%1", _town];
-    if (!isNil "_pop") then {
-        if (OT_showTownChange) then {
+if (!isNil "_town" && { OT_Map_LastTown != _town }) then {
+    OT_Map_LastTown = _town;
+    if (OT_showTownChange) then {
+        private _pop = server getVariable format ["population%1", _town];
+        if (!isNil "_pop") then {
             private _stability = server getVariable format ["stability%1", _town];
             private _rep = [_town] call OT_fnc_support;
             private _abandon = "NATO Controlled";
@@ -50,4 +50,4 @@ if (!isNil "_town" && { OT_Map_EachFrameLastTown != _town }) then {
         };
     };
 };
-[OT_fnc_townCheckLoop, _this, 5] call CBA_fnc_waitAndExecute;
+[OT_fnc_townCheckLoop, _this, 3] call CBA_fnc_waitAndExecute;

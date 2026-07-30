@@ -1,4 +1,3 @@
-private _sorted = [];
 private _unit = (groupSelectedUnits player) select 0;
 
 {
@@ -12,7 +11,7 @@ private _objects = [];
 if (_objects isEqualTo []) exitWith {
     "Cannot find any ammoboxes within 20m of first selected unit" call OT_fnc_notifyMinor;
 };
-_sorted = [_objects, [], { _x distance _unit }, "ASCEND"] call BIS_fnc_sortBy;
+private _sorted = [_objects, [], { _x distance _unit }, "ASCEND"] call BIS_fnc_sortBy;
 
 if (_sorted isEqualTo []) exitWith {};
 

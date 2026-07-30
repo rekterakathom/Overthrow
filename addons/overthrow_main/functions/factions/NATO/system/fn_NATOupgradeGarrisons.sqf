@@ -2,12 +2,13 @@
     Author: ThomasAngel, ARMAZac
 
     Description:
-    Try to send an air patrol
+    Try to upgrade garrisons
 
     Parameters:
         _spend - The current spending limit
+        _chance - The current random threshold
 
-    Usage: [_spend] call OT_fnc_NATOsendAirPatrol;
+    Usage: [_spend, _chance] call OT_fnc_NATOupgradeGarrisons;
 
     Returns: Scalar - How much is left to spend
 */

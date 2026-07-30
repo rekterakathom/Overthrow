@@ -31,18 +31,20 @@ if ((isPlayer _target) && !(captive _target)) exitWith {};
 private _group = group _cop;
 private _hdl = objNull;
 
-//delete all group waypoints
-while { (waypoints _group) isNotEqualTo [] } do {
-    deleteWaypoint ((waypoints _group) select 0);
-};
-sleep 0.5;
+// Store old group parameters
+// Assuming every unit in the group has the same behaviour as _cop. Mapping behaviours individually would be too complex.
+private _behaviour = behaviour _cop;
+private _speedMode = speedMode _group;
+private _currentWaypoint = currentWaypoint _group;
 
-private _wp = _group addWaypoint [ASLToAGL (getPosASL _target), 0];
-_wp setWaypointBehaviour "AWARE";
+// Inject a temporary waypoint as the current one. Waypoint type HOLD so the group stays there until told otherwise.
+private _wp = _group addWaypoint [ASLToAGL (getPosASL _target), 0, _currentWaypoint];
+_wp setWaypointType "HOLD";
+
 _group setBehaviour "AWARE";
 if (isPlayer _target) then {
     [_cop, (["Stop right there!", "Halt, citizen!", "HALT!", "Stay right there, citizen"] call BIS_fnc_selectRandom)] remoteExec ["globalChat", _target, false];
-    _wp setWaypointSpeed "FULL";
+    _group setSpeedMode "FULL";
     _hdl = _target addEventHandler [
         "InventoryOpened",
         {
@@ -61,8 +63,11 @@ private _cleanup = {
     params ["_group", "_cop", "_target", "_handler"];
     [_target, ""] remoteExec ["switchMove", _target, false];
     if (!isNil "_group") then {
-        _group setBehaviour "SAFE";
-        _group call OT_fnc_initGendarmPatrol;
+        // Restore old group parameters
+        _group setBehaviour _behaviour;
+        _group setSpeedMode _speedMode;
+        // Delete the temporary waypoint to allow the group to continue normally
+        deleteWaypoint [_group, _currentWaypoint];
     };
     if (!isNil "_cop") then {
         _cop setVariable ["OT_searching", false, true];
@@ -89,14 +94,12 @@ if ((_target distance _posnow) > 2) then {
         [_cop, "I said stop! move again and we WILL open fire"] remoteExec ["globalChat", _target, false];
         "sectorLost" remoteExec ["playSound", _target, false];
 
-        while { (waypoints _group) isNotEqualTo [] } do {
-            deleteWaypoint ((waypoints _group) select 0);
-        };
         sleep 3;
 
-        private _wp = _group addWaypoint [ASLToAGL (getPosASL _target), 0];
-        _wp setWaypointBehaviour "COMBAT";
-        _wp setWaypointSpeed "FULL";
+        // Replace one temporary waypoint with another
+        deleteWaypoint [_group, _currentWaypoint];
+        _wp = _group addWaypoint [ASLToAGL (getPosASL _target), 0, _currentWaypoint];
+        _group setBehaviour "COMBAT";
 
         _posnow = getPos _target;
         _timenow = time;

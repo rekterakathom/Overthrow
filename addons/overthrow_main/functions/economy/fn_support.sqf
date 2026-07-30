@@ -1,3 +1,5 @@
+// Global arguments, global effect
+
 private _town = _this select 0;
 if (isNil "_town") exitWith {};
 private _rep = (server getVariable [format ["rep%1", _town], 0]);

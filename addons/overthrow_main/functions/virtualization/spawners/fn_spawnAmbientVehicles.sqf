@@ -100,6 +100,11 @@ while { (_count < _numVeh) && (_loops < 50) } do {
                         };
                     };
                     _groups pushBack _veh;
+
+                    {
+                        _x addCuratorEditableObjects [[_veh], true];
+                    } forEach (allCurators);
+
                     sleep 0.5;
                 };
             };

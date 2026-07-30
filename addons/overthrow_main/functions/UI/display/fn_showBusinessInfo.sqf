@@ -1,15 +1,13 @@
 disableSerialization;
 private _name = "";
-private _data = [];
 if (_this isEqualTo []) then {
     private _idx = lbCurSel 1501;
     _name = lbData [1501, _idx];
 } else {
     params ["_ctrl", "_index"];
     _name = _ctrl lbData _index;
-    _data = _name call OT_fnc_getBusinessData;
 };
-_data = _name call OT_fnc_getBusinessData;
+private _data = _name call OT_fnc_getBusinessData;
 
 private _anum = server getVariable [format ["%1employ", _name], 0];
 private _num = _anum;
@@ -24,13 +22,11 @@ private _wages = _anum * _perhr;
 private _innum = _num * 2;
 private _outnum = _num * 2;
 
-private _amgen = (getPlayerUID player) in (server getVariable ["generals", []]);
-
 private _text = format ["<t size='0.8'>%1</t><br/>", _name];
 _text = _text + format ["<t size='0.65'>Employees: %1</t><br/>", _anum];
 _text = _text + format ["<t size='0.65'>Wages: $%1 /hr</t><br/>", _wages];
 
-_amgen = (getPlayerUID player) in (server getVariable ["generals", []]);
+private _amgen = (getPlayerUID player) in (server getVariable ["generals", []]);
 private _nexthr = ((date select 3) + 1);
 if (_nexthr < 10) then { _nexthr = format ["0%1", _nexthr] };
 

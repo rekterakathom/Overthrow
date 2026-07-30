@@ -4,13 +4,14 @@
     Parameters:
         _unit: OBJECT - Unit to change the money of
     Usage:
-    [_hoveredEntity] call OT_zenSetMoney;
+    [_hoveredEntity] call OT_fnc_zenSetMoney;
     Returns: BOOL - Dialog created
 */
 
 params ["_unit"];
 
 if !(isPlayer _unit) exitWith { false };
+private _money = _unit getVariable ["money", 0];
 
 [
     "Set Unit Money",
@@ -18,7 +19,7 @@ if !(isPlayer _unit) exitWith { false };
         [
             "EDIT",
             "Set this units money to",
-            "0"
+            [str _money]
         ]
     ],
     {

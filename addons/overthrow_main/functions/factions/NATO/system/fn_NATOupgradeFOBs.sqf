@@ -2,12 +2,13 @@
     Author: ThomasAngel, ARMAZac
 
     Description:
-    Try to send an air patrol
+    Try to upgrade FOBs
 
     Parameters:
         _spend - The current spending limit
+        _chance - The current random threshold
 
-    Usage: [_spend] call OT_fnc_NATOsendAirPatrol;
+    Usage: [_spend, _chance] call OT_fnc_NATOupgradeFOBs;
 
     Returns: Scalar - How much is left to spend
 */
@@ -39,6 +40,10 @@ private _fobs = server getVariable ["NATOfobs", []];
             _count = _count + 1;
         };
         _group call OT_fnc_initMilitaryPatrol;
+
+        {
+            _x addCuratorEditableObjects [units _group, true];
+        } forEach allCurators;
     };
 
     if (!("Mortar" in _upgrades) && { (_spend > 300) } && { (random 100 > _chance) }) exitWith {

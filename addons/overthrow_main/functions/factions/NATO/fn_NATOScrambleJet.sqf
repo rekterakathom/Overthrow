@@ -18,10 +18,6 @@ if !(OT_NATO_HQ in _abandoned) then {
 
     _veh setDir OT_NATO_JetDir;
 
-    {
-        _x addCuratorEditableObjects [[_veh]];
-    } forEach (allCurators);
-
     clearWeaponCargoGlobal _veh;
     clearMagazineCargoGlobal _veh;
     clearItemCargoGlobal _veh;
@@ -34,6 +30,11 @@ if !(OT_NATO_HQ in _abandoned) then {
         _x setVariable ["garrison", "HQ", false];
         _x setVariable ["NOAI", true, false];
     } forEach (crew _veh);
+
+    {
+        _x addCuratorEditableObjects [[_veh], true];
+    } forEach (allCurators);
+
     sleep 1;
 
     private _dir = (_targetpos getDir OT_NATO_JetPos);

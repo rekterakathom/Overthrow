@@ -21,8 +21,20 @@ while { _count < _amt } do {
     if (_spawn && [_townpos] call OT_fnc_inSpawnDistance) then {
         private _pos = (_gang select 4);
         private _group = spawner getVariable [format ["gangspawn%1", _gangid], grpNull];
-        //Spawn new gang member at camp
+        // If this is the first member (besides leader), create the group first
+        if (isNull _group) then {
+            _group = createGroup [opfor, true];
+            _group setVariable ["VCM_TOUGHSQUAD", true, true];
+            _group setVariable ["VCM_NORESCUE", true, true];
+            spawner setVariable [format ["gangspawn%1", _gangid], _group, true];
 
+            [_group, _townpos] call OT_fnc_initCriminalGroup;
+
+            private _spawnid = spawner getVariable [format ["townspawnid%1", _town], -1];
+            spawner setVariable [_spawnid, (spawner getVariable [_spawnid, []]) + [_group], false];
+        };
+
+        //Spawn new gang member at camp
         _pos = _pos getPos [10, random 360];
         private _civ = _group createUnit [OT_CRIM_Unit, _pos, [], 0, "NONE"];
         [_civ] joinSilent nil;
@@ -36,7 +48,7 @@ while { _count < _amt } do {
         _civ setVariable ["hometown", _town, true];
 
         {
-            _x addCuratorEditableObjects [[_civ]];
+            _x addCuratorEditableObjects [[_civ], true];
         } forEach (allCurators);
     };
     _count = _count + 1;

@@ -63,6 +63,32 @@ if (_tertiary isNotEqualTo []) then {
 if (_uniform isNotEqualTo []) then {
     private _uniformCls = _uniform select 0;
     private _uniformItems = _uniform select 1;
+
+    if ([_ammobox, _uniformCls, 1] call CBA_fnc_removeItemCargo) then {
+        _unit forceAddUniform _uniformCls;
+        {
+            _x params ["_cc", "_num"];
+            if (_cc isEqualType []) then { _cc = _cc select 0 };
+            private _count = 0;
+
+            private _func = CBA_fnc_removeWeaponCargo;
+            [_cc] call {
+                params ["_cc"];
+                if (_cc isKindOf ["ItemCore", configFile >> "CfgWeapons"]) exitWith {
+                    _func = CBA_fnc_removeItemCargo;
+                };
+                if (_cc isKindOf ["Default", configFile >> "CfgMagazines"]) exitWith {
+                    _func = CBA_fnc_removeMagazineCargo;
+                };
+            };
+            while { _count < _num } do {
+                if ([_ammobox, _cc, 1] call _func) then {
+                    _unit addItemToUniform _cc;
+                };
+                _count = _count + 1;
+            };
+        } forEach (_uniformItems);
+    };
 };
 
 if (_vest isNotEqualTo []) then {
@@ -103,7 +129,7 @@ if (_backpack isNotEqualTo []) then {
     if ([_ammobox, _bpCls, 1] call CBA_fnc_removeBackpackCargo) then {
         _unit addBackpack _bpCls;
         {
-            params ["_cc", "_num"];
+            _x params ["_cc", "_num"];
             if (_cc isEqualType []) then { _cc = _cc select 0 };
             private _count = 0;
 
@@ -134,33 +160,6 @@ if (_optic isNotEqualTo []) then {
         _unit assignItem _opticCls;
     };
 };
-
-if (_uniform isNotEqualTo []) then {
-    _unit forceAddUniform _uniformCls;
-};
-
-{
-    params ["_cc", "_num"];
-    if (_cc isEqualType []) then { _cc = _cc select 0 };
-    private _count = 0;
-
-    private _func = CBA_fnc_removeWeaponCargo;
-    [_cc] call {
-        params ["_cc"];
-        if (_cc isKindOf ["ItemCore", configFile >> "CfgWeapons"]) exitWith {
-            _func = CBA_fnc_removeItemCargo;
-        };
-        if (_cc isKindOf ["Default", configFile >> "CfgMagazines"]) exitWith {
-            _func = CBA_fnc_removeMagazineCargo;
-        };
-    };
-    while { _count < _num } do {
-        if ([_ammobox, _cc, 1] call _func) then {
-            _unit addItemToUniform _cc;
-        };
-        _count = _count + 1;
-    };
-} forEach (_uniformItems);
 
 if ([_ammobox, _headgear, 1] call CBA_fnc_removeItemCargo) then {
     _unit addHeadgear _headgear;

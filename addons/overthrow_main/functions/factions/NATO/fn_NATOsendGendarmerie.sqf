@@ -84,7 +84,15 @@ if (!isNil "_close") then {
         _move = _group addWaypoint [_drop, 0];
         _move setWaypointType "GETOUT";
         _move setWaypointBehaviour "AWARE";
+
+        {
+            _x addCuratorEditableObjects [[_veh], true];
+        } forEach allCurators;
     };
+
+    {
+        _x addCuratorEditableObjects [units _group, true];
+    } forEach allCurators;
 
     sleep 1;
 

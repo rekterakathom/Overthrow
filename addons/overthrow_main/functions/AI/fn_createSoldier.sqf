@@ -21,4 +21,10 @@ _civ setSkill ["courage", 1];
 
 _civ setUnitLoadout [_loadout, false];
 
+if (isServer) then {
+    {
+        _x addCuratorEditableObjects [[_civ], true];
+    } forEach (allCurators);
+};
+
 _civ;

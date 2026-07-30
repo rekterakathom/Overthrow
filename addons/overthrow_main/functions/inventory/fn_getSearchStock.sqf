@@ -7,9 +7,6 @@ if (_this isKindOf "CAManBase") then {
     _myitems = (items _this) + (magazines _this);
 } else {
     _myitems = (itemCargo _this) + (weaponCargo _this) + (magazineCargo _this) + (backpackCargo _this);
-    {
-        _myitems = _myitems append ((items _this) + (magazines _this));
-    } forEach (units _this);
 };
 if !(isNil "_myitems") then {
     {

@@ -30,12 +30,13 @@ while { _count < _num } do {
         _x setVariable ["garrison", "HQ", false];
         _x setVariable ["NOAI", true, false];
     } forEach (crew _veh);
-    _count = _count + 1;
-    sleep 0.3;
 
     {
-        _x addCuratorEditableObjects [[_veh]];
+        _x addCuratorEditableObjects [[_veh], true];
     } forEach (allCurators);
+
+    _count = _count + 1;
+    sleep 0.3;
 };
 
 private _wp = _group addWaypoint [_attackpos, 100];

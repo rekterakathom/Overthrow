@@ -19,10 +19,6 @@ if !(_frombase in _abandoned) then {
     private _veh = _vehtype createVehicle _pos;
     _veh setVariable ["garrison", "HQ", false];
 
-    {
-        _x addCuratorEditableObjects [[_veh]];
-    } forEach (allCurators);
-
     clearWeaponCargoGlobal _veh;
     clearMagazineCargoGlobal _veh;
     clearItemCargoGlobal _veh;
@@ -35,6 +31,11 @@ if !(_frombase in _abandoned) then {
         _x setVariable ["garrison", "HQ", false];
         _x setVariable ["NOAI", true, false];
     } forEach (crew _veh);
+
+    {
+        _x addCuratorEditableObjects [[_veh], true];
+    } forEach (allCurators);
+
     sleep 1;
 
     {

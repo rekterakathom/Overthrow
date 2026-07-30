@@ -56,7 +56,7 @@ private _total = 0;
                 _x params ["_itemcls", "_item"];
                 {
                     _x params ["_c", "_q"];
-                    if (_c isEqualTo _sellcls) exitWith {
+                    if (_c isEqualTo _cls) exitWith {
                         [_item, _cls, _q] call CBA_fnc_removeItemCargo;
                         _qty = _qty - _q;
                     };
@@ -64,7 +64,7 @@ private _total = 0;
                 if (_qty > 0) then {
                     {
                         _x params ["_c", "_q"];
-                        if (_c isEqualTo _sellcls) exitWith {
+                        if (_c isEqualTo _cls) exitWith {
                             [_item, _cls, _q] call CBA_fnc_removeWeaponCargo;
                             _qty = _qty - _q;
                         };
@@ -73,7 +73,7 @@ private _total = 0;
                 if (_qty > 0) then {
                     {
                         _x params ["_c", "_q"];
-                        if (_c isEqualTo _sellcls) exitWith {
+                        if (_c isEqualTo _cls) exitWith {
                             [_item, _cls, _q] call CBA_fnc_removeMagazineCargo;
                             _qty = _qty - _q;
                         };

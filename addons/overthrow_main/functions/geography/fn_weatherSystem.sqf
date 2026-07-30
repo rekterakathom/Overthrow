@@ -4,7 +4,6 @@ ot_weather_getWeather = {
     private _overtarget = 0;
     private _raintarget = 0;
     private _lightning = 0;
-    private _temp = 30;
     private _hour = date select 3;
     _this call {
         if (_this == "Storm") exitWith {
@@ -40,7 +39,7 @@ ot_weather_getWeather = {
         //morning fog
         _fogtarget = _fogtarget + 0.002;
     };
-    _temp = ambientTemperature # 0;
+    private _temp = ambientTemperature # 0;
     [_overtarget, _fogtarget, _wavetarget, _raintarget, _lightning, _temp];
 };
 

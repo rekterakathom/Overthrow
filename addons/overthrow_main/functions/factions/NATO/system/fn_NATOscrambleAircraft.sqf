@@ -53,4 +53,6 @@ private _countered = false;
     if (_countered) exitWith {};
 } forEach _knownTargets;
 
+server setVariable ["NATOresources", _resources];
+
 _countered;

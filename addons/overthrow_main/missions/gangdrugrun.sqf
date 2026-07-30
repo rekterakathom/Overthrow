@@ -79,11 +79,11 @@ private _title = format ["Deliver %2 x Ganja for %1", _gangname, _numitems];
     },
     {
         params ["", "_gangid", "_numitems", "_reward", "_civ", "_wassuccess"];
+        private _player = _civ getVariable ["OT_deliveredBy", objNull];
         _civ call OT_fnc_cleanup;
 
         //If mission was a success
         if (_wassuccess) then {
-            _player = _civ getVariable ["OT_deliveredBy", objNull];
             //apply standing and pay money
             [
                 _reward,

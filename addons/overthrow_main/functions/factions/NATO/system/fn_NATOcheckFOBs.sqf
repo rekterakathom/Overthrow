@@ -7,7 +7,7 @@
     Parameters:
         -
 
-    Usage: [] call OT_fnc_NATOabandonTowers;
+    Usage: [] call OT_fnc_NATOcheckFOBs;
 
     Returns: Boolean - was a FOB cleared
 */
@@ -35,5 +35,7 @@ private _fobs = server getVariable ["NATOfobs", []];
 {
     _fobs deleteAt (_fobs find _x);
 } forEach _clearedFOBs;
+
+server setVariable ["NATOfobs", _fobs, true];
 
 _countered;

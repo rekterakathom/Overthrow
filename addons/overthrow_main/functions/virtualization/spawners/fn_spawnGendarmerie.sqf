@@ -60,14 +60,14 @@ while { _count < _numNATO } do {
             _civ setBehaviour "SAFE";
         };
 
+        {
+            _x addCuratorEditableObjects [units _group, true];
+        } forEach (allCurators);
+
         sleep 0.5;
         _group call OT_fnc_initGendarmPatrol;
         _range = _range + 50;
         _count = _count + 2;
-
-        {
-            _x addCuratorEditableObjects [units _group, false];
-        } forEach (allCurators);
     };
 };
 

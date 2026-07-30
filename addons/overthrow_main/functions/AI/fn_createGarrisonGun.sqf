@@ -12,3 +12,7 @@ if (isNull _group) then {
 
 createVehicleCrew _gun;
 crew _gun joinSilent _group;
+
+{
+    _x addCuratorEditableObjects [[_gun], true];
+} forEach (allCurators);

@@ -13,8 +13,6 @@ for "_i" from 1 to 4 do {
 };
 
 sleep 0.5;
-private _allunits = [];
-private _veh = false;
 private _pos = false;
 
 //Transport
@@ -44,7 +42,7 @@ if (_byair) then {
     _dir = (_frompos getDir _ao);
 };
 _pos set [2, 0];
-_veh = _vehtype createVehicle _pos;
+private _veh = _vehtype createVehicle _pos;
 _veh setDir (_dir);
 _veh setVariable ["garrison", "HQ", false];
 clearWeaponCargoGlobal _veh;
@@ -59,10 +57,11 @@ createVehicleCrew _veh;
     _x setVariable ["garrison", "HQ", false];
     _x setVariable ["NOAI", true, false];
 } forEach (crew _veh);
-_allunits = (units _tgroup);
+
 {
-    _x addCuratorEditableObjects [(units _tgroup) + [_veh], true];
+    _x addCuratorEditableObjects [[_veh], true];
 } forEach allCurators;
+
 sleep 1;
 
 _tgroup deleteGroupWhenEmpty true;
@@ -72,7 +71,6 @@ _tgroup deleteGroupWhenEmpty true;
         _x moveInCargo _veh;
     };
     [_x] joinSilent _group1;
-    _allunits pushBack _x;
     _x setVariable ["garrison", "HQ", false];
     _x setVariable ["VCOM_NOPATHING_Unit", true, false];
 

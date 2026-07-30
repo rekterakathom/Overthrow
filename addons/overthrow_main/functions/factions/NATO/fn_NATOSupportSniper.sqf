@@ -50,6 +50,10 @@ if (_isHQ) then {
         _x setVariable ["garrison", "HQ", false];
     } forEach (units _group);
 
+    {
+        _x addCuratorEditableObjects [[_veh] + units _group, true];
+    } forEach allCurators;
+
     sleep 2;
 
     private _moveto = OT_NATO_HQPos getPos [500, _dir];
@@ -88,19 +92,16 @@ if (_isHQ) then {
     _wp = _tgroup addWaypoint [_moveto, 0];
     _wp setWaypointType "SCRIPTED";
     _wp setWaypointStatements ["true", "[vehicle this] call OT_fnc_cleanup"];
-
-    {
-        _x addCuratorEditableObjects [units _tgroup, true];
-    } forEach allCurators;
 } else {
     private _moveto = _start getPos [50, _dir];
     private _wp = _group addWaypoint [_moveto, 5];
     _wp setWaypointType "MOVE";
     _wp setWaypointBehaviour "SAFE";
+
+    {
+        _x addCuratorEditableObjects [units _group, true];
+    } forEach allCurators;
 };
-{
-    _x addCuratorEditableObjects [units _group, true];
-} forEach allCurators;
 sleep 2;
 
 //This squad operates in stealth mode, therefore does not respond to calls for help from other units

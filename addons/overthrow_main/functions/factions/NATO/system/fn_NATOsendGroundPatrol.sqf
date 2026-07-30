@@ -6,8 +6,9 @@
 
     Parameters:
         _spend - The current spending limit
+        _chance - The current random threshold
 
-    Usage: [_spend] call OT_fnc_NATOsendGroundPatrol;
+    Usage: [_spend, _chance] call OT_fnc_NATOsendGroundPatrol;
 
     Returns: Scalar - How much is left to spend
 */

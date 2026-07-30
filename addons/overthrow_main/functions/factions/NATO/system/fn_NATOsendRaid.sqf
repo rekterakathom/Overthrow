@@ -6,16 +6,19 @@
 
     Parameters:
         _spend - The current spending limit
-		_chance - The current random threshold
+        _chance - The current random threshold
 
-    Usage: [_spend] call OT_fnc_NATOsendRaid;
+    Usage: [_spend, _chance] call OT_fnc_NATOsendRaid;
 
     Returns: Scalar - How much is left to spend
 */
 
 params ["_spend", "_chance"];
 
+private _knownTargets = spawner getVariable ["NATOknownTargets", []];
+private _popControl = call OT_fnc_getControlledPopulation;
 private _resources = server getVariable ["NATOresources", 2000];
+private _diff = server getVariable ["OT_difficulty", 1];
 
 {
     _x params ["_ty", "_pos", "", "", ["_done", false]];

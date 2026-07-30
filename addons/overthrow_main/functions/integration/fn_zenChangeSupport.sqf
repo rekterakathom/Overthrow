@@ -3,17 +3,15 @@
     Creates the dialog to change the support of the nearest town.
     Parameters:
         _position: ARRAY - The position the module was placed
-        _logic: OBJECT - The module object
+        _attached: OBJECT - The object the module was attached to
     Usage:
-    [_hoveredEntity] call OT_zenChangeSupport;
+    [_position, _attached] call OT_fnc_zenChangeSupport;
     Returns: BOOL - Dialog created
 */
 
-params ["_position", "_logic"];
-deleteVehicle _logic;
+params ["_position"];
 
 private _nearestTown = _position call OT_fnc_nearestTown;
-private _support = [_nearestTown] call OT_fnc_support;
 
 [
     format ["Change Town Support: %1", _nearestTown],
@@ -21,7 +19,7 @@ private _support = [_nearestTown] call OT_fnc_support;
         [
             "EDIT",
             "Change this towns support by",
-            "0"
+            ["0"]
         ]
     ],
     {
@@ -30,5 +28,5 @@ private _support = [_nearestTown] call OT_fnc_support;
         [_town, parseNumber (_result # 0)] call OT_fnc_support;
     },
     {},
-    [_nearestTown, _support]
+    [_nearestTown]
 ] call zen_dialog_fnc_create;

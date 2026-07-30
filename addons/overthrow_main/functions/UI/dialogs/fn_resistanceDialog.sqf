@@ -2,13 +2,13 @@ createDialog 'OT_dialog_resistance';
 
 ctrlEnable [1600, false];
 ctrlEnable [1601, false];
+ctrlEnable [1602, false];
+ctrlEnable [1603, false];
 
 private _amgen = (getPlayerUID player) in (server getVariable ["generals", []]);
 
 if (!_amgen) then {
     ctrlEnable [1605, false];
-    ctrlEnable [1602, false];
-    ctrlEnable [1603, false];
 };
 
 lbClear 1500;
@@ -25,7 +25,8 @@ lbClear 1500;
         if (getPlayerUID _x isEqualTo _uid) exitWith { _col = [1, 1, 1, 1] };
     } forEach (allPlayers);
 
-    lbSetColor [1500, _idx, _col] lbSetPicture [1500, _idx, _pic];
+    lbSetColor [1500, _idx, _col];
+    lbSetPicture [1500, _idx, _pic];
     lbSetData [1500, _idx, _uid];
 } forEach (players_NS getVariable ["OT_allplayers", []]);
 

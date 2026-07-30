@@ -1,8 +1,5 @@
 private _posTown = _this;
 
-private _vehs = [];
-private _soldiers = [];
-
 private _pos = OT_NATO_HQPos;
 
 private _dir = _pos getDir _posTown;
@@ -42,7 +39,6 @@ private _emptypos = _pos findEmptyPosition [15, 100, OT_NATO_Vehicle_CTRGTranspo
 if (_emptypos isEqualTo []) then { _emptypos = _pos findEmptyPosition [8, 100, OT_NATO_Vehicle_CTRGTransport] };
 sleep 0.3;
 private _veh = createVehicle [OT_NATO_Vehicle_CTRGTransport, _emptypos, [], 0, ""];
-_vehs pushBack _veh;
 
 _veh setDir (_dir);
 _tgroup addVehicle _veh;
@@ -55,10 +51,13 @@ createVehicleCrew _veh;
 
 {
     _x moveInCargo _veh;
-    _soldiers pushBack _x;
     _x setVariable ["garrison", "HQ", false];
     _x setVariable ["VCOM_NOPATHING_Unit", 1, false];
 } forEach (units _group);
+
+{
+    _x addCuratorEditableObjects [[_veh] + (units _group), true];
+} forEach allCurators;
 
 sleep 1;
 
@@ -106,7 +105,3 @@ _wp setWaypointBehaviour "COMBAT";
 _wp = _group addWaypoint [_attackpos, 0];
 _wp setWaypointType "GUARD";
 _wp setWaypointBehaviour "COMBAT";
-
-{
-    _x addCuratorEditableObjects [_vehs + _soldiers, true];
-} forEach allCurators;

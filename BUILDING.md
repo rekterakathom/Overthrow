@@ -1,23 +1,18 @@
 ## Building the addon
 
 **Requirements**
-* Mounted P: drive
 * [HEMTT](https://github.com/BrettMayson/HEMTT)
-* Arma 3 Tools
+* Arma 3 Tools (optional, used for 3D model binarization)
 
 **Guide**
 
-0. Download the files from GitHub, either as a .zip or by cloning the repository
+1. Download the files from GitHub, either as a .zip or by cloning the repository
 
-1. Mount the P: drive from 'Arma 3 Tools/workdrive/mount.bat'
+2. Open the command prompt in the `Overthrow` directory
 
-2. Copy the repository to the root of your P: drive
+3. Run `hemtt release`
 
-3. Open the command prompt in the Overthrow directory (P:/Overthrow)
-
-4. Run 'hemtt release'
-
-5. The built addon can now be found in P:/Overthrow/Releases
+4. The built addon can now be found in `Overthrow/Releases`
 
 ## Can I just unpack the PBO instead?
 

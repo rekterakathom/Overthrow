@@ -13,6 +13,7 @@
 */
 
 private _countered = false;
+private _resources = server getVariable ["NATOresources", 2000];
 private _abandoned = server getVariable ["NATOabandoned", []];
 
 {
@@ -35,5 +36,6 @@ private _abandoned = server getVariable ["NATOabandoned", []];
 } forEach OT_NATOComms;
 
 server setVariable ["NATOabandoned", _abandoned, true];
+server setVariable ["NATOresources", _resources];
 
 _countered;

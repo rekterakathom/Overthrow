@@ -8,7 +8,7 @@ if (headgear _unit != "") then {
     _t addHeadgear headgear _unit;
 };
 if (backpack _unit != "") then {
-    _t addBackpack (backpack _unit) call BIS_fnc_basicBackpack;
+    _t addBackpack ((backpack _unit) call BIS_fnc_basicBackpack);
 };
 if (hmd _unit != "") then {
     _t linkItem hmd _unit;

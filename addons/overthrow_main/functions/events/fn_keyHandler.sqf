@@ -1,5 +1,3 @@
-private _handled = false;
-
 if (!dialog) then {
     if ((player nearObjects [OT_workshopBuilding, 10]) isNotEqualTo []) then {
         [] call OT_fnc_workshopDialog;
@@ -333,6 +331,5 @@ if (!dialog) then {
 } else {
     closeDialog 0;
 };
-_handled = true;
 
-_handled;
+true;

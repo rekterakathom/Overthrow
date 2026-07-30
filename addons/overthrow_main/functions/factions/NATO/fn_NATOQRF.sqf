@@ -207,11 +207,10 @@ while {
     sleep 5;
     !_over;
 } do {
-    private _alive = 0;
     private _enemy = 0;
 
     private _unitsAO = [_pos, 200, 200, 0, false] nearEntities [["CAManBase"], false, true, true] select { !(_x getVariable ["ace_isunconscious", false]) };
-    _alive = blufor countSide _unitsAO;
+    private _alive = blufor countSide _unitsAO;
     {
         if (side _x isEqualTo independent || captive _x) then {
             // Players count twice

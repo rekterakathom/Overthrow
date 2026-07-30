@@ -6,13 +6,14 @@
 
     Parameters:
         _spend - The current spending limit
+        _chance - The current random threshold
 
-    Usage: [_spend] call OT_fnc_NATOsendAirPatrol;
+    Usage: [_spend, _chance] call OT_fnc_NATOsendAirPatrol;
 
     Returns: Scalar - How much is left to spend
 */
 
-params ["_spend"];
+params ["_spend", "_chance"];
 
 private _resources = server getVariable ["NATOresources", 2000];
 private _abandoned = server getVariable ["NATOabandoned", []];

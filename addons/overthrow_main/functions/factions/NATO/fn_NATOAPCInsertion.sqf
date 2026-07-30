@@ -8,8 +8,6 @@ private _group1 = [_frompos, blufor, _squadtype] call BIS_fnc_spawnGroup;
 _group1 deleteGroupWhenEmpty true;
 
 sleep 0.5;
-private _allunits = [];
-private _veh = false;
 
 //Transport
 private _tgroup = createGroup blufor;
@@ -18,7 +16,7 @@ private _dir = _frompos getDir _ao;
 private _pos = _frompos findEmptyPosition [10, 100, _vehtype];
 if (_pos isEqualTo []) then { _pos = _frompos findEmptyPosition [0, 100, _vehtype] };
 
-_veh = _vehtype createVehicle _pos;
+private _veh = _vehtype createVehicle _pos;
 _veh setVariable ["garrison", "HQ", false];
 clearWeaponCargoGlobal _veh;
 clearMagazineCargoGlobal _veh;
@@ -33,7 +31,7 @@ createVehicleCrew _veh;
     _x setVariable ["garrison", "HQ", false];
     _x setVariable ["NOAI", true, false];
 } forEach (crew _veh);
-_allunits = (units _tgroup);
+
 sleep 1;
 
 {
@@ -41,7 +39,6 @@ sleep 1;
         _x moveInCargo _veh;
     };
     [_x] joinSilent _group1;
-    _allunits pushBack _x;
     _x setVariable ["garrison", "HQ", false];
     _x setVariable ["VCOM_NOPATHING_Unit", true, false];
 } forEach (units _group1);

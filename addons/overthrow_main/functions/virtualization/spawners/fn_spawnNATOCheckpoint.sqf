@@ -29,7 +29,6 @@ if (isNil "_dir") then { _dir = 90 };
 private _vehs = [_start, _dir, OT_tpl_checkpoint] call BIS_fnc_objectsMapper;
 
 private _groups = [];
-private _soldiers = [];
 
 private _count = 0;
 
@@ -44,7 +43,6 @@ _start = _start getPos [7, _dir - 90];
 private _civ = _group createUnit [OT_NATO_Unit_TeamLeader, _start, [], 0, "NONE"];
 _civ setVariable ["garrison", _name, false];
 _civ setRank "MAJOR";
-_soldiers pushBack _civ;
 [_civ, _name] call OT_fnc_initMilitary;
 _civ setBehaviour "SAFE";
 sleep 0.5;
@@ -53,8 +51,13 @@ sleep 0.5;
     if (_x isKindOf "StaticWeapon") then {
         _group addVehicle _x;
         createVehicleCrew _x;
-        ((units _x) select 0) setVariable ["NOAI", true, false];
-        (units _x) joinSilent _group;
+        ((crew _x) select 0) setVariable ["NOAI", true, false];
+        (crew _x) joinSilent _group;
+
+        {
+            _x addCuratorEditableObjects [[_x], true];
+        } forEach (allCurators);
+
         sleep 0.5;
     };
     _groups pushBack _x;
@@ -66,7 +69,6 @@ while { _count < _numNATO } do {
     _start = _start getPos [2, _dir - 180];
     _civ = _group createUnit [selectRandom OT_NATO_Units_LevelTwo, _start, [], 0, "NONE"];
     _civ setVariable ["garrison", _name, false];
-    _soldiers pushBack _civ;
     _civ setRank "CAPTAIN";
     [_civ, _name] call OT_fnc_initMilitary;
     _civ setBehaviour "SAFE";
@@ -79,7 +81,7 @@ while { _count < _numNATO } do {
 };
 _group spawn OT_fnc_initNATOCheckpoint;
 {
-    _x addCuratorEditableObjects [units _group];
+    _x addCuratorEditableObjects [units _group, true];
 } forEach (allCurators);
 
 spawner setVariable [_spawnid, _groups, false];

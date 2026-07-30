@@ -27,9 +27,7 @@ if (_possible isNotEqualTo []) then {
         //Spawn the camp
         private _veh = createVehicle ["Campfire_burning_F", _home, [], 0, "CAN_COLLIDE"];
 
-        private _spawnid = spawner getVariable [format ["townspawnid%1", _town], -1];
-        private _groups = spawner getVariable [str _spawnid, []];
-        _groups pushBack _veh;
+        private _groups = [_veh];
 
         private _numtents = 2 + round (random 3);
         private _count = 0;
@@ -66,18 +64,12 @@ if (_possible isNotEqualTo []) then {
         _wp = _leaderGroup addWaypoint [_home, 0];
         _wp setWaypointType "CYCLE";
 
-        private _group = createGroup [opfor, true];
-        _group setVariable ["VCM_TOUGHSQUAD", true, true];
-        _group setVariable ["VCM_NORESCUE", true, true];
-        spawner setVariable [format ["gangspawn%1", _gangid], _group, true];
-        _groups pushBack _group;
         _groups pushBack _leaderGroup;
-        //spawner setvariable [_spawnid,_groups,false];
-
-        [_group, _townpos] call OT_fnc_initCriminalGroup;
+        private _spawnid = spawner getVariable [format ["townspawnid%1", _town], -1];
+        spawner setVariable [_spawnid, (spawner getVariable [_spawnid, []]) + _groups, false];
 
         {
-            _x addCuratorEditableObjects [[_civ]];
+            _x addCuratorEditableObjects [[_civ], true];
         } forEach (allCurators);
     };
     OT_civilians setVariable [format ["gangs%1", _town], _gangs, true];

@@ -24,6 +24,7 @@
                 _loadout = [(format ["gang%1", _gangid]), OT_CRIMBaseLoadout, [[_weapon]]] call OT_fnc_getRandomLoadout;
                 (_loadout select 4) set [0, _vest];
 
+                private _town = _gang select 2;
                 _gang pushBack _loadout;
                 _gang pushBack 0; //resources
                 _gang pushBack 1; //level

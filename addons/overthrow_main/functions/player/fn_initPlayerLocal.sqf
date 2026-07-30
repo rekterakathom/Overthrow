@@ -42,7 +42,7 @@ if (!isServer) then {
     //ACE3 events
     ["ace_cargoLoaded", OT_fnc_cargoLoadedHandler] call CBA_fnc_addEventHandler;
     ["ace_common_setFuel", OT_fnc_refuelHandler] call CBA_fnc_addEventHandler;
-    ["ace_explosives_place", OT_fnc_explosivesPlacedHandler] call CBA_fnc_addEventHandler;
+    ["ace_explosives_setup", OT_fnc_explosivesPlacedHandler] call CBA_fnc_addEventHandler;
     ["ace_repair_setWheelHitPointDamage", OT_fnc_wheelStateHandler] call CBA_fnc_addEventHandler;
     ["ace_treatmentSucceded", OT_fnc_healedHandler] call CBA_fnc_addEventHandler;
     //Overthrow events
@@ -485,6 +485,9 @@ if (isClass (configFile >> "CfgPatches" >> "zen_common")) then {
 } else {
     systemChat "Zeus Enhanced not detected, consider adding it to your modlist for Overthrow specific functionality";
 };
+
+[OT_fnc_notificationLoop, [], 1] call CBA_fnc_waitAndExecute;
+[OT_fnc_perkSystem, [], 1] call CBA_fnc_waitAndExecute;
 
 [] call OT_fnc_setupPlayer;
 _introcam cameraEffect ["Terminate", "BACK"];

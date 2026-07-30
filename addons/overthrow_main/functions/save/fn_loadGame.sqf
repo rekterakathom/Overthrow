@@ -422,10 +422,10 @@ private _hasList_buildableHouses = false;
         continue;
     };
     if (_key == "recruitables") then {
-        private _done = false;
         {
             if (isNil "_x") then { continue };
             _x params ["_cls", "_loadout"];
+            private _done = false;
             {
                 _x params ["_c", "_l"];
                 if (_c == _cls) exitWith {
@@ -433,8 +433,8 @@ private _hasList_buildableHouses = false;
                     _x set [1, _loadout];
                 };
             } forEach (OT_Recruitables);
+            if !(_done) then { OT_Recruitables pushBack [_cls, _loadout] };
         } forEach (_val);
-        if !(_done) then { OT_Recruitables pushBack [_cls, _loadout] };
         publicVariable "OT_Recruitables";
         _set = false;
         continue;
@@ -483,6 +483,10 @@ sleep 0.3;
             };
             sleep 0.1;
         } forEach (_garrison);
+
+        {
+            _x addCuratorEditableObjects [units _group, true];
+        } forEach (allCurators);
     };
     private _mrkid = format ["%1-base", _pos];
     createMarkerLocal [_mrkid, _pos];
@@ -517,6 +521,10 @@ sleep 0.3;
             };
             sleep 0.1;
         } forEach (_garrison);
+
+        {
+            _x addCuratorEditableObjects [units _group, true];
+        } forEach (allCurators);
     };
 } forEach (OT_objectiveData + OT_airportData);
 

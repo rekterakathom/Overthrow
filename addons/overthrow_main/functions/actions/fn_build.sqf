@@ -1,3 +1,4 @@
+if !(isNil "modeTarget") exitWith { "You are already placing a previous object" call OT_fnc_notifyMinor };
 if !(captive player) exitWith { "You cannot build while wanted" call OT_fnc_notifyMinor };
 private _base = player call OT_fnc_nearestBase;
 private _closest = "";

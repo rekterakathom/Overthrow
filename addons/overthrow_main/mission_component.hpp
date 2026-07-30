@@ -108,7 +108,13 @@ class Params {
         texts[] = {"Yes", "No"};
         default = 1;
     };
-    class ot_showenemygroup {
+    class ot_showtownchange {
+        title = "Show Town Change Stats on HUD";
+        values[] = {1, 0};
+        texts[] = {"Yes", "No"};
+        default = 1;
+    };
+    class ot_showenemygroups {
         title = "Show known enemy groups on map";
         values[] = {1, 0};
         texts[] = {"Yes", "No"};

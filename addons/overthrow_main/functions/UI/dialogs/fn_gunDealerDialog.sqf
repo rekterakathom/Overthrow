@@ -44,7 +44,7 @@ if (isNil "_stock") then {
     } forEach (OT_allOptics);
 
     {
-        _stock pushBack [_x, _price];
+        _stock pushBack [_x, 0];
     } forEach (OT_allDrugs);
 
     server setVariable [format ["gunstock%1", _town], _stock, true];
@@ -52,7 +52,7 @@ if (isNil "_stock") then {
 
 createDialog "OT_dialog_buy";
 {
-    _x params ["_cls", "_price"];
+    _x params ["_cls"];
     if !(isNil "_cls") then {
         (_cls call OT_fnc_getClassDisplayInfo) params ["_pic", "_txt"];
 
@@ -62,6 +62,7 @@ createDialog "OT_dialog_buy";
             _txt = "Quadbike w/ HMG Backpacks";
         };
 
+        private _price = 0;
         if (_cls in OT_allDrugs) then {
             _price = [_town, _cls] call OT_fnc_getDrugPrice;
         } else {

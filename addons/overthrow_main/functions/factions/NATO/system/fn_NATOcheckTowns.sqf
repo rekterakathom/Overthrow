@@ -9,7 +9,7 @@
 
     Usage: [] call OT_fnc_NATOcheckTowns;
 
-    Returns: Boolean - was an objective countered (QRF sent)
+    Returns: Boolean - was an town countered (QRF sent) or abandoned
 */
 
 if (isNil "OT_townsSortedByPopulation") then {

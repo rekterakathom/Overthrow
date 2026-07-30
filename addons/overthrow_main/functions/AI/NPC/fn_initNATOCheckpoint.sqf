@@ -92,14 +92,13 @@ while { !(isNil "_group") && (units _group) isNotEqualTo [] } do {
                 } else {
                     if (isPlayer _x && !(_x in _searched)) then {
                         private _msg = "Search complete, be on your way";
-                        private _items = [];
                         private _unit = _x;
                         if (!isNull objectParent _x) then {
                             private _v = objectParent _x;
                             _v setVelocity [0, 0, 0];
                         };
 
-                        _items = (vehicle _x) call OT_fnc_unitStock;
+                        private _items = (vehicle _x) call OT_fnc_unitStock;
 
                         {
                             private _cls = _x select 0;

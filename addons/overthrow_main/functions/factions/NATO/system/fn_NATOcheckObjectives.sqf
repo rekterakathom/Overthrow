@@ -13,6 +13,7 @@
 */
 
 private _countered = false;
+private _popControl = call OT_fnc_getControlledPopulation;
 private _knownTargets = spawner getVariable ["NATOknownTargets", []];
 private _resources = server getVariable ["NATOresources", 2000];
 private _abandoned = server getVariable ["NATOabandoned", []];

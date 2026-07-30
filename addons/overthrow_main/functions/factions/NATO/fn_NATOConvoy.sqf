@@ -43,7 +43,7 @@ if ([_topos, _fromregion] call OT_fnc_regionIsConnected) then {
         _driver assignAsCommander _veh;
         _convoypos = _convoypos getPos [20, _dir + 180];
         {
-            _x addCuratorEditableObjects [[_veh]];
+            _x addCuratorEditableObjects [[_veh], true];
         } forEach (allCurators);
         sleep 0.3;
     } forEach (_vehtypes);
@@ -73,6 +73,10 @@ if ([_topos, _fromregion] call OT_fnc_regionIsConnected) then {
 
         _convoypos = _convoypos getPos [20, _dir];
 
+        {
+            _x addCuratorEditableObjects [[_veh], true];
+        } forEach (allCurators);
+
         sleep 0.3;
         _x set [2, "CONVOY"];
     } forEach (_hvts);
@@ -100,6 +104,11 @@ if ([_topos, _fromregion] call OT_fnc_regionIsConnected) then {
             _driver assignAsCommander _veh;
             _convoypos = _convoypos getPos [20, -_dir];
             _count = _count + 1;
+
+            {
+                _x addCuratorEditableObjects [[_veh], true];
+            } forEach (allCurators);
+
             sleep 0.3;
         };
     };

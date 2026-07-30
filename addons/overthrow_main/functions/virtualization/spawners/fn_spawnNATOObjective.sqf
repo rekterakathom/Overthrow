@@ -96,6 +96,11 @@ if (_name in OT_allComms) then {
         _count = _count + 1;
         sleep 0.5;
     };
+
+    {
+        _x addCuratorEditableObjects [units _group, true];
+    } forEach (allCurators);
+
     [_group, _posTown, 75, 6] call CBA_fnc_taskPatrol;
 } else {
     //put up a flag
@@ -171,6 +176,10 @@ if (_numNATO > 0) then {
             } forEach (crew _x);
         } forEach (_addedVehicles);
 
+        {
+            _x addCuratorEditableObjects [_addedVehicles, true];
+        } forEach (allCurators);
+
         if (_numNATO <= 0) exitWith {};
     } forEach (_buildings);
 };
@@ -213,7 +222,7 @@ while { _count < _numNATO } do {
         sleep 0.5;
     };
     {
-        _x addCuratorEditableObjects [units _group, false];
+        _x addCuratorEditableObjects [units _group, true];
     } forEach (allCurators);
 
     [_group, _posTown, _range, 6] call CBA_fnc_taskPatrol;
@@ -252,6 +261,9 @@ private _airgarrison = server getVariable [format ["airgarrison%1", _name], []];
     private _veh = _vehtype createVehicle _pos;
     _veh setVariable ["airgarrison", _name, false];
     _veh setDir _dir;
+    {
+        _x addCuratorEditableObjects [[_veh], true];
+    } forEach (allCurators);
     sleep 0.5;
     _groups pushBack _veh;
 } forEach (_airgarrison);
@@ -306,7 +318,7 @@ private _vehgarrison = server getVariable [format ["vehgarrison%1", _name], []];
         } forEach (crew _veh);
         _vgroup setVariable ["Vcm_Disable", true, false];
         {
-            _x addCuratorEditableObjects [[_veh]];
+            _x addCuratorEditableObjects [[_veh], true];
         } forEach (allCurators);
     };
 } forEach (_vehgarrison);
@@ -345,15 +357,17 @@ private _vehgarrison = server getVariable [format ["vehgarrison%1", _name], []];
                 _unit enableAI "PATH";
             }
         ];
+
+        {
+            _x addCuratorEditableObjects [[_veh, _civ], true];
+        } forEach (allCurators);
+
         sleep 0.5;
 
         private _wp = _group addWaypoint [_pos, 0];
         _wp setWaypointType "GUARD";
         _wp = _group addWaypoint [_pos, 0];
         _wp setWaypointType "CYCLE";
-        {
-            _x addCuratorEditableObjects [units _group, false];
-        } forEach (allCurators);
     };
 } forEach (OT_NATOhvts);
 

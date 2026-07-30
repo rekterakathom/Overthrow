@@ -5,17 +5,19 @@
     Try to deploy a FOB
 
     Parameters:
-        -
+        _spend - The current spending limit
 
-    Usage: [] call OT_fnc_NATOdeployFOB;
+    Usage: [_spend] call OT_fnc_NATOdeployFOB;
 
-    Returns: Boolean - was a FOB established
+    Returns: Scalar - How much is left to spend
 */
 
+params ["_spend"];
+
+private _resources = server getVariable ["NATOresources", 2000];
 private _fobs = server getVariable ["NATOfobs", []];
 private _abandoned = server getVariable ["NATOabandoned", []];
 
-private _fobEstablished = false;
 private _lowest = "";
 {
     private _stability = server getVariable [format ["stability%1", _x], 100];
@@ -55,10 +57,9 @@ if (_lowest isNotEqualTo "") then {
         _resources = _resources - 500;
         spawner setVariable ["NATOdeploying", true, false];
         [_gotPos] spawn OT_fnc_NATOMissionDeployFOB;
-        _fobEstablished = true;
     };
 };
 
 server setVariable ["NATOresources", _resources];
 
-_fobEstablished;
+_spend;

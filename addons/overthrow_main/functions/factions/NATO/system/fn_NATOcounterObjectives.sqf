@@ -17,11 +17,13 @@ if (isNil "OT_townsSortedByPopulation") then {
 };
 
 private _countered = false;
+private _knownTargets = spawner getVariable ["NATOknownTargets", []];
 private _popControl = call OT_fnc_getControlledPopulation;
 private _lastAttack = time - (server getVariable ["NATOlastattack", 0]);
 private _abandoned = server getVariable ["NATOabandoned", []];
 private _resources = server getVariable ["NATOresources", 2000];
 private _lastCounter = server getVariable ["NATOlastcounter", ""];
+private _diff = server getVariable ["OT_difficulty", 1];
 
 {
     _x params [
@@ -124,7 +126,7 @@ private _lastCounter = server getVariable ["NATOlastcounter", ""];
                 _wp setWaypointType "CYCLE";
 
                 {
-                    _x addCuratorEditableObjects [[_drone]];
+                    _x addCuratorEditableObjects [[_drone], true];
                 } forEach (allCurators);
 
                 [_drone, _name] spawn OT_fnc_NATODrone;

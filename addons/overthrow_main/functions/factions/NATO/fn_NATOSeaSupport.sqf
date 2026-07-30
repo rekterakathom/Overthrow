@@ -16,6 +16,11 @@ createVehicleCrew _veh;
     _x setVariable ["garrison", "HQ", false];
     _x setVariable ["NOAI", true, false];
 } forEach (crew _veh);
+
+{
+    _x addCuratorEditableObjects [[_veh], true];
+} forEach (allCurators);
+
 sleep 1;
 
 private _wp = _group addWaypoint [ASLToATL _attackpos, 20];

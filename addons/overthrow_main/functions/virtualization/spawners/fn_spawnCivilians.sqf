@@ -56,6 +56,8 @@ _mayor setVariable ["hometown", _hometown, true];
 [_mayor] call OT_fnc_initMayor;
 _group call OT_fnc_initCivilianGroup;
 
+// Mayor is intentionally not added to zeus editable objects as it's a special character role
+
 // Spawn the rest of the civvies
 while { _count < _numCiv } do {
     private _groupCount = 0;
@@ -75,6 +77,11 @@ while { _count < _numCiv } do {
         [_civ, _identity] call OT_fnc_applyIdentity;
         _count = _count + 1;
         _groupCount = _groupCount + 1;
+
+        {
+            _x addCuratorEditableObjects [[_civ], true];
+        } forEach (allCurators);
+
         sleep 0.5;
     };
     _group call OT_fnc_initCivilianGroup;
@@ -138,7 +145,7 @@ private _gangs = OT_civilians getVariable [format ["gangs%1", _town], []];
             _groups pushBack _leaderGroup;
 
             {
-                _x addCuratorEditableObjects [[_civ]];
+                _x addCuratorEditableObjects [[_civ], true];
             } forEach (allCurators);
 
             {
@@ -159,7 +166,7 @@ private _gangs = OT_civilians getVariable [format ["gangs%1", _town], []];
                 _civ setVariable ["hometown", _town, true];
 
                 {
-                    _x addCuratorEditableObjects [[_civ]];
+                    _x addCuratorEditableObjects [[_civ], true];
                 } forEach (allCurators);
 
                 sleep 0.3;
